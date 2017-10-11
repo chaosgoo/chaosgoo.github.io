@@ -4,27 +4,27 @@
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta name="theme-color" content="#4d4d4d">
+  <meta name="theme-color" content="#D7D7D7">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.chaosgoo.com">
   <title>Android Chrome 沉浸式地址栏 | Do U Find IT?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0x00&amp;lt; Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如Bilibili,Github,XDA等.这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.其实要实现这个效果非常简单,只需要一行代码即可实现. 0x01&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;">
+  <meta name="description" content="0x00Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如Bilibili,Github,XDA等.这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.其实要实现这个效果非常简单,只需要一行代码即可实现. 0x01&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;#db59">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Chrome 沉浸式地址栏">
 <meta property="og:url" content="https://blog.chaosgoo.com/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
-<meta property="og:description" content="0x00&amp;lt; Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如Bilibili,Github,XDA等.这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.其实要实现这个效果非常简单,只需要一行代码即可实现. 0x01&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;">
+<meta property="og:description" content="0x00Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如Bilibili,Github,XDA等.这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.其实要实现这个效果非常简单,只需要一行代码即可实现. 0x01&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;#db59">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p2.png">
 <meta property="og:image" content="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p1.png">
 <meta property="og:image" content="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p3.png">
-<meta property="og:updated_time" content="2017-10-11T08:48:25.725Z">
+<meta property="og:updated_time" content="2017-10-11T08:49:57.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Chrome 沉浸式地址栏">
-<meta name="twitter:description" content="0x00&amp;lt; Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如Bilibili,Github,XDA等.这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.其实要实现这个效果非常简单,只需要一行代码即可实现. 0x01&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;">
+<meta name="twitter:description" content="0x00Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如Bilibili,Github,XDA等.这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.其实要实现这个效果非常简单,只需要一行代码即可实现. 0x01&amp;lt;meta name=&amp;quot;theme-color&amp;quot; content=&amp;quot;#db59">
 <meta name="twitter:image" content="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p2.png">
   
     <link rel="alternative" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
@@ -50,7 +50,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<div class="overlay" style="background: #d7d7d7"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="" class="profilepic">
@@ -105,7 +105,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: #d7d7d7"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -183,7 +183,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h2><p>&lt; Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如<a href="https://www.bilibili.com" target="_blank" rel="external">Bilibili</a>,<a href="https://www.github.com" target="_blank" rel="external">Github</a>,<a href="http://forum.xda-developers.com" target="_blank" rel="external">XDA</a>等.<br>这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.<br>其实要实现这个效果非常简单,只需要一行代码即可实现.<br><img src="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p2.png" height="640"></p>
+        <h2 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h2><p>Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如<a href="https://www.bilibili.com" target="_blank" rel="external">Bilibili</a>,<a href="https://www.github.com" target="_blank" rel="external">Github</a>,<a href="http://forum.xda-developers.com" target="_blank" rel="external">XDA</a>等.<br>这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.<br>其实要实现这个效果非常简单,只需要一行代码即可实现.<br><img src="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p2.png" height="640"></p>
 <h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p><code>&lt;meta name=&quot;theme-color&quot; content=&quot;#db5945&quot;&gt;</code><br>将#后面的内容替换成你想要转变的颜色，你就可以让你的网页和Chrome融为一体了<br><img src="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p1.png" height="640"><br>这是添加前   </p>
 <hr>
 <p>这是添加后的效果<br><img src="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p3.png" height="640">  </p>
@@ -299,26 +299,6 @@
 
 
   
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Change-address-bar-color-in-Chrome-Mobile" data-title="Android Chrome 沉浸式地址栏" data-url="https://blog.chaosgoo.com/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-  
   
   
 
@@ -421,10 +401,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">〇</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
               <li class="article-tag-list-item">
