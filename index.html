@@ -59,7 +59,7 @@
 	        
 				<li><a href="/tags/〇/">〇</a></li>
 	        
-				<li><a href="/tags/Android/">Android</a></li>
+				<li><a href="/tags/Hexo/">Hexo</a></li>
 	        
 			</ul>
 		</nav>
@@ -139,7 +139,7 @@
 		        
 					<li style="width: 33.333333333333336%"><a href="/tags/〇/">〇</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/Android/">Android</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/Hexo/">Hexo</a></li>
 		        
 				</ul>
 			</nav>
@@ -176,8 +176,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h2><p>&lt; Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如<a href="https://www.bilibili.com" target="_blank" rel="external">Bilibili</a>,<a href="https://www.github.com" target="_blank" rel="external">Github</a>,<a href="http://forum.xda-developers.com" target="_blank" rel="external">XDA</a>等.<br>这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.<br>其实要实现这个效果非常简单,只需要一行代码即可实现.</p>
-<h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p><code>&lt;meta name=&quot;theme-color&quot; content=&quot;#db5945&quot;&gt;</code><br>将#后面的内容替换成你想要转变的颜色，你就可以让你的网页和Chrome融为一体了</p>
+        <h2 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h2><p>&lt; Android版Chrome会在一些特定的网页中改变地址栏的颜色,比如<a href="https://www.bilibili.com" target="_blank" rel="external">Bilibili</a>,<a href="https://www.github.com" target="_blank" rel="external">Github</a>,<a href="http://forum.xda-developers.com" target="_blank" rel="external">XDA</a>等.<br>这是Chrome 39中更新出的功能.虽然现在Chrome已经更新到61了,但是这个效果普及率依然很低.<br>其实要实现这个效果非常简单,只需要一行代码即可实现.<br><img src="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p2.png" height="640"></p>
+<h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p><meta name="theme-color" content="#db5945"><br>将#后面的内容替换成你想要转变的颜色，你就可以让你的网页和Chrome融为一体了<br><img src="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p1.png" height="640"><br>这是添加前   </p>
+<hr>
+<p>这是添加后的效果<br><img src="http://oxm4z18bd.bkt.clouddn.com/change_address_bar_clolor_p3.png" height="640">  </p>
+<hr>
+<p>那么一些像我这样的新手肯定会问，这条语句添加在什么地方啊.<br>个人总结了两种方法<br>第一种就是适合我这样的懒人,是一劳永逸的方法,直接在hexo g生成的时候修改生成规则，给每个生成的index.html添加上theme-color颜色配置的语句.<br>想要修改生成规则，这时候要到对应主题的layout文件夹内修改.ejs文件,我使用的主题是yilai,那么对应的文件路径就是theme/yilai/layout/head.ejs<br>打开这个文件，很快就可以找到生成格式.在<code>&lt;/head&gt;</code>前添加上修改颜色的代码<br>第二种方法非常简单,而且能够让Blog页面的主题更加丰富,只需要在markdown编辑的时候加入修改颜色的代码即可</p>
 
       
 
@@ -528,7 +532,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://mcat.im/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
             </li>
           
             <li class="search-li">
