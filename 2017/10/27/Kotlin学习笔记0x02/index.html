@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="Kotlin学习笔记0x02变量类型推断 例子11234567fun main(args:Array&amp;lt;String&amp;gt;)&amp;#123;    val str = &quot;A&quot;    println(str)    println(str is String)    println(str::class)    println(str::class.java)&amp;#125;   1234Atruec">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-27T12:06:44.432Z">
+<meta property="og:updated_time" content="2017-10-31T05:42:48.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin学习笔记0x02">
 <meta name="twitter:description" content="Kotlin学习笔记0x02变量类型推断 例子11234567fun main(args:Array&amp;lt;String&amp;gt;)&amp;#123;    val str = &quot;A&quot;    println(str)    println(str is String)    println(str::class)    println(str::class.java)&amp;#125;   1234Atruec">
@@ -244,7 +244,9 @@ var _hmt = _hmt || [];
 <hr>
 <h3 id="return"><a href="#return" class="headerlink" title="return"></a>return</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</div><div class="line">    returnDemo_1()</div><div class="line">    returnDemo_2()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">returnDemo_1</span><span class="params">()</span></span>&#123;</div><div class="line">    println(<span class="string">"Start:"</span>+::returnDemo_1.name)</div><div class="line">    <span class="keyword">val</span> intArray = intArrayOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</div><div class="line">    intArray.forEach&#123;</div><div class="line">        <span class="keyword">if</span>(it==<span class="number">3</span>)<span class="keyword">return</span><span class="comment">//遇到a==3的时候直接跳出了函数</span></div><div class="line">        println(it)</div><div class="line">    &#125;</div><div class="line">    println(<span class="string">"End"</span>+::returnDemo_2.name)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">returnDemo_2</span><span class="params">()</span></span>&#123;</div><div class="line">    println(<span class="string">"Start:"</span>+::returnDemo_2.name)</div><div class="line">    <span class="keyword">val</span> intArray = intArrayOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</div><div class="line">    intArray.forEach(<span class="function"><span class="title">fun</span><span class="params">(a:<span class="type">Int</span>)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(a==<span class="number">3</span>)<span class="keyword">return</span><span class="comment">//遇到a==3只是跳出了这次循环</span></div><div class="line">        println(a)</div><div class="line">    &#125;)</div><div class="line">    println(<span class="string">"End:"</span>+::returnDemo_2.name)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Start:returnDemo_1</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line">Start:returnDemo_2</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div><div class="line">End:returnDemo_2</div></pre></td></tr></table></figure>
-
+<p><a href="http://www.kotlindoc.cn" target="_blank" rel="external">参考资料</a></p>
+<p><a href="https://try.kotlinlang.org" target="_blank" rel="external">在线Kotlin IDE</a></p>
+<h1 id="To-Be-Continue"><a href="#To-Be-Continue" class="headerlink" title="To Be Continue"></a>To Be Continue</h1>
       
 
       
@@ -326,6 +328,15 @@ var _hmt = _hmt || [];
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/10/30/Kotlin学习笔记0x03/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Kotlin学习笔记0x03
+        
+      </div>
+    </a>
   
   
     <a href="/2017/10/26/Kotlin学习笔记0x01/" id="article-nav-older" class="article-nav-link-wrap">
@@ -467,15 +478,15 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">〇</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
             
             <div class="clearfix"></div>

@@ -172,6 +172,71 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Kotlin学习笔记0x03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/30/Kotlin学习笔记0x03/">Kotlin学习笔记0x03</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/30/Kotlin学习笔记0x03/" class="archive-article-date">
+  	<time datetime="2017-10-30T09:23:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Kotlin学习笔记0x03"><a href="#Kotlin学习笔记0x03" class="headerlink" title="Kotlin学习笔记0x03"></a>Kotlin学习笔记0x03</h1><h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p> 标签的格式为标识符后加上一个@ 例如a@,b@<br> 标签可以用于控制return break continue的跳转行为<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</div><div class="line">  returnDemo()</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">returnDemo</span><span class="params">()</span></span>&#123;</div><div class="line">    println(<span class="string">"Start "</span>+::returnDemo.name)<span class="comment">//打印当前开始的函数的名称</span></div><div class="line">    <span class="keyword">val</span> intArray = intArrayOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</div><div class="line">    intArray.forEach <span class="symbol">here@</span>&#123;<span class="comment">//在这里设置一个名为here的标签</span></div><div class="line">        <span class="keyword">if</span>(it == <span class="number">3</span>)&#123;</div><div class="line">            <span class="keyword">return</span><span class="symbol">@here</span></div><div class="line">        &#125;</div><div class="line">        println(it)<span class="comment">//打印循环到的内容,it代指当前循环内容</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*因为接受该Lambda表达式的函数是forEach,所以可以直接使用return@forEach 跳转到下次循环</span></div><div class="line"><span class="comment">    return@forEach实例</span></div><div class="line"><span class="comment">    intArray.forEach&#123;//在这里设置一个名为here的标签</span></div><div class="line"><span class="comment">        if(it == 3)&#123;</span></div><div class="line"><span class="comment">            //return@forEach</span></div><div class="line"><span class="comment">        &#125;</span></div><div class="line"><span class="comment">        println(it)//打印循环到的内容,it代指当前循环内容</span></div><div class="line"><span class="comment">    &#125;*/</span></div><div class="line">     println(<span class="string">"End "</span>+::returnDemo.name)<span class="comment">//打印当前结束的函数的名称</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Start returnDemo</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div><div class="line">End returnDemo</div></pre></td></tr></table></figure>
+<p><a href="https://baike.baidu.com/item/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/4585794?fr=aladdin" target="_blank" rel="external">Lambda函数/Lambda表达式</a><br>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/30/Kotlin学习笔记0x03/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Kotlin学习笔记0x02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -277,11 +342,11 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>定义一个接受两个Int型的函数，返回值类型是Int</p>
 </blockquote>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">Sum</span><span class="params">(a :<span class="type">Int</span>,b :<span class="type">Int</span>)</span></span> :<span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> a + b</div><div class="line">&#125;</div><div class="line"></div><div class="line">println(Sum(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line"><span class="comment">//输出结果3</span></div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">Sum</span><span class="params">(a :<span class="type">Int</span>,b :<span class="type">Int</span>)</span></span> :<span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> a + b<span class="comment">//返回a,b之和</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">println(Sum(<span class="number">1</span>,<span class="number">2</span>))</div><div class="line"><span class="comment">//输出结果3</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>定义一个无返回值的函数</p>
 </blockquote>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">Sum</span><span class="params">(a: <span class="type">Int</span>,b:<span class="type">Int</span>)</span></span>&#123;</div><div class="line">    println(<span class="string">"sum of <span class="variable">$a</span> and <span class="variable">$b</span> is <span class="subst">$&#123;a+b&#125;</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func main(args: Array&lt;String&gt;):Uint&#123;</div><div class="line">    <span class="comment">//Unit可以省略</span></div><div class="line">    Sum(<span class="number">-1</span>,<span class="number">2</span>)</div><div class="line">    <span class="comment">//输出1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">Sum</span><span class="params">(a: <span class="type">Int</span>,b:<span class="type">Int</span>)</span></span>&#123;</div><div class="line">    println(<span class="string">"sum of <span class="variable">$a</span> and <span class="variable">$b</span> is <span class="subst">$&#123;a+b&#125;</span>"</span>)</div><div class="line">    <span class="comment">//$表示使用值，&#123;&#125;表示执行一个语句，$&#123;&#125;表示使用语句的值</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">func main(args: Array&lt;String&gt;):Uint&#123;</div><div class="line">    <span class="comment">//Unit可以省略</span></div><div class="line">    Sum(<span class="number">-1</span>,<span class="number">2</span>)</div><div class="line">    <span class="comment">//输出1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
         
       
 
@@ -661,15 +726,15 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">〇</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
             
             <div class="clearfix"></div>
