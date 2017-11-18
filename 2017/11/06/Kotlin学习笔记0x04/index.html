@@ -8,15 +8,19 @@
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.chaosgoo.com">
-  <title>Archives: 2017 | Do U Find IT?</title>
+  <title>Kotlin学习笔记0x04 | Do U Find IT?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Do U Find IT?">
-<meta property="og:url" content="https://blog.chaosgoo.com/archives/2017/index.html">
+  <meta name="description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public open">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin学习笔记0x04">
+<meta property="og:url" content="https://blog.chaosgoo.com/2017/11/06/Kotlin学习笔记0x04/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public open">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-18T09:14:20.730Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Do U Find IT?">
+<meta name="twitter:title" content="Kotlin学习笔记0x04">
+<meta name="twitter:description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public open">
   
     <link rel="alternative" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
   
@@ -170,255 +174,229 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Kotlin学习笔记0x04" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Kotlin学习笔记0x04
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/06/Kotlin学习笔记0x04/" class="archive-article-date">
+
+        
+        <a href="/2017/11/06/Kotlin学习笔记0x04/" class="archive-article-date">
   	<time datetime="2017-11-06T14:59:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/06/Kotlin学习笔记0x04/">Kotlin学习笔记0x04</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h2 id="根类型Any"><a href="#根类型Any" class="headerlink" title="根类型Any"></a>根类型Any</h2><p>Kotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any</p>
+<p>Any 只有equals() hashCode() 和toString 三个函数<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Any</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">equals</span><span class="params">(other: <span class="type">Any</span>?)</span></span>:<span class="built_in">Boolean</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">hashCode</span><span class="params">()</span></span>:<span class="built_in">Int</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">toSting</span><span class="params">()</span></span>:String</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><p>在Kotlin中一切皆是对象，所有类型都是引用类型，没有类似java中的基本类型。</p>
+<h3 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">宽度(Bit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Double</td>
+<td style="text-align:center">64</td>
+</tr>
+<tr>
+<td style="text-align:center">Float</td>
+<td style="text-align:center">32</td>
+</tr>
+<tr>
+<td style="text-align:center">Long</td>
+<td style="text-align:center">64</td>
+</tr>
+<tr>
+<td style="text-align:center">Int</td>
+<td style="text-align:center">32</td>
+</tr>
+<tr>
+<td style="text-align:center">Short</td>
+<td style="text-align:center">16</td>
+</tr>
+<tr>
+<td style="text-align:center">Byte</td>
+<td style="text-align:center">8</td>
+</tr>
+</tbody>
+</table>
+<p>上述各个数字类型均继承了Nummber类和Compare类</p>
+<h4 id="字面常量值"><a href="#字面常量值" class="headerlink" title="字面常量值"></a>字面常量值</h4><ul>
+<li>十进制：                     123</li>
+<li>Long类型用大写的L标记         123L</li>
+<li>十六进制                     0x78</li>
+<li>二进制                       0b1111011</li>
+<li>Float类型用F或者f标记        12.3f<blockquote>
+<p>没有八进制哦!</p>
+</blockquote>
+</li>
+</ul>
+<p>另外Kotlin从1.1起允许使用数字字面值的下划线，提高可读性<br>100_000   等价于100000 </p>
+<p>123_456_789L 等价于123456789L </p>
+<p>0xFF_D7_D7_D7 等价于 0xFFD7D7D7 </p>
+<p>0b1111_1111_1111 等价于0b111111111111 </p>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><p>值范围较小类型 不能进行隐式转换成值范围较大的类型，但是可以通过显式转换来转换类型<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i: <span class="built_in">Int</span> = <span class="number">1</span></div><div class="line"><span class="keyword">var</span> b: <span class="built_in">Byte</span> = <span class="number">2</span></div><div class="line">i = b<span class="comment">//可以直接进行</span></div><div class="line">b = i<span class="comment">//不可以直接进行</span></div><div class="line">b = i.toByte()<span class="comment">//显式转换</span></div></pre></td></tr></table></figure></p>
+<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><p>在Kotlin并不是使用特殊字符来进行位运算，而是使用中缀方式调用这些位运算的函数<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> x = (<span class="number">1</span> shl <span class="number">2</span>) and <span class="number">0x000FF00</span></div><div class="line"><span class="comment">//相对于在Java中的 x = (1&lt;&lt;2) &amp; 0x000FF00</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li>shl(bits)  有符号的左移 &lt;&lt;</li>
+<li>shr(bits)  有符号的右移 &gt;&gt;</li>
+<li>ushl(bits) 无符号的左移 &lt;&lt;</li>
+<li>ushr(bits) 无符号的左移 &lt;&lt;</li>
+<li>and(bits)  位与         &amp;</li>
+<li>or(bits)   位或         |</li>
+<li>xor(bits)  位异或       ^</li>
+<li>inv(bits)  位非         ~</li>
+</ul>
+<h3 id="String-字符串类型"><a href="#String-字符串类型" class="headerlink" title="String 字符串类型"></a>String 字符串类型</h3><p>Kotlin中，字符串用String 表示,String类不可以被继承</p>
+<h4 id="索引运算符"><a href="#索引运算符" class="headerlink" title="索引运算符"></a>索引运算符</h4><p>字符串中的元素 可以使用索引运算符进行访问<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str:String = <span class="string">"abc"</span></div><div class="line"><span class="comment">//s[0]即是a</span></div></pre></td></tr></table></figure></p>
+<p>索引运算符要考虑越界问题</p>
+<h4 id="原生字符串"><a href="#原生字符串" class="headerlink" title="原生字符串"></a>原生字符串</h4><p>原生字符串使用三个引号<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"""我是原生字符串，</span></div><div class="line"><span class="string">内部可以包含换行和其他特殊字符"""</span></div></pre></td></tr></table></figure></p>
+<h4 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h4><p>在字符串中可以包含模板表达式,模板表达式由$开头<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> h = <span class="number">123</span></div><div class="line"><span class="keyword">val</span> str = <span class="string">"h is <span class="variable">$h</span>"</span></div><div class="line"><span class="keyword">var</span> str2 = <span class="string">"str.length is <span class="subst">$&#123;str.length&#125;</span>"</span></div><div class="line"><span class="comment">//str是h is 123</span></div><div class="line"><span class="comment">//str2是str.length is 3</span></div><div class="line">在原生字符串中同样支持模板</div><div class="line"><span class="keyword">val</span> str3 = <span class="string">"""str.length is <span class="subst">$&#123;str.length&#125;</span>"""</span></div><div class="line"><span class="comment">//str3是str.length is 3</span></div></pre></td></tr></table></figure></p>
+<h3 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h3><p>数组在Kotlin中使用Array类来表示<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Array</span>&lt;<span class="type">T</span>&gt; <span class="keyword">private</span> <span class="keyword">constructor</span></span>() &#123;</div><div class="line">    <span class="keyword">val</span> size: <span class="built_in">Int</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(index: <span class="type">Int</span>)</span></span>: T</div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">set</span><span class="params">(index: <span class="type">Int</span>, value: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">iterator</span><span class="params">()</span></span>: Iterator&lt;T&gt;</div><div class="line">    <span class="comment">// ……</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Kotlin 允许将不同类型的元素放到一个数组当中<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = arrayOf(<span class="number">1</span>,<span class="string">"2"</span>,<span class="literal">true</span>)</div><div class="line">    arr.forEach&#123;</div><div class="line">        print(it)</div><div class="line">        print(<span class="string">" "</span>)</div><div class="line">        println(it::<span class="class"><span class="keyword">class</span>)</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> <span class="class"><span class="keyword">class</span> <span class="title">kotlin</span>.<span class="title">Int</span></span></div><div class="line"><span class="number">2</span> <span class="class"><span class="keyword">class</span> <span class="title">kotlin</span>.<span class="title">String</span></span></div><div class="line"><span class="literal">true</span> <span class="class"><span class="keyword">class</span> <span class="title">kotlin</span>.<span class="title">Boolean</span></span></div></pre></td></tr></table></figure>
+<p>这个时候Kotlin会把这个数组类型设置成java.lang.Object<br>但是当你使用具体的元素时候，这些元素又会对应自己各自的类型</p>
+<h3 id="原生数组类型"><a href="#原生数组类型" class="headerlink" title="原生数组类型"></a>原生数组类型</h3><p>Kotlin中也有无装箱的开销的专门类来表示原生数组类型.<br>BooleanArray</p>
+<p>ByteArray</p>
+<p>CharArray</p>
+<p>ShortArray</p>
+<p>IntArray</p>
+<p>LongArray</p>
+<p>FloatArray</p>
+<p>DoubleArray</p>
+<p>BooleanArray</p>
+<h2 id="可空类型"><a href="#可空类型" class="headerlink" title="可空类型"></a>可空类型</h2><h3 id="Kotlin-中的null"><a href="#Kotlin-中的null" class="headerlink" title="Kotlin 中的null"></a>Kotlin 中的null</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="literal">null</span> == <span class="literal">null</span></div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="literal">null</span> != <span class="literal">null</span></div><div class="line"><span class="comment">//false</span></div><div class="line"><span class="literal">null</span> <span class="keyword">is</span> Any</div><div class="line"><span class="comment">//false</span></div><div class="line"><span class="literal">null</span> <span class="keyword">is</span> Any?</div><div class="line"><span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>null对应的类型是Nothing?<br>null 可以进行加法运算<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">println(null + 7)</div><div class="line">println(null+&quot;777&quot;)</div><div class="line">//println(7+null) 不合法 因为Int没有重载+ null</div><div class="line">//println(&quot;777&quot;+null) 不合法 因为String没有重载+ null</div></pre></td></tr></table></figure></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">null7</div><div class="line">null777</div></pre></td></tr></table></figure>
+<p>###安全调用?.</p>
+<p>在Java中,为了防止传来的值是空值，经常会加上一个空判断处理<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getLength2</span><span class="params">(String str)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">null</span>==str)&#123;</div><div class="line">        <span class="keyword">throw</span> str.length()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> str.length()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在Kotlin中,普通类型形如Int,String等类型是不允许指向null的，只有可空类型才可以指向null<br>可空类型就是在普通类型的后面接上一个?，如String?,Int?<br>可空类型的调用必须通过安全调用(?.)或者非空断言(!!.)进行调用<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getLength</span><span class="params">(str:<span class="type">String</span>?)</span></span>:<span class="built_in">Int</span>?=str?.length</div><div class="line"><span class="keyword">var</span> s:String?=<span class="string">"QAQ"</span></div><div class="line">println(getLength(s))</div><div class="line"><span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<h2 id="Nothing类型"><a href="#Nothing类型" class="headerlink" title="Nothing类型"></a>Nothing类型</h2><p>Kotlin中没有类似Java 或者C语言中的函数没有返回值的标记void，但是拥有一个对应的Nothing类型。在Java中<br>返回void的方法，其返回值void是无法被访问到的，而java中的Void类型是可以获取到值，也可以当作值被打印输出，但是Void类型的返回值，返回值永远是null</p>
+<p>在Kotlin中对应的就是Nothing?,它唯一的可被访问到的返回值也是null</p>
+<h2 id="类型转换与类型检测"><a href="#类型转换与类型检测" class="headerlink" title="类型转换与类型检测"></a>类型转换与类型检测</h2><h3 id="is-is运算符"><a href="#is-is运算符" class="headerlink" title="is,!is运算符"></a>is,!is运算符</h3><p>is运算符可以检查对象是否与特定的类型相兼容，is运算符用来检查对象是否属于某个数据类型<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">"a"</span> <span class="keyword">is</span> String       <span class="comment">//true</span></div><div class="line"><span class="string">"a"</span> !<span class="keyword">is</span> String      <span class="comment">//false</span></div><div class="line"><span class="number">1</span> <span class="keyword">is</span> <span class="built_in">Int</span>            <span class="comment">//true</span></div><div class="line"><span class="literal">null</span> <span class="keyword">is</span> Any         <span class="comment">//false</span></div><div class="line"><span class="literal">null</span> <span class="keyword">is</span> Any?        <span class="comment">//true</span></div><div class="line"><span class="literal">null</span> <span class="keyword">is</span> <span class="built_in">Nothing</span>     <span class="comment">//false</span></div><div class="line"><span class="literal">null</span> <span class="keyword">is</span> <span class="built_in">Nothing</span>?    <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>大都数情况下，我们不需要在Kotlin中使用显示转换符，因为编译器会跟踪不可变值的is 检查，并在需要时候自动插入安全的转换<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</div><div class="line">	println(strlen(<span class="number">1</span>))</div><div class="line">    println(strlen(<span class="literal">false</span>))</div><div class="line">    println(strlen(<span class="number">123.1</span>))</div><div class="line">    println(strlen(<span class="string">"123"</span>))</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">strlen</span><span class="params">(ani:<span class="type">Any</span>)</span></span>:<span class="built_in">Int</span>&#123;</div><div class="line">    <span class="keyword">if</span>(ani <span class="keyword">is</span> String)&#123;</div><div class="line">        <span class="keyword">return</span> ani.length</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> Number)&#123;</div><div class="line">        <span class="keyword">return</span> ani.toString().length</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> <span class="built_in">Char</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> <span class="built_in">Boolean</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">    println(<span class="string">"Not A String"</span>)</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">1</div><div class="line">5</div><div class="line">3</div></pre></td></tr></table></figure></p>
+<h3 id="as-运算符"><a href="#as-运算符" class="headerlink" title="as 运算符"></a>as 运算符</h3><p>as运算符用于执行引用类型的显示类型转换，如果要转换的类型于指定的类型兼容，就会成功转换；如果不兼容，使用as?运算符就会返回null</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://blog.chaosgoo.com/2017/11/06/Kotlin学习笔记0x04/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/Kotlin学习笔记0x03/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:23:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/30/Kotlin学习笔记0x03/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin学习笔记0x03</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/30/Kotlin学习笔记0x03/">Kotlin学习笔记0x03</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/27/Kotlin学习笔记0x02/" class="archive-article-date">
-  	<time datetime="2017-10-27T09:25:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/27/Kotlin学习笔记0x02/">Kotlin学习笔记0x02</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/26/Kotlin学习笔记0x01/" class="archive-article-date">
-  	<time datetime="2017-10-26T11:59:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/26/Kotlin学习笔记0x01/">Kotlin学习笔记0x01</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/" class="archive-article-date">
-  	<time datetime="2017-10-10T14:50:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/">Android Chrome 沉浸式地址栏</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-w">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/10/launch_again/" class="archive-article-date">
-  	<time datetime="2017-10-10T13:40:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/10/launch_again/">第N次开始</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">〇</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/10/hello-world/" class="archive-article-date">
-  	<time datetime="2017-10-10T05:16:07.700Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/10/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -442,8 +420,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
