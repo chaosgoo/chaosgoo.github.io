@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public open">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-18T09:16:01.817Z">
+<meta property="og:updated_time" content="2018-01-05T08:51:07.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin学习笔记0x04">
 <meta name="twitter:description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public open">
@@ -78,6 +78,8 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/tags/Kotlin/">Kotlin</a></li>
 	        
+				<li><a href="/tags/Django/">Django</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -102,7 +104,7 @@ var _hmt = _hmt || [];
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/14374079" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:vjspdhpp@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:gyc844268405@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -136,6 +138,8 @@ var _hmt = _hmt || [];
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -145,7 +149,7 @@ var _hmt = _hmt || [];
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/14374079" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:vjspdhpp@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:gyc844268405@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -154,13 +158,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 25%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/〇/">〇</a></li>
+					<li style="width: 20%"><a href="/tags/〇/">〇</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/Hexo/">Hexo</a></li>
+					<li style="width: 20%"><a href="/tags/Hexo/">Hexo</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/Kotlin/">Kotlin</a></li>
+					<li style="width: 20%"><a href="/tags/Kotlin/">Kotlin</a></li>
+		        
+					<li style="width: 20%"><a href="/tags/Django/">Django</a></li>
 		        
 				</ul>
 			</nav>
@@ -290,7 +296,9 @@ var _hmt = _hmt || [];
 <p>大都数情况下，我们不需要在Kotlin中使用显示转换符，因为编译器会跟踪不可变值的is 检查，并在需要时候自动插入安全的转换<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</div><div class="line">	println(strlen(<span class="number">1</span>))</div><div class="line">    println(strlen(<span class="literal">false</span>))</div><div class="line">    println(strlen(<span class="number">123.1</span>))</div><div class="line">    println(strlen(<span class="string">"123"</span>))</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">strlen</span><span class="params">(ani:<span class="type">Any</span>)</span></span>:<span class="built_in">Int</span>&#123;</div><div class="line">    <span class="keyword">if</span>(ani <span class="keyword">is</span> String)&#123;</div><div class="line">        <span class="keyword">return</span> ani.length</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> Number)&#123;</div><div class="line">        <span class="keyword">return</span> ani.toString().length</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> <span class="built_in">Char</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> <span class="built_in">Boolean</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">    println(<span class="string">"Not A String"</span>)</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>输出结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">1</div><div class="line">5</div><div class="line">3</div></pre></td></tr></table></figure></p>
 <h3 id="as-运算符"><a href="#as-运算符" class="headerlink" title="as 运算符"></a>as 运算符</h3><p>as运算符用于执行引用类型的显示类型转换，如果要转换的类型于指定的类型兼容，就会成功转换；如果不兼容，使用as?运算符就会返回null</p>
-
+<p><a href="http://www.kotlindoc.cn" target="_blank" rel="external">参考资料</a></p>
+<p><a href="https://try.kotlinlang.org" target="_blank" rel="external">在线Kotlin IDE</a></p>
+<h1 id="To-Be-Continue"><a href="#To-Be-Continue" class="headerlink" title="To Be Continue"></a>To Be Continue</h1>
       
 
       
@@ -526,11 +534,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">〇</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
             
             <div class="clearfix"></div>
@@ -582,27 +594,11 @@ var _hmt = _hmt || [];
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://mcat.im/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://mcat.im/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Colorful Ghost</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="http://liga.tech/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Liga</a>
             </li>
           
         </ul>

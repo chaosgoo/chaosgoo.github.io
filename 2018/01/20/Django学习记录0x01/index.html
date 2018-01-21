@@ -8,15 +8,20 @@
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.chaosgoo.com">
-  <title>Tag: Hexo | Do U Find IT?</title>
+  <title>Django学习记录0x01 | Do U Find IT?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Do U Find IT?">
-<meta property="og:url" content="https://blog.chaosgoo.com/tags/Hexo/index.html">
+  <meta name="description" content="Django学习例子：投票应用安装搭建好常用的python环境后，直接在CMD中输入1pip install django 即可">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django学习记录0x01">
+<meta property="og:url" content="https://blog.chaosgoo.com/2018/01/20/Django学习记录0x01/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="Django学习例子：投票应用安装搭建好常用的python环境后，直接在CMD中输入1pip install django 即可">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-21T14:22:42.681Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Do U Find IT?">
+<meta name="twitter:title" content="Django学习记录0x01">
+<meta name="twitter:description" content="Django学习例子：投票应用安装搭建好常用的python环境后，直接在CMD中输入1pip install django 即可">
   
     <link rel="alternative" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
   
@@ -176,60 +181,266 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Django学习记录0x01" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/" class="archive-article-date">
-  	<time datetime="2017-10-10T14:50:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/">Android Chrome 沉浸式地址栏</a>
+    <h1 class="article-title" itemprop="name">
+      Django学习记录0x01
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/20/Django学习记录0x01/" class="archive-article-date">
+  	<time datetime="2018-01-20T11:33:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Django学习例子：投票应用"><a href="#Django学习例子：投票应用" class="headerlink" title="Django学习例子：投票应用"></a>Django学习例子：投票应用</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>搭建好常用的python环境后，直接在CMD中输入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install django</div></pre></td></tr></table></figure></p>
+<p>即可<br><a id="more"></a><br>不放心的话也可以通过Python交互环境输入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> django</div><div class="line">print(django.get_version())</div><div class="line"><span class="comment">#2.0.1</span></div></pre></td></tr></table></figure></p>
+<p>查看是否安装成功</p>
+<h2 id="创建第一个Django项目"><a href="#创建第一个Django项目" class="headerlink" title="创建第一个Django项目"></a>创建第一个Django项目</h2><p>现在CMD中进入你想要创建工程的文件夹位置,通过键入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">django-admin.py startproject mysite</div></pre></td></tr></table></figure></p>
+<p>一般情况下，你会在这个文件夹内看到一些自动生成的文件<br>，如果执行命令之后什么都没发生，那么可以通过将python设为.py文件的默认打开方式。重新尝试生成命令</p>
+<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">python manage.py runserver</div><div class="line"><span class="comment"># python manage.py runserver 127.0.0.1:8080</span></div><div class="line"><span class="comment"># 上条注释是提供了自定义ip和端口的启动方法,默认为:127.0.0.1:8000</span></div></pre></td></tr></table></figure>
+<p>在浏览器中输入提示的地址就可以访问这个页面了</p>
+<h2 id="创建投票应用程序"><a href="#创建投票应用程序" class="headerlink" title="创建投票应用程序"></a>创建投票应用程序</h2><p>到此为止，Django的<font color="#DC143C">项目</font>开发环境就搭建好了.</p>
+<p><font color="#DC143C">项目</font>:<font color="#DC143C">项目</font>可以包含多个应用，应用用来完成特定的功能(比如投票系统，博客文章),同一个应用可以在不同的<font color="#DC143C">项目</font>之间内使用</p>
+<p>要创建应用，cd进入manage.py所在文件夹<br>输入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage.py startapp polls</div></pre></td></tr></table></figure></p>
+<p>这将创建一个polls目录，其结构如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">polls/</div><div class="line">    migrations/</div><div class="line">        __init__.py</div><div class="line">    __init__.py</div><div class="line">    admin.py</div><div class="line">    apps.py</div><div class="line">    models.py</div><div class="line">    tests.py</div><div class="line">    views.py</div></pre></td></tr></table></figure></p>
+<p>在Django中编写一个有数据库支持的Web应用的第一步就是定义你的模型-从本质上讲就是数据库设计及其附加的元数据.</p>
+<h3 id="编写第一个视图"><a href="#编写第一个视图" class="headerlink" title="编写第一个视图"></a>编写第一个视图</h3><p>打开polls/views.py，编辑内容为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># views.py</span></div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</div></pre></td></tr></table></figure></p>
+<p>要调用这个视图，我们需要将它映射到一个URL，为此，我们需要一个URLconf。<br>在polls目录中创建一个名为urls.py的文件<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># polls/urls.py</span></div><div class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    path(<span class="string">""</span>,views.index, name=<span class="string">"index"</span>),</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>下一步是将根URLconf指向polls.urls模块，修改mysite内自动生成的urls.py内容为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># mysite/mysite/urls.py</span></div><div class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</div><div class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path， include</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    path(<span class="string">"polls/"</span>, include(<span class="string">"polls.urls"</span>)),</div><div class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>验证服务能不能正常工作<br>在命令提示符中运行</p>
+<blockquote>
+<p>python manage.py runserver</p>
+</blockquote>
+<p>打开浏览器，地址栏输入<a href="http://localhost:8000/polls" target="_blank" rel="external">http://localhost:8000/polls</a><br>，你就会看到“Hello, world. You’re at the polls index.”</p>
+<h3 id="数据库设置"><a href="#数据库设置" class="headerlink" title="数据库设置"></a>数据库设置</h3><p>与数据库相关的配置位于mysite/settings.py内DATABASE中</p>
+<ul>
+<li><p>ENGINE -&gt;数据库类型有如下四种</p>
+<ul>
+<li><p>django.db.backends.postgresql_psycopg2,</p>
+</li>
+<li><p>django.db.backends.mysql,</p>
+</li>
+<li><p>django.db.backends.sqlite3,</p>
+</li>
+<li><p>django.db.backends.oracle </p>
+</li>
+</ul>
+</li>
+<li>NAME -&gt; 你的数据库名称,如果使用的是SQLite，那么NAME将是一个完整的绝对路径（如E:/myDjango/mysite/sqlite3.db),若文件不存在，它会在第一次同步的时候创建</li>
+<li>USER -&gt; 你的数据库用户名 (SQLite下不需要)</li>
+<li>PASSWORD -&gt; 你的数据库密码 (SQLite下不需要)</li>
+<li>HOST -&gt; 你的数据库主机地址,如果和你的数据库服务器是同一台机器，则留空 (SQLite下不需要)</li>
+</ul>
+<p>我是用的是MySQL,所以在NAME中我填写的是我MySQL中数据库的名称<br>并添加USER,PASSWORD,HOST字段</p>
+<h4 id="INSTALL-APPS"><a href="#INSTALL-APPS" class="headerlink" title="INSTALL_APPS"></a>INSTALL_APPS</h4><p>此处包含了Django自带应用</p>
+<ul>
+<li>django.contrib.auth – 身份验证系统</li>
+<li>django.contrib.contenttypes – 内容类型框架</li>
+<li>django.contrib.sessions - session框架</li>
+<li>django.contrib.sites - 网站管理框架</li>
+<li>django.contrib.messages - 消息框架</li>
+<li>django.contrib.staticfiles - 静态文件管理框架<br>这些应用每个都至少使用一个数据库表，所以在使用它们之前我们需要创建数据库中的表，为此要运行以下命令:<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">python manaage.py migrate</div><div class="line"><span class="comment"># 这是1.9以后的命令</span></div><div class="line"><span class="comment"># 在此之前为python manage.py syncdb</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在这个投票系统中的，我们将创建两个模型:Question<br>Question中有问题和发布日期两个字段.Choice有两个字段:选项的问泵内容和投票数。每一个Choice都有一个Question关联<br>这些概念都有简单的Python来表现。编辑polls/models.py文件后如下所示:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</div><div class="line"></div><div class="line"><span class="comment"># Create your models here.</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></div><div class="line">    question = models.CharField(max_length=<span class="number">200</span>)</div><div class="line">    pub_date = models.DateTimeField(<span class="string">'date published'</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></div><div class="line">    question = models.ForeignKey(Question,on_delete=models.CASCADE) <span class="comment">#3</span></div><div class="line">    choice_text = models.CharField(max_length=<span class="number">200</span>) <span class="comment">#1</span></div><div class="line">    votes = models.IntegerField(default=<span class="number">0</span>) <span class="comment">#2</span></div></pre></td></tr></table></figure></p>
+<p>每个模型都继承自django.db.models.Model子类的类来描述，每个模型都有一些变量，每一个类变量都代表了一个数据库字段</p>
+<p>每个字段都由一个Field的实例来表现——比如CharField表示字符类型的字段,DateTimeField表示日期时间型的字段，这会告诉Django每个字段都保存了什么类型的数据</p>
+<p>每个Field实例的名字就是字段的名字(如:question或者pub_date),其格式属于亲和机器式的，在你的Python的代码中会使用这个值，而你的数据库会将这个值作为表的列名，Field初始化时候的第一个位置的可选参数来指定人类可读的名字</p>
+<blockquote>
+<p>#1: 一些Field实例是需要参数的，例如CharField需要人工指定(django.db.models.CharField.max_length)</p>
+<p>#2: 一个Field实例可以有不同的可选参数，在本例中，我们将votes的default的值设为0</p>
+<p>#3: ForeignKey定义了一个关联，他告诉Django每一个Choice关联一个Poll，Django支持常见的数据库的所有关联:多对一，多对多和一对一</p>
+</blockquote>
+<h3 id="激活模型"><a href="#激活模型" class="headerlink" title="激活模型"></a>激活模型</h3><p>刚才的模型代码提供给Django大量信息，有了这些信息，Django就可以为该应用创建对应的数据库架构(CREATE TABLE statements) 为Poll和Choice对象创建Python访问数据库的API，但首先要告诉我们的项目已经安装了polls应用,</p>
+<p>再次回到<font color="#C2F3B2">settings.py</font>,在INSTALLED_APPS 设置中加入<br>‘polls.apps.PollsConfig’<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = [</div><div class="line">    <span class="string">'django.contrib.admin'</span>,</div><div class="line">    <span class="string">'django.contrib.auth'</span>,</div><div class="line">    <span class="string">'django.contrib.contenttypes'</span>,</div><div class="line">    <span class="string">'django.contrib.sessions'</span>,</div><div class="line">    <span class="string">'django.contrib.messages'</span>,</div><div class="line">    <span class="string">'django.contrib.staticfiles'</span>,</div><div class="line">    <span class="string">'polls.apps.PollsConfig'</span>,</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>现在Django已经知道包含了polls应用，让我们运行如下命令<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage.py makemigrations polls</div></pre></td></tr></table></figure></p>
+<p>正常情况下应该会在migrations文件夹下生成0001_initial.py文件<br>如果提示</p>
+<blockquote>
+<p>No changes detected in app ‘polls’</p>
+</blockquote>
+<p>则可以尝试输入</p>
+<blockquote>
+<p>python manage.py makemigrations –empty polls</p>
+</blockquote>
+<p>接下来需要做的工作是迁移数据库<br>在命令提示符中输入</p>
+<blockquote>
+<p>python manage.py sqlmigrate polls 0001</p>
+</blockquote>
+<p>我使用的MySQL并没有给出什么提示，但是通过MySQL自带的控制台，输入</p>
+<blockquote>
+<p>SHOW TABLSE;</p>
+</blockquote>
+<p>后输出了,可以看到choice和question已经被添加进数据库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">+----------------------------+</div><div class="line">| Tables_in_lasted_books     |</div><div class="line">+----------------------------+</div><div class="line">| auth_group                 |</div><div class="line">| auth_group_permissions     |</div><div class="line">| auth_permission            |</div><div class="line">| auth_user                  |</div><div class="line">| auth_user_groups           |</div><div class="line">| auth_user_user_permissions |</div><div class="line">| django_admin_log           |</div><div class="line">| django_content_type        |</div><div class="line">| django_migrations          |</div><div class="line">| django_session             |</div><div class="line">| polls_choice               |</div><div class="line">| polls_question             |</div><div class="line">+----------------------------+</div></pre></td></tr></table></figure></p>
+<h3 id="使用API"><a href="#使用API" class="headerlink" title="使用API"></a>使用API</h3><p>在命令提示符中输入</p>
+<blockquote>
+<p>python manage.py shell<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from polls.models import Question, Choice   <span class="comment"># Import the model classes we just wrote.</span></div><div class="line"></div><div class="line"><span class="comment"># No questions are in the system yet.</span></div><div class="line">&gt;&gt;&gt; Question.objects.all()</div><div class="line">&lt;QuerySet []&gt;</div><div class="line"></div><div class="line"><span class="comment"># Create a new Question.</span></div><div class="line"><span class="comment"># Support for time zones is enabled in the default settings file, so</span></div><div class="line"><span class="comment"># Django expects a datetime with tzinfo for pub_date. Use timezone.now()</span></div><div class="line"><span class="comment"># instead of datetime.datetime.now() and it will do the right thing.</span></div><div class="line">&gt;&gt;&gt; from django.utils import timezone</div><div class="line">&gt;&gt;&gt; q = Question(question_text=<span class="string">"What's new?"</span>, pub_date=timezone.now())</div><div class="line"></div><div class="line"><span class="comment"># Save the object into the database. You have to call save() explicitly.</span></div><div class="line">&gt;&gt;&gt; q.save()</div><div class="line"></div><div class="line"><span class="comment"># Now it has an ID.</span></div><div class="line">&gt;&gt;&gt; q.id</div><div class="line">1</div><div class="line"></div><div class="line"><span class="comment"># Access model field values via Python attributes.</span></div><div class="line">&gt;&gt;&gt; q.question_text</div><div class="line"><span class="string">"What's new?"</span></div><div class="line">&gt;&gt;&gt; q.pub_date</div><div class="line">datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=&lt;UTC&gt;)</div><div class="line"></div><div class="line"><span class="comment"># Change values by changing the attributes, then calling save().</span></div><div class="line">&gt;&gt;&gt; q.question_text = <span class="string">"What's up?"</span></div><div class="line">&gt;&gt;&gt; q.save()</div><div class="line"></div><div class="line"><span class="comment"># objects.all() displays all the questions in the database.</span></div><div class="line">&gt;&gt;&gt; Question.objects.all()</div><div class="line">&lt;QuerySet [&lt;Question: Question object (1)&gt;]&gt;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>我们会发现在调用Question.objects.all()时候，显示的形式并不是我们想要的，那是因为我们的Question模型和Choice模型中 并没有自定义的<strong>str</strong>(self)方法<br>因此，回到models.py中给这两个模型添加自定义的<strong>str</strong>(self)方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># models.py</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Models)</span>:</span></div><div class="line">    <span class="comment">#...</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.question</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></div><div class="line">    <span class="comment">#...</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.choice_text</div></pre></td></tr></table></figure></p>
+<p>为了方便演示，我们再添加一个was_published_recently(self)方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> datetime</div><div class="line"></div><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</div><div class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>)</div></pre></td></tr></table></figure></p>
+<p>再次运行</p>
+<blockquote>
+<p>python manage.py shell</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question, Choice</div><div class="line"></div><div class="line"><span class="comment"># Make sure our __str__() addition worked.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Question.objects.all()</div><div class="line">&lt;QuerySet [&lt;Question: What<span class="string">'s up?&gt;]&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># Django provides a rich database lookup API that'</span>s entirely driven by</div><div class="line"><span class="comment"># keyword arguments.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Question.objects.filter(id=<span class="number">1</span>)</div><div class="line">&lt;QuerySet [&lt;Question: What<span class="string">'s up?&gt;]&gt;</span></div><div class="line"><span class="string">&gt;&gt;&gt; Question.objects.filter(question_text__startswith='</span>What<span class="string">')</span></div><div class="line">&lt;QuerySet [&lt;Question: What's up?&gt;]&gt;</div><div class="line"></div><div class="line"><span class="comment"># Get the question that was published this year.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>current_year = timezone.now().year</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Question.objects.get(pub_date__year=current_year)</div><div class="line">&lt;Question: What<span class="string">'s up?&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># Request an ID that doesn'</span>t exist, this will <span class="keyword">raise</span> an exception.</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Question.objects.get(id=<span class="number">2</span>)</div><div class="line">Traceback (most recent call last):</div><div class="line">    ...</div><div class="line">DoesNotExist: Question matching query does <span class="keyword">not</span> exist.</div><div class="line"></div><div class="line"><span class="comment"># Lookup by a primary key is the most common case, so Django provides a</span></div><div class="line"><span class="comment"># shortcut for primary-key exact lookups.</span></div><div class="line"><span class="comment"># The following is identical to Question.objects.get(id=1).</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Question.objects.get(pk=<span class="number">1</span>)</div><div class="line">&lt;Question: What<span class="string">'s up?&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># Make sure our custom method worked.</span></div><div class="line"><span class="string">&gt;&gt;&gt; q = Question.objects.get(pk=1)</span></div><div class="line"><span class="string">&gt;&gt;&gt; q.was_published_recently()</span></div><div class="line"><span class="string">True</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># Give the Question a couple of Choices. The create call constructs a new</span></div><div class="line"><span class="string"># Choice object, does the INSERT statement, adds the choice to the set</span></div><div class="line"><span class="string"># of available choices and returns the new Choice object. Django creates</span></div><div class="line"><span class="string"># a set to hold the "other side" of a ForeignKey relation</span></div><div class="line"><span class="string"># (e.g. a question'</span>s choice) which can be accessed via the API.</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>q = Question.objects.get(pk=<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># Display any choices from the related object set -- none so far.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>q.choice_set.all()</div><div class="line">&lt;QuerySet []&gt;</div><div class="line"></div><div class="line"><span class="comment"># Create three choices.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>q.choice_set.create(choice_text=<span class="string">'Not much'</span>, votes=<span class="number">0</span>)</div><div class="line">&lt;Choice: Not much&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>q.choice_set.create(choice_text=<span class="string">'The sky'</span>, votes=<span class="number">0</span>)</div><div class="line">&lt;Choice: The sky&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = q.choice_set.create(choice_text=<span class="string">'Just hacking again'</span>, votes=<span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="comment"># Choice objects have API access to their related Question objects.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c.question</div><div class="line">&lt;Question: What<span class="string">'s up?&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># And vice versa: Question objects get access to Choice objects.</span></div><div class="line"><span class="string">&gt;&gt;&gt; q.choice_set.all()</span></div><div class="line"><span class="string">&lt;QuerySet [&lt;Choice: Not much&gt;, &lt;Choice: The sky&gt;, &lt;Choice: Just hacking again&gt;]&gt;</span></div><div class="line"><span class="string">&gt;&gt;&gt; q.choice_set.count()</span></div><div class="line"><span class="string">3</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># The API automatically follows relationships as far as you need.</span></div><div class="line"><span class="string"># Use double underscores to separate relationships.</span></div><div class="line"><span class="string"># This works as many levels deep as you want; there'</span>s no limit.</div><div class="line"><span class="comment"># Find all Choices for any question whose pub_date is in this year</span></div><div class="line"><span class="comment"># (reusing the 'current_year' variable we created above).</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Choice.objects.filter(question__pub_date__year=current_year)</div><div class="line">&lt;QuerySet [&lt;Choice: Not much&gt;, &lt;Choice: The sky&gt;, &lt;Choice: Just hacking again&gt;]&gt;</div><div class="line"></div><div class="line"><span class="comment"># Let's delete one of the choices. Use delete() for that.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = q.choice_set.filter(choice_text__startswith=<span class="string">'Just hacking'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c.delete()</div></pre></td></tr></table></figure>
+<h2 id="Django-Admin"><a href="#Django-Admin" class="headerlink" title="Django Admin"></a>Django Admin</h2><h3 id="创建管理员账户"><a href="#创建管理员账户" class="headerlink" title="创建管理员账户"></a>创建管理员账户</h3><p>在命令提示符中输入</p>
+<blockquote>
+<p>python manage.py createsuperuser</p>
+</blockquote>
+<p>然后输入一些你的设定</p>
+<p>启动服务器,键入</p>
+<blockquote>
+<p>python manage.py runserver</p>
+</blockquote>
+<p>输入刚刚创建的管理员账号和密码即可登陆到后台<br>但是我们创建的polls应用，所以打开mysite/admin.py文件，修改为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># polls/admin.py</span></div><div class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</div><div class="line">admin.site.register(Question)</div></pre></td></tr></table></figure></p>
+<p>重新启动服务器<br>再次登陆就可以看见polls应用程序</p>
+<h2 id="设置更多的视图"><a href="#设置更多的视图" class="headerlink" title="设置更多的视图"></a>设置更多的视图</h2><p>打开polls/views.py<br>添加更多的视图<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ...</span></div><div class="line"><span class="comment"># 添加</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're looking at question %s."</span> % question_id)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">results</span><span class="params">(request, question_id)</span>:</span></div><div class="line">    response = <span class="string">"You're looking at the results of question"</span></div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're voting on question %s."</span> % question_id)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">vote</span><span class="params">(request, question)</span>:</span></div><div class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're voting on question %s."</span> % question_id)</div></pre></td></tr></table></figure></p>
+<p>为了制定访问的路径,打开polls/urls.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</div><div class="line"></div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    <span class="comment"># ex: /polls/</span></div><div class="line">    path(<span class="string">''</span>, views.index, name=<span class="string">'index'</span>),</div><div class="line">    <span class="comment"># ex: /polls/5/</span></div><div class="line">    path(<span class="string">'&lt;int:question_id&gt;/'</span>, views.detail, name=<span class="string">'detail'</span>),</div><div class="line">    <span class="comment"># ex: /polls/5/results/</span></div><div class="line">    path(<span class="string">'&lt;int:question_id&gt;/results/'</span>, views.results, name=<span class="string">'results'</span>),</div><div class="line">    <span class="comment"># ex: /polls/5/vote/</span></div><div class="line">    path(<span class="string">'&lt;int:question_id&gt;/vote/'</span>, views.vote, name=<span class="string">'vote'</span>),</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>这时候就可以通过/polls/34/访问，并显示预设的结果</p>
+<h2 id="编写实际执行某些操作的视图"><a href="#编写实际执行某些操作的视图" class="headerlink" title="编写实际执行某些操作的视图"></a>编写实际执行某些操作的视图</h2><p>编辑/polls/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"></div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">    latest_question_list = Question.objects.order_by(<span class="string">'-pub_date'</span>)[:<span class="number">5</span>]</div><div class="line">    output = <span class="string">', '</span>.join([q.question_text <span class="keyword">for</span> q <span class="keyword">in</span> latest_question_list])</div><div class="line">    <span class="keyword">return</span> HttpResponse(output)</div></pre></td></tr></table></figure></p>
+<p>在polls中创建一个templates,在这个templates中再创建一个polls文件夹,在这个polls文件夹内创建一个名为index.html的文件<br>这个index.html的路径是/mysite/polls/template/polls/index.html<br>内容为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;% if latest_question_list %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    &#123;% for question in latest_question_list %&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/polls/&#123;&#123; question.id &#125;&#125;/"</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    &#123;% endfor %&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">&#123;% else %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>No polls are available.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure></p>
+<p>为了使用这个模板，回到polls文件夹内的views.py文件，编辑index视图(函数)内容<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ...</span></div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">    latest_question_list = Question.objects.order_by(<span class="string">'-pub_date'</span>)[:<span class="number">5</span>]</div><div class="line">    template = loader.get_template(<span class="string">'polls/index.html'</span>)</div><div class="line">    context = &#123;</div><div class="line">        <span class="string">'latest_question_list'</span>: latest_question_list,</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> HttpResponse(template.render(context, request))</div><div class="line"><span class="comment"># ...</span></div></pre></td></tr></table></figure></p>
+<p>当访问页面为<a href="">localhost:8000/polls/</a>时会加载我们指定的index.html文件中的内容</p>
+<h3 id="快捷方式-render"><a href="#快捷方式-render" class="headerlink" title="快捷方式: render()"></a>快捷方式: render()</h3><p>编辑polls/view.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ...</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">    latest_question_list = Question.objects.order_by(<span class="string">"-pub_date"</span>)[:<span class="number">5</span>]</div><div class="line">    context = &#123;</div><div class="line">        <span class="string">"latest_question_list"</span>: latest_question_list,</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> render(request, <span class="string">"polls/index.html"</span>, context)</div><div class="line"><span class="comment"># ...</span></div></pre></td></tr></table></figure></p>
+<h3 id="404错误"><a href="#404错误" class="headerlink" title="404错误"></a>404错误</h3><p>对于404错误页面，我们可以手动处理其内容<br>。首先打开/polls/views.py<br>编辑成如下内容:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        question = Question.objects.get(pk=question_id)</div><div class="line">    <span class="keyword">except</span> Question.DoseNotExist:</div><div class="line">        <span class="keyword">raise</span> Http404(<span class="string">"Question does not exit"</span>)</div><div class="line">    <span class="keyword">return</span> render(request, <span class="string">"polls/detail.html"</span>,&#123;<span class="string">"question"</span>:question&#125;)</div></pre></td></tr></table></figure></p>
+<h4 id="get-object-or-404方法"><a href="#get-object-or-404方法" class="headerlink" title="get_object_or_404方法"></a>get_object_or_404方法</h4><p>这是一个处理404错误的简化写法，内容如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#polls/views.py</span></div><div class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404</div><div class="line"><span class="comment"># ...</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></div><div class="line">    question = get_object_or_404(Question,pk=question_id)</div><div class="line">    <span class="keyword">return</span> render(request, <span class="string">"polls/detail.html"</span>, &#123;<span class="string">"quetion"</span>: question&#125;)</div><div class="line"><span class="comment"># ...</span></div></pre></td></tr></table></figure></p>
+<p>需要注意的是，在debug模式下，不会显示自定义的404界面，想要关闭debug模式，请到setting.py中修改相关设置</p>
+<h4 id="使用模板系统"><a href="#使用模板系统" class="headerlink" title="使用模板系统"></a>使用模板系统</h4><p>回到detail.html,修改其内容为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; question.question &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">&#123;% for choice in question.choice_set.all %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123; choice.choice &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">&#123;% endfor %&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="URL名称的命名空间"><a href="#URL名称的命名空间" class="headerlink" title="URL名称的命名空间"></a>URL名称的命名空间</h3><p>这个例子中只有一个应用–polls，而在真正的Django项目中，可能会有数十个应用。Django是如何区分他们URL名称的呢？答案是在polls/urls.py中添加命名空间</p>
+<blockquote>
+<p>1.8版本的文档说是在mysite/urls.py而2.0版本是在polls/urls</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># polls/urls.py</span></div><div class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line">app_name = <span class="string">"polls"</span></div><div class="line">urlpatterns = [</div><div class="line">    <span class="comment"># ex:/polls/</span></div><div class="line">    path(<span class="string">""</span>,views.index, name=<span class="string">"index"</span>),</div><div class="line">    <span class="comment"># ex:/polls/5/</span></div><div class="line">    path(<span class="string">"&lt;int:question_id&gt;/"</span>, views.detail, name=<span class="string">"detail"</span>),</div><div class="line">    <span class="comment"># ex:/polls/5/results/</span></div><div class="line">    path(<span class="string">"&lt;int:question_id&gt;/results/"</span>, views.results, name=<span class="string">"results"</span>),</div><div class="line">    <span class="comment"># ex:/polls/5/vote/</span></div><div class="line">    path(<span class="string">"&lt;int:question_id&gt;/vote/"</span>, views.vote, name=<span class="string">"vote"</span>),</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>然后修改polls/index.html模板<br>将<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'detail' question.id %&#125;"</span>&gt;</span>&#123;&#123; question.question &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>修改为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'polls:detail' question.id %&#125;"</span>&gt;</span>&#123;&#123; question.question &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><a href="http://usyiyi.cn/translate/django2/intro/index.html" target="_blank" rel="external">参考资料</a><br>因为文档未完全翻译，所以基本上处于边翻译边学习的状态，所以真的是一脸懵逼.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Django</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://blog.chaosgoo.com/2018/01/20/Django学习记录0x01/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/12/24/Kotlin学习笔记0x05/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin学习笔记0x05</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -253,9 +464,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
