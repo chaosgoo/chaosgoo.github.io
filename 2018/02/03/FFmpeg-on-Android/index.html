@@ -8,15 +8,22 @@
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.chaosgoo.com">
-  <title>Tag: Django | Do U Find IT?</title>
+  <title>FFmpeg on Android | Do U Find IT?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Do U Find IT?">
-<meta property="og:url" content="https://blog.chaosgoo.com/tags/Django/index.html">
+  <meta name="description" content="移植FFmpeg到Android上 因为Mix Music解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是FFmpeg的效果最好  MediaCodec配合MediaExtractor进行解码操作 这样的话,默认情况下MediaExtractor每次只传输1KB左右的数据给MediaCodec,速度实在是太慢   MediaCodec不用MediaExtractor进行解码操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFmpeg on Android">
+<meta property="og:url" content="https://blog.chaosgoo.com/2018/02/03/FFmpeg-on-Android/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="移植FFmpeg到Android上 因为Mix Music解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是FFmpeg的效果最好  MediaCodec配合MediaExtractor进行解码操作 这样的话,默认情况下MediaExtractor每次只传输1KB左右的数据给MediaCodec,速度实在是太慢   MediaCodec不用MediaExtractor进行解码操作">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p1.png">
+<meta property="og:image" content="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p3.png">
+<meta property="og:updated_time" content="2018-02-04T04:46:31.968Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Do U Find IT?">
+<meta name="twitter:title" content="FFmpeg on Android">
+<meta name="twitter:description" content="移植FFmpeg到Android上 因为Mix Music解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是FFmpeg的效果最好  MediaCodec配合MediaExtractor进行解码操作 这样的话,默认情况下MediaExtractor每次只传输1KB左右的数据给MediaCodec,速度实在是太慢   MediaCodec不用MediaExtractor进行解码操作">
+<meta name="twitter:image" content="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p1.png">
   
     <link rel="alternative" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
   
@@ -72,8 +79,6 @@ var _hmt = _hmt || [];
 				<li><a href="/tags/Hexo/">Hexo</a></li>
 	        
 				<li><a href="/tags/Kotlin/">Kotlin</a></li>
-	        
-				<li><a href="/tags/Django/">Django</a></li>
 	        
 			</ul>
 		</nav>
@@ -133,8 +138,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -153,15 +156,13 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/〇/">〇</a></li>
+					<li style="width: 25%"><a href="/tags/〇/">〇</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/Hexo/">Hexo</a></li>
+					<li style="width: 25%"><a href="/tags/Hexo/">Hexo</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/Kotlin/">Kotlin</a></li>
-		        
-					<li style="width: 20%"><a href="/tags/Django/">Django</a></li>
+					<li style="width: 25%"><a href="/tags/Kotlin/">Kotlin</a></li>
 		        
 				</ul>
 			</nav>
@@ -176,60 +177,196 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-FFmpeg-on-Android" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/20/Django学习记录0x01/" class="archive-article-date">
-  	<time datetime="2018-01-20T11:33:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/20/Django学习记录0x01/">Django学习记录0x01</a>
+    <h1 class="article-title" itemprop="name">
+      FFmpeg on Android
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Django</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2018/02/03/FFmpeg-on-Android/" class="archive-article-date">
+  	<time datetime="2018-02-03T13:01:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="移植FFmpeg到Android上"><a href="#移植FFmpeg到Android上" class="headerlink" title="移植FFmpeg到Android上"></a>移植FFmpeg到Android上</h1><p><img src="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p1.png" height="640"></p>
+<p>因为<a href="https://www.coolapk.com/apk/com.chaosgoo.mixmusic" target="_blank" rel="external"><font color="#9966cc">Mix Music</font></a>解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是<a href="http://ffmpeg.org/" target="_blank" rel="external"><font color="#333333">FFmpeg</font></a>的效果最好</p>
+<ul>
+<li><a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>配合<a href="https://developer.android.google.cn/reference/android/media/MediaExtractor.html" target="_blank" rel="external"><font color="#448aff">MediaExtractor</font></a>进行解码操作<ul>
+<li>这样的话,默认情况下<a href="https://developer.android.google.cn/reference/android/media/MediaExtractor.html" target="_blank" rel="external"><font color="#448aff">MediaExtractor</font></a>每次只传输1KB左右的数据给<a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>,速度实在是太慢</li>
+</ul>
+</li>
+<li><a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>不用<a href="https://developer.android.google.cn/reference/android/media/MediaExtractor.html" target="_blank" rel="external"><font color="#448aff">MediaExtractor</font></a>进行解码操作<ul>
+<li>在给Bytebuffer填充数据后,<a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>处理数据的时候总出错,大概是因为没有跳过非帧数据的部分</li>
+</ul>
+</li>
+<li>使用<a href="http://lame.sourceforge.net/" target="_blank" rel="external"><font color="#669966">LAME</font></a>进行解码操作<ul>
+<li>不幸的是<a href="http://lame.sourceforge.net/" target="_blank" rel="external"><font color="#669966">LAME</font></a>中的hip_decode()也是只能处理帧数据,需要手动跳过非帧数据.当手动跳过非帧数据后,最终发现速度并没有提升多少(尽管已经设置了不同大小的buffer)</li>
+</ul>
+</li>
+<li>使用<a href="http://ffmpeg.org/" target="_blank" rel="external"><font color="#333333">FFmpeg</font></a>进行解码操作<ul>
+<li>编译的时候真的是各种错误,头文件明明就在那里呆的好好的,编译器还是报找不到函数的错误.好在最终效果令人非常满意,3秒钟解码一个音频文件.</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<font color="#D7D7D7">这是项目的<a href="https://github.com/chaosgoo/ffmpegNDK" target="_blank" rel="external"><font color="#1F292E">GitHub</font></a>地址,如果你的ffmpeg实在是编译不过去,可以去这里下载,然后再进行编译.</font>
 
-          
+<h2 id="编译出ffmpeg的so文件"><a href="#编译出ffmpeg的so文件" class="headerlink" title="编译出ffmpeg的so文件"></a>编译出ffmpeg的so文件</h2><p>要编译FFmpeg,第一步就是先获取源码.直接去<a href="http://ffmpeg.org/download.html" target="_blank" rel="external">官网</a>就可以下载.<br>解压后得到<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">└───ffmpeg</div><div class="line">    ├───compat</div><div class="line">    ├───doc</div><div class="line">    ├───ffbuild</div><div class="line">    ├───ffmpeg</div><div class="line">    ├───fftools</div><div class="line">    ├───libavcodec</div><div class="line">    ├───libavdevice</div><div class="line">    ├───libavfilter</div><div class="line">    ├───libavformat</div><div class="line">    ├───libavresample</div><div class="line">    ├───libavutil</div><div class="line">    ├───libpostproc</div><div class="line">    ├───libswresample</div><div class="line">    ├───libswscale</div><div class="line">    ├───presets</div><div class="line">    ├───tests</div><div class="line">    └───tools</div></pre></td></tr></table></figure></p>
+<p>打开configure文件找到<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SLIBNAME_WITH_MAJOR=<span class="string">'$(SLIBNAME).$(LIBMAJOR)'</span>  </div><div class="line">LIB_INSTALL_EXTRA_CMD=<span class="string">'$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'</span>  </div><div class="line">SLIB_INSTALL_NAME=<span class="string">'$(SLIBNAME_WITH_VERSION)'</span>  </div><div class="line">SLIB_INSTALL_LINKS=<span class="string">'$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)'</span></div></pre></td></tr></table></figure></p>
+<p>将内容修改为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SLIBNAME_WITH_MAJOR=<span class="string">'$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'</span>  </div><div class="line">LIB_INSTALL_EXTRA_CMD=<span class="string">'$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'</span>  </div><div class="line">SLIB_INSTALL_NAME=<span class="string">'$(SLIBNAME_WITH_MAJOR)'</span>  </div><div class="line">SLIB_INSTALL_LINKS=<span class="string">'$(SLIBNAME)'</span></div></pre></td></tr></table></figure></p>
+<p>这是因为默认生成的文件名称中版本号位于最后,不符合Android命名规范.</p>
+<p>在ffmpeg目录下创建build.sh文件<br>内容为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">NDK=F:/android-ndk-r14b</div><div class="line"><span class="comment"># 指向你NDK的路径</span></div><div class="line">SYSROOT=<span class="variable">$NDK</span>/platforms/android-21/arch-arm/</div><div class="line"><span class="comment"># 指定逻辑目录,按照自身需要进行修改</span></div><div class="line">TOOLCHAIN=<span class="variable">$NDK</span>/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64</div><div class="line"><span class="comment"># windows平台为windows-x86_64,linux为linux-x86_64</span></div><div class="line">CPU=arm</div><div class="line">PREFIX=$(<span class="built_in">pwd</span>)/android/<span class="variable">$CPU</span> </div><div class="line">ADDI_CFLAGS=<span class="string">"-marm"</span></div><div class="line"><span class="comment"># build_one中,因为我只需要使用mp3的decode和pcm_s16le的encode,所以关闭了其他的decode和encode来实现压缩体积,集体配置参数可参考</span></div><div class="line"><span class="comment"># https://www.cnblogs.com/azraelly/archive/2012/12/31/2840541.html</span></div><div class="line"><span class="keyword">function</span> build_one</div><div class="line">&#123;</div><div class="line">./configure \</div><div class="line">--prefix=<span class="variable">$PREFIX</span> \</div><div class="line">--<span class="built_in">enable</span>-shared \</div><div class="line">--<span class="built_in">disable</span>-static \</div><div class="line">--<span class="built_in">enable</span>-asm \</div><div class="line">--<span class="built_in">disable</span>-doc \</div><div class="line">--<span class="built_in">disable</span>-gpl \</div><div class="line">--<span class="built_in">enable</span>-small \</div><div class="line">--<span class="built_in">disable</span>-encoders \</div><div class="line">--<span class="built_in">disable</span>-decoders \</div><div class="line">--<span class="built_in">disable</span>-ffmpeg \</div><div class="line">--<span class="built_in">enable</span>-encoder=pcm_s16le \</div><div class="line">--<span class="built_in">enable</span>-decoder=mp3 \</div><div class="line">--<span class="built_in">disable</span>-ffplay \</div><div class="line">--<span class="built_in">disable</span>-ffprobe \</div><div class="line">--<span class="built_in">disable</span>-ffserver \</div><div class="line">--<span class="built_in">disable</span>-doc \</div><div class="line">--<span class="built_in">disable</span>-symver \</div><div class="line">--<span class="built_in">enable</span>-jni \</div><div class="line">--cross-prefix=<span class="variable">$TOOLCHAIN</span>/bin/arm-linux-androideabi- \</div><div class="line">--target-os=android \</div><div class="line">--arch=arm \</div><div class="line">--<span class="built_in">enable</span>-cross-compile \</div><div class="line">--sysroot=<span class="variable">$SYSROOT</span> \</div><div class="line">--extra-cflags=<span class="string">"-Os -fpic <span class="variable">$ADDI_CFLAGS</span>"</span> \</div><div class="line">--extra-ldflags=<span class="string">"<span class="variable">$ADDI_LDFLAGS</span>"</span> \</div><div class="line"><span class="variable">$ADDITIONAL_CONFIGURE_FLAG</span></div><div class="line">make clean</div><div class="line">make</div><div class="line">make install</div><div class="line">&#125;</div><div class="line">build_one</div></pre></td></tr></table></figure></p>
+<p>更加不幸的是.sh文件现在还不能运行,得先下载<a href="http://www.mingw.org/" target="_blank" rel="external">MinGW</a>,记得build.sh文件不编辑的时候,不要挂在后台处在打开状态<br>下载好后,直接打开<br>勾选上如图所示的选项<br><img src="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p3.png" alt="pic3"></p>
+<p>在左上角Installation菜单中点击Apply Changes,然后等待下载并自动安装(可能需要酸酸乳,因为网络质量不是很高)</p>
+<p>下载完毕后,直接进度你的MinGW文件夹,找到msys文件夹并进入.双击msys.bat就会启动一个长的很像CMD的程序,至少在打开路径上都是使用cd命令</p>
+<p>cd进入到之前build.sh的文件夹,输入./build.sh运行build.sh,它就会自动进行编译操作.如果遇到了各种奇怪问题,不要放弃,因为你的问题前人已经犯过,你只需要善用搜索引擎,踩着他们的脚印即可. </p>
+<p>因为我在编译的时候也遇到了各种各样的问题,最后通过更换NDK版本解决了问题.<br>等待一段时间后,在ffmpeg目录下就会多出android文件夹,我们需要用到的so文件就在这个ffmpeg/android/arm/lib文件夹内</p>
+<p>编译完成后我们得到了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">include</div><div class="line">lib</div><div class="line">    libavcodec.so</div><div class="line">    libavdevice.so</div><div class="line">    libavfilter.so</div><div class="line">    libavformat.so</div><div class="line">    libavutil.so</div><div class="line">    libpostproc.so</div><div class="line">    libswresample.so</div><div class="line">    libswscale.so</div></pre></td></tr></table></figure></p>
+<h2 id="编译安卓可以调用的so文件"><a href="#编译安卓可以调用的so文件" class="headerlink" title="编译安卓可以调用的so文件"></a>编译安卓可以调用的so文件</h2><p>终于到了要调用FFmpeg的阶段了.<br>和常规NDK编译的需求一样,需要创建一个jni文件夹.把上一步得到的include文件夹和那些so文件复制进来.</p>
+<p>还需要把位于ffmpeg根目录中的</p>
+<ul>
+<li>cmdutils.c和cmdutils.h</li>
+<li>ffmpeg.h和ffmpeg.c</li>
+<li>ffmpeg_opt.c</li>
+<li>ffmpeg_hw.c</li>
+<li>ffmpeg_filter.c</li>
+<li>va_copy.h</li>
+<li>config.h 这个文件只有你之前手动编译了ffmpeg才会得到<br>也复制到jni文件夹内</li>
+</ul>
+<p>创建Application.mk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">APP_ABI := armeabi-v7a armeabi</div><div class="line">APP_MODULES := libffmpegjni</div><div class="line">APP_CFLAGS += -DSTDC_HEADERS</div></pre></td></tr></table></figure></p>
+<p>以及Android.mk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH:= $(call my-dir)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE:= avcodec-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES:= prebuilt/armeabi/libavcodec.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE:= avdevice-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES:= prebuilt/armeabi/libavdevice.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE:= avfilter-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES:= prebuilt/armeabi/libavfilter.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE:= avformat-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES:= prebuilt/armeabi/libavformat.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE :=  avutil-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES := prebuilt/armeabi/libavutil.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := swresample-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES := prebuilt/armeabi/libswresample.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := swscale-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES := prebuilt/armeabi/libswscale.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line"></div><div class="line">LOCAL_MODULE := libffmpegjni</div><div class="line"></div><div class="line">LOCAL_ARM_MODE := arm</div><div class="line"></div><div class="line">LOCAL_SRC_FILES := ffmpegJni.c \</div><div class="line">                   ffmpeg.c \</div><div class="line">                   cmdutils.c \</div><div class="line">                   ffmpeg_opt.c \</div><div class="line">                   ffmpeg_filter.c \</div><div class="line">                   ffmpeg_hw.c</div><div class="line"></div><div class="line">LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -llog -lz</div><div class="line"></div><div class="line">LOCAL_SHARED_LIBRARIES:= avcodec-prebuilt-armeabi \</div><div class="line">                         avdevice-prebuilt-armeabi \</div><div class="line">                         avfilter-prebuilt-armeabi \</div><div class="line">                         avformat-prebuilt-armeabi \</div><div class="line">                         avutil-prebuilt-armeabi \</div><div class="line">                         swresample-prebuilt-armeabi \</div><div class="line">                         swscale-prebuilt-armeabi</div><div class="line"></div><div class="line">LOCAL_C_INCLUDES += -L$(SYSROOT)/usr/include</div><div class="line">LOCAL_C_INCLUDES += $(LOCAL_PATH)/include</div><div class="line"></div><div class="line">LOCAL_CFLAGS := -DUSE_ARM_CONFIG</div><div class="line"></div><div class="line">include $(BUILD_SHARED_LIBRARY)</div></pre></td></tr></table></figure></p>
+<p>在ffmpeg.c中有些东西需要我们修改下,因为正常情况下ffmpeg执行一条命令,它就会自动退出,我们当然不希望这样.所以需要对他的推出操作进行处理.<br>打开ffmpeg.c,找到如下内容并修改<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* parse options and open all input/output files */</span></div><div class="line">    ret = ffmpeg_parse_options(argc, argv);</div><div class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>)&#123;</div><div class="line">        <span class="comment">// exit_program(1);</span></div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    <span class="keyword">if</span> (nb_output_files &lt;= <span class="number">0</span> &amp;&amp; nb_input_files == <span class="number">0</span>) &#123;</div><div class="line">        show_usage();</div><div class="line">        av_log(<span class="literal">NULL</span>, AV_LOG_WARNING, <span class="string">"Use -h to get full help or, even better, run 'man %s'\n"</span>, program_name);</div><div class="line">        <span class="comment">// exit_program(1);</span></div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/* file converter / grab */</span></div><div class="line">    <span class="keyword">if</span> (nb_output_files &lt;= <span class="number">0</span>) &#123;</div><div class="line">        av_log(<span class="literal">NULL</span>, AV_LOG_FATAL, <span class="string">"At least one output file must be specified\n"</span>);</div><div class="line">        <span class="comment">//exit_program(1);</span></div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (nb_input_files == <span class="number">0</span>) &#123;</div><div class="line">        av_log(<span class="literal">NULL</span>, AV_LOG_FATAL, <span class="string">"At least one input file must be specified\n"</span>);</div><div class="line">        <span class="comment">//exit_program(1);</span></div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>把下面的内容,添加到static void ffmpeg_cleanup(int ret)函数末尾<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ffmpeg_exited = <span class="number">1</span>;</div><div class="line">nb_filtergraphs = <span class="number">0</span>;</div><div class="line">nb_output_files = <span class="number">0</span>;</div><div class="line">nb_output_streams = <span class="number">0</span>;</div><div class="line">nb_input_files = <span class="number">0</span>;</div><div class="line">nb_input_streams = <span class="number">0</span>;</div></pre></td></tr></table></figure></p>
+<p>为了获取到ffmpeg的处理进度<br>修改log_callback_null函数内容为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">log_callback_null</span><span class="params">(<span class="keyword">void</span> *ptr, <span class="keyword">int</span> level, <span class="keyword">const</span> <span class="keyword">char</span> *fmt, va_list vl)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> print_prefix = <span class="number">1</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">char</span> prev[<span class="number">1024</span>];</div><div class="line">    <span class="keyword">char</span> line[<span class="number">1024</span>];</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> is_atty;</div><div class="line">    av_log_format_line(ptr, level, fmt, vl, line, <span class="keyword">sizeof</span>(line), &amp;print_prefix);</div><div class="line">    <span class="built_in">strcpy</span>(prev, line);</div><div class="line">    <span class="keyword">if</span> (level &lt;= AV_LOG_WARNING)&#123;</div><div class="line">        XLOGE(<span class="string">"%s"</span>, line);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        XLOGD(<span class="string">"%s"</span>, line);</div><div class="line">        callJavaMethod(line);<span class="comment">// 调用java方法,反馈进度</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>并再main函数的开始处添加<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">av_log_set_callback(log_callback_null);</div></pre></td></tr></table></figure></p>
+<p>再打开cmdutils.c,对exit_program进行修改,别忘记修改头文件中的exit_program<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">exit_program</span><span class="params">(<span class="keyword">int</span> ret)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">     <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后创建一个名为ffmpegJni.c的文件和它的头文件ffmpegJni.h<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"logjni.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ffmpegJni.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>;</div><div class="line"><span class="keyword">static</span> JavaVM *jvm = <span class="literal">NULL</span>;</div><div class="line"><span class="keyword">static</span> jclass m_clazz = <span class="literal">NULL</span>;</div><div class="line"><span class="keyword">static</span> jclass m_jobj = <span class="literal">NULL</span>;</div><div class="line"><span class="keyword">static</span> JNIEnv *m_env = <span class="literal">NULL</span>;</div><div class="line"><span class="comment">// 注意这里的Java_com_chaosgoo_ffmpegproject_ffmpegJni_main,请按照你的项目名称进行修改</span></div><div class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Java_com_chaosgoo_ffmpegproject_ffmpegJni_main</span><span class="params">(JNIEnv *env, jclass obj, jobjectArray commands)</span></span>&#123;</div><div class="line">    (*env)-&gt;GetJavaVM(env, &amp;jvm); <span class="comment">//获取JVM虚拟机</span></div><div class="line">    jclass clazz = (*env)-&gt;GetObjectClass(env,obj);  <span class="comment">//获取调用此方法的java类</span></div><div class="line">    m_jobj = obj;</div><div class="line">    m_clazz = (*env)-&gt;NewGlobalRef(env, clazz); <span class="comment">//将这个类赋值给m_clazz</span></div><div class="line">    m_env = env; <span class="comment">//复制到全局变量m_env</span></div><div class="line">    <span class="keyword">int</span> argc = (*env)-&gt;GetArrayLength(env, commands);</div><div class="line">    <span class="keyword">char</span> *argv[argc];</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; argc; i++)</div><div class="line">    &#123;</div><div class="line">        jstring js = (jstring)(*env)-&gt;GetObjectArrayElement(env, commands, i);</div><div class="line">        argv[i] = (<span class="keyword">char</span> *)(*env)-&gt;GetStringUTFChars(env, js, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">    LOGD(<span class="string">"----------begin---------"</span>);</div><div class="line">    <span class="keyword">int</span> ret = main(argc, argv);</div><div class="line">    ffmpegJniDone(<span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">callJavaMethod</span><span class="params">(<span class="keyword">char</span> *ret)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">int</span> ss = <span class="number">0</span>;</div><div class="line">    <span class="keyword">char</span> *q = <span class="built_in">strstr</span>(ret, <span class="string">"time="</span>);</div><div class="line">    <span class="keyword">if</span> (q != <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">//LOGE("遇到time=");</span></div><div class="line">        <span class="keyword">char</span> str[<span class="number">14</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line">        <span class="built_in">strncpy</span>(str, q, <span class="number">13</span>);</div><div class="line">        <span class="keyword">int</span> h = (str[<span class="number">5</span>] - <span class="string">'0'</span>) * <span class="number">10</span> + (str[<span class="number">6</span>] - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">int</span> m = (str[<span class="number">8</span>] - <span class="string">'0'</span>) * <span class="number">10</span> + (str[<span class="number">9</span>] - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">int</span> s = (str[<span class="number">11</span>] - <span class="string">'0'</span>) * <span class="number">10</span> + (str[<span class="number">12</span>] - <span class="string">'0'</span>);</div><div class="line">        ss = s + m * <span class="number">60</span> + h * <span class="number">60</span> * <span class="number">60</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (m_clazz == <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        LOGE(<span class="string">"---------------m_clazz isNULL---------------"</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//获取方法ID (I)V指的是方法签名 通过javap -s -public FFmpegCmd 命令生成</span></div><div class="line">    jmethodID methodID = (*m_env)-&gt;GetMethodID(m_env, m_clazz, <span class="string">"onProgress"</span>, <span class="string">"(I)V"</span>);</div><div class="line">    <span class="keyword">if</span> (methodID == <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        LOGE(<span class="string">"---------------methodID isNULL---------------"</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">     LOGE(<span class="string">"---------------Call Method---------------"</span>);</div><div class="line">    <span class="comment">//调用该java方法</span></div><div class="line">    (*m_env)-&gt;CallVoidMethod(m_env,m_jobj, methodID, ss);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">ffmpegJniDone</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">    jmethodID methodID = (*m_env)-&gt;GetMethodID(m_env, m_clazz, <span class="string">"onFinish"</span>, <span class="string">"(I)V"</span>);</div><div class="line">    (*m_env)-&gt;CallVoidMethod(m_env,m_jobj, methodID, i);</div><div class="line">    <span class="comment">// 完成任务后的调用java方法,告知其已经完成</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>logjni.h是为了将ffmpeg自身的输出变为Android Log输出的一个头文件,内容为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> ANDROID</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;android/log.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> LOG_TAG</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  MY_TAG   <span class="meta-string">"MYTAG"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  AV_TAG   <span class="meta-string">"AVLOG"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LOGE(format, ...)  __android_log_print(ANDROID_LOG_ERROR, MY_TAG, format, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LOGD(format, ...)  __android_log_print(ANDROID_LOG_DEBUG,  MY_TAG, format, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  XLOGD(...)  __android_log_print(ANDROID_LOG_INFO,AV_TAG,__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>  XLOGE(...)  __android_log_print(ANDROID_LOG_ERROR,AV_TAG,__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LOGE(format, ...)  printf(MY_TAG format <span class="meta-string">"\n"</span>, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LOGD(format, ...)  printf(MY_TAG format <span class="meta-string">"\n"</span>, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> XLOGE(format, ...)  fprintf(stdout, AV_TAG <span class="meta-string">": "</span> format <span class="meta-string">"\n"</span>, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> XLOGI(format, ...)  fprintf(stderr, AV_TAG <span class="meta-string">": "</span> format <span class="meta-string">"\n"</span>, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
+<p>到这一步就可以执行ndk-build命令进行编译了.<br>cmd 进入之前创建的jni文件夹,输入ndk-build (别忘记配置好ndk的环境变量)后,就会自动的进行编译操作,</p>
+<p>如依然提示各种缺少文件,可以到之前解压出的ffmpeg文件夹里面去寻找到他们,然后复制到对应的文件夹中<br>最后,编译完成后,就会多出一个libffmpegjni.so文件<br>接下来就是Android端进行调用了<br>创建一个FFmpegJni类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FFmpegJni</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span>  <span class="keyword">float</span> totalDecodeTime = <span class="number">0f</span>;</div><div class="line">    <span class="keyword">private</span>  ProgressBar progressBar;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String fileInPath;</div><div class="line">    <span class="keyword">private</span> String fileOutPath;</div><div class="line"></div><div class="line">    MediaPlayer mediaPlayer = <span class="keyword">new</span> MediaPlayer();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FFmpegJni</span><span class="params">(String inPath, String outPath, ProgressBar progressBar)</span></span>&#123;</div><div class="line">        fileInPath = inPath;</div><div class="line">        fileOutPath = outPath;</div><div class="line">        <span class="keyword">this</span>.progressBar = progressBar;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 初始化相关设定</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            mediaPlayer.setDataSource(fileInPath);</div><div class="line">            mediaPlayer.prepare();</div><div class="line">            totalDecodeTime = mediaPlayer.getDuration()/<span class="number">1000</span>;</div><div class="line">            Log.d(<span class="string">"ffmpeg"</span>, <span class="string">"init: "</span>+totalDecodeTime);</div><div class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//执行解码操作</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">decode</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                String[] cmd = &#123;<span class="string">"ffmpeg"</span>, <span class="string">"-i"</span>,fileInPath, <span class="string">"-f"</span>, <span class="string">"s16be"</span> ,<span class="string">"-ar"</span> ,<span class="string">"44100"</span> ,<span class="string">"-acodec"</span>,<span class="string">"pcm_s16le"</span>, fileOutPath&#125;;</div><div class="line">                main(cmd);</div><div class="line">            &#125;</div><div class="line">        &#125;).start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 更新进度条</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onProgress</span><span class="params">(<span class="keyword">int</span> second)</span> </span>&#123;</div><div class="line">        Log.d(<span class="string">"ffmpeg"</span>, <span class="string">"onProgress: "</span>+ ((second/<span class="keyword">this</span>.totalDecodeTime) * <span class="number">100</span>));</div><div class="line">        progressBar.setProgress((<span class="keyword">int</span>)((second/<span class="keyword">this</span>.totalDecodeTime) * <span class="number">100</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// NDK 函数</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">main</span><span class="params">(String[] commands)</span></span>;</div><div class="line">    <span class="comment">// 导入so文件</span></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        System.loadLibrary(<span class="string">"avutil"</span>);</div><div class="line">        System.loadLibrary(<span class="string">"swresample"</span>);</div><div class="line">        System.loadLibrary(<span class="string">"avcodec"</span>);</div><div class="line">        System.loadLibrary(<span class="string">"avformat"</span>);</div><div class="line">        System.loadLibrary(<span class="string">"swscale"</span>);</div><div class="line">        System.loadLibrary(<span class="string">"avfilter"</span>);</div><div class="line">        System.loadLibrary(<span class="string">"avdevice"</span>);</div><div class="line">        System.loadLibrary(<span class="string">"ffmpegjni"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后再mainacitivity中调用即可,FFmpegJni的main函数接收命令.</p>
+<p>参考资料</p>
+<ul>
+<li><a href="http://www.yhao.xyz/2017/12/17/Android%20%E9%9B%86%E6%88%90%20FFmpeg%20%E4%B8%89%20%E8%8E%B7%E5%8F%96%20FFmpeg%20%E6%89%A7%E8%A1%8C%E8%BF%9B%E5%BA%A6/" target="_blank" rel="external">Android 集成 FFmpeg</a></li>
+<li><a href="http://blog.csdn.net/seven407/article/details/6170823" target="_blank" rel="external">ffmpeg的精简</a></li>
+</ul>
 
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://blog.chaosgoo.com/2018/02/03/FFmpeg-on-Android/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/12/24/Kotlin学习笔记0x05/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin学习笔记0x05</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -253,9 +390,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

@@ -73,8 +73,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/tags/Kotlin/">Kotlin</a></li>
 	        
-				<li><a href="/tags/Django/">Django</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -133,8 +131,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -153,15 +149,13 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/〇/">〇</a></li>
+					<li style="width: 25%"><a href="/tags/〇/">〇</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/Hexo/">Hexo</a></li>
+					<li style="width: 25%"><a href="/tags/Hexo/">Hexo</a></li>
 		        
-					<li style="width: 20%"><a href="/tags/Kotlin/">Kotlin</a></li>
-		        
-					<li style="width: 20%"><a href="/tags/Django/">Django</a></li>
+					<li style="width: 25%"><a href="/tags/Kotlin/">Kotlin</a></li>
 		        
 				</ul>
 			</nav>
@@ -178,28 +172,46 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Django学习记录0x01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-FFmpeg-on-Android" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/20/Django学习记录0x01/">Django学习记录0x01</a>
+      <a class="article-title" href="/2018/02/03/FFmpeg-on-Android/">FFmpeg on Android</a>
     </h1>
   
 
         
-        <a href="/2018/01/20/Django学习记录0x01/" class="archive-article-date">
-  	<time datetime="2018-01-20T11:33:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
+        <a href="/2018/02/03/FFmpeg-on-Android/" class="archive-article-date">
+  	<time datetime="2018-02-03T13:01:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Django学习例子：投票应用"><a href="#Django学习例子：投票应用" class="headerlink" title="Django学习例子：投票应用"></a>Django学习例子：投票应用</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>搭建好常用的python环境后，直接在CMD中输入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install django</div></pre></td></tr></table></figure></p>
-<p>即可<br>
+        <h1 id="移植FFmpeg到Android上"><a href="#移植FFmpeg到Android上" class="headerlink" title="移植FFmpeg到Android上"></a>移植FFmpeg到Android上</h1><p><img src="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p1.png" height="640"></p>
+<p>因为<a href="https://www.coolapk.com/apk/com.chaosgoo.mixmusic" target="_blank" rel="external"><font color="#9966cc">Mix Music</font></a>解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是<a href="http://ffmpeg.org/" target="_blank" rel="external"><font color="#333333">FFmpeg</font></a>的效果最好</p>
+<ul>
+<li><a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>配合<a href="https://developer.android.google.cn/reference/android/media/MediaExtractor.html" target="_blank" rel="external"><font color="#448aff">MediaExtractor</font></a>进行解码操作<ul>
+<li>这样的话,默认情况下<a href="https://developer.android.google.cn/reference/android/media/MediaExtractor.html" target="_blank" rel="external"><font color="#448aff">MediaExtractor</font></a>每次只传输1KB左右的数据给<a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>,速度实在是太慢</li>
+</ul>
+</li>
+<li><a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>不用<a href="https://developer.android.google.cn/reference/android/media/MediaExtractor.html" target="_blank" rel="external"><font color="#448aff">MediaExtractor</font></a>进行解码操作<ul>
+<li>在给Bytebuffer填充数据后,<a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>处理数据的时候总出错,大概是因为没有跳过非帧数据的部分</li>
+</ul>
+</li>
+<li>使用<a href="http://lame.sourceforge.net/" target="_blank" rel="external"><font color="#669966">LAME</font></a>进行解码操作<ul>
+<li>不幸的是<a href="http://lame.sourceforge.net/" target="_blank" rel="external"><font color="#669966">LAME</font></a>中的hip_decode()也是只能处理帧数据,需要手动跳过非帧数据.当手动跳过非帧数据后,最终发现速度并没有提升多少(尽管已经设置了不同大小的buffer)</li>
+</ul>
+</li>
+<li>使用<a href="http://ffmpeg.org/" target="_blank" rel="external"><font color="#333333">FFmpeg</font></a>进行解码操作<ul>
+<li>编译的时候真的是各种错误,头文件明明就在那里呆的好好的,编译器还是报找不到函数的错误.好在最终效果令人非常满意,3秒钟解码一个音频文件.</li>
+</ul>
+</li>
+</ul>
         
       
 
@@ -208,22 +220,11 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Django</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/20/Django学习记录0x01/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/02/03/FFmpeg-on-Android/">展开全文 >></a>
         </p>
       
 
@@ -957,19 +958,19 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">〇</a>
+                <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Django</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">〇</a>
               </li>
             
             <div class="clearfix"></div>
