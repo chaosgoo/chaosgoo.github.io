@@ -17,13 +17,13 @@
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="移植FFmpeg到Android上 因为Mix Music解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是FFmpeg的效果最好  MediaCodec配合MediaExtractor进行解码操作 这样的话,默认情况下MediaExtractor每次只传输1KB左右的数据给MediaCodec,速度实在是太慢   MediaCodec不用MediaExtractor进行解码操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p1.png">
-<meta property="og:image" content="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p3.png">
-<meta property="og:updated_time" content="2018-02-04T13:04:53.861Z">
+<meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/FFmpegonAndroid/FFmpegonAndroid_p1.png?raw=true">
+<meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/FFmpegonAndroid/FFmpegonAndroid_p3.png?raw=true">
+<meta property="og:updated_time" content="2019-06-20T06:21:51.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FFmpeg on Android">
 <meta name="twitter:description" content="移植FFmpeg到Android上 因为Mix Music解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是FFmpeg的效果最好  MediaCodec配合MediaExtractor进行解码操作 这样的话,默认情况下MediaExtractor每次只传输1KB左右的数据给MediaCodec,速度实在是太慢   MediaCodec不用MediaExtractor进行解码操作">
-<meta name="twitter:image" content="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p1.png">
+<meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/FFmpegonAndroid/FFmpegonAndroid_p1.png?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
   
@@ -204,7 +204,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="移植FFmpeg到Android上"><a href="#移植FFmpeg到Android上" class="headerlink" title="移植FFmpeg到Android上"></a>移植FFmpeg到Android上</h1><p><img src="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p1.png" height="640"></p>
+        <h1 id="移植FFmpeg到Android上"><a href="#移植FFmpeg到Android上" class="headerlink" title="移植FFmpeg到Android上"></a>移植FFmpeg到Android上</h1><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/FFmpegonAndroid/FFmpegonAndroid_p1.png?raw=true" height="640"></p>
 <p>因为<a href="https://www.coolapk.com/apk/com.chaosgoo.mixmusic" target="_blank" rel="external"><font color="#9966cc">Mix Music</font></a>解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是<a href="http://ffmpeg.org/" target="_blank" rel="external"><font color="#333333">FFmpeg</font></a>的效果最好</p>
 <ul>
 <li><a href="https://developer.android.google.cn/reference/android/media/MediaCodec.html" target="_blank" rel="external"><font color="#FF4081">MediaCodec</font></a>配合<a href="https://developer.android.google.cn/reference/android/media/MediaExtractor.html" target="_blank" rel="external"><font color="#448aff">MediaExtractor</font></a>进行解码操作<ul>
@@ -232,7 +232,7 @@ var _hmt = _hmt || [];
 <p>将内容修改为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SLIBNAME_WITH_MAJOR=<span class="string">'$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'</span>  </div><div class="line">LIB_INSTALL_EXTRA_CMD=<span class="string">'$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'</span>  </div><div class="line">SLIB_INSTALL_NAME=<span class="string">'$(SLIBNAME_WITH_MAJOR)'</span>  </div><div class="line">SLIB_INSTALL_LINKS=<span class="string">'$(SLIBNAME)'</span></div></pre></td></tr></table></figure></p>
 <p>这是因为默认生成的文件名称中版本号位于最后,不符合Android命名规范.</p>
 <p>在ffmpeg目录下创建build.sh文件<br>内容为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">NDK=F:/android-ndk-r14b</div><div class="line"><span class="comment"># 指向你NDK的路径</span></div><div class="line">SYSROOT=<span class="variable">$NDK</span>/platforms/android-21/arch-arm/</div><div class="line"><span class="comment"># 指定逻辑目录,按照自身需要进行修改</span></div><div class="line">TOOLCHAIN=<span class="variable">$NDK</span>/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64</div><div class="line"><span class="comment"># windows平台为windows-x86_64,linux为linux-x86_64</span></div><div class="line">CPU=arm</div><div class="line">PREFIX=$(<span class="built_in">pwd</span>)/android/<span class="variable">$CPU</span> </div><div class="line">ADDI_CFLAGS=<span class="string">"-marm"</span></div><div class="line"><span class="comment"># build_one中,因为我只需要使用mp3的decode和pcm_s16le的encode,所以关闭了其他的decode和encode来实现压缩体积,集体配置参数可参考</span></div><div class="line"><span class="comment"># https://www.cnblogs.com/azraelly/archive/2012/12/31/2840541.html</span></div><div class="line"><span class="keyword">function</span> build_one</div><div class="line">&#123;</div><div class="line">./configure \</div><div class="line">--prefix=<span class="variable">$PREFIX</span> \</div><div class="line">--<span class="built_in">enable</span>-shared \</div><div class="line">--<span class="built_in">disable</span>-static \</div><div class="line">--<span class="built_in">enable</span>-asm \</div><div class="line">--<span class="built_in">disable</span>-doc \</div><div class="line">--<span class="built_in">disable</span>-gpl \</div><div class="line">--<span class="built_in">enable</span>-small \</div><div class="line">--<span class="built_in">disable</span>-encoders \</div><div class="line">--<span class="built_in">disable</span>-decoders \</div><div class="line">--<span class="built_in">disable</span>-ffmpeg \</div><div class="line">--<span class="built_in">enable</span>-encoder=pcm_s16le \</div><div class="line">--<span class="built_in">enable</span>-decoder=mp3 \</div><div class="line">--<span class="built_in">disable</span>-ffplay \</div><div class="line">--<span class="built_in">disable</span>-ffprobe \</div><div class="line">--<span class="built_in">disable</span>-ffserver \</div><div class="line">--<span class="built_in">disable</span>-doc \</div><div class="line">--<span class="built_in">disable</span>-symver \</div><div class="line">--<span class="built_in">enable</span>-jni \</div><div class="line">--cross-prefix=<span class="variable">$TOOLCHAIN</span>/bin/arm-linux-androideabi- \</div><div class="line">--target-os=android \</div><div class="line">--arch=arm \</div><div class="line">--<span class="built_in">enable</span>-cross-compile \</div><div class="line">--sysroot=<span class="variable">$SYSROOT</span> \</div><div class="line">--extra-cflags=<span class="string">"-Os -fpic <span class="variable">$ADDI_CFLAGS</span>"</span> \</div><div class="line">--extra-ldflags=<span class="string">"<span class="variable">$ADDI_LDFLAGS</span>"</span> \</div><div class="line"><span class="variable">$ADDITIONAL_CONFIGURE_FLAG</span></div><div class="line">make clean</div><div class="line">make</div><div class="line">make install</div><div class="line">&#125;</div><div class="line">build_one</div></pre></td></tr></table></figure></p>
-<p>更加不幸的是.sh文件现在还不能运行,得先下载<a href="http://www.mingw.org/" target="_blank" rel="external">MinGW</a>,记得build.sh文件不编辑的时候,不要挂在后台处在打开状态<br>下载好后,直接打开<br>勾选上如图所示的选项<br><img src="http://oxm4z18bd.bkt.clouddn.com/FFmpegonAndroid_p3.png" alt="pic3"></p>
+<p>更加不幸的是.sh文件现在还不能运行,得先下载<a href="http://www.mingw.org/" target="_blank" rel="external">MinGW</a>,记得build.sh文件不编辑的时候,不要挂在后台处在打开状态<br>下载好后,直接打开<br>勾选上如图所示的选项<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/FFmpegonAndroid/FFmpegonAndroid_p3.png?raw=true" alt="pic3"></p>
 <p>在左上角Installation菜单中点击Apply Changes,然后等待下载并自动安装(可能需要酸酸乳,因为网络质量不是很高)</p>
 <p>下载完毕后,直接进度你的MinGW文件夹,找到msys文件夹并进入.双击msys.bat就会启动一个长的很像CMD的程序,至少在打开路径上都是使用cd命令</p>
 <p>cd进入到之前build.sh的文件夹,输入./build.sh运行build.sh,它就会自动进行编译操作.如果遇到了各种奇怪问题,不要放弃,因为你的问题前人已经犯过,你只需要善用搜索引擎,踩着他们的脚印即可. </p>
@@ -510,11 +510,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RaspberryPi</a>
+                <a href="javascript:void(0)" class="js-tag color2">〇</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">〇</a>
+                <a href="javascript:void(0)" class="js-tag color2">RaspberryPi</a>
               </li>
             
             <div class="clearfix"></div>
