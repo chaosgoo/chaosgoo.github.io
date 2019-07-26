@@ -8,15 +8,22 @@
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blog.chaosgoo.com">
-  <title>Archives: 2017/11 | Do U Find IT?</title>
+  <title>阿里巴巴Flutter Go动手实现 Day 01 | Do U Find IT?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Do U Find IT?">
-<meta property="og:url" content="https://blog.chaosgoo.com/archives/2017/11/index.html">
+  <meta name="description" content="阿里巴巴Flutter Go动手实现Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https:/">
+<meta name="keywords" content="Flutter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里巴巴Flutter Go动手实现 Day 01">
+<meta property="og:url" content="https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="阿里巴巴Flutter Go动手实现Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https:/">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/day_1_build_bottom_app_bar.png?raw=true">
+<meta property="og:updated_time" content="2019-07-26T10:59:51.602Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Do U Find IT?">
+<meta name="twitter:title" content="阿里巴巴Flutter Go动手实现 Day 01">
+<meta name="twitter:description" content="阿里巴巴Flutter Go动手实现Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https:/">
+<meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/day_1_build_bottom_app_bar.png?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
   
@@ -177,60 +184,164 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-阿里巴巴Flutter Go动手实现 Day 01" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/06/Kotlin学习笔记0x04/" class="archive-article-date">
-  	<time datetime="2017-11-06T14:59:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/06/Kotlin学习笔记0x04/">Kotlin学习笔记0x04</a>
+    <h1 class="article-title" itemprop="name">
+      阿里巴巴Flutter Go动手实现 Day 01
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/" class="archive-article-date">
+  	<time datetime="2019-07-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="阿里巴巴Flutter-Go动手实现"><a href="#阿里巴巴Flutter-Go动手实现" class="headerlink" title="阿里巴巴Flutter Go动手实现"></a>阿里巴巴Flutter Go动手实现</h1><p>Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。<br>目前(20190726)项目环境为</p>
+<ul>
+<li>dart(version:2.0.0)</li>
+<li>flutter(version:v1.0.0)</li>
+</ul>
+<p>Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码</p>
+<p>Flutter Go的Github地址是<a href="https://github.com/alibaba/flutter-go" target="_blank" rel="external">https://github.com/alibaba/flutter-go</a>，你可以在线或者clone下来细细品读。</p>
+<p>为了提高自身在Flutter方面的开发水平，所以决定研究Flutter Go的源码。在这个过程中，我会手动的将所有源码敲一边，加深印象，并努力学习几位大佬宝贵经验。</p>
+<h2 id="第一天-190725"><a href="#第一天-190725" class="headerlink" title="第一天(190725)"></a>第一天(190725)</h2><ul>
+<li>构建首页内容。<br>创建名为views的[package],并创建home.dart<br>此时文件结构变成了<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">lib</div><div class="line">├── main.dart</div><div class="line">└── views</div><div class="line">    └── home.dart</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<p>此时我们开始编写home.dart的基本内容.首先是创建BottomNavigationBar<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="built_in">int</span> ThemeColor = <span class="number">0XFFC91B3A</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</div><div class="line">  <span class="meta">@override</span></div><div class="line">  _AppPageState createState() =&gt; _AppPageState();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">_AppPageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">AppPage</span>&gt; <span class="title">with</span> <span class="title">SingleTickerProviderStateMixin</span> </span>&#123;</div><div class="line">  <span class="built_in">int</span> _currentIndex = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <span class="built_in">List</span> tabData = [</div><div class="line">    &#123;<span class="string">'text'</span>: <span class="string">'WIDGET'</span>, <span class="string">'icon'</span>: Icon(Icons.extension)&#125;,</div><div class="line">    &#123;<span class="string">'text'</span>: <span class="string">'组建收藏'</span>, <span class="string">'icon'</span>: Icon(Icons.favorite)&#125;,</div><div class="line">    &#123;<span class="string">'text'</span>: <span class="string">'关于手册'</span>, <span class="string">'icon'</span>: Icon(Icons.import_contacts)&#125;,</div><div class="line">  ];</div><div class="line">  <span class="built_in">List</span> _list =&lt;Widget&gt;[</div><div class="line">    Center(</div><div class="line">      child: Text(</div><div class="line">          <span class="string">"Widget Page"</span></div><div class="line">      ),</div><div class="line">    ),</div><div class="line">    Center(</div><div class="line">      child:Text(</div><div class="line">          <span class="string">"Favorite Page"</span></div><div class="line">      ),</div><div class="line">    ),</div><div class="line">    Center(</div><div class="line">      child:</div><div class="line">      Text(</div><div class="line">          <span class="string">"About Page"</span></div><div class="line">      ),</div><div class="line">    ),</div><div class="line">  ];</div><div class="line"></div><div class="line">  <span class="built_in">List</span>&lt;BottomNavigationBarItem&gt; _myTabs = [];</div><div class="line"></div><div class="line">  <span class="meta">@override</span></div><div class="line">  <span class="keyword">void</span> initState() &#123;</div><div class="line">    <span class="keyword">super</span>.initState();</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; tabData.length; i++) &#123;</div><div class="line">      _myTabs.add(BottomNavigationBarItem(</div><div class="line">          icon: tabData[i][<span class="string">'icon'</span>], title: Text(tabData[i][<span class="string">'text'</span>])));</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@override</span></div><div class="line">  Widget build(BuildContext context) &#123;</div><div class="line">    <span class="keyword">return</span> Scaffold(</div><div class="line">      body: IndexedStack(</div><div class="line">        index: _currentIndex,</div><div class="line">        children: _list</div><div class="line">      ),</div><div class="line">      bottomNavigationBar: BottomNavigationBar(</div><div class="line">        items: _myTabs,</div><div class="line">        currentIndex: _currentIndex,</div><div class="line">        onTap: (index) &#123;</div><div class="line">          setState(() &#123;</div><div class="line">            _currentIndex = index;</div><div class="line">          &#125;);</div><div class="line">        &#125;,</div><div class="line">        type: BottomNavigationBarType.fixed,</div><div class="line">        fixedColor: Color(ThemeColor),</div><div class="line">      ),</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在main.dart中稍作修改即可.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyHomePage</span>&gt; </span>&#123;</div><div class="line">  <span class="meta">@override</span></div><div class="line">  Widget build(BuildContext context) &#123;</div><div class="line">    <span class="keyword">return</span> AppPage();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行项目就会得到如下图所示的主页</p>
+<p><img src="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/day_1_build_bottom_app_bar.png?raw=true" width="480"></p>
+<p>今天的内容到此结束，主要就是配置环境，以及项目的创建。在动手实现的过程中，我会手动将flutter_go源码敲一边，与此同时会按照Flutter_Go的代码开发规范，调整源码中未按照规范编写的内容。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Flutter</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/11/04/Flutter-Stop-Watch/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flutter Stop Watch</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -265,8 +376,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
