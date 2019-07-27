@@ -10,7 +10,7 @@
     <meta name="description" content="树莓派动态域名解析 因为想想买台VPS玩玩,跑个Flask应用或者当数据库用用, 结果逛了一圈,买了个5刀一个月的低配VPS, 结果分配的IP均处于长城外,而且其他阿里云或者腾讯的实在是买不起,所以放弃了这个想法.想起之前买的树莓派也有远程SSH过, 但是因为室友的联通网每天都强制断网而且IP地址每天都在变,所以直接用IP连上去会很麻烦.所以决定找找看有没有什么能够动态更新IP的方法.幸运的是前人">
 <meta name="keywords" content="RaspberryPi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树莓派动态域名解析">
+<meta property="og:title" content="Other 树莓派动态域名解析">
 <meta property="og:url" content="https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="树莓派动态域名解析 因为想想买台VPS玩玩,跑个Flask应用或者当数据库用用, 结果逛了一圈,买了个5刀一个月的低配VPS, 结果分配的IP均处于长城外,而且其他阿里云或者腾讯的实在是买不起,所以放弃了这个想法.想起之前买的树莓派也有远程SSH过, 但是因为室友的联通网每天都强制断网而且IP地址每天都在变,所以直接用IP连上去会很麻烦.所以决定找找看有没有什么能够动态更新IP的方法.幸运的是前人">
@@ -18,9 +18,9 @@
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Rasp%20IP%20update/rasp_ip_update_pic1.png?raw=true">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Rasp%20IP%20update/rasp_ip_update_pic2.png?raw=true">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Rasp%20IP%20update/rasp_ip_update_pic3.png?raw=true">
-<meta property="og:updated_time" content="2019-06-20T06:24:50.000Z">
+<meta property="og:updated_time" content="2019-07-27T03:28:51.374Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="树莓派动态域名解析">
+<meta name="twitter:title" content="Other 树莓派动态域名解析">
 <meta name="twitter:description" content="树莓派动态域名解析 因为想想买台VPS玩玩,跑个Flask应用或者当数据库用用, 结果逛了一圈,买了个5刀一个月的低配VPS, 结果分配的IP均处于长城外,而且其他阿里云或者腾讯的实在是买不起,所以放弃了这个想法.想起之前买的树莓派也有远程SSH过, 但是因为室友的联通网每天都强制断网而且IP地址每天都在变,所以直接用IP连上去会很麻烦.所以决定找找看有没有什么能够动态更新IP的方法.幸运的是前人">
 <meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Rasp%20IP%20update/rasp_ip_update_pic1.png?raw=true">
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>树莓派动态域名解析</title>
+    <title>Other 树莓派动态域名解析</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -91,15 +91,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&text=树莓派动态域名解析"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&is_video=false&description=树莓派动态域名解析"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=树莓派动态域名解析&body=Check out this article: https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&name=树莓派动态域名解析&description=&lt;h1 id=&#34;树莓派动态域名解析&#34;&gt;&lt;a href=&#34;#树莓派动态域名解析&#34; class=&#34;headerlink&#34; title=&#34;树莓派动态域名解析&#34;&gt;&lt;/a&gt;树莓派动态域名解析&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://github.com/chaosgoo/blog_pic/blob/master/Rasp%20IP%20update/rasp_ip_update_pic1.png?raw=true&#34; alt=&#34;pic1&#34;&gt;&lt;/p&gt;
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&text=Other 树莓派动态域名解析"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&is_video=false&description=Other 树莓派动态域名解析"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Other 树莓派动态域名解析&body=Check out this article: https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&name=Other 树莓派动态域名解析&description=&lt;h1 id=&#34;树莓派动态域名解析&#34;&gt;&lt;a href=&#34;#树莓派动态域名解析&#34; class=&#34;headerlink&#34; title=&#34;树莓派动态域名解析&#34;&gt;&lt;/a&gt;树莓派动态域名解析&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://github.com/chaosgoo/blog_pic/blob/master/Rasp%20IP%20update/rasp_ip_update_pic1.png?raw=true&#34; alt=&#34;pic1&#34;&gt;&lt;/p&gt;
 &lt;p&gt;因为想想买台VPS玩玩,跑个Flask应用或者当数据库用用, 结果逛了一圈,买了个5刀一个月的低配VPS, 结果分配的IP均处于长城外,而且其他阿里云或者腾讯的实在是买不起,所以放弃了这个想法.&lt;br&gt;想起之前买的树莓派也有远程SSH过, 但是因为室友的联通网每天都强制断网而且IP地址每天都在变,所以直接用IP连上去会很麻烦.&lt;br&gt;所以决定找找看有没有什么能够动态更新IP的方法.幸运的是前人已经完成了这项工作.&lt;br&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
@@ -117,7 +117,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        树莓派动态域名解析
+        Other 树莓派动态域名解析
     </h1>
 
 
@@ -191,15 +191,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&text=树莓派动态域名解析"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&is_video=false&description=树莓派动态域名解析"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=树莓派动态域名解析&body=Check out this article: https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=树莓派动态域名解析"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&name=树莓派动态域名解析&description=&lt;h1 id=&#34;树莓派动态域名解析&#34;&gt;&lt;a href=&#34;#树莓派动态域名解析&#34; class=&#34;headerlink&#34; title=&#34;树莓派动态域名解析&#34;&gt;&lt;/a&gt;树莓派动态域名解析&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://github.com/chaosgoo/blog_pic/blob/master/Rasp%20IP%20update/rasp_ip_update_pic1.png?raw=true&#34; alt=&#34;pic1&#34;&gt;&lt;/p&gt;
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&text=Other 树莓派动态域名解析"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&is_video=false&description=Other 树莓派动态域名解析"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Other 树莓派动态域名解析&body=Check out this article: https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&title=Other 树莓派动态域名解析"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2018/03/02/树莓派动态域名解析/&name=Other 树莓派动态域名解析&description=&lt;h1 id=&#34;树莓派动态域名解析&#34;&gt;&lt;a href=&#34;#树莓派动态域名解析&#34; class=&#34;headerlink&#34; title=&#34;树莓派动态域名解析&#34;&gt;&lt;/a&gt;树莓派动态域名解析&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://github.com/chaosgoo/blog_pic/blob/master/Rasp%20IP%20update/rasp_ip_update_pic1.png?raw=true&#34; alt=&#34;pic1&#34;&gt;&lt;/p&gt;
 &lt;p&gt;因为想想买台VPS玩玩,跑个Flask应用或者当数据库用用, 结果逛了一圈,买了个5刀一个月的低配VPS, 结果分配的IP均处于长城外,而且其他阿里云或者腾讯的实在是买不起,所以放弃了这个想法.&lt;br&gt;想起之前买的树莓派也有远程SSH过, 但是因为室友的联通网每天都强制断网而且IP地址每天都在变,所以直接用IP连上去会很麻烦.&lt;br&gt;所以决定找找看有没有什么能够动态更新IP的方法.幸运的是前人已经完成了这项工作.&lt;br&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
