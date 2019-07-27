@@ -10,15 +10,15 @@
     <meta name="description" content="Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https://github.com/alibab">
 <meta name="keywords" content="Flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Code 阿里巴巴Flutter Go动手实现 Day 01">
+<meta property="og:title" content="Code 阿里巴巴Flutter Go手动复制 Day 01">
 <meta property="og:url" content="https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https://github.com/alibab">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/day_1_build_bottom_app_bar.png?raw=true">
-<meta property="og:updated_time" content="2019-07-27T03:28:41.889Z">
+<meta property="og:updated_time" content="2019-07-27T08:24:48.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code 阿里巴巴Flutter Go动手实现 Day 01">
+<meta name="twitter:title" content="Code 阿里巴巴Flutter Go手动复制 Day 01">
 <meta name="twitter:description" content="Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https://github.com/alibab">
 <meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/day_1_build_bottom_app_bar.png?raw=true">
     
@@ -40,7 +40,7 @@
         
     
     <!-- title -->
-    <title>Code 阿里巴巴Flutter Go动手实现 Day 01</title>
+    <title>Code 阿里巴巴Flutter Go手动复制 Day 01</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -89,15 +89,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&text=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&is_video=false&description=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go动手实现 Day 01&body=Check out this article: https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&name=Code 阿里巴巴Flutter Go动手实现 Day 01&description=&lt;p&gt;Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。&lt;br&gt;目前(20190726)项目环境为&lt;/p&gt;
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&text=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Day 01&body=Check out this article: https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&name=Code 阿里巴巴Flutter Go手动复制 Day 01&description=&lt;p&gt;Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。&lt;br&gt;目前(20190726)项目环境为&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;dart(version:2.0.0)&lt;/li&gt;
 &lt;li&gt;flutter(version:v1.0.0)&lt;/li&gt;
@@ -125,7 +125,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Code 阿里巴巴Flutter Go动手实现 Day 01
+        Code 阿里巴巴Flutter Go手动复制 Day 01
     </h1>
 
 
@@ -203,15 +203,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&text=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&is_video=false&description=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go动手实现 Day 01&body=Check out this article: https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go动手实现 Day 01"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&name=Code 阿里巴巴Flutter Go动手实现 Day 01&description=&lt;p&gt;Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。&lt;br&gt;目前(20190726)项目环境为&lt;/p&gt;
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&text=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Day 01&body=Check out this article: https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&name=Code 阿里巴巴Flutter Go手动复制 Day 01&description=&lt;p&gt;Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。&lt;br&gt;目前(20190726)项目环境为&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;dart(version:2.0.0)&lt;/li&gt;
 &lt;li&gt;flutter(version:v1.0.0)&lt;/li&gt;
