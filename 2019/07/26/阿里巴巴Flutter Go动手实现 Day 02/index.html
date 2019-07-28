@@ -7,21 +7,21 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="theme-color" content="#dedbd9">
-    <meta name="description" content="第二天(190726)今天继续完善主页的内容，在此之前，得把昨天忘记写的内容补充一下。先分析主页的布局结构，如图所示 我用红色，绿色，蓝色标示了三个区域，红色是搜索栏(SearchInput)，绿色是不可滑动切换的页面(IndexedStack)，蓝色是底部导航栏(BottomNavigationBar)。其中红色区域(SearchInput)和蓝色区域(BottomNavigationBar)是">
+    <meta name="description" content="Part01(190726)今天继续完善主页的内容，在此之前，得把昨天忘记写的内容补充一下。先分析主页的布局结构，如图所示 我用红色，绿色，蓝色标示了三个区域，红色是搜索栏(SearchInput)，绿色是不可滑动切换的页面(IndexedStack)，蓝色是底部导航栏(BottomNavigationBar)。其中红色区域(SearchInput)和蓝色区域(BottomNavigationBa">
 <meta name="keywords" content="Flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Code 阿里巴巴Flutter Go手动复制 Day 02">
+<meta property="og:title" content="Code 阿里巴巴Flutter Go手动复制 Part 02">
 <meta property="og:url" content="https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
-<meta property="og:description" content="第二天(190726)今天继续完善主页的内容，在此之前，得把昨天忘记写的内容补充一下。先分析主页的布局结构，如图所示 我用红色，绿色，蓝色标示了三个区域，红色是搜索栏(SearchInput)，绿色是不可滑动切换的页面(IndexedStack)，蓝色是底部导航栏(BottomNavigationBar)。其中红色区域(SearchInput)和蓝色区域(BottomNavigationBar)是">
+<meta property="og:description" content="Part01(190726)今天继续完善主页的内容，在此之前，得把昨天忘记写的内容补充一下。先分析主页的布局结构，如图所示 我用红色，绿色，蓝色标示了三个区域，红色是搜索栏(SearchInput)，绿色是不可滑动切换的页面(IndexedStack)，蓝色是底部导航栏(BottomNavigationBar)。其中红色区域(SearchInput)和蓝色区域(BottomNavigationBa">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/flutter_frame_detail.png?raw=true">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/search_input_frame.png?raw=true">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/day_02_build_search_bar.png?raw=true">
-<meta property="og:updated_time" content="2019-07-27T08:24:39.477Z">
+<meta property="og:updated_time" content="2019-07-28T06:31:38.636Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code 阿里巴巴Flutter Go手动复制 Day 02">
-<meta name="twitter:description" content="第二天(190726)今天继续完善主页的内容，在此之前，得把昨天忘记写的内容补充一下。先分析主页的布局结构，如图所示 我用红色，绿色，蓝色标示了三个区域，红色是搜索栏(SearchInput)，绿色是不可滑动切换的页面(IndexedStack)，蓝色是底部导航栏(BottomNavigationBar)。其中红色区域(SearchInput)和蓝色区域(BottomNavigationBar)是">
+<meta name="twitter:title" content="Code 阿里巴巴Flutter Go手动复制 Part 02">
+<meta name="twitter:description" content="Part01(190726)今天继续完善主页的内容，在此之前，得把昨天忘记写的内容补充一下。先分析主页的布局结构，如图所示 我用红色，绿色，蓝色标示了三个区域，红色是搜索栏(SearchInput)，绿色是不可滑动切换的页面(IndexedStack)，蓝色是底部导航栏(BottomNavigationBar)。其中红色区域(SearchInput)和蓝色区域(BottomNavigationBa">
 <meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/flutter_frame_detail.png?raw=true">
     
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>Code 阿里巴巴Flutter Go手动复制 Day 02</title>
+    <title>Code 阿里巴巴Flutter Go手动复制 Part 02</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -89,20 +89,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&text=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Day 02&body=Check out this article: https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&name=Code 阿里巴巴Flutter Go手动复制 Day 02&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&text=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Part 02&body=Check out this article: https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&name=Code 阿里巴巴Flutter Go手动复制 Part 02&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第二天-190726"><span class="toc-number">1.</span> <span class="toc-text">第二天(190726)</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part01-190726"><span class="toc-number">1.</span> <span class="toc-text">Part01(190726)</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -114,7 +114,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Code 阿里巴巴Flutter Go手动复制 Day 02
+        Code 阿里巴巴Flutter Go手动复制 Part 02
     </h1>
 
 
@@ -141,7 +141,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="第二天-190726"><a href="#第二天-190726" class="headerlink" title="第二天(190726)"></a>第二天(190726)</h2><p>今天继续完善主页的内容，在此之前，得把昨天忘记写的内容补充一下。先分析主页的布局结构，如图所示<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/flutter_frame_detail.png?raw=true" width="480/"></p>
+    <h2 id="Part01-190726"><a href="#Part01-190726" class="headerlink" title="Part01(190726)"></a>Part01(190726)</h2><p>今天继续完善主页的内容，在此之前，得把昨天忘记写的内容补充一下。先分析主页的布局结构，如图所示<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/flutter_frame_detail.png?raw=true" width="480/"></p>
 <p>我用红色，绿色，蓝色标示了三个区域，红色是搜索栏(SearchInput)，绿色是不可滑动切换的页面(IndexedStack)，蓝色是底部导航栏(BottomNavigationBar)。其中红色区域(SearchInput)和蓝色区域(BottomNavigationBar)是固定的，只要位于主页，那么它们两个总会显示，而蓝色区域(IndexedStack)是可以切换的，显示内容并不固定。</p>
 <p>今天要的事情就是构建搜索栏(SearchInput)。<br>搜索栏由一个Icon和一个FormField构成。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/search_input_frame.png?raw=true" width="480/"></p>
 <p>黄色区域为Icon，蓝色区域是FormField，点击FormField后触发_buildMaterialSearchPage(BuildContext context);跳转到搜索页面(MaterialSearch)。<br>为了使搜索栏不虚有其表，所以在构建搜索栏的时候，同时完善搜索功能。在lib中按照如下所示结构创建文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">├── components</div><div class="line">│   └── search_input.dart</div><div class="line">├── main.dart</div><div class="line">├── model</div><div class="line">│   └── search_history.dart</div><div class="line">├── resources</div><div class="line">│   └── shared_preferences_keys.dart</div><div class="line">├── routers</div><div class="line">│   ├── application.dart</div><div class="line">│   └── routers.dart</div><div class="line">├── utils</div><div class="line">│   └── shared_preferences.dart</div><div class="line">└── views</div><div class="line">    └── home.dart</div></pre></td></tr></table></figure></p>
@@ -181,21 +181,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第二天-190726"><span class="toc-number">1.</span> <span class="toc-text">第二天(190726)</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part01-190726"><span class="toc-number">1.</span> <span class="toc-text">Part01(190726)</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&text=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Day 02&body=Check out this article: https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Day 02"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&name=Code 阿里巴巴Flutter Go手动复制 Day 02&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&text=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Part 02&body=Check out this article: https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&title=Code 阿里巴巴Flutter Go手动复制 Part 02"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/26/阿里巴巴Flutter Go动手实现 Day 02/&name=Code 阿里巴巴Flutter Go手动复制 Part 02&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

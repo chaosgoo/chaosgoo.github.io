@@ -10,15 +10,15 @@
     <meta name="description" content="Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https://github.com/alibab">
 <meta name="keywords" content="Flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Code 阿里巴巴Flutter Go手动复制 Day 01">
+<meta property="og:title" content="Code 阿里巴巴Flutter Go手动复制 Part 01">
 <meta property="og:url" content="https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https://github.com/alibab">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/day_1_build_bottom_app_bar.png?raw=true">
-<meta property="og:updated_time" content="2019-07-27T08:24:48.648Z">
+<meta property="og:updated_time" content="2019-07-28T06:31:39.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code 阿里巴巴Flutter Go手动复制 Day 01">
+<meta name="twitter:title" content="Code 阿里巴巴Flutter Go手动复制 Part 01">
 <meta name="twitter:description" content="Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。目前(20190726)项目环境为  dart(version:2.0.0) flutter(version:v1.0.0)  Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码 Flutter Go的Github地址是https://github.com/alibab">
 <meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/learning_flutter_go/day_1_build_bottom_app_bar.png?raw=true">
     
@@ -40,7 +40,7 @@
         
     
     <!-- title -->
-    <title>Code 阿里巴巴Flutter Go手动复制 Day 01</title>
+    <title>Code 阿里巴巴Flutter Go手动复制 Part 01</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -89,15 +89,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&text=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Day 01&body=Check out this article: https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&name=Code 阿里巴巴Flutter Go手动复制 Day 01&description=&lt;p&gt;Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。&lt;br&gt;目前(20190726)项目环境为&lt;/p&gt;
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&text=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Part 01&body=Check out this article: https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&name=Code 阿里巴巴Flutter Go手动复制 Part 01&description=&lt;p&gt;Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。&lt;br&gt;目前(20190726)项目环境为&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;dart(version:2.0.0)&lt;/li&gt;
 &lt;li&gt;flutter(version:v1.0.0)&lt;/li&gt;
@@ -105,7 +105,7 @@
 &lt;p&gt;Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码&lt;/p&gt;
 &lt;p&gt;Flutter Go的Github地址是&lt;a href=&#34;https://github.com/alibaba/flutter-go&#34; target=&#34;_blank&#34; rel=&#34;external&#34;&gt;https://github.com/alibaba/flutter-go&lt;/a&gt;，你可以在线或者clone下来细细品读。&lt;/p&gt;
 &lt;p&gt;为了提高自身在Flutter方面的开发水平，所以决定研究Flutter Go的源码。在这个过程中，我会手动的将所有源码敲一边，加深印象，并努力学习几位大佬宝贵经验。&lt;/p&gt;
-&lt;h2 id=&#34;第一天-190725&#34;&gt;&lt;a href=&#34;#第一天-190725&#34; class=&#34;headerlink&#34; title=&#34;第一天(190725)&#34;&gt;&lt;/a&gt;第一天(190725)&lt;/h2&gt;&lt;ul&gt;
+&lt;h2 id=&#34;Part01-190725&#34;&gt;&lt;a href=&#34;#Part01-190725&#34; class=&#34;headerlink&#34; title=&#34;Part01(190725)&#34;&gt;&lt;/a&gt;Part01(190725)&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;构建首页内容。&lt;br&gt;创建名为views的[package],并创建home.dart&lt;br&gt;此时文件结构变成了&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;div class=&#34;line&#34;&gt;1&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;2&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;3&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;div class=&#34;line&#34;&gt;lib&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;├── main.dart&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;└── views&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;    └── home.dart&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;/ul&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
@@ -113,7 +113,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一天-190725"><span class="toc-number">1.</span> <span class="toc-text">第一天(190725)</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part01-190725"><span class="toc-number">1.</span> <span class="toc-text">Part01(190725)</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -125,7 +125,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Code 阿里巴巴Flutter Go手动复制 Day 01
+        Code 阿里巴巴Flutter Go手动复制 Part 01
     </h1>
 
 
@@ -160,7 +160,7 @@
 <p>Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码</p>
 <p>Flutter Go的Github地址是<a href="https://github.com/alibaba/flutter-go" target="_blank" rel="external">https://github.com/alibaba/flutter-go</a>，你可以在线或者clone下来细细品读。</p>
 <p>为了提高自身在Flutter方面的开发水平，所以决定研究Flutter Go的源码。在这个过程中，我会手动的将所有源码敲一边，加深印象，并努力学习几位大佬宝贵经验。</p>
-<h2 id="第一天-190725"><a href="#第一天-190725" class="headerlink" title="第一天(190725)"></a>第一天(190725)</h2><ul>
+<h2 id="Part01-190725"><a href="#Part01-190725" class="headerlink" title="Part01(190725)"></a>Part01(190725)</h2><ul>
 <li>构建首页内容。<br>创建名为views的[package],并创建home.dart<br>此时文件结构变成了<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">lib</div><div class="line">├── main.dart</div><div class="line">└── views</div><div class="line">    └── home.dart</div></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -197,21 +197,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一天-190725"><span class="toc-number">1.</span> <span class="toc-text">第一天(190725)</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part01-190725"><span class="toc-number">1.</span> <span class="toc-text">Part01(190725)</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&text=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Day 01&body=Check out this article: https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Day 01"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&name=Code 阿里巴巴Flutter Go手动复制 Day 01&description=&lt;p&gt;Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。&lt;br&gt;目前(20190726)项目环境为&lt;/p&gt;
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&text=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&is_video=false&description=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code 阿里巴巴Flutter Go手动复制 Part 01&body=Check out this article: https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&title=Code 阿里巴巴Flutter Go手动复制 Part 01"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/07/25/阿里巴巴Flutter Go动手实现 Day 01/&name=Code 阿里巴巴Flutter Go手动复制 Part 01&description=&lt;p&gt;Flutter Go是阿里巴巴拍卖前端团队创建的项目，这是一个帮助开发者快速上手Futter的项目。&lt;br&gt;目前(20190726)项目环境为&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;dart(version:2.0.0)&lt;/li&gt;
 &lt;li&gt;flutter(version:v1.0.0)&lt;/li&gt;
@@ -219,7 +219,7 @@
 &lt;p&gt;Flutter Go详细的介绍了多达140+个widget，并配有Demo和源码&lt;/p&gt;
 &lt;p&gt;Flutter Go的Github地址是&lt;a href=&#34;https://github.com/alibaba/flutter-go&#34; target=&#34;_blank&#34; rel=&#34;external&#34;&gt;https://github.com/alibaba/flutter-go&lt;/a&gt;，你可以在线或者clone下来细细品读。&lt;/p&gt;
 &lt;p&gt;为了提高自身在Flutter方面的开发水平，所以决定研究Flutter Go的源码。在这个过程中，我会手动的将所有源码敲一边，加深印象，并努力学习几位大佬宝贵经验。&lt;/p&gt;
-&lt;h2 id=&#34;第一天-190725&#34;&gt;&lt;a href=&#34;#第一天-190725&#34; class=&#34;headerlink&#34; title=&#34;第一天(190725)&#34;&gt;&lt;/a&gt;第一天(190725)&lt;/h2&gt;&lt;ul&gt;
+&lt;h2 id=&#34;Part01-190725&#34;&gt;&lt;a href=&#34;#Part01-190725&#34; class=&#34;headerlink&#34; title=&#34;Part01(190725)&#34;&gt;&lt;/a&gt;Part01(190725)&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;构建首页内容。&lt;br&gt;创建名为views的[package],并创建home.dart&lt;br&gt;此时文件结构变成了&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;div class=&#34;line&#34;&gt;1&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;2&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;3&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;div class=&#34;line&#34;&gt;lib&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;├── main.dart&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;└── views&lt;/div&gt;&lt;div class=&#34;line&#34;&gt;    └── home.dart&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;/ul&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
