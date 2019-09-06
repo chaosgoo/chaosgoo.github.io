@@ -455,7 +455,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .content {
-  flex: 1;
+  flex: 2;
 }
 .content p {
   -moz-hyphens: auto;
