@@ -455,7 +455,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .content {
-  flex: 2;
+  flex: 1;
 }
 .content p {
   -moz-hyphens: auto;
@@ -525,7 +525,7 @@ body {
 }
 .width {
   width: 100%;
-  max-width: 39rem;
+  max-width: 48rem;
 }
 @media (max-width: 480px) {
   .px3 {
