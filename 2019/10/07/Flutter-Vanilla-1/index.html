@@ -7,20 +7,20 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="theme-color" content="#dedbd9">
-    <meta name="description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现，无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏同样高度的padding。">
+    <meta name="description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏等高的padding  分析这是由于DrawerHeader的自身特性导致的。通过查看DrawerHeader的源码就会发现，虽然其构造函数中存在margin和padding参数，但是在最终buil">
 <meta name="keywords" content="Flutter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flutter Vanilla #1">
 <meta property="og:url" content="https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
-<meta property="og:description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现，无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏同样高度的padding。">
+<meta property="og:description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏等高的padding  分析这是由于DrawerHeader的自身特性导致的。通过查看DrawerHeader的源码就会发现，虽然其构造函数中存在margin和padding参数，但是在最终buil">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/F7C3B6B00D453496958EA299C86BC1D0.png?raw=true">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/0946E5A37DF2A60F626B1E783A8BCF6B.png?raw=true">
-<meta property="og:updated_time" content="2019-10-07T14:31:11.689Z">
+<meta property="og:updated_time" content="2019-10-07T14:32:39.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flutter Vanilla #1">
-<meta name="twitter:description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现，无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏同样高度的padding。">
+<meta name="twitter:description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏等高的padding  分析这是由于DrawerHeader的自身特性导致的。通过查看DrawerHeader的源码就会发现，虽然其构造函数中存在margin和padding参数，但是在最终buil">
 <meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/F7C3B6B00D453496958EA299C86BC1D0.png?raw=true">
     
     
@@ -73,6 +73,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2019/10/08/Flutter-Vanilla-2/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
         
         <li><a class="icon" href="/2019/09/06/fgo-summon-stats/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
@@ -96,8 +98,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&name=Flutter Vanilla #1&description=&lt;h1 id=&#34;为什么DrawerHeader顶部存在无法消除的Padding&#34;&gt;&lt;a href=&#34;#为什么DrawerHeader顶部存在无法消除的Padding&#34; class=&#34;headerlink&#34; title=&#34;为什么DrawerHeader顶部存在无法消除的Padding.&#34;&gt;&lt;/a&gt;为什么DrawerHeader顶部存在无法消除的Padding.&lt;/h1&gt;&lt;p&gt;在使用DrawerHeader的过程中发现，无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏同样高度的padding。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/F7C3B6B00D453496958EA299C86BC1D0.png?raw=true&#34; width=&#34;480/&#34;&gt;&lt;/p&gt;"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&name=Flutter Vanilla #1&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -141,9 +142,8 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="为什么DrawerHeader顶部存在无法消除的Padding"><a href="#为什么DrawerHeader顶部存在无法消除的Padding" class="headerlink" title="为什么DrawerHeader顶部存在无法消除的Padding."></a>为什么DrawerHeader顶部存在无法消除的Padding.</h1><p>在使用DrawerHeader的过程中发现，无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏同样高度的padding。</p>
+    <h1 id="为什么DrawerHeader顶部存在无法消除的Padding"><a href="#为什么DrawerHeader顶部存在无法消除的Padding" class="headerlink" title="为什么DrawerHeader顶部存在无法消除的Padding."></a>为什么DrawerHeader顶部存在无法消除的Padding.</h1><p>在使用DrawerHeader的过程中发现无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏等高的padding</p>
 <p><img src="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/F7C3B6B00D453496958EA299C86BC1D0.png?raw=true" width="480/"></p>
-<a id="more"></a>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这是由于DrawerHeader的自身特性导致的。<br>通过查看DrawerHeader的源码就会发现，虽然其构造函数中存在margin和padding参数，但是在最终build时候，还是会给child加上一个statusBarHeight的padding<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 节选自drawer_header.dart里_MyHomePageState的build函数中</span></div><div class="line"><span class="keyword">final</span> <span class="built_in">double</span> statusBarHeight = MediaQuery.of(context).padding.top;</div><div class="line"><span class="comment">// 无法消除的padding</span></div><div class="line">padding: padding.add(EdgeInsets.only(top: statusBarHeight)),</div></pre></td></tr></table></figure></p>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>使用DrawerHeader时将padding设置为负状态栏高度即可。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 用同样的方式获取到状态栏高度</span></div><div class="line"><span class="built_in">double</span> _statusBarHeight = MediaQuery.of(context).padding.top;</div><div class="line"></div><div class="line">DrawerHeader(</div><div class="line">    decoration: BoxDecoration(color: Colors.white),</div><div class="line">    <span class="comment">// top padding 设置为负的状态栏高度</span></div><div class="line">    padding:  EdgeInsets.only(top: -_statusBarHeight),</div><div class="line">)</div><div class="line"><span class="comment">// ......</span></div></pre></td></tr></table></figure></p>
 <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/0946E5A37DF2A60F626B1E783A8BCF6B.png?raw=true" width="480"></p>
@@ -189,8 +189,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&name=Flutter Vanilla #1&description=&lt;h1 id=&#34;为什么DrawerHeader顶部存在无法消除的Padding&#34;&gt;&lt;a href=&#34;#为什么DrawerHeader顶部存在无法消除的Padding&#34; class=&#34;headerlink&#34; title=&#34;为什么DrawerHeader顶部存在无法消除的Padding.&#34;&gt;&lt;/a&gt;为什么DrawerHeader顶部存在无法消除的Padding.&lt;/h1&gt;&lt;p&gt;在使用DrawerHeader的过程中发现，无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏同样高度的padding。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/F7C3B6B00D453496958EA299C86BC1D0.png?raw=true&#34; width=&#34;480/&#34;&gt;&lt;/p&gt;"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&name=Flutter Vanilla #1&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
