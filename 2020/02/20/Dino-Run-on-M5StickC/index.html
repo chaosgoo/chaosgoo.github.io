@@ -17,7 +17,7 @@
 <meta property="og:description" content="Microptyhon制作小游戏DinoRun0x00 前言去年入手了一块M5StickC,然后吃灰了好久。最近有幸把它找了出来，然后复习了一些基本操作。因为M5StickC自带了按钮和屏幕，所以玩起来要方便很多，不用额外的接线，就可以实现很多有趣的效果。官方的固件支持Micropython开发，而且集成了屏幕驱动，操作起来十分的方便，只要把它当作一个实体显示的画板即可。 0x01开发思路之前看了">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/DinoRun.png">
-<meta property="og:updated_time" content="2020-03-16T12:00:15.297Z">
+<meta property="og:updated_time" content="2020-03-25T15:08:44.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Microptyhon制作小游戏DinoRun">
 <meta name="twitter:description" content="Microptyhon制作小游戏DinoRun0x00 前言去年入手了一块M5StickC,然后吃灰了好久。最近有幸把它找了出来，然后复习了一些基本操作。因为M5StickC自带了按钮和屏幕，所以玩起来要方便很多，不用额外的接线，就可以实现很多有趣的效果。官方的固件支持Micropython开发，而且集成了屏幕驱动，操作起来十分的方便，只要把它当作一个实体显示的画板即可。 0x01开发思路之前看了">
@@ -141,7 +141,7 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="Microptyhon制作小游戏DinoRun"><a href="#Microptyhon制作小游戏DinoRun" class="headerlink" title="Microptyhon制作小游戏DinoRun"></a>Microptyhon制作小游戏DinoRun</h1><h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>去年入手了一块<font color="ff6a6a">M5StickC</font>,然后吃灰了好久。最近有幸把它找了出来，然后复习了一些基本操作。<br>因为<font color="ff6a6a">M5StickC</font>自带了按钮和屏幕，所以玩起来要方便很多，不用额外的接线，就可以实现很多有趣的效果。<br>官方的固件支持Micropython开发，而且集成了屏幕驱动，操作起来十分的方便，只要把它当作一个实体显示的画板即可。<br><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/DinoRun.png"></p>
-<h2 id="0x01开发思路"><a href="#0x01开发思路" class="headerlink" title="0x01开发思路"></a>0x01开发思路</h2><p>之前看了一篇使用Flutter开发<a href="https://medium.com/dextra-digital/creating-the-t-rex-game-with-flutter-and-flame-6d01add1ad5b" target="_blank" rel="external">DinoRun的文章</a>，那篇文章提到了一个设计原则</p>
+<h2 id="0x01开发思路"><a href="#0x01开发思路" class="headerlink" title="0x01开发思路"></a>0x01开发思路</h2><p>之前看了一篇使用Flutter开发<a href="https://medium.com/dextra-digital/creating-the-t-rex-game-with-flutter-and-flame-6d01add1ad5b" target="_blank" rel="external">DinoRun</a>的文章，那篇文章提到了一个设计原则</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    game.update()</div><div class="line">    game.render()</div></pre></td></tr></table></figure>
 <p>游戏里的每一个组件必须具备两个基本方法：</p>
 <p><strong><font color="ff0000">update</font></strong>和<strong><font color="00ffff">render</font></strong></p>
