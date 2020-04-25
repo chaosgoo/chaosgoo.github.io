@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Vanilla">
+<meta property="og:url" content="https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/bill.jpg?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/invoice.jpg?x-oss-process=style/compress_50">
+<meta property="og:updated_time" content="2020-04-23T09:50:18.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Vanilla">
+<meta name="twitter:description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在">
+<meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/bill.jpg?x-oss-process=style/compress_50">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/Logo_Sketch.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/Logo_Sketch.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_Sketch.png">
+          
+        
+    
+    <!-- title -->
+    <title>Android Vanilla</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/04/25/pro-micro/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/02/20/Dino-Run-on-M5StickC/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&text=Android Vanilla"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&is_video=false&description=Android Vanilla"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android Vanilla&body=Check out this article: https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&name=Android Vanilla&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"><span class="toc-number">1.</span> <span class="toc-text">Android平台使用iTextG在已有PDF文件中插入带有图片的新页面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引入依赖"><span class="toc-number">1.2.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用方式"><span class="toc-number">1.3.</span> <span class="toc-text">使用方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.4.</span> <span class="toc-text">效果预览</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Android Vanilla
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Do U Find IT?</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-04-19T01:41:46.000Z" itemprop="datePublished">2020-04-19</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Android/">Android</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"><a href="#Android平台使用iTextG在已有PDF文件中插入带有图片的新页面" class="headerlink" title="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"></a>Android平台使用iTextG在已有PDF文件中插入带有图片的新页面</h1><p>本文将介如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为<strong>单页</strong>的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在经过一番搜索后，找到了<a href="https://itextpdf.com/en/resources/installation-guides/installing-itext-g-android" target="_blank" rel="external">iTextG</a>这个库。</p>
+<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># iTextG本体</div><div class="line">implementation <span class="string">'com.itextpdf:itextg:5.5.10'</span></div><div class="line"># 相关加密算法需要用到的库</div><div class="line">implementation <span class="string">'com.madgag.spongycastle:core:1.54.0.0'</span></div><div class="line">implementation <span class="string">'com.madgag.spongycastle:prov:1.54.0.0'</span></div><div class="line">implementation <span class="string">'com.madgag.spongycastle:pkix:1.54.0.0'</span></div><div class="line">implementation <span class="string">'com.madgag.spongycastle:pg:1.54.0.0'</span></div></pre></td></tr></table></figure>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>在任意的静态类中如Application中添加<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Security.insertProviderAt(org.spongycastle.jce.provider.BouncyCastleProvider(), <span class="number">1</span>)</div></pre></td></tr></table></figure></p>
+<p>PDF编辑相关代码<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 在发票PDF第二页插入电子账单图片</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> dst PDF源文件路径</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">insertBillPage</span><span class="params">(dst: <span class="type">String</span>?)</span></span> &#123;</div><div class="line">    <span class="keyword">try</span> &#123; <span class="comment">// 读取PDF文件</span></div><div class="line">        <span class="keyword">val</span> pdfReader = PdfReader(dst)</div><div class="line">        <span class="comment">// PDF修改器，我传入了项目里面的一个常量，请按需修改</span></div><div class="line">        <span class="keyword">val</span> pdfStamper = PdfStamper(</div><div class="line">            pdfReader,</div><div class="line">            FileOutputStream(Constants.SD_FILE_INVOICE_DOUBLE_PAGE_PDF_CACHE)</div><div class="line">        )</div><div class="line">        pdfStamper.insertPage(</div><div class="line">            pdfReader.getNumberOfPages() + <span class="number">1</span>,</div><div class="line">            pdfReader.getPageSizeWithRotation(<span class="number">1</span>)</div><div class="line">        )</div><div class="line">        <span class="comment">// 待插入的图片，我传入了项目里面的一个常量，请按需修改</span></div><div class="line">        <span class="keyword">val</span> image: Image = Image.getInstance(Constants.SD_FILE_INVOICE_BMP_CACHE)</div><div class="line">        <span class="comment">// 由于PDF文件中电子发票页面尺寸为A5,而插入的图片过大，所以需要进行缩放操作</span></div><div class="line">        image.scalePercent(<span class="number">30.0</span>f)</div><div class="line">        <span class="comment">// 调整图片在页面中的位置</span></div><div class="line">        image.setAbsolutePosition(<span class="number">32</span>, <span class="number">120</span>)</div><div class="line">        <span class="keyword">val</span> content: PdfContentByte = pdfStamper.getUnderContent(pdfReader.getNumberOfPages())</div><div class="line">        content.addImage(image)</div><div class="line">        pdfStamper.close()</div><div class="line">    &#125; <span class="keyword">catch</span> (e: DocumentException) &#123;</div><div class="line">        e.printStackTrace()</div><div class="line">    &#125; <span class="keyword">catch</span> (e: IOException) &#123;</div><div class="line">        e.printStackTrace()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/bill.jpg?x-oss-process=style/compress_50" alt="bill"><br><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/invoice.jpg?x-oss-process=style/compress_50" alt="invoice"></p>
+<p>设备: 映美IM-100T</p>
+<p>环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Gradle                                  5.6.4</div><div class="line">Android Gradle Plugin Version           3.6.1</div><div class="line">Android Studio Version Android Studio   3.6.1</div><div class="line">Android buildToolsVersion               28.0.3</div><div class="line">Android compileSdkVersion               28</div><div class="line">Android Version                         4.4.2</div></pre></td></tr></table></figure></p>
+<p>参考资料:</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/20d4905383b4" target="_blank" rel="external">itext 生成 PDF(一)</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"><span class="toc-number">1.</span> <span class="toc-text">Android平台使用iTextG在已有PDF文件中插入带有图片的新页面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引入依赖"><span class="toc-number">1.2.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用方式"><span class="toc-number">1.3.</span> <span class="toc-text">使用方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.4.</span> <span class="toc-text">效果预览</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&text=Android Vanilla"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&is_video=false&description=Android Vanilla"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android Vanilla&body=Check out this article: https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&name=Android Vanilla&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-107986670-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

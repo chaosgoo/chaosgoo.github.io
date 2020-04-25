@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="使用M5StickC绘制带有物理特性的小球(只与屏幕边框碰撞)约莫有一年没有碰M5StickC了，最近打算用micropython制作一个生日礼物，所以特意回来熟悉熟悉一些基本操作。不知道是多久以前写过一个Flutter版本的物理小球，写完以后感慨原来小球的物理效果是这样实现的。所以这次决定要在M5StickC上实现这个效果。(好像并没有什么直接联系，嘿嘿嘿) 分析运动的小球具有速度(矢量)这一关">
+<meta name="keywords" content="Micropython">
+<meta property="og:type" content="article">
+<meta property="og:title" content="M5StickC 绘制多个小球">
+<meta property="og:url" content="https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="使用M5StickC绘制带有物理特性的小球(只与屏幕边框碰撞)约莫有一年没有碰M5StickC了，最近打算用micropython制作一个生日礼物，所以特意回来熟悉熟悉一些基本操作。不知道是多久以前写过一个Flutter版本的物理小球，写完以后感慨原来小球的物理效果是这样实现的。所以这次决定要在M5StickC上实现这个效果。(好像并没有什么直接联系，嘿嘿嘿) 分析运动的小球具有速度(矢量)这一关">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-25T12:58:15.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="M5StickC 绘制多个小球">
+<meta name="twitter:description" content="使用M5StickC绘制带有物理特性的小球(只与屏幕边框碰撞)约莫有一年没有碰M5StickC了，最近打算用micropython制作一个生日礼物，所以特意回来熟悉熟悉一些基本操作。不知道是多久以前写过一个Flutter版本的物理小球，写完以后感慨原来小球的物理效果是这样实现的。所以这次决定要在M5StickC上实现这个效果。(好像并没有什么直接联系，嘿嘿嘿) 分析运动的小球具有速度(矢量)这一关">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/Logo_Sketch.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/Logo_Sketch.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_Sketch.png">
+          
+        
+    
+    <!-- title -->
+    <title>M5StickC 绘制多个小球</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/02/16/Low-Poly-Bee/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/11/18/Flutter-Vanilla-3/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&text=M5StickC 绘制多个小球"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&is_video=false&description=M5StickC 绘制多个小球"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=M5StickC 绘制多个小球&body=Check out this article: https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&name=M5StickC 绘制多个小球&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用M5StickC绘制带有物理特性的小球-只与屏幕边框碰撞"><span class="toc-number">1.</span> <span class="toc-text">使用M5StickC绘制带有物理特性的小球(只与屏幕边框碰撞)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过程"><span class="toc-number">1.2.</span> <span class="toc-text">过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#完整代码地址"><span class="toc-number">1.2.1.</span> <span class="toc-text">完整代码地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">1.3.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.4.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        M5StickC 绘制多个小球
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Do U Find IT?</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-02-10T03:23:22.000Z" itemprop="datePublished">2020-02-10</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Micropython/">Micropython</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="使用M5StickC绘制带有物理特性的小球-只与屏幕边框碰撞"><a href="#使用M5StickC绘制带有物理特性的小球-只与屏幕边框碰撞" class="headerlink" title="使用M5StickC绘制带有物理特性的小球(只与屏幕边框碰撞)"></a>使用M5StickC绘制带有物理特性的小球(只与屏幕边框碰撞)</h1><p>约莫有一年没有碰M5StickC了，最近打算用micropython制作一个生日礼物，所以特意回来熟悉熟悉一些基本操作。<br>不知道是多久以前写过一个Flutter版本的物理小球，写完以后感慨原来小球的物理效果是这样实现的。所以这次决定要在M5StickC上实现这个效果。(好像并没有什么直接联系，嘿嘿嘿)</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>运动的小球具有速度(矢量)这一关键物理属性，还有颜色和大小两个次要的物理属性。在编程过程中，需将速度(矢量)分解为x轴方向速度和y轴方向速度。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>直接构建出小球的类<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span>:</span></div><div class="line">    <span class="comment"># 初始化位置(x,y),半径r</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,x,y,r)</span>:</span></div><div class="line">        self.x = x</div><div class="line">        self.y = y</div><div class="line">        self.r = r</div><div class="line">        <span class="comment"># 随机的x,y方向速度</span></div><div class="line">        self.vx = randint(<span class="number">1</span>,<span class="number">4</span>)</div><div class="line">        self.vy = randint(<span class="number">1</span>,<span class="number">4</span>)</div><div class="line">        <span class="comment"># 上一帧的位置x</span></div><div class="line">        self.old_x = x</div><div class="line">        <span class="comment"># 上一帧的位置y</span></div><div class="line">        self.old_y = y</div><div class="line">        <span class="comment"># 随机的颜色</span></div><div class="line">        self.color = randint(<span class="number">0</span>,<span class="number">16579836</span>)</div><div class="line">    <span class="comment"># 更新</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment"># 缓存上一帧位置</span></div><div class="line">        self.old_x = self.x</div><div class="line">        self.old_y = self.y</div><div class="line">        <span class="comment"># 更新当前帧位置</span></div><div class="line">        self.x = self.x + self.vx</div><div class="line">        self.y = self.y + self.vy</div><div class="line">        <span class="comment"># 判断是否到达屏幕边界(与边框发生碰撞)</span></div><div class="line">        <span class="keyword">if</span> self.x - self.r &lt;= <span class="number">0</span> <span class="keyword">or</span> self.x + self.r &gt; <span class="number">80</span>:</div><div class="line">            self.vx = -self.vx</div><div class="line">        <span class="keyword">if</span> self.y - self.r &lt;= <span class="number">0</span> <span class="keyword">or</span> self.y + self.r &gt; <span class="number">160</span>:</div><div class="line">            self.vy = -self.vy</div><div class="line">    <span class="comment"># 绘制</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">render</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment"># 利用缓存的上一帧位置，局部清空上一帧内容</span></div><div class="line">        self._clear()</div><div class="line">        <span class="comment"># 还原画笔颜色</span></div><div class="line">        lcd.setColor(self.color)</div><div class="line">        <span class="comment"># 绘制当前帧内容</span></div><div class="line">        lcd.fillCircle(self.x, self.y, self.r)</div><div class="line">    <span class="comment"># 局部清空</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_clear</span><span class="params">(self)</span>:</span></div><div class="line">        lcd.setColor(lcd.BLACK)</div><div class="line">        lcd.fillCircle(self.old_x, self.old_y, self.r)</div></pre></td></tr></table></figure></p>
+<p>此时只要在主程序中创建一个Ball对象，然后循环调用Ball对象的update和render，就可以看到具有物理效果(伪)小球在屏幕中运动</p>
+<p>下面编写游戏主循环,每当按下按钮A,就会生成一个新的球，按住则会一直生成<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">balls = []</div><div class="line">print(len(balls))</div><div class="line">press_delay = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    press_delay +=<span class="number">1</span></div><div class="line">    <span class="keyword">if</span> buttonA.read() <span class="keyword">and</span> press_delay &gt; <span class="number">10</span>:</div><div class="line">        balls.append(Ball(randint(<span class="number">6</span>,<span class="number">75</span>),randint(<span class="number">6</span>,<span class="number">155</span>),randint(<span class="number">1</span>,<span class="number">5</span>)))</div><div class="line">        press_delay = <span class="number">0</span></div><div class="line">    <span class="keyword">if</span> buttonB.read() <span class="keyword">and</span> press_delay &gt; <span class="number">10</span>:</div><div class="line">        press_delay = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> len(balls) != <span class="number">0</span>:</div><div class="line">            balls[<span class="number">0</span>].clear()</div><div class="line">            balls.pop(<span class="number">0</span>)</div><div class="line">    <span class="comment"># time.sleep(0.033)</span></div><div class="line">    <span class="keyword">for</span> ball <span class="keyword">in</span> balls:</div><div class="line">        ball.update()</div><div class="line">        ball.render()</div></pre></td></tr></table></figure></p>
+<p>下面是固定数量的小球<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">balls = []</div><div class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> range(randint(<span class="number">10</span>,<span class="number">15</span>)):</div><div class="line">    balls.append(Ball(randint(<span class="number">6</span>,<span class="number">80</span>),randint(<span class="number">6</span>,<span class="number">160</span>),randint(<span class="number">1</span>,<span class="number">5</span>)))</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="comment"># time.sleep(0.033)</span></div><div class="line">    <span class="keyword">for</span> ball <span class="keyword">in</span> balls:</div><div class="line">        ball.update()</div><div class="line">        ball.render()</div></pre></td></tr></table></figure></p>
+<p>代码头部引用的moduels<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> m5stack <span class="keyword">import</span> lcd</div><div class="line">lcd.clear(lcd.BLACK)</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">from</span> urandom <span class="keyword">import</span> randint</div></pre></td></tr></table></figure></p>
+<h3 id="完整代码地址"><a href="#完整代码地址" class="headerlink" title="完整代码地址"></a>完整代码地址</h3><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>设备:M5StickC</p>
+<p>环境: </p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://juejin.im/post/5d2d86126fb9a07ef06fc66e" target="_blank" rel="external">Flutter动画之粒子精讲</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用M5StickC绘制带有物理特性的小球-只与屏幕边框碰撞"><span class="toc-number">1.</span> <span class="toc-text">使用M5StickC绘制带有物理特性的小球(只与屏幕边框碰撞)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过程"><span class="toc-number">1.2.</span> <span class="toc-text">过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#完整代码地址"><span class="toc-number">1.2.1.</span> <span class="toc-text">完整代码地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">1.3.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.4.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&text=M5StickC 绘制多个小球"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&is_video=false&description=M5StickC 绘制多个小球"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=M5StickC 绘制多个小球&body=Check out this article: https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&title=M5StickC 绘制多个小球"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/02/10/M5StickC-Balls/&name=M5StickC 绘制多个小球&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-107986670-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
