@@ -11,16 +11,16 @@
     <meta name="description" content="快把你家的灯接入HomeKit吧其二（舵机篇）上一篇文章中已经熟悉了如何烧录程序到ESP32，并且成功的点亮了一盏LED灯，如果你动手能力强的话。那么上一节就是教会了你做了一个支持HomeKit的灯。 本篇会将上一篇中的LED替换成一个舵机。至于为什么使用舵机，是因为我不想破坏开关的原有结构，想使用一种非侵入式的方法去拓展现有的灯开关。 重新启用环境变量如果你看完上一篇文章后重启了电脑，或者关闭了">
 <meta name="keywords" content="ESP32">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HomeKit ESP32 control Light II">
-<meta property="og:url" content="https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/index.html">
+<meta property="og:title" content="HomeKit ESP32 Control Light II">
+<meta property="og:url" content="https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="快把你家的灯接入HomeKit吧其二（舵机篇）上一篇文章中已经熟悉了如何烧录程序到ESP32，并且成功的点亮了一盏LED灯，如果你动手能力强的话。那么上一节就是教会了你做了一个支持HomeKit的灯。 本篇会将上一篇中的LED替换成一个舵机。至于为什么使用舵机，是因为我不想破坏开关的原有结构，想使用一种非侵入式的方法去拓展现有的灯开关。 重新启用环境变量如果你看完上一篇文章后重启了电脑，或者关闭了">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32homekit/IMG_2120.JPG?x-oss-process=style/compress_50">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32homekit/servo_demo.png?x-oss-process=style/compress_50">
-<meta property="og:updated_time" content="2020-05-13T13:56:38.430Z">
+<meta property="og:updated_time" content="2020-05-13T14:02:11.536Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HomeKit ESP32 control Light II">
+<meta name="twitter:title" content="HomeKit ESP32 Control Light II">
 <meta name="twitter:description" content="快把你家的灯接入HomeKit吧其二（舵机篇）上一篇文章中已经熟悉了如何烧录程序到ESP32，并且成功的点亮了一盏LED灯，如果你动手能力强的话。那么上一节就是教会了你做了一个支持HomeKit的灯。 本篇会将上一篇中的LED替换成一个舵机。至于为什么使用舵机，是因为我不想破坏开关的原有结构，想使用一种非侵入式的方法去拓展现有的灯开关。 重新启用环境变量如果你看完上一篇文章后重启了电脑，或者关闭了">
 <meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32homekit/IMG_2120.JPG?x-oss-process=style/compress_50">
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>HomeKit ESP32 control Light II</title>
+    <title>HomeKit ESP32 Control Light II</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -77,7 +77,7 @@
         <li><a class="icon" href="/2020/05/12/HomeKit-ESP32-Control-Light-III/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/2020/05/10/HomeKit-Esp32-Control-Light/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/2020/05/10/HomeKit-ESP32-Control-Light/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -90,16 +90,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&text=HomeKit ESP32 control Light II"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&is_video=false&description=HomeKit ESP32 control Light II"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 control Light II&body=Check out this article: https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&name=HomeKit ESP32 control Light II&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&text=HomeKit ESP32 Control Light II"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&is_video=false&description=HomeKit ESP32 Control Light II"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 Control Light II&body=Check out this article: https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&name=HomeKit ESP32 Control Light II&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -116,7 +116,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        HomeKit ESP32 control Light II
+        HomeKit ESP32 Control Light II
     </h1>
 
 
@@ -215,16 +215,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&text=HomeKit ESP32 control Light II"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&is_video=false&description=HomeKit ESP32 control Light II"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 control Light II&body=Check out this article: https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&title=HomeKit ESP32 control Light II"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-control-Light-II/&name=HomeKit ESP32 control Light II&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&text=HomeKit ESP32 Control Light II"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&is_video=false&description=HomeKit ESP32 Control Light II"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 Control Light II&body=Check out this article: https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&title=HomeKit ESP32 Control Light II"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-II/&name=HomeKit ESP32 Control Light II&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
