@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="快把你家的灯接入HomeKit吧其三（整合篇）我的回合，抽卡。发动魔法卡–融合！ 第一篇文章中介绍了如何控制LED的亮灭，而第二篇文章中介绍了如何控制舵机旋转到指定的角度，那么现在让它们融合起来了吧！ 融合前的检测在LED的Demo中，每次开灯关灯操作都会调用led_write(bool status)函数，所以我们只需要根据传进来的status值，旋转舵机到对应的角度即可。 先让我们从mcpwm">
+<meta name="keywords" content="ESP32">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HomeKit ESP32 Control Light III">
+<meta property="og:url" content="https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="快把你家的灯接入HomeKit吧其三（整合篇）我的回合，抽卡。发动魔法卡–融合！ 第一篇文章中介绍了如何控制LED的亮灭，而第二篇文章中介绍了如何控制舵机旋转到指定的角度，那么现在让它们融合起来了吧！ 融合前的检测在LED的Demo中，每次开灯关灯操作都会调用led_write(bool status)函数，所以我们只需要根据传进来的status值，旋转舵机到对应的角度即可。 先让我们从mcpwm">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32homekit/servo_control_light_simple.png?x-oss-process=style/compress_50">
+<meta property="og:updated_time" content="2020-06-06T07:24:35.898Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HomeKit ESP32 Control Light III">
+<meta name="twitter:description" content="快把你家的灯接入HomeKit吧其三（整合篇）我的回合，抽卡。发动魔法卡–融合！ 第一篇文章中介绍了如何控制LED的亮灭，而第二篇文章中介绍了如何控制舵机旋转到指定的角度，那么现在让它们融合起来了吧！ 融合前的检测在LED的Demo中，每次开灯关灯操作都会调用led_write(bool status)函数，所以我们只需要根据传进来的status值，旋转舵机到对应的角度即可。 先让我们从mcpwm">
+<meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32homekit/servo_control_light_simple.png?x-oss-process=style/compress_50">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/Logo_Sketch.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/Logo_Sketch.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_Sketch.png">
+          
+        
+    
+    <!-- title -->
+    <title>HomeKit ESP32 Control Light III</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&text=HomeKit ESP32 Control Light III"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&is_video=false&description=HomeKit ESP32 Control Light III"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 Control Light III&body=Check out this article: https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&name=HomeKit ESP32 Control Light III&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#快把你家的灯接入HomeKit吧其三（整合篇）"><span class="toc-number">1.</span> <span class="toc-text">快把你家的灯接入HomeKit吧其三（整合篇）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#融合前的检测"><span class="toc-number">1.1.</span> <span class="toc-text">融合前的检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#来瞅一瞅效果吧。"><span class="toc-number">1.2.</span> <span class="toc-text">来瞅一瞅效果吧。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下期预告-快把你家的灯接入HomeKit吧其四（结构设计篇）"><span class="toc-number">2.</span> <span class="toc-text">下期预告:快把你家的灯接入HomeKit吧其四（结构设计篇）</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        HomeKit ESP32 Control Light III
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Do U Find IT?</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-05-12T01:33:16.000Z" itemprop="datePublished">2020-05-12</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ESP32/">ESP32</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="快把你家的灯接入HomeKit吧其三（整合篇）"><a href="#快把你家的灯接入HomeKit吧其三（整合篇）" class="headerlink" title="快把你家的灯接入HomeKit吧其三（整合篇）"></a>快把你家的灯接入HomeKit吧其三（整合篇）</h1><p>我的回合，抽卡。发动魔法卡–融合！</p>
+<p>第一篇文章中介绍了如何控制LED的亮灭，而第二篇文章中介绍了如何控制舵机旋转到指定的角度，那么现在让它们融合起来了吧！</p>
+<h2 id="融合前的检测"><a href="#融合前的检测" class="headerlink" title="融合前的检测"></a>融合前的检测</h2><p>在LED的Demo中，每次开灯关灯操作都会调用<strong>led_write(bool status)</strong>函数，所以我们只需要根据传进来的status值，旋转舵机到对应的角度即可。</p>
+<p>先让我们从mcpwm_servo_control_example.c中提取出需要的方法， 内容如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 引入的头文件</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"driver/mcpwm.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"soc/mcpwm_periph.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"esp_attr.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">// 舵机参数的宏定义</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SERVO_MIN_PULSEWIDTH 500 <span class="comment">// 最小脉冲时间ms</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SERVO_MAX_PULSEWIDTH 2500 <span class="comment">// 最大脉冲时间ms</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SERVO_MAX_DEGREE 180 <span class="comment">// 舵机最大可旋转角度</span></span></div><div class="line"></div><div class="line"><span class="comment">// 初始化2号端口为PWM</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mcpwm_example_gpio_initialize</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"initializing mcpwm servo control gpio......\n"</span>);</div><div class="line">    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, <span class="number">18</span>);    <span class="comment">//Set GPIO 2 as PWM0A, to which servo is connected</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 该方法输入目标角度，输出对应高电平脉冲宽度单位us</span></div><div class="line"><span class="function"><span class="keyword">static</span> uint32_t <span class="title">servo_per_degree_init</span><span class="params">(<span class="keyword">uint32_t</span> degree_of_rotation)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">uint32_t</span> cal_pulsewidth = <span class="number">0</span>;</div><div class="line">    cal_pulsewidth = (SERVO_MIN_PULSEWIDTH + (((SERVO_MAX_PULSEWIDTH - SERVO_MIN_PULSEWIDTH) * (degree_of_rotation)) / (SERVO_MAX_DEGREE)));</div><div class="line">    <span class="keyword">return</span> cal_pulsewidth;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 开灯函数</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">turn_on</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">uint32_t</span> angle;</div><div class="line">    <span class="comment">//1. mcpwm gpio 初始化</span></div><div class="line">    mcpwm_example_gpio_initialize();</div><div class="line">    <span class="comment">//2. 初始化 mcpwm 配置</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Configuring Initial Parameters of mcpwm......\n"</span>);</div><div class="line">    <span class="keyword">mcpwm_config_t</span> pwm_config;</div><div class="line">    pwm_config.frequency = <span class="number">50</span>; <span class="comment">// 舵机信号频率为50Hz,每个周期时长20ms</span></div><div class="line">    pwm_config.cmpr_a = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxA = 0</span></div><div class="line">    pwm_config.cmpr_b = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxb = 0</span></div><div class="line">    pwm_config.counter_mode = MCPWM_UP_COUNTER;</div><div class="line">    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;</div><div class="line">    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &amp;pwm_config); <span class="comment">//应用上面配置到 PWM0A &amp; PWM0B</span></div><div class="line">    <span class="comment">// 旋转角度</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Angle of rotation: %d\n"</span>, <span class="number">0</span>);</div><div class="line">    <span class="comment">// 计算60度对应的脉冲宽度</span></div><div class="line">    angle = servo_per_degree_init(<span class="number">60</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"pulse width: %dus\n"</span>, angle);</div><div class="line">    mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);</div><div class="line">    vTaskDelay(<span class="number">10</span>); <span class="comment">//Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V</span></div><div class="line">    vTaskDelete(<span class="literal">NULL</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 关灯函数</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">turn_off</span><span class="params">(<span class="keyword">void</span> *arg)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">uint32_t</span> angle;</div><div class="line">    <span class="comment">//1. mcpwm gpio 初始化</span></div><div class="line">    mcpwm_example_gpio_initialize();</div><div class="line">    <span class="comment">//2. 初始化 mcpwm 配置</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Configuring Initial Parameters of mcpwm......\n"</span>);</div><div class="line">    <span class="keyword">mcpwm_config_t</span> pwm_config;</div><div class="line">    pwm_config.frequency = <span class="number">50</span>; <span class="comment">//frequency = 50Hz, i.e. for every servo motor time period should be 20ms</span></div><div class="line">    pwm_config.cmpr_a = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxA = 0</span></div><div class="line">    pwm_config.cmpr_b = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxb = 0</span></div><div class="line">    pwm_config.counter_mode = MCPWM_UP_COUNTER;</div><div class="line">    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;</div><div class="line">    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &amp;pwm_config); <span class="comment">//ConfigurePWM0A &amp; PWM0B with above settings</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Angle of rotation: %d\n"</span>, <span class="number">0</span>);</div><div class="line">    <span class="comment">// 计算120度对应的脉冲宽度</span></div><div class="line">    angle = servo_per_degree_init(<span class="number">120</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"pulse width: %dus\n"</span>, angle);</div><div class="line">    mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);</div><div class="line">    vTaskDelay(<span class="number">10</span>); <span class="comment">//Add delay, since it takes time for servo to rotate,generally 100ms/60degree rotation at 5V</span></div><div class="line">    vTaskDelete(<span class="literal">NULL</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 最后修改led_write函数为</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">led_write</span><span class="params">(<span class="keyword">bool</span> on)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">if</span> (on)</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// 接收到开灯命令，执行开灯任务</span></div><div class="line">         xTaskCreate(turn_on, <span class="string">"turn_on"</span>, <span class="number">4096</span>, <span class="literal">NULL</span>, <span class="number">5</span>, <span class="literal">NULL</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123; </div><div class="line">        <span class="comment">// 接收到关灯命令，执行关灯任务</span></div><div class="line">        xTaskCreate(turn_off, <span class="string">"turn_off"</span>, <span class="number">4096</span>, <span class="literal">NULL</span>, <span class="number">5</span>, <span class="literal">NULL</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>完整的文件位于<br><a href="https://github.com/chaosgoo/m5Dino/blob/master/HomeKitServoLight.c" target="_blank" rel="external">HomeKitServoLight.c</a></p>
+<h2 id="来瞅一瞅效果吧。"><a href="#来瞅一瞅效果吧。" class="headerlink" title="来瞅一瞅效果吧。"></a>来瞅一瞅效果吧。</h2><p>现在舵机就听我们的指令了哦！</p>
+<video src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32homekit/control_servo_by_siri.mp4" controls="controls" width="640" height="640">您的浏览器不支持播放该视频！</video>
+
+<p>再配合上一个简陋的结构，就可以控制开关了。<br><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32homekit/servo_control_light_simple.png?x-oss-process=style/compress_50" alt="servo_on_light"></p>
+<video src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32homekit/control_light_by_siri.mp4" controls="controls" width="640" height="640">您的浏览器不支持播放该视频！</video>
+
+<p>别担心，最终的成品可不会这样寒酸。<br>本系列还没有结束，还有第四部分的结构设计，尽请期待吧！</p>
+<h1 id="下期预告-快把你家的灯接入HomeKit吧其四（结构设计篇）"><a href="#下期预告-快把你家的灯接入HomeKit吧其四（结构设计篇）" class="headerlink" title="下期预告:快把你家的灯接入HomeKit吧其四（结构设计篇）"></a>下期预告:快把你家的灯接入HomeKit吧其四（结构设计篇）</h1><p>参考资料:<br><a href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/index.html" target="_blank" rel="external">ESP-IDF 编程指南</a></p>
+<p><a href="https://github.com/espressif/esp-idf" target="_blank" rel="external">Espressif IoT Development Framework</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#快把你家的灯接入HomeKit吧其三（整合篇）"><span class="toc-number">1.</span> <span class="toc-text">快把你家的灯接入HomeKit吧其三（整合篇）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#融合前的检测"><span class="toc-number">1.1.</span> <span class="toc-text">融合前的检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#来瞅一瞅效果吧。"><span class="toc-number">1.2.</span> <span class="toc-text">来瞅一瞅效果吧。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下期预告-快把你家的灯接入HomeKit吧其四（结构设计篇）"><span class="toc-number">2.</span> <span class="toc-text">下期预告:快把你家的灯接入HomeKit吧其四（结构设计篇）</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&text=HomeKit ESP32 Control Light III"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&is_video=false&description=HomeKit ESP32 Control Light III"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 Control Light III&body=Check out this article: https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&title=HomeKit ESP32 Control Light III"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/&name=HomeKit ESP32 Control Light III&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-107986670-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
