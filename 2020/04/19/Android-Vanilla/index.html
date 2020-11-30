@@ -11,16 +11,16 @@
     <meta name="description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Vanilla">
+<meta property="og:title" content="Android如何实现往PDF文件中插入新页面">
 <meta property="og:url" content="https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/bill.jpg?x-oss-process=style/compress_50">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/invoice.jpg?x-oss-process=style/compress_50">
-<meta property="og:updated_time" content="2020-04-23T09:50:18.340Z">
+<meta property="og:updated_time" content="2020-11-30T00:10:38.175Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Vanilla">
+<meta name="twitter:title" content="Android如何实现往PDF文件中插入新页面">
 <meta name="twitter:description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在">
 <meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/bill.jpg?x-oss-process=style/compress_50">
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>Android Vanilla</title>
+    <title>Android如何实现往PDF文件中插入新页面</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -91,15 +91,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&text=Android Vanilla"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&is_video=false&description=Android Vanilla"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Android Vanilla&body=Check out this article: https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&name=Android Vanilla&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&text=Android如何实现往PDF文件中插入新页面"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&is_video=false&description=Android如何实现往PDF文件中插入新页面"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android如何实现往PDF文件中插入新页面&body=Check out this article: https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&name=Android如何实现往PDF文件中插入新页面&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -116,7 +116,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Android Vanilla
+        Android如何实现往PDF文件中插入新页面
     </h1>
 
 
@@ -187,15 +187,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&text=Android Vanilla"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&is_video=false&description=Android Vanilla"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Android Vanilla&body=Check out this article: https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android Vanilla"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&name=Android Vanilla&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&text=Android如何实现往PDF文件中插入新页面"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&is_video=false&description=Android如何实现往PDF文件中插入新页面"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android如何实现往PDF文件中插入新页面&body=Check out this article: https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&title=Android如何实现往PDF文件中插入新页面"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/04/19/Android-Vanilla/&name=Android如何实现往PDF文件中插入新页面&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

@@ -11,16 +11,16 @@
     <meta name="description" content="Flutter如何设置暗黑模式Android 10 和 iOS 13 都加入了暗黑模式，那么如何在Flutter中实现暗黑模式的效果呢呢？  分析令人庆幸的是Flutter已经添加了对暗黑模式的支持，所以无需开发者手动去检测当前系统设置然后逐个修改颜色。要想实现暗黑模式，只需要在MaterialApp中配置一个darkTheme参数即可。 解决办法123456789MaterialApp(  th">
 <meta name="keywords" content="Flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flutter Vanilla #2">
+<meta property="og:title" content="Flutter如何设置暗黑模式">
 <meta property="og:url" content="https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="Flutter如何设置暗黑模式Android 10 和 iOS 13 都加入了暗黑模式，那么如何在Flutter中实现暗黑模式的效果呢呢？  分析令人庆幸的是Flutter已经添加了对暗黑模式的支持，所以无需开发者手动去检测当前系统设置然后逐个修改颜色。要想实现暗黑模式，只需要在MaterialApp中配置一个darkTheme参数即可。 解决办法123456789MaterialApp(  th">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/Flutter%20Vanilla%20%232/Dark%20Mode%20Switch.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/Flutter%20Vanilla%20%232/Dark%20Mode%20Preview.png">
-<meta property="og:updated_time" content="2019-10-08T13:57:05.135Z">
+<meta property="og:updated_time" content="2020-11-30T00:09:27.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flutter Vanilla #2">
+<meta name="twitter:title" content="Flutter如何设置暗黑模式">
 <meta name="twitter:description" content="Flutter如何设置暗黑模式Android 10 和 iOS 13 都加入了暗黑模式，那么如何在Flutter中实现暗黑模式的效果呢呢？  分析令人庆幸的是Flutter已经添加了对暗黑模式的支持，所以无需开发者手动去检测当前系统设置然后逐个修改颜色。要想实现暗黑模式，只需要在MaterialApp中配置一个darkTheme参数即可。 解决办法123456789MaterialApp(  th">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/Flutter%20Vanilla%20%232/Dark%20Mode%20Switch.png">
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>Flutter Vanilla #2</title>
+    <title>Flutter如何设置暗黑模式</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -91,15 +91,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&text=Flutter Vanilla #2"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&is_video=false&description=Flutter Vanilla #2"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Flutter Vanilla #2&body=Check out this article: https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&name=Flutter Vanilla #2&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&text=Flutter如何设置暗黑模式"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&is_video=false&description=Flutter如何设置暗黑模式"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Flutter如何设置暗黑模式&body=Check out this article: https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&name=Flutter如何设置暗黑模式&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -116,7 +116,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Flutter Vanilla #2
+        Flutter如何设置暗黑模式
     </h1>
 
 
@@ -183,15 +183,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&text=Flutter Vanilla #2"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&is_video=false&description=Flutter Vanilla #2"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Flutter Vanilla #2&body=Check out this article: https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter Vanilla #2"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&name=Flutter Vanilla #2&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&text=Flutter如何设置暗黑模式"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&is_video=false&description=Flutter如何设置暗黑模式"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Flutter如何设置暗黑模式&body=Check out this article: https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&title=Flutter如何设置暗黑模式"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/08/Flutter-Vanilla-2/&name=Flutter如何设置暗黑模式&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

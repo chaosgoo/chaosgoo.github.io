@@ -11,16 +11,16 @@
     <meta name="description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏等高的padding  分析这是由于DrawerHeader的自身特性导致的。通过查看DrawerHeader的源码就会发现，虽然其构造函数中存在margin和padding参数，但是在最终buil">
 <meta name="keywords" content="Flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flutter Vanilla #1">
+<meta property="og:title" content="Flutter中DrawerHeader移除顶部的Padding">
 <meta property="og:url" content="https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏等高的padding  分析这是由于DrawerHeader的自身特性导致的。通过查看DrawerHeader的源码就会发现，虽然其构造函数中存在margin和padding参数，但是在最终buil">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/F7C3B6B00D453496958EA299C86BC1D0.png?raw=true">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/0946E5A37DF2A60F626B1E783A8BCF6B.png?raw=true">
-<meta property="og:updated_time" content="2019-10-07T14:32:39.971Z">
+<meta property="og:updated_time" content="2020-11-30T00:10:02.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flutter Vanilla #1">
+<meta name="twitter:title" content="Flutter中DrawerHeader移除顶部的Padding">
 <meta name="twitter:description" content="为什么DrawerHeader顶部存在无法消除的Padding.在使用DrawerHeader的过程中发现无论如何设置DrawerHeader的padding和margin，都不能避免顶部有一个和状态栏等高的padding  分析这是由于DrawerHeader的自身特性导致的。通过查看DrawerHeader的源码就会发现，虽然其构造函数中存在margin和padding参数，但是在最终buil">
 <meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%231/F7C3B6B00D453496958EA299C86BC1D0.png?raw=true">
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>Flutter Vanilla #1</title>
+    <title>Flutter中DrawerHeader移除顶部的Padding</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -91,15 +91,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&text=Flutter Vanilla #1"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&is_video=false&description=Flutter Vanilla #1"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Flutter Vanilla #1&body=Check out this article: https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&name=Flutter Vanilla #1&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&text=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&is_video=false&description=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Flutter中DrawerHeader移除顶部的Padding&body=Check out this article: https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&name=Flutter中DrawerHeader移除顶部的Padding&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -116,7 +116,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Flutter Vanilla #1
+        Flutter中DrawerHeader移除顶部的Padding
     </h1>
 
 
@@ -182,15 +182,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&text=Flutter Vanilla #1"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&is_video=false&description=Flutter Vanilla #1"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Flutter Vanilla #1&body=Check out this article: https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter Vanilla #1"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&name=Flutter Vanilla #1&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&text=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&is_video=false&description=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Flutter中DrawerHeader移除顶部的Padding&body=Check out this article: https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&title=Flutter中DrawerHeader移除顶部的Padding"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/10/07/Flutter-Vanilla-1/&name=Flutter中DrawerHeader移除顶部的Padding&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

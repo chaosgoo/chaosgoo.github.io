@@ -11,16 +11,16 @@
     <meta name="description" content="Flutter中如何实现点击OverlayEntry子项目后移除自身要想在Flutter中展示一个自定义弹窗，我们可以使用OverlayEntry来实现。  分析网上的大多数例子都是教大家如何使用OverlayEntry实现Android中的Toast效果，展示几秒钟后，调用OverlayEntry的remove方法去移除OverlayEntry。但是想要实现点击OverlayEntry中的项目，">
 <meta name="keywords" content="Flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flutter Vanilla #3">
+<meta property="og:title" content="Flutter中如何实现点击OverlayEntry子项目后移除自身">
 <meta property="og:url" content="https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="Flutter中如何实现点击OverlayEntry子项目后移除自身要想在Flutter中展示一个自定义弹窗，我们可以使用OverlayEntry来实现。  分析网上的大多数例子都是教大家如何使用OverlayEntry实现Android中的Toast效果，展示几秒钟后，调用OverlayEntry的remove方法去移除OverlayEntry。但是想要实现点击OverlayEntry中的项目，">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%233/weibo.PNG?raw=true">
 <meta property="og:image" content="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/Flutter%20Vanilla%20%233/flutter_entry_overlay.png?raw=true">
-<meta property="og:updated_time" content="2019-11-18T15:10:24.905Z">
+<meta property="og:updated_time" content="2020-11-30T00:09:34.398Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flutter Vanilla #3">
+<meta name="twitter:title" content="Flutter中如何实现点击OverlayEntry子项目后移除自身">
 <meta name="twitter:description" content="Flutter中如何实现点击OverlayEntry子项目后移除自身要想在Flutter中展示一个自定义弹窗，我们可以使用OverlayEntry来实现。  分析网上的大多数例子都是教大家如何使用OverlayEntry实现Android中的Toast效果，展示几秒钟后，调用OverlayEntry的remove方法去移除OverlayEntry。但是想要实现点击OverlayEntry中的项目，">
 <meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%233/weibo.PNG?raw=true">
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>Flutter Vanilla #3</title>
+    <title>Flutter中如何实现点击OverlayEntry子项目后移除自身</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -91,15 +91,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&text=Flutter Vanilla #3"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&is_video=false&description=Flutter Vanilla #3"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Flutter Vanilla #3&body=Check out this article: https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&name=Flutter Vanilla #3&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&text=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&is_video=false&description=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Flutter中如何实现点击OverlayEntry子项目后移除自身&body=Check out this article: https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&name=Flutter中如何实现点击OverlayEntry子项目后移除自身&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -116,7 +116,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Flutter Vanilla #3
+        Flutter中如何实现点击OverlayEntry子项目后移除自身
     </h1>
 
 
@@ -183,15 +183,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&text=Flutter Vanilla #3"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&is_video=false&description=Flutter Vanilla #3"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Flutter Vanilla #3&body=Check out this article: https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter Vanilla #3"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&name=Flutter Vanilla #3&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&text=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&is_video=false&description=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Flutter中如何实现点击OverlayEntry子项目后移除自身&body=Check out this article: https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2019/11/18/Flutter-Vanilla-3/&name=Flutter中如何实现点击OverlayEntry子项目后移除自身&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

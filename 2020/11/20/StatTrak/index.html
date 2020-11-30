@@ -11,7 +11,7 @@
     <meta name="description" content="暗Bai金Gei计数器(StatTrak)在CS:GO中，有些武器具有一个名为StatTrak的装置，这个装置可以记录玩家在游戏内杀敌数量。觉得这个装置很有意思，于是想做一个出来。为了近距离观察这个装置，我斥8.8元巨资购买了一把格洛克18型(StatTrak™)|烈焰天使，并在人机对战中大杀四方。 序由于只是个计数器，本质就是个可以自定义显示内容的显示屏。 方案1 = OLED12832+Ard">
 <meta name="keywords" content="arduino">
 <meta property="og:type" content="article">
-<meta property="og:title" content="暗金计数器(StatTrak)">
+<meta property="og:title" content="做个暗金计数器吧">
 <meta property="og:url" content="https://blog.chaosgoo.com/2020/11/20/StatTrak/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="暗Bai金Gei计数器(StatTrak)在CS:GO中，有些武器具有一个名为StatTrak的装置，这个装置可以记录玩家在游戏内杀敌数量。觉得这个装置很有意思，于是想做一个出来。为了近距离观察这个装置，我斥8.8元巨资购买了一把格洛克18型(StatTrak™)|烈焰天使，并在人机对战中大杀四方。 序由于只是个计数器，本质就是个可以自定义显示内容的显示屏。 方案1 = OLED12832+Ard">
@@ -28,9 +28,9 @@
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/stat-trak/shell_v1.jpg?x-oss-process=style/compress_50">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/stat-trak/shell_v2.jpg?x-oss-process=style/compress_50">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/stat-trak/effect_v2.jpg?x-oss-process=style/compress_50">
-<meta property="og:updated_time" content="2020-11-30T00:02:45.354Z">
+<meta property="og:updated_time" content="2020-11-30T00:05:41.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="暗金计数器(StatTrak)">
+<meta name="twitter:title" content="做个暗金计数器吧">
 <meta name="twitter:description" content="暗Bai金Gei计数器(StatTrak)在CS:GO中，有些武器具有一个名为StatTrak的装置，这个装置可以记录玩家在游戏内杀敌数量。觉得这个装置很有意思，于是想做一个出来。为了近距离观察这个装置，我斥8.8元巨资购买了一把格洛克18型(StatTrak™)|烈焰天使，并在人机对战中大杀四方。 序由于只是个计数器，本质就是个可以自定义显示内容的显示屏。 方案1 = OLED12832+Ard">
 <meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/stat-trak/preview-in-game.jpg?x-oss-process=style/compress_50">
     
@@ -52,7 +52,7 @@
         
     
     <!-- title -->
-    <title>暗金计数器(StatTrak)</title>
+    <title>做个暗金计数器吧</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -99,15 +99,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/11/20/StatTrak/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&text=暗金计数器(StatTrak)"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&is_video=false&description=暗金计数器(StatTrak)"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=暗金计数器(StatTrak)&body=Check out this article: https://blog.chaosgoo.com/2020/11/20/StatTrak/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&name=暗金计数器(StatTrak)&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&text=做个暗金计数器吧"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&is_video=false&description=做个暗金计数器吧"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=做个暗金计数器吧&body=Check out this article: https://blog.chaosgoo.com/2020/11/20/StatTrak/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&name=做个暗金计数器吧&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -124,7 +124,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        暗金计数器(StatTrak)
+        做个暗金计数器吧
     </h1>
 
 
@@ -199,15 +199,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/11/20/StatTrak/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&text=暗金计数器(StatTrak)"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&is_video=false&description=暗金计数器(StatTrak)"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=暗金计数器(StatTrak)&body=Check out this article: https://blog.chaosgoo.com/2020/11/20/StatTrak/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=暗金计数器(StatTrak)"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&name=暗金计数器(StatTrak)&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&text=做个暗金计数器吧"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&is_video=false&description=做个暗金计数器吧"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=做个暗金计数器吧&body=Check out this article: https://blog.chaosgoo.com/2020/11/20/StatTrak/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&title=做个暗金计数器吧"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/11/20/StatTrak/&name=做个暗金计数器吧&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
