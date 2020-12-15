@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="让你的ESP32点亮一块ST7789液晶屏吧 这块液晶屏尺寸是1.14寸，分辨率为135x240，驱动是ST7789。（不小心多买了一个并口版本，因为串口方式连接就能满足我的需求，所以并口屏幕吃灰预定了） 序简单下介绍点亮这块屏幕的方法，介绍下如何配置参数并正确的显示内容。 下载驱动库我使用的驱动库为TFT_eSPI 接线如下:    ESP32引脚名称 液晶屏引脚名称     3V3 VCC">
+<meta name="keywords" content="ESP32">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP32驱动ST7789液晶屏">
+<meta property="og:url" content="https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="让你的ESP32点亮一块ST7789液晶屏吧 这块液晶屏尺寸是1.14寸，分辨率为135x240，驱动是ST7789。（不小心多买了一个并口版本，因为串口方式连接就能满足我的需求，所以并口屏幕吃灰预定了） 序简单下介绍点亮这块屏幕的方法，介绍下如何配置参数并正确的显示内容。 下载驱动库我使用的驱动库为TFT_eSPI 接线如下:    ESP32引脚名称 液晶屏引脚名称     3V3 VCC">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-st7789/IMG_1969.JPG?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-st7789/QQ%E6%88%AA%E5%9B%BE20201214210051.png?x-oss-process=style/compress_50">
+<meta property="og:updated_time" content="2020-12-14T13:05:22.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ESP32驱动ST7789液晶屏">
+<meta name="twitter:description" content="让你的ESP32点亮一块ST7789液晶屏吧 这块液晶屏尺寸是1.14寸，分辨率为135x240，驱动是ST7789。（不小心多买了一个并口版本，因为串口方式连接就能满足我的需求，所以并口屏幕吃灰预定了） 序简单下介绍点亮这块屏幕的方法，介绍下如何配置参数并正确的显示内容。 下载驱动库我使用的驱动库为TFT_eSPI 接线如下:    ESP32引脚名称 液晶屏引脚名称     3V3 VCC">
+<meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-st7789/IMG_1969.JPG?x-oss-process=style/compress_50">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/Logo_Sketch.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/Logo_Sketch.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_Sketch.png">
+          
+        
+    
+    <!-- title -->
+    <title>ESP32驱动ST7789液晶屏</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/11/20/StatTrak/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&text=ESP32驱动ST7789液晶屏"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&is_video=false&description=ESP32驱动ST7789液晶屏"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP32驱动ST7789液晶屏&body=Check out this article: https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&name=ESP32驱动ST7789液晶屏&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#让你的ESP32点亮一块ST7789液晶屏吧"><span class="toc-number">1.</span> <span class="toc-text">让你的ESP32点亮一块ST7789液晶屏吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#序"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载驱动库"><span class="toc-number">1.2.</span> <span class="toc-text">下载驱动库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编辑配置文件"><span class="toc-number">1.3.</span> <span class="toc-text">编辑配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的示例"><span class="toc-number">1.4.</span> <span class="toc-text">简单的示例</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ESP32驱动ST7789液晶屏
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Do U Find IT?</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-12-14T11:40:47.000Z" itemprop="datePublished">2020-12-14</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ESP32/">ESP32</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="让你的ESP32点亮一块ST7789液晶屏吧"><a href="#让你的ESP32点亮一块ST7789液晶屏吧" class="headerlink" title="让你的ESP32点亮一块ST7789液晶屏吧"></a>让你的ESP32点亮一块ST7789液晶屏吧</h1><p><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-st7789/IMG_1969.JPG?x-oss-process=style/compress_50" alt="hello-world"></p>
+<p>这块液晶屏尺寸是<font color="#d44375">1.14</font>寸，分辨率为<font color="#d44375">135x240</font>，驱动是<font color="#d44375">ST7789</font>。<br>（不小心多买了一个并口版本，因为串口方式连接就能满足我的需求，所以并口屏幕吃灰预定了）</p>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>简单下介绍点亮这块屏幕的方法，介绍下如何配置参数并正确的显示内容。</p>
+<h2 id="下载驱动库"><a href="#下载驱动库" class="headerlink" title="下载驱动库"></a>下载驱动库</h2><p>我使用的驱动库为<a style="color:#d44375" href="https://github.com/Bodmer/TFT_eSPI" target="_blank" rel="external">TFT_eSPI</a></p>
+<p>接线如下:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ESP32引脚名称</th>
+<th style="text-align:center">液晶屏引脚名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><font color="red">3V3</font></td>
+<td style="text-align:center"><font color="red">VCC</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="black">GND</font></td>
+<td style="text-align:center"><font color="black">GND</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="green">G15</font></td>
+<td style="text-align:center"><font color="green">SDA</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="blue">G13</font></td>
+<td style="text-align:center"><font color="blue">SCL</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="Orange">G23</font></td>
+<td style="text-align:center"><font color="Orange">DC</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="grey">G18</font></td>
+<td style="text-align:center"><font color="grey">RES</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="purple">G5</font></td>
+<td style="text-align:center"><font color="purple">CS</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="black">不接</font></td>
+<td style="text-align:center"><font color="black">BLK</font></td>
+</tr>
+</tbody>
+</table>
+<h2 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h2><figure class="highlight cpp"><figcaption><span>Setup135_ST7789.h文件修改内容</span><a href="https://github.com/Bodmer/TFT_eSPI/blob/master/User_Setups/Setup135_ST7789.h" target="_blank" rel="external">Setup135_ST7789.h</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 修改下面参数，和上面的接线对应上</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TFT_SCLK      13</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TFT_MOSI      15</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TFT_RST       18</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TFT_DC        23  <span class="comment">// Data/command line for TFT on Shield</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> TFT_CS        5   <span class="comment">// Chip select line for TFT display on Shield</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><figcaption><span>User_Setup_Select.h文件修改内容</span><a href="https://github.com/Bodmer/TFT_eSPI/blob/master/User_Setup_Select.h" target="_blank" rel="external">User_Setup_Select.h</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ....</span></div><div class="line"><span class="comment">//#include &lt;User_Setup.h&gt;           // 注释这个一行</span></div><div class="line"><span class="comment">// ....</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;User_Setups/Setup135_ST7789.h&gt;// 取消第79行注释</span></span></div></pre></td></tr></table></figure>
+<h2 id="简单的示例"><a href="#简单的示例" class="headerlink" title="简单的示例"></a>简单的示例</h2><figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> GCC optimize(<span class="meta-string">"O3"</span>)</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Arduino.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;TFT_eSPI.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Wire.h&gt;</span></span></div><div class="line"></div><div class="line">TFT_eSPI TFT = TFT_eSPI();</div><div class="line">TFT_eSprite eSprite = TFT_eSprite(&amp;TFT);</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</div><div class="line">    TFT.init();</div><div class="line">    TFT.setRotation(<span class="number">1</span>);</div><div class="line">    TFT.fillScreen(TFT_BLACK);</div><div class="line">    TFT.initDMA();</div><div class="line">    eSprite.setTextFont(<span class="number">1</span>);</div><div class="line">    eSprite.setTextColor(TFT_WHITE);</div><div class="line">    eSprite.createSprite(<span class="number">240</span>, <span class="number">135</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</div><div class="line">    eSprite.setTextFont(<span class="number">1</span>);</div><div class="line">    eSprite.setCursor(<span class="number">20</span>, <span class="number">20</span>);</div><div class="line">    eSprite.println(<span class="string">"Hello World\n"</span>);</div><div class="line">    eSprite.pushSprite(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-st7789/QQ%E6%88%AA%E5%9B%BE20201214210051.png?x-oss-process=style/compress_50" alt="hello-world"></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#让你的ESP32点亮一块ST7789液晶屏吧"><span class="toc-number">1.</span> <span class="toc-text">让你的ESP32点亮一块ST7789液晶屏吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#序"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载驱动库"><span class="toc-number">1.2.</span> <span class="toc-text">下载驱动库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编辑配置文件"><span class="toc-number">1.3.</span> <span class="toc-text">编辑配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的示例"><span class="toc-number">1.4.</span> <span class="toc-text">简单的示例</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&text=ESP32驱动ST7789液晶屏"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&is_video=false&description=ESP32驱动ST7789液晶屏"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP32驱动ST7789液晶屏&body=Check out this article: https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&title=ESP32驱动ST7789液晶屏"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/12/14/ESP32-ST7789/&name=ESP32驱动ST7789液晶屏&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-107986670-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
