@@ -7,21 +7,21 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="theme-color" content="#dedbd9">
-    <meta name="description" content="让你的ESP32试试串流吧既然有了屏幕，又有了网络，那岂不是可以串流了！ 序上篇文章已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合TFT_eSPI就可以实现，只是在帧率上会有所区别。这个链接为你展示了在M5StickC上的运行效果现在是除了游戏性以外，一无所有的原神@bilibili 实现方式电脑作">
+    <meta name="description" content="让你的ESP32试试串流吧既然有了屏幕，又有了网络，那岂不是可以串流了！ 序上篇文章已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合TFT_eSPI就可以实现，只是在帧率上会有所区别。这个视频为你展示了在M5StickC上的运行效果现在是除了游戏性以外，一无所有的原神@bilibili 实现方式电脑作">
 <meta name="keywords" content="ESP32">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ESP32-串流显示">
 <meta property="og:url" content="https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
-<meta property="og:description" content="让你的ESP32试试串流吧既然有了屏幕，又有了网络，那岂不是可以串流了！ 序上篇文章已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合TFT_eSPI就可以实现，只是在帧率上会有所区别。这个链接为你展示了在M5StickC上的运行效果现在是除了游戏性以外，一无所有的原神@bilibili 实现方式电脑作">
+<meta property="og:description" content="让你的ESP32试试串流吧既然有了屏幕，又有了网络，那岂不是可以串流了！ 序上篇文章已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合TFT_eSPI就可以实现，只是在帧率上会有所区别。这个视频为你展示了在M5StickC上的运行效果现在是除了游戏性以外，一无所有的原神@bilibili 实现方式电脑作">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-streaming/EE09FFA8826B4A300111C1F5B9C54EF7.png?x-oss-process=style/compress_50">
 <meta property="og:image" content="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-streaming/ESP32-Streaming.png">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-streaming/811F8932F05ACA4E44F71EA6C4D9FA72.png?x-oss-process=style/compress_50">
-<meta property="og:updated_time" content="2020-12-20T08:46:39.652Z">
+<meta property="og:updated_time" content="2020-12-20T12:22:19.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ESP32-串流显示">
-<meta name="twitter:description" content="让你的ESP32试试串流吧既然有了屏幕，又有了网络，那岂不是可以串流了！ 序上篇文章已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合TFT_eSPI就可以实现，只是在帧率上会有所区别。这个链接为你展示了在M5StickC上的运行效果现在是除了游戏性以外，一无所有的原神@bilibili 实现方式电脑作">
+<meta name="twitter:description" content="让你的ESP32试试串流吧既然有了屏幕，又有了网络，那岂不是可以串流了！ 序上篇文章已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合TFT_eSPI就可以实现，只是在帧率上会有所区别。这个视频为你展示了在M5StickC上的运行效果现在是除了游戏性以外，一无所有的原神@bilibili 实现方式电脑作">
 <meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-streaming/EE09FFA8826B4A300111C1F5B9C54EF7.png?x-oss-process=style/compress_50">
     
     
@@ -155,7 +155,7 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="让你的ESP32试试串流吧"><a href="#让你的ESP32试试串流吧" class="headerlink" title="让你的ESP32试试串流吧"></a>让你的ESP32试试串流吧</h1><p><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-streaming/EE09FFA8826B4A300111C1F5B9C54EF7.png?x-oss-process=style/compress_50" alt="header-preview"><br>既然有了屏幕，又有了网络，那岂不是可以串流了！</p>
-<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p><a style="color:#d44375" href="https://www.chaosgoo.com/2020/12/14/ESP32-ST7789/" target="_blank" rel="external">上篇文章</a>已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合<a style="color:#d44375" href="https://github.com/Bodmer/TFT_eSPI" target="_blank" rel="external">TFT_eSPI</a>就可以实现，只是在帧率上会有所区别。<br>这个链接为你展示了在M5StickC上的运行效果<br><a href="https://www.bilibili.com/video/BV1uz4y1k7Dr/" target="_blank" rel="external">现在是除了游戏性以外，一无所有的原神@bilibili</a></p>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p><a style="color:#d44375" href="https://www.chaosgoo.com/2020/12/14/ESP32-ST7789/" target="_blank" rel="external">上篇文章</a>已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合<a style="color:#d44375" href="https://github.com/Bodmer/TFT_eSPI" target="_blank" rel="external">TFT_eSPI</a>就可以实现，只是在帧率上会有所区别。<br>这个视频为你展示了在M5StickC上的运行效果<br><a href="https://www.bilibili.com/video/BV1uz4y1k7Dr/" target="_blank" rel="external">现在是除了游戏性以外，一无所有的原神@bilibili</a></p>
 <h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p>电脑作为发送端，负责发送图像数据-&gt;EPS32作为接收端，负责接收并绘制图像数据<br>发送端使用python编写，使用<a style="color:#d44375" href="https://github.com/BoboTiG/python-mss" target="_blank" rel="external">mss</a>模块捕获屏幕画面，再使用python opencv 编码为JPG</p>
 <p>接收端使用C++编写，<a style="color:#d44375" href="https://github.com/Bodmer/TJpg_Decoder" target="_blank" rel="external">TJpg_Decoder</a>解码，<a style="color:#d44375" href="https://github.com/Bodmer/TFT_eSPI" target="_blank" rel="external">TFT_eSPI</a>绘制</p>
 <p>发送的数据以帧为单位，为了减小帧的体积，将会对每一帧原始位图数据使用JPG编码，ESP32接收到数据以后，先对JPG进行解码，再进行绘制。</p>
