@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介绍如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android如何实现往PDF文件中插入新页面">
+<meta property="og:url" content="https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介绍如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/bill.jpg?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/invoice.jpg?x-oss-process=style/compress_50">
+<meta property="og:updated_time" content="2020-12-22T08:36:41.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android如何实现往PDF文件中插入新页面">
+<meta name="twitter:description" content="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面本文将介绍如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG 背景由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为单页的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。">
+<meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/bill.jpg?x-oss-process=style/compress_50">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>Android如何实现往PDF文件中插入新页面</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/04/25/pro-micro/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/02/20/Dino-Run-on-M5StickC/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&text=Android如何实现往PDF文件中插入新页面"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&is_video=false&description=Android如何实现往PDF文件中插入新页面"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android如何实现往PDF文件中插入新页面&body=Check out this article: https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&name=Android如何实现往PDF文件中插入新页面&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&t=Android如何实现往PDF文件中插入新页面"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"><span class="toc-number">1.</span> <span class="toc-text">Android平台使用iTextG在已有PDF文件中插入带有图片的新页面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引入依赖"><span class="toc-number">1.2.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用方式"><span class="toc-number">1.3.</span> <span class="toc-text">使用方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.4.</span> <span class="toc-text">效果预览</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Android如何实现往PDF文件中插入新页面
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-04-19T01:41:46.000Z" itemprop="datePublished">2020-04-19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Android/">Android</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"><a href="#Android平台使用iTextG在已有PDF文件中插入带有图片的新页面" class="headerlink" title="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"></a>Android平台使用iTextG在已有PDF文件中插入带有图片的新页面</h1><p>本文将介绍如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为<strong>单页</strong>的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在经过一番搜索后，找到了<a href="https://itextpdf.com/en/resources/installation-guides/installing-itext-g-android" target="_blank" rel="external">iTextG</a>这个库。</p>
+<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># iTextG本体</div><div class="line">implementation <span class="string">'com.itextpdf:itextg:5.5.10'</span></div><div class="line"># 相关加密算法需要用到的库</div><div class="line">implementation <span class="string">'com.madgag.spongycastle:core:1.54.0.0'</span></div><div class="line">implementation <span class="string">'com.madgag.spongycastle:prov:1.54.0.0'</span></div><div class="line">implementation <span class="string">'com.madgag.spongycastle:pkix:1.54.0.0'</span></div><div class="line">implementation <span class="string">'com.madgag.spongycastle:pg:1.54.0.0'</span></div></pre></td></tr></table></figure>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>在任意的静态类中如Application中添加<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Security.insertProviderAt(org.spongycastle.jce.provider.BouncyCastleProvider(), <span class="number">1</span>)</div></pre></td></tr></table></figure></p>
+<p>PDF编辑相关代码<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 在发票PDF第二页插入电子账单图片</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> dst PDF源文件路径</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">insertBillPage</span><span class="params">(dst: <span class="type">String</span>?)</span></span> &#123;</div><div class="line">    <span class="keyword">try</span> &#123; <span class="comment">// 读取PDF文件</span></div><div class="line">        <span class="keyword">val</span> pdfReader = PdfReader(dst)</div><div class="line">        <span class="comment">// PDF修改器，我传入了项目里面的一个常量，请按需修改</span></div><div class="line">        <span class="keyword">val</span> pdfStamper = PdfStamper(</div><div class="line">            pdfReader,</div><div class="line">            FileOutputStream(Constants.SD_FILE_INVOICE_DOUBLE_PAGE_PDF_CACHE)</div><div class="line">        )</div><div class="line">        pdfStamper.insertPage(</div><div class="line">            pdfReader.getNumberOfPages() + <span class="number">1</span>,</div><div class="line">            pdfReader.getPageSizeWithRotation(<span class="number">1</span>)</div><div class="line">        )</div><div class="line">        <span class="comment">// 待插入的图片，我传入了项目里面的一个常量，请按需修改</span></div><div class="line">        <span class="keyword">val</span> image: Image = Image.getInstance(Constants.SD_FILE_INVOICE_BMP_CACHE)</div><div class="line">        <span class="comment">// 由于PDF文件中电子发票页面尺寸为A5,而插入的图片过大，所以需要进行缩放操作</span></div><div class="line">        image.scalePercent(<span class="number">30.0</span>f)</div><div class="line">        <span class="comment">// 调整图片在页面中的位置</span></div><div class="line">        image.setAbsolutePosition(<span class="number">32</span>, <span class="number">120</span>)</div><div class="line">        <span class="keyword">val</span> content: PdfContentByte = pdfStamper.getUnderContent(pdfReader.getNumberOfPages())</div><div class="line">        content.addImage(image)</div><div class="line">        pdfStamper.close()</div><div class="line">    &#125; <span class="keyword">catch</span> (e: DocumentException) &#123;</div><div class="line">        e.printStackTrace()</div><div class="line">    &#125; <span class="keyword">catch</span> (e: IOException) &#123;</div><div class="line">        e.printStackTrace()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/bill.jpg?x-oss-process=style/compress_50" alt="bill"><br><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/invoice.jpg?x-oss-process=style/compress_50" alt="invoice"></p>
+<p>设备: 映美IM-100T</p>
+<p>环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Gradle                                  5.6.4</div><div class="line">Android Gradle Plugin Version           3.6.1</div><div class="line">Android Studio Version Android Studio   3.6.1</div><div class="line">Android buildToolsVersion               28.0.3</div><div class="line">Android compileSdkVersion               28</div><div class="line">Android Version                         4.4.2</div></pre></td></tr></table></figure></p>
+<p>参考资料:</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/20d4905383b4" target="_blank" rel="external">itext 生成 PDF(一)</a></li>
+</ul>
+
+  </div>
+  <span id="/2020/04/19/Insert-new-page-into-pdf-file-in-android/" class="leancloud_visitors" data-flag-title="Android如何实现往PDF文件中插入新页面">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'ViAXVNOzQI1GnaHYPcIiDyzG-gzGzoHsz',
+      app_key: 'Emy5RhFF205NvJ2oTap5pKOD',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"><span class="toc-number">1.</span> <span class="toc-text">Android平台使用iTextG在已有PDF文件中插入带有图片的新页面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引入依赖"><span class="toc-number">1.2.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用方式"><span class="toc-number">1.3.</span> <span class="toc-text">使用方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-number">1.4.</span> <span class="toc-text">效果预览</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&text=Android如何实现往PDF文件中插入新页面"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&is_video=false&description=Android如何实现往PDF文件中插入新页面"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android如何实现往PDF文件中插入新页面&body=Check out this article: https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&title=Android如何实现往PDF文件中插入新页面"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&name=Android如何实现往PDF文件中插入新页面&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/&t=Android如何实现往PDF文件中插入新页面"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020
+    Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

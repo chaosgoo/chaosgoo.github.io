@@ -11,14 +11,14 @@
 <meta name="keywords" content="ESP32">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ESP32-串流显示">
-<meta property="og:url" content="https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/index.html">
+<meta property="og:url" content="https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="让你的ESP32试试串流吧既然有了屏幕，又有了网络，那岂不是可以串流了！ 序上篇文章已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合TFT_eSPI就可以实现，只是在帧率上会有所区别。这个视频为你展示了在M5StickC上的运行效果现在是除了游戏性以外，一无所有的原神@bilibili 实现方式电脑作">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-streaming/EE09FFA8826B4A300111C1F5B9C54EF7.png?x-oss-process=style/compress_50">
 <meta property="og:image" content="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-streaming/ESP32-Streaming.png">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-streaming/811F8932F05ACA4E44F71EA6C4D9FA72.png?x-oss-process=style/compress_50">
-<meta property="og:updated_time" content="2020-12-20T12:22:19.248Z">
+<meta property="og:updated_time" content="2020-12-22T11:06:53.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ESP32-串流显示">
 <meta name="twitter:description" content="让你的ESP32试试串流吧既然有了屏幕，又有了网络，那岂不是可以串流了！ 序上篇文章已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合TFT_eSPI就可以实现，只是在帧率上会有所区别。这个视频为你展示了在M5StickC上的运行效果现在是除了游戏性以外，一无所有的原神@bilibili 实现方式电脑作">
@@ -78,8 +78,10 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2020/12/22/RecyclerView-divide-equally-items/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        <li><a class="icon" href="/2020/12/14/ESP32-ST7789/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="/2020/12/04/ESP32-ST7789/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -92,17 +94,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&text=ESP32-串流显示"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&is_video=false&description=ESP32-串流显示"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=ESP32-串流显示&body=Check out this article: https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&name=ESP32-串流显示&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&t=ESP32-串流显示"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&text=ESP32-串流显示"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&is_video=false&description=ESP32-串流显示"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP32-串流显示&body=Check out this article: https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&name=ESP32-串流显示&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&t=ESP32-串流显示"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -134,7 +136,7 @@
       
     <div class="postdate">
       
-        <time datetime="2020-12-19T06:35:49.000Z" itemprop="datePublished">2020-12-19</time>
+        <time datetime="2020-12-14T06:35:49.000Z" itemprop="datePublished">2020-12-14</time>
         
       
     </div>
@@ -177,7 +179,7 @@
 </ul>
 
   </div>
-  <span id="/2020/12/19/ESP32-Streaming/" class="leancloud_visitors" data-flag-title="ESP32-串流显示">
+  <span id="/2020/12/14/ESP32-Streaming/" class="leancloud_visitors" data-flag-title="ESP32-串流显示">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -239,17 +241,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&text=ESP32-串流显示"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&is_video=false&description=ESP32-串流显示"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=ESP32-串流显示&body=Check out this article: https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&name=ESP32-串流显示&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2020/12/19/ESP32-Streaming/&t=ESP32-串流显示"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&text=ESP32-串流显示"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&is_video=false&description=ESP32-串流显示"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP32-串流显示&body=Check out this article: https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&title=ESP32-串流显示"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&name=ESP32-串流显示&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2020/12/14/ESP32-Streaming/&t=ESP32-串流显示"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="RecyclerView按照屏幕宽度均分子View今天来介绍一种均分RecyclerView的方法，使单行显示的所有子View占满指定的宽度(比如屏幕宽度)吧 背景看到Picsew酷安选择图片时能够完美地将图片按照屏幕的宽度一行显示三张图片，就觉得挺有意思的。 稍微验证下吧为了防止子View的宽度刚好是我手机屏幕的三分之一才产生这种效果，那么先手动的修改系统最小宽度再看下效果吧。    426dp">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RecyclerView按照屏幕宽度均分子View">
+<meta property="og:url" content="https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="RecyclerView按照屏幕宽度均分子View今天来介绍一种均分RecyclerView的方法，使单行显示的所有子View占满指定的宽度(比如屏幕宽度)吧 背景看到Picsew酷安选择图片时能够完美地将图片按照屏幕的宽度一行显示三张图片，就觉得挺有意思的。 稍微验证下吧为了防止子View的宽度刚好是我手机屏幕的三分之一才产生这种效果，那么先手动的修改系统最小宽度再看下效果吧。    426dp">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-32-48-007.png?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-35-53-022.png?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-36-00-437.png?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-35-57-077.png?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-18-23-40-185.png?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-18-25-35-354.png?x-oss-process=style/compress_50">
+<meta property="og:updated_time" content="2020-12-22T11:05:40.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RecyclerView按照屏幕宽度均分子View">
+<meta name="twitter:description" content="RecyclerView按照屏幕宽度均分子View今天来介绍一种均分RecyclerView的方法，使单行显示的所有子View占满指定的宽度(比如屏幕宽度)吧 背景看到Picsew酷安选择图片时能够完美地将图片按照屏幕的宽度一行显示三张图片，就觉得挺有意思的。 稍微验证下吧为了防止子View的宽度刚好是我手机屏幕的三分之一才产生这种效果，那么先手动的修改系统最小宽度再看下效果吧。    426dp">
+<meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-32-48-007.png?x-oss-process=style/compress_50">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>RecyclerView按照屏幕宽度均分子View</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/12/14/ESP32-Streaming/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&text=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&is_video=false&description=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RecyclerView按照屏幕宽度均分子View&body=Check out this article: https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&name=RecyclerView按照屏幕宽度均分子View&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&t=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RecyclerView按照屏幕宽度均分子View"><span class="toc-number">1.</span> <span class="toc-text">RecyclerView按照屏幕宽度均分子View</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#稍微验证下吧"><span class="toc-number">1.1.1.</span> <span class="toc-text">稍微验证下吧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方案"><span class="toc-number">1.2.</span> <span class="toc-text">方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果展示"><span class="toc-number">1.3.</span> <span class="toc-text">效果展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-number">1.4.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        RecyclerView按照屏幕宽度均分子View
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-22T08:30:04.000Z" itemprop="datePublished">2020-12-22</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Android/">Android</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="RecyclerView按照屏幕宽度均分子View"><a href="#RecyclerView按照屏幕宽度均分子View" class="headerlink" title="RecyclerView按照屏幕宽度均分子View"></a>RecyclerView按照屏幕宽度均分子View</h1><p>今天来介绍一种均分RecyclerView的方法，使单行显示的所有子View占满指定的宽度(比如屏幕宽度)吧</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>看到<font color="#8085E6"><del>Picsew</del></font><font color="#00A667">酷安</font>选择图片时能够完美地将图片按照屏幕的宽度一行显示三张图片，就觉得挺有意思的。</p>
+<h3 id="稍微验证下吧"><a href="#稍微验证下吧" class="headerlink" title="稍微验证下吧"></a>稍微验证下吧</h3><p>为了防止子View的宽度刚好是我手机屏幕的三分之一才产生这种效果，那么先手动的修改系统最小宽度再看下效果吧。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">426dp下酷安的图片选择</th>
+<th style="text-align:center">960dp下酷安的图片选择 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-32-48-007.png?x-oss-process=style/compress_50" alt=""></td>
+<td style="text-align:center"><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-35-53-022.png?x-oss-process=style/compress_50" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>而系统自带文件管理器的图片选择在不同最小宽度下效果如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">426dp下系统文件管理器的图片选择</th>
+<th style="text-align:center">960dp下系统文件管理器的图片选择</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-36-00-437.png?x-oss-process=style/compress_50" alt=""></td>
+<td style="text-align:center"><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-17-35-57-077.png?x-oss-process=style/compress_50" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>对比发现酷安的图片选择列表里面的子View尺寸并没有发生变化，说明并不是巧合。</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>在创建子View的时候，将其宽度和高度设置成当前屏幕宽度的三分之一,然后向子View的容器添加合适的padding</p>
+<figure class="highlight kotlin"><figcaption><span>AlbumPreviewAdapter.kt</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AlbumPreviewAdapter</span> : <span class="type">RecyclerView.Adapter</span>&lt;<span class="type">AlbumPreviewAdapter.AlbumPreviewHolder</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> pictureUrlList: ArrayList&lt;Uri&gt;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">val</span> mContext: Context</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> offset = ScreenUtil.dp2px(<span class="number">1</span>).toInt()</div><div class="line"></div><div class="line">    <span class="keyword">constructor</span>(context: Context, urlList: ArrayList&lt;Uri&gt;) &#123;</div><div class="line">        mContext = context</div><div class="line">        <span class="keyword">this</span>.pictureUrlList = urlList</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getItemCount</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</div><div class="line">        <span class="keyword">return</span> pictureUrlList.size</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onBindViewHolder</span><span class="params">(holder: <span class="type">AlbumPreviewHolder</span>, position: <span class="type">Int</span>)</span></span> &#123;</div><div class="line">        holder.bind(position)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreateViewHolder</span><span class="params">(parent: <span class="type">ViewGroup</span>, viewType: <span class="type">Int</span>)</span></span>: AlbumPreviewHolder &#123;</div><div class="line">        <span class="keyword">val</span> view = LayoutInflater.from(mContext)</div><div class="line">            .inflate(R.layout.layout_item_album_preview, parent, <span class="literal">false</span>)</div><div class="line">        <span class="keyword">val</span> itemWidth = ScreenUtil.screenWidth() / <span class="number">4</span></div><div class="line">        <span class="keyword">val</span> itemLayoutParams =</div><div class="line">            ViewGroup.LayoutParams(itemWidth, itemWidth)</div><div class="line">        view.layoutParams = itemLayoutParams</div><div class="line">        <span class="keyword">return</span> AlbumPreviewHolder(view)</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getItemViewType</span><span class="params">(position: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</div><div class="line">        <span class="keyword">return</span> position</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    inner <span class="class"><span class="keyword">class</span> <span class="title">AlbumPreviewHolder</span> : <span class="type">RecyclerView.ViewHolder &#123;</span></span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">var</span> container: RelativeLayout</div><div class="line">        <span class="keyword">var</span> previewImg: ImageView</div><div class="line">        <span class="keyword">var</span> selectCheckBox:CheckBox</div><div class="line">        <span class="keyword">constructor</span>(itemView: View) : <span class="keyword">super</span>(itemView) &#123;</div><div class="line">            <span class="keyword">this</span>.container = itemView.findViewById(R.id.container)</div><div class="line">            <span class="keyword">this</span>.previewImg = itemView.findViewById(R.id.preview_img)</div><div class="line">            <span class="keyword">this</span>.selectCheckBox = itemView.findViewById(R.id.selectCheckBox)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">bind</span><span class="params">(position: <span class="type">Int</span>)</span></span> &#123;</div><div class="line">            addPadding(position)</div><div class="line">            Glide.with(mContext).load(pictureUrlList[position])</div><div class="line">            .into(previewImg)</div><div class="line">            previewImg.setOnClickListener &#123;</div><div class="line">                selectCheckBox.isChecked = !selectCheckBox.isChecked</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">addPadding</span><span class="params">(position: <span class="type">Int</span>)</span></span> &#123;</div><div class="line">            <span class="keyword">when</span> (position % <span class="number">4</span>) &#123;</div><div class="line">                <span class="number">0</span> -&gt; &#123;</div><div class="line">                    <span class="comment">// 首行不需要顶部padding</span></div><div class="line">                    <span class="keyword">if</span> (position &lt; <span class="number">4</span>) &#123;</div><div class="line">                        container.setPadding(<span class="number">0</span>, <span class="number">0</span>, offset, offset)</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 最左边的不需要左边距</span></div><div class="line">                        container.setPadding(<span class="number">0</span>, offset, offset, offset)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="number">1</span>, <span class="number">2</span> -&gt; &#123;</div><div class="line">                    <span class="keyword">if</span> (position &lt; <span class="number">4</span>) &#123;</div><div class="line">                        container.setPadding(offset, <span class="number">0</span>, offset, offset)</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        container.setPadding(offset, offset, offset, offset)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="number">3</span> -&gt; &#123;</div><div class="line">                    <span class="keyword">if</span> (position &lt; <span class="number">4</span>) &#123;</div><div class="line">                        container.setPadding(offset, <span class="number">0</span>, <span class="number">0</span>, offset)</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 最右边的不需要右边距</span></div><div class="line">                        container.setPadding(offset, offset, <span class="number">0</span>, offset)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><figcaption><span>ScreenUtil.kt</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScreenUtil</span> </span>&#123;</div><div class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">dp2px</span><span class="params">(dpValue: <span class="type">Float</span>)</span></span>: <span class="built_in">Float</span> &#123;</div><div class="line">            <span class="keyword">return</span> TypedValue.applyDimension(</div><div class="line">                TypedValue.COMPLEX_UNIT_DIP,</div><div class="line">                dpValue,</div><div class="line">                Resources.getSystem().displayMetrics</div><div class="line">            )</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">dp2px</span><span class="params">(dpValue: <span class="type">Int</span>)</span></span>: <span class="built_in">Float</span> &#123;</div><div class="line">            <span class="keyword">return</span> TypedValue.applyDimension(</div><div class="line">                TypedValue.COMPLEX_UNIT_DIP,</div><div class="line">                dpValue.toFloat(),</div><div class="line">                Resources.getSystem().displayMetrics</div><div class="line">            )</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">screenHeight</span><span class="params">()</span></span>: <span class="built_in">Int</span> = Resources.getSystem().displayMetrics.heightPixels</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">screenWidth</span><span class="params">()</span></span>: <span class="built_in">Int</span> = Resources.getSystem().displayMetrics.widthPixels</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>示例代码</p>
+<figure class="highlight kotlin"><figcaption><span>MainActivity.kt</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> albumRecyclerView: RecyclerView</div><div class="line">    <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> urlList: ArrayList&lt;Uri&gt;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</div><div class="line">        setContentView(R.layout.activity_main)</div><div class="line">        albumRecyclerView = findViewById(R.id.album_recycler_view)</div><div class="line">        urlList = getAllShownImagesPath(<span class="keyword">this</span>)</div><div class="line"></div><div class="line">        albumRecyclerView.adapter = AlbumPreviewAdapter(<span class="keyword">this</span>, urlList)</div><div class="line">        albumRecyclerView.layoutManager = GridLayoutManager(<span class="keyword">this</span>, <span class="number">4</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 演示的查询代码，实际非常不推荐在主线程中这样做</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getAllShownImagesPath</span><span class="params">(activity: <span class="type">Activity</span>)</span></span>: ArrayList&lt;Uri&gt; &#123;</div><div class="line">        <span class="keyword">val</span> uriExternal: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI</div><div class="line">        <span class="keyword">val</span> cursor: Cursor?</div><div class="line">        <span class="keyword">val</span> columnIndexID: <span class="built_in">Int</span></div><div class="line">        <span class="keyword">val</span> listOfAllImages: ArrayList&lt;Uri&gt; = ArrayList()</div><div class="line">        <span class="keyword">val</span> projection = arrayOf(</div><div class="line">            MediaStore.Images.Media._ID,</div><div class="line">            MediaStore.Images.Media.SIZE,</div><div class="line">            MediaStore.Images.Media.DISPLAY_NAME</div><div class="line">        )</div><div class="line">        <span class="keyword">var</span> imageId: <span class="built_in">Long</span></div><div class="line">        cursor = activity.contentResolver.query(</div><div class="line">            uriExternal, projection, MediaStore.Images.Media.MIME_TYPE + <span class="string">"=? or "</span></div><div class="line">                    + MediaStore.Images.Media.MIME_TYPE + <span class="string">"=?"</span>,</div><div class="line">            arrayOf(<span class="string">"image/jpeg"</span>, <span class="string">"image/png"</span>), <span class="literal">null</span></div><div class="line">        )</div><div class="line">        <span class="keyword">if</span> (cursor != <span class="literal">null</span>) &#123;</div><div class="line">            columnIndexID = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)</div><div class="line">            <span class="comment">// 为了防止阻塞，这里只查询极少量的数据</span></div><div class="line">            <span class="keyword">while</span> (cursor.moveToNext() &amp;&amp; listOfAllImages.size &lt; <span class="number">16</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (cursor.getInt(</div><div class="line">                    cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)</div><div class="line">                    ) &lt; <span class="number">1</span></div><div class="line">                ) &#123;</div><div class="line">                    <span class="comment">// 过滤掉文件尺寸为0的数据</span></div><div class="line">                    <span class="keyword">continue</span></div><div class="line">                &#125;</div><div class="line">                imageId = cursor.getLong(columnIndexID)</div><div class="line">                <span class="keyword">val</span> uriImage = Uri.withAppendedPath(uriExternal, <span class="string">""</span> + imageId)</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    <span class="comment">// 过滤掉文件不存在的的数据</span></div><div class="line">                    contentResolver.openFileDescriptor(uriImage, <span class="string">"r"</span>)</div><div class="line">                    listOfAllImages.add(uriImage)</div><div class="line">                &#125; <span class="keyword">catch</span> (e: IOException) &#123;</div><div class="line">                    e.printStackTrace()</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            cursor.close()</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> listOfAllImages</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><figcaption><span>activity_main.xml</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">androidx.coordinatorlayout.widget.CoordinatorLayout</span></span></div><div class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></div><div class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">androidx.recyclerview.widget.RecyclerView</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/album_recycler_view"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">androidx.coordinatorlayout.widget.CoordinatorLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><figcaption><span>layout_item_album_preview.xml</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> </span></div><div class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/container"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"@color/darcula"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/preview_img"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:contentDescription</span>=<span class="string">"Selectable Image"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:scaleType</span>=<span class="string">"center"</span> /&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">CheckBox</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/selectCheckBox"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_alignParentTop</span>=<span class="string">"true"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_alignParentEnd</span>=<span class="string">"true"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:minWidth</span>=<span class="string">"0dp"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:minHeight</span>=<span class="string">"0dp"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:buttonTint</span>=<span class="string">"@color/redAccent"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">426dp下效果展示</th>
+<th style="text-align:center">963dp下效果展示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-18-23-40-185.png?x-oss-process=style/compress_50" alt="Previewin426dp"></td>
+<td style="text-align:center"><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/recyclerview-divide-equally/Shell_2020-12-22-18-25-35-354.png?x-oss-process=style/compress_50" alt="Previewin963dp"></td>
+</tr>
+</tbody>
+</table>
+<p><del>的确是963dp，因为调尺寸的时候我输错了…</del></p>
+<p><del>无视右下角的ExtendedFAB</del></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://blog.csdn.net/lovext4098477/article/details/80419201" target="_blank" rel="external">Android Recyclerview间距 均分 完美布局</a></li>
+</ul>
+
+  </div>
+  <span id="/2020/12/22/RecyclerView-divide-equally-items/" class="leancloud_visitors" data-flag-title="RecyclerView按照屏幕宽度均分子View">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'ViAXVNOzQI1GnaHYPcIiDyzG-gzGzoHsz',
+      app_key: 'Emy5RhFF205NvJ2oTap5pKOD',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RecyclerView按照屏幕宽度均分子View"><span class="toc-number">1.</span> <span class="toc-text">RecyclerView按照屏幕宽度均分子View</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#稍微验证下吧"><span class="toc-number">1.1.1.</span> <span class="toc-text">稍微验证下吧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方案"><span class="toc-number">1.2.</span> <span class="toc-text">方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果展示"><span class="toc-number">1.3.</span> <span class="toc-text">效果展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-number">1.4.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&text=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&is_video=false&description=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RecyclerView按照屏幕宽度均分子View&body=Check out this article: https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&title=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&name=RecyclerView按照屏幕宽度均分子View&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2020/12/22/RecyclerView-divide-equally-items/&t=RecyclerView按照屏幕宽度均分子View"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020
+    Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -7,20 +7,20 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="theme-color" content="#dedbd9">
-    <meta name="description" content="Arduino Pro Micro(Leonardo)无响应修复我使用的Pro Micro长这个样子，体积小，USB自更新。 背景最近着手制作一个新玩意儿，使用的MCU是Pro Micro。起初用起来很正常，烧录程序各种控制都没有问题。 凌晨突然出现插入电脑无法识别，或者识别到了立刻又会断开，在Windows的设备管理里面也是一闪而过。 分析虽然很不甘心的拆开了前天刚到的新Pro Micro,想看">
+    <meta name="description" content="Arduino Pro Micro(Leonardo)无响应修复我使用的Pro Micro长这个样子，体积小，USB自更新。 背景最近着手制作一个新玩意儿，使用的开发板是Pro Micro。起初用起来很正常，烧录程序各种控制都没有问题。 凌晨突然出现插入电脑无法识别，或者识别到了立刻又会断开，在Windows的设备管理里面也是一闪而过。 分析虽然很不甘心的拆开了前天刚到的新Pro Micro,想看">
 <meta name="keywords" content="Arduino">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arduino Pro Micro(Leonardo)无响应修复">
 <meta property="og:url" content="https://blog.chaosgoo.com/2020/04/25/pro-micro/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
-<meta property="og:description" content="Arduino Pro Micro(Leonardo)无响应修复我使用的Pro Micro长这个样子，体积小，USB自更新。 背景最近着手制作一个新玩意儿，使用的MCU是Pro Micro。起初用起来很正常，烧录程序各种控制都没有问题。 凌晨突然出现插入电脑无法识别，或者识别到了立刻又会断开，在Windows的设备管理里面也是一闪而过。 分析虽然很不甘心的拆开了前天刚到的新Pro Micro,想看">
+<meta property="og:description" content="Arduino Pro Micro(Leonardo)无响应修复我使用的Pro Micro长这个样子，体积小，USB自更新。 背景最近着手制作一个新玩意儿，使用的开发板是Pro Micro。起初用起来很正常，烧录程序各种控制都没有问题。 凌晨突然出现插入电脑无法识别，或者识别到了立刻又会断开，在Windows的设备管理里面也是一闪而过。 分析虽然很不甘心的拆开了前天刚到的新Pro Micro,想看">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/pro_micro.jpg?x-oss-process=style/compress_50">
 <meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/empty_project.png">
-<meta property="og:updated_time" content="2020-04-25T12:57:00.930Z">
+<meta property="og:updated_time" content="2020-12-22T11:10:16.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arduino Pro Micro(Leonardo)无响应修复">
-<meta name="twitter:description" content="Arduino Pro Micro(Leonardo)无响应修复我使用的Pro Micro长这个样子，体积小，USB自更新。 背景最近着手制作一个新玩意儿，使用的MCU是Pro Micro。起初用起来很正常，烧录程序各种控制都没有问题。 凌晨突然出现插入电脑无法识别，或者识别到了立刻又会断开，在Windows的设备管理里面也是一闪而过。 分析虽然很不甘心的拆开了前天刚到的新Pro Micro,想看">
+<meta name="twitter:description" content="Arduino Pro Micro(Leonardo)无响应修复我使用的Pro Micro长这个样子，体积小，USB自更新。 背景最近着手制作一个新玩意儿，使用的开发板是Pro Micro。起初用起来很正常，烧录程序各种控制都没有问题。 凌晨突然出现插入电脑无法识别，或者识别到了立刻又会断开，在Windows的设备管理里面也是一闪而过。 分析虽然很不甘心的拆开了前天刚到的新Pro Micro,想看">
 <meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/pro_micro.jpg?x-oss-process=style/compress_50">
     
     
@@ -80,7 +80,7 @@
         <li><a class="icon" href="/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2020/04/19/Android-Vanilla/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2020/04/19/Insert-new-page-into-pdf-file-in-android/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -156,7 +156,7 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="Arduino-Pro-Micro-Leonardo-无响应修复"><a href="#Arduino-Pro-Micro-Leonardo-无响应修复" class="headerlink" title="Arduino Pro Micro(Leonardo)无响应修复"></a>Arduino Pro Micro(Leonardo)无响应修复</h1><p>我使用的<font color="17A7A5">Pro Micro</font>长这个样子，体积小，USB自更新。<br><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/pro_micro.jpg?x-oss-process=style/compress_50" alt="Pro Micro"></p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近着手制作一个新玩意儿，使用的MCU是<font color="17A7A5">Pro Micro</font>。起初用起来很正常，烧录程序各种控制都没有问题。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近着手制作一个新玩意儿，使用的开发板是<font color="17A7A5">Pro Micro</font>。起初用起来很正常，烧录程序各种控制都没有问题。</p>
 <p>凌晨突然出现插入电脑无法识别，或者识别到了立刻又会断开，在Windows的设备管理里面也是一闪而过。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>虽然很不甘心的拆开了前天刚到的新<font color="17A7A5">Pro Micro</font>,想看看板子是不是真的出现了问题。好家伙，新板子也出现了同样的问题。</p>
 <p>新板子坏掉的概率不是很大，于是转而去检查了编写的ino文件，文件比上一次多了几行<font color="DA5300">SoftwareSerial</font>的内容。问题很有可能就是多的几行代码导致<font color="17A7A5">Pro Micro</font>无法与PC正常通信。</p>
