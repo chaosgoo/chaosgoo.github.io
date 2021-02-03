@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="让你的ESP32显示一张动图吧序最近在填TinyMonitor(暂定)的坑，突然想增加更加高级的动态效果，而我实在是想不出什么高级的动画效果了，于是决定借助一些GIF来实现一些有趣的效果。 然后就发现了这个AnimatedGIF，使用起来也灰常简单。  因为我TinyMonitor(暂定)驱动用的是TFT_eSPI(至于如何驱动屏幕，可以参考之前的文章ESP32驱动ST7789液晶屏) 稍作修改后">
+<meta name="keywords" content="ESP32">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP-32 播放GIF动图">
+<meta property="og:url" content="https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="让你的ESP32显示一张动图吧序最近在填TinyMonitor(暂定)的坑，突然想增加更加高级的动态效果，而我实在是想不出什么高级的动画效果了，于是决定借助一些GIF来实现一些有趣的效果。 然后就发现了这个AnimatedGIF，使用起来也灰常简单。  因为我TinyMonitor(暂定)驱动用的是TFT_eSPI(至于如何驱动屏幕，可以参考之前的文章ESP32驱动ST7789液晶屏) 稍作修改后">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-st7789/QQ%E5%9B%BE%E7%89%8720210203160014.gif">
+<meta property="og:updated_time" content="2021-02-03T08:03:12.818Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ESP-32 播放GIF动图">
+<meta name="twitter:description" content="让你的ESP32显示一张动图吧序最近在填TinyMonitor(暂定)的坑，突然想增加更加高级的动态效果，而我实在是想不出什么高级的动画效果了，于是决定借助一些GIF来实现一些有趣的效果。 然后就发现了这个AnimatedGIF，使用起来也灰常简单。  因为我TinyMonitor(暂定)驱动用的是TFT_eSPI(至于如何驱动屏幕，可以参考之前的文章ESP32驱动ST7789液晶屏) 稍作修改后">
+<meta name="twitter:image" content="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-st7789/QQ%E5%9B%BE%E7%89%8720210203160014.gif">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>ESP-32 播放GIF动图</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/12/22/RecyclerView-divide-equally-items/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&text=ESP-32 播放GIF动图"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&is_video=false&description=ESP-32 播放GIF动图"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP-32 播放GIF动图&body=Check out this article: https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&name=ESP-32 播放GIF动图&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&t=ESP-32 播放GIF动图"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#让你的ESP32显示一张动图吧"><span class="toc-number">1.</span> <span class="toc-text">让你的ESP32显示一张动图吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#序"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#稍作修改后的代码"><span class="toc-number">1.2.</span> <span class="toc-text">稍作修改后的代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何对GIF文件转换成可用的格式"><span class="toc-number">1.3.</span> <span class="toc-text">如何对GIF文件转换成可用的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.4.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ESP-32 播放GIF动图
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-03T07:14:35.000Z" itemprop="datePublished">2021-02-03</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ESP32/">ESP32</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="让你的ESP32显示一张动图吧"><a href="#让你的ESP32显示一张动图吧" class="headerlink" title="让你的ESP32显示一张动图吧"></a>让你的ESP32显示一张动图吧</h1><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>最近在填TinyMonitor(暂定)的坑，突然想增加更加高级的动态效果，而我实在是想不出什么高级的动画效果了，于是决定借助一些GIF来实现一些有趣的效果。</p>
+<p>然后就发现了这个<a style="color:#d44375" href="https://github.com/bitbank2/AnimatedGIF" target="_blank" rel="external">AnimatedGIF</a>，使用起来也灰常简单。</p>
+<p><img src="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/esp32-st7789/QQ%E5%9B%BE%E7%89%8720210203160014.gif" alt="animation-preview"></p>
+<p>因为我TinyMonitor(暂定)驱动用的是TFT_eSPI<br>(至于如何驱动屏幕，可以参考之前的文章<a href="https://www.chaosgoo.com/2020/12/04/ESP32-ST7789/" target="_blank" rel="external">ESP32驱动ST7789液晶屏</a>)</p>
+<h2 id="稍作修改后的代码"><a href="#稍作修改后的代码" class="headerlink" title="稍作修改后的代码"></a>稍作修改后的代码</h2><p>代码基于<a style="color:#d44375" href="https://github.com/bitbank2/AnimatedGIF" target="_blank" rel="external">AnimatedGIF</a>自带的example–TFT_eSPI_memory.ino稍作修改.</p>
+<figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// TFT_eSPI_memory</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Example sketch which shows how to display an</span></div><div class="line"><span class="comment">// animated GIF image stored in FLASH memory</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// written by Larry Bank</span></div><div class="line"><span class="comment">// bitbank@pobox.com</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Adapted by Bodmer for the TFT_eSPI Arduino library:</span></div><div class="line"><span class="comment">// https://github.com/Bodmer/TFT_eSPI</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// To display a GIF from memory, a single callback function</span></div><div class="line"><span class="comment">// must be provided - GIFDRAW</span></div><div class="line"><span class="comment">// This function is called after each scan line is decoded</span></div><div class="line"><span class="comment">// and is passed the 8-bit pixels, RGB565 palette and info</span></div><div class="line"><span class="comment">// about how and where to display the line. The palette entries</span></div><div class="line"><span class="comment">// can be in little-endian or big-endian order; this is specified</span></div><div class="line"><span class="comment">// in the begin() method.</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// The AnimatedGIF class doesn't allocate or free any memory, but the</span></div><div class="line"><span class="comment">// instance data occupies about 22.5K of RAM.</span></div><div class="line"></div><div class="line"><span class="comment">//#define USE_DMA       // ESP32 ~1.25x single frame rendering performance boost</span></div><div class="line"><span class="comment">// for badgers.h</span></div><div class="line"><span class="comment">// Note: Do not use SPI DMA if reading GIF images from SPI SD card on same bus</span></div><div class="line"><span class="comment">// as TFT</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NORMAL_SPEED  <span class="comment">// Comment out for rame rate for render speed test</span></span></div><div class="line"></div><div class="line"><span class="comment">// Load GIF library</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;AnimatedGIF.h&gt;</span></span></div><div class="line">AnimatedGIF gif;</div><div class="line"></div><div class="line"><span class="comment">// Example AnimatedGIF library images</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"loading.h"</span></span></div><div class="line"><span class="comment">// ESP32 40MHz SPI single frame rendering performance</span></div><div class="line"><span class="comment">// Note: no DMA performance gain on smaller images or transparent pixel GIFs</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> GIF_IMAGE angry_80px_gif  <span class="comment">//  No DMA  63 fps, DMA:  71fps</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SPI.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;TFT_eSPI.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DISPLAY_WIDTH tft.width()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DISPLAY_HEIGHT tft.height()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFFER_SIZE \</span></div><div class="line">  <span class="number">60</span>  <span class="comment">// Optimum is &gt;= GIF width or integral division of width</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> USE_DMA</span></div><div class="line"><span class="keyword">uint16_t</span> usTemp[<span class="number">2</span>][BUFFER_SIZE];  <span class="comment">// Global to support DMA use</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="keyword">uint16_t</span> usTemp[<span class="number">1</span>][BUFFER_SIZE];  <span class="comment">// Global to support DMA use</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="keyword">bool</span> dmaBuf = <span class="number">0</span>;</div><div class="line">TFT_eSPI tft = TFT_eSPI();</div><div class="line"></div><div class="line"><span class="comment">// Draw a line of image directly on the LCD</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">GIFDraw</span><span class="params">(GIFDRAW *pDraw)</span> </span>&#123;</div><div class="line">  <span class="keyword">uint8_t</span> *s;</div><div class="line">  <span class="keyword">uint16_t</span> *d, *usPalette;</div><div class="line">  <span class="keyword">int</span> x, y, iWidth, iCount;</div><div class="line"></div><div class="line">  <span class="comment">// Display bounds chech and cropping</span></div><div class="line">  iWidth = pDraw-&gt;iWidth;</div><div class="line">  <span class="keyword">if</span> (iWidth + pDraw-&gt;iX &gt; DISPLAY_WIDTH) iWidth = DISPLAY_WIDTH - pDraw-&gt;iX;</div><div class="line">  usPalette = pDraw-&gt;pPalette;</div><div class="line">  y = pDraw-&gt;iY + pDraw-&gt;y;  <span class="comment">// current line</span></div><div class="line">  <span class="keyword">if</span> (y &gt;= DISPLAY_HEIGHT || pDraw-&gt;iX &gt;= DISPLAY_WIDTH || iWidth &lt; <span class="number">1</span>) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">  <span class="comment">// Old image disposal</span></div><div class="line">  s = pDraw-&gt;pPixels;</div><div class="line">  <span class="keyword">if</span> (pDraw-&gt;ucDisposalMethod == <span class="number">2</span>)  <span class="comment">// restore to background color</span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">for</span> (x = <span class="number">0</span>; x &lt; iWidth; x++) &#123;</div><div class="line">      <span class="keyword">if</span> (s[x] == pDraw-&gt;ucTransparent) s[x] = pDraw-&gt;ucBackground;</div><div class="line">    &#125;</div><div class="line">    pDraw-&gt;ucHasTransparency = <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Apply the new pixels to the main image</span></div><div class="line">  <span class="keyword">if</span> (pDraw-&gt;ucHasTransparency)  <span class="comment">// if transparency used</span></div><div class="line">  &#123;</div><div class="line">    <span class="comment">// uint8_t *pEnd, c, ucTransparent = pDraw-&gt;ucTransparent;</span></div><div class="line">    <span class="keyword">uint8_t</span> *pEnd, c, ucTransparent = TFT_BLACK;</div><div class="line">    pEnd = s + iWidth;</div><div class="line">    x = <span class="number">0</span>;</div><div class="line">    iCount = <span class="number">0</span>;  <span class="comment">// count non-transparent pixels</span></div><div class="line">    <span class="keyword">while</span> (x &lt; iWidth) &#123;</div><div class="line">      c = ucTransparent - <span class="number">1</span>;</div><div class="line">      d = &amp;usTemp[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">      <span class="keyword">while</span> (c != ucTransparent &amp;&amp; s &lt; pEnd &amp;&amp; iCount &lt; BUFFER_SIZE) &#123;</div><div class="line">        c = *s++;</div><div class="line">        <span class="keyword">if</span> (c == ucTransparent)  <span class="comment">// done, stop</span></div><div class="line">        &#123;</div><div class="line">          s--;  <span class="comment">// back up to treat it like transparent</span></div><div class="line">        &#125; <span class="keyword">else</span>  <span class="comment">// opaque</span></div><div class="line">        &#123;</div><div class="line">          *d++ = usPalette[c];</div><div class="line">          iCount++;</div><div class="line">        &#125;</div><div class="line">      &#125;            <span class="comment">// while looking for opaque pixels</span></div><div class="line">      <span class="keyword">if</span> (iCount)  <span class="comment">// any opaque pixels?</span></div><div class="line">      &#123;</div><div class="line">        <span class="comment">// DMA would degrtade performance here due to short line segments</span></div><div class="line">        tft.setAddrWindow(pDraw-&gt;iX + x, y, iCount, <span class="number">1</span>);</div><div class="line">        tft.pushPixels(usTemp, iCount);</div><div class="line">        x += iCount;</div><div class="line">        iCount = <span class="number">0</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// no, look for a run of transparent pixels</span></div><div class="line">      c = ucTransparent;</div><div class="line">      <span class="keyword">while</span> (c == ucTransparent &amp;&amp; s &lt; pEnd) &#123;</div><div class="line">        c = *s++;</div><div class="line">        <span class="keyword">if</span> (c == ucTransparent)</div><div class="line">          x++;</div><div class="line">        <span class="keyword">else</span></div><div class="line">          s--;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    s = pDraw-&gt;pPixels;</div><div class="line"></div><div class="line">    <span class="comment">// Unroll the first pass to boost DMA performance</span></div><div class="line">    <span class="comment">// Translate the 8-bit pixels through the RGB565 palette (already byte</span></div><div class="line">    <span class="comment">// reversed)</span></div><div class="line">    <span class="keyword">if</span> (iWidth &lt;= BUFFER_SIZE)</div><div class="line">      <span class="keyword">for</span> (iCount = <span class="number">0</span>; iCount &lt; iWidth; iCount++)</div><div class="line">        usTemp[dmaBuf][iCount] = usPalette[*s++];</div><div class="line">    <span class="keyword">else</span></div><div class="line">      <span class="keyword">for</span> (iCount = <span class="number">0</span>; iCount &lt; BUFFER_SIZE; iCount++)</div><div class="line">        usTemp[dmaBuf][iCount] = usPalette[*s++];</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> USE_DMA  <span class="comment">// 71.6 fps (ST7796 84.5 fps)</span></span></div><div class="line">    tft.dmaWait();</div><div class="line">    tft.setAddrWindow(pDraw-&gt;iX, y, iWidth, <span class="number">1</span>);</div><div class="line">    tft.pushPixelsDMA(&amp;usTemp[dmaBuf][<span class="number">0</span>], iCount);</div><div class="line">    dmaBuf = !dmaBuf;</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span>  <span class="comment">// 57.0 fps</span></span></div><div class="line">    tft.setAddrWindow(pDraw-&gt;iX, y, iWidth, <span class="number">1</span>);</div><div class="line">    tft.pushPixels(&amp;usTemp[<span class="number">0</span>][<span class="number">0</span>], iCount);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line">    iWidth -= iCount;</div><div class="line">    <span class="comment">// Loop if pixel buffer smaller than width</span></div><div class="line">    <span class="keyword">while</span> (iWidth &gt; <span class="number">0</span>) &#123;</div><div class="line">      <span class="comment">// Translate the 8-bit pixels through the RGB565 palette (already byte</span></div><div class="line">      <span class="comment">// reversed)</span></div><div class="line">      <span class="keyword">if</span> (iWidth &lt;= BUFFER_SIZE)</div><div class="line">        <span class="keyword">for</span> (iCount = <span class="number">0</span>; iCount &lt; iWidth; iCount++)</div><div class="line">          usTemp[dmaBuf][iCount] = usPalette[*s++];</div><div class="line">      <span class="keyword">else</span></div><div class="line">        <span class="keyword">for</span> (iCount = <span class="number">0</span>; iCount &lt; BUFFER_SIZE; iCount++)</div><div class="line">          usTemp[dmaBuf][iCount] = usPalette[*s++];</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> USE_DMA</span></div><div class="line">      tft.dmaWait();</div><div class="line">      tft.pushPixelsDMA(&amp;usTemp[dmaBuf][<span class="number">0</span>], iCount);</div><div class="line">      dmaBuf = !dmaBuf;</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">      tft.pushPixels(&amp;usTemp[<span class="number">0</span>][<span class="number">0</span>], iCount);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">      iWidth -= iCount;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* GIFDraw() */</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</div><div class="line">  Serial.begin(<span class="number">115200</span>);</div><div class="line"></div><div class="line">  tft.begin();</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> USE_DMA</span></div><div class="line">  tft.initDMA();</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">  tft.setRotation(<span class="number">1</span>);</div><div class="line">  tft.fillScreen(TFT_BLACK);</div><div class="line"></div><div class="line">  gif.begin(BIG_ENDIAN_PIXELS);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> NORMAL_SPEED  <span class="comment">// Render at rate that is GIF controlled</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">// Put your main code here, to run repeatedly:</span></div><div class="line">  <span class="keyword">if</span> (gif.open((<span class="keyword">uint8_t</span> *)GIF_IMAGE, <span class="keyword">sizeof</span>(GIF_IMAGE), GIFDraw)) &#123;</div><div class="line">    Serial.<span class="built_in">printf</span>(<span class="string">"Successfully opened GIF; Canvas size = %d x %d\n"</span>,</div><div class="line">                  gif.getCanvasWidth(), gif.getCanvasHeight());</div><div class="line">    tft.startWrite();  <span class="comment">// The TFT chip slect is locked low</span></div><div class="line">    <span class="keyword">while</span> (gif.playFrame(<span class="literal">true</span>, <span class="literal">NULL</span>)) &#123;</div><div class="line">      yield();</div><div class="line">    &#125;</div><div class="line">    gif.close();</div><div class="line">    tft.endWrite();  <span class="comment">// Release TFT chip select for other SPI devices</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span>  <span class="comment">// Test maximum rendering speed</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">long</span> lTime = micros();</div><div class="line">  <span class="keyword">int</span> iFrames = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (gif.open((<span class="keyword">uint8_t</span> *)GIF_IMAGE, <span class="keyword">sizeof</span>(GIF_IMAGE), GIFDraw)) &#123;</div><div class="line">    tft.startWrite();  <span class="comment">// For DMA the TFT chip slect is locked low</span></div><div class="line">    <span class="keyword">while</span> (gif.playFrame(<span class="literal">false</span>, <span class="literal">NULL</span>)) &#123;</div><div class="line">      <span class="comment">// Each loop renders one frame</span></div><div class="line">      iFrames++;</div><div class="line">      yield();</div><div class="line">    &#125;</div><div class="line">    gif.close();</div><div class="line">    tft.endWrite();  <span class="comment">// Release TFT chip select for other SPI devices</span></div><div class="line">    lTime = micros() - lTime;</div><div class="line">    Serial.print(iFrames / (lTime / <span class="number">1000000.0</span>));</div><div class="line">    Serial.println(<span class="string">" fps"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p>下面为loading.h的内容位于<a href="https://gist.github.com/chaosgoo/59ffaa4f3920ea7e0f01fc925b9ed09d" target="_blank" rel="external">Gist</a>,因为内容太长影响排版，就只贴一个连接了。</p>
+<h2 id="如何对GIF文件转换成可用的格式"><a href="#如何对GIF文件转换成可用的格式" class="headerlink" title="如何对GIF文件转换成可用的格式"></a>如何对GIF文件转换成可用的格式</h2><p>loading.h的制作方法如下.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xxd -i angry_80px.gif &gt;&gt; loading.h</div></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xxd</td>
+<td>以2进制或者16进制显示文件内容</td>
+</tr>
+<tr>
+<td>angry_80px.gif</td>
+<td>输入文件</td>
+</tr>
+<tr>
+<td>loading.h</td>
+<td>输出文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>XXD是一个Linux命令，windows下默认没有这个命令</strong></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://github.com/bitbank2/AnimatedGIF" target="_blank" rel="external">AnimatedGIF</a></li>
+</ul>
+
+  </div>
+  <span id="/2021/02/03/ESP-32-Play-GIF/" class="leancloud_visitors" data-flag-title="ESP-32 播放GIF动图">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'ViAXVNOzQI1GnaHYPcIiDyzG-gzGzoHsz',
+      app_key: 'Emy5RhFF205NvJ2oTap5pKOD',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#让你的ESP32显示一张动图吧"><span class="toc-number">1.</span> <span class="toc-text">让你的ESP32显示一张动图吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#序"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#稍作修改后的代码"><span class="toc-number">1.2.</span> <span class="toc-text">稍作修改后的代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何对GIF文件转换成可用的格式"><span class="toc-number">1.3.</span> <span class="toc-text">如何对GIF文件转换成可用的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.4.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&text=ESP-32 播放GIF动图"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&is_video=false&description=ESP-32 播放GIF动图"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP-32 播放GIF动图&body=Check out this article: https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&title=ESP-32 播放GIF动图"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&name=ESP-32 播放GIF动图&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2021/02/03/ESP-32-Play-GIF/&t=ESP-32 播放GIF动图"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
