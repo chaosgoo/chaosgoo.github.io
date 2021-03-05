@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="让你的ESP32显示一张公网图片吧 众所周知，ESP32它是能联网的，而配上屏幕，它就可以显示一张图片，那么它可以显示一张互联网上的图片吗？当然可以！虽然之前已经做过了视频的传输，而视频不过是很多图片的集合，但是那篇文章中的传输都是建立在局域网之中，通信建立在Socket上。而这次要突破局域网，使用HTTP协议来传输数据，所以会比之前复杂一些。 序使用的网络请求库为AsyncTCP-esphome">
+<meta name="keywords" content="ESP32,HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让你的ESP32显示一张公网图片吧">
+<meta property="og:url" content="https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="让你的ESP32显示一张公网图片吧 众所周知，ESP32它是能联网的，而配上屏幕，它就可以显示一张图片，那么它可以显示一张互联网上的图片吗？当然可以！虽然之前已经做过了视频的传输，而视频不过是很多图片的集合，但是那篇文章中的传输都是建立在局域网之中，通信建立在Socket上。而这次要突破局域网，使用HTTP协议来传输数据，所以会比之前复杂一些。 序使用的网络请求库为AsyncTCP-esphome">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/AsyncImage.png?x-oss-process=style/compress_50">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/response.jpg">
+<meta property="og:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/PostmanRequestRaw.jpg">
+<meta property="og:image" content="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/HttpRequest.png">
+<meta property="og:image" content="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/HTTPResponse.png">
+<meta property="og:updated_time" content="2021-03-05T16:44:05.419Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="让你的ESP32显示一张公网图片吧">
+<meta name="twitter:description" content="让你的ESP32显示一张公网图片吧 众所周知，ESP32它是能联网的，而配上屏幕，它就可以显示一张图片，那么它可以显示一张互联网上的图片吗？当然可以！虽然之前已经做过了视频的传输，而视频不过是很多图片的集合，但是那篇文章中的传输都是建立在局域网之中，通信建立在Socket上。而这次要突破局域网，使用HTTP协议来传输数据，所以会比之前复杂一些。 序使用的网络请求库为AsyncTCP-esphome">
+<meta name="twitter:image" content="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/AsyncImage.png?x-oss-process=style/compress_50">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>让你的ESP32显示一张公网图片吧</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2021/02/20/ESP32-Async-Request/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&text=让你的ESP32显示一张公网图片吧"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&is_video=false&description=让你的ESP32显示一张公网图片吧"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=让你的ESP32显示一张公网图片吧&body=Check out this article: https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&name=让你的ESP32显示一张公网图片吧&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&t=让你的ESP32显示一张公网图片吧"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#让你的ESP32显示一张公网图片吧"><span class="toc-number">1.</span> <span class="toc-text">让你的ESP32显示一张公网图片吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#序"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#演习"><span class="toc-number">1.2.</span> <span class="toc-text">演习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码时间"><span class="toc-number">1.3.</span> <span class="toc-text">代码时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求部分代码"><span class="toc-number">1.3.1.</span> <span class="toc-text">请求部分代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.4.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        让你的ESP32显示一张公网图片吧
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-03-04T08:07:35.000Z" itemprop="datePublished">2021-03-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ESP32/">ESP32</a>, <a class="tag-link" href="/tags/HTTP/">HTTP</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="让你的ESP32显示一张公网图片吧"><a href="#让你的ESP32显示一张公网图片吧" class="headerlink" title="让你的ESP32显示一张公网图片吧"></a>让你的ESP32显示一张公网图片吧</h1><p><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/AsyncImage.png?x-oss-process=style/compress_50" width="640"></p>
+<p>众所周知，ESP32它是能联网的，而配上屏幕，它就可以显示一张图片，那么它可以显示一张互联网上的图片吗？当然可以！<br>虽然<a href="/2020/12/14/ESP32-Streaming/">之前</a>已经做过了视频的传输，而视频不过是很多图片的集合，但是那篇文章中的传输都是建立在局域网之中，通信建立在Socket上。<br>而这次要突破局域网，使用HTTP协议来传输数据，所以会比之前复杂一些。</p>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>使用的网络请求库为AsyncTCP-esphome，所以将以下内容添加到你的platformio.ini中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">lib_deps = </div><div class="line">    ottowinter/AsyncTCP-esphome@^1.1.1</div><div class="line">    ottowinter/ESPAsyncWebServer-esphome@^1.2.7</div></pre></td></tr></table></figure></p>
+<p>这里先介绍一下HTTP协议吧，引用百度百科的原文<br><strong><code>超文本传输协议（Hypertext Transfer Protocol，HTTP）是一个简单的请求-响应协议，它通常运行在TCP之上。它指定了客户端可能发送给服务器什么样的消息以及得到什么样的响应。</code></strong><br>在这个通信过程中，客户端和服务端以报文的形式通信，<strong>客户端</strong>发送的报文叫做<strong>请求报文</strong>，<strong>服务端</strong>发送的报文叫做<strong>应答报文</strong>。<br>其中请求报文的格式结构如下<br><strong><code>请求行 － 通用信息头 － 请求头 － 实体头 － 报文主体</code></strong><br>应答报文结构如下<br><strong><code>状态行 － 通用信息头 － 响应头 － 实体头 － 报文主体</code></strong><br>知道报文格式后，解析报文，就能获取我们想要的内容。<br>下面通过一次演习来研究下报文有什么内容，然后再做后续开发。</p>
+<h2 id="演习"><a href="#演习" class="headerlink" title="演习"></a>演习</h2><p>为了此次演习，我在阿里云OSS中上传了一张很小的JPG图片，借助阿里云OSS，这张图片就有了一个固定的公网地址，<br><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/response.jpg" alt="idea.jpg"><br><a href="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/response.jpg" target="_blank" rel="external">https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/response.jpg</a></p>
+<p>下面打开Postman，把图片地址填进去，请求头参数保持默认，然后发送请求，直接查看Postman的控制台，点击Show raw log查看原始请求日志。<br><img src="https://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/PostmanRequestRaw.jpg" alt=""></p>
+<p>请求报文如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">GET /response.jpg HTTP/1.1</div><div class="line">User-Agent: PostmanRuntime/7.26.10</div><div class="line">Accept: */*</div><div class="line">Postman-Token: 8f142c2a-1547-40df-a07e-637450e576c4</div><div class="line">Host: chaosgoo-pic.oss-cn-shanghai.aliyuncs.com</div><div class="line">Accept-Encoding: gzip, deflate, br</div><div class="line">Connection: keep-alive</div></pre></td></tr></table></figure></p>
+<p>请求报文的结构如图所示<br><img src="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/HttpRequest.png" alt="请求报文的结构"><br>请求报文中需要关注的内容有</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">内容</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GET /response.jpg HTTP/1.1</td>
+<td style="text-align:center">请求行，由方法字段、URL字段和HTTP协议版本字段组成</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">Host: chaosgoo-pic.oss-cn-shanghai.aliyuncs.com</td>
+<td style="text-align:center">请求的主机名和端口号</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+</tbody>
+</table>
+<p>可以发现，表中内容就是由图片的链接构造出来的。</p>
+<p>再看一眼应答报文，应答报文的结构如图所示<br><img src="http://chaosgoo-pic.oss-cn-shanghai.aliyuncs.com/blog_pic/ESP32HTTP/HTTPResponse.png" alt="应答报文的结构"></p>
+<p>应答报文如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Server: AliyunOSS</div><div class="line">Date: Thu, 04 Mar 2021 08:52:28 GMT</div><div class="line">Content-Type: image/jpeg</div><div class="line">Content-Length: 2544</div><div class="line">Connection: keep-alive</div><div class="line">x-oss-request-id: 60409FCC0EF7D03534F4A1F5</div><div class="line">Accept-Ranges: bytes</div><div class="line">ETag: <span class="string">"C6C67E44834D62DC1FC9729C94E74CCB"</span></div><div class="line">Last-Modified: Wed, 03 Mar 2021 18:04:44 GMT</div><div class="line">x-oss-object-type: Normal</div><div class="line">x-oss-hash-crc64ecma: 18170594484795111235</div><div class="line">x-oss-storage-class: Standard</div><div class="line">Content-Disposition: attachment</div><div class="line">x-oss-force-download: <span class="literal">true</span></div><div class="line">Content-MD5: xsZ+RINNYtwfyXKclOdMyw==</div><div class="line">x-oss-server-time: 27</div><div class="line"><span class="comment">#The console does not support viewing response bodies with media files.</span></div></pre></td></tr></table></figure></p>
+<p>有很多现在不需要关注的内容，只需要关心下表中的内容</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">内容</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">HTTP/1.1 200 OK</td>
+<td style="text-align:center">状态行,由协议版本、状态码与原因短语组成</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">Content-Type: image/jpeg</td>
+<td style="text-align:center">实体的媒体类型</td>
+</tr>
+<tr>
+<td style="text-align:center">Content-Length: 2544</td>
+<td style="text-align:center">实体的长度，此处即为JPG图片的大小</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+</tbody>
+</table>
+<p>有了状态行，我们就可以知道此次请求是否成功；有了Content-Length，我们就知道目标图片的尺寸。<br>后续操作就是先解析报文，然后根据请求行判断请求是否成功，如果成功，就继续解析应答首部，获取图片的尺寸，如果不成功，那就慢慢Debug吧。<br>一切就绪后，那可以开始读取剩下的内容吧。<br>由于传输过程中可能无法一次性将实体传输过来，所以实体会被分割成很多小块发送，使用extractBodyChunkFromResponseRaw提取实体并返回提取到的长度。<br>前面<strong>client-&gt;onData([&amp;] (void <em>arg, AsyncClient </em>c, void *data, size_t len)</strong>会被调用很多次。<br>在<strong>onData</strong>中的<strong>data</strong>就是每一数据帧去掉帧头和帧尾的部分，即为实体被分成的小块。<br>由于是通过<strong>TCP</strong>传输的，所以这个大小存在上限,采用Arduino方式开发ESP32的话，<strong>MSS</strong>的值会被设置成1436。<br><del>很荣幸的能够观察到这个现象，感觉摸到MTU了</del></p>
+<h2 id="代码时间"><a href="#代码时间" class="headerlink" title="代码时间"></a>代码时间</h2><h3 id="请求部分代码"><a href="#请求部分代码" class="headerlink" title="请求部分代码"></a>请求部分代码</h3><p>关于网络请求操作的代码，参阅<a href="/2021/02/20/ESP32-Async-Request/">ESP32异步网络请求</a>，本文只关注应答报文处理函数</p>
+<figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Arduino.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;AsyncTCP.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;TFT_eSPI.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;TJpg_Decoder.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;WiFi.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Wire.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ssid <span class="meta-string">"XXXX"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> password <span class="meta-string">"XXXX"</span></span></div><div class="line"><span class="comment">// 显示sprite的内容</span></div><div class="line">TFT_eSPI tft;</div><div class="line"><span class="comment">// 图片绘制的Sprite</span></div><div class="line">TFT_eSprite imageSprite = TFT_eSprite(&amp;tft);</div><div class="line"><span class="comment">// 应答报文的Sprite</span></div><div class="line">TFT_eSprite headerSprite = TFT_eSprite(&amp;tft);</div><div class="line"></div><div class="line">WiFiClient client;</div><div class="line"></div><div class="line"><span class="comment">// 待显示图片尺寸</span></div><div class="line"><span class="keyword">uint16_t</span> imageSize;</div><div class="line"><span class="comment">// 已经下载的实体尺寸</span></div><div class="line"><span class="keyword">uint16_t</span> readBytesSize = <span class="number">-1</span>;</div><div class="line"><span class="comment">// 图片缓存, 限制大小为16KB，你也可以设置成其他尺寸。</span></div><div class="line"><span class="keyword">uint8_t</span> *imageBuffer = (<span class="keyword">uint8_t</span> *)heap_caps_malloc(<span class="number">16</span> * <span class="number">1024</span>, MALLOC_CAP_8BIT);</div><div class="line"><span class="comment">// 两张sprite的偏移</span></div><div class="line"><span class="keyword">int16_t</span> headerSpriteOffset = <span class="number">0</span>;</div><div class="line">String header;</div><div class="line"><span class="keyword">enum</span> ParseState &#123;</div><div class="line">  PARSE_REQ_START,</div><div class="line">  PARSE_REQ_HEADERS,</div><div class="line">  PARSE_REQ_BODY,</div><div class="line">  PARSE_REQ_END,</div><div class="line">  PARSE_REQ_FAIL,</div><div class="line">  PARSE_REQ_PENDING</div><div class="line">&#125;;</div><div class="line"></div><div class="line">ParseState _parseState;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * @brief 从初次原始报文中提取Content-Length</span></div><div class="line"><span class="comment"> * @param responseBody 原始报文</span></div><div class="line"><span class="comment"> * @param bodyBeginIndex body起始索引</span></div><div class="line"><span class="comment"> * @return 无</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">uint16_t</span> extractContentLengthFromResponseRaw(String &amp;responseBody,</div><div class="line">                                             <span class="keyword">uint16_t</span> &amp;bodyBeginIndex) &#123;</div><div class="line">  <span class="keyword">int</span> index = responseBody.indexOf(<span class="string">"Content-Length:"</span>);</div><div class="line">  <span class="keyword">int</span> eIndex = responseBody.indexOf(<span class="string">'\n'</span>, index);</div><div class="line">  String value = responseBody.substring(index + <span class="number">16</span>, eIndex);</div><div class="line">  bodyBeginIndex = responseBody.indexOf(<span class="string">"\r\n\r\n"</span>) + <span class="number">4</span>;</div><div class="line">  <span class="keyword">return</span> atoi(value.c_str());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * @brief 深度复制bytes</span></div><div class="line"><span class="comment"> * @param buffer 目标的容器</span></div><div class="line"><span class="comment"> * @param source 原始内容</span></div><div class="line"><span class="comment"> * @param length 数据长度</span></div><div class="line"><span class="comment"> * @param SrcOffset 原始内容的读取偏移</span></div><div class="line"><span class="comment"> * @param bufferOffset 目标的容器的写入偏移</span></div><div class="line"><span class="comment"> * @return 处理的数据长度</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">size_t</span> copyBytes(<span class="keyword">uint8_t</span> *source, <span class="keyword">uint8_t</span> *buffer, <span class="keyword">size_t</span> length,</div><div class="line">                 <span class="keyword">size_t</span> SrcOffset, <span class="keyword">size_t</span> bufferOffset) &#123;</div><div class="line">  <span class="keyword">size_t</span> count = <span class="number">0</span>;</div><div class="line">  <span class="keyword">while</span> (count + SrcOffset &lt; length) &#123;</div><div class="line">    *(buffer + count + bufferOffset) = source[count + SrcOffset];</div><div class="line">    count++;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> count;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * @brief 从初次原始报文中提取Content-Length</span></div><div class="line"><span class="comment"> * @param frameData 原始报文</span></div><div class="line"><span class="comment"> * @param bodyData body数据容器</span></div><div class="line"><span class="comment"> * @param length body数据长度</span></div><div class="line"><span class="comment"> * @param offset body数据起始索引</span></div><div class="line"><span class="comment"> * @return 处理的body长度</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">uint16_t</span> extractBodyChunkFromResponseRaw(<span class="keyword">uint8_t</span> *frameData, <span class="keyword">uint8_t</span> *bodyData,</div><div class="line">                                         <span class="keyword">uint16_t</span> length, <span class="keyword">uint16_t</span> srcOffset,</div><div class="line">                                         <span class="keyword">size_t</span> bufferOffset) &#123;</div><div class="line">  copyBytes(frameData, bodyData, length, srcOffset, bufferOffset);</div><div class="line">  <span class="keyword">return</span> length - srcOffset;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">asyncReqeust</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> AsyncClient *aClient;</div><div class="line">  <span class="keyword">if</span> (aClient) &#123;</div><div class="line">    <span class="comment">// aClient already exists</span></div><div class="line">    <span class="comment">// aClient 繁忙</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line">  aClient = <span class="keyword">new</span> AsyncClient();</div><div class="line">  <span class="keyword">if</span> (!aClient) &#123;</div><div class="line">    <span class="comment">// could not allocate aClient</span></div><div class="line">    <span class="comment">// aClient 无法创建</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line">  aClient-&gt;onError(</div><div class="line">      [&amp;](<span class="keyword">void</span> *arg, AsyncClient *client, <span class="keyword">int</span> error) &#123;</div><div class="line">        Serial.println(<span class="string">"getImageAsync:Connect Error"</span>);</div><div class="line">        aClient = <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">delete</span> client;</div><div class="line">      &#125;,</div><div class="line">      <span class="literal">NULL</span>);</div><div class="line">  <span class="comment">// 请求的回调</span></div><div class="line">  aClient-&gt;onConnect(</div><div class="line">      [&amp;](<span class="keyword">void</span> *arg, AsyncClient *client) &#123;</div><div class="line">        Serial.println(<span class="string">"getImageAsync:Connected"</span>);</div><div class="line">        aClient-&gt;onError(<span class="literal">NULL</span>, <span class="literal">NULL</span>);</div><div class="line">        <span class="comment">// 连接断开的动作</span></div><div class="line">        client-&gt;onDisconnect(</div><div class="line">            [&amp;](<span class="keyword">void</span> *arg, AsyncClient *c) &#123;</div><div class="line">              <span class="comment">// status = 3;</span></div><div class="line">              aClient = <span class="literal">NULL</span>;</div><div class="line">              <span class="keyword">delete</span> c;</div><div class="line">              Serial.<span class="built_in">printf</span>(<span class="string">"getImageAsync:Disconnected\n"</span>);</div><div class="line">              _parseState = PARSE_REQ_START;</div><div class="line">            &#125;,</div><div class="line">            <span class="literal">NULL</span>);</div><div class="line">        <span class="comment">// 接收到服务器数据时候的动作</span></div><div class="line">        client-&gt;onData(</div><div class="line">            [&amp;](<span class="keyword">void</span> *arg, AsyncClient *c, <span class="keyword">void</span> *data, <span class="keyword">size_t</span> len) &#123;</div><div class="line">              <span class="keyword">uint8_t</span> *d = (<span class="keyword">uint8_t</span> *)data;</div><div class="line">              <span class="comment">// _parseState为解析状态枚举类型</span></div><div class="line">              <span class="keyword">if</span> (_parseState == PARSE_REQ_START) &#123;</div><div class="line">                String content = String((<span class="keyword">char</span> *)data);</div><div class="line">                _parseState = PARSE_REQ_HEADERS;</div><div class="line">                <span class="keyword">uint16_t</span> bodyBeginIndex = <span class="number">0</span>;</div><div class="line">                <span class="comment">// 从响应头中获取长度</span></div><div class="line">                imageSize = extractContentLengthFromResponseRaw(content,</div><div class="line">                                                                bodyBeginIndex);</div><div class="line">                Serial.<span class="built_in">printf</span>(<span class="string">"Content-Length:%d\n"</span>, imageSize);</div><div class="line">                header = content.substring(<span class="number">0</span>, bodyBeginIndex);</div><div class="line">                <span class="keyword">if</span> (imageSize &gt; <span class="number">0</span>) &#123;</div><div class="line">                  _parseState = PARSE_REQ_BODY;</div><div class="line">                  readBytesSize = extractBodyChunkFromResponseRaw(</div><div class="line">                      d, imageBuffer, len, bodyBeginIndex, <span class="number">0</span>);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">              &#125; <span class="keyword">else</span> <span class="keyword">if</span> (_parseState == PARSE_REQ_BODY) &#123;</div><div class="line">                readBytesSize += extractBodyChunkFromResponseRaw(</div><div class="line">                    d, imageBuffer, len, <span class="number">0</span>, readBytesSize);</div><div class="line">                Serial.<span class="built_in">printf</span>(<span class="string">"extract size:%d\n"</span>, readBytesSize);</div><div class="line">              &#125;</div><div class="line">              <span class="keyword">if</span> (readBytesSize == imageSize) &#123;</div><div class="line">                <span class="comment">// 接收完成</span></div><div class="line">                Serial.<span class="built_in">printf</span>(<span class="string">"Body Received Done.received %d bytes\n"</span>,</div><div class="line">                              readBytesSize);</div><div class="line">                <span class="comment">// for (int i = 0; i &lt; imageSize; i++) &#123;</span></div><div class="line">                <span class="comment">//   Serial.write(*buffer + i);</span></div><div class="line">                <span class="comment">// &#125;</span></div><div class="line">                <span class="comment">// Serial.println();</span></div><div class="line">                _parseState = PARSE_REQ_END;</div><div class="line">              &#125;</div><div class="line">            &#125;,</div><div class="line">            <span class="literal">NULL</span>);</div><div class="line">        <span class="comment">// 发送请求</span></div><div class="line">        client-&gt;write(</div><div class="line">            <span class="string">"GET /response.jpg HTTP/1.1\r\n"</span></div><div class="line">            <span class="string">"Host: chaosgoo-pic.oss-cn-shanghai.aliyuncs.com\r\n"</span></div><div class="line">            <span class="string">"Accept: */*\r\n"</span></div><div class="line">            <span class="string">"Accept-Encoding: gzip, deflate, br"</span></div><div class="line">            <span class="string">"Connection: keep-alive"</span></div><div class="line">            <span class="string">"User-Agent: PostmanRuntime/7.26.10\r\n\r\n"</span>);</div><div class="line">      &#125;,</div><div class="line">      <span class="literal">NULL</span>);</div><div class="line">  <span class="keyword">if</span> (!aClient-&gt;connect(<span class="string">"chaosgoo-pic.oss-cn-shanghai.aliyuncs.com"</span>, <span class="number">80</span>)) &#123;</div><div class="line">    Serial.println(<span class="string">"Connect Fail"</span>);</div><div class="line">    AsyncClient *client = aClient;</div><div class="line">    aClient = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">delete</span> client;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// JPG解码绘制回调</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">drawCallback</span><span class="params">(<span class="keyword">int16_t</span> x, <span class="keyword">int16_t</span> y, <span class="keyword">uint16_t</span> w, <span class="keyword">uint16_t</span> h,</span></span></div><div class="line"><span class="function"><span class="params">                  <span class="keyword">uint16_t</span> *bitmap)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (imageSize == readBytesSize) &#123;</div><div class="line">    <span class="keyword">if</span> (y &gt;= <span class="number">135</span>) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    imageSprite.pushImage(x, y, w, h, bitmap);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 推送到屏幕</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushToTFT</span><span class="params">(<span class="keyword">int</span> offset)</span> </span>&#123;</div><div class="line">  headerSprite.pushSprite(<span class="number">0</span>, offset);</div><div class="line">  imageSprite.pushSprite(<span class="number">0</span>, offset + <span class="number">135</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</div><div class="line">  Serial.begin(<span class="number">115200</span>);</div><div class="line">  client.setTimeout(<span class="number">1</span>);</div><div class="line">  WiFi.begin(ssid, password);</div><div class="line">  WiFi.setAutoReconnect(<span class="literal">true</span>);</div><div class="line">  <span class="comment">// 初始化屏幕</span></div><div class="line">  tft.init();</div><div class="line">  <span class="comment">// 旋转屏幕方向，从竖变为横向</span></div><div class="line">  tft.setRotation(<span class="number">1</span>);</div><div class="line">  <span class="comment">// 清空屏幕内容</span></div><div class="line">  tft.fillScreen(TFT_BLACK);</div><div class="line">  <span class="comment">// 创建Sprite</span></div><div class="line">  imageSprite.createSprite(<span class="number">240</span>, <span class="number">32</span>);</div><div class="line">  headerSprite.createSprite(<span class="number">240</span>, <span class="number">135</span>);</div><div class="line">  <span class="comment">// 配置TJpeg</span></div><div class="line">  TJpgDec.setJpgScale(<span class="number">1</span>);</div><div class="line">  TJpgDec.setSwapBytes(<span class="literal">true</span>);</div><div class="line">  <span class="comment">// 设置TJpg解码器回调函数</span></div><div class="line">  TJpgDec.setCallback(drawCallback);</div><div class="line">  delay(<span class="number">3000</span>);</div><div class="line">  asyncReqeust();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (_parseState == PARSE_REQ_END) &#123;</div><div class="line">    TJpgDec.drawJpg(<span class="number">0</span>, <span class="number">0</span>, imageBuffer, imageSize);</div><div class="line">    _parseState = PARSE_REQ_PENDING;</div><div class="line">    headerSprite.setTextFont(<span class="number">1</span>);</div><div class="line">    headerSprite.setTextColor(TFT_WHITE);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; header.length(); i++) &#123;</div><div class="line">      headerSprite.print(header[i]);</div><div class="line">      Serial.print(header[i]);</div><div class="line">      headerSprite.pushSprite(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  pushToTFT(headerSpriteOffset);</div><div class="line">  delay(<span class="number">100</span>);</div><div class="line">  <span class="keyword">if</span> (headerSpriteOffset &gt; <span class="number">-32</span>) &#123;</div><div class="line">    headerSpriteOffset -= headerSprite.fontHeight(<span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><figcaption><span>platformio.ini</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[env:pico32]</div><div class="line">platform = espressif32</div><div class="line">board = pico32</div><div class="line">framework = arduino</div><div class="line">monitor_speed = 115200</div><div class="line">lib_deps = </div><div class="line">	adafruit/Adafruit BusIO@^1.6.0</div><div class="line">	adafruit/Adafruit GFX Library@1.10.3</div><div class="line">	bodmer/TFT_eSPI@^2.3.41</div><div class="line">	ottowinter/AsyncTCP-esphome@^1.1.1</div><div class="line">	ottowinter/ESPAsyncWebServer-esphome@^1.2.7</div><div class="line">	bodmer/TJpg_Decoder@^0.1.0</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://baike.baidu.com/item/http/243074?fr=aladdin" target="_blank" rel="external">HTTP</a></li>
+<li><a href="https://blog.51cto.com/essun/1379932" target="_blank" rel="external">Web服务其二HTTP报文格式说明</a></li>
+<li><a href="https://www.jianshu.com/p/3be7582ddf78" target="_blank" rel="external">MTU 和 MSS 区别</a></li>
+<li><a href="https://github.com/espressif/arduino-esp32/blob/master/tools/sdk/include/config/sdkconfig.h" target="_blank" rel="external">arduino-esp32/tools/sdk/include/config/sdkconfig.h</a></li>
+</ul>
+
+  </div>
+  <span id="/2021/03/04/ESP32-display-remote-JPG/" class="leancloud_visitors" data-flag-title="让你的ESP32显示一张公网图片吧">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'ViAXVNOzQI1GnaHYPcIiDyzG-gzGzoHsz',
+      app_key: 'Emy5RhFF205NvJ2oTap5pKOD',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#让你的ESP32显示一张公网图片吧"><span class="toc-number">1.</span> <span class="toc-text">让你的ESP32显示一张公网图片吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#序"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#演习"><span class="toc-number">1.2.</span> <span class="toc-text">演习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码时间"><span class="toc-number">1.3.</span> <span class="toc-text">代码时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求部分代码"><span class="toc-number">1.3.1.</span> <span class="toc-text">请求部分代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.4.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&text=让你的ESP32显示一张公网图片吧"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&is_video=false&description=让你的ESP32显示一张公网图片吧"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=让你的ESP32显示一张公网图片吧&body=Check out this article: https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&title=让你的ESP32显示一张公网图片吧"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&name=让你的ESP32显示一张公网图片吧&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/&t=让你的ESP32显示一张公网图片吧"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2021
+    Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
