@@ -10,7 +10,7 @@
     <meta name="description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数 12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public ope">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Code Kotlin学习笔记0x04">
-<meta property="og:url" content="https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/index.html">
+<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数 12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public ope">
 <meta property="og:locale" content="zh_CN">
@@ -23,17 +23,17 @@
     
       
         
-          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -41,12 +41,12 @@
     <title>Code Kotlin学习笔记0x04</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/css/rtl.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
 
     
     <!-- rss -->
@@ -64,11 +64,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </span>
@@ -76,10 +76,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2017/10/30/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x03/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2017/10/30/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x03/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -92,19 +92,19 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&text=Code Kotlin学习笔记0x04"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&is_video=false&description=Code Kotlin学习笔记0x04"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code Kotlin学习笔记0x04&body=Check out this article: https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&name=Code Kotlin学习笔记0x04&description=&lt;h1 id=&#34;基本数据类型&#34;&gt;&lt;a href=&#34;#基本数据类型&#34; class=&#34;headerlink&#34; title=&#34;基本数据类型&#34;&gt;&lt;/a&gt;基本数据类型&lt;/h1&gt;&lt;h2 id=&#34;根类型Any&#34;&gt;&lt;a href=&#34;#根类型Any&#34; class=&#34;headerlink&#34; title=&#34;根类型Any&#34;&gt;&lt;/a&gt;根类型Any&lt;/h2&gt;&lt;p&gt;Kotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&text=Code Kotlin学习笔记0x04"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&is_video=false&description=Code Kotlin学习笔记0x04"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code Kotlin学习笔记0x04&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&name=Code Kotlin学习笔记0x04&description=&lt;h1 id=&#34;基本数据类型&#34;&gt;&lt;a href=&#34;#基本数据类型&#34; class=&#34;headerlink&#34; title=&#34;基本数据类型&#34;&gt;&lt;/a&gt;基本数据类型&lt;/h1&gt;&lt;h2 id=&#34;根类型Any&#34;&gt;&lt;a href=&#34;#根类型Any&#34; class=&#34;headerlink&#34; title=&#34;根类型Any&#34;&gt;&lt;/a&gt;根类型Any&lt;/h2&gt;&lt;p&gt;Kotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any&lt;/p&gt;
 &lt;p&gt;Any 只有equals() hashCode() 和toString 三个函数&lt;/p&gt;
 &lt;figure class=&#34;highlight kotlin&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Any&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;operator&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;equals&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(other: &lt;span class=&#34;type&#34;&gt;Any&lt;/span&gt;?)&lt;/span&gt;&lt;/span&gt;:&lt;span class=&#34;built_in&#34;&gt;Boolean&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;hashCode&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;:&lt;span class=&#34;built_in&#34;&gt;Int&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;toSting&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;:String&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&t=Code Kotlin学习笔记0x04"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&t=Code Kotlin学习笔记0x04"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -147,7 +147,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+        <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/Kotlin/" rel="tag">Kotlin</a>
     </div>
 
 
@@ -273,7 +273,7 @@
 <p><a target="_blank" rel="noopener" href="https://try.kotlinlang.org/">在线Kotlin IDE</a></p>
 <h1 id="To-Be-Continue"><a href="#To-Be-Continue" class="headerlink" title="To Be Continue"></a>To Be Continue</h1>
   </div>
-  <span id="/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/" class="leancloud_visitors" data-flag-title="Code Kotlin学习笔记0x04">
+  <span id="/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/" class="leancloud_visitors" data-flag-title="Code Kotlin学习笔记0x04">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -318,11 +318,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </div>
@@ -333,19 +333,19 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&text=Code Kotlin学习笔记0x04"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&is_video=false&description=Code Kotlin学习笔记0x04"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code Kotlin学习笔记0x04&body=Check out this article: https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&name=Code Kotlin学习笔记0x04&description=&lt;h1 id=&#34;基本数据类型&#34;&gt;&lt;a href=&#34;#基本数据类型&#34; class=&#34;headerlink&#34; title=&#34;基本数据类型&#34;&gt;&lt;/a&gt;基本数据类型&lt;/h1&gt;&lt;h2 id=&#34;根类型Any&#34;&gt;&lt;a href=&#34;#根类型Any&#34; class=&#34;headerlink&#34; title=&#34;根类型Any&#34;&gt;&lt;/a&gt;根类型Any&lt;/h2&gt;&lt;p&gt;Kotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&text=Code Kotlin学习笔记0x04"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&is_video=false&description=Code Kotlin学习笔记0x04"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code Kotlin学习笔记0x04&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&name=Code Kotlin学习笔记0x04&description=&lt;h1 id=&#34;基本数据类型&#34;&gt;&lt;a href=&#34;#基本数据类型&#34; class=&#34;headerlink&#34; title=&#34;基本数据类型&#34;&gt;&lt;/a&gt;基本数据类型&lt;/h1&gt;&lt;h2 id=&#34;根类型Any&#34;&gt;&lt;a href=&#34;#根类型Any&#34; class=&#34;headerlink&#34; title=&#34;根类型Any&#34;&gt;&lt;/a&gt;根类型Any&lt;/h2&gt;&lt;p&gt;Kotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any&lt;/p&gt;
 &lt;p&gt;Any 只有equals() hashCode() 和toString 三个函数&lt;/p&gt;
 &lt;figure class=&#34;highlight kotlin&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Any&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;operator&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;equals&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(other: &lt;span class=&#34;type&#34;&gt;Any&lt;/span&gt;?)&lt;/span&gt;&lt;/span&gt;:&lt;span class=&#34;built_in&#34;&gt;Boolean&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;hashCode&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;:&lt;span class=&#34;built_in&#34;&gt;Int&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;toSting&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;:String&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&t=Code Kotlin学习笔记0x04"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&t=Code Kotlin学习笔记0x04"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -373,11 +373,11 @@
     <nav>
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -387,23 +387,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -426,7 +426,7 @@
   </script>
 
 
-<script src="/js/main.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
 
 <!-- search -->
 

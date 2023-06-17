@@ -10,7 +10,7 @@
     <meta name="description" content="前言IDF手册上说如果PWM的clk_cfg配置为RTC8M_CLK支持Light-Sleep模式,但是官方的Repo里面也没有如何使用这个特性的例子. 实操经过一圈摸索.需要配置menuconfig才行 1idf.py menuconfig 找到Component config-&gt;Hardware Settings -&gt; Sleep Config, 关闭light sleep GPI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ESP32在休眠模式下保持PWM输出">
-<meta property="og:url" content="https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/index.html">
+<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="前言IDF手册上说如果PWM的clk_cfg配置为RTC8M_CLK支持Light-Sleep模式,但是官方的Repo里面也没有如何使用这个特性的例子. 实操经过一圈摸索.需要配置menuconfig才行 1idf.py menuconfig 找到Component config-&gt;Hardware Settings -&gt; Sleep Config, 关闭light sleep GPI">
 <meta property="og:locale" content="zh_CN">
@@ -23,17 +23,17 @@
     
       
         
-          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -41,12 +41,12 @@
     <title>ESP32在休眠模式下保持PWM输出</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/css/rtl.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
 
     
     <!-- rss -->
@@ -64,11 +64,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </span>
@@ -76,10 +76,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -92,17 +92,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&text=ESP32在休眠模式下保持PWM输出"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&is_video=false&description=ESP32在休眠模式下保持PWM输出"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=ESP32在休眠模式下保持PWM输出&body=Check out this article: https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&name=ESP32在休眠模式下保持PWM输出&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&t=ESP32在休眠模式下保持PWM输出"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&text=ESP32在休眠模式下保持PWM输出"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&is_video=false&description=ESP32在休眠模式下保持PWM输出"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP32在休眠模式下保持PWM输出&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&name=ESP32在休眠模式下保持PWM输出&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&t=ESP32在休眠模式下保持PWM输出"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -145,7 +145,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/ESP32/" rel="tag">ESP32</a>
+        <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/ESP32/" rel="tag">ESP32</a>
     </div>
 
 
@@ -161,7 +161,7 @@
 <p>在esp-idf内置的LEDC (LED Controller) basic example的基础上修改,得到以下代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;driver/ledc.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_err.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_log.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_sleep.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_system.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;freertos/FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;freertos/task.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;rtc.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PIN_LED GPIO_NUM_5</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">example_ledc_init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// Prepare and then apply the LEDC PWM timer configuration</span></span><br><span class="line">  <span class="type">ledc_timer_config_t</span> ledc_timer = &#123;</span><br><span class="line">      .duty_resolution = LEDC_TIMER_13_BIT,</span><br><span class="line">      .freq_hz = <span class="number">1000</span>,</span><br><span class="line">      .speed_mode = LEDC_LOW_SPEED_MODE,</span><br><span class="line">      .timer_num = LEDC_TIMER_0,</span><br><span class="line">      .clk_cfg = LEDC_USE_RTC8M_CLK,</span><br><span class="line">  &#125;;</span><br><span class="line">  ESP_ERROR_CHECK(ledc_timer_config(&amp;ledc_timer));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Prepare and then apply the LEDC PWM channel configuration</span></span><br><span class="line">  <span class="type">ledc_channel_config_t</span> ledc_channel = &#123;.channel = LEDC_CHANNEL_0,</span><br><span class="line">                                        .duty = <span class="number">128</span>,</span><br><span class="line">                                        .gpio_num = PIN_LED,</span><br><span class="line">                                        .speed_mode = LEDC_LOW_SPEED_MODE,</span><br><span class="line">                                        .hpoint = <span class="number">0</span>,</span><br><span class="line">                                        .timer_sel = LEDC_TIMER_0&#125;;</span><br><span class="line">  ESP_ERROR_CHECK(ledc_channel_config(&amp;ledc_channel));</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">app_main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// Set the LEDC peripheral configuration</span></span><br><span class="line">  example_ledc_init();</span><br><span class="line">  esp_sleep_pd_config(ESP_PD_DOMAIN_RTC8M, ESP_PD_OPTION_ON);</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; (<span class="number">1</span> &lt;&lt; <span class="number">13</span>); i += <span class="number">128</span>) &#123;</span><br><span class="line">      ESP_LOGE(<span class="string">&quot;Duty&quot;</span>, <span class="string">&quot;Current Duty is %d&quot;</span>, i);</span><br><span class="line">      ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, i));</span><br><span class="line">      <span class="comment">// Update duty to apply the new value</span></span><br><span class="line">      ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0));</span><br><span class="line">      esp_sleep_enable_timer_wakeup(<span class="number">1000</span> * <span class="number">1000</span> * <span class="number">1</span>);</span><br><span class="line">      esp_light_sleep_start();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
-  <span id="/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/" class="leancloud_visitors" data-flag-title="ESP32在休眠模式下保持PWM输出">
+  <span id="/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/" class="leancloud_visitors" data-flag-title="ESP32在休眠模式下保持PWM输出">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -206,11 +206,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </div>
@@ -221,17 +221,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&text=ESP32在休眠模式下保持PWM输出"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&is_video=false&description=ESP32在休眠模式下保持PWM输出"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=ESP32在休眠模式下保持PWM输出&body=Check out this article: https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&name=ESP32在休眠模式下保持PWM输出&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&t=ESP32在休眠模式下保持PWM输出"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&text=ESP32在休眠模式下保持PWM输出"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&is_video=false&description=ESP32在休眠模式下保持PWM输出"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP32在休眠模式下保持PWM输出&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&title=ESP32在休眠模式下保持PWM输出"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&name=ESP32在休眠模式下保持PWM输出&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/&t=ESP32在休眠模式下保持PWM输出"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -259,11 +259,11 @@
     <nav>
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -273,23 +273,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -312,7 +312,7 @@
   </script>
 
 
-<script src="/js/main.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
 
 <!-- search -->
 

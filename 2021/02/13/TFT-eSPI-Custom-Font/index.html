@@ -10,7 +10,7 @@
     <meta name="description" content="向TFT_eSPI添加一种新的字体吧还是在填TinyMonitor(暂定)的坑，现在需要更加好看的字体来显示订阅数，本来打算给需要用到的数字制作成图片然后取摸的，结果发现TFT_eSPI支持自定义字体。 准备工具   名称 获取方式    FontConvert.exe 下载链接   你想要添加的字体文件 看你如何获取   转换方式1Fontconvert.exe 字体文件名带后缀 字体大小 最小">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TFT_eSPI 自定义字体">
-<meta property="og:url" content="https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/index.html">
+<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="向TFT_eSPI添加一种新的字体吧还是在填TinyMonitor(暂定)的坑，现在需要更加好看的字体来显示订阅数，本来打算给需要用到的数字制作成图片然后取摸的，结果发现TFT_eSPI支持自定义字体。 准备工具   名称 获取方式    FontConvert.exe 下载链接   你想要添加的字体文件 看你如何获取   转换方式1Fontconvert.exe 字体文件名带后缀 字体大小 最小">
 <meta property="og:locale" content="zh_CN">
@@ -23,17 +23,17 @@
     
       
         
-          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -41,12 +41,12 @@
     <title>TFT_eSPI 自定义字体</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/css/rtl.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
 
     
     <!-- rss -->
@@ -64,11 +64,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </span>
@@ -76,10 +76,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2021/02/20/ESP32-Async-Request/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2021/02/20/ESP32-Async-Request/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2021/02/03/ESP-32-Play-GIF/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2021/02/03/ESP-32-Play-GIF/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -92,17 +92,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&text=TFT_eSPI 自定义字体"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&is_video=false&description=TFT_eSPI 自定义字体"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=TFT_eSPI 自定义字体&body=Check out this article: https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&name=TFT_eSPI 自定义字体&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&t=TFT_eSPI 自定义字体"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&text=TFT_eSPI 自定义字体"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&is_video=false&description=TFT_eSPI 自定义字体"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TFT_eSPI 自定义字体&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&name=TFT_eSPI 自定义字体&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&t=TFT_eSPI 自定义字体"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -145,7 +145,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/ESP32/" rel="tag">ESP32</a>
+        <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/ESP32/" rel="tag">ESP32</a>
     </div>
 
 
@@ -164,7 +164,7 @@
 </thead>
 <tbody><tr>
 <td align="center">FontConvert.exe</td>
-<td align="center"><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/TFT_eSPI-Custom-Font/FontConvert.7z">下载链接</a></td>
+<td align="center"><a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/TFT_eSPI-Custom-Font/FontConvert.7z">下载链接</a></td>
 </tr>
 <tr>
 <td align="center">你想要添加的字体文件</td>
@@ -181,13 +181,13 @@
 <p>使用时候将字体设置成新增字体即可，比如</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eSprite-&gt;<span class="built_in">setFreeFont</span>(&amp;Furore28pt7b);</span><br><span class="line">eSprite-&gt;<span class="built_in">drawString</span>(<span class="string">&quot;FURORE&quot;</span>, <span class="number">0</span>, <span class="number">120</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><p>这次就不贴图了，牵涉到的文件已经打包处理。字体是Furore，Free Font，请放心食用。<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/TFT_eSPI-Custom-Font/Furore.zip">Furore.zip</a></p>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><p>这次就不贴图了，牵涉到的文件已经打包处理。字体是Furore，Free Font，请放心食用。<a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/TFT_eSPI-Custom-Font/Furore.zip">Furore.zip</a></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=L8MmTISmwZ8">Create and use custom fonts for Adafruit_GFX libraries</a></li>
 </ul>
 
   </div>
-  <span id="/2021/02/13/TFT-eSPI-Custom-Font/" class="leancloud_visitors" data-flag-title="TFT_eSPI 自定义字体">
+  <span id="/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/" class="leancloud_visitors" data-flag-title="TFT_eSPI 自定义字体">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -232,11 +232,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </div>
@@ -247,17 +247,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&text=TFT_eSPI 自定义字体"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&is_video=false&description=TFT_eSPI 自定义字体"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=TFT_eSPI 自定义字体&body=Check out this article: https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&name=TFT_eSPI 自定义字体&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/&t=TFT_eSPI 自定义字体"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&text=TFT_eSPI 自定义字体"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&is_video=false&description=TFT_eSPI 自定义字体"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=TFT_eSPI 自定义字体&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&title=TFT_eSPI 自定义字体"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&name=TFT_eSPI 自定义字体&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/02/13/TFT-eSPI-Custom-Font/&t=TFT_eSPI 自定义字体"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -285,11 +285,11 @@
     <nav>
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -299,23 +299,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -338,7 +338,7 @@
   </script>
 
 
-<script src="/js/main.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
 
 <!-- search -->
 

@@ -10,7 +10,7 @@
     <meta name="description" content="LGVL配合FreeType为可变字体设置字重-模拟器篇 LGVL配合FreeType为可变字体设置字重-ESP32篇(上) LGVL配合FreeType为可变字体设置字重-ESP32篇(下)  前言不知道多久前看到了MIUI更新了”动态字体系统“功能,不过当时没太在意(毕竟我用的也不是MIUI,哈哈哈,不过确实挺方便的),演示视频里面展示了随意调节字体粗细的功能,后来知道这个参数叫做字重(zh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LGVL配合FreeType为可变字体设置字重-模拟器篇">
-<meta property="og:url" content="https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/index.html">
+<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="LGVL配合FreeType为可变字体设置字重-模拟器篇 LGVL配合FreeType为可变字体设置字重-ESP32篇(上) LGVL配合FreeType为可变字体设置字重-ESP32篇(下)  前言不知道多久前看到了MIUI更新了”动态字体系统“功能,不过当时没太在意(毕竟我用的也不是MIUI,哈哈哈,不过确实挺方便的),演示视频里面展示了随意调节字体粗细的功能,后来知道这个参数叫做字重(zh">
 <meta property="og:locale" content="zh_CN">
@@ -32,17 +32,17 @@
     
       
         
-          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -50,12 +50,12 @@
     <title>LGVL配合FreeType为可变字体设置字重-模拟器篇</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/css/rtl.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
 
     
     <!-- rss -->
@@ -73,11 +73,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </span>
@@ -85,10 +85,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2021/12/18/lvgl-freetype-and-esp32/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2021/04/01/%E5%81%9A%E4%B8%80%E6%8A%8A2021%E5%B9%B4Stack%20Overflow%E7%9A%84%E6%84%9A%E4%BA%BA%E8%8A%82%E9%94%AE%E7%9B%98/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2021/04/01/%E5%81%9A%E4%B8%80%E6%8A%8A2021%E5%B9%B4Stack%20Overflow%E7%9A%84%E6%84%9A%E4%BA%BA%E8%8A%82%E9%94%AE%E7%9B%98/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -101,17 +101,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&text=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&is_video=false&description=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=LGVL配合FreeType为可变字体设置字重-模拟器篇&body=Check out this article: https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&name=LGVL配合FreeType为可变字体设置字重-模拟器篇&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&t=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&text=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&is_video=false&description=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LGVL配合FreeType为可变字体设置字重-模拟器篇&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&name=LGVL配合FreeType为可变字体设置字重-模拟器篇&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&t=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -174,7 +174,7 @@
 </div>
 
 <p>老早就听说了LVGL的大名,但是一直没有行动起来.</p>
-<p>后来看见<a target="_blank" rel="noopener" href="https://github.com/peng-zhihui">稚晖君</a>的<a target="_blank" rel="noopener" href="https://github.com/peng-zhihui/Peak">Peak</a>和<a target="_blank" rel="noopener" href="https://github.com/FASTSHIFT">FASTSHIFT</a>的<a target="_blank" rel="noopener" href="https://github.com/FASTSHIFT/X-TRACK">X-Track</a>, 羡慕极了.<br>于是决定这次一定要试试LVGL,看看用起来到底是啥感觉.</p>
+<p>后来看见<a href="https://github.com/peng-zhihui">稚晖君</a>的<a href="https://github.com/peng-zhihui/Peak">Peak</a>和<a href="https://github.com/FASTSHIFT">FASTSHIFT</a>的<a href="https://github.com/FASTSHIFT/X-TRACK">X-Track</a>, 羡慕极了.<br>于是决定这次一定要试试LVGL,看看用起来到底是啥感觉.</p>
 <p>之前自己搁那瞎捣鼓过一阵子的GUI,结果嘛,结果就是就弃坑了.</p>
 <p>这次打算直接上LVGL这种成熟的GUI方案了,而恰好LVGL是支持FreeType的,借助FreeType就可以相对轻松的实现上面的字重动画.</p>
 <h2 id="什么是FreeType"><a href="#什么是FreeType" class="headerlink" title="什么是FreeType"></a>什么是FreeType</h2><p><strong><a target="_blank" rel="noopener" href="https://freetype.org/">FreeType</a>库是一个完全免费（开源）的、高质量的且可移植的字体引擎</strong></p>
@@ -185,7 +185,7 @@
 <p>(可能需要科学上网)<br>直接复制git命令就完事了,下完点击<strong>LVGL.Simulator.sln</strong>直接启动.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --recurse-submodules https://github.com/lvgl/lv_sim_visual_studio.git</span><br></pre></td></tr></table></figure>
 <p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/launch_simulator.png?raw=true" alt="LVGL.Simulator.sln"><br>启动以后看到lvgl自带的**lv_demo_widgets()**运行效果.<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/simluator_glance.png?raw=true" alt="simluator_glance"></p>
-<h3 id="为LVGL配置FreeType"><a href="#为LVGL配置FreeType" class="headerlink" title="为LVGL配置FreeType"></a>为LVGL配置FreeType</h3><p>得益于<a target="_blank" rel="noopener" href="https://github.com/lvgl/lv_sim_visual_studio">lv_sim_visual_studio</a>的完整性,刚才<strong>git clone –recurse-submodules</strong>时候freetype被一并下载了.<br>所以现在暂时不需要额外配置什么内容,但是在其他情况下还是需要手动的配置一下LVGL的FreeType支持.(比如在板子上跑freetype的时候)</p>
+<h3 id="为LVGL配置FreeType"><a href="#为LVGL配置FreeType" class="headerlink" title="为LVGL配置FreeType"></a>为LVGL配置FreeType</h3><p>得益于<a href="https://github.com/lvgl/lv_sim_visual_studio">lv_sim_visual_studio</a>的完整性,刚才<strong>git clone –recurse-submodules</strong>时候freetype被一并下载了.<br>所以现在暂时不需要额外配置什么内容,但是在其他情况下还是需要手动的配置一下LVGL的FreeType支持.(比如在板子上跑freetype的时候)</p>
 <h3 id="LVGL内置的FreeType-Demo"><a href="#LVGL内置的FreeType-Demo" class="headerlink" title="LVGL内置的FreeType Demo"></a>LVGL内置的FreeType Demo</h3><p>将LVGL.Simulator.cpp内</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ----------------------------------</span></span><br><span class="line"><span class="comment">// Demos from lv_examples</span></span><br><span class="line"><span class="comment">// ----------------------------------</span></span><br><span class="line"><span class="built_in">lv_demo_widgets</span>();           <span class="comment">// ok</span></span><br><span class="line"><span class="comment">// lv_demo_benchmark();</span></span><br><span class="line"><span class="comment">// lv_demo_keypad_encoder();    // ok</span></span><br><span class="line"><span class="comment">// lv_demo_music();             // removed from repository</span></span><br><span class="line"><span class="comment">// lv_demo_printer();           // removed from repository</span></span><br><span class="line"><span class="comment">// lv_demo_stress();            // ok</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------------------------</span></span><br><span class="line"><span class="comment">// LVGL examples</span></span><br><span class="line"><span class="comment">// ----------------------------------</span></span><br></pre></td></tr></table></figure>
 <p>修改为</p>
@@ -195,7 +195,7 @@
 <figure class="highlight c"><figcaption><span>lv_example_freetype_1.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用FreeType加载字体</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">lv_example_freetype_1</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* 创建字体结构体 info */</span></span><br><span class="line">    <span class="type">static</span> <span class="type">lv_ft_info_t</span> info;</span><br><span class="line">    <span class="comment">/* FreeType 使用 C standard 文件系统, 所以不需要盘符 */</span></span><br><span class="line">    <span class="comment">/* 目前程序在Windows上运行, 根目录为LVGL.Simulator.c所在文件夹 */</span></span><br><span class="line">    <span class="comment">// 希望使用的字体的所在位置,即它的路径</span></span><br><span class="line">    info.name = <span class="string">&quot;./lvgl/examples/libs/freetype/arial.ttf&quot;</span>;</span><br><span class="line">    <span class="comment">// 希望生成字体的高度, 这里叫作weight感觉挺奇怪的,weight应该是字重的英文</span></span><br><span class="line">    <span class="comment">// [update-2021.12.17] 作者这里是一个失误,但是为了兼容性就没更正</span></span><br><span class="line">    <span class="comment">// [Issues](https://github.com/lvgl/lv_lib_freetype/issues/17)</span></span><br><span class="line">    info.weight = <span class="number">24</span>;</span><br><span class="line">    <span class="comment">// 字体的风格</span></span><br><span class="line">    info.style = FT_FONT_STYLE_NORMAL;</span><br><span class="line">    <span class="comment">// 字体文件指针</span></span><br><span class="line">    info.mem = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">// 初始化字体</span></span><br><span class="line">    <span class="keyword">if</span>(!lv_ft_font_init(&amp;info)) &#123;</span><br><span class="line">        LV_LOG_ERROR(<span class="string">&quot;create failed.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 为上面的新字体创建一个style</span></span><br><span class="line">    <span class="type">static</span> <span class="type">lv_style_t</span> style;</span><br><span class="line">    <span class="comment">// 初始化style</span></span><br><span class="line">    lv_style_init(&amp;style);</span><br><span class="line">    <span class="comment">// 应用刚才创建的字体到style上</span></span><br><span class="line">    lv_style_set_text_font(&amp;style, info.font);</span><br><span class="line">    <span class="comment">// 设置style的align为居中</span></span><br><span class="line">    lv_style_set_text_align(&amp;style, LV_TEXT_ALIGN_CENTER);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为上面的style创建一个label以展示</span></span><br><span class="line">    <span class="type">lv_obj_t</span> * label = lv_label_create(lv_scr_act());</span><br><span class="line">    <span class="comment">// 为label添加刚才创建的style</span></span><br><span class="line">    lv_obj_add_style(label, &amp;style, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 设置label的内容为Hello world\nI&#x27;m a font created with FreeType</span></span><br><span class="line">    lv_label_set_text(label, <span class="string">&quot;Hello world\nI&#x27;m a font created with FreeType&quot;</span>);</span><br><span class="line">    <span class="comment">// 居中label</span></span><br><span class="line">    lv_obj_center(label);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>迫于arial.ttf不是可变字体,所以我们趁此机会修改一下lv_example_freetype_1中用到的字体,熟悉下使用其他字体的方式.</p>
-<p>**<a target="_blank" rel="noopener" href="https://fonts.google.com/specimen/Archivo#about">Archivo-VF.ttf</a>**是一款<a target="_blank" rel="noopener" href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">Open Font License</a>的字体<br><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/Archivo-VF.ttf">点击这里可以下载Archivo-VF.ttf</a></p>
+<p>**<a target="_blank" rel="noopener" href="https://fonts.google.com/specimen/Archivo#about">Archivo-VF.ttf</a>**是一款<a target="_blank" rel="noopener" href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">Open Font License</a>的字体<br><a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/Archivo-VF.ttf">点击这里可以下载Archivo-VF.ttf</a></p>
 <p>将其复制到arial.ttf同级目录,然后修改</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info.name = <span class="string">&quot;./lvgl/examples/libs/freetype/arial.ttf&quot;</span>;</span><br></pre></td></tr></table></figure>
 <p>为</p>
@@ -248,7 +248,7 @@
 </ul>
 <h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><script src="https://gist.github.com/chaosgoo/c94cf1d2d4f703301208f3d0a6eaed1b.js"></script>
   </div>
-  <span id="/2021/12/12/FreeType-and-LVGL/" class="leancloud_visitors" data-flag-title="LGVL配合FreeType为可变字体设置字重-模拟器篇">
+  <span id="/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/" class="leancloud_visitors" data-flag-title="LGVL配合FreeType为可变字体设置字重-模拟器篇">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -293,11 +293,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </div>
@@ -308,17 +308,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&text=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&is_video=false&description=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=LGVL配合FreeType为可变字体设置字重-模拟器篇&body=Check out this article: https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&name=LGVL配合FreeType为可变字体设置字重-模拟器篇&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2021/12/12/FreeType-and-LVGL/&t=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&text=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&is_video=false&description=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LGVL配合FreeType为可变字体设置字重-模拟器篇&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&title=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&name=LGVL配合FreeType为可变字体设置字重-模拟器篇&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/&t=LGVL配合FreeType为可变字体设置字重-模拟器篇"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -346,11 +346,11 @@
     <nav>
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
          
-          <li><a href="/links/">Links</a></li>
+          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -360,23 +360,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -399,7 +399,7 @@
   </script>
 
 
-<script src="/js/main.js"></script>
+<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
 
 <!-- search -->
 
