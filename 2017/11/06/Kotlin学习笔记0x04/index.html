@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数 12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public ope">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code Kotlin学习笔记0x04">
+<meta property="og:url" content="https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="基本数据类型根类型AnyKotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any Any 只有equals() hashCode() 和toString 三个函数 12345public open class Any&amp;#123;    public open operator fun equals(other: Any?):Boolean    public ope">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-06T14:59:06.000Z">
+<meta property="article:modified_time" content="2019-07-27T03:29:25.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="Kotlin">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>Code Kotlin学习笔记0x04</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/30/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x03/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&text=Code Kotlin学习笔记0x04"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&is_video=false&description=Code Kotlin学习笔记0x04"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code Kotlin学习笔记0x04&body=Check out this article: https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&name=Code Kotlin学习笔记0x04&description=&lt;h1 id=&#34;基本数据类型&#34;&gt;&lt;a href=&#34;#基本数据类型&#34; class=&#34;headerlink&#34; title=&#34;基本数据类型&#34;&gt;&lt;/a&gt;基本数据类型&lt;/h1&gt;&lt;h2 id=&#34;根类型Any&#34;&gt;&lt;a href=&#34;#根类型Any&#34; class=&#34;headerlink&#34; title=&#34;根类型Any&#34;&gt;&lt;/a&gt;根类型Any&lt;/h2&gt;&lt;p&gt;Kotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any&lt;/p&gt;
+&lt;p&gt;Any 只有equals() hashCode() 和toString 三个函数&lt;/p&gt;
+&lt;figure class=&#34;highlight kotlin&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Any&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;operator&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;equals&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(other: &lt;span class=&#34;type&#34;&gt;Any&lt;/span&gt;?)&lt;/span&gt;&lt;/span&gt;:&lt;span class=&#34;built_in&#34;&gt;Boolean&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;hashCode&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;:&lt;span class=&#34;built_in&#34;&gt;Int&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;toSting&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;:String&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&t=Code Kotlin学习笔记0x04"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E7%B1%BB%E5%9E%8BAny"><span class="toc-number">1.1.</span> <span class="toc-text">根类型Any</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">基础类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">数字类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E5%B8%B8%E9%87%8F%E5%80%BC"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">字面常量值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">类型转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.2.</span> <span class="toc-text">位运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">String 字符串类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">索引运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">原生字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">字符串模板</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.4.</span> <span class="toc-text">数组类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.5.</span> <span class="toc-text">原生数组类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E7%A9%BA%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">可空类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kotlin-%E4%B8%AD%E7%9A%84null"><span class="toc-number">1.3.1.</span> <span class="toc-text">Kotlin 中的null</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nothing%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">Nothing类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E4%B8%8E%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B"><span class="toc-number">1.5.</span> <span class="toc-text">类型转换与类型检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#is-is%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.5.1.</span> <span class="toc-text">is,!is运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#as-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.5.2.</span> <span class="toc-text">as 运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#To-Be-Continue"><span class="toc-number">2.</span> <span class="toc-text">To Be Continue</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Code Kotlin学习笔记0x04
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-11-06T14:59:06.000Z" itemprop="datePublished">2017-11-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h2 id="根类型Any"><a href="#根类型Any" class="headerlink" title="根类型Any"></a>根类型Any</h2><p>Kotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any</p>
+<p>Any 只有equals() hashCode() 和toString 三个函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">open</span> <span class="keyword">class</span> <span class="title class_">Any</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">equals</span><span class="params">(other: <span class="type">Any</span>?)</span></span>:<span class="built_in">Boolean</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">hashCode</span><span class="params">()</span></span>:<span class="built_in">Int</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">toSting</span><span class="params">()</span></span>:String</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><p>在Kotlin中一切皆是对象，所有类型都是引用类型，没有类似java中的基本类型。</p>
+<h3 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h3><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">宽度(Bit)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Double</td>
+<td align="center">64</td>
+</tr>
+<tr>
+<td align="center">Float</td>
+<td align="center">32</td>
+</tr>
+<tr>
+<td align="center">Long</td>
+<td align="center">64</td>
+</tr>
+<tr>
+<td align="center">Int</td>
+<td align="center">32</td>
+</tr>
+<tr>
+<td align="center">Short</td>
+<td align="center">16</td>
+</tr>
+<tr>
+<td align="center">Byte</td>
+<td align="center">8</td>
+</tr>
+</tbody></table>
+<p>上述各个数字类型均继承了Nummber类和Compare类</p>
+<h4 id="字面常量值"><a href="#字面常量值" class="headerlink" title="字面常量值"></a>字面常量值</h4><ul>
+<li>十进制：                     123</li>
+<li>Long类型用大写的L标记         123L</li>
+<li>十六进制                     0x78</li>
+<li>二进制                       0b1111011</li>
+<li>Float类型用F或者f标记        12.3f<blockquote>
+<p>没有八进制哦!</p>
+</blockquote>
+</li>
+</ul>
+<p>另外Kotlin从1.1起允许使用数字字面值的下划线，提高可读性<br>100_000   等价于100000 </p>
+<p>123_456_789L 等价于123456789L </p>
+<p>0xFF_D7_D7_D7 等价于 0xFFD7D7D7 </p>
+<p>0b1111_1111_1111 等价于0b111111111111 </p>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><p>值范围较小类型 不能进行隐式转换成值范围较大的类型，但是可以通过显式转换来转换类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i: <span class="built_in">Int</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b: <span class="built_in">Byte</span> = <span class="number">2</span></span><br><span class="line">i = b<span class="comment">//可以直接进行</span></span><br><span class="line">b = i<span class="comment">//不可以直接进行</span></span><br><span class="line">b = i.toByte()<span class="comment">//显式转换</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><p>在Kotlin并不是使用特殊字符来进行位运算，而是使用中缀方式调用这些位运算的函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = (<span class="number">1</span> shl <span class="number">2</span>) and <span class="number">0x000FF00</span></span><br><span class="line"><span class="comment">//相对于在Java中的 x = (1&lt;&lt;2) &amp; 0x000FF00</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>shl(bits)  有符号的左移 &lt;&lt;</li>
+<li>shr(bits)  有符号的右移 &gt;&gt;</li>
+<li>ushl(bits) 无符号的左移 &lt;&lt;</li>
+<li>ushr(bits) 无符号的左移 &lt;&lt;</li>
+<li>and(bits)  位与         &amp;</li>
+<li>or(bits)   位或         |</li>
+<li>xor(bits)  位异或       ^</li>
+<li>inv(bits)  位非         ~</li>
+</ul>
+<h3 id="String-字符串类型"><a href="#String-字符串类型" class="headerlink" title="String 字符串类型"></a>String 字符串类型</h3><p>Kotlin中，字符串用String 表示,String类不可以被继承</p>
+<h4 id="索引运算符"><a href="#索引运算符" class="headerlink" title="索引运算符"></a>索引运算符</h4><p>字符串中的元素 可以使用索引运算符进行访问</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str:String = <span class="string">&quot;abc&quot;</span></span><br><span class="line"><span class="comment">//s[0]即是a</span></span><br></pre></td></tr></table></figure>
+<p>索引运算符要考虑越界问题</p>
+<h4 id="原生字符串"><a href="#原生字符串" class="headerlink" title="原生字符串"></a>原生字符串</h4><p>原生字符串使用三个引号</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;&quot;&quot;我是原生字符串，</span></span><br><span class="line"><span class="string">内部可以包含换行和其他特殊字符&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h4><p>在字符串中可以包含模板表达式,模板表达式由$开头</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> h = <span class="number">123</span></span><br><span class="line"><span class="keyword">val</span> str = <span class="string">&quot;h is <span class="variable">$h</span>&quot;</span></span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">&quot;str.length is <span class="subst">$&#123;str.length&#125;</span>&quot;</span></span><br><span class="line"><span class="comment">//str是h is 123</span></span><br><span class="line"><span class="comment">//str2是str.length is 3</span></span><br><span class="line">在原生字符串中同样支持模板</span><br><span class="line"><span class="keyword">val</span> str3 = <span class="string">&quot;&quot;&quot;str.length is <span class="subst">$&#123;str.length&#125;</span>&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment">//str3是str.length is 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h3><p>数组在Kotlin中使用Array类来表示</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Array</span>&lt;<span class="type">T</span>&gt; <span class="keyword">private</span> <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">val</span> size: <span class="built_in">Int</span></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(index: <span class="type">Int</span>)</span></span>: T</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">set</span><span class="params">(index: <span class="type">Int</span>, value: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">iterator</span><span class="params">()</span></span>: Iterator&lt;T&gt;</span><br><span class="line">    <span class="comment">// ……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Kotlin 允许将不同类型的元素放到一个数组当中</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = arrayOf(<span class="number">1</span>,<span class="string">&quot;2&quot;</span>,<span class="literal">true</span>)</span><br><span class="line">    arr.forEach&#123;</span><br><span class="line">        print(it)</span><br><span class="line">        print(<span class="string">&quot; &quot;</span>)</span><br><span class="line">        println(it::<span class="keyword">class</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">class</span> <span class="title class_">kotlin</span>.<span class="title">Int</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">class</span> <span class="title class_">kotlin</span>.<span class="title">String</span></span><br><span class="line"><span class="literal">true</span> <span class="keyword">class</span> <span class="title class_">kotlin</span>.<span class="title">Boolean</span></span><br></pre></td></tr></table></figure>
+<p>这个时候Kotlin会把这个数组类型设置成java.lang.Object<br>但是当你使用具体的元素时候，这些元素又会对应自己各自的类型</p>
+<h3 id="原生数组类型"><a href="#原生数组类型" class="headerlink" title="原生数组类型"></a>原生数组类型</h3><p>Kotlin中也有无装箱的开销的专门类来表示原生数组类型.<br>BooleanArray</p>
+<p>ByteArray</p>
+<p>CharArray</p>
+<p>ShortArray</p>
+<p>IntArray</p>
+<p>LongArray</p>
+<p>FloatArray</p>
+<p>DoubleArray</p>
+<p>BooleanArray</p>
+<h2 id="可空类型"><a href="#可空类型" class="headerlink" title="可空类型"></a>可空类型</h2><h3 id="Kotlin-中的null"><a href="#Kotlin-中的null" class="headerlink" title="Kotlin 中的null"></a>Kotlin 中的null</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">null</span></span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="literal">null</span> != <span class="literal">null</span></span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="literal">null</span> <span class="keyword">is</span> Any</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="literal">null</span> <span class="keyword">is</span> Any?</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>null对应的类型是Nothing?<br>null 可以进行加法运算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">println(null + 7)</span><br><span class="line">println(null+&quot;777&quot;)</span><br><span class="line">//println(7+null) 不合法 因为Int没有重载+ null</span><br><span class="line">//println(&quot;777&quot;+null) 不合法 因为String没有重载+ null</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">null7</span><br><span class="line">null777</span><br></pre></td></tr></table></figure>
+
+<p>###安全调用?.</p>
+<p>在Java中,为了防止传来的值是空值，经常会加上一个空判断处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getLength2</span><span class="params">(String str)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">null</span>==str)&#123;</span><br><span class="line">        <span class="keyword">throw</span> str.length()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str.length()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Kotlin中,普通类型形如Int,String等类型是不允许指向null的，只有可空类型才可以指向null<br>可空类型就是在普通类型的后面接上一个?，如String?,Int?<br>可空类型的调用必须通过安全调用(?.)或者非空断言(!!.)进行调用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getLength</span><span class="params">(str:<span class="type">String</span>?)</span></span>:<span class="built_in">Int</span>?=str?.length</span><br><span class="line"><span class="keyword">var</span> s:String?=<span class="string">&quot;QAQ&quot;</span></span><br><span class="line">println(getLength(s))</span><br><span class="line"><span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Nothing类型"><a href="#Nothing类型" class="headerlink" title="Nothing类型"></a>Nothing类型</h2><p>Kotlin中没有类似Java 或者C语言中的函数没有返回值的标记void，但是拥有一个对应的Nothing类型。在Java中<br>返回void的方法，其返回值void是无法被访问到的，而java中的Void类型是可以获取到值，也可以当作值被打印输出，但是Void类型的返回值，返回值永远是null</p>
+<p>在Kotlin中对应的就是Nothing?,它唯一的可被访问到的返回值也是null</p>
+<h2 id="类型转换与类型检测"><a href="#类型转换与类型检测" class="headerlink" title="类型转换与类型检测"></a>类型转换与类型检测</h2><h3 id="is-is运算符"><a href="#is-is运算符" class="headerlink" title="is,!is运算符"></a>is,!is运算符</h3><p>is运算符可以检查对象是否与特定的类型相兼容，is运算符用来检查对象是否属于某个数据类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;a&quot;</span> <span class="keyword">is</span> String       <span class="comment">//true</span></span><br><span class="line"><span class="string">&quot;a&quot;</span> !<span class="keyword">is</span> String      <span class="comment">//false</span></span><br><span class="line"><span class="number">1</span> <span class="keyword">is</span> <span class="built_in">Int</span>            <span class="comment">//true</span></span><br><span class="line"><span class="literal">null</span> <span class="keyword">is</span> Any         <span class="comment">//false</span></span><br><span class="line"><span class="literal">null</span> <span class="keyword">is</span> Any?        <span class="comment">//true</span></span><br><span class="line"><span class="literal">null</span> <span class="keyword">is</span> <span class="built_in">Nothing</span>     <span class="comment">//false</span></span><br><span class="line"><span class="literal">null</span> <span class="keyword">is</span> <span class="built_in">Nothing</span>?    <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>大都数情况下，我们不需要在Kotlin中使用显示转换符，因为编译器会跟踪不可变值的is 检查，并在需要时候自动插入安全的转换</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">	println(strlen(<span class="number">1</span>))</span><br><span class="line">    println(strlen(<span class="literal">false</span>))</span><br><span class="line">    println(strlen(<span class="number">123.1</span>))</span><br><span class="line">    println(strlen(<span class="string">&quot;123&quot;</span>))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">strlen</span><span class="params">(ani:<span class="type">Any</span>)</span></span>:<span class="built_in">Int</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ani <span class="keyword">is</span> String)&#123;</span><br><span class="line">        <span class="keyword">return</span> ani.length</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> Number)&#123;</span><br><span class="line">        <span class="keyword">return</span> ani.toString().length</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> <span class="built_in">Char</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ani <span class="keyword">is</span> <span class="built_in">Boolean</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">&quot;Not A String&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">1</span><br><span class="line">5</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<h3 id="as-运算符"><a href="#as-运算符" class="headerlink" title="as 运算符"></a>as 运算符</h3><p>as运算符用于执行引用类型的显示类型转换，如果要转换的类型于指定的类型兼容，就会成功转换；如果不兼容，使用as?运算符就会返回null</p>
+<p><a target="_blank" rel="noopener" href="http://www.kotlindoc.cn/">参考资料</a></p>
+<p><a target="_blank" rel="noopener" href="https://try.kotlinlang.org/">在线Kotlin IDE</a></p>
+<h1 id="To-Be-Continue"><a href="#To-Be-Continue" class="headerlink" title="To Be Continue"></a>To Be Continue</h1>
+  </div>
+  <span id="/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/" class="leancloud_visitors" data-flag-title="Code Kotlin学习笔记0x04">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      // av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'ViAXVNOzQI1GnaHYPcIiDyzG-gzGzoHsz',
+      app_key: 'Emy5RhFF205NvJ2oTap5pKOD',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E7%B1%BB%E5%9E%8BAny"><span class="toc-number">1.1.</span> <span class="toc-text">根类型Any</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">基础类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">数字类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E5%B8%B8%E9%87%8F%E5%80%BC"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">字面常量值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">类型转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.2.</span> <span class="toc-text">位运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">String 字符串类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">索引运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">原生字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">字符串模板</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.4.</span> <span class="toc-text">数组类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.5.</span> <span class="toc-text">原生数组类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E7%A9%BA%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">可空类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kotlin-%E4%B8%AD%E7%9A%84null"><span class="toc-number">1.3.1.</span> <span class="toc-text">Kotlin 中的null</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nothing%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">Nothing类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E4%B8%8E%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B"><span class="toc-number">1.5.</span> <span class="toc-text">类型转换与类型检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#is-is%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.5.1.</span> <span class="toc-text">is,!is运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#as-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.5.2.</span> <span class="toc-text">as 运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#To-Be-Continue"><span class="toc-number">2.</span> <span class="toc-text">To Be Continue</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&text=Code Kotlin学习笔记0x04"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&is_video=false&description=Code Kotlin学习笔记0x04"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code Kotlin学习笔记0x04&body=Check out this article: https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&title=Code Kotlin学习笔记0x04"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&name=Code Kotlin学习笔记0x04&description=&lt;h1 id=&#34;基本数据类型&#34;&gt;&lt;a href=&#34;#基本数据类型&#34; class=&#34;headerlink&#34; title=&#34;基本数据类型&#34;&gt;&lt;/a&gt;基本数据类型&lt;/h1&gt;&lt;h2 id=&#34;根类型Any&#34;&gt;&lt;a href=&#34;#根类型Any&#34; class=&#34;headerlink&#34; title=&#34;根类型Any&#34;&gt;&lt;/a&gt;根类型Any&lt;/h2&gt;&lt;p&gt;Kotlin中所有的类有一个共同的超类Any,如果类声明时候没有指定超类，则默认为Any&lt;/p&gt;
+&lt;p&gt;Any 只有equals() hashCode() 和toString 三个函数&lt;/p&gt;
+&lt;figure class=&#34;highlight kotlin&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Any&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;operator&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;equals&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(other: &lt;span class=&#34;type&#34;&gt;Any&lt;/span&gt;?)&lt;/span&gt;&lt;/span&gt;:&lt;span class=&#34;built_in&#34;&gt;Boolean&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;hashCode&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;:&lt;span class=&#34;built_in&#34;&gt;Int&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fun&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;toSting&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;:String&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/&t=Code Kotlin学习笔记0x04"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
