@@ -10,7 +10,7 @@
     <meta name="description" content="LGVL配合FreeType为可变字体设置字重-模拟器篇 LGVL配合FreeType为可变字体设置字重-ESP32篇(上) LGVL配合FreeType为可变字体设置字重-ESP32篇(下)  前言我们在上篇中已经实现了模拟器环境下可变字体字重的设置. 是时候掏出你吃灰已久的ESP32了. 本文会使用PlatformIO创建一个全新的项目,直到显示出现上篇文章末尾的动图为止.如遇到问题,可参考">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LGVL配合FreeType为可变字体设置字重-ESP32篇(上)">
-<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/index.html">
+<meta property="og:url" content="https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="LGVL配合FreeType为可变字体设置字重-模拟器篇 LGVL配合FreeType为可变字体设置字重-ESP32篇(上) LGVL配合FreeType为可变字体设置字重-ESP32篇(下)  前言我们在上篇中已经实现了模拟器环境下可变字体字重的设置. 是时候掏出你吃灰已久的ESP32了. 本文会使用PlatformIO创建一个全新的项目,直到显示出现上篇文章末尾的动图为止.如遇到问题,可参考">
 <meta property="og:locale" content="zh_CN">
@@ -28,17 +28,17 @@
     
       
         
-          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -46,12 +46,12 @@
     <title>LGVL配合FreeType为可变字体设置字重-ESP32篇(上)</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
+<link rel="stylesheet" href="/css/rtl.css">
 
     
     <!-- rss -->
@@ -69,11 +69,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </span>
@@ -81,10 +81,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2022/01/03/lvgl-freetype-and-esp32-2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2022/01/03/lvgl-freetype-and-esp32-2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2021/12/12/FreeType-and-LVGL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2021/12/12/FreeType-and-LVGL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -97,17 +97,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&text=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&is_video=false&description=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&name=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&t=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&text=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&is_video=false&description=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)&body=Check out this article: https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&name=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&t=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -150,7 +150,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/ESP32/" rel="tag">ESP32</a>
+        <a class="tag-link-link" href="/tags/ESP32/" rel="tag">ESP32</a>
     </div>
 
 
@@ -221,9 +221,9 @@
 <p>随便写点内容.测试下屏幕的点亮.</p>
 <figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TFT_eSPI.h&gt;</span> <span class="comment">// Hardware-specific library</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;SPI.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">TFT_eSPI tft = <span class="built_in">TFT_eSPI</span>(); <span class="comment">// Invoke custom library</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>); <span class="comment">// Set to a high rate for fast image transfer to a PC</span></span><br><span class="line"></span><br><span class="line">  tft.<span class="built_in">init</span>();</span><br><span class="line">  tft.<span class="built_in">setRotation</span>(<span class="number">0</span>);</span><br><span class="line">  tft.<span class="built_in">fillScreen</span>(TFT_BLACK);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  tft.<span class="built_in">print</span>(<span class="string">&quot;Ready Perfectly&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>![lcd_ready_perfect](<a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/lcd_ready_perfect.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/lcd_ready_perfect.jpg?raw=true</a></p>
+<p>![lcd_ready_perfect](<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/lcd_ready_perfect.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/lcd_ready_perfect.jpg?raw=true</a></p>
 <h3 id="移植LVGL"><a href="#移植LVGL" class="headerlink" title="移植LVGL"></a>移植LVGL</h3><p>屏幕点亮以后,就可以开始移植LVGL了.</p>
-<p>当前时间为2021.12.19,<a href="https://github.com/lvgl/lvgl">GitHub上LVGL</a>最新版本是8.1.1-dev</p>
+<p>当前时间为2021.12.19,<a target="_blank" rel="noopener" href="https://github.com/lvgl/lvgl">GitHub上LVGL</a>最新版本是8.1.1-dev</p>
 <p>使用命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/lvgl/lvgl.git</span><br></pre></td></tr></table></figure>
 <p>获取LVGL后将其复制到lib文件夹下.此时文件目录为</p>
@@ -270,7 +270,7 @@
 <figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;./Port/lv_port_disp.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>); <span class="comment">// Set to a high rate for fast image transfer to a PC</span></span><br><span class="line">  <span class="built_in">Port_Init</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="type">lv_obj_t</span> *label = <span class="built_in">lv_label_create</span>(<span class="built_in">lv_scr_act</span>());</span><br><span class="line">  <span class="built_in">lv_label_set_text</span>(label, <span class="string">&quot;Toou.\nAnata wa watashi no masuta ka?&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 一切就绪, 启动LVGL任务</span></span><br><span class="line">  <span class="built_in">xTaskNotifyGive</span>(handleTaskLvgl);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://zh.moegirl.org.cn/%E4%BD%A0%E6%98%AF%E6%88%91%E7%9A%84Master%E5%90%97?ivk_sa=1024320u"><strong>Toou.Anata wa watashi no masuta ka?</strong></a></p>
-<p>![lvgl_ready_perfect](<a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/lvgl_ready_perfect.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/lvgl_ready_perfect.jpg?raw=true</a></p>
+<p>![lvgl_ready_perfect](<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/lvgl_ready_perfect.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/lv_ft/lvgl_ready_perfect.jpg?raw=true</a></p>
 <h2 id="施工中-待更新"><a href="#施工中-待更新" class="headerlink" title="施工中,待更新"></a>施工中,待更新</h2><h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>Q:点亮屏幕时候,编译器报找不到TFT_eSPI</p>
 <p>A:检查TFT_eSPI是否集成<br>将TFT_eSPI放置在lib文件夹内,并向platformio.ini文件末尾添加</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">lib_extra_dirs</span> =  lib/TFT_eSPI</span><br></pre></td></tr></table></figure>
@@ -280,12 +280,12 @@
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Espressif 32 (3.4.0) &gt; ESP32 Pico Kit</span><br><span class="line">framework-arduinoespressif32 3.10006.210326 (1.0.6)</span><br><span class="line">tool-esptoolpy 1.30100.210531 (3.1.0)</span><br><span class="line">toolchain-xtensa32 2.50200.97 (5.2.0)</span><br><span class="line">&lt;lvgl&gt; 8.1.1-dev</span><br><span class="line">&lt;TFT_eSPI&gt; 2.3.89</span><br><span class="line">esptool.py v3.1</span><br></pre></td></tr></table></figure>
 
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="https://github.com/lvgl/lvgl">https://github.com/lvgl/lvgl</a></li>
-<li><a href="https://github.com/peng-zhihui/Peak">https://github.com/peng-zhihui/Peak</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lvgl/lvgl">https://github.com/lvgl/lvgl</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/peng-zhihui/Peak">https://github.com/peng-zhihui/Peak</a></li>
 </ul>
 
   </div>
-  <span id="/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/" class="leancloud_visitors" data-flag-title="LGVL配合FreeType为可变字体设置字重-ESP32篇(上)">
+  <span id="/2021/12/18/lvgl-freetype-and-esp32/" class="leancloud_visitors" data-flag-title="LGVL配合FreeType为可变字体设置字重-ESP32篇(上)">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -330,11 +330,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </div>
@@ -345,17 +345,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&text=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&is_video=false&description=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&name=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&t=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&text=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&is_video=false&description=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)&body=Check out this article: https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&title=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&name=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2021/12/18/lvgl-freetype-and-esp32/&t=LGVL配合FreeType为可变字体设置字重-ESP32篇(上)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -383,11 +383,11 @@
     <nav>
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -397,23 +397,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
+<script src="/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
+<script src="/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -436,7 +436,7 @@
   </script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 <!-- search -->
 

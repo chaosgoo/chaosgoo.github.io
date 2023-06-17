@@ -10,7 +10,7 @@
     <meta name="description" content="前言为SPIFFS分区OTA适用于只想更新资源部分,而不更新运行代码的场景,比如主题里面的图片资源,字体库之类的东西. 分区表12345# Name,   Type, SubType, Offset,  Size, Flagsnvs,      data, nvs,     0x9000,  0x5000,otadata,  data, ota,     0xe000,  0x2000,app0,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对ESP32 SPIFFS分区进行OTA">
-<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/index.html">
+<meta property="og:url" content="https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="前言为SPIFFS分区OTA适用于只想更新资源部分,而不更新运行代码的场景,比如主题里面的图片资源,字体库之类的东西. 分区表12345# Name,   Type, SubType, Offset,  Size, Flagsnvs,      data, nvs,     0x9000,  0x5000,otadata,  data, ota,     0xe000,  0x2000,app0,">
 <meta property="og:locale" content="zh_CN">
@@ -22,17 +22,17 @@
     
       
         
-          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -40,12 +40,12 @@
     <title>对ESP32 SPIFFS分区进行OTA</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
+<link rel="stylesheet" href="/css/rtl.css">
 
     
     <!-- rss -->
@@ -63,11 +63,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </span>
@@ -75,10 +75,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -91,17 +91,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&text=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&is_video=false&description=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=对ESP32 SPIFFS分区进行OTA&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&name=对ESP32 SPIFFS分区进行OTA&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&t=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&text=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&is_video=false&description=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=对ESP32 SPIFFS分区进行OTA&body=Check out this article: https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&name=对ESP32 SPIFFS分区进行OTA&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&t=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -154,10 +154,10 @@
 <p>这里为了加快OTA速度,我将SPIFFS分区设置的非常小,只有49152字节(48KB)<br>同时app分区只有app0分区.</p>
 <h2 id="OTA涉及到的函数"><a href="#OTA涉及到的函数" class="headerlink" title="OTA涉及到的函数"></a>OTA涉及到的函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前的SPIFFS分区</span></span><br><span class="line"><span class="type">const</span> <span class="type">esp_partition_t</span> *spiffs_patition = <span class="built_in">esp_partition_find_first</span>(</span><br><span class="line">        ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_SPIFFS, <span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">// ESP_PARTITION_TYPE_DATA 和分区表内的data对应</span></span><br><span class="line"><span class="comment">// ESP_PARTITION_SUBTYPE_DATA_SPIFFS 对应SPIFFS类型</span></span><br><span class="line"><span class="comment">// 最后一个参数label传递NULL,表示是个SPIFFS分区就行,叫啥都没关系.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 擦除找到的SPIFFS分区内容.从头开始擦除offset=0, 擦除全部内容size=spiffs_patition-&gt;size</span></span><br><span class="line"><span class="built_in">esp_partition_erase_range</span>(spiffs_patition, <span class="number">0</span>, spiffs_patition-&gt;size);</span><br><span class="line"></span><br><span class="line"><span class="comment">// spiffs2_start spiffs2_end是我用到的新的spiffs文件内容.使用embed_file方式嵌入在程序中.</span></span><br><span class="line"><span class="comment">// 写入新的spiffs2的内容到刚才找到的SPIFFS分区,由于我这时候新的spiffs已经是完整的了,所以offset=0,</span></span><br><span class="line"><span class="comment">// 写入尺寸就是此时具有的新spiffs内容的大小size=spiffs2_end - spiffs2_start - 1</span></span><br><span class="line"><span class="built_in">esp_partition_write</span>(spiffs_patition, <span class="number">0</span>, spiffs2_start,</span><br><span class="line">                                  spiffs2_end - spiffs2_start - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重启后,SPIFFS内容已经变成刚才新写入的了.</span></span><br><span class="line"><span class="built_in">esp_restart</span>();</span><br></pre></td></tr></table></figure>
 
-<h2 id="Repository"><a href="#Repository" class="headerlink" title="Repository"></a>Repository</h2><p>模拟OTA操作.<br><a href="https://github.com/chaosgoo/Esp_SPIFFS_OTA_Demo">Esp_SPIFFS_OTA_Demo</a></p>
+<h2 id="Repository"><a href="#Repository" class="headerlink" title="Repository"></a>Repository</h2><p>模拟OTA操作.<br><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/Esp_SPIFFS_OTA_Demo">Esp_SPIFFS_OTA_Demo</a></p>
 
   </div>
-  <span id="/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/" class="leancloud_visitors" data-flag-title="对ESP32 SPIFFS分区进行OTA">
+  <span id="/2022/09/20/esp32-spiffs-ota-demo/" class="leancloud_visitors" data-flag-title="对ESP32 SPIFFS分区进行OTA">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -202,11 +202,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </div>
@@ -217,17 +217,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&text=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&is_video=false&description=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=对ESP32 SPIFFS分区进行OTA&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&name=对ESP32 SPIFFS分区进行OTA&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&t=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&text=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&is_video=false&description=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=对ESP32 SPIFFS分区进行OTA&body=Check out this article: https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&title=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&name=对ESP32 SPIFFS分区进行OTA&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/&t=对ESP32 SPIFFS分区进行OTA"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -255,11 +255,11 @@
     <nav>
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -269,23 +269,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
+<script src="/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
+<script src="/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -308,7 +308,7 @@
   </script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 <!-- search -->
 

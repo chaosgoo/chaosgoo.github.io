@@ -10,7 +10,7 @@
     <meta name="description" content="闲言碎语一觉醒来，发现风物之诗琴居然可以兑换了，自己弹是不可能弹的，交给脚本吧。 键盘就让一块Pro Micro扮演吧，Python 解析midi文件，然后将需要按下的按键发送给Pro Micro。 这里我测试用的midi文件为MidiShow上随便找的一个千本樱。因为原神的风物之诗琴没有长按效果，所以实现起来少了很多工作量。 开干Pro Micro上运行的代码非常简单，只有20行，需要注意的是并">
 <meta property="og:type" content="article">
 <meta property="og:title" content="风物之诗琴自动弹奏">
-<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/index.html">
+<meta property="og:url" content="https://chaosgoo.github.io/2021/03/28/genshin_auto_play/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="闲言碎语一觉醒来，发现风物之诗琴居然可以兑换了，自己弹是不可能弹的，交给脚本吧。 键盘就让一块Pro Micro扮演吧，Python 解析midi文件，然后将需要按下的按键发送给Pro Micro。 这里我测试用的midi文件为MidiShow上随便找的一个千本樱。因为原神的风物之诗琴没有长按效果，所以实现起来少了很多工作量。 开干Pro Micro上运行的代码非常简单，只有20行，需要注意的是并">
 <meta property="og:locale" content="zh_CN">
@@ -24,17 +24,17 @@
     
       
         
-          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -42,12 +42,12 @@
     <title>风物之诗琴自动弹奏</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
+<link rel="stylesheet" href="/css/rtl.css">
 
     
     <!-- rss -->
@@ -65,11 +65,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </span>
@@ -77,10 +77,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2021/04/01/%E5%81%9A%E4%B8%80%E6%8A%8A2021%E5%B9%B4Stack%20Overflow%E7%9A%84%E6%84%9A%E4%BA%BA%E8%8A%82%E9%94%AE%E7%9B%98/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2021/04/01/%E5%81%9A%E4%B8%80%E6%8A%8A2021%E5%B9%B4Stack%20Overflow%E7%9A%84%E6%84%9A%E4%BA%BA%E8%8A%82%E9%94%AE%E7%9B%98/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2021/03/14/Project-Firefly/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2021/03/14/Project-Firefly/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -93,17 +93,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&text=风物之诗琴自动弹奏"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&is_video=false&description=风物之诗琴自动弹奏"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=风物之诗琴自动弹奏&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&name=风物之诗琴自动弹奏&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&t=风物之诗琴自动弹奏"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&text=风物之诗琴自动弹奏"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&is_video=false&description=风物之诗琴自动弹奏"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=风物之诗琴自动弹奏&body=Check out this article: https://chaosgoo.github.io/2021/03/28/genshin_auto_play/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&name=风物之诗琴自动弹奏&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&t=风物之诗琴自动弹奏"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -146,7 +146,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/Arduino/" rel="tag">Arduino</a>, <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/Python/" rel="tag">Python</a>
+        <a class="tag-link-link" href="/tags/Arduino/" rel="tag">Arduino</a>, <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>
     </div>
 
 
@@ -167,7 +167,7 @@
 <p>python需要安装mido这个库才可以解析midi文件</p>
 <figure class="highlight python"><figcaption><span>main.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> mido</span><br><span class="line"><span class="keyword">from</span> mido <span class="keyword">import</span> MidiFile</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> serial_communication <span class="keyword">import</span> SerialCommunication</span><br><span class="line"></span><br><span class="line"><span class="comment"># 由于我不懂音乐，所以下面的表格一定是错误的，如果您知道如何修改出正确的关系，请留言。</span></span><br><span class="line"><span class="comment"># 虽然这个是错的表，但是还是能播放的。</span></span><br><span class="line"></span><br><span class="line">key_dict = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="number">24</span>: <span class="string">&#x27;Z&#x27;</span>,</span><br><span class="line">    <span class="comment"># 25: &#x27;X&#x27;,  #</span></span><br><span class="line">    <span class="number">26</span>: <span class="string">&#x27;X&#x27;</span>,</span><br><span class="line">    <span class="comment"># 27: &#x27;C&#x27;,  #</span></span><br><span class="line">    <span class="number">28</span>: <span class="string">&#x27;C&#x27;</span>,</span><br><span class="line">    <span class="number">29</span>: <span class="string">&#x27;V&#x27;</span>,</span><br><span class="line">    <span class="comment"># 30: &#x27;B&#x27;,  #</span></span><br><span class="line">    <span class="number">31</span>: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    <span class="comment"># 32: &#x27;B&#x27;,</span></span><br><span class="line">    <span class="number">33</span>: <span class="string">&#x27;M&#x27;</span>,</span><br><span class="line">    <span class="comment"># 34: &#x27;N&#x27;,  #</span></span><br><span class="line">    <span class="number">35</span>: <span class="string">&#x27;N&#x27;</span>,</span><br><span class="line">    <span class="number">36</span>: <span class="string">&#x27;Z&#x27;</span>,</span><br><span class="line">    <span class="comment"># 37: &#x27;X&#x27;,  #</span></span><br><span class="line">    <span class="number">38</span>: <span class="string">&#x27;X&#x27;</span>,</span><br><span class="line">    <span class="comment"># 39: &#x27;C&#x27;,  #</span></span><br><span class="line">    <span class="number">40</span>: <span class="string">&#x27;C&#x27;</span>,</span><br><span class="line">    <span class="number">41</span>: <span class="string">&#x27;V&#x27;</span>,</span><br><span class="line">    <span class="comment"># 42: &#x27;B&#x27;,  #</span></span><br><span class="line">    <span class="number">43</span>: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    <span class="comment"># 44: &#x27;M&#x27;,  #</span></span><br><span class="line">    <span class="number">45</span>: <span class="string">&#x27;M&#x27;</span>,</span><br><span class="line">    <span class="comment"># 46: &#x27;N&#x27;,  #</span></span><br><span class="line">    <span class="number">47</span>: <span class="string">&#x27;N&#x27;</span>,</span><br><span class="line">    <span class="number">48</span>: <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">    <span class="comment"># 49: &#x27;S&#x27;,   #</span></span><br><span class="line">    <span class="number">50</span>: <span class="string">&#x27;S&#x27;</span>,</span><br><span class="line">    <span class="comment"># 51: &#x27;D&#x27;,   #</span></span><br><span class="line">    <span class="number">52</span>: <span class="string">&#x27;D&#x27;</span>,</span><br><span class="line">    <span class="number">53</span>: <span class="string">&#x27;F&#x27;</span>,</span><br><span class="line">    <span class="comment"># 54: &#x27;G&#x27;,   #</span></span><br><span class="line">    <span class="number">55</span>: <span class="string">&#x27;G&#x27;</span>,</span><br><span class="line">    <span class="comment"># 56: &#x27;H&#x27;,   #</span></span><br><span class="line">    <span class="number">57</span>: <span class="string">&#x27;H&#x27;</span>,</span><br><span class="line">    <span class="comment"># 58: &#x27;J&#x27;,   #</span></span><br><span class="line">    <span class="number">59</span>: <span class="string">&#x27;J&#x27;</span>,</span><br><span class="line">    <span class="number">60</span>: <span class="string">&#x27;Q&#x27;</span>,</span><br><span class="line">    <span class="comment"># 61: &#x27;W&#x27;,   #</span></span><br><span class="line">    <span class="number">62</span>: <span class="string">&#x27;W&#x27;</span>,</span><br><span class="line">    <span class="comment"># 63: &#x27;E&#x27;,   #</span></span><br><span class="line">    <span class="number">64</span>: <span class="string">&#x27;E&#x27;</span>,</span><br><span class="line">    <span class="number">65</span>: <span class="string">&#x27;R&#x27;</span>,</span><br><span class="line">    <span class="comment"># 66: &#x27;T&#x27;,   #</span></span><br><span class="line">    <span class="number">67</span>: <span class="string">&#x27;T&#x27;</span>,</span><br><span class="line">    <span class="comment"># 68: &#x27;Y&#x27;,   #</span></span><br><span class="line">    <span class="number">69</span>: <span class="string">&#x27;Y&#x27;</span>,</span><br><span class="line">    <span class="comment"># 70: &#x27;U&#x27;,   #</span></span><br><span class="line">    <span class="number">71</span>: <span class="string">&#x27;U&#x27;</span>,</span><br><span class="line">    <span class="number">72</span>: <span class="string">&#x27;Q&#x27;</span>,</span><br><span class="line">    <span class="comment"># 73: &#x27;W&#x27;,   #</span></span><br><span class="line">    <span class="number">74</span>: <span class="string">&#x27;W&#x27;</span>,</span><br><span class="line">    <span class="comment"># 75: &#x27;E&#x27;,   #</span></span><br><span class="line">    <span class="number">76</span>: <span class="string">&#x27;E&#x27;</span>,</span><br><span class="line">    <span class="number">77</span>: <span class="string">&#x27;R&#x27;</span>,</span><br><span class="line">    <span class="comment"># 78: &#x27;T&#x27;,   #</span></span><br><span class="line">    <span class="number">79</span>: <span class="string">&#x27;T&#x27;</span>,</span><br><span class="line">    <span class="comment"># 80: &#x27;Y&#x27;,   #</span></span><br><span class="line">    <span class="number">81</span>: <span class="string">&#x27;Y&#x27;</span>,</span><br><span class="line">    <span class="comment"># 82: &#x27;U&#x27;,   #</span></span><br><span class="line">    <span class="number">83</span>: <span class="string">&#x27;U&#x27;</span>,</span><br><span class="line">    <span class="number">84</span>: <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">    <span class="comment"># 85: &#x27;S&#x27;,   #</span></span><br><span class="line">    <span class="number">86</span>: <span class="string">&#x27;S&#x27;</span>,</span><br><span class="line">    <span class="number">88</span>: <span class="string">&#x27;D&#x27;</span>,</span><br><span class="line">    <span class="number">89</span>: <span class="string">&#x27;F&#x27;</span>,</span><br><span class="line">    <span class="comment"># 90: &#x27;G&#x27;,   #</span></span><br><span class="line">    <span class="number">91</span>: <span class="string">&#x27;G&#x27;</span>,</span><br><span class="line">    <span class="number">93</span>: <span class="string">&#x27;H&#x27;</span>,</span><br><span class="line">    <span class="number">94</span>: <span class="string">&#x27;J&#x27;</span>,</span><br><span class="line">    <span class="comment"># 95: &#x27;J&#x27;,</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    virtual_key_board = SerialCommunication(<span class="string">&quot;COM17&quot;</span>, <span class="number">115200</span>, <span class="number">1</span>)</span><br><span class="line">    mid = MidiFile(<span class="string">&quot;input_mid.mid&quot;</span>)</span><br><span class="line">    tempo = mido.bpm2tempo(<span class="number">131</span>)</span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line">    unsupport = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">for</span> i, track <span class="keyword">in</span> <span class="built_in">enumerate</span>(mid.tracks):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Track &#123;&#125;: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(i, track.name))</span><br><span class="line">        passed_time = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> msg <span class="keyword">in</span> track:</span><br><span class="line">            ab_time = mido.tick2second(msg.time, mid.ticks_per_beat, tempo)</span><br><span class="line">            real_time = ab_time + passed_time</span><br><span class="line">            passed_time += ab_time</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> msg.<span class="built_in">type</span> == <span class="string">&quot;note_on&quot;</span>:</span><br><span class="line">                <span class="keyword">if</span> msg.note <span class="keyword">in</span> key_dict.keys():</span><br><span class="line">                    virtual_key_board.execute(key_dict[msg.note])</span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    unsupport.add(<span class="built_in">str</span>(msg.note))</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;skip note:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(msg.note))</span><br><span class="line">                time.sleep(msg.time*<span class="number">0.001</span>)</span><br><span class="line">    <span class="built_in">print</span>(unsupport)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
   </div>
-  <span id="/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/" class="leancloud_visitors" data-flag-title="风物之诗琴自动弹奏">
+  <span id="/2021/03/28/genshin_auto_play/" class="leancloud_visitors" data-flag-title="风物之诗琴自动弹奏">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -212,11 +212,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </div>
@@ -227,17 +227,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&text=风物之诗琴自动弹奏"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&is_video=false&description=风物之诗琴自动弹奏"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=风物之诗琴自动弹奏&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&name=风物之诗琴自动弹奏&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2021/03/28/genshin_auto_play/&t=风物之诗琴自动弹奏"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&text=风物之诗琴自动弹奏"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&is_video=false&description=风物之诗琴自动弹奏"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=风物之诗琴自动弹奏&body=Check out this article: https://chaosgoo.github.io/2021/03/28/genshin_auto_play/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&title=风物之诗琴自动弹奏"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&name=风物之诗琴自动弹奏&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2021/03/28/genshin_auto_play/&t=风物之诗琴自动弹奏"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -265,11 +265,11 @@
     <nav>
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -279,23 +279,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
+<script src="/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
+<script src="/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -318,7 +318,7 @@
   </script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 <!-- search -->
 

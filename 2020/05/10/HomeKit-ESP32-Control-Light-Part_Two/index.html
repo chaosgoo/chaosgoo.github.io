@@ -10,7 +10,7 @@
     <meta name="description" content="快把你家的灯接入HomeKit吧其一（LED篇）由于我住的地方没有床头没有灯的开关，每次都得下床才可以关灯。碰巧上次多买了一块ESP32，再碰巧的是大黄猫不久前给我发了个通过HomeKit控制他家ESP8266的视频。于是就有了这篇文章。目标很明确，那就是ESP32接入HomeKit然后通过Siri控制我的开关。 准备工作 *环境 环境 环境，配置好环境才可以开始工作，本质上最繁琐的还是配置环境。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HomeKit ESP32 Control Light">
-<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/index.html">
+<meta property="og:url" content="https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="快把你家的灯接入HomeKit吧其一（LED篇）由于我住的地方没有床头没有灯的开关，每次都得下床才可以关灯。碰巧上次多买了一块ESP32，再碰巧的是大黄猫不久前给我发了个通过HomeKit控制他家ESP8266的视频。于是就有了这篇文章。目标很明确，那就是ESP32接入HomeKit然后通过Siri控制我的开关。 准备工作 *环境 环境 环境，配置好环境才可以开始工作，本质上最繁琐的还是配置环境。">
 <meta property="og:locale" content="zh_CN">
@@ -32,17 +32,17 @@
     
       
         
-          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -50,12 +50,12 @@
     <title>HomeKit ESP32 Control Light</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
+<link rel="stylesheet" href="/css/rtl.css">
 
     
     <!-- rss -->
@@ -73,11 +73,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </span>
@@ -85,10 +85,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2020/04/25/pro-micro/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2020/04/25/pro-micro/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -101,17 +101,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&text=HomeKit ESP32 Control Light"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&is_video=false&description=HomeKit ESP32 Control Light"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 Control Light&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&name=HomeKit ESP32 Control Light&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&t=HomeKit ESP32 Control Light"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&text=HomeKit ESP32 Control Light"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&is_video=false&description=HomeKit ESP32 Control Light"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 Control Light&body=Check out this article: https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&name=HomeKit ESP32 Control Light&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&t=HomeKit ESP32 Control Light"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -154,7 +154,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/ESP32/" rel="tag">ESP32</a>
+        <a class="tag-link-link" href="/tags/ESP32/" rel="tag">ESP32</a>
     </div>
 
 
@@ -167,7 +167,7 @@
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作 *"></a>准备工作 *</h2><p>环境 环境 环境，配置好环境才可以开始工作，本质上最繁琐的还是配置环境。</p>
 <p>我使用的操作系统是Windows 10 18363.719</p>
 <p>但是真正的开发环境是位于Windows Subsystem for Linux上的Ubuntu 18.04 LTS(该操作系统可以到Windows 10自带的MicroSoft Store上进行下载)<br>没错，我套了一层娃。</p>
-<h3 id="0x01-下载esp-homekit-demo"><a href="#0x01-下载esp-homekit-demo" class="headerlink" title="0x01 下载esp-homekit-demo"></a>0x01 下载esp-homekit-demo</h3><p><a href="https://github.com/maximkulkin/esp-homekit-demo.git">https://github.com/maximkulkin/esp-homekit-demo.git</a></p>
+<h3 id="0x01-下载esp-homekit-demo"><a href="#0x01-下载esp-homekit-demo" class="headerlink" title="0x01 下载esp-homekit-demo"></a>0x01 下载esp-homekit-demo</h3><p><a target="_blank" rel="noopener" href="https://github.com/maximkulkin/esp-homekit-demo.git">https://github.com/maximkulkin/esp-homekit-demo.git</a></p>
 <p>打开终端，进入你喜欢的文件夹，使用命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/maximkulkin/esp-homekit-demo.git</span><br></pre></td></tr></table></figure>
 <p>下载esp-homekit-demo<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/clone_repo.png?raw=true" alt="clone_repo"></p>
@@ -208,11 +208,11 @@
 <p>打开你的iPhone，然后启动”家庭”，点击添加配件，选择我没有或无法扫描代码。<br>此时可以在附近的配件里面查看到Sample LED，选中它。虽然会提示未认证的配件，但是不用理会，电机仍然添加。然后输入代码11111111。稍等片刻即可添加成功。<br>现在就可以对着手机说”嘿，Siri，开灯”或者”嘿，Siri， 关灯”。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/turn_off_light.png?raw=true" alt="turn_off"><br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/turn_on_light.png?raw=true" alt="turn_on"></p>
 <h1 id="下期预告-快把你家的灯接入HomeKit吧其二（舵机篇）"><a href="#下期预告-快把你家的灯接入HomeKit吧其二（舵机篇）" class="headerlink" title="下期预告:快把你家的灯接入HomeKit吧其二（舵机篇）"></a>下期预告:快把你家的灯接入HomeKit吧其二（舵机篇）</h1><p>参考资料:<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoyuluoke1/article/details/79111599">在Win10的Linux子系统下搭建ESP32的开发环境</a></p>
 <p><a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/index.html">ESP-IDF 编程指南</a></p>
-<p><a href="https://github.com/espressif/esp-idf">Espressif IoT Development Framework</a></p>
-<p><a href="https://github.com/maximkulkin/esp-homekit-demo/wiki/Build-instructions-ESP32">Build instructions ESP32</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/espressif/esp-idf">Espressif IoT Development Framework</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/maximkulkin/esp-homekit-demo/wiki/Build-instructions-ESP32">Build instructions ESP32</a></p>
 
   </div>
-  <span id="/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/" class="leancloud_visitors" data-flag-title="HomeKit ESP32 Control Light">
+  <span id="/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/" class="leancloud_visitors" data-flag-title="HomeKit ESP32 Control Light">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -257,11 +257,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </div>
@@ -272,17 +272,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&text=HomeKit ESP32 Control Light"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&is_video=false&description=HomeKit ESP32 Control Light"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 Control Light&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&name=HomeKit ESP32 Control Light&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&t=HomeKit ESP32 Control Light"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&text=HomeKit ESP32 Control Light"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&is_video=false&description=HomeKit ESP32 Control Light"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HomeKit ESP32 Control Light&body=Check out this article: https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&title=HomeKit ESP32 Control Light"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&name=HomeKit ESP32 Control Light&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/&t=HomeKit ESP32 Control Light"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -310,11 +310,11 @@
     <nav>
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -324,23 +324,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
+<script src="/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
+<script src="/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -363,7 +363,7 @@
   </script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 <!-- search -->
 

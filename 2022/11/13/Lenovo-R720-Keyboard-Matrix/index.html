@@ -10,7 +10,7 @@
     <meta name="description" content="联想拯救者R720 键盘矩阵逆向序朋友托我帮他的R720笔记本改装成KVM.于是便有了此文. 键盘介绍主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&#x3D;22)个IO.(其实还是挺多的)为了避免鬼键,实际的接线比理想情况下复杂.而且相较于很多DIY机械键盘的直来直去线路:![常见](https:&#x2F;&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="联想拯救者 R720 键盘矩阵逆向">
-<meta property="og:url" content="https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/index.html">
+<meta property="og:url" content="https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/index.html">
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="联想拯救者R720 键盘矩阵逆向序朋友托我帮他的R720笔记本改装成KVM.于是便有了此文. 键盘介绍主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&#x3D;22)个IO.(其实还是挺多的)为了避免鬼键,实际的接线比理想情况下复杂.而且相较于很多DIY机械键盘的直来直去线路:![常见](https:&#x2F;&#x2F;">
 <meta property="og:locale" content="zh_CN">
@@ -27,17 +27,17 @@
     
       
         
-          <link rel="shortcut icon" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
         
       
       
         
-          <link rel="icon" type="image/png" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png" sizes="192x192">
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
         
       
       
         
-          <link rel="apple-touch-icon" sizes="180x180" href="/chaosgoo/chaosgoo.github.io/images/Logo_sketch_bg_64px.png">
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
         
       
     
@@ -45,12 +45,12 @@
     <title>联想拯救者 R720 键盘矩阵逆向</title>
     <!-- styles -->
     
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
       
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/css/rtl.css">
+<link rel="stylesheet" href="/css/rtl.css">
 
     
     <!-- rss -->
@@ -68,11 +68,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </span>
@@ -80,10 +80,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2022/12/31/Monochrome_dither_algorithm/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2022/12/31/Monochrome_dither_algorithm/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/chaosgoo/chaosgoo.github.io/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -96,17 +96,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&text=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&is_video=false&description=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=联想拯救者 R720 键盘矩阵逆向&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&name=联想拯救者 R720 键盘矩阵逆向&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&t=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&text=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&is_video=false&description=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=联想拯救者 R720 键盘矩阵逆向&body=Check out this article: https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&name=联想拯救者 R720 键盘矩阵逆向&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&t=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -149,7 +149,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/Hack/" rel="tag">Hack</a>, <a class="tag-link-link" href="/chaosgoo/chaosgoo.github.io/tags/Keyboard/" rel="tag">Keyboard</a>
+        <a class="tag-link-link" href="/tags/Hack/" rel="tag">Hack</a>, <a class="tag-link-link" href="/tags/Keyboard/" rel="tag">Keyboard</a>
     </div>
 
 
@@ -159,24 +159,24 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="联想拯救者R720-键盘矩阵逆向"><a href="#联想拯救者R720-键盘矩阵逆向" class="headerlink" title="联想拯救者R720 键盘矩阵逆向"></a>联想拯救者R720 键盘矩阵逆向</h1><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>朋友托我帮他的R720笔记本改装成KVM.于是便有了此文.</p>
-<h2 id="键盘介绍"><a href="#键盘介绍" class="headerlink" title="键盘介绍"></a>键盘介绍</h2><p>主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.<br>R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&#x3D;22)个IO.(其实还是挺多的)<br>为了避免<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36753518/article/details/111410693">鬼键</a>,实际的接线比理想情况下复杂.<br>而且相较于很多DIY机械键盘的直来直去线路:<br>![常见](<a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/normal_wire.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/normal_wire.jpg?raw=true</a><br>R720这块键盘的内部Wiring就显得很乱了:<br>![R720](<a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/r720_wire.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/r720_wire.jpg?raw=true</a><br>刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的<a target="_blank" rel="noopener" href="https://www.howett.net/data/framework_matrix/">KeyMap</a>才放下心来.</p>
+<h2 id="键盘介绍"><a href="#键盘介绍" class="headerlink" title="键盘介绍"></a>键盘介绍</h2><p>主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.<br>R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&#x3D;22)个IO.(其实还是挺多的)<br>为了避免<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36753518/article/details/111410693">鬼键</a>,实际的接线比理想情况下复杂.<br>而且相较于很多DIY机械键盘的直来直去线路:<br>![常见](<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/normal_wire.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/normal_wire.jpg?raw=true</a><br>R720这块键盘的内部Wiring就显得很乱了:<br>![R720](<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/r720_wire.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/r720_wire.jpg?raw=true</a><br>刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的<a target="_blank" rel="noopener" href="https://www.howett.net/data/framework_matrix/">KeyMap</a>才放下心来.</p>
 <h2 id="KeyMap测绘"><a href="#KeyMap测绘" class="headerlink" title="KeyMap测绘"></a>KeyMap测绘</h2><p>搜到一篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/reboot2010/article/details/109193827">教人把笔记本改装为KVM的文章</a>,文章里面提到了<b>矩阵键盘驱动控制模块Monkey</b>.<br>我一看这不和ATMEGA32U4差不多吗,应该是同一个系列的产品,淘宝上这东西卖50.这不是要了我的命吗.<br>自从去年单片机涨价后,Atmel的产品到现在也没恢复过去的价格,觉得自己现在要是买了就是纯纯大冤种.<br>况且完全可以自己做一个类似的东西,当时手上有这么多IO的板子就一个Raspberry Pi Pico,而QMK也支持了Pico,于是先借助Pico对KeyMap进行测绘.<br>得到如下结果</p>
 <p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/pinmapExcel.png?raw=true" alt="Excel"></p>
-<p>你问我怎么知道Row Pin和Col Pin的,这不是巧了吗,Google一下找到了同模具笔记本的原理图(<a target="_blank" rel="noopener" href="https://www.alisaler.com/">网站</a>).<br>顺便还知道了触摸板引脚定义,后面直接开启QMK的PS&#x2F;2鼠标支持顺便把触摸板一起驱动了.<br>![32P-0.8mm-FPC](<a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/KB_FPC_Pin_Define.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/KB_FPC_Pin_Define.jpg?raw=true</a></p>
+<p>你问我怎么知道Row Pin和Col Pin的,这不是巧了吗,Google一下找到了同模具笔记本的原理图(<a target="_blank" rel="noopener" href="https://www.alisaler.com/">网站</a>).<br>顺便还知道了触摸板引脚定义,后面直接开启QMK的PS&#x2F;2鼠标支持顺便把触摸板一起驱动了.<br>![32P-0.8mm-FPC](<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/KB_FPC_Pin_Define.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/KB_FPC_Pin_Define.jpg?raw=true</a></p>
 <h2 id="Schematic"><a href="#Schematic" class="headerlink" title="Schematic"></a>Schematic</h2><p>得到Key Map后,就可以开始画板子的工作了.<br>迫于当时无法使用Pico编译出支持PS&#x2F;2 Mouse的固件,所以把主控换成了常见的ATMEGA32U4.<br>换主控后,IO开始紧缺了,不过没关系.可以使用拓展IO的芯片来应付这种情况.<br>看了一眼QMK仓库里面的方案,大部分都是使用的输出IO拓展来解决问题.<br>非常不巧的是,这块键盘的扫描方向和常规键盘相反,所以不出意外的话我就要出意外了.<br>于是购入74HC595对输出IO进行拓展并完美的踩了坑.重新检查才意识到我得使用74HC165拓展输入IO才行.</p>
 <p>拖拉好久并且又踩到了PS&#x2F;2 Mouse必须使用指定的IO驱动等好几个坑,最终绘制出下面使用74HC165原理图的方案(沉痛浪费很多次JLC免费打板机会.)</p>
-<p>![原理图](<a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/photo_2022-12-10_20-49-26.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/photo_2022-12-10_20-49-26.jpg?raw=true</a></p>
+<p>![原理图](<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/photo_2022-12-10_20-49-26.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/photo_2022-12-10_20-49-26.jpg?raw=true</a></p>
 <h2 id="QMK-Pin-Map"><a href="#QMK-Pin-Map" class="headerlink" title="QMK Pin Map"></a>QMK Pin Map</h2><p>参考测绘出的Key Map,再借助网页工具得到最终QMK固件所需的KeyMap<br>为了让多媒体键工作正常,于是设置了两层Key Map.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">uint16_t</span> PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = &#123;</span><br><span class="line">    LAYOUT_pa(</span><br><span class="line">		KC_PMNS, KC_PSLS, KC_P0, KC_LALT, KC_SPC, KC_Z, KC_B, KC_N, KC_DOWN, KC_LSFT, KC_PAST, KC_LCTL, KC_UP, KC_ENT, KC_F8, </span><br><span class="line">		KC_C, KC_Q, KC_RALT, KC_X, KC_V, KC_M, KC_DOT, KC_RSFT, KC_COMM, KC_RCTL, KC_SLSH, KC_QUOT, </span><br><span class="line">		KC_PPLS, KC_P9, MO(<span class="number">1</span>), KC_E, KC_F2, KC_G, KC_H, KC_BSLS, KC_F7, KC_P8, KC_MINS, KC_RGHT, </span><br><span class="line">		KC_P2, KC_LGUI, KC_TAB, KC_F4, KC_F1, KC_T, KC_Y, KC_O, KC_F6, KC_F9, KC_F12, KC_PSLS, </span><br><span class="line">		KC_P3, KC_P7, KC_GRV, KC_CAPS, KC_S, KC_5, KC_6, KC_F10, KC_F5, KC_0, KC_EQL, KC_DEL, </span><br><span class="line">		KC_PDOT, KC_1, KC_3, KC_2, KC_4, KC_7, KC_9, KC_8, KC_P, KC_BSPC, KC_P4, </span><br><span class="line">		KC_P1, KC_F3, KC_W, KC_R, KC_U, KC_F11, KC_I, KC_LEFT, KC_LBRC, KC_RBRC, KC_P5, </span><br><span class="line">		KC_NUM, KC_A, KC_ESC, KC_F, KC_J, KC_L, KC_K, KC_APP, KC_SCLN, KC_D, KC_P6),</span><br><span class="line"></span><br><span class="line">	LAYOUT_pa(</span><br><span class="line">		KC_PAUS, KC_MNXT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGDN, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_TRNS, KC_MPRV, KC_TRNS, KC_TRNS, KC_VOLD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MPLY, KC_TRNS, KC_END, </span><br><span class="line">		KC_PSCR, KC_TRNS, KC_TRNS, KC_TRNS, KC_MUTE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_DEL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_INS, KC_VOLU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="实物"><a href="#实物" class="headerlink" title="实物"></a>实物</h2><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/QQ%E6%88%AA%E5%9B%BE20221210205324.jpg?raw=true" alt="实物"></p>
 <h2 id="遗憾"><a href="#遗憾" class="headerlink" title="遗憾"></a>遗憾</h2><p>背光的电压是5V,但是我没有适配.我已经过了那个喜欢背光的年纪了.</p>
 <h2 id="More"><a href="#More" class="headerlink" title="More"></a>More</h2><p>笔记本主板的那个叫啥BoardView也下载到了,再对着这玩意人肉Convert(测量,然后手动绘制)一下就得到了DWG图.<br>知道了精确的开孔,再画板子就方便固定了</p>
-<p>![Draw Outline](<a href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/outline_drawing.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/outline_drawing.jpg?raw=true</a></p>
+<p>![Draw Outline](<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/outline_drawing.jpg?raw=true">https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/outline_drawing.jpg?raw=true</a></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/reboot2010/article/details/109193827">老旧笔记本改造成便携KVM</a><br><a target="_blank" rel="noopener" href="https://www.howett.net/data/framework_matrix/">Framework Laptop Key Matrix</a><br><a target="_blank" rel="noopener" href="https://docs.qmk.fm/#/">QMK Firmware</a><br><a href="www.alisaler.com">Laptop Bios &amp; Schematics</a></p>
 
   </div>
-  <span id="/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/" class="leancloud_visitors" data-flag-title="联想拯救者 R720 键盘矩阵逆向">
+  <span id="/2022/11/13/Lenovo-R720-Keyboard-Matrix/" class="leancloud_visitors" data-flag-title="联想拯救者 R720 键盘矩阵逆向">
     <span class="post-meta-item-text">阅读量 </span>
     <span class="leancloud-visitors-count">0</span>
   </span>
@@ -221,11 +221,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </div>
@@ -236,17 +236,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&text=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&is_video=false&description=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=联想拯救者 R720 键盘矩阵逆向&body=Check out this article: https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&name=联想拯救者 R720 键盘矩阵逆向&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/chaosgoo/chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&t=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&text=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&is_video=false&description=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=联想拯救者 R720 键盘矩阵逆向&body=Check out this article: https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&name=联想拯救者 R720 键盘矩阵逆向&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&t=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -274,11 +274,11 @@
     <nav>
       <ul>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/chaosgoo/chaosgoo.github.io/links/">Links</a></li>
+          <li><a href="/links/">Links</a></li>
         
       </ul>
     </nav>
@@ -288,23 +288,23 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
 
     <!-- jquery -->
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/jquery/jquery.min.js"></script>
+<script src="/lib/jquery/jquery.min.js"></script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
 
 <!-- clipboard -->
 
   
-<script src="/chaosgoo/chaosgoo.github.io/lib/clipboard/clipboard.min.js"></script>
+<script src="/lib/clipboard/clipboard.min.js"></script>
 
   <script type="text/javascript">
   $(function() {
@@ -327,7 +327,7 @@
   </script>
 
 
-<script src="/chaosgoo/chaosgoo.github.io/js/main.js"></script>
+<script src="/js/main.js"></script>
 
 <!-- search -->
 
