@@ -119,6 +119,20 @@
         
         <head>
   <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script type="module">
+    import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+  
+    pageviewCount({
+      serverURL: 'https://waline-five-jet.vercel.app/',
+      path: window.location.pathname,
+  
+      // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+      // selector: 'waline-pageview-count',
+  
+      // 可选的，是否在获取时增加访问量，默认为 `true`
+      // update: true,
+    });
+  </script>
 </head>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -210,10 +224,11 @@
 <p>Kotlin的大部分基础内容到此就结束了,接下来就得看实际开发中的使用了.<br>现在还是有很多不明白的东西,比如如何创建任意类型的数组.<br>这些技术债,得慢慢还上.</p>
 
   </div>
-  <span id="/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/" class="leancloud_visitors" data-flag-title="Code Kotlin学习笔记0x05">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
+  <!-- <span id="/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/" class="leancloud_visitors" data-flag-title="Code Kotlin学习笔记0x05"> -->
+    阅读量: <span class="waline-pageview-count" data-path="/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/" />
+    <!-- <span class="post-meta-item-text">阅读量 </span> -->
+    <!-- <span class="leancloud-visitors-count">0</span> -->
+  <!-- </span> -->
 </article>
 
 <h2>  </h2>
@@ -244,7 +259,7 @@
       // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
       // av: AV,
       el: '.valine_comment',
-      serverURL: 'https://waline-kappa-ivory.vercel.app/'
+      serverURL: 'https://waline-five-jet.vercel.app/'
     });
 </script>
 

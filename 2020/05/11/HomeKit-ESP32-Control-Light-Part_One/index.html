@@ -120,6 +120,20 @@
         
         <head>
   <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script type="module">
+    import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+  
+    pageviewCount({
+      serverURL: 'https://waline-five-jet.vercel.app/',
+      path: window.location.pathname,
+  
+      // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+      // selector: 'waline-pageview-count',
+  
+      // 可选的，是否在获取时增加访问量，默认为 `true`
+      // update: true,
+    });
+  </script>
 </head>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -210,10 +224,11 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/espressif/esp-idf">Espressif IoT Development Framework</a></p>
 
   </div>
-  <span id="/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/" class="leancloud_visitors" data-flag-title="HomeKit ESP32 Control Light II">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
+  <!-- <span id="/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/" class="leancloud_visitors" data-flag-title="HomeKit ESP32 Control Light II"> -->
+    阅读量: <span class="waline-pageview-count" data-path="/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/" />
+    <!-- <span class="post-meta-item-text">阅读量 </span> -->
+    <!-- <span class="leancloud-visitors-count">0</span> -->
+  <!-- </span> -->
 </article>
 
 <h2>  </h2>
@@ -244,7 +259,7 @@
       // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
       // av: AV,
       el: '.valine_comment',
-      serverURL: 'https://waline-kappa-ivory.vercel.app/'
+      serverURL: 'https://waline-five-jet.vercel.app/'
     });
 </script>
 

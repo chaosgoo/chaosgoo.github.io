@@ -121,6 +121,20 @@
         
         <head>
   <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script type="module">
+    import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+  
+    pageviewCount({
+      serverURL: 'https://waline-five-jet.vercel.app/',
+      path: window.location.pathname,
+  
+      // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+      // selector: 'waline-pageview-count',
+  
+      // 可选的，是否在获取时增加访问量，默认为 `true`
+      // update: true,
+    });
+  </script>
 </head>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -192,10 +206,11 @@
 <h2 id="广告位"><a href="#广告位" class="headerlink" title="广告位"></a>广告位</h2><p>卖点电话卡,赚点钱买电子垃圾.需要的可以办一张,我自己也在用.<br><img width="320" src="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/ads/sim.png"></img></p>
 
   </div>
-  <span id="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/" class="leancloud_visitors" data-flag-title="改装米家1代屏幕挂灯,接入HomeKit">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
+  <!-- <span id="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/" class="leancloud_visitors" data-flag-title="改装米家1代屏幕挂灯,接入HomeKit"> -->
+    阅读量: <span class="waline-pageview-count" data-path="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/" />
+    <!-- <span class="post-meta-item-text">阅读量 </span> -->
+    <!-- <span class="leancloud-visitors-count">0</span> -->
+  <!-- </span> -->
 </article>
 
 <h2>  </h2>
@@ -226,7 +241,7 @@
       // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
       // av: AV,
       el: '.valine_comment',
-      serverURL: 'https://waline-kappa-ivory.vercel.app/'
+      serverURL: 'https://waline-five-jet.vercel.app/'
     });
 </script>
 

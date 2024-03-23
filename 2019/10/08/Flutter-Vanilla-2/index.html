@@ -120,6 +120,20 @@
         
         <head>
   <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script type="module">
+    import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+  
+    pageviewCount({
+      serverURL: 'https://waline-five-jet.vercel.app/',
+      path: window.location.pathname,
+  
+      // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+      // selector: 'waline-pageview-count',
+  
+      // 可选的，是否在获取时增加访问量，默认为 `true`
+      // update: true,
+    });
+  </script>
 </head>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -170,10 +184,11 @@
 <p>环境:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flutter 1.10.13-pre.10 • channel master • https://github.com/flutter/flutter.git</span><br><span class="line">Framework • revision f4b4616f87 (2 days ago) • 2019-10-04 20:01:04 -0700</span><br><span class="line">Engine • revision 7d90779bb6</span><br><span class="line">Tools • Dart 2.6.0 (build 2.6.0-dev.0.0 d6c6d12ebf)</span><br></pre></td></tr></table></figure>
   </div>
-  <span id="/2019/10/08/Flutter-Vanilla-2/" class="leancloud_visitors" data-flag-title="Flutter如何设置暗黑模式">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
+  <!-- <span id="/2019/10/08/Flutter-Vanilla-2/" class="leancloud_visitors" data-flag-title="Flutter如何设置暗黑模式"> -->
+    阅读量: <span class="waline-pageview-count" data-path="/2019/10/08/Flutter-Vanilla-2/" />
+    <!-- <span class="post-meta-item-text">阅读量 </span> -->
+    <!-- <span class="leancloud-visitors-count">0</span> -->
+  <!-- </span> -->
 </article>
 
 <h2>  </h2>
@@ -204,7 +219,7 @@
       // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
       // av: AV,
       el: '.valine_comment',
-      serverURL: 'https://waline-kappa-ivory.vercel.app/'
+      serverURL: 'https://waline-five-jet.vercel.app/'
     });
 </script>
 

@@ -121,6 +121,20 @@
         
         <head>
   <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script type="module">
+    import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+  
+    pageviewCount({
+      serverURL: 'https://waline-five-jet.vercel.app/',
+      path: window.location.pathname,
+  
+      // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+      // selector: 'waline-pageview-count',
+  
+      // 可选的，是否在获取时增加访问量，默认为 `true`
+      // update: true,
+    });
+  </script>
 </head>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -176,10 +190,11 @@
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/reboot2010/article/details/109193827">老旧笔记本改造成便携KVM</a><br><a target="_blank" rel="noopener" href="https://www.howett.net/data/framework_matrix/">Framework Laptop Key Matrix</a><br><a target="_blank" rel="noopener" href="https://docs.qmk.fm/#/">QMK Firmware</a><br><a href="www.alisaler.com">Laptop Bios &amp; Schematics</a></p>
 
   </div>
-  <span id="/2022/11/13/Lenovo-R720-Keyboard-Matrix/" class="leancloud_visitors" data-flag-title="联想拯救者 R720 键盘矩阵逆向">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
+  <!-- <span id="/2022/11/13/Lenovo-R720-Keyboard-Matrix/" class="leancloud_visitors" data-flag-title="联想拯救者 R720 键盘矩阵逆向"> -->
+    阅读量: <span class="waline-pageview-count" data-path="/2022/11/13/Lenovo-R720-Keyboard-Matrix/" />
+    <!-- <span class="post-meta-item-text">阅读量 </span> -->
+    <!-- <span class="leancloud-visitors-count">0</span> -->
+  <!-- </span> -->
 </article>
 
 <h2>  </h2>
@@ -210,7 +225,7 @@
       // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
       // av: AV,
       el: '.valine_comment',
-      serverURL: 'https://waline-kappa-ivory.vercel.app/'
+      serverURL: 'https://waline-five-jet.vercel.app/'
     });
 </script>
 

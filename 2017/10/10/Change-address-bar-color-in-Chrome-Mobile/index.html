@@ -121,6 +121,20 @@
         
         <head>
   <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script type="module">
+    import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+  
+    pageviewCount({
+      serverURL: 'https://waline-five-jet.vercel.app/',
+      path: window.location.pathname,
+  
+      // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+      // selector: 'waline-pageview-count',
+  
+      // 可选的，是否在获取时增加访问量，默认为 `true`
+      // update: true,
+    });
+  </script>
 </head>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -166,10 +180,11 @@
 <h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>那么一些像我这样的新手肯定会问，这条语句添加在什么地方啊.<br>直接在hexo g生成的时候修改生成规则，给每个生成的index.html添加上theme-color颜色配置的语句.<br>想要修改生成规则，这时候要到对应主题的layout文件夹内修改.ejs文件,我使用的主题是yilai,那么对应的文件路径就是theme&#x2F;yilai&#x2F;layout&#x2F;_partial&#x2F;head.ejs<br>打开这个文件，很快就可以找到生成代码.在<code>&lt;/head&gt;</code>前添加上修改颜色的代码</p>
 
   </div>
-  <span id="/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/" class="leancloud_visitors" data-flag-title="Other Android Chrome 沉浸式地址栏">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
+  <!-- <span id="/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/" class="leancloud_visitors" data-flag-title="Other Android Chrome 沉浸式地址栏"> -->
+    阅读量: <span class="waline-pageview-count" data-path="/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/" />
+    <!-- <span class="post-meta-item-text">阅读量 </span> -->
+    <!-- <span class="leancloud-visitors-count">0</span> -->
+  <!-- </span> -->
 </article>
 
 <h2>  </h2>
@@ -200,7 +215,7 @@
       // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
       // av: AV,
       el: '.valine_comment',
-      serverURL: 'https://waline-kappa-ivory.vercel.app/'
+      serverURL: 'https://waline-five-jet.vercel.app/'
     });
 </script>
 

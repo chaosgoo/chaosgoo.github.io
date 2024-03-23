@@ -123,6 +123,20 @@
         
         <head>
   <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script type="module">
+    import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+  
+    pageviewCount({
+      serverURL: 'https://waline-five-jet.vercel.app/',
+      path: window.location.pathname,
+  
+      // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+      // selector: 'waline-pageview-count',
+  
+      // 可选的，是否在获取时增加访问量，默认为 `true`
+      // update: true,
+    });
+  </script>
 </head>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -166,10 +180,11 @@
 <h2 id="2021-03-19"><a href="#2021-03-19" class="headerlink" title="2021-03-19"></a>2021-03-19</h2><p>到货焊接了，目前没有太大问题，这个天线信号强度远超预期啊，tql。<br>有钱了可得整个紫色沉金啊。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/ProjectFirefly/PorjectFirefly/IMG_3112.JPG?raw=true">背面，背光那里走了飞线，其实不用走，刮开旁边的阻焊接正极也一样…</img><br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/ProjectFirefly/PorjectFirefly/IMG_3113.JPG?raw=true">有屏幕正面，该画个壳子的设计图</img></p>
 
   </div>
-  <span id="/2021/03/14/Project-Firefly/" class="leancloud_visitors" data-flag-title="其名为Firefly">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
+  <!-- <span id="/2021/03/14/Project-Firefly/" class="leancloud_visitors" data-flag-title="其名为Firefly"> -->
+    阅读量: <span class="waline-pageview-count" data-path="/2021/03/14/Project-Firefly/" />
+    <!-- <span class="post-meta-item-text">阅读量 </span> -->
+    <!-- <span class="leancloud-visitors-count">0</span> -->
+  <!-- </span> -->
 </article>
 
 <h2>  </h2>
@@ -200,7 +215,7 @@
       // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
       // av: AV,
       el: '.valine_comment',
-      serverURL: 'https://waline-kappa-ivory.vercel.app/'
+      serverURL: 'https://waline-five-jet.vercel.app/'
     });
 </script>
 

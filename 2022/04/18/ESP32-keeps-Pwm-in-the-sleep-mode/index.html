@@ -117,6 +117,20 @@
         
         <head>
   <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script type="module">
+    import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+  
+    pageviewCount({
+      serverURL: 'https://waline-five-jet.vercel.app/',
+      path: window.location.pathname,
+  
+      // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
+      // selector: 'waline-pageview-count',
+  
+      // 可选的，是否在获取时增加访问量，默认为 `true`
+      // update: true,
+    });
+  </script>
 </head>
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
@@ -161,10 +175,11 @@
 <p>在esp-idf内置的LEDC (LED Controller) basic example的基础上修改,得到以下代码</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;driver/ledc.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_err.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_log.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_sleep.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_system.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;freertos/FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;freertos/task.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;rtc.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PIN_LED GPIO_NUM_5</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">example_ledc_init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// Prepare and then apply the LEDC PWM timer configuration</span></span><br><span class="line">  <span class="type">ledc_timer_config_t</span> ledc_timer = &#123;</span><br><span class="line">      .duty_resolution = LEDC_TIMER_13_BIT,</span><br><span class="line">      .freq_hz = <span class="number">1000</span>,</span><br><span class="line">      .speed_mode = LEDC_LOW_SPEED_MODE,</span><br><span class="line">      .timer_num = LEDC_TIMER_0,</span><br><span class="line">      .clk_cfg = LEDC_USE_RTC8M_CLK,</span><br><span class="line">  &#125;;</span><br><span class="line">  ESP_ERROR_CHECK(ledc_timer_config(&amp;ledc_timer));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Prepare and then apply the LEDC PWM channel configuration</span></span><br><span class="line">  <span class="type">ledc_channel_config_t</span> ledc_channel = &#123;.channel = LEDC_CHANNEL_0,</span><br><span class="line">                                        .duty = <span class="number">128</span>,</span><br><span class="line">                                        .gpio_num = PIN_LED,</span><br><span class="line">                                        .speed_mode = LEDC_LOW_SPEED_MODE,</span><br><span class="line">                                        .hpoint = <span class="number">0</span>,</span><br><span class="line">                                        .timer_sel = LEDC_TIMER_0&#125;;</span><br><span class="line">  ESP_ERROR_CHECK(ledc_channel_config(&amp;ledc_channel));</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">app_main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// Set the LEDC peripheral configuration</span></span><br><span class="line">  example_ledc_init();</span><br><span class="line">  esp_sleep_pd_config(ESP_PD_DOMAIN_RTC8M, ESP_PD_OPTION_ON);</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; (<span class="number">1</span> &lt;&lt; <span class="number">13</span>); i += <span class="number">128</span>) &#123;</span><br><span class="line">      ESP_LOGE(<span class="string">&quot;Duty&quot;</span>, <span class="string">&quot;Current Duty is %d&quot;</span>, i);</span><br><span class="line">      ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, i));</span><br><span class="line">      <span class="comment">// Update duty to apply the new value</span></span><br><span class="line">      ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0));</span><br><span class="line">      esp_sleep_enable_timer_wakeup(<span class="number">1000</span> * <span class="number">1000</span> * <span class="number">1</span>);</span><br><span class="line">      esp_light_sleep_start();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
-  <span id="/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/" class="leancloud_visitors" data-flag-title="ESP32在休眠模式下保持PWM输出">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
+  <!-- <span id="/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/" class="leancloud_visitors" data-flag-title="ESP32在休眠模式下保持PWM输出"> -->
+    阅读量: <span class="waline-pageview-count" data-path="/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/" />
+    <!-- <span class="post-meta-item-text">阅读量 </span> -->
+    <!-- <span class="leancloud-visitors-count">0</span> -->
+  <!-- </span> -->
 </article>
 
 <h2>  </h2>
@@ -195,7 +210,7 @@
       // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
       // av: AV,
       el: '.valine_comment',
-      serverURL: 'https://waline-kappa-ivory.vercel.app/'
+      serverURL: 'https://waline-five-jet.vercel.app/'
     });
 </script>
 
