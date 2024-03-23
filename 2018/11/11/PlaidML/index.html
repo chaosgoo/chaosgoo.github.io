@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="前言自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&gt;PlaidML!地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程">
+<meta property="og:url" content="https://chaosgoo.github.io/2018/11/11/PlaidML/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="前言自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&gt;PlaidML!地">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-11T03:36:09.000Z">
+<meta property="article:modified_time" content="2019-07-28T03:20:47.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="Keras">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/05/13/soul-of-library/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/11/04/Flutter-Stop-Watch/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2018/11/11/PlaidML/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&text=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&is_video=false&description=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程&body=Check out this article: https://chaosgoo.github.io/2018/11/11/PlaidML/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&name=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2018/11/11/PlaidML/&t=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">测试代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">4.2.</span> <span class="toc-text">运行结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84"><span class="toc-number">4.3.</span> <span class="toc-text">附:</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-11-11T03:36:09.000Z" itemprop="datePublished">2018-11-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Keras/" rel="tag">Keras</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&gt;PlaidML!<br>地址为(<a target="_blank" rel="noopener" href="https://github.com/plaidml/plaidml">https://github.com/plaidml/plaidml</a>)</p>
+<p>更让人激动的是，这款框架可以作为Keras的后端来使用，也就是说我之前略知一二的Keras知识可以直接用了。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>[Windows]<br>直接上pip即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install plaidml-keras</span><br></pre></td></tr></table></figure>
+<p>安装好以后，还需要使用plaidml-setup命令进行后续安装工作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\xxx&gt;plaidml-setup</span><br><span class="line"></span><br><span class="line">PlaidML Setup (0.6.3)</span><br><span class="line"></span><br><span class="line">Thanks <span class="keyword">for</span> using PlaidML!</span><br><span class="line"></span><br><span class="line">Some Notes:</span><br><span class="line">  * Bugs and other issues: https://github.com/plaidml/plaidml</span><br><span class="line">  * Questions: https://stackoverflow.com/questions/tagged/plaidml</span><br><span class="line">  * Say hello: https://groups.google.com/forum/<span class="comment">#!forum/plaidml-dev</span></span><br><span class="line">  * PlaidML is licensed under the Apache License 2.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Default Config Devices:</span><br><span class="line">   opencl_amd_ellesmere.0 : Advanced Micro Devices, Inc. Ellesmere (OpenCL)</span><br><span class="line"></span><br><span class="line">Experimental Config Devices:</span><br><span class="line">   opencl_amd_ellesmere.0 : Advanced Micro Devices, Inc. Ellesmere (OpenCL)</span><br><span class="line">   llvm_cpu.0 : CPU (LLVM)</span><br><span class="line"></span><br><span class="line">Using experimental devices can cause poor performance, crashes, and other nastiness.</span><br><span class="line"></span><br><span class="line">Enable experimental device support? (y,n)[n]:y</span><br><span class="line"></span><br><span class="line">Multiple devices detected (You can override by setting PLAIDML_DEVICE_IDS).</span><br><span class="line">Please choose a default device:</span><br><span class="line"></span><br><span class="line">   1 : opencl_amd_ellesmere.0</span><br><span class="line">   2 : llvm_cpu.0</span><br><span class="line"></span><br><span class="line">Default device? (1,2)[1]:1</span><br><span class="line"></span><br><span class="line">Selected device:</span><br><span class="line">    opencl_amd_ellesmere.0</span><br><span class="line"></span><br><span class="line">Almost <span class="keyword">done</span>. Multiplying some matrices...</span><br><span class="line">Tile code:</span><br><span class="line">  <span class="keyword">function</span> (B[X,Z], C[Z,Y]) -&gt; (A) &#123; A[x,y : X,Y] = +(B[x,z] * C[z,y]); &#125;</span><br><span class="line">Whew. That worked.</span><br><span class="line"></span><br><span class="line">Save settings to C:\Users\xxx\.plaidml? (y,n)[y]:y</span><br><span class="line">Success!</span><br></pre></td></tr></table></figure>
+<p>在执行过程中，会让用户选择默认硬件，选择gpu即可。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>手动指定keras的后端为plaidml</p>
+<p>在import keras前，设置环境变量KERAS_BACKEND为plaidml.keras.backend</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os.environ[<span class="string">&quot;KERAS_BACKEND&quot;</span>] = <span class="string">&quot;plaidml.keras.backend&quot;</span></span><br><span class="line"><span class="keyword">import</span> keras</span><br></pre></td></tr></table></figure>
+<p>也可以通过修改~&#x2F;.keras文件夹内keras.json进行一劳永逸式修改</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;floatx&quot;</span><span class="punctuation">:</span> <span class="string">&quot;float32&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;epsilon&quot;</span><span class="punctuation">:</span> <span class="number">1e-07</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;backend&quot;</span><span class="punctuation">:</span> <span class="string">&quot;plaidml.keras.backend&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;image_data_format&quot;</span><span class="punctuation">:</span> <span class="string">&quot;channels_last&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>那就让被誉为深度学习届的Hello World项目—MNIST手写数字集来做测试吧，哈哈。</p>
+<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load datasets</span></span><br><span class="line">(x_train, y_train), (x_test, y_test) = mnist.load_data()</span><br><span class="line"></span><br><span class="line">x_train = x_train.reshape(<span class="number">60000</span>, <span class="number">784</span>)</span><br><span class="line">x_test = x_test.reshape(<span class="number">10000</span>, <span class="number">784</span>)</span><br><span class="line"><span class="comment"># Normalization</span></span><br><span class="line">x_train = x_train/<span class="number">255</span></span><br><span class="line">x_test = x_test/<span class="number">255</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># one hot code</span></span><br><span class="line">y_train = keras.utils.to_categorical(y_train, <span class="number">10</span>)</span><br><span class="line">y_test = keras.utils.to_categorical(y_test, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">model = Sequential()</span><br><span class="line"></span><br><span class="line">model.add(Dense(<span class="number">256</span>, activation=<span class="string">&#x27;relu&#x27;</span>,input_shape=(<span class="number">784</span>,)))</span><br><span class="line">model.add(Dense(<span class="number">256</span>, activation=<span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">model.add(Dense(<span class="number">10</span>, activation=<span class="string">&#x27;softmax&#x27;</span>))</span><br><span class="line">model.summary()</span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=SGD(),loss=<span class="string">&quot;categorical_crossentropy&quot;</span>,metrics=[<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">model.fit(x_train,y_train,batch_size=<span class="number">64</span>,epochs=<span class="number">5</span>,validation_data=(x_test,y_test))</span><br></pre></td></tr></table></figure>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">G:\&gt;python mnist.py</span><br><span class="line">Using plaidml.keras.backend backend.</span><br><span class="line">INFO:plaidml:Opening device <span class="string">&quot;opencl_amd_ellesmere.0&quot;</span></span><br><span class="line">_________________________________________________________________</span><br><span class="line">Layer (<span class="built_in">type</span>)                 Output Shape              Param <span class="comment">#</span></span><br><span class="line">=================================================================</span><br><span class="line">dense_1 (Dense)              (None, 256)               200960</span><br><span class="line">_________________________________________________________________</span><br><span class="line">dense_2 (Dense)              (None, 256)               65792</span><br><span class="line">_________________________________________________________________</span><br><span class="line">dense_3 (Dense)              (None, 10)                2570</span><br><span class="line">=================================================================</span><br><span class="line">Total params: 269,322</span><br><span class="line">Trainable params: 269,322</span><br><span class="line">Non-trainable params: 0</span><br><span class="line">_________________________________________________________________</span><br><span class="line">Train on 60000 samples, validate on 10000 samples</span><br><span class="line">Epoch 1/5</span><br><span class="line">60000/60000 [==============================] - 20s 341us/step - loss: 0.8436 - acc: 0.7939 - val_loss: 0.3978 - val_acc: 0.8943</span><br><span class="line">Epoch 2/5</span><br><span class="line">60000/60000 [==============================] - 13s 213us/step - loss: 0.3603 - acc: 0.8990 - val_loss: 0.3082 - val_acc: 0.9136</span><br><span class="line">Epoch 3/5</span><br><span class="line">60000/60000 [==============================] - 11s 192us/step - loss: 0.3015 - acc: 0.9138 - val_loss: 0.2727 - val_acc: 0.9235</span><br><span class="line">Epoch 4/5</span><br><span class="line">60000/60000 [==============================] - 10s 166us/step - loss: 0.2677 - acc: 0.9232 - val_loss: 0.2466 - val_acc: 0.9312</span><br><span class="line">Epoch 5/5</span><br><span class="line">60000/60000 [==============================] - 10s 165us/step - loss: 0.2431 - acc: 0.9307 - val_loss: 0.2264 - val_acc: 0.9359</span><br></pre></td></tr></table></figure>
+
+<h2 id="附"><a href="#附" class="headerlink" title="附:"></a>附:</h2><p>本来我是打算在MacOS上安装的，但是遇到了找不到experimental.json的问题。但是等我解决了找不到experimental.json的问题后，又开始报找不到libplaidml.dylib错误，在网上几乎找不到什么资料。唯一找到的资料居然是重装MacOS，这个代价对我来说太大了，于是就转到了Windows下安装，然后一帆风顺。<br>参考资料</p>
+<ul>
+<li>[<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/56973032/how-to-install-plaidml-plaidml-keras]">https://stackoverflow.com/questions/56973032/how-to-install-plaidml-plaidml-keras]</a></li>
+<li>[<a target="_blank" rel="noopener" href="https://keras.io/]">https://keras.io/]</a></li>
+</ul>
+
+  </div>
+  <span id="/2018/11/11/PlaidML/" class="leancloud_visitors" data-flag-title="Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      // av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'bmoQKTmD2yP4zE30ff0brQgJ-MdYXbMMI',
+      app_key: 'UqBaOqCWZQjgrfLOak85DfF7',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">测试代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">4.2.</span> <span class="toc-text">运行结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84"><span class="toc-number">4.3.</span> <span class="toc-text">附:</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2018/11/11/PlaidML/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&text=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&is_video=false&description=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程&body=Check out this article: https://chaosgoo.github.io/2018/11/11/PlaidML/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&title=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2018/11/11/PlaidML/&name=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2018/11/11/PlaidML/&t=Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024
+    Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'chaosgoo';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

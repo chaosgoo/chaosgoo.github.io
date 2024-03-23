@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="Flutter中如何实现点击OverlayEntry子项目后移除自身要想在Flutter中展示一个自定义弹窗，我们可以使用OverlayEntry来实现。   分析网上的大多数例子都是教大家如何使用OverlayEntry实现Android中的Toast效果，展示几秒钟后，调用OverlayEntry的remove方法去移除OverlayEntry。但是想要实现点击OverlayEntry中的项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter中如何实现点击OverlayEntry子项目后移除自身">
+<meta property="og:url" content="https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="Flutter中如何实现点击OverlayEntry子项目后移除自身要想在Flutter中展示一个自定义弹窗，我们可以使用OverlayEntry来实现。   分析网上的大多数例子都是教大家如何使用OverlayEntry实现Android中的Toast效果，展示几秒钟后，调用OverlayEntry的remove方法去移除OverlayEntry。但是想要实现点击OverlayEntry中的项目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%233/weibo.PNG?raw=true">
+<meta property="og:image" content="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/Flutter%20Vanilla%20%233/flutter_entry_overlay.png?raw=true">
+<meta property="article:published_time" content="2019-11-18T14:30:32.000Z">
+<meta property="article:modified_time" content="2020-11-30T00:09:34.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="Flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%233/weibo.PNG?raw=true">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>Flutter中如何实现点击OverlayEntry子项目后移除自身</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/02/10/M5StickC-Balls/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/11/17/Low-Poly-Piano-on-the-ocean/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&text=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&is_video=false&description=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Flutter中如何实现点击OverlayEntry子项目后移除自身&body=Check out this article: https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&name=Flutter中如何实现点击OverlayEntry子项目后移除自身&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&t=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flutter%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%82%B9%E5%87%BBOverlayEntry%E5%AD%90%E9%A1%B9%E7%9B%AE%E5%90%8E%E7%A7%BB%E9%99%A4%E8%87%AA%E8%BA%AB"><span class="toc-number">1.</span> <span class="toc-text">Flutter中如何实现点击OverlayEntry子项目后移除自身</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">1.3.</span> <span class="toc-text">效果</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Flutter中如何实现点击OverlayEntry子项目后移除自身
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-18T14:30:32.000Z" itemprop="datePublished">2019-11-18</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Flutter/" rel="tag">Flutter</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Flutter中如何实现点击OverlayEntry子项目后移除自身"><a href="#Flutter中如何实现点击OverlayEntry子项目后移除自身" class="headerlink" title="Flutter中如何实现点击OverlayEntry子项目后移除自身"></a>Flutter中如何实现点击OverlayEntry子项目后移除自身</h1><p>要想在Flutter中展示一个自定义弹窗，我们可以使用OverlayEntry来实现。</p>
+<img src="https://github.com/chaosgoo/blog_pic/blob/master/Flutter%20Vanilla%20%233/weibo.PNG?raw=true" width=480/>
+
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>网上的大多数例子都是教大家如何使用OverlayEntry实现Android中的Toast效果，展示几秒钟后，调用OverlayEntry的remove方法去移除OverlayEntry。<br>但是想要实现点击OverlayEntry中的项目，再去移除OverlayEntry鲜有资料了。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p><strong>先声明后定义</strong>，如果你习惯了声明就定义就会导致在onPress中不能直接调用entry.remove();(被空指针异常搞怕了吧)</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">OverlayEntry entry;</span><br><span class="line">entry = OverlayEntry(</span><br><span class="line">    builder: (BuildContext context) &#123;</span><br><span class="line">        <span class="keyword">return</span> Positioned(</span><br><span class="line">            top: <span class="number">120</span>,</span><br><span class="line">            left: MediaQuery.of(context).size.width / <span class="number">2</span> - <span class="number">120</span>,</span><br><span class="line">            width: <span class="number">240</span>,</span><br><span class="line">            height: <span class="number">180</span>,</span><br><span class="line">            child: Card(</span><br><span class="line">                clipBehavior: Clip.antiAliasWithSaveLayer,</span><br><span class="line">                shape: RoundedRectangleBorder(</span><br><span class="line">                borderRadius: BorderRadius.all(Radius.circular(<span class="number">12</span>))),</span><br><span class="line">                color: Colors.white,</span><br><span class="line">                child: ListView(</span><br><span class="line">                    shrinkWrap: <span class="keyword">false</span>,</span><br><span class="line">                    padding: <span class="keyword">const</span> EdgeInsets.all(<span class="number">0</span>),</span><br><span class="line">                    physics: ScrollPhysics(),</span><br><span class="line">                    children: &lt;Widget&gt;[</span><br><span class="line">                        FlatButton(</span><br><span class="line">                            onPressed: () &#123;</span><br><span class="line">                                entry.remove();</span><br><span class="line">                            &#125;,</span><br><span class="line">                            child: Row(</span><br><span class="line">                                        mainAxisSize: MainAxisSize.max,</span><br><span class="line">                                        children: &lt;Widget&gt;[</span><br><span class="line">                                            Text(</span><br><span class="line">                                                <span class="string">&#x27;全部&#x27;</span>,</span><br><span class="line">                                                style: TextStyle(</span><br><span class="line">                                                    fontSize: <span class="number">16</span>,),</span><br><span class="line">                                            )</span><br><span class="line">                                        ],</span><br><span class="line">                                    )</span><br><span class="line">                        ),</span><br><span class="line">                        Divider(</span><br><span class="line">                            height: <span class="number">2</span>,</span><br><span class="line">                        ),</span><br><span class="line">                        FlatButton(</span><br><span class="line">                            onPressed: () &#123;</span><br><span class="line">                                entry.remove();</span><br><span class="line">                            &#125;,</span><br><span class="line">                            child: Row(</span><br><span class="line">                                        mainAxisSize: MainAxisSize.max,</span><br><span class="line">                                        children: &lt;Widget&gt;[</span><br><span class="line">                                            Text(</span><br><span class="line">                                                <span class="string">&#x27;原创&#x27;</span>,</span><br><span class="line">                                                style: TextStyle(</span><br><span class="line">                                                    fontSize: <span class="number">16</span>,),</span><br><span class="line">                                            )</span><br><span class="line">                                        ],</span><br><span class="line">                                    )</span><br><span class="line">                        ),</span><br><span class="line">                        Divider(</span><br><span class="line">                            height: <span class="number">2</span>,</span><br><span class="line">                        ),</span><br><span class="line">                        FlatButton(</span><br><span class="line">                            onPressed: () &#123;</span><br><span class="line">                                entry.remove();</span><br><span class="line">                            &#125;,</span><br><span class="line">                            child: Row(</span><br><span class="line">                                        mainAxisSize: MainAxisSize.max,</span><br><span class="line">                                        children: &lt;Widget&gt;[</span><br><span class="line">                                            Text(</span><br><span class="line">                                                <span class="string">&#x27;收藏&#x27;</span>,</span><br><span class="line">                                                style: TextStyle(</span><br><span class="line">                                                    fontSize: <span class="number">16</span>,),</span><br><span class="line">                                            )</span><br><span class="line">                                        ],</span><br><span class="line">                                    )</span><br><span class="line">                        ),</span><br><span class="line">                        Divider(</span><br><span class="line">                            height: <span class="number">2</span>,</span><br><span class="line">                        ),</span><br><span class="line">                        FlatButton(</span><br><span class="line">                            onPressed: () &#123;</span><br><span class="line">                                entry.remove();</span><br><span class="line">                            &#125;,</span><br><span class="line">                            child: Row(</span><br><span class="line">                                        mainAxisSize: MainAxisSize.max,</span><br><span class="line">                                        children: &lt;Widget&gt;[</span><br><span class="line">                                            Text(</span><br><span class="line">                                                <span class="string">&#x27;好友圈&#x27;</span>,</span><br><span class="line">                                                style: TextStyle(</span><br><span class="line">                                                    fontSize: <span class="number">16</span>,),</span><br><span class="line">                                            )</span><br><span class="line">                                        ],</span><br><span class="line">                                    )</span><br><span class="line">                        ),</span><br><span class="line">                        Divider(</span><br><span class="line">                            height: <span class="number">2</span>,</span><br><span class="line">                        ),</span><br><span class="line">                    ],</span><br><span class="line">                ),</span><br><span class="line">            ),</span><br><span class="line">        );</span><br><span class="line">    &#125;,</span><br><span class="line">);</span><br><span class="line">Overlay.of(viewService.context).insert(entry);</span><br></pre></td></tr></table></figure>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><img src="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/Flutter%20Vanilla%20%233/flutter_entry_overlay.png?raw=true" width=480/>
+
+
+<p>(我快要被这缩进折磨死了，在AS中是好好地，复制出来就对不齐了，手动缩进好累啊)</p>
+<p>设备:Essential Phone</p>
+<p>环境:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flutter 1.10.13-pre.10 • channel master • https://github.com/flutter/flutter.git</span><br><span class="line">Framework • revision f4b4616f87 (2 days ago) • 2019-10-04 20:01:04 -0700</span><br><span class="line">Engine • revision 7d90779bb6</span><br><span class="line">Tools • Dart 2.6.0 (build 2.6.0-dev.0.0 d6c6d12ebf)</span><br></pre></td></tr></table></figure>
+  </div>
+  <span id="/2019/11/18/Flutter-Vanilla-3/" class="leancloud_visitors" data-flag-title="Flutter中如何实现点击OverlayEntry子项目后移除自身">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      // av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'bmoQKTmD2yP4zE30ff0brQgJ-MdYXbMMI',
+      app_key: 'UqBaOqCWZQjgrfLOak85DfF7',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flutter%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%82%B9%E5%87%BBOverlayEntry%E5%AD%90%E9%A1%B9%E7%9B%AE%E5%90%8E%E7%A7%BB%E9%99%A4%E8%87%AA%E8%BA%AB"><span class="toc-number">1.</span> <span class="toc-text">Flutter中如何实现点击OverlayEntry子项目后移除自身</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">1.3.</span> <span class="toc-text">效果</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&text=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&is_video=false&description=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Flutter中如何实现点击OverlayEntry子项目后移除自身&body=Check out this article: https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&title=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&name=Flutter中如何实现点击OverlayEntry子项目后移除自身&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2019/11/18/Flutter-Vanilla-3/&t=Flutter中如何实现点击OverlayEntry子项目后移除自身"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024
+    Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'chaosgoo';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>

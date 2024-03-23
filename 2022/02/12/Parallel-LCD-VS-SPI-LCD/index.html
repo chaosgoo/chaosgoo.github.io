@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="前言之前在ESP32上运行LVGL一直使用的是SPI串口驱动LCD, 当时就比较好奇如果换成了并口驱动LCD会对帧率有何影响.于是乎终于在2022年后买入了一块并口屏幕来测试一下. 测试项目 使用LVGL自带的lv_demo_music,开启LV_DEMO_MUSIC_AUTO_PLAY 使用TFT_eSPI自带的Viewport_graphicstest  测试结果运行LVGL自带的lv_dem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP32使用并口屏幕还是串口屏幕对于帧率的影响">
+<meta property="og:url" content="https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="前言之前在ESP32上运行LVGL一直使用的是SPI串口驱动LCD, 当时就比较好奇如果换成了并口驱动LCD会对帧率有何影响.于是乎终于在2022年后买入了一块并口屏幕来测试一下. 测试项目 使用LVGL自带的lv_demo_music,开启LV_DEMO_MUSIC_AUTO_PLAY 使用TFT_eSPI自带的Viewport_graphicstest  测试结果运行LVGL自带的lv_dem">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-12T06:29:05.000Z">
+<meta property="article:modified_time" content="2022-04-18T14:51:23.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>ESP32使用并口屏幕还是串口屏幕对于帧率的影响</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2022/01/03/lvgl-freetype-and-esp32-2/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&text=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&is_video=false&description=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP32使用并口屏幕还是串口屏幕对于帧率的影响&body=Check out this article: https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&name=ESP32使用并口屏幕还是串口屏幕对于帧率的影响&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&t=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.</span> <span class="toc-text">测试项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="toc-number">3.</span> <span class="toc-text">测试结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CLVGL%E8%87%AA%E5%B8%A6%E7%9A%84lv-demo-music"><span class="toc-number">3.1.</span> <span class="toc-text">运行LVGL自带的lv_demo_music</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CTFT-eSPI%E8%87%AA%E5%B8%A6%E7%9A%84Viewport-graphicstest"><span class="toc-number">3.2.</span> <span class="toc-text">运行TFT_eSPI自带的Viewport_graphicstest</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ESP32使用并口屏幕还是串口屏幕对于帧率的影响
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-02-12T06:29:05.000Z" itemprop="datePublished">2022-02-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ESP32/" rel="tag">ESP32</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前在ESP32上运行LVGL一直使用的是SPI串口驱动LCD, 当时就比较好奇如果换成了并口驱动LCD会对帧率有何影响.于是乎终于在2022年后买入了一块并口屏幕来测试一下.</p>
+<h1 id="测试项目"><a href="#测试项目" class="headerlink" title="测试项目"></a>测试项目</h1><ul>
+<li>使用LVGL自带的lv_demo_music,开启LV_DEMO_MUSIC_AUTO_PLAY</li>
+<li>使用TFT_eSPI自带的Viewport_graphicstest</li>
+</ul>
+<h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><h2 id="运行LVGL自带的lv-demo-music"><a href="#运行LVGL自带的lv-demo-music" class="headerlink" title="运行LVGL自带的lv_demo_music"></a>运行LVGL自带的lv_demo_music</h2><table>
+<thead>
+<tr>
+<th align="center">对照组序号</th>
+<th>屏幕参数</th>
+<th>ESP32运行频率</th>
+<th>LVGL缓冲参数</th>
+<th>SPI速率</th>
+<th>TFT_eSPI版本</th>
+<th>LVGL版本</th>
+<th>帧率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td>240x240 1.54寸 SPI LCD</td>
+<td>240MHz</td>
+<td>240*120 启用DMA,未使用双缓冲</td>
+<td>60MHz</td>
+<td>2.3.70</td>
+<td>8.1.1-dev</td>
+<td>26帧</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>240x240 1.33寸 8位并口 LCD</td>
+<td>240MHz</td>
+<td>240*120 未使用双缓冲</td>
+<td>\</td>
+<td>2.3.70</td>
+<td>8.1.1-dev</td>
+<td>28帧</td>
+</tr>
+</tbody></table>
+<p>感觉帧率差异不是很大的样子.</p>
+<h2 id="运行TFT-eSPI自带的Viewport-graphicstest"><a href="#运行TFT-eSPI自带的Viewport-graphicstest" class="headerlink" title="运行TFT_eSPI自带的Viewport_graphicstest"></a>运行TFT_eSPI自带的Viewport_graphicstest</h2><table>
+<thead>
+<tr>
+<th align="center">对照组序号</th>
+<th>屏幕参数</th>
+<th>ESP32运行频率</th>
+<th>SPI速率</th>
+<th>TFT_eSPI版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td>240x240 1.54寸 SPI LCD</td>
+<td>240MHz</td>
+<td>60MHz</td>
+<td>2.3.70</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>240x240 1.33寸 8位并口 LCD</td>
+<td>240MHz</td>
+<td>\</td>
+<td>2.3.70</td>
+</tr>
+</tbody></table>
+<p>运行时候明显感觉到并口的绘制速度更快,不过还是得数据说话,于是有如下Log</p>
+<p>8位并口结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TFT_eSPI library <span class="built_in">test</span>!</span><br><span class="line">Benchmark                Time (microseconds)</span><br><span class="line">Screen fill              53073</span><br><span class="line">Text                     21126</span><br><span class="line">Lines                    36424</span><br><span class="line">Horiz/Vert Lines         10469</span><br><span class="line">Rectangles (outline)     5918</span><br><span class="line">Rectangles (filled)      122742</span><br><span class="line">Circles (filled)         28151</span><br><span class="line">Circles (outline)        22372</span><br><span class="line">Triangles (outline)      14111</span><br><span class="line">Triangles (filled)       46193</span><br><span class="line">Rounded rects (outline)  16475</span><br><span class="line">Rounded rects (filled)   127122</span><br><span class="line">Done!</span><br></pre></td></tr></table></figure>
+
+<p>串口结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TFT_eSPI library <span class="built_in">test</span>!</span><br><span class="line">Benchmark                Time (microseconds)</span><br><span class="line">Screen fill              102725</span><br><span class="line">Text                     12506</span><br><span class="line">Lines                    38321</span><br><span class="line">Horiz/Vert Lines         9293</span><br><span class="line">Rectangles (outline)     6594</span><br><span class="line">Rectangles (filled)      234378</span><br><span class="line">Circles (filled)         30350</span><br><span class="line">Circles (outline)        16884</span><br><span class="line">Triangles (outline)      12893</span><br><span class="line">Triangles (filled)       79688</span><br><span class="line">Rounded rects (outline)  11730</span><br><span class="line">Rounded rects (filled)   240258</span><br><span class="line">Done!</span><br></pre></td></tr></table></figure>
+
+<p>并口驱动情况下绘制时间几乎是串口驱动绘制时间的一半.</p>
+<p>果然还是有提升的.</p>
+<p>至于为什么在LVGL中拉不开差距,经过群友Principle点拨后意识到,运行LVGL时候CPU性能方面出现了瓶颈,我的ESP32是初代版本,如果换成最新的ESP32 S3则会拉开差距.</p>
+
+  </div>
+  <span id="/2022/02/12/Parallel-LCD-VS-SPI-LCD/" class="leancloud_visitors" data-flag-title="ESP32使用并口屏幕还是串口屏幕对于帧率的影响">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      // av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'bmoQKTmD2yP4zE30ff0brQgJ-MdYXbMMI',
+      app_key: 'UqBaOqCWZQjgrfLOak85DfF7',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.</span> <span class="toc-text">测试项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="toc-number">3.</span> <span class="toc-text">测试结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CLVGL%E8%87%AA%E5%B8%A6%E7%9A%84lv-demo-music"><span class="toc-number">3.1.</span> <span class="toc-text">运行LVGL自带的lv_demo_music</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CTFT-eSPI%E8%87%AA%E5%B8%A6%E7%9A%84Viewport-graphicstest"><span class="toc-number">3.2.</span> <span class="toc-text">运行TFT_eSPI自带的Viewport_graphicstest</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&text=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&is_video=false&description=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ESP32使用并口屏幕还是串口屏幕对于帧率的影响&body=Check out this article: https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&title=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&name=ESP32使用并口屏幕还是串口屏幕对于帧率的影响&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2022/02/12/Parallel-LCD-VS-SPI-LCD/&t=ESP32使用并口屏幕还是串口屏幕对于帧率的影响"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024
+    Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'chaosgoo';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>
