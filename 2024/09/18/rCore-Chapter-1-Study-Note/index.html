@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="theme-color" content="#dedbd9">
+    <meta name="description" content="rCore系列文章学习笔记老忘记学到什么地方了, 之前看过一点BlogOS的文章,但是没有看下去.这次在阅读rCore时候,借助此笔记记录学习过程. 项目创建1cargo new os --bin 默认创建的项目运行在Rust 标准库std环境下.设置编译目标到”riscv64gc-unknown-none-elf”切换到no_std环境.由于println!宏依赖标准库, 所以当切换到no_st">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rCore系列文章学习笔记0x01">
+<meta property="og:url" content="https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="rCore系列文章学习笔记老忘记学到什么地方了, 之前看过一点BlogOS的文章,但是没有看下去.这次在阅读rCore时候,借助此笔记记录学习过程. 项目创建1cargo new os --bin 默认创建的项目运行在Rust 标准库std环境下.设置编译目标到”riscv64gc-unknown-none-elf”切换到no_std环境.由于println!宏依赖标准库, 所以当切换到no_st">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-18T14:49:01.000Z">
+<meta property="article:modified_time" content="2024-09-21T03:57:51.356Z">
+<meta property="article:author" content="Chaos Goo">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/Logo_sketch_bg_64px.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_sketch_bg_64px.png">
+        
+      
+    
+    <!-- title -->
+    <title>rCore系列文章学习笔记0x01</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2024/07/29/Friday-Ink/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&text=rCore系列文章学习笔记0x01"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&is_video=false&description=rCore系列文章学习笔记0x01"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=rCore系列文章学习笔记0x01&body=Check out this article: https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&name=rCore系列文章学习笔记0x01&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&t=rCore系列文章学习笔记0x01"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rCore%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">rCore系列文章学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">项目创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%E5%BA%8F%E7%AB%A0"><span class="toc-number">1.2.</span> <span class="toc-text">回顾序章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="toc-number">1.3.</span> <span class="toc-text">程序内存布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">编译流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%86%85%E6%A0%B8%E7%AC%AC%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">编写内核第一条指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E5%86%85%E6%A0%B8%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="toc-number">1.5.1.</span> <span class="toc-text">调整内核内存布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C"><span class="toc-number">1.5.2.</span> <span class="toc-text">运行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ESBI%E6%9C%8D%E5%8A%A1%E5%AE%8C%E6%88%90%E8%BE%93%E5%87%BA%E5%92%8C%E5%85%B3%E6%9C%BA"><span class="toc-number">1.6.</span> <span class="toc-text">基于SBI服务完成输出和关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0"><span class="toc-number">1.7.</span> <span class="toc-text">添加彩色打印</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <head>
+  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        rCore系列文章学习笔记0x01
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-09-18T14:49:01.000Z" itemprop="datePublished">2024-09-18</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="rCore系列文章学习笔记"><a href="#rCore系列文章学习笔记" class="headerlink" title="rCore系列文章学习笔记"></a>rCore系列文章学习笔记</h1><p>老忘记学到什么地方了, 之前看过一点<a target="_blank" rel="noopener" href="https://os.phil-opp.com/freestanding-rust-binary/">BlogOS</a>的文章,但是没有看下去.<br>这次在阅读rCore时候,借助此笔记记录学习过程.</p>
+<h2 id="项目创建"><a href="#项目创建" class="headerlink" title="项目创建"></a>项目创建</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo new os --bin</span><br></pre></td></tr></table></figure>
+<p>默认创建的项目运行在Rust 标准库std环境下.<br>设置编译目标到”riscv64gc-unknown-none-elf”切换到no_std环境.<br>由于println!宏依赖标准库, 所以当切换到no_std环境下println!不可用.</p>
+<p>在程序发生错误的时候,std下的panic!宏会打印出错的位置,而no_std下,panic!并没有具体实现.</p>
+<p>要想让程序执行,需要手动实现panic!宏,</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> core::panic::PaincInfo;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[panic_handler]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">panic</span>(_info: &amp;PanicInfo)<span class="punctuation">-&gt;</span>!&#123;</span><br><span class="line">    <span class="keyword">loop</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时cargo build –target riscv64gc-unknown-none-elf便可以正常编译.</p>
+<p>使用file命令查看编译产物输出平台架构信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  os git:(master) ✗ file target/riscv64gc-unknown-none-elf/debug/os</span><br><span class="line">target/riscv64gc-unknown-none-elf/debug/os: ELF 64-bit LSB executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), statically linked, with debug_info, not stripped</span><br><span class="line">➜  os git:(master) ✗ file target/riscv64gc-unknown-none-elf/release/os</span><br><span class="line">target/riscv64gc-unknown-none-elf/release/os: ELF 64-bit LSB executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), statically linked, not stripped</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>rust-readobj -h target/riscv64gc-unknown-none-elf/debug/os</code>查看更详细的信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">File: target/riscv64gc-unknown-none-elf/debug/os</span><br><span class="line">Format: elf64-littleriscv</span><br><span class="line">Arch: riscv64</span><br><span class="line">AddressSize: 64bit</span><br><span class="line">LoadName: &lt;Not found&gt;</span><br><span class="line">ElfHeader &#123;</span><br><span class="line">  Ident &#123;</span><br><span class="line">    Magic: (7F 45 4C 46)</span><br><span class="line">    Class: 64-bit (0x2)</span><br><span class="line">    DataEncoding: LittleEndian (0x1)</span><br><span class="line">    FileVersion: 1</span><br><span class="line">    OS/ABI: SystemV (0x0)</span><br><span class="line">    ABIVersion: 0</span><br><span class="line">    Unused: (00 00 00 00 00 00 00)</span><br><span class="line">  &#125;</span><br><span class="line">  Type: Executable (0x2)</span><br><span class="line">  Machine: EM_RISCV (0xF3)</span><br><span class="line">  Version: 1</span><br><span class="line">  Entry: 0x0</span><br><span class="line">  ProgramHeaderOffset: 0x40</span><br><span class="line">  SectionHeaderOffset: 0x1760</span><br><span class="line">  Flags [ (0x5)</span><br><span class="line">    EF_RISCV_FLOAT_ABI_DOUBLE (0x4)</span><br><span class="line">    EF_RISCV_RVC (0x1)</span><br><span class="line">  ]</span><br><span class="line">  HeaderSize: 64</span><br><span class="line">  ProgramHeaderEntrySize: 56</span><br><span class="line">  ProgramHeaderCount: 4</span><br><span class="line">  SectionHeaderEntrySize: 64</span><br><span class="line">  SectionHeaderCount: 12</span><br><span class="line">  StringTableSectionIndex: 10</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时<code>Entry: 0x0</code> 入口地址是0, 导致无法被执行</p>
+<h2 id="回顾序章"><a href="#回顾序章" class="headerlink" title="回顾序章"></a>回顾序章</h2><p>序章中使用qemu运行了os, 当时执行的命令是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-riscv64 \</span><br><span class="line">    -machine virt \</span><br><span class="line">    -nographic \</span><br><span class="line">    -bios ../bootloader/rustsbi-qemu.bin \</span><br><span class="line">    -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000</span><br></pre></td></tr></table></figure>
+
+<p>其中</p>
+<ul>
+<li>-riscv64<ul>
+<li>代表64位RISC-V</li>
+</ul>
+</li>
+<li>-machine<ul>
+<li>名称virt</li>
+</ul>
+</li>
+<li>-nographic<ul>
+<li>无需图形界面</li>
+</ul>
+</li>
+<li>-bios<ul>
+<li>bios使用的rustsbi-qemu.bin</li>
+</ul>
+</li>
+<li>-device<ul>
+<li>loader,file&#x3D;target&#x2F;riscv64gc-unknown-none-elf&#x2F;release&#x2F;os.bin,addr&#x3D;0x80200000<ul>
+<li>loader&#x3D;开机前载入文件</li>
+<li>file&#x3D;设置载入文件路径, addr&#x3D;载入到QEMU物理内存地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="程序内存布局"><a href="#程序内存布局" class="headerlink" title="程序内存布局"></a>程序内存布局</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">+              +         +              +</span><br><span class="line">+--------------+---------+ High Address |</span><br><span class="line">|              |  stack  |              |</span><br><span class="line">|              |    ↓    |              |</span><br><span class="line">|              |         |              |</span><br><span class="line">|              |    ↑    |              |</span><br><span class="line">| Data Meomory |   heap  |              |</span><br><span class="line">|              |  .bss   |              |</span><br><span class="line">|              |  .data  |              |</span><br><span class="line">|              | .rodata |              |</span><br><span class="line">|--------------|---------|              |</span><br><span class="line">| Code Meomory |  .text  |              |</span><br><span class="line">|--------------|---------| Low Address  |</span><br><span class="line">+              +         +              +</span><br></pre></td></tr></table></figure>
+
+<p>.rodata和.data分别储存只读的全局数据(常数, 常量字符串)和可修改的全局数据<br>.bss储存未初始化的全局变量<br>heap储存运行时动态分配的数据, malloc&#x2F;new分配的数据会放在堆, 向高地址增长<br>stack, 函数内的局部变量会放在此处, 向低地址增长.</p>
+<h2 id="编译流程"><a href="#编译流程" class="headerlink" title="编译流程"></a>编译流程</h2><ul>
+<li>编译器(Compiler)<ul>
+<li>高级语言转化为汇编语言, 此时生成的文件仍然是文本文件</li>
+</ul>
+</li>
+<li>汇编器(Assembler)<ul>
+<li>上一步生成的汇编文本文件进一步转化为二进制目标文件</li>
+</ul>
+</li>
+<li>链接器(Linker)<ul>
+<li>将上一步得到的二进制目标文件,以及其他外部文件链接在一起形成完整的可执行文件</li>
+</ul>
+</li>
+</ul>
+<h2 id="编写内核第一条指令"><a href="#编写内核第一条指令" class="headerlink" title="编写内核第一条指令"></a>编写内核第一条指令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># os/src/entry.asm</span><br><span class="line">    .section .text.entry</span><br><span class="line">    .globl _start</span><br><span class="line">_start:</span><br><span class="line">    li x1, 100</span><br></pre></td></tr></table></figure>
+<p><code>li x1, 100</code>将一个立即数(100)加载到x1寄存器</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// os/src/main.rs</span></span><br><span class="line"><span class="meta">#![no_std]</span></span><br><span class="line"><span class="meta">#![no_main]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">mod</span> lang_items;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> core::arch::global_asm;</span><br><span class="line">global_asm!(<span class="built_in">include_str!</span>(<span class="string">&quot;entry.asm&quot;</span>));</span><br></pre></td></tr></table></figure>
+<p>在rust中嵌入上面的汇编代码</p>
+<h3 id="调整内核内存布局"><a href="#调整内核内存布局" class="headerlink" title="调整内核内存布局"></a>调整内核内存布局</h3><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// os/.cargo/config</span><br><span class="line"><span class="section">[build]</span></span><br><span class="line"><span class="attr">target</span> = <span class="string">&quot;riscv64gc-unknown-none-elf&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[target.riscv64gc-unknown-none-elf]</span></span><br><span class="line"><span class="attr">rustflags</span> = [</span><br><span class="line">    <span class="string">&quot;-Clink-arg=-Tsrc/linker.ld&quot;</span>, <span class="string">&quot;-Cforce-frame-pointers=yes&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>手动制定了链接脚本为linker.ld, “-Cforce-frame-pointers&#x3D;yes”强制打开 fp 选项，这样才会避免 fp 相关指令被编译器优化掉</p>
+<p>linker.ld内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">OUTPUT_ARCH(riscv)</span><br><span class="line">ENTRY(_start)</span><br><span class="line">BASE_ADDRESS = 0x80200000;</span><br><span class="line"></span><br><span class="line">SECTIONS</span><br><span class="line">&#123;</span><br><span class="line">    . = BASE_ADDRESS;</span><br><span class="line">    skernel = .;</span><br><span class="line"></span><br><span class="line">    stext = .;</span><br><span class="line">    .text : &#123;</span><br><span class="line">        *(.text.entry)</span><br><span class="line">        *(.text .text.*)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    . = ALIGN(4K);</span><br><span class="line">    etext = .;</span><br><span class="line">    srodata = .;</span><br><span class="line">    .rodata : &#123;</span><br><span class="line">        *(.rodata .rodata.*)</span><br><span class="line">        *(.srodata .srodata.*)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    . = ALIGN(4K);</span><br><span class="line">    erodata = .;</span><br><span class="line">    sdata = .;</span><br><span class="line">    .data : &#123;</span><br><span class="line">        *(.data .data.*)</span><br><span class="line">        *(.sdata .sdata.*)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    . = ALIGN(4K);</span><br><span class="line">    edata = .;</span><br><span class="line">    .bss : &#123;</span><br><span class="line">        *(.bss.stack)</span><br><span class="line">        sbss = .;</span><br><span class="line">        *(.bss .bss.*)</span><br><span class="line">        *(.sbss .sbss.*)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    . = ALIGN(4K);</span><br><span class="line">    ebss = .;</span><br><span class="line">    ekernel = .;</span><br><span class="line"></span><br><span class="line">    /DISCARD/ : &#123;</span><br><span class="line">        *(.eh_frame)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">cargo build --release</span><br><span class="line"><span class="comment"># 裁剪</span></span><br><span class="line">rust-objcopy --strip-all ./target/riscv64gc-unknown-none-elf/release/os -O binary ./target/riscv64gc-unknown-none-elf/release/os.bin</span><br><span class="line"><span class="comment"># 运行</span></span><br><span class="line">qemu-system-riscv64 \</span><br><span class="line">    -machine virt \</span><br><span class="line">    -nographic \</span><br><span class="line">    -bios ./bootloader/rustsbi-qemu.bin \</span><br><span class="line">    -device loader,file=./target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000</span><br></pre></td></tr></table></figure>
+
+<h2 id="基于SBI服务完成输出和关机"><a href="#基于SBI服务完成输出和关机" class="headerlink" title="基于SBI服务完成输出和关机"></a>基于SBI服务完成输出和关机</h2><p>可以注意到,在使用qemu运行os.bin时候, 指定了bios为rustsbi-qemu.bin,<br>rustsbi不仅在启动时候进行环境初始化工作,还会为内核提供服务.</p>
+<!-- Write data present in ch to debug console.
+Unlike sbi_console_getchar(), this SBI call will block if there remain any pending characters to be
+transmitted or if the receiving terminal is not yet ready to receive the byte. However, if the console
+doesn’t exist at all, then the character is thrown away.
+This SBI call returns 0 upon success or an implementation specific negative error code. -->
+<p>为了使用rustsbi中的服务,需要引入sbi_rt依赖</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">sbi-rt</span> = &#123; version = <span class="string">&quot;0.0.2&quot;</span>, features = [<span class="string">&quot;legacy&quot;</span>] &#125;</span><br></pre></td></tr></table></figure>
+
+<p>sbi_rt中的console_putchar可以输出字符</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// os/src/sbi.rs</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">console_putchar</span>(c: <span class="type">usize</span>) &#123;</span><br><span class="line">    <span class="meta">#[allow(deprecated)]</span></span><br><span class="line">    sbi_rt::legacy::<span class="title function_ invoke__">console_putchar</span>(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而system_reset可以实现关机</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// os/src/sbi.rs</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">shutdown</span>(failure: <span class="type">bool</span>) <span class="punctuation">-&gt;</span> ! &#123;</span><br><span class="line">    <span class="keyword">use</span> sbi_rt::&#123;system_reset, NoReason, Shutdown, SystemFailure&#125;;</span><br><span class="line">    <span class="keyword">if</span> !failure &#123;</span><br><span class="line">        <span class="title function_ invoke__">system_reset</span>(Shutdown, NoReason);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">system_reset</span>(Shutdown, SystemFailure);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">unreachable!</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>包装一下console_putchar就可以输出字符串了.</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// os/src/console.rs</span></span><br><span class="line"><span class="keyword">use</span> crate::sbi::console_putchar;</span><br><span class="line"><span class="keyword">use</span> core::fmt::&#123;<span class="keyword">self</span>, Write&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Stdout</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Write</span> <span class="keyword">for</span> <span class="title class_">Stdout</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">write_str</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> fmt::<span class="type">Result</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">c</span> <span class="keyword">in</span> s.<span class="title function_ invoke__">chars</span>() &#123;</span><br><span class="line">            <span class="title function_ invoke__">console_putchar</span>(c <span class="keyword">as</span> <span class="type">usize</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">print</span>(args: fmt::Arguments) &#123;</span><br><span class="line">    Stdout.<span class="title function_ invoke__">write_fmt</span>(args).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> print &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">print</span>(<span class="built_in">format_args!</span>($fmt $(, $($arg)+)?));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> println &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">print</span>(<span class="built_in">format_args!</span>(<span class="built_in">concat!</span>($fmt, <span class="string">&quot;\n&quot;</span>) $(, $($arg)+)?));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在有了println!宏,可以愉快输出了.<br>回到之前的空panic, 在里面输出错误信息.</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// os/src/lang_item.rs</span></span><br><span class="line"><span class="keyword">use</span> crate::sbi::shutdown;</span><br><span class="line"><span class="keyword">use</span> core::panic::PanicInfo;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[panic_handler]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">panic</span>(info: &amp;PanicInfo) <span class="punctuation">-&gt;</span> ! &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">Some</span>(location) = info.<span class="title function_ invoke__">location</span>() &#123;</span><br><span class="line">        <span class="built_in">println!</span>(</span><br><span class="line">            <span class="string">&quot;Panicked at &#123;&#125;:&#123;&#125; &#123;&#125;&quot;</span>,</span><br><span class="line">            location.<span class="title function_ invoke__">file</span>(),</span><br><span class="line">            location.<span class="title function_ invoke__">line</span>(),</span><br><span class="line">            info.<span class="title function_ invoke__">message</span>().<span class="title function_ invoke__">unwrap</span>()</span><br><span class="line">        );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Panicked: &#123;&#125;&quot;</span>, info.<span class="title function_ invoke__">message</span>().<span class="title function_ invoke__">unwrap</span>());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">shutdown</span>(<span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>人为的创建一个panic, 然后观察打印是否正常.</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// os/src/main.rs</span></span><br><span class="line"><span class="meta">#[no_mangle]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">rust_main</span>() <span class="punctuation">-&gt;</span> ! &#123;</span><br><span class="line">    <span class="title function_ invoke__">clear_bss</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">    <span class="built_in">panic!</span>(<span class="string">&quot;Shutdown machine!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每次运行都得build, strip, qemu-run, 过于麻烦,所以编写一个bash脚本方便运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;<span class="subst">$(dirname <span class="string">&quot;<span class="variable">$0</span>&quot;</span>)</span>&quot;</span></span><br><span class="line"><span class="comment"># 编译 Release 版本</span></span><br><span class="line">cargo build --release</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;cargo build 失败&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1  <span class="comment"># 退出脚本并返回错误码 1</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 rust-objcopy 将目标文件转换为二进制</span></span><br><span class="line">rust-objcopy --strip-all target/riscv64gc-unknown-none-elf/release/os -O binary target/riscv64gc-unknown-none-elf/release/os.bin</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;rust-objcopy 失败&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 qemu-system-riscv64 运行</span></span><br><span class="line">qemu-system-riscv64 \</span><br><span class="line">    -machine virt \</span><br><span class="line">    -nographic \</span><br><span class="line">    -bios ./bootloader/rustsbi-qemu.bin \</span><br><span class="line">    -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000</span><br></pre></td></tr></table></figure>
+<p>输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[rustsbi] RustSBI version 0.3.1, adapting to RISC-V SBI v1.0.0</span><br><span class="line">.______       __    __      _______.___________.  _______..______   __</span><br><span class="line">|   _  \     |  |  |  |    /       |           | /       ||   _  \ |  |</span><br><span class="line">|  |_)  |    |  |  |  |   |   (----`---|  |----`|   (----`|  |_)  ||  |</span><br><span class="line">|      /     |  |  |  |    \   \       |  |      \   \    |   _  &lt; |  |</span><br><span class="line">|  |\  \----.|  `--&#x27;  |.----)   |      |  |  .----)   |   |  |_)  ||  |</span><br><span class="line">| _| `._____| \______/ |_______/       |__|  |_______/    |______/ |__|</span><br><span class="line">[rustsbi] Implementation     : RustSBI-QEMU Version 0.2.0-alpha.2</span><br><span class="line">[rustsbi] Platform Name      : riscv-virtio,qemu</span><br><span class="line">[rustsbi] Platform SMP       : 1</span><br><span class="line">[rustsbi] Platform Memory    : 0x80000000..0x88000000</span><br><span class="line">[rustsbi] Boot HART          : 0</span><br><span class="line">[rustsbi] Device Tree Region : 0x87000000..0x87000ef2</span><br><span class="line">[rustsbi] Firmware Address   : 0x80000000</span><br><span class="line">[rustsbi] Supervisor Address : 0x80200000</span><br><span class="line">[rustsbi] pmp01: 0x00000000..0x80000000 (-wr)</span><br><span class="line">[rustsbi] pmp02: 0x80000000..0x80200000 (---)</span><br><span class="line">[rustsbi] pmp03: 0x80200000..0x88000000 (xwr)</span><br><span class="line">[rustsbi] pmp04: 0x88000000..0x00000000 (-wr)</span><br><span class="line">Hello, world!</span><br><span class="line">[ERROR] Paincked at src/main.rs:17 Shutdown machine!</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="添加彩色打印"><a href="#添加彩色打印" class="headerlink" title="添加彩色打印"></a>添加彩色打印</h2><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> crate::sbi::console_putchar;</span><br><span class="line"><span class="keyword">use</span> core::fmt::&#123;<span class="keyword">self</span>, Write&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Stdout</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Write</span> <span class="keyword">for</span> <span class="title class_">Stdout</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">write_str</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> fmt::<span class="type">Result</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">c</span> <span class="keyword">in</span> s.<span class="title function_ invoke__">chars</span>() &#123;</span><br><span class="line">            <span class="title function_ invoke__">console_putchar</span>(c <span class="keyword">as</span> <span class="type">usize</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">pub</span>(<span class="keyword">crate</span>) <span class="keyword">fn</span> <span class="title function_">print</span>(args: fmt::Arguments) &#123;</span><br><span class="line">    Stdout.<span class="title function_ invoke__">write_fmt</span>(args).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">pub</span>(<span class="keyword">crate</span>) <span class="keyword">fn</span> <span class="title function_">println</span>(args: fmt::Arguments) &#123;</span><br><span class="line">    Stdout.<span class="title function_ invoke__">write_fmt</span>(args).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    Stdout.<span class="title function_ invoke__">write_char</span>(<span class="string">&#x27;\n&#x27;</span>).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> print &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">print</span>(<span class="built_in">format_args!</span>($fmt $(, $($arg)+)?));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> println &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">println</span>(<span class="built_in">format_args!</span>($fmt $(, $($arg)+)?));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> error &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">println</span>(<span class="built_in">format_args!</span>(<span class="built_in">concat!</span>(<span class="string">&quot;\x1b[31m[ERROR]\t&quot;</span>,<span class="built_in">concat!</span>($fmt, <span class="string">&quot;\x1b[0m&quot;</span>)) $(, $($arg)+)?));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> warn &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">println</span>(<span class="built_in">format_args!</span>(<span class="built_in">concat!</span>(<span class="string">&quot;\x1b[93m[WARN]\t&quot;</span>,<span class="built_in">concat!</span>($fmt, <span class="string">&quot;\x1b[0m&quot;</span>)) $(, $($arg)+)?));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> info &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">println</span>(<span class="built_in">format_args!</span>(<span class="built_in">concat!</span>(<span class="string">&quot;\x1b[34m[INFO]\t&quot;</span>,<span class="built_in">concat!</span>($fmt, <span class="string">&quot;\x1b[0m&quot;</span>)) $(, $($arg)+)?));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> debug &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">println</span>(<span class="built_in">format_args!</span>(<span class="built_in">concat!</span>(<span class="string">&quot;\x1b[32m[DEBUG]\t&quot;</span>,<span class="built_in">concat!</span>($fmt, <span class="string">&quot;\x1b[0m&quot;</span>)) $(, $($arg)+)?));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[macro_export]</span></span><br><span class="line"><span class="built_in">macro_rules!</span> trace &#123;</span><br><span class="line">    ($fmt: literal $(, $($arg: tt)+)?) =&gt; &#123;</span><br><span class="line">        $crate::console::<span class="title function_ invoke__">println</span>(<span class="built_in">format_args!</span>(<span class="built_in">concat!</span>(<span class="string">&quot;\x1b[90m[TRACE]\t&quot;</span>,<span class="built_in">concat!</span>($fmt, <span class="string">&quot;\x1b[0m&quot;</span>)) $(, $($arg)+)?));</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+  <span id="/2024/09/18/rCore-Chapter-1-Study-Note/" class="leancloud_visitors" data-flag-title="rCore系列文章学习笔记0x01">
+    <span class="post-meta-item-text">阅读量 </span>
+    <span class="leancloud-visitors-count">0</span>
+  </span>
+</article>
+
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<h2>  </h2>
+<!-- 
+ -->
+
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      // av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'bmoQKTmD2yP4zE30ff0brQgJ-MdYXbMMI',
+      app_key: 'UqBaOqCWZQjgrfLOak85DfF7',
+      placeholder: '我要教你做事！',
+      recordIP: true,
+      visitor: true
+    });
+</script>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rCore%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">rCore系列文章学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">项目创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%E5%BA%8F%E7%AB%A0"><span class="toc-number">1.2.</span> <span class="toc-text">回顾序章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="toc-number">1.3.</span> <span class="toc-text">程序内存布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">编译流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%86%85%E6%A0%B8%E7%AC%AC%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">编写内核第一条指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E5%86%85%E6%A0%B8%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="toc-number">1.5.1.</span> <span class="toc-text">调整内核内存布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C"><span class="toc-number">1.5.2.</span> <span class="toc-text">运行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ESBI%E6%9C%8D%E5%8A%A1%E5%AE%8C%E6%88%90%E8%BE%93%E5%87%BA%E5%92%8C%E5%85%B3%E6%9C%BA"><span class="toc-number">1.6.</span> <span class="toc-text">基于SBI服务完成输出和关机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0"><span class="toc-number">1.7.</span> <span class="toc-text">添加彩色打印</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&text=rCore系列文章学习笔记0x01"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&is_video=false&description=rCore系列文章学习笔记0x01"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=rCore系列文章学习笔记0x01&body=Check out this article: https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&title=rCore系列文章学习笔记0x01"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&name=rCore系列文章学习笔记0x01&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.github.io/2024/09/18/rCore-Chapter-1-Study-Note/&t=rCore系列文章学习笔记0x01"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024
+    Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107986670-1');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
