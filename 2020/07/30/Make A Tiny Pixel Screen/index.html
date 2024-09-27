@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="theme-color" content="#dedbd9">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="给自己做个桌面像素小屏幕吧展示一下自己制作迷你版本的像素显示屏的过程 背景之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。那个初号机的性能表现不是很好，所以计划做一个使用C&#x2F;C++的版本，能够更高帧率运行。 如果只是纯粹的重写固件，那么和大多数人做的AWatrix就没多大区别了，所以决定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="做个桌面像素小屏幕吧">
@@ -47,50 +46,65 @@
     
     <!-- title -->
     <title>做个桌面像素小屏幕吧</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-107986670-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
-      
-<link rel="stylesheet" href="/css/rtl.css">
-
-    
     <!-- rss -->
     
     
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/draft/">草稿</a></li><!--
+     --><!--
+       --><li><a href="/links/">友链</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2020/10/21/display-images-side-by-side-in-hexo/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/2020/10/21/display-images-side-by-side-in-hexo/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">上一篇</span>
       <span id="i-next" class="info" style="display:none;">下一篇</span>
@@ -104,7 +118,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&text=做个桌面像素小屏幕吧"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&is_video=false&description=做个桌面像素小屏幕吧"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=做个桌面像素小屏幕吧&body=Check out this article: https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=做个桌面像素小屏幕吧&body=Check out this article: https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
@@ -114,35 +128,35 @@
 </ul>
 
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E5%81%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E5%83%8F%E7%B4%A0%E5%B0%8F%E5%B1%8F%E5%B9%95%E5%90%A7"><span class="toc-number">1.</span> <span class="toc-text">给自己做个桌面像素小屏幕吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%95%B4%E6%B4%BB"><span class="toc-number">2.</span> <span class="toc-text">开始整活</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%BB%98%E5%88%B6%E7%94%B5%E8%B7%AF%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 绘制电路板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E7%84%8A%E6%8E%A5LED%E8%B4%B4%E7%89%87%E7%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 焊接LED贴片灯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 获取代码，修改参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E7%83%A7%E5%BD%95%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 烧录固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E6%8E%A5%E7%BA%BF-amp-%E7%BB%84%E8%A3%85"><span class="toc-number">2.5.</span> <span class="toc-text">0x05 接线&amp;组装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95"><span class="toc-number">2.5.1.</span> <span class="toc-text">材料清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF"><span class="toc-number">2.5.2.</span> <span class="toc-text">接线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text">0x06成品展示</span></a></li></ol></li></ol>
-    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E5%81%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E5%83%8F%E7%B4%A0%E5%B0%8F%E5%B1%8F%E5%B9%95%E5%90%A7"><span class="toc-number">1.</span> <span class="toc-text">给自己做个桌面像素小屏幕吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%95%B4%E6%B4%BB"><span class="toc-number">2.</span> <span class="toc-text">开始整活</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%BB%98%E5%88%B6%E7%94%B5%E8%B7%AF%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 绘制电路板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E7%84%8A%E6%8E%A5LED%E8%B4%B4%E7%89%87%E7%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 焊接LED贴片灯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 获取代码，修改参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E7%83%A7%E5%BD%95%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 烧录固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E6%8E%A5%E7%BA%BF-%E7%BB%84%E8%A3%85"><span class="toc-number">2.5.</span> <span class="toc-text">0x05 接线&amp;组装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95"><span class="toc-number">2.5.1.</span> <span class="toc-text">材料清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF"><span class="toc-number">2.5.2.</span> <span class="toc-text">接线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text">0x06成品展示</span></a></li></ol></li></ol>
+      </div>
+    
   </span>
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py4 ">
         
-        <head>
-  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</head>
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
-    <h1 class="posttitle" itemprop="name headline">
+    <h1 class="posttitle p-name" itemprop="name headline">
         做个桌面像素小屏幕吧
     </h1>
 
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Chaos Goo</span>
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
       </span>
       
     <div class="postdate">
       
-        <time datetime="2020-07-30T06:05:28.000Z" itemprop="datePublished">2020-07-30</time>
+        <time datetime="2020-07-30T06:05:28.000Z" class="dt-published" itemprop="datePublished">2020-07-30</time>
         
       
     </div>
@@ -152,8 +166,8 @@
 
       
     <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Arduino/" rel="tag">Arduino</a>
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Arduino/" rel="tag">Arduino</a>
     </div>
 
 
@@ -161,7 +175,7 @@
   </header>
   
 
-  <div class="content" itemprop="articleBody">
+  <div class="content e-content" itemprop="articleBody">
     <h1 id="给自己做个桌面像素小屏幕吧"><a href="#给自己做个桌面像素小屏幕吧" class="headerlink" title="给自己做个桌面像素小屏幕吧"></a>给自己做个桌面像素小屏幕吧</h1><p>展示一下自己制作迷你版本的像素显示屏的过程</p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。<br>那个初号机的性能表现不是很好，所以计划做一个使用C&#x2F;C++的版本，能够更高帧率运行。</p>
 <p>如果只是纯粹的重写固件，那么和大多数人做的AWatrix就没多大区别了，所以决定做一个迷你版本的像素显示屏出来。</p>
@@ -185,7 +199,7 @@
 <img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/gmatrix/nodemcu.png"/>
 
 <p>插上板子选择对应的端口号，然后点击Flash就可以进行烧录了。</p>
-<h2 id="0x05-接线-amp-组装"><a href="#0x05-接线-amp-组装" class="headerlink" title="0x05 接线&amp;组装"></a>0x05 接线&amp;组装</h2><h3 id="材料清单"><a href="#材料清单" class="headerlink" title="材料清单"></a>材料清单</h3><table>
+<h2 id="0x05-接线-组装"><a href="#0x05-接线-组装" class="headerlink" title="0x05 接线&amp;组装"></a>0x05 接线&amp;组装</h2><h3 id="材料清单"><a href="#材料清单" class="headerlink" title="材料清单"></a>材料清单</h3><table>
 <thead>
 <tr>
 <th>序号</th>
@@ -328,20 +342,12 @@
 <p><a target="_blank" rel="noopener" href="https://www.materialpalette.com/">materialpalette</a></p>
 
   </div>
-  <span id="/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/" class="leancloud_visitors" data-flag-title="做个桌面像素小屏幕吧">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
 </article>
 
-<h2>  </h2>
-<h2>  </h2>
-<h2>  </h2>
-<h2>  </h2>
 <!-- 
  -->
 
-    <div class="valine_comment"></div>
+  <div class="valine_comment"></div>
 <!--载入js，在</body>之前插入即可-->
 <!--Leancloud 操作库:-->
 <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
@@ -372,19 +378,24 @@
 
     <div id="nav-footer" style="display: none">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/draft/">草稿</a></li>
+        
+          <li><a href="/links/">友链</a></li>
         
       </ul>
     </div>
 
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E5%81%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E5%83%8F%E7%B4%A0%E5%B0%8F%E5%B1%8F%E5%B9%95%E5%90%A7"><span class="toc-number">1.</span> <span class="toc-text">给自己做个桌面像素小屏幕吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%95%B4%E6%B4%BB"><span class="toc-number">2.</span> <span class="toc-text">开始整活</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%BB%98%E5%88%B6%E7%94%B5%E8%B7%AF%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 绘制电路板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E7%84%8A%E6%8E%A5LED%E8%B4%B4%E7%89%87%E7%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 焊接LED贴片灯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 获取代码，修改参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E7%83%A7%E5%BD%95%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 烧录固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E6%8E%A5%E7%BA%BF-amp-%E7%BB%84%E8%A3%85"><span class="toc-number">2.5.</span> <span class="toc-text">0x05 接线&amp;组装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95"><span class="toc-number">2.5.1.</span> <span class="toc-text">材料清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF"><span class="toc-number">2.5.2.</span> <span class="toc-text">接线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text">0x06成品展示</span></a></li></ol></li></ol>
-    </div>
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E5%81%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E5%83%8F%E7%B4%A0%E5%B0%8F%E5%B1%8F%E5%B9%95%E5%90%A7"><span class="toc-number">1.</span> <span class="toc-text">给自己做个桌面像素小屏幕吧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%95%B4%E6%B4%BB"><span class="toc-number">2.</span> <span class="toc-text">开始整活</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%BB%98%E5%88%B6%E7%94%B5%E8%B7%AF%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 绘制电路板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E7%84%8A%E6%8E%A5LED%E8%B4%B4%E7%89%87%E7%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 焊接LED贴片灯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 获取代码，修改参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E7%83%A7%E5%BD%95%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 烧录固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E6%8E%A5%E7%BA%BF-%E7%BB%84%E8%A3%85"><span class="toc-number">2.5.</span> <span class="toc-text">0x05 接线&amp;组装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95"><span class="toc-number">2.5.1.</span> <span class="toc-text">材料清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF"><span class="toc-number">2.5.2.</span> <span class="toc-text">接线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text">0x06成品展示</span></a></li></ol></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -392,7 +403,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&text=做个桌面像素小屏幕吧"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&is_video=false&description=做个桌面像素小屏幕吧"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=做个桌面像素小屏幕吧&body=Check out this article: https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=做个桌面像素小屏幕吧&body=Check out this article: https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
@@ -404,10 +415,12 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
@@ -419,19 +432,21 @@
     Copyright &copy;
     
     
-    2024
+    2016-2024
     Chaos Goo
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/draft/">草稿</a></li><!--
+     --><!--
+       --><li><a href="/links/">友链</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
@@ -440,30 +455,29 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
     <!-- jquery -->
 
-<script src="/lib/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 
 <!-- clipboard -->
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
     // mount it!
     $(".highlight table").before(btn);
     var clip = new ClipboardJS('.btn-copy', {
@@ -472,7 +486,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.trigger.setAttribute('aria-label', "复制成功！");
       e.clearSelection();
     })
   })
@@ -483,22 +497,13 @@
 
 <!-- search -->
 
-<!-- Google Analytics -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-107986670-1');
-    </script>
-
 <!-- Baidu Analytics -->
 
-<!-- Umami Analytics -->
+<!-- Cloudflare Analytics -->
 
 <!-- Disqus Comments -->
 
+<!-- utterances Comments -->
 
 </body>
 </html>

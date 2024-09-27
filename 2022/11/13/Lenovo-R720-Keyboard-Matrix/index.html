@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="theme-color" content="#dedbd9">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="联想拯救者R720 键盘矩阵逆向序朋友托我帮他的R720笔记本改装成KVM.于是便有了此文. 键盘介绍主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&#x3D;22)个IO.(其实还是挺多的)为了避免鬼键,实际的接线比理想情况下复杂.而且相较于很多DIY机械键盘的直来直去线路:R720这块键盘的内部Wir">
 <meta property="og:type" content="article">
 <meta property="og:title" content="联想拯救者 R720 键盘矩阵逆向">
@@ -45,50 +44,65 @@
     
     <!-- title -->
     <title>联想拯救者 R720 键盘矩阵逆向</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-107986670-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
-      
-<link rel="stylesheet" href="/css/rtl.css">
-
-    
     <!-- rss -->
     
     
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/draft/">草稿</a></li><!--
+     --><!--
+       --><li><a href="/links/">友链</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2022/12/31/Monochrome_dither_algorithm/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/2022/12/31/Monochrome_dither_algorithm/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2022/09/20/esp32-spiffs-ota-demo/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2022/09/20/esp32-spiffs-ota-demo/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">上一篇</span>
       <span id="i-next" class="info" style="display:none;">下一篇</span>
@@ -102,7 +116,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&text=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&is_video=false&description=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=联想拯救者 R720 键盘矩阵逆向&body=Check out this article: https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=联想拯救者 R720 键盘矩阵逆向&body=Check out this article: https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
@@ -112,35 +126,35 @@
 </ul>
 
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%94%E6%83%B3%E6%8B%AF%E6%95%91%E8%80%85R720-%E9%94%AE%E7%9B%98%E7%9F%A9%E9%98%B5%E9%80%86%E5%90%91"><span class="toc-number">1.</span> <span class="toc-text">联想拯救者R720 键盘矩阵逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">键盘介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KeyMap%E6%B5%8B%E7%BB%98"><span class="toc-number">1.3.</span> <span class="toc-text">KeyMap测绘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schematic"><span class="toc-number">1.4.</span> <span class="toc-text">Schematic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QMK-Pin-Map"><span class="toc-number">1.5.</span> <span class="toc-text">QMK Pin Map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%89%A9"><span class="toc-number">1.6.</span> <span class="toc-text">实物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%97%E6%86%BE"><span class="toc-number">1.7.</span> <span class="toc-text">遗憾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#More"><span class="toc-number">1.8.</span> <span class="toc-text">More</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.9.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
-    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%94%E6%83%B3%E6%8B%AF%E6%95%91%E8%80%85R720-%E9%94%AE%E7%9B%98%E7%9F%A9%E9%98%B5%E9%80%86%E5%90%91"><span class="toc-number">1.</span> <span class="toc-text">联想拯救者R720 键盘矩阵逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">键盘介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KeyMap%E6%B5%8B%E7%BB%98"><span class="toc-number">1.3.</span> <span class="toc-text">KeyMap测绘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schematic"><span class="toc-number">1.4.</span> <span class="toc-text">Schematic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QMK-Pin-Map"><span class="toc-number">1.5.</span> <span class="toc-text">QMK Pin Map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%89%A9"><span class="toc-number">1.6.</span> <span class="toc-text">实物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%97%E6%86%BE"><span class="toc-number">1.7.</span> <span class="toc-text">遗憾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#More"><span class="toc-number">1.8.</span> <span class="toc-text">More</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.9.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+      </div>
+    
   </span>
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py4 ">
         
-        <head>
-  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</head>
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
-    <h1 class="posttitle" itemprop="name headline">
+    <h1 class="posttitle p-name" itemprop="name headline">
         联想拯救者 R720 键盘矩阵逆向
     </h1>
 
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Chaos Goo</span>
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
       </span>
       
     <div class="postdate">
       
-        <time datetime="2022-11-13T12:00:00.000Z" itemprop="datePublished">2022-11-13</time>
+        <time datetime="2022-11-13T12:00:00.000Z" class="dt-published" itemprop="datePublished">2022-11-13</time>
         
       
     </div>
@@ -150,8 +164,8 @@
 
       
     <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Hack/" rel="tag">Hack</a>, <a class="tag-link-link" href="/tags/Keyboard/" rel="tag">Keyboard</a>
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Hack/" rel="tag">Hack</a>, <a class="p-category" href="/tags/Keyboard/" rel="tag">Keyboard</a>
     </div>
 
 
@@ -159,7 +173,7 @@
   </header>
   
 
-  <div class="content" itemprop="articleBody">
+  <div class="content e-content" itemprop="articleBody">
     <h1 id="联想拯救者R720-键盘矩阵逆向"><a href="#联想拯救者R720-键盘矩阵逆向" class="headerlink" title="联想拯救者R720 键盘矩阵逆向"></a>联想拯救者R720 键盘矩阵逆向</h1><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>朋友托我帮他的R720笔记本改装成KVM.于是便有了此文.</p>
 <h2 id="键盘介绍"><a href="#键盘介绍" class="headerlink" title="键盘介绍"></a>键盘介绍</h2><p>主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.<br>R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&#x3D;22)个IO.(其实还是挺多的)<br>为了避免<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36753518/article/details/111410693">鬼键</a>,实际的接线比理想情况下复杂.<br>而且相较于很多DIY机械键盘的直来直去线路:<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/normal_wire.jpg?raw=true" alt="常见"><br>R720这块键盘的内部Wiring就显得很乱了:<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/r720hacking/r720_wire.jpg?raw=true" alt="R720"><br>刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的<a target="_blank" rel="noopener" href="https://www.howett.net/data/framework_matrix/">KeyMap</a>才放下心来.</p>
 <h2 id="KeyMap测绘"><a href="#KeyMap测绘" class="headerlink" title="KeyMap测绘"></a>KeyMap测绘</h2><p>搜到一篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/reboot2010/article/details/109193827">教人把笔记本改装为KVM的文章</a>,文章里面提到了<b>矩阵键盘驱动控制模块Monkey</b>.<br>我一看这不和ATMEGA32U4差不多吗,应该是同一个系列的产品,淘宝上这东西卖50.这不是要了我的命吗.<br>自从去年单片机涨价后,Atmel的产品到现在也没恢复过去的价格,觉得自己现在要是买了就是纯纯大冤种.<br>况且完全可以自己做一个类似的东西,当时手上有这么多IO的板子就一个Raspberry Pi Pico,而QMK也支持了Pico,于是先借助Pico对KeyMap进行测绘.<br>得到如下结果</p>
@@ -178,20 +192,12 @@
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/reboot2010/article/details/109193827">老旧笔记本改造成便携KVM</a><br><a target="_blank" rel="noopener" href="https://www.howett.net/data/framework_matrix/">Framework Laptop Key Matrix</a><br><a target="_blank" rel="noopener" href="https://docs.qmk.fm/#/">QMK Firmware</a><br><a href="www.alisaler.com">Laptop Bios &amp; Schematics</a></p>
 
   </div>
-  <span id="/2022/11/13/Lenovo-R720-Keyboard-Matrix/" class="leancloud_visitors" data-flag-title="联想拯救者 R720 键盘矩阵逆向">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
 </article>
 
-<h2>  </h2>
-<h2>  </h2>
-<h2>  </h2>
-<h2>  </h2>
 <!-- 
  -->
 
-    <div class="valine_comment"></div>
+  <div class="valine_comment"></div>
 <!--载入js，在</body>之前插入即可-->
 <!--Leancloud 操作库:-->
 <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
@@ -222,19 +228,24 @@
 
     <div id="nav-footer" style="display: none">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/draft/">草稿</a></li>
+        
+          <li><a href="/links/">友链</a></li>
         
       </ul>
     </div>
 
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%94%E6%83%B3%E6%8B%AF%E6%95%91%E8%80%85R720-%E9%94%AE%E7%9B%98%E7%9F%A9%E9%98%B5%E9%80%86%E5%90%91"><span class="toc-number">1.</span> <span class="toc-text">联想拯救者R720 键盘矩阵逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">键盘介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KeyMap%E6%B5%8B%E7%BB%98"><span class="toc-number">1.3.</span> <span class="toc-text">KeyMap测绘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schematic"><span class="toc-number">1.4.</span> <span class="toc-text">Schematic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QMK-Pin-Map"><span class="toc-number">1.5.</span> <span class="toc-text">QMK Pin Map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%89%A9"><span class="toc-number">1.6.</span> <span class="toc-text">实物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%97%E6%86%BE"><span class="toc-number">1.7.</span> <span class="toc-text">遗憾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#More"><span class="toc-number">1.8.</span> <span class="toc-text">More</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.9.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
-    </div>
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%94%E6%83%B3%E6%8B%AF%E6%95%91%E8%80%85R720-%E9%94%AE%E7%9B%98%E7%9F%A9%E9%98%B5%E9%80%86%E5%90%91"><span class="toc-number">1.</span> <span class="toc-text">联想拯救者R720 键盘矩阵逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">键盘介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KeyMap%E6%B5%8B%E7%BB%98"><span class="toc-number">1.3.</span> <span class="toc-text">KeyMap测绘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schematic"><span class="toc-number">1.4.</span> <span class="toc-text">Schematic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QMK-Pin-Map"><span class="toc-number">1.5.</span> <span class="toc-text">QMK Pin Map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%89%A9"><span class="toc-number">1.6.</span> <span class="toc-text">实物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%97%E6%86%BE"><span class="toc-number">1.7.</span> <span class="toc-text">遗憾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#More"><span class="toc-number">1.8.</span> <span class="toc-text">More</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.9.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -242,7 +253,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&text=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&is_video=false&description=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=联想拯救者 R720 键盘矩阵逆向&body=Check out this article: https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=联想拯救者 R720 键盘矩阵逆向&body=Check out this article: https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵逆向"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
@@ -254,10 +265,12 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
@@ -269,19 +282,21 @@
     Copyright &copy;
     
     
-    2024
+    2016-2024
     Chaos Goo
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/draft/">草稿</a></li><!--
+     --><!--
+       --><li><a href="/links/">友链</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
@@ -290,30 +305,29 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
     <!-- jquery -->
 
-<script src="/lib/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 
 <!-- clipboard -->
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
     // mount it!
     $(".highlight table").before(btn);
     var clip = new ClipboardJS('.btn-copy', {
@@ -322,7 +336,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.trigger.setAttribute('aria-label', "复制成功！");
       e.clearSelection();
     })
   })
@@ -333,22 +347,13 @@
 
 <!-- search -->
 
-<!-- Google Analytics -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-107986670-1');
-    </script>
-
 <!-- Baidu Analytics -->
 
-<!-- Umami Analytics -->
+<!-- Cloudflare Analytics -->
 
 <!-- Disqus Comments -->
 
+<!-- utterances Comments -->
 
 </body>
 </html>

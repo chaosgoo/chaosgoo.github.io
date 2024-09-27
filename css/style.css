@@ -444,10 +444,34 @@ body td {
 *:after {
   box-sizing: border-box;
 }
+/* Scroll bar */
+/* For Firefox */
+* {
+  scrollbar-color: #999 transparent;
+}
+/* For Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 6px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #7a7a7a;
+}
+*::-webkit-scrollbar-thumb:active {
+  background-color: #6b6b6b;
+}
 html {
   margin: 0;
   padding: 0;
   height: 100%;
+  border-top: 2px solid #363533;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -456,13 +480,11 @@ body {
   height: 100%;
   background-color: #e2e0de;
   color: #363533;
-  font-display: swap;
   font-weight: 400;
   font-size: 14px;
   font-family: "Menlo", "Meslo LG", monospace;
   line-height: 1.725;
   text-rendering: geometricPrecision;
-  flex: 1;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -470,7 +492,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 90%;
+  min-height: 100%;
   overflow-wrap: break-word;
 }
 .content p {
@@ -552,10 +574,6 @@ body {
 .max-width {
   max-width: 56rem;
 }
-.width {
-  width: 100%;
-  max-width: 48rem;
-}
 @media (max-width: 480px) {
   .px3 {
     padding-right: 1rem;
@@ -572,9 +590,8 @@ body {
   }
 }
 #header {
-  max-width: 710px;
+  margin: 0 auto 2rem;
   width: 100%;
-  margin: 0 auto 3rem auto;
 }
 #header h1,
 #header .h1 {
@@ -672,9 +689,15 @@ body {
     top: 77px;
     right: 1rem;
     display: inline-block;
+    text-align: center;
   }
   #header #nav ul.responsive li {
     display: block;
+  }
+  #header #nav ul a[aria-label="Menu"] {
+    display: inline-block;
+    min-width: 48px;
+    min-height: 48px;
   }
   #header #nav li:not(:first-child) {
     padding-top: 1rem;
@@ -748,7 +771,7 @@ body {
   color: #d44375;
 }
 #header-post #menu {
-  visibility: hidden;
+  display: none;
   margin-right: 2rem;
 }
 #header-post #nav {
@@ -1142,7 +1165,7 @@ article .content blockquote:before {
 article .content blockquote footer {
   margin: line-height 0;
   color: #666;
-  font-size: 11px;
+  font-size: 12px;
 }
 article .content blockquote footer a {
   background-image: linear-gradient(transparent, transparent 5px, #666 5px, #666);
@@ -1207,6 +1230,9 @@ article .content .caption {
     content: "|";
   }
 }
+#archive .post-year {
+  list-style-type: none;
+}
 #archive .post-list {
   padding: 0;
 }
@@ -1236,15 +1262,14 @@ article .content .caption {
   margin-top: 4rem;
 }
 #footer {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #666;
-  font-size: 11px;
-  max-width: 700px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
   width: 100%;
-  margin: 0 auto 1rem auto;
+  color: #666;
   vertical-align: top;
   text-align: center;
+  font-size: 12px;
 }
 #footer ul {
   margin: 0;
@@ -1600,7 +1625,7 @@ code {
   margin: -5px 0 5px;
   color: #757575;
   font-size: 0.9em;
-  zoom: 1;
+  transform: scale(1);
 }
 .highlight figcaption a {
   float: right;
@@ -1650,4 +1675,7 @@ code {
 }
 .highlight .line {
   height: 22px;
+}
+#header-post #actions {
+  direction: ltr !important;
 }

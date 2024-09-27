@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="theme-color" content="#dedbd9">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="今天是周五吗GitHub项目地址立创开源广场 Part Ⅰ这是一个拖了很久的项目, 有很多废案. 隔一段时间想起来有这回事情,于是缝缝补补, 推倒很多次. MCU从最开始使用的是ESP32, 也用过ESP32C3, 最后使用是CH582F. 起初他有很多功能,比如移植了一个lua解析器, 这样就可以动态的加载lua脚本, 以显示不同的内容. 也引入过FreeType, 用来解析.ttf字体, 以具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Friday Ink 今天是周五吗">
@@ -14,15 +13,15 @@
 <meta property="og:site_name" content="Do U Find IT?">
 <meta property="og:description" content="今天是周五吗GitHub项目地址立创开源广场 Part Ⅰ这是一个拖了很久的项目, 有很多废案. 隔一段时间想起来有这回事情,于是缝缝补补, 推倒很多次. MCU从最开始使用的是ESP32, 也用过ESP32C3, 最后使用是CH582F. 起初他有很多功能,比如移植了一个lua解析器, 这样就可以动态的加载lua脚本, 以显示不同的内容. 也引入过FreeType, 用来解析.ttf字体, 以具">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://chaosgoo.github.io/images/PreviewInFusion.png">
-<meta property="og:image" content="https://chaosgoo.github.io/images/old.png">
-<meta property="og:image" content="https://chaosgoo.github.io/images/IMG_3452.jpg">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/PreviewInFusion.png">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/old.png">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/IMG_3452.jpg">
 <meta property="article:published_time" content="2024-07-29T13:36:21.000Z">
-<meta property="article:modified_time" content="2024-07-29T15:40:07.933Z">
+<meta property="article:modified_time" content="2024-09-27T15:50:12.414Z">
 <meta property="article:author" content="Chaos Goo">
 <meta property="article:tag" content="DIY">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://chaosgoo.github.io/images/PreviewInFusion.png">
+<meta name="twitter:image" content="https://chaosgoo.github.io/images/archives/PreviewInFusion.png">
     
     
       
@@ -43,50 +42,65 @@
     
     <!-- title -->
     <title>Friday Ink 今天是周五吗</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-107986670-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
-      
-<link rel="stylesheet" href="/css/rtl.css">
-
-    
     <!-- rss -->
     
     
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/draft/">草稿</a></li><!--
+     --><!--
+       --><li><a href="/links/">友链</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2024/09/18/rCore-Chapter-1-Study-Note/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/2024/09/18/rCore-Chapter-1-Study-Note/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">上一篇</span>
       <span id="i-next" class="info" style="display:none;">下一篇</span>
@@ -100,7 +114,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&text=Friday Ink 今天是周五吗"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&is_video=false&description=Friday Ink 今天是周五吗"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Friday Ink 今天是周五吗&body=Check out this article: https://chaosgoo.github.io/2024/07/29/Friday-Ink/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Friday Ink 今天是周五吗&body=Check out this article: https://chaosgoo.github.io/2024/07/29/Friday-Ink/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
@@ -110,35 +124,35 @@
 </ul>
 
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A0"><span class="toc-number">2.</span> <span class="toc-text">Part Ⅰ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A1"><span class="toc-number">3.</span> <span class="toc-text">Part Ⅱ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8D%81%E5%88%86%E7%AE%80%E5%8D%95"><span class="toc-number">3.1.</span> <span class="toc-text">Friday Ink的功能十分简单.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A2"><span class="toc-number">4.</span> <span class="toc-text">Part Ⅲ</span></a></li></ol>
-    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A0"><span class="toc-number">2.</span> <span class="toc-text">Part Ⅰ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A1"><span class="toc-number">3.</span> <span class="toc-text">Part Ⅱ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8D%81%E5%88%86%E7%AE%80%E5%8D%95"><span class="toc-number">3.1.</span> <span class="toc-text">Friday Ink的功能十分简单.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A2"><span class="toc-number">4.</span> <span class="toc-text">Part Ⅲ</span></a></li></ol>
+      </div>
+    
   </span>
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py4 ">
         
-        <head>
-  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</head>
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
-    <h1 class="posttitle" itemprop="name headline">
+    <h1 class="posttitle p-name" itemprop="name headline">
         Friday Ink 今天是周五吗
     </h1>
 
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Chaos Goo</span>
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
       </span>
       
     <div class="postdate">
       
-        <time datetime="2024-07-29T13:36:21.000Z" itemprop="datePublished">2024-07-29</time>
+        <time datetime="2024-07-29T13:36:21.000Z" class="dt-published" itemprop="datePublished">2024-07-29</time>
         
       
     </div>
@@ -148,8 +162,8 @@
 
       
     <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/DIY/" rel="tag">DIY</a>
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/DIY/" rel="tag">DIY</a>
     </div>
 
 
@@ -157,40 +171,32 @@
   </header>
   
 
-  <div class="content" itemprop="articleBody">
+  <div class="content e-content" itemprop="articleBody">
     <h1 id="今天是周五吗"><a href="#今天是周五吗" class="headerlink" title="今天是周五吗"></a>今天是周五吗</h1><p><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/friday_ink">GitHub项目地址</a><br><a target="_blank" rel="noopener" href="https://oshwhub.com/chaosgoo/firdayink-rec">立创开源广场</a></p>
-<h1 id="Part-Ⅰ"><a href="#Part-Ⅰ" class="headerlink" title="Part Ⅰ"></a>Part Ⅰ</h1><p><img src="/./images/PreviewInFusion.png" alt="封面"><br>这是一个拖了很久的项目, 有很多废案. 隔一段时间想起来有这回事情,于是缝缝补补, 推倒很多次.</p>
+<h1 id="Part-Ⅰ"><a href="#Part-Ⅰ" class="headerlink" title="Part Ⅰ"></a>Part Ⅰ</h1><p><img src="/./images/archives/PreviewInFusion.png" alt="封面"><br>这是一个拖了很久的项目, 有很多废案. 隔一段时间想起来有这回事情,于是缝缝补补, 推倒很多次.</p>
 <p>MCU从最开始使用的是ESP32, 也用过ESP32C3, 最后使用是CH582F.</p>
 <p>起初他有很多功能,比如移植了一个lua解析器, 这样就可以动态的加载lua脚本, 以显示不同的内容.</p>
 <p>也引入过FreeType, 用来解析.ttf字体, 以具有显示不同尺寸文字的效果.</p>
-<p><img src="/./images/old.png" alt="旧版本渲染图"></p>
+<p><img src="/./images/archives/old.png" alt="旧版本渲染图"></p>
 <p>尽管废案的完成度已经相当高了.但是实测续航表现十分糟糕. 一想到他要充电就让我感到无奈.</p>
 <p>终于有一天看到了CH582F这款芯片. 唤起了重新实现Friday Ink的念头.</p>
 <p>查了一些资料后, 那一刻我觉得这就是我要找的芯片. QFN28封装, 纽扣电池就能驱动, 二话不说斥巨资12元买入开发板着手开发.</p>
 <h1 id="Part-Ⅱ"><a href="#Part-Ⅱ" class="headerlink" title="Part Ⅱ"></a>Part Ⅱ</h1><p>固件最开始是使用C开发的, 而且完成度也是很高, 只差休眠和蓝牙部分了. 结果这时候莫名其妙的加了一个Rust嵌入式的群, 群里面有个佬又正好做了CH582F的Rust适配.<br>于是决定试试Rust来开发.<br>显示部分直接用了bindgen把u8g2绑过来, bind就完事.<br>休眠部分, ch58x-hal没有封装, 所以这次只能手搓寄存器, 于是对着官方的休眠代码, 人肉翻译了起来. 好在最后能工作(当然能工作, 毕竟我只是翻译了一下)</p>
 <h2 id="Friday-Ink的功能十分简单"><a href="#Friday-Ink的功能十分简单" class="headerlink" title="Friday Ink的功能十分简单."></a>Friday Ink的功能十分简单.</h2><p>只要启动时候检测一下有没有按下按钮,按下就显示一张图片, 然后扫描周边的蓝牙广播,扫描到符合时间协议的就设置本地RTC然后重启.<br>如果没有按下按钮就检测今天是不是星期五, 执行刷屏, 然后设备休眠. 直到第二天00:00唤醒.</p>
 <h1 id="Part-Ⅲ"><a href="#Part-Ⅲ" class="headerlink" title="Part Ⅲ"></a>Part Ⅲ</h1><p>用纽扣电池作为输入,然后接上合宙的电流表, 110小时后统计信息如下:</p>
-<!-- ![初代](./images/IMG_7486.jpg)
-![初代](./images/E4C2B37A-0422-46DF-90EB-9FAAC66F8440.jpg)
-![初代](./images/IMG_0889.jpg)
-![初代](./images/IMG_3435.jpg) -->
-<p><img src="/./images/IMG_3452.jpg" alt="耗电信息"></p>
+<!-- ![初代](./images/archives/IMG_7486.jpg)
+![初代](./images/archives/E4C2B37A-0422-46DF-90EB-9FAAC66F8440.jpg)
+![初代](./images/archives/IMG_0889.jpg)
+![初代](./images/archives/IMG_3435.jpg) -->
+<p><img src="/./images/archives/IMG_3452.jpg" alt="耗电信息"></p>
 
   </div>
-  <span id="/2024/07/29/Friday-Ink/" class="leancloud_visitors" data-flag-title="Friday Ink 今天是周五吗">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
 </article>
 
-<h2>  </h2>
-<h2>  </h2>
-<h2>  </h2>
-<h2>  </h2>
 <!-- 
  -->
 
-    <div class="valine_comment"></div>
+  <div class="valine_comment"></div>
 <!--载入js，在</body>之前插入即可-->
 <!--Leancloud 操作库:-->
 <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
@@ -221,19 +227,24 @@
 
     <div id="nav-footer" style="display: none">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/draft/">草稿</a></li>
+        
+          <li><a href="/links/">友链</a></li>
         
       </ul>
     </div>
 
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A0"><span class="toc-number">2.</span> <span class="toc-text">Part Ⅰ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A1"><span class="toc-number">3.</span> <span class="toc-text">Part Ⅱ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8D%81%E5%88%86%E7%AE%80%E5%8D%95"><span class="toc-number">3.1.</span> <span class="toc-text">Friday Ink的功能十分简单.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A2"><span class="toc-number">4.</span> <span class="toc-text">Part Ⅲ</span></a></li></ol>
-    </div>
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A0"><span class="toc-number">2.</span> <span class="toc-text">Part Ⅰ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A1"><span class="toc-number">3.</span> <span class="toc-text">Part Ⅱ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8D%81%E5%88%86%E7%AE%80%E5%8D%95"><span class="toc-number">3.1.</span> <span class="toc-text">Friday Ink的功能十分简单.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-%E2%85%A2"><span class="toc-number">4.</span> <span class="toc-text">Part Ⅲ</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -241,7 +252,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&text=Friday Ink 今天是周五吗"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&is_video=false&description=Friday Ink 今天是周五吗"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Friday Ink 今天是周五吗&body=Check out this article: https://chaosgoo.github.io/2024/07/29/Friday-Ink/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Friday Ink 今天是周五吗&body=Check out this article: https://chaosgoo.github.io/2024/07/29/Friday-Ink/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
@@ -253,10 +264,12 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
@@ -268,19 +281,21 @@
     Copyright &copy;
     
     
-    2024
+    2016-2024
     Chaos Goo
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/draft/">草稿</a></li><!--
+     --><!--
+       --><li><a href="/links/">友链</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
@@ -289,30 +304,29 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
     <!-- jquery -->
 
-<script src="/lib/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 
 <!-- clipboard -->
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
     // mount it!
     $(".highlight table").before(btn);
     var clip = new ClipboardJS('.btn-copy', {
@@ -321,7 +335,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.trigger.setAttribute('aria-label', "复制成功！");
       e.clearSelection();
     })
   })
@@ -332,22 +346,13 @@
 
 <!-- search -->
 
-<!-- Google Analytics -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-107986670-1');
-    </script>
-
 <!-- Baidu Analytics -->
 
-<!-- Umami Analytics -->
+<!-- Cloudflare Analytics -->
 
 <!-- Disqus Comments -->
 
+<!-- utterances Comments -->
 
 </body>
 </html>

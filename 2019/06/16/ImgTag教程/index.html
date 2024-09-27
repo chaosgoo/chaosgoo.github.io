@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="theme-color" content="#dedbd9">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="训练一个自己的YOLO-tiny模型0x01 YOLO是什么YOLO是一个实时目标检测系统，通俗点说就是在输入数据(图片或者视频)中查找特定的目标。举个例子，如果让一个专门识别龙的YOLO模型观看《权力的游戏》，在理想情况下，一旦画面中出现了龙，YOLO系统就会激动地用框框标记出画面中的龙。 为什么是YOLO-tiny大概是贫穷限制了我的运算速度吧，YOLO-tiny用精确度换来了速度快和性能要求">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Other 训练一个自己的YOLO-tiny模型">
@@ -43,50 +42,65 @@
     
     <!-- title -->
     <title>Other 训练一个自己的YOLO-tiny模型</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-107986670-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
-      
-<link rel="stylesheet" href="/css/rtl.css">
-
-    
     <!-- rss -->
     
     
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/draft/">草稿</a></li><!--
+     --><!--
+       --><li><a href="/links/">友链</a></li><!--
+     -->
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/06/21/Dracarys/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/2019/06/21/Dracarys/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2019/05/27/Low-Poly%E7%BB%83%E4%B9%A0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2019/05/27/Low-Poly%E7%BB%83%E4%B9%A0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">上一篇</span>
       <span id="i-next" class="info" style="display:none;">下一篇</span>
@@ -100,7 +114,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&text=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&title=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&is_video=false&description=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Other 训练一个自己的YOLO-tiny模型&body=Check out this article: https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Other 训练一个自己的YOLO-tiny模型&body=Check out this article: https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&title=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&title=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&title=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
@@ -110,35 +124,35 @@
 </ul>
 
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84YOLO-tiny%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">训练一个自己的YOLO-tiny模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-YOLO%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 YOLO是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFYOLO-tiny"><span class="toc-number">1.1.1.</span> <span class="toc-text">为什么是YOLO-tiny</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 事前准备的准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 事前准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 配置相关文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%BD%93%E7%84%B6%E6%98%AF%E5%88%B6%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%95%A6-DIO"><span class="toc-number">1.5.</span> <span class="toc-text">0x05 当然是制作数据啦,DIO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">0x06 训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07-%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">0x07 使用模型</span></a></li></ol></li></ol>
-    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84YOLO-tiny%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">训练一个自己的YOLO-tiny模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-YOLO%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 YOLO是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFYOLO-tiny"><span class="toc-number">1.1.1.</span> <span class="toc-text">为什么是YOLO-tiny</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 事前准备的准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 事前准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 配置相关文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%BD%93%E7%84%B6%E6%98%AF%E5%88%B6%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%95%A6-DIO"><span class="toc-number">1.5.</span> <span class="toc-text">0x05 当然是制作数据啦,DIO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">0x06 训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07-%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">0x07 使用模型</span></a></li></ol></li></ol>
+      </div>
+    
   </span>
 </div>
 
     
-    <div class="content index py4">
+    <div class="content index py4 ">
         
-        <head>
-  <script data-ad-client="ca-pub-7320242118914505" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</head>
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
-    <h1 class="posttitle" itemprop="name headline">
+    <h1 class="posttitle p-name" itemprop="name headline">
         Other 训练一个自己的YOLO-tiny模型
     </h1>
 
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Chaos Goo</span>
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
       </span>
       
     <div class="postdate">
       
-        <time datetime="2019-06-16T14:25:47.000Z" itemprop="datePublished">2019-06-16</time>
+        <time datetime="2019-06-16T14:25:47.000Z" class="dt-published" itemprop="datePublished">2019-06-16</time>
         
       
     </div>
@@ -152,7 +166,7 @@
   </header>
   
 
-  <div class="content" itemprop="articleBody">
+  <div class="content e-content" itemprop="articleBody">
     <h1 id="训练一个自己的YOLO-tiny模型"><a href="#训练一个自己的YOLO-tiny模型" class="headerlink" title="训练一个自己的YOLO-tiny模型"></a>训练一个自己的YOLO-tiny模型</h1><h2 id="0x01-YOLO是什么"><a href="#0x01-YOLO是什么" class="headerlink" title="0x01 YOLO是什么"></a>0x01 YOLO是什么</h2><p><a target="_blank" rel="noopener" href="https://pjreddie.com/darknet/yolo/">YOLO</a>是一个实时目标检测系统，通俗点说就是在输入数据(图片或者视频)中查找特定的目标。举个例子，如果让一个专门识别龙的YOLO模型观看《权力的游戏》，在理想情况下，一旦画面中出现了龙，YOLO系统就会激动地用框框标记出画面中的龙。</p>
 <h3 id="为什么是YOLO-tiny"><a href="#为什么是YOLO-tiny" class="headerlink" title="为什么是YOLO-tiny"></a>为什么是YOLO-tiny</h3><p>大概是贫穷限制了我的运算速度吧，YOLO-tiny用精确度换来了速度快和性能要求低的优点，适合练手和学习或者像我一样玩一玩的用户。</p>
 <h2 id="0x02-事前准备的准备"><a href="#0x02-事前准备的准备" class="headerlink" title="0x02 事前准备的准备"></a>0x02 事前准备的准备</h2><p>首先你可能需要一台电脑吧（可能有些用户会使用树莓派甚至是装了linux模拟器的安卓用户来虐待自己吧）。我的CPU是不知道应该叫啥四代ES版本的i7,显卡是上古时代的GTX860M，内存只有8G，名副其实的低配置用户了。顺便一提，这台电脑一天会绿屏N次，我会从现在开始记录绿屏次数，直到这篇文章写完，再顺带一提，这是二奶机，因为大奶机用的AMD矿卡，所以不能使用GPU来加速TensorFlow训练。再再顺带一提，旁边的室友虽然是1070Ti，但是他需要用他的电脑玩欢乐斗地主，所以不能帮我跑训练模型。<br>回到主线上来，你还得具有一些常识…会使用搜索引擎的那种常识。</p>
@@ -186,20 +200,12 @@
 <img src="https://github.com/chaosgoo/imgtag_tutorial/blob/master/images/raccoon.gif?raw=true"/>
 
   </div>
-  <span id="/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/" class="leancloud_visitors" data-flag-title="Other 训练一个自己的YOLO-tiny模型">
-    <span class="post-meta-item-text">阅读量 </span>
-    <span class="leancloud-visitors-count">0</span>
-  </span>
 </article>
 
-<h2>  </h2>
-<h2>  </h2>
-<h2>  </h2>
-<h2>  </h2>
 <!-- 
  -->
 
-    <div class="valine_comment"></div>
+  <div class="valine_comment"></div>
 <!--载入js，在</body>之前插入即可-->
 <!--Leancloud 操作库:-->
 <!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
@@ -230,19 +236,24 @@
 
     <div id="nav-footer" style="display: none">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/draft/">草稿</a></li>
+        
+          <li><a href="/links/">友链</a></li>
         
       </ul>
     </div>
 
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84YOLO-tiny%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">训练一个自己的YOLO-tiny模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-YOLO%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 YOLO是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFYOLO-tiny"><span class="toc-number">1.1.1.</span> <span class="toc-text">为什么是YOLO-tiny</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 事前准备的准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 事前准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 配置相关文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%BD%93%E7%84%B6%E6%98%AF%E5%88%B6%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%95%A6-DIO"><span class="toc-number">1.5.</span> <span class="toc-text">0x05 当然是制作数据啦,DIO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">0x06 训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07-%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">0x07 使用模型</span></a></li></ol></li></ol>
-    </div>
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84YOLO-tiny%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">训练一个自己的YOLO-tiny模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-YOLO%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 YOLO是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFYOLO-tiny"><span class="toc-number">1.1.1.</span> <span class="toc-text">为什么是YOLO-tiny</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 事前准备的准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 事前准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 配置相关文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%BD%93%E7%84%B6%E6%98%AF%E5%88%B6%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%95%A6-DIO"><span class="toc-number">1.5.</span> <span class="toc-text">0x05 当然是制作数据啦,DIO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">0x06 训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07-%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">0x07 使用模型</span></a></li></ol></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -250,7 +261,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&text=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&title=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&is_video=false&description=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Other 训练一个自己的YOLO-tiny模型&body=Check out this article: https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Other 训练一个自己的YOLO-tiny模型&body=Check out this article: https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&title=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&title=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.github.io/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/&title=Other 训练一个自己的YOLO-tiny模型"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
@@ -262,10 +273,12 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
     </div>
 
   </div>
@@ -277,19 +290,21 @@
     Copyright &copy;
     
     
-    2024
+    2016-2024
     Chaos Goo
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/links/">Links</a></li>
-        
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/draft/">草稿</a></li><!--
+     --><!--
+       --><li><a href="/links/">友链</a></li><!--
+     -->
       </ul>
     </nav>
   </div>
@@ -298,30 +313,29 @@
     </div>
     <!-- styles -->
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
 
     <!-- jquery -->
 
-<script src="/lib/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
 
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
 
 <!-- clipboard -->
 
   
-<script src="/lib/clipboard/clipboard.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
-    btn += '<i class="far fa-clone"></i>';
-    btn += '</span>'; 
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
     // mount it!
     $(".highlight table").before(btn);
     var clip = new ClipboardJS('.btn-copy', {
@@ -330,7 +344,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.trigger.setAttribute('aria-label', "复制成功！");
       e.clearSelection();
     })
   })
@@ -341,22 +355,13 @@
 
 <!-- search -->
 
-<!-- Google Analytics -->
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107986670-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-107986670-1');
-    </script>
-
 <!-- Baidu Analytics -->
 
-<!-- Umami Analytics -->
+<!-- Cloudflare Analytics -->
 
 <!-- Disqus Comments -->
 
+<!-- utterances Comments -->
 
 </body>
 </html>
