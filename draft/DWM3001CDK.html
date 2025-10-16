@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    
+<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>dwm3001cdk | Do U Find IT?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="安装SEGGER Embedded Studio配置mergehex.exehttps:&#x2F;&#x2F;www.nordicsemi.com&#x2F;Products&#x2F;Development-tools&#x2F;nrf-command-line-tools&#x2F;download#infotabs 打开项目,使用DWM3001CDK00&gt; Application: Nearby Interaction00&gt; BOARD">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DWM3001CDK">
+<meta property="og:url" content="https://chaosgoo.github.io/draft/DWM3001CDK.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="安装SEGGER Embedded Studio配置mergehex.exehttps:&#x2F;&#x2F;www.nordicsemi.com&#x2F;Products&#x2F;Development-tools&#x2F;nrf-command-line-tools&#x2F;download#infotabs 打开项目,使用DWM3001CDK00&gt; Application: Nearby Interaction00&gt; BOARD">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-12T07:05:37.000Z">
+<meta property="article:modified_time" content="2025-01-12T15:37:04.626Z">
+<meta property="article:author" content="Chaos Goo">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
+  
+  <link rel="icon" href="/public/Logo_sketch_bg_64px.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/my.css">
+
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "首页"; 
+
+  themeMenus["/archives"] = "归档"; 
+
+  themeMenus["/categories"] = "分类"; 
+
+  themeMenus["/tags"] = "标签"; 
+
+  themeMenus["/about"] = "关于"; 
+
+</script>
+
+
+  <body>
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Do U Find IT?" rel="home"> Do U Find IT? </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      DWM3001CDK
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/draft/DWM3001CDK.html" class="article-date">
+	  <time datetime="2025-01-12T07:05:37.000Z" itemprop="datePublished">一月 12, 2025</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装SEGGER-Embedded-Studio"><a href="#安装SEGGER-Embedded-Studio" class="headerlink" title="安装SEGGER Embedded Studio"></a>安装SEGGER Embedded Studio</h1><h1 id="配置mergehex-exe"><a href="#配置mergehex-exe" class="headerlink" title="配置mergehex.exe"></a>配置mergehex.exe</h1><p><a target="_blank" rel="noopener" href="https://www.nordicsemi.com/Products/Development-tools/nrf-command-line-tools/download#infotabs">https://www.nordicsemi.com/Products/Development-tools/nrf-command-line-tools/download#infotabs</a></p>
+<h1 id="打开项目-使用DWM3001CDK"><a href="#打开项目-使用DWM3001CDK" class="headerlink" title="打开项目,使用DWM3001CDK"></a>打开项目,使用DWM3001CDK</h1><p>00&gt; Application: Nearby Interaction<br>00&gt; BOARD: DWM3001CDK<br>00&gt; OS: FreeRTOS<br>00&gt; Version: 3.0.0<br>00&gt; DW3XXX Device Driver Version 06.00.14<br>00&gt; MAC: cmsis_v1_R11.9.2<br>00&gt; ACCESSORY_RANGING_ROLE: Initiator<br>00&gt; <debug> nrf_sdh_freertos: Creating a SoftDevice task.<br>00&gt; <debug> app: uwb_init() &#x3D; 0<br>00&gt; <debug> nrf_sdh_freertos: Enter softdevice_task.<br>00&gt; <info> app: Slow advertising.<br>00&gt; THREAD NAME       Stack usage<br>00&gt; defaultTask       148&#x2F;4304<br>00&gt; IDLE              308&#x2F;512<br>00&gt; BLE               296&#x2F;1024<br>00&gt; logger            352&#x2F;1024<br>00&gt; Tmr Svc           156&#x2F;512<br>00&gt; Total HEAP        51200<br>00&gt; Current HEAP used  9304<br>00&gt; Max HEAP used     9496</p>
+<h1 id="控制LED"><a href="#控制LED" class="headerlink" title="控制LED"></a>控制LED</h1><p>官方写好了设置IO输出, nrf_gpio_cfg_output<br>LED引脚也预定义好了m_board_led_list</p>
+<p>启动时候会看到LED点亮, 实际代码是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">BoardInit</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    bsp_board_init(BSP_INIT_LEDS | BSP_INIT_BUTTONS);</span><br><span class="line">    peripherals_init();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        bsp_board_led_invert(BSP_BOARD_LED_0);</span><br><span class="line">        bsp_board_led_invert(BSP_BOARD_LED_1);</span><br><span class="line">        bsp_board_led_invert(BSP_BOARD_LED_2);</span><br><span class="line">        bsp_board_led_invert(BSP_BOARD_LED_3);</span><br><span class="line">        nrf_delay_ms(<span class="number">250</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>LED控制也贴心的封装好了,bsp_board_led_on和bsp_board_led_off,</p>
+<p>在串口刷新时候闪烁LED</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">logger_thread</span><span class="params">(<span class="type">void</span> *arg)</span> &#123;</span><br><span class="line">    UNUSED_PARAMETER(arg);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        NRF_LOG_FLUSH();</span><br><span class="line">        bsp_board_led_on(BSP_BOARD_LED_1);</span><br><span class="line">        nrf_delay_ms(<span class="number">1</span>);</span><br><span class="line">        bsp_board_led_off(BSP_BOARD_LED_1);</span><br><span class="line">        nrf_delay_ms(<span class="number">1</span>);</span><br><span class="line">        vTaskSuspend(<span class="literal">NULL</span>); <span class="comment">// Suspend myself</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="编写WS2812的驱动"><a href="#编写WS2812的驱动" class="headerlink" title="编写WS2812的驱动"></a>编写WS2812的驱动</h1><p>参照<a target="_blank" rel="noopener" href="https://www.cnblogs.com/milton/p/17892606.html">https://www.cnblogs.com/milton/p/17892606.html</a>, 将其中的spi驱动修改为nrf52833版本.</p>
+<p>编写初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ws2812_init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  nrf_gpio_cfg_output(<span class="number">30</span>);</span><br><span class="line">  nrf_gpio_cfg_output(<span class="number">27</span>);</span><br><span class="line">  nrf_gpio_cfg_output(<span class="number">31</span>);</span><br><span class="line">  <span class="built_in">memset</span>(ws2812_buffer, <span class="number">0</span>, WS2812_BUFFER_SIZE);</span><br><span class="line">  <span class="type">nrf_drv_spi_config_t</span> spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;</span><br><span class="line">  spi_config.ss_pin               = NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">30</span>);</span><br><span class="line">  spi_config.miso_pin             = NRF_DRV_SPI_PIN_NOT_USED;</span><br><span class="line">  spi_config.mosi_pin             = NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">27</span>);</span><br><span class="line">  spi_config.sck_pin              = NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">31</span>);</span><br><span class="line">  spi_config.frequency            = NRF_DRV_SPI_FREQ_4M;</span><br><span class="line">  spi_config.mode                 = NRF_DRV_SPI_MODE_0;    <span class="comment">// SPI 模式 0</span></span><br><span class="line">  <span class="type">int</span> spi_ret                     = nrf_drv_spi_init(&amp;spi, &amp;spi_config, spi_event_handler, <span class="literal">NULL</span>);</span><br><span class="line">  NRF_LOG_ERROR(<span class="string">&quot;ws2812_init() = %d&quot;</span>, spi_ret);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写发送函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NRF_LOG_INFO(<span class="string">&quot;ws2812_send_spi()&quot;</span>);</span><br><span class="line"></span><br><span class="line">APP_ERROR_CHECK(nrf_drv_spi_transfer(&amp;spi, ws2812_buffer, WS2812_BUFFER_SIZE, <span class="literal">NULL</span>, <span class="number">0</span>));</span><br><span class="line"><span class="keyword">while</span> (!spi_xfer_done) &#123;</span><br><span class="line">  __WFE();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 发送复位信号（保持 MOSI 低电平至少 50µs）</span></span><br><span class="line">nrf_gpio_pin_clear(NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">27</span>));</span><br><span class="line">nrf_delay_us(<span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>需要修改nrf_drv_spi_transfer声明和定义,将第三个参数修改为size_t类型, 不然无法一次性传输WS2812_BUFFER_SIZE大小的数据导致颜色异常.</p>
+<p>复制颜色设置函数, 增加hsv颜色转换函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ws2812_pixel</span><span class="params">(<span class="type">uint16_t</span> led_no, <span class="type">uint8_t</span> r, <span class="type">uint8_t</span> g, <span class="type">uint8_t</span> b)</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> *ptr = &amp;ws2812_buffer[led_no * <span class="number">24</span>];</span><br><span class="line">  WS2812_FILL_BUFFER(g);</span><br><span class="line">  WS2812_FILL_BUFFER(r);</span><br><span class="line">  WS2812_FILL_BUFFER(b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ws2812_pixel_all</span><span class="params">(<span class="type">uint8_t</span> r, <span class="type">uint8_t</span> g, <span class="type">uint8_t</span> b)</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> *ptr = ws2812_buffer;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">uint16_t</span> i = <span class="number">0</span>; i &lt; WS2812_NUM_LEDS; ++i) &#123;</span><br><span class="line">    WS2812_FILL_BUFFER(g);</span><br><span class="line">    WS2812_FILL_BUFFER(r);</span><br><span class="line">    WS2812_FILL_BUFFER(b);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">hsv_to_rgb</span><span class="params">(<span class="type">uint8_t</span> h, <span class="type">uint8_t</span> s, <span class="type">uint8_t</span> v, <span class="type">uint8_t</span> *r, <span class="type">uint8_t</span> *g, <span class="type">uint8_t</span> *b)</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> region, remainder, p, q, t;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (s == <span class="number">0</span>) &#123;</span><br><span class="line">    *r = v;</span><br><span class="line">    *g = v;</span><br><span class="line">    *b = v;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  region    = h / <span class="number">43</span>;</span><br><span class="line">  remainder = (h - (region * <span class="number">43</span>)) * <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">  p = (v * (<span class="number">255</span> - s)) &gt;&gt; <span class="number">8</span>;</span><br><span class="line">  q = (v * (<span class="number">255</span> - ((s * remainder) &gt;&gt; <span class="number">8</span>))) &gt;&gt; <span class="number">8</span>;</span><br><span class="line">  t = (v * (<span class="number">255</span> - ((s * (<span class="number">255</span> - remainder)) &gt;&gt; <span class="number">8</span>))) &gt;&gt; <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (region) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">    *r = v;</span><br><span class="line">    *g = t;</span><br><span class="line">    *b = p;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    *r = q;</span><br><span class="line">    *g = v;</span><br><span class="line">    *b = p;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    *r = p;</span><br><span class="line">    *g = v;</span><br><span class="line">    *b = t;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">    *r = p;</span><br><span class="line">    *g = q;</span><br><span class="line">    *b = v;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">    *r = t;</span><br><span class="line">    *g = p;</span><br><span class="line">    *b = v;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    *r = v;</span><br><span class="line">    *g = p;</span><br><span class="line">    *b = q;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让AI生成行列渐变函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ws2812_row_gradient</span><span class="params">(<span class="type">uint16_t</span> i)</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">uint8_t</span> row = <span class="number">0</span>; row &lt; WS2812_ROWS; row++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint8_t</span> col = <span class="number">0</span>; col &lt; WS2812_COLS; col++) &#123;</span><br><span class="line">      <span class="comment">// 计算当前 LED 的色相值</span></span><br><span class="line">      <span class="type">uint8_t</span> hue = (i + row * <span class="number">256</span> / WS2812_ROWS) % <span class="number">256</span>;</span><br><span class="line">      <span class="type">uint8_t</span> r, g, b;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 将 HSV 转换为 RGB，亮度设置为 50</span></span><br><span class="line">      hsv_to_rgb(hue, <span class="number">255</span>, <span class="number">16</span>, &amp;r, &amp;g, &amp;b);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 计算 LED 索引</span></span><br><span class="line">      <span class="type">uint16_t</span> led = row * WS2812_COLS + col;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 设置 LED 颜色</span></span><br><span class="line">      ws2812_pixel(led, r, g, b);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ws2812_col_gradient</span><span class="params">(<span class="type">uint16_t</span> i)</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">uint8_t</span> col = <span class="number">0</span>; col &lt; WS2812_COLS; col++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint8_t</span> row = <span class="number">0</span>; row &lt; WS2812_ROWS; row++) &#123;</span><br><span class="line">      <span class="comment">// 计算当前 LED 的色相值</span></span><br><span class="line">      <span class="type">uint8_t</span> hue = (i + col * <span class="number">256</span> / WS2812_COLS) % <span class="number">256</span>;</span><br><span class="line">      <span class="type">uint8_t</span> r, g, b;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 将 HSV 转换为 RGB，亮度设置为 50</span></span><br><span class="line">      hsv_to_rgb(hue, <span class="number">255</span>, <span class="number">50</span>, &amp;r, &amp;g, &amp;b);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 计算 LED 索引</span></span><br><span class="line">      <span class="type">uint16_t</span> led = row * WS2812_COLS + col;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 设置 LED 颜色</span></span><br><span class="line">      ws2812_pixel(led, r, g, b);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现第一个灯珠总是绿色, 继续搜寻资料.<br>找到一个可以工作的修复方法.<br><a target="_blank" rel="noopener" href="https://www.reddit.com/r/arduino/comments/499ods/strip_of_144_ws2812b_leds_first_led_stuck_green/">https://www.reddit.com/r/arduino/comments/499ods/strip_of_144_ws2812b_leds_first_led_stuck_green/</a></p>
+<p><strong>ntinaras</strong>:<br><code>I am writing my own driver using stm32 LL HAL and using spi and DMA. I used a 470ohm resistor and it did not help. I noticed that spi send the first pulse slighltly longer than normal, so what fixed it for me is I had the spi MOSI send a few zeros first at every new led strip update, and then start sending the proper data. It is not relevant to what you are doing as you are using a library,but i landed here from google so writing this here in case someone else find himself in my shoes</code></p>
+<p>增加头部零字节</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> WS2812_NUM_LEDS 60      <span class="comment">// 6x10 灯板，共 60 个 LED</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WS2812_RESET_PULSE 60</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WS2812_EXTRA_ZEROS 4    <span class="comment">// 添加 4 个零字节</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WS2812_BUFFER_SIZE (WS2812_NUM_LEDS * 24 + WS2812_RESET_PULSE + WS2812_EXTRA_ZEROS)</span></span><br></pre></td></tr></table></figure>
+
+<p>修改初始化,颜色设置和发送函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ws2812_send_spi</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  NRF_LOG_INFO(<span class="string">&quot;ws2812_send_spi()&quot;</span>);</span><br><span class="line">  <span class="built_in">memset</span>(ws2812_buffer, <span class="number">0</span>, WS2812_EXTRA_ZEROS);</span><br><span class="line">  APP_ERROR_CHECK(nrf_drv_spi_transfer(&amp;spi, ws2812_buffer, WS2812_BUFFER_SIZE, <span class="literal">NULL</span>, <span class="number">0</span>));</span><br><span class="line">  <span class="keyword">while</span> (!spi_xfer_done) &#123;</span><br><span class="line">    __WFE();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 发送复位信号（保持 MOSI 低电平至少 50µs）</span></span><br><span class="line">  nrf_gpio_pin_clear(NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">27</span>));</span><br><span class="line">  nrf_delay_us(<span class="number">50</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ws2812_pixel</span><span class="params">(<span class="type">uint16_t</span> led_no, <span class="type">uint8_t</span> r, <span class="type">uint8_t</span> g, <span class="type">uint8_t</span> b)</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> *ptr = &amp;ws2812_buffer[WS2812_EXTRA_ZEROS + led_no * <span class="number">24</span>];</span><br><span class="line">  WS2812_FILL_BUFFER(g);</span><br><span class="line">  WS2812_FILL_BUFFER(r);</span><br><span class="line">  WS2812_FILL_BUFFER(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写测试代码,检查最终效果是否正常</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ws2812_init();</span><br><span class="line"><span class="type">uint16_t</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="comment">// 列渐变效果</span></span><br><span class="line">  ws2812_col_gradient(i);</span><br><span class="line">  ws2812_send_spi();</span><br><span class="line">  nrf_delay_ms(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 更新色相值</span></span><br><span class="line">  i = (i + <span class="number">1</span>) % <span class="number">256</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>灯珠就绪, 等待添加绘图函数.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+</section>
+          <aside id="sidebar">
+  
+    <div class="widget-wrap" style="margin: 20px 0;">
+	<div id="search-form-wrap">
+
+    <form class="search-form">
+        <label style="width: 75%;">
+            <span class="screen-reader-text">Search for:</span>
+            <input type="search" class="search-field" style="height: 42px;" placeholder=" 搜索…" value="" name="s" title="Search for:">
+        </label>
+        <input type="submit" class="search-form-submit" value="搜索">
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">联系我们</h3>
+    <div class="widget widget_athemes_social_icons">
+
+    	<ul class="clearfix widget-social-icons">   
+    	
+          
+     			  <li><a target="_blank" rel="noopener" href="https://github.com/iTimeTraveler" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a target="_blank" rel="noopener" href="http://www.yoursite.com" title="Weibo"><i class="fa fa-weibo" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href="" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href="" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href="" title="Google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href="" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href="" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+     			  <li><a href="" title="Flickr"><i class="fa fa-flickr" aria-hidden="true"></i></a></li> 
+          
+   		
+          
+            <li><a href="mailto:?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
+          
+   		
+   		</ul>
+
+
+   		<!--
+   		<ul class="clearfix widget-social-icons">   		
+   		<li class="widget-si-twitter"><a target="_blank" rel="noopener" href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
+		<li class="widget-si-facebook"><a target="_blank" rel="noopener" href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
+			<li class="widget-si-gplus"><a target="_blank" rel="noopener" href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
+			<li class="widget-si-pinterest"><a target="_blank" rel="noopener" href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
+			<li class="widget-si-flickr"><a target="_blank" rel="noopener" href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
+			<li class="widget-si-instagram"><a target="_blank" rel="noopener" href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
+		</ul> -->
+
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget_athemes_tabs">
+    <ul id="widget-tab" class="clearfix widget-tab-nav">
+      <li class="active"><a>最新文章</a></li>
+    </ul>
+    <div class="widget">
+      <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2025/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
+              <span>九月 27, 2025</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2024/07/29/Friday-Ink/">Friday Ink 今天是周五吗</a></h6>
+              <span>七月 29, 2024</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/">改装米家1代屏幕挂灯,接入HomeKit</a></h6>
+              <span>一月 28, 2024</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2022/12/31/Monochrome_dither_algorithm/">单色图像抖动算法</a></h6>
+              <span>十二月 31, 2022</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2022/11/13/Lenovo-R720-Keyboard-Matrix/">联想拯救者 R720 键盘矩阵逆向</a></h6>
+              <span>十一月 13, 2022</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2022/09/20/esp32-spiffs-ota-demo/">对ESP32 SPIFFS分区进行OTA</a></h6>
+              <span>九月 20, 2022</span>
+            </div>
+
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Arduino/" rel="tag">Arduino</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DIY/" rel="tag">DIY</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EPaper/" rel="tag">EPaper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/" rel="tag">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keyboard/" rel="tag">Keyboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micropython/" rel="tag">Micropython</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RaspberryPi/" rel="tag">RaspberryPi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/" rel="tag">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lowpoly/" rel="tag">lowpoly</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E3%80%87/" rel="tag">〇</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Arduino/" style="font-size: 16px;">Arduino</a> <a href="/tags/DIY/" style="font-size: 12px;">DIY</a> <a href="/tags/EPaper/" style="font-size: 10px;">EPaper</a> <a href="/tags/ESP32/" style="font-size: 20px;">ESP32</a> <a href="/tags/Flutter/" style="font-size: 14px;">Flutter</a> <a href="/tags/HTTP/" style="font-size: 12px;">HTTP</a> <a href="/tags/Hack/" style="font-size: 10px;">Hack</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Kotlin/" style="font-size: 14px;">Kotlin</a> <a href="/tags/Micropython/" style="font-size: 10px;">Micropython</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RaspberryPi/" style="font-size: 10px;">RaspberryPi</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lowpoly/" style="font-size: 18px;">lowpoly</a> <a href="/tags/%E3%80%87/" style="font-size: 10px;">〇</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Do U Find IT? All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

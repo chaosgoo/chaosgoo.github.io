@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    
+<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>uno r4 wi-fi 接入 home assistant | Do U Find IT?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="项目介绍本项目是Funpack第五期板卡三的任务1实现.任务目标是让UNO R4 Wi-Fi通过网络连接到智能云端, 并模拟成一个可以控制的灯, 通过远程控制调整自带的LED矩阵点亮范围. 实现思路将UNO R4作为灯装置接入IOT平台, 随后在IOT平台上下发命令来操作UNO R4, 调整这个”灯”的亮度.这里我选择的是可以部署在内网环境下的Home Assistant. UNO R4通过MQT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNO R4 Wi-Fi 接入 Home Assistant">
+<meta property="og:url" content="https://chaosgoo.github.io/2025/09/27/uno-r4-wifi-and-home-assistant/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="项目介绍本项目是Funpack第五期板卡三的任务1实现.任务目标是让UNO R4 Wi-Fi通过网络连接到智能云端, 并模拟成一个可以控制的灯, 通过远程控制调整自带的LED矩阵点亮范围. 实现思路将UNO R4作为灯装置接入IOT平台, 随后在IOT平台上下发命令来操作UNO R4, 调整这个”灯”的亮度.这里我选择的是可以部署在内网环境下的Home Assistant. UNO R4通过MQT">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/funpack5.drawio.png">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/install_mqtt_on_home_assistant.png">
+<meta property="article:published_time" content="2025-09-27T15:17:01.000Z">
+<meta property="article:modified_time" content="2025-10-16T05:36:21.247Z">
+<meta property="article:author" content="Chaos Goo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.github.io/images/archives/funpack5.drawio.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
+  
+  <link rel="icon" href="/public/Logo_sketch_bg_64px.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/my.css">
+
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "首页"; 
+
+  themeMenus["/archives"] = "归档"; 
+
+  themeMenus["/categories"] = "分类"; 
+
+  themeMenus["/tags"] = "标签"; 
+
+  themeMenus["/about"] = "关于"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Do U Find IT?" rel="home"> Do U Find IT? </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-uno-r4-wifi-and-home-assistant" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      UNO R4 Wi-Fi 接入 Home Assistant
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2025/09/27/uno-r4-wifi-and-home-assistant/" class="article-date">
+	  <time datetime="2025-09-27T15:17:01.000Z" itemprop="datePublished">九月 27, 2025</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h1><p>本项目是Funpack第五期板卡三的任务1实现.<br>任务目标是让UNO R4 Wi-Fi通过网络连接到智能云端, 并模拟成一个可以控制的灯, 通过远程控制调整自带的LED矩阵点亮范围.</p>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>将UNO R4作为灯装置接入IOT平台, 随后在IOT平台上下发命令来操作UNO R4, 调整这个”灯”的亮度.<br>这里我选择的是可以部署在内网环境下的<a target="_blank" rel="noopener" href="https://www.home-assistant.io/">Home Assistant</a>.</p>
+<p>UNO R4通过MQTT服务器与<a target="_blank" rel="noopener" href="https://www.home-assistant.io/">Home Assistant</a>进行通信. MQTT服务器选择EMQX开源版.</p>
+<p><img src="/./images/archives/funpack5.drawio.png" alt="结构图"></p>
+<h2 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h2><p>本项目需要有一台服务器,并且在服务器上部署<a target="_blank" rel="noopener" href="https://www.home-assistant.io/">Home Assistant</a>和EMQX两个服务.<br>本节简单介绍下两个服务的部署方式.</p>
+<h2 id="Home-Assistant"><a href="#Home-Assistant" class="headerlink" title="Home Assistant"></a>Home Assistant</h2><p>在<a target="_blank" rel="noopener" href="https://www.home-assistant.io/">Home Assistant</a>官网上有较为详细的多种安装方式介绍.这里我选择的是使用Docker进行安装,可以忽略很多具体环境差异,只需要输入命令便可将<a target="_blank" rel="noopener" href="https://www.home-assistant.io/">Home Assistant</a>跑起来.<br>具体介绍位于<br><a target="_blank" rel="noopener" href="https://www.home-assistant.io/installation/linux#install-home-assistant-container">Install Home Assistant Container</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name homeassistant \</span><br><span class="line">  --privileged \</span><br><span class="line">  --restart=unless-stopped \</span><br><span class="line">  -e TZ=MY_TIME_ZONE \</span><br><span class="line">  -v /PATH_TO_YOUR_CONFIG:/config \</span><br><span class="line">  -v /run/dbus:/run/dbus:ro \</span><br><span class="line">  --network=host \</span><br><span class="line">  ghcr.io/home-assistant/home-assistant:stable</span><br></pre></td></tr></table></figure>
+<p>命令执行完毕,打开使用服务器IP配合默认端口号8123-&gt;<a target="_blank" rel="noopener" href="http://0.0.0.0:8123/">http:&#x2F;&#x2F;<host>:8123</a>即可进入主面板.</p>
+<h2 id="EMQX"><a href="#EMQX" class="headerlink" title="EMQX"></a>EMQX</h2><p>EMQX同样可以使用Docker进行安装部署, 页面<a target="_blank" rel="noopener" href="https://docs.emqx.com/zh/emqx/latest/deploy/install-docker-ce.html">通过 Docker 运行 EMQX</a>详细介绍了所需的命令.</p>
+<p>运行以下命令获取 Docker 镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull emqx/emqx:5.8.1</span><br></pre></td></tr></table></figure>
+<p>运行以下命令启动 Docker 容器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 emqx/emqx:5.8.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="HomeAssistant对接到EMQX"><a href="#HomeAssistant对接到EMQX" class="headerlink" title="HomeAssistant对接到EMQX"></a>HomeAssistant对接到EMQX</h2><p>进入HomeAssistant主页后点击右下角<strong>设置</strong>,选择<strong>设备与服务</strong>, 搜索<strong>MQTT</strong></p>
+<p><img src="/./images/archives/install_mqtt_on_home_assistant.png" alt="安装MQTT插件"></p>
+<p>安装好MQTT插件后,进入插件面板点击添加条目填写上一步配置的EMQX信息即可.</p>
+<h1 id="代码编写"><a href="#代码编写" class="headerlink" title="代码编写"></a>代码编写</h1><h2 id="注册到Home-Assistant"><a href="#注册到Home-Assistant" class="headerlink" title="注册到Home Assistant"></a>注册到Home Assistant</h2><p>publish 指定格式的payload到topic<br>其中topic格式为homeassistant&#x2F;设备类型&#x2F;自定义名称&#x2F;config,根据格式要求.<br>得到主题应当为homeassistant&#x2F;light&#x2F;fun_matrix&#x2F;config.<br>payload内容是一个描述设备的json字符串, 如下代码所示.</p>
+<ul>
+<li>其中name是设备名称;</li>
+<li>device_class要和注册topic中设备类型对应;</li>
+<li>command_topic代表设备的开关状态;</li>
+<li>brightness_command_topic灯的亮度控制;</li>
+<li>unique_id装置唯一ID;</li>
+<li>device设备描述;</li>
+<li>schema代表当前为json格式;</li>
+<li>brightness代表本装置支持亮度控制;<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">registerToHomeAssistantServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="type">const</span> <span class="type">char</span>* topic = <span class="string">&quot;homeassistant/light/fun_matrix/config&quot;</span>;</span><br><span class="line">  std::string message = <span class="string">R&quot;(&#123;</span></span><br><span class="line"><span class="string">    &quot;name&quot;: &quot;led&quot;,</span></span><br><span class="line"><span class="string">    &quot;device_class&quot;: &quot;light&quot;,</span></span><br><span class="line"><span class="string">    &quot;command_topic&quot;: &quot;fun_matrix/light/state&quot;,</span></span><br><span class="line"><span class="string">    &quot;brightness_command_topic&quot;: &quot;fun_matrix/light/brightness/set&quot;,</span></span><br><span class="line"><span class="string">    &quot;unique_id&quot;: &quot;fun_matrix&quot;,</span></span><br><span class="line"><span class="string">    &quot;device&quot;: &#123;</span></span><br><span class="line"><span class="string">        &quot;identifiers&quot;: &quot;fun_matrix&quot;,</span></span><br><span class="line"><span class="string">        &quot;name&quot;: &quot;UnoR4WiFi&quot;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    &quot;schema&quot;: &quot;json&quot;,</span></span><br><span class="line"><span class="string">    &quot;brightness&quot;: true</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">)&quot;</span>;</span><br><span class="line">  <span class="type">bool</span> retained = <span class="literal">false</span>;</span><br><span class="line">  <span class="type">int</span> qos = <span class="number">1</span>;</span><br><span class="line">  <span class="type">bool</span> dup = <span class="literal">false</span>;</span><br><span class="line">  mqttClient.<span class="built_in">beginMessage</span>(topic, message.<span class="built_in">length</span>(), retained, qos, dup);</span><br><span class="line">  mqttClient.<span class="built_in">print</span>(message.<span class="built_in">c_str</span>());</span><br><span class="line">  mqttClient.<span class="built_in">endMessage</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="响应HomeAssistant命令"><a href="#响应HomeAssistant命令" class="headerlink" title="响应HomeAssistant命令"></a>响应HomeAssistant命令</h2><p>根据注册时候payload中brightness_command_topic和command_topic, 来响应具体的动作即可.<br>其中command_topic固定传递ON和OFF字符串, brightness_command_topic传递亮度值0-255.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">onMqttMessage</span><span class="params">(<span class="type">int</span> messageSize)</span> </span>&#123;</span><br><span class="line">  String topic = mqttClient.<span class="built_in">messageTopic</span>();</span><br><span class="line">  Serial.<span class="built_in">println</span>(topic);</span><br><span class="line">  String payload;</span><br><span class="line">  <span class="keyword">while</span> (mqttClient.<span class="built_in">available</span>()) &#123;</span><br><span class="line">    payload = mqttClient.<span class="built_in">readString</span>();</span><br><span class="line">    Serial.<span class="built_in">println</span>(payload);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (topic.<span class="built_in">endsWith</span>(<span class="string">&quot;state&quot;</span>)) &#123;</span><br><span class="line">    Serial.<span class="built_in">print</span>(<span class="string">&quot;brightness_state_topic&quot;</span>);</span><br><span class="line">    <span class="type">bool</span> enable = payload.<span class="built_in">equals</span>(<span class="string">&quot;ON&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (lightIsOn != enable) &#123;</span><br><span class="line">      lightIsOn = enable;</span><br><span class="line">      <span class="keyword">if</span> (lightIsOn) &#123;</span><br><span class="line">        <span class="built_in">showFrame</span>(level);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">showFrame</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (topic.<span class="built_in">endsWith</span>(<span class="string">&quot;set&quot;</span>)) &#123;</span><br><span class="line">    Serial.<span class="built_in">print</span>(<span class="string">&quot;brightness_command_topic&quot;</span>);</span><br><span class="line">    level = payload.<span class="built_in">toInt</span>() / <span class="number">25</span>;</span><br><span class="line">    Serial.<span class="built_in">println</span>(level);</span><br><span class="line">    <span class="built_in">showFrame</span>(level);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="功能展示"><a href="#功能展示" class="headerlink" title="功能展示"></a>功能展示</h1><p>在网页上设置亮度, 均能够在设备上得到实时的响应.<br>不同的亮度,亮起的区域.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/07/29/Friday-Ink/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Friday Ink 今天是周五吗</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">项目介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">实现思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2"><span class="nav-number">2.1.</span> <span class="nav-text">服务器部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Home-Assistant"><span class="nav-number">2.2.</span> <span class="nav-text">Home Assistant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EMQX"><span class="nav-number">2.3.</span> <span class="nav-text">EMQX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HomeAssistant%E5%AF%B9%E6%8E%A5%E5%88%B0EMQX"><span class="nav-number">2.4.</span> <span class="nav-text">HomeAssistant对接到EMQX</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="nav-number">3.</span> <span class="nav-text">代码编写</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E5%88%B0Home-Assistant"><span class="nav-number">3.1.</span> <span class="nav-text">注册到Home Assistant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%8D%E5%BA%94HomeAssistant%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">响应HomeAssistant命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA"><span class="nav-number">4.</span> <span class="nav-text">功能展示</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Do U Find IT? All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

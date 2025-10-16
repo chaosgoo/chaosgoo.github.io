@@ -1,113 +1,71 @@
-/**
- * Sets up Justified Gallery.
- */
-if (!!$.prototype.justifiedGallery) {
-  var options = {
-    rowHeight: 140,
-    margins: 4,
-    lastRow: "justify"
-  };
-  $(".article-gallery").justifiedGallery(options);
+(function(){
+
+	// Highlight current nav item
+	var hasCurrent = false;
+
+	//把相对路径解析成绝对路径
+	function absolute(href) {
+	    var link = document.createElement("a");
+	    link.href = href;
+	    return (link.protocol+"//"+link.host+link.pathname+link.search+link.hash);
+	}
+
+	//移出所有的菜单的选中样式
+	$('#main-nav > li').each(function(){
+		$(this).removeClass('current-menu-item current_page_item');
+	});
+	var links = $('#main-nav > li > a');
+	var urls = window.location.href;
+	//为什么要从后面往前面遍历？因为首页极有可能是https://xxxxx/,
+	//这样的话肯定能够匹配所有的项
+	for (var i = links.length; i >= 0; i--) {
+		if(urls.indexOf(absolute(links[i])) != -1){
+			$(links[i]).parent().addClass('current-menu-item current_page_item');
+			//为什么还要设置hasCurrent？因为不排除首页是
+			//https://xxxx/index.html格式的
+			hasCurrent = true;
+			break;
+		}		
+	}
+
+
+	if (!hasCurrent) {
+		$('#main-nav > li:first').addClass('current-menu-item current_page_item');
+	}
+})();
+
+
+
+// article toc
+var toc = document.getElementById('toc')
+
+if (toc != null) {
+	window.addEventListener("scroll", scrollcatelogHandler);
+	var tocPosition = 194+25;
+
+	function scrollcatelogHandler(e) {
+		 var event = e || window.event,
+		     target = event.target || event.srcElement;
+		 var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		 if (scrollTop > tocPosition) {
+		     toc.classList.add("toc-fixed");
+		 } else {
+		     toc.classList.remove("toc-fixed");
+		 }
+	}
 }
 
-$(document).ready(function() {
 
-  /**
-   * Shows the responsive navigation menu on mobile.
-   */
-  $("#header > #nav > ul > .icon").click(function() {
-    $("#header > #nav > ul").toggleClass("responsive");
+$('#main-navigation').on('click', function(){
+    if ($('#main-navigation').hasClass('main-navigation-open')){
+      $('#main-navigation').removeClass('main-navigation-open');
+    } else {
+      $('#main-navigation').addClass('main-navigation-open');
+    }
   });
 
-
-  /**
-   * Controls the different versions of  the menu in blog post articles 
-   * for Desktop, tablet and mobile.
-   */
-  if ($(".post").length) {
-    var menu = $("#menu");
-    var nav = $("#menu > #nav");
-    var menuIcon = $("#menu-icon, #menu-icon-tablet");
-
-    /**
-     * Display the menu on hi-res laptops and desktops.
-     */
-    if ($(document).width() >= 1440) {
-      menu.show();
-      menuIcon.addClass("active");
+$('#content').on('click', function(){
+    if ($('#main-navigation').hasClass('main-navigation-open')){
+      $('#main-navigation').removeClass('main-navigation-open');
     }
-
-    /**
-     * Display the menu if the menu icon is clicked.
-     */
-    menuIcon.click(function() {
-      if (menu.is(":hidden")) {
-        menu.show();
-        menuIcon.addClass("active");
-      } else {
-        menu.hide();
-        menuIcon.removeClass("active");
-      }
-      return false;
-    });
-
-    /**
-     * Add a scroll listener to the menu to hide/show the navigation links.
-     */
-    if (menu.length) {
-      $(window).on("scroll", function() {
-        var topDistance = menu.offset().top;
-
-        // hide only the navigation links on desktop
-        if (!nav.is(":visible") && topDistance < 50) {
-          nav.show();
-        } else if (nav.is(":visible") && topDistance > 100) {
-          nav.hide();
-        }
-
-        // on tablet, hide the navigation icon as well and show a "scroll to top
-        // icon" instead
-        if ( ! $( "#menu-icon" ).is(":visible") && topDistance < 50 ) {
-          $("#menu-icon-tablet").show();
-          $("#top-icon-tablet").hide();
-        } else if (! $( "#menu-icon" ).is(":visible") && topDistance > 100) {
-          $("#menu-icon-tablet").hide();
-          $("#top-icon-tablet").show();
-        }
-      });
-    }
-
-    /**
-     * Show mobile navigation menu after scrolling upwards,
-     * hide it again after scrolling downwards.
-     */
-    if ($( "#footer-post").length) {
-      var lastScrollTop = 0;
-      $(window).on("scroll", function() {
-        var topDistance = $(window).scrollTop();
-
-        if (topDistance > lastScrollTop){
-          // downscroll -> show menu
-          $("#footer-post").hide();
-        } else {
-          // upscroll -> hide menu
-          $("#footer-post").show();
-        }
-        lastScrollTop = topDistance;
-
-        // close all submenu"s on scroll
-        $("#nav-footer").hide();
-        $("#toc-footer").hide();
-        $("#share-footer").hide();
-
-        // show a "navigation" icon when close to the top of the page, 
-        // otherwise show a "scroll to the top" icon
-        if (topDistance < 50) {
-          $("#actions-footer > #top").hide();
-        } else if (topDistance > 100) {
-          $("#actions-footer > #top").show();
-        }
-      });
-    }
-  }
-});
+  });
