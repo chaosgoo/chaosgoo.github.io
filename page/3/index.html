@@ -173,6 +173,56 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-esp32-spiffs-ota-demo"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2022/09/20/esp32-spiffs-ota-demo/">对ESP32 SPIFFS分区进行OTA</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2022/09/20/esp32-spiffs-ota-demo/" class="article-date">
+	  <time datetime="2022-09-20T14:45:22.000Z" itemprop="datePublished">九月 20, 2022</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为SPIFFS分区OTA适用于只想更新资源部分,而不更新运行代码的场景,比如主题里面的图片资源,字体库之类的东西.</p>
+<h2 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Name,   Type, SubType, Offset,  Size, Flags</span><br><span class="line">nvs,      data, nvs,     0x9000,  0x5000,</span><br><span class="line">otadata,  data, ota,     0xe000,  0x2000,</span><br><span class="line">app0,     app,  ota_0,   0x10000, 0x300000,</span><br><span class="line">storage,   data, spiffs,  0x310000, 0xC000,</span><br></pre></td></tr></table></figure>
+
+<p>这里为了加快OTA速度,我将SPIFFS分区设置的非常小,只有49152字节(48KB)<br>同时app分区只有app0分区.</p>
+<h2 id="OTA涉及到的函数"><a href="#OTA涉及到的函数" class="headerlink" title="OTA涉及到的函数"></a>OTA涉及到的函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前的SPIFFS分区</span></span><br><span class="line"><span class="type">const</span> <span class="type">esp_partition_t</span> *spiffs_patition = <span class="built_in">esp_partition_find_first</span>(</span><br><span class="line">        ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_SPIFFS, <span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">// ESP_PARTITION_TYPE_DATA 和分区表内的data对应</span></span><br><span class="line"><span class="comment">// ESP_PARTITION_SUBTYPE_DATA_SPIFFS 对应SPIFFS类型</span></span><br><span class="line"><span class="comment">// 最后一个参数label传递NULL,表示是个SPIFFS分区就行,叫啥都没关系.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 擦除找到的SPIFFS分区内容.从头开始擦除offset=0, 擦除全部内容size=spiffs_patition-&gt;size</span></span><br><span class="line"><span class="built_in">esp_partition_erase_range</span>(spiffs_patition, <span class="number">0</span>, spiffs_patition-&gt;size);</span><br><span class="line"></span><br><span class="line"><span class="comment">// spiffs2_start spiffs2_end是我用到的新的spiffs文件内容.使用embed_file方式嵌入在程序中.</span></span><br><span class="line"><span class="comment">// 写入新的spiffs2的内容到刚才找到的SPIFFS分区,由于我这时候新的spiffs已经是完整的了,所以offset=0,</span></span><br><span class="line"><span class="comment">// 写入尺寸就是此时具有的新spiffs内容的大小size=spiffs2_end - spiffs2_start - 1</span></span><br><span class="line"><span class="built_in">esp_partition_write</span>(spiffs_patition, <span class="number">0</span>, spiffs2_start,</span><br><span class="line">                                  spiffs2_end - spiffs2_start - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重启后,SPIFFS内容已经变成刚才新写入的了.</span></span><br><span class="line"><span class="built_in">esp_restart</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Repository"><a href="#Repository" class="headerlink" title="Repository"></a>Repository</h2><p>模拟OTA操作.<br><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/Esp_SPIFFS_OTA_Demo">Esp_SPIFFS_OTA_Demo</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-ESP32-keeps-Pwm-in-the-sleep-mode"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -270,127 +320,6 @@ var themeMenus = {};
 
 
 <h3 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PLATFORM: Espressif 32 (3.3.0+sha.3b5de56) &gt; Espressif ESP32 Dev Module</span><br><span class="line"> - framework-arduinoespressif32 0.0.0+sha.68daea4</span><br><span class="line"> - tool-esptoolpy 1.30100.210531 (3.1.0)</span><br><span class="line"> - toolchain-riscv-esp 1.80400.0 (8.4.0)</span><br><span class="line"> - toolchain-riscv32-esp 8.4.0+2021r1</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Parallel-LCD-VS-SPI-LCD"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2022/02/12/Parallel-LCD-VS-SPI-LCD/">ESP32并口屏幕和串口屏幕下帧率的对比</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2022/02/12/Parallel-LCD-VS-SPI-LCD/" class="article-date">
-	  <time datetime="2022-02-12T06:29:05.000Z" itemprop="datePublished">二月 12, 2022</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前在ESP32上运行LVGL一直使用的是SPI串口驱动LCD, 当时就比较好奇如果换成了并口驱动LCD会对帧率有何影响.于是乎终于在2022年后买入了一块并口屏幕来测试一下.</p>
-<h1 id="测试项目"><a href="#测试项目" class="headerlink" title="测试项目"></a>测试项目</h1><ul>
-<li>使用LVGL自带的lv_demo_music,开启LV_DEMO_MUSIC_AUTO_PLAY</li>
-<li>使用TFT_eSPI自带的Viewport_graphicstest</li>
-</ul>
-<h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><h2 id="运行LVGL自带的lv-demo-music"><a href="#运行LVGL自带的lv-demo-music" class="headerlink" title="运行LVGL自带的lv_demo_music"></a>运行LVGL自带的lv_demo_music</h2><table>
-<thead>
-<tr>
-<th align="center">对照组序号</th>
-<th>屏幕参数</th>
-<th>ESP32运行频率</th>
-<th>LVGL缓冲参数</th>
-<th>SPI速率</th>
-<th>TFT_eSPI版本</th>
-<th>LVGL版本</th>
-<th>帧率</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td>240x240 1.54寸 SPI LCD</td>
-<td>240MHz</td>
-<td>240*120 启用DMA,未使用双缓冲</td>
-<td>60MHz</td>
-<td>2.3.70</td>
-<td>8.1.1-dev</td>
-<td>26帧</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td>240x240 1.33寸 8位并口 LCD</td>
-<td>240MHz</td>
-<td>240*120 未使用双缓冲</td>
-<td>\</td>
-<td>2.3.70</td>
-<td>8.1.1-dev</td>
-<td>28帧</td>
-</tr>
-</tbody></table>
-<p>感觉帧率差异不是很大的样子.</p>
-<h2 id="运行TFT-eSPI自带的Viewport-graphicstest"><a href="#运行TFT-eSPI自带的Viewport-graphicstest" class="headerlink" title="运行TFT_eSPI自带的Viewport_graphicstest"></a>运行TFT_eSPI自带的Viewport_graphicstest</h2><table>
-<thead>
-<tr>
-<th align="center">对照组序号</th>
-<th>屏幕参数</th>
-<th>ESP32运行频率</th>
-<th>SPI速率</th>
-<th>TFT_eSPI版本</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td>240x240 1.54寸 SPI LCD</td>
-<td>240MHz</td>
-<td>60MHz</td>
-<td>2.3.70</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td>240x240 1.33寸 8位并口 LCD</td>
-<td>240MHz</td>
-<td>\</td>
-<td>2.3.70</td>
-</tr>
-</tbody></table>
-<p>运行时候明显感觉到并口的绘制速度更快,不过还是得数据说话,于是有如下Log</p>
-<p>8位并口结果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TFT_eSPI library <span class="built_in">test</span>!</span><br><span class="line">Benchmark                Time (microseconds)</span><br><span class="line">Screen fill              53073</span><br><span class="line">Text                     21126</span><br><span class="line">Lines                    36424</span><br><span class="line">Horiz/Vert Lines         10469</span><br><span class="line">Rectangles (outline)     5918</span><br><span class="line">Rectangles (filled)      122742</span><br><span class="line">Circles (filled)         28151</span><br><span class="line">Circles (outline)        22372</span><br><span class="line">Triangles (outline)      14111</span><br><span class="line">Triangles (filled)       46193</span><br><span class="line">Rounded rects (outline)  16475</span><br><span class="line">Rounded rects (filled)   127122</span><br><span class="line">Done!</span><br></pre></td></tr></table></figure>
-
-<p>串口结果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TFT_eSPI library <span class="built_in">test</span>!</span><br><span class="line">Benchmark                Time (microseconds)</span><br><span class="line">Screen fill              102725</span><br><span class="line">Text                     12506</span><br><span class="line">Lines                    38321</span><br><span class="line">Horiz/Vert Lines         9293</span><br><span class="line">Rectangles (outline)     6594</span><br><span class="line">Rectangles (filled)      234378</span><br><span class="line">Circles (filled)         30350</span><br><span class="line">Circles (outline)        16884</span><br><span class="line">Triangles (outline)      12893</span><br><span class="line">Triangles (filled)       79688</span><br><span class="line">Rounded rects (outline)  11730</span><br><span class="line">Rounded rects (filled)   240258</span><br><span class="line">Done!</span><br></pre></td></tr></table></figure>
-
-<p>并口驱动情况下绘制时间几乎是串口驱动绘制时间的一半.</p>
-<p>果然还是有提升的.</p>
-<p>至于为什么在LVGL中拉不开差距,经过群友Principle点拨后意识到,运行LVGL时候CPU性能方面出现了瓶颈,我的ESP32是初代版本,如果换成最新的ESP32 S3则会拉开差距.</p>
-
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -514,8 +443,20 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2025/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
-              <span>九月 27, 2025</span>
+              <h6 style="margin: 0;"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></h6>
+              <span>九月 26, 2025</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2024/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
+              <span>九月 27, 2024</span>
             </div>
 
           </li>
@@ -568,18 +509,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2022/09/20/esp32-spiffs-ota-demo/">对ESP32 SPIFFS分区进行OTA</a></h6>
-              <span>九月 20, 2022</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -612,7 +541,7 @@ var themeMenus = {};
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 

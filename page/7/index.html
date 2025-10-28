@@ -173,6 +173,83 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-TFT-eSPI-Custom-Font"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/02/13/TFT-eSPI-Custom-Font/">TFT_eSPI 自定义字体</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2021/02/13/TFT-eSPI-Custom-Font/" class="article-date">
+	  <time datetime="2021-02-13T08:55:34.000Z" itemprop="datePublished">二月 13, 2021</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="向TFT-eSPI添加一种新的字体吧"><a href="#向TFT-eSPI添加一种新的字体吧" class="headerlink" title="向TFT_eSPI添加一种新的字体吧"></a>向TFT_eSPI添加一种新的字体吧</h1><p>还是在填TinyMonitor(暂定)的坑，现在需要更加好看的字体来显示订阅数，本来打算给需要用到的数字制作成图片然后取摸的，结果发现TFT_eSPI支持自定义字体。</p>
+<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">获取方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">FontConvert.exe</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/TFT_eSPI-Custom-Font/FontConvert.7z">下载链接</a></td>
+</tr>
+<tr>
+<td align="center">你想要添加的字体文件</td>
+<td align="center">看你如何获取</td>
+</tr>
+</tbody></table>
+<h2 id="转换方式"><a href="#转换方式" class="headerlink" title="转换方式"></a>转换方式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fontconvert.exe 字体文件名带后缀 字体大小 最小ASCII值  最大ASCII值 &gt; 目标文件名称.h</span><br></pre></td></tr></table></figure>
+
+<p>举个例子，你需要自定义的字体文件名称叫做Furore.otf，然后把它复制到Fontconvert.exe同级文件夹里面，然后只需要A到Z，命令就是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fontconvert.exe .\Furore.otf 12 65 90 &gt; furore12.h</span><br></pre></td></tr></table></figure>
+
+<p>65是A的ASCII编码，90是Z的ASCII编码。</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>复制生成的.h文件到TFT_eSPI&#x2F;Fonts&#x2F;Custom文件夹内，然后修改User_Custom_Fonts.h文件，在#ifdef LOAD_GFXFF和#endif中导入生成的furore12.h</p>
+<p>使用时候将字体设置成新增字体即可，比如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eSprite-&gt;<span class="built_in">setFreeFont</span>(&amp;Furore28pt7b);</span><br><span class="line">eSprite-&gt;<span class="built_in">drawString</span>(<span class="string">&quot;FURORE&quot;</span>, <span class="number">0</span>, <span class="number">120</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><p>这次就不贴图了，牵涉到的文件已经打包处理。字体是Furore，Free Font，请放心食用。<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/TFT_eSPI-Custom-Font/Furore.zip">Furore.zip</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=L8MmTISmwZ8">Create and use custom fonts for Adafruit_GFX libraries</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-ESP-32-Play-GIF"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -336,106 +413,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-ESP32-ST7789"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/12/04/ESP32-ST7789/">ESP32驱动ST7789液晶屏</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/12/04/ESP32-ST7789/" class="article-date">
-	  <time datetime="2020-12-04T11:40:47.000Z" itemprop="datePublished">十二月 4, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="让你的ESP32点亮一块ST7789液晶屏吧"><a href="#让你的ESP32点亮一块ST7789液晶屏吧" class="headerlink" title="让你的ESP32点亮一块ST7789液晶屏吧"></a>让你的ESP32点亮一块ST7789液晶屏吧</h1><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-st7789/IMG_1969.JPG?raw=true" alt="hello-world"></p>
-<p>这块液晶屏尺寸是<font color="#d44375">1.14</font>寸，分辨率为<font color="#d44375">135x240</font>，驱动是<font color="#d44375">ST7789</font>。<br>（不小心多买了一个并口版本，因为串口方式连接就能满足我的需求，所以并口屏幕吃灰预定了）</p>
-<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>简单下介绍点亮这块屏幕的方法，介绍下如何配置参数并正确的显示内容。</p>
-<h2 id="下载驱动库"><a href="#下载驱动库" class="headerlink" title="下载驱动库"></a>下载驱动库</h2><p>我使用的驱动库为<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a></p>
-<p>接线如下:</p>
-<table>
-<thead>
-<tr>
-<th align="center">ESP32引脚名称</th>
-<th align="center">液晶屏引脚名称</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><font color="red">3V3</font></td>
-<td align="center"><font color="red">VCC</font></td>
-</tr>
-<tr>
-<td align="center"><font color="black">GND</font></td>
-<td align="center"><font color="black">GND</font></td>
-</tr>
-<tr>
-<td align="center"><font color="green">G15</font></td>
-<td align="center"><font color="green">SDA</font></td>
-</tr>
-<tr>
-<td align="center"><font color="blue">G13</font></td>
-<td align="center"><font color="blue">SCL</font></td>
-</tr>
-<tr>
-<td align="center"><font color="Orange">G23</font></td>
-<td align="center"><font color="Orange">DC</font></td>
-</tr>
-<tr>
-<td align="center"><font color="grey">G18</font></td>
-<td align="center"><font color="grey">RES</font></td>
-</tr>
-<tr>
-<td align="center"><font color="purple">G5</font></td>
-<td align="center"><font color="purple">CS</font></td>
-</tr>
-<tr>
-<td align="center"><font color="black">不接</font></td>
-<td align="center"><font color="black">BLK</font></td>
-</tr>
-</tbody></table>
-<h2 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h2><figure class="highlight cpp"><figcaption><span>Setup135_ST7789.h文件修改内容</span><a target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI/blob/master/User_Setups/Setup135_ST7789.h">Setup135_ST7789.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改下面参数，和上面的接线对应上</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_SCLK      13</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_MOSI      15</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_RST       18</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_DC        23  <span class="comment">// Data/command line for TFT on Shield</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_CS        5   <span class="comment">// Chip select line for TFT display on Shield</span></span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight cpp"><figcaption><span>User_Setup_Select.h文件修改内容</span><a target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI/blob/master/User_Setup_Select.h">User_Setup_Select.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ....</span></span><br><span class="line"><span class="comment">//#include &lt;User_Setup.h&gt;           // 注释这个一行</span></span><br><span class="line"><span class="comment">// ....</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;User_Setups/Setup135_ST7789.h&gt;</span><span class="comment">// 取消第79行注释</span></span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="简单的示例"><a href="#简单的示例" class="headerlink" title="简单的示例"></a>简单的示例</h2><figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(<span class="string">&quot;O3&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TFT_eSPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Wire.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">TFT_eSPI TFT = <span class="built_in">TFT_eSPI</span>();</span><br><span class="line">TFT_eSprite eSprite = <span class="built_in">TFT_eSprite</span>(&amp;TFT);</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    TFT.<span class="built_in">init</span>();</span><br><span class="line">    TFT.<span class="built_in">setRotation</span>(<span class="number">1</span>);</span><br><span class="line">    TFT.<span class="built_in">fillScreen</span>(TFT_BLACK);</span><br><span class="line">    TFT.<span class="built_in">initDMA</span>();</span><br><span class="line">    eSprite.<span class="built_in">setTextFont</span>(<span class="number">1</span>);</span><br><span class="line">    eSprite.<span class="built_in">setTextColor</span>(TFT_WHITE);</span><br><span class="line">    eSprite.<span class="built_in">createSprite</span>(<span class="number">240</span>, <span class="number">135</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    eSprite.<span class="built_in">setTextFont</span>(<span class="number">1</span>);</span><br><span class="line">    eSprite.<span class="built_in">setCursor</span>(<span class="number">20</span>, <span class="number">20</span>);</span><br><span class="line">    eSprite.<span class="built_in">println</span>(<span class="string">&quot;Hello World\n&quot;</span>);</span><br><span class="line">    eSprite.<span class="built_in">pushSprite</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-st7789/QQ%E6%88%AA%E5%9B%BE20201214210051.png?raw=true" alt="hello-world"></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -538,8 +515,20 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2025/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
-              <span>九月 27, 2025</span>
+              <h6 style="margin: 0;"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></h6>
+              <span>九月 26, 2025</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2024/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
+              <span>九月 27, 2024</span>
             </div>
 
           </li>
@@ -592,18 +581,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2022/09/20/esp32-spiffs-ota-demo/">对ESP32 SPIFFS分区进行OTA</a></h6>
-              <span>九月 20, 2022</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -636,7 +613,7 @@ var themeMenus = {};
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 

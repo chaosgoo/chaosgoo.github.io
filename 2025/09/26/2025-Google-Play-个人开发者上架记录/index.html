@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    
+<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>踩坑与收获：2025独立开发者google play上架实战复盘 | Do U Find IT?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="背景与初衷入行安卓开发有些年头了。学生时代我曾注册过Play开发者账户，当时审核比较宽松，上架比现在容易，但后来因违反政策，老账号被封，开发的APP也被谷歌下架。 失业期间，出于对Compose的兴趣，我边学边做，开发了一款安卓平台的ESP32烧录工具，命名为ESPFlash 开端：注册开发者账号上架Play Store的第一步，是使用谷歌账号支付25美元注册成为Play开发者。注册链接是http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="踩坑与收获：2025独立开发者Google Play上架实战复盘">
+<meta property="og:url" content="https://chaosgoo.github.io/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Do U Find IT?">
+<meta property="og:description" content="背景与初衷入行安卓开发有些年头了。学生时代我曾注册过Play开发者账户，当时审核比较宽松，上架比现在容易，但后来因违反政策，老账号被封，开发的APP也被谷歌下架。 失业期间，出于对Compose的兴趣，我边学边做，开发了一款安卓平台的ESP32烧录工具，命名为ESPFlash 开端：注册开发者账号上架Play Store的第一步，是使用谷歌账号支付25美元注册成为Play开发者。注册链接是http">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/play_store_old_account_screenshot.png">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/register_play_developer_account.png">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/play_develop_payment_record.png">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/release_espflash.jpg">
+<meta property="og:image" content="https://chaosgoo.github.io/images/archives/first_paid_user.png">
+<meta property="article:published_time" content="2025-09-26T08:35:34.000Z">
+<meta property="article:modified_time" content="2025-10-28T09:42:01.507Z">
+<meta property="article:author" content="Chaos Goo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.github.io/images/archives/play_store_old_account_screenshot.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/Logo_sketch_bg_64px.png">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/my.css">
+
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1189115759021088",
+          enable_page_level_ads: true
+      });
+  </script>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ee258828-74ca-4f27-be63-43212196e947" data-blockingmode="auto" type="text/javascript">
+  </script>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "首页"; 
+
+  themeMenus["/archives"] = "归档"; 
+
+  themeMenus["/categories"] = "分类"; 
+
+  themeMenus["/tags"] = "标签"; 
+
+  themeMenus["/privacy-policy"] = "privacy policy"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Do U Find IT?" rel="home"> Do U Find IT? </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">分类</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">标签</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/privacy-policy">privacy policy</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-2025-Google-Play-个人开发者上架记录" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      踩坑与收获：2025独立开发者Google Play上架实战复盘
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/" class="article-date">
+	  <time datetime="2025-09-26T08:35:34.000Z" itemprop="datePublished">九月 26, 2025</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="背景与初衷"><a href="#背景与初衷" class="headerlink" title="背景与初衷"></a>背景与初衷</h1><p>入行安卓开发有些年头了。学生时代我曾注册过Play开发者账户，当时审核比较宽松，上架比现在容易，但后来因违反政策，老账号被封，开发的APP也被谷歌下架。<br><img src="/./images/archives/play_store_old_account_screenshot.png" alt="play_store_old_account_screenshot"></p>
+<p>失业期间，出于对Compose的兴趣，我边学边做，开发了一款安卓平台的ESP32烧录工具，命名为<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=io.serialflow.espflash">ESPFlash</a></p>
+<h1 id="开端：注册开发者账号"><a href="#开端：注册开发者账号" class="headerlink" title="开端：注册开发者账号"></a>开端：注册开发者账号</h1><p>上架Play Store的第一步，是使用谷歌账号支付25美元注册成为Play开发者。<br>注册链接是<a target="_blank" rel="noopener" href="https://play.google.com/console/signup">https://play.google.com/console/signup</a></p>
+<p>作为个人开发者，我选择注册个人类型的账号。<br><img src="/./images/archives/register_play_developer_account.png" alt="register_play_developer_account"></p>
+<p>填写完基本信息后，输入信用卡信息完成扣款。我使用的是学生时代办理的交通银行Youth Power卡，支持银联和VISA。<br><img src="/./images/archives/play_develop_payment_record.png" alt="play_develop_payment_record"></p>
+<h1 id="创建应用和完善信息"><a href="#创建应用和完善信息" class="headerlink" title="创建应用和完善信息"></a>创建应用和完善信息</h1><p>在开发者控制台创建应用后，需要填写基本信息，并准备应用截图和隐私政策页面。</p>
+<ul>
+<li>尺寸符合要求即可。若追求美观，可使用 <a target="_blank" rel="noopener" href="https://theapplaunchpad.com/">theapplaunchpad</a> 或 <a target="_blank" rel="noopener" href="https://app-mockup.com/">app-mockup</a>-mockup 等在线工具生成。</li>
+<li>隐私政策：这是关键。即使你的APP是工具类，未主动收集用户数据，但只要接入了Firebase、AdMob等第三方SDK，就必须在隐私政策中明确告知。我使用 <a target="_blank" rel="noopener" href="https://www.freeprivacypolicy.com/">free privacy policy</a> 这类工具生成内容，并托管在自己的域名下。</li>
+</ul>
+<h1 id="封闭测试：最大的挑战与对策"><a href="#封闭测试：最大的挑战与对策" class="headerlink" title="封闭测试：最大的挑战与对策"></a>封闭测试：最大的挑战与对策</h1><p>这是最麻烦的地方, 由于<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14151465?hl=zh-Hans">谷歌政策</a>调整,<br><strong>现在注册的新的开发者账户上架APP需要12 名测试人员在过去至少 14 天内选择持续参与测试</strong></p>
+<p>起初觉得难以实现，但后来在 Reddit 的 <a target="_blank" rel="noopener" href="https://www.reddit.com/r/AndroidClosedTesting/">AndroidClosedTesting</a> 板块找到了解决方案。这里是安卓开发者互相帮助完成测试要求的地方</p>
+<p>我在该板块发帖，召集其他开发者互相下载APP、完成打卡。仅第一天就招募到约20人。为了确保成功率，只要有新帖子出现，我也会主动下载对方的APP并参与测试。在这14天内，我大约测试了60款不同的APP。</p>
+<h1 id="正式版"><a href="#正式版" class="headerlink" title="正式版"></a>正式版</h1><p>14天测试期满后，即可在控制台提交正式版发布申请。<br><img src="/./images/archives/release_espflash.jpg" alt="release_espflash"><br>约3天后，我收到了审核未通过的邮件，要求整改。排查后发现，问题很可能出在隐私政策上——初始版本未充分说明Firebase和AdMob的数据处理情况。</p>
+<p>更新隐私政策并重新提交后，仅用了几个小时就审核通过，成功上架Google Play。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>政策研究要先行：尤其关注测试和隐私政策要求。</li>
+<li>封闭测试有捷径：善用Reddit等社区互助。</li>
+<li>隐私政策无小事：必须覆盖所有第三方SDK的行为。</li>
+<li>耐心与细致：审核被拒是常态，仔细阅读反馈，针对性修改。</li>
+</ul>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>差不多过了一个月,迎接了第一份付费用户.<br><img src="/./images/archives/first_paid_user.png" alt="first_paid_user"></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/09/27/uno-r4-wifi-and-home-assistant/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">UNO R4 Wi-Fi 接入 Home Assistant</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E4%B8%8E%E5%88%9D%E8%A1%B7"><span class="nav-number">1.</span> <span class="nav-text">背景与初衷</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E7%AB%AF%EF%BC%9A%E6%B3%A8%E5%86%8C%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7"><span class="nav-number">2.</span> <span class="nav-text">开端：注册开发者账号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E5%92%8C%E5%AE%8C%E5%96%84%E4%BF%A1%E6%81%AF"><span class="nav-number">3.</span> <span class="nav-text">创建应用和完善信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%81%E9%97%AD%E6%B5%8B%E8%AF%95%EF%BC%9A%E6%9C%80%E5%A4%A7%E7%9A%84%E6%8C%91%E6%88%98%E4%B8%8E%E5%AF%B9%E7%AD%96"><span class="nav-number">4.</span> <span class="nav-text">封闭测试：最大的挑战与对策</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%BC%8F%E7%89%88"><span class="nav-number">5.</span> <span class="nav-text">正式版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD"><span class="nav-number">7.</span> <span class="nav-text">后续</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2025 Do U Find IT? All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/privacy-policy" class="mobile-nav-link">Privacy Policy</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

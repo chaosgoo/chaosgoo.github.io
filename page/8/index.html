@@ -173,6 +173,106 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-ESP32-ST7789"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/12/04/ESP32-ST7789/">ESP32驱动ST7789液晶屏</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/12/04/ESP32-ST7789/" class="article-date">
+	  <time datetime="2020-12-04T11:40:47.000Z" itemprop="datePublished">十二月 4, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="让你的ESP32点亮一块ST7789液晶屏吧"><a href="#让你的ESP32点亮一块ST7789液晶屏吧" class="headerlink" title="让你的ESP32点亮一块ST7789液晶屏吧"></a>让你的ESP32点亮一块ST7789液晶屏吧</h1><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-st7789/IMG_1969.JPG?raw=true" alt="hello-world"></p>
+<p>这块液晶屏尺寸是<font color="#d44375">1.14</font>寸，分辨率为<font color="#d44375">135x240</font>，驱动是<font color="#d44375">ST7789</font>。<br>（不小心多买了一个并口版本，因为串口方式连接就能满足我的需求，所以并口屏幕吃灰预定了）</p>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>简单下介绍点亮这块屏幕的方法，介绍下如何配置参数并正确的显示内容。</p>
+<h2 id="下载驱动库"><a href="#下载驱动库" class="headerlink" title="下载驱动库"></a>下载驱动库</h2><p>我使用的驱动库为<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a></p>
+<p>接线如下:</p>
+<table>
+<thead>
+<tr>
+<th align="center">ESP32引脚名称</th>
+<th align="center">液晶屏引脚名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><font color="red">3V3</font></td>
+<td align="center"><font color="red">VCC</font></td>
+</tr>
+<tr>
+<td align="center"><font color="black">GND</font></td>
+<td align="center"><font color="black">GND</font></td>
+</tr>
+<tr>
+<td align="center"><font color="green">G15</font></td>
+<td align="center"><font color="green">SDA</font></td>
+</tr>
+<tr>
+<td align="center"><font color="blue">G13</font></td>
+<td align="center"><font color="blue">SCL</font></td>
+</tr>
+<tr>
+<td align="center"><font color="Orange">G23</font></td>
+<td align="center"><font color="Orange">DC</font></td>
+</tr>
+<tr>
+<td align="center"><font color="grey">G18</font></td>
+<td align="center"><font color="grey">RES</font></td>
+</tr>
+<tr>
+<td align="center"><font color="purple">G5</font></td>
+<td align="center"><font color="purple">CS</font></td>
+</tr>
+<tr>
+<td align="center"><font color="black">不接</font></td>
+<td align="center"><font color="black">BLK</font></td>
+</tr>
+</tbody></table>
+<h2 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h2><figure class="highlight cpp"><figcaption><span>Setup135_ST7789.h文件修改内容</span><a target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI/blob/master/User_Setups/Setup135_ST7789.h">Setup135_ST7789.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改下面参数，和上面的接线对应上</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_SCLK      13</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_MOSI      15</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_RST       18</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_DC        23  <span class="comment">// Data/command line for TFT on Shield</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_CS        5   <span class="comment">// Chip select line for TFT display on Shield</span></span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><figcaption><span>User_Setup_Select.h文件修改内容</span><a target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI/blob/master/User_Setup_Select.h">User_Setup_Select.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ....</span></span><br><span class="line"><span class="comment">//#include &lt;User_Setup.h&gt;           // 注释这个一行</span></span><br><span class="line"><span class="comment">// ....</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;User_Setups/Setup135_ST7789.h&gt;</span><span class="comment">// 取消第79行注释</span></span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="简单的示例"><a href="#简单的示例" class="headerlink" title="简单的示例"></a>简单的示例</h2><figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(<span class="string">&quot;O3&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TFT_eSPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Wire.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">TFT_eSPI TFT = <span class="built_in">TFT_eSPI</span>();</span><br><span class="line">TFT_eSprite eSprite = <span class="built_in">TFT_eSprite</span>(&amp;TFT);</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    TFT.<span class="built_in">init</span>();</span><br><span class="line">    TFT.<span class="built_in">setRotation</span>(<span class="number">1</span>);</span><br><span class="line">    TFT.<span class="built_in">fillScreen</span>(TFT_BLACK);</span><br><span class="line">    TFT.<span class="built_in">initDMA</span>();</span><br><span class="line">    eSprite.<span class="built_in">setTextFont</span>(<span class="number">1</span>);</span><br><span class="line">    eSprite.<span class="built_in">setTextColor</span>(TFT_WHITE);</span><br><span class="line">    eSprite.<span class="built_in">createSprite</span>(<span class="number">240</span>, <span class="number">135</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    eSprite.<span class="built_in">setTextFont</span>(<span class="number">1</span>);</span><br><span class="line">    eSprite.<span class="built_in">setCursor</span>(<span class="number">20</span>, <span class="number">20</span>);</span><br><span class="line">    eSprite.<span class="built_in">println</span>(<span class="string">&quot;Hello World\n&quot;</span>);</span><br><span class="line">    eSprite.<span class="built_in">pushSprite</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-st7789/QQ%E6%88%AA%E5%9B%BE20201214210051.png?raw=true" alt="hello-world"></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-StatTrak"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -300,216 +400,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Make A Tiny Pixel Screen"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/">做个桌面像素小屏幕吧</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/" class="article-date">
-	  <time datetime="2020-07-30T06:05:28.000Z" itemprop="datePublished">七月 30, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="给自己做个桌面像素小屏幕吧"><a href="#给自己做个桌面像素小屏幕吧" class="headerlink" title="给自己做个桌面像素小屏幕吧"></a>给自己做个桌面像素小屏幕吧</h1><p>展示一下自己制作迷你版本的像素显示屏的过程</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。<br>那个初号机的性能表现不是很好，所以计划做一个使用C&#x2F;C++的版本，能够更高帧率运行。</p>
-<p>如果只是纯粹的重写固件，那么和大多数人做的AWatrix就没多大区别了，所以决定做一个迷你版本的像素显示屏出来。</p>
-<p>很多地方是参考了AWatrix的代码，因为AWatrix除了必须连接服务器才可以使用以外，真的是非常优秀的一个固件。<br>AWatrix使用到的一些库很具有参考价值，比FastLED_NexPixel如它把LED点阵当作一块”屏幕”来使用，可以很方便的绘制出一些基础图形。<br>开发工具为PlantformIO,也是一个很方便的工具了，VSCode装上插件就好了。</p>
-<h1 id="开始整活"><a href="#开始整活" class="headerlink" title="开始整活"></a>开始整活</h1><h2 id="0x01-绘制电路板"><a href="#0x01-绘制电路板" class="headerlink" title="0x01 绘制电路板"></a>0x01 绘制电路板</h2><p>万能的某宝上能够找到的内置WS2812的LED贴片灯最小的就是2020LED，长宽各为2mm，比常规AWatrix使用的5050或者3535小很多。<br>奈何没有现成品，就只能自己画一个电路板了，好在电路非常简单，就是一个接一个，然后绕成S型就好啦。</p>
-<p>这次选择的PCB绘制软件为Eagle PCB，因为免费小巧。（但是我打算以后用KiCad画电路图了，因为开源强大）<br>磨磨唧唧的画完了电路图。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/gmatrix/awatrix_pcb.png" width = 960/></p>
-<p>然后提交Gerber文件到厂家，等待3天后就收到了成品。</p>
-<h2 id="0x02-焊接LED贴片灯"><a href="#0x02-焊接LED贴片灯" class="headerlink" title="0x02 焊接LED贴片灯"></a>0x02 焊接LED贴片灯</h2><p>这一步没什么好说的，我用的是锡膏，熔点在182度，于是先涂抹在板子上，然后风枪对着就是一阵吹。</p>
-<p>大概花费了半天时间才焊完所有的贴片灯，因为实在是太麻烦了啊，不小心就碰掉了一个，然后发生一系列连锁反应。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/gmatrix/%E7%84%8A%E6%8E%A5.jpg" width = 960/></p>
-<h2 id="0x03-获取代码，修改参数"><a href="#0x03-获取代码，修改参数" class="headerlink" title="0x03 获取代码，修改参数"></a>0x03 获取代码，修改参数</h2><p>代码位于<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/GMatrixSource">Github</a><br>下载以后，使用PlantformIO导入工程。</p>
-<ul>
-<li>修改位于gmatrix_config.h中的B站ID和城市以及天气的Key</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SUNING_TIME_URL <span class="string">&quot;http://quan.suning.com/getSysTime.do&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BILIBILI_SUBSCRIPTION_URL <span class="string">&quot;http://api.bilibili.com/x/relation/stat?vmid=哔哩哔哩UID&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WEATHER_URL <span class="string">&quot;http://api.openweathermap.org/data/2.5/weather?q=城市的拼音&amp;appid=天气api&quot;</span></span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>修改位于Gmartix.cpp中的WiFi名称和密码。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WiFi名称</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *ssid = <span class="string">&quot;CloseWrt_9.6G_D96AS5&quot;</span>;</span><br><span class="line"><span class="comment">// WiFi密码</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *pwd = <span class="string">&quot;have5seeds&quot;</span>;</span><br></pre></td></tr></table></figure>
-然后直接使用PlantformIO的编译或者下载到板子</li>
-</ul>
-<h2 id="0x04-烧录固件"><a href="#0x04-烧录固件" class="headerlink" title="0x04 烧录固件"></a>0x04 烧录固件</h2><p>使用PlantformIO可以直接下载到板子上，也可也Build以后使用其他烧录工具烧录。<br>我使用的烧录软件是NodeMCU Firmware Programmer</p>
-<img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/gmatrix/nodemcu.png"/>
-
-<p>插上板子选择对应的端口号，然后点击Flash就可以进行烧录了。</p>
-<h2 id="0x05-接线-组装"><a href="#0x05-接线-组装" class="headerlink" title="0x05 接线&amp;组装"></a>0x05 接线&amp;组装</h2><h3 id="材料清单"><a href="#材料清单" class="headerlink" title="材料清单"></a>材料清单</h3><table>
-<thead>
-<tr>
-<th>序号</th>
-<th>名称</th>
-<th>数量</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>WeMos D1 mini</td>
-<td>1</td>
-<td>无</td>
-</tr>
-<tr>
-<td>2</td>
-<td>LED板</td>
-<td>1</td>
-<td>自制</td>
-</tr>
-<tr>
-<td>3</td>
-<td>htu01d</td>
-<td>1</td>
-<td>温湿度传感器</td>
-</tr>
-<tr>
-<td>4</td>
-<td>导线</td>
-<td>?</td>
-<td>无</td>
-</tr>
-<tr>
-<td>5</td>
-<td>3D打印外壳</td>
-<td>1</td>
-<td>无</td>
-</tr>
-<tr>
-<td>6</td>
-<td>亚克力光栅</td>
-<td>1</td>
-<td>无</td>
-</tr>
-<tr>
-<td>7</td>
-<td>A4纸</td>
-<td>1</td>
-<td>无</td>
-</tr>
-<tr>
-<td>8</td>
-<td>深色半透亚克力</td>
-<td>1</td>
-<td>无</td>
-</tr>
-<tr>
-<td>9</td>
-<td>后盖</td>
-<td>1</td>
-<td>可以采用任意材料自制</td>
-</tr>
-</tbody></table>
-<h3 id="接线"><a href="#接线" class="headerlink" title="接线"></a>接线</h3><table>
-<thead>
-<tr>
-<th align="center">WeMos D1 mini引脚名称</th>
-<th align="center">htu01d</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">5V</td>
-<td align="center">VCC</td>
-</tr>
-<tr>
-<td align="center">GND</td>
-<td align="center">GND</td>
-</tr>
-<tr>
-<td align="center">D3</td>
-<td align="center">SDA</td>
-</tr>
-<tr>
-<td align="center">D1</td>
-<td align="center">SCL</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">WeMos D1 mini引脚名称</th>
-<th align="center">LED屏幕</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">不接</td>
-<td align="center">正面从上至下第2个孔</td>
-</tr>
-<tr>
-<td align="center">GND</td>
-<td align="center">正面从上至下第2个孔</td>
-</tr>
-<tr>
-<td align="center">5V</td>
-<td align="center">正面从上至下第3个孔</td>
-</tr>
-<tr>
-<td align="center">D2</td>
-<td align="center">正面从上至下第4个孔</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">WeMos D1 mini引脚名称</th>
-<th align="center">散热风扇</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">5V</td>
-<td align="center">红线</td>
-</tr>
-<tr>
-<td align="center">GND</td>
-<td align="center">黑线</td>
-</tr>
-</tbody></table>
-<img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/gmatrix/%E7%BB%84%E8%A3%85.jpg" width = 960/>
-
-<p>光栅制作使用的是定制亚克力，而外壳使用的3D打印，按照下图的顺序组装，需要注意的是光栅与深色半透亚克力之间需要加一层A4纸进行柔光。</p>
-<img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/gmatrix/%E7%BB%93%E6%9E%84.png?raw=true" width=960/>
-
-<img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/gmatrix/%E6%89%93%E5%8D%B0.jpg?raw=true" width=960/>
-
-
-<h2 id="0x06成品展示"><a href="#0x06成品展示" class="headerlink" title="0x06成品展示"></a>0x06成品展示</h2><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/gmatrix/%E6%88%90%E5%93%81.jpg?raw=true" width=960/>
-
-
-<p>参考资料:<br><a target="_blank" rel="noopener" href="https://awtrixdocs.blueforcer.de/#/en-en/README">AWatrix</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.materialpalette.com/">materialpalette</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arduino/" rel="tag">Arduino</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -612,8 +502,20 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2025/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
-              <span>九月 27, 2025</span>
+              <h6 style="margin: 0;"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></h6>
+              <span>九月 26, 2025</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2024/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
+              <span>九月 27, 2024</span>
             </div>
 
           </li>
@@ -666,18 +568,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2022/09/20/esp32-spiffs-ota-demo/">对ESP32 SPIFFS分区进行OTA</a></h6>
-              <span>九月 20, 2022</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -710,7 +600,7 @@ var themeMenus = {};
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
