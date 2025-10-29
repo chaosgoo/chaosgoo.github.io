@@ -167,6 +167,103 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-HomeKit-ESP32-Control-Light-Part_One"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/">HomeKit ESP32 Control Light II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/" class="article-date">
+	  <time datetime="2020-05-11T03:07:30.000Z" itemprop="datePublished">五月 11, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="快把你家的灯接入HomeKit吧其二（舵机篇）"><a href="#快把你家的灯接入HomeKit吧其二（舵机篇）" class="headerlink" title="快把你家的灯接入HomeKit吧其二（舵机篇）"></a>快把你家的灯接入HomeKit吧其二（舵机篇）</h1><p>上一篇文章中已经熟悉了如何烧录程序到ESP32，并且成功的点亮了一盏LED灯，如果你动手能力强的话。<br>那么上一节就是教会了你做了一个支持HomeKit的灯。</p>
+<p>本篇会将上一篇中的LED替换成一个舵机。至于为什么使用舵机，是因为我不想破坏开关的原有结构，想使用一种非侵入式的方法去拓展现有的灯开关。</p>
+<h2 id="重新启用环境变量"><a href="#重新启用环境变量" class="headerlink" title="重新启用环境变量"></a>重新启用环境变量</h2><p>如果你看完上一篇文章后重启了电脑，或者关闭了子系统，那么就得重新配置一下ESP-IDF的环境变量，也可能还需要重新将设备挂载到子系统上。<br>使用命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. <span class="variable">$HOME</span>/esp/esp-idf/export.sh</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+<h2 id="控制舵机"><a href="#控制舵机" class="headerlink" title="控制舵机"></a>控制舵机</h2><h3 id="0x01-控制信号"><a href="#0x01-控制信号" class="headerlink" title="0x01 控制信号"></a>0x01 控制信号</h3><p>要想控制舵机，就得发送正确的指令。我使用的舵机长这个样子：<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/IMG_2120.JPG?raw=true" alt="servo"><br>信号频率为50Hz.所谓的指令就是每个周期内，高电平脉冲的持续时间（宽度&#x2F;长度）。<br><video src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/0001-0110.mp4" controls="controls" width="480" height="480">您的浏览器不支持播放该视频！</video><br>视频中红色为实际信号，可以看到，随着高电平的持续时间变长，舵机的角度也越来越大。</p>
+<table>
+<thead>
+<tr>
+<th align="center">持续时间</th>
+<th align="center">对应角度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0.50ms</td>
+<td align="center">0°</td>
+</tr>
+<tr>
+<td align="center">1.50ms</td>
+<td align="center">90°</td>
+</tr>
+<tr>
+<td align="center">2.50ms</td>
+<td align="center">180°</td>
+</tr>
+</tbody></table>
+<h3 id="0x02控制相关代码"><a href="#0x02控制相关代码" class="headerlink" title="0x02控制相关代码"></a>0x02控制相关代码</h3><p>对于这种由脉冲信号控制的舵机，可以使用PWM来进行控制。查阅官方的指南，可以很容易的找到相关例子，甚至直接有现成的Demo可以使用（不得不说官方的例子真的很详细）。<br>好了，这下子也不用自己写了（还好不用，不然就得用for循环+延时，手动的凑出脉冲信号来控制了）<br>直接到<a target="_blank" rel="noopener" href="https://github.com/espressif/esp-idf/blob/master/examples/peripherals/mcpwm/mcpwm_servo_control/main/mcpwm_servo_control_example.c">mcpwm_servo_control_example.c</a>。<br>复制或者下载即可，为了方便，可以复制到上一篇文章中的led.c中去，不过要记得先把之前所有的内容注释掉，因为以后还要使用到那些代码。<br>其中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MIN_PULSEWIDTH 1000 <span class="comment">//Minimum pulse width in microsecond</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MAX_PULSEWIDTH 2000 <span class="comment">//Maximum pulse width in microsecond</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MAX_DEGREE 90 <span class="comment">//Maximum angle in degree upto which servo can rotate</span></span></span><br></pre></td></tr></table></figure>
+<p>需要修改一下，依据我的舵机参数，将其修改为</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MIN_PULSEWIDTH 500 <span class="comment">//Minimum pulse width in microsecond</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MAX_PULSEWIDTH 2500 <span class="comment">//Maximum pulse width in microsecond</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MAX_DEGREE 180 <span class="comment">//Maximum angle in degree upto which servo can rotate</span></span></span><br></pre></td></tr></table></figure>
+<p>又因为我的板子没有引出18号引脚，所以还是修改为上篇文章中的2号引脚吧</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">mcpwm_example_gpio_initialize</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;initializing mcpwm servo control gpio......\n&quot;</span>);</span><br><span class="line">    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, <span class="number">18</span>);    <span class="comment">//Set GPIO 18 as PWM0A, to which servo is connected</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">mcpwm_example_gpio_initialize</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;initializing mcpwm servo control gpio......\n&quot;</span>);</span><br><span class="line">    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, <span class="number">2</span>);    <span class="comment">//Set GPIO 2 as PWM0A, to which servo is connected</span></span><br><span class="line">&#125;</span><br><span class="line">至此，代码就修改完成了。</span><br></pre></td></tr></table></figure>
+<h3 id="0x03-烧录进去吧"><a href="#0x03-烧录进去吧" class="headerlink" title="0x03 烧录进去吧"></a>0x03 烧录进去吧</h3><p>烧录过程没什么好说的，就是和之前大差不差。</p>
+<p>编译好项目以后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led all</span><br></pre></td></tr></table></figure>
+<p>先进行earse_flash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led erase_flash</span><br></pre></td></tr></table></figure>
+<p>再进行flash。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led flash</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x04-看看效果吧"><a href="#0x04-看看效果吧" class="headerlink" title="0x04 看看效果吧"></a>0x04 看看效果吧</h3><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/servo_demo.png?raw=true" alt="servo"><br>由于烧录进去的代码只是为了控制舵机，所以是无法被添加到HomeKit里面的。<br>当烧录完成后，舵机就会缓慢的从0度转到180度，然后快速的回到0度，再次从0度转到180度，然后无限循环。</p>
+<h2 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h2><p>控制具体转到多少度的代码如下，建议眼熟一下，下篇文章会用到。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先计算出目标角度对应的高电平持续时间</span></span><br><span class="line">angle = servo_per_degree_init(count);</span><br><span class="line"><span class="comment">// 设置PWM信号</span></span><br><span class="line">mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="下期预告-快把你家的灯接入HomeKit吧其三（整合篇）"><a href="#下期预告-快把你家的灯接入HomeKit吧其三（整合篇）" class="headerlink" title="下期预告:快把你家的灯接入HomeKit吧其三（整合篇）"></a>下期预告:快把你家的灯接入HomeKit吧其三（整合篇）</h1><p>参考资料:</p>
+<p><a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/index.html">ESP-IDF 编程指南</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/espressif/esp-idf">Espressif IoT Development Framework</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-HomeKit-ESP32-Control-Light-Part_Two"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -321,68 +418,6 @@ var themeMenus = {};
     
 
   
-    <article id="post-Insert-new-page-into-pdf-file-in-android"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/04/19/Insert-new-page-into-pdf-file-in-android/">Android如何实现往PDF文件中插入新页面</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/04/19/Insert-new-page-into-pdf-file-in-android/" class="article-date">
-	  <time datetime="2020-04-19T01:41:46.000Z" itemprop="datePublished">四月 19, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"><a href="#Android平台使用iTextG在已有PDF文件中插入带有图片的新页面" class="headerlink" title="Android平台使用iTextG在已有PDF文件中插入带有图片的新页面"></a>Android平台使用iTextG在已有PDF文件中插入带有图片的新页面</h1><p>本文将介绍如何在安卓平台对一个PDF文件进行插入页面操作，用到的第三方库主要为iTextG</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于工作上需要实现电子发票打印机正面打印电子发票，背面打印电子账单的功能，而打印机支持双面打印，但是必须得提供一个双页的PDF文件。不巧的是后台提供的PDF源文件为<strong>单页</strong>的电子发票，故需要寻找到一个能够对已有PDF文件插入新页面方法。在经过一番搜索后，找到了<a target="_blank" rel="noopener" href="https://itextpdf.com/en/resources/installation-guides/installing-itext-g-android">iTextG</a>这个库。</p>
-<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># iTextG本体</span><br><span class="line">implementation <span class="string">&#x27;com.itextpdf:itextg:5.5.10&#x27;</span></span><br><span class="line"># 相关加密算法需要用到的库</span><br><span class="line">implementation <span class="string">&#x27;com.madgag.spongycastle:core:1.54.0.0&#x27;</span></span><br><span class="line">implementation <span class="string">&#x27;com.madgag.spongycastle:prov:1.54.0.0&#x27;</span></span><br><span class="line">implementation <span class="string">&#x27;com.madgag.spongycastle:pkix:1.54.0.0&#x27;</span></span><br><span class="line">implementation <span class="string">&#x27;com.madgag.spongycastle:pg:1.54.0.0&#x27;</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>在任意的静态类中如Application中添加</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Security.insertProviderAt(org.spongycastle.jce.provider.BouncyCastleProvider(), <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>PDF编辑相关代码</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 在发票PDF第二页插入电子账单图片</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> dst PDF源文件路径</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">insertBillPage</span><span class="params">(dst: <span class="type">String</span>?)</span></span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123; <span class="comment">// 读取PDF文件</span></span><br><span class="line">        <span class="keyword">val</span> pdfReader = PdfReader(dst)</span><br><span class="line">        <span class="comment">// PDF修改器，我传入了项目里面的一个常量，请按需修改</span></span><br><span class="line">        <span class="keyword">val</span> pdfStamper = PdfStamper(</span><br><span class="line">            pdfReader,</span><br><span class="line">            FileOutputStream(Constants.SD_FILE_INVOICE_DOUBLE_PAGE_PDF_CACHE)</span><br><span class="line">        )</span><br><span class="line">        pdfStamper.insertPage(</span><br><span class="line">            pdfReader.getNumberOfPages() + <span class="number">1</span>,</span><br><span class="line">            pdfReader.getPageSizeWithRotation(<span class="number">1</span>)</span><br><span class="line">        )</span><br><span class="line">        <span class="comment">// 待插入的图片，我传入了项目里面的一个常量，请按需修改</span></span><br><span class="line">        <span class="keyword">val</span> image: Image = Image.getInstance(Constants.SD_FILE_INVOICE_BMP_CACHE)</span><br><span class="line">        <span class="comment">// 由于PDF文件中电子发票页面尺寸为A5,而插入的图片过大，所以需要进行缩放操作</span></span><br><span class="line">        image.scalePercent(<span class="number">30.0f</span>)</span><br><span class="line">        <span class="comment">// 调整图片在页面中的位置</span></span><br><span class="line">        image.setAbsolutePosition(<span class="number">32</span>, <span class="number">120</span>)</span><br><span class="line">        <span class="keyword">val</span> content: PdfContentByte = pdfStamper.getUnderContent(pdfReader.getNumberOfPages())</span><br><span class="line">        content.addImage(image)</span><br><span class="line">        pdfStamper.close()</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: DocumentException) &#123;</span><br><span class="line">        e.printStackTrace()</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">        e.printStackTrace()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/bill.jpg?raw=true" alt="bill"><br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/invoice.jpg?raw=true" alt="invoice"></p>
-<p>设备: 映美IM-100T</p>
-<p>环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Gradle                                  5.6.4</span><br><span class="line">Android Gradle Plugin Version           3.6.1</span><br><span class="line">Android Studio Version Android Studio   3.6.1</span><br><span class="line">Android buildToolsVersion               28.0.3</span><br><span class="line">Android compileSdkVersion               28</span><br><span class="line">Android Version                         4.4.2</span><br></pre></td></tr></table></figure>
-
-<p>参考资料:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/20d4905383b4">itext 生成 PDF(一)</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -485,6 +520,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2025/10/29/Real-life-HealthPin/">做一个CS2中的生命值胸章</a></h6>
+              <span>十月 29, 2025</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></h6>
               <span>九月 26, 2025</span>
             </div>
@@ -539,18 +586,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2022/11/13/Lenovo-R720-Keyboard-Matrix/">联想拯救者 R720 键盘矩阵逆向</a></h6>
-              <span>十一月 13, 2022</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -583,7 +618,7 @@ var themeMenus = {};
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
