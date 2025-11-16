@@ -178,6 +178,66 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-StatTrak"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/11/20/StatTrak/">做个暗金计数器吧</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/11/20/StatTrak/" class="article-date">
+	  <time datetime="2020-11-20T11:42:35.000Z" itemprop="datePublished">十一月 20, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="暗Bai金Gei计数器-StatTrak"><a href="#暗Bai金Gei计数器-StatTrak" class="headerlink" title="暗Bai金Gei计数器(StatTrak)"></a>暗Bai金Gei计数器(StatTrak)</h1><p>在CS:GO中，有些武器具有一个名为StatTrak的装置，这个装置可以记录玩家在游戏内杀敌数量。<br>觉得这个装置很有意思，于是想做一个出来。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/preview-in-game.jpg?raw=true" alt="preview-in-game"><br>为了近距离观察这个装置，我斥8.8元巨资购买了一把<font color="#4B69FF">格洛克18型(StatTrak™)|烈焰天使</font>，并在人机对战中大杀四方。</p>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>由于只是个计数器，本质就是个可以自定义显示内容的显示屏。</p>
+<h2 id="方案1-OLED12832-Arduino"><a href="#方案1-OLED12832-Arduino" class="headerlink" title="方案1 &#x3D; OLED12832+Arduino"></a>方案1 &#x3D; OLED12832+Arduino</h2><p>谷歌一番后，发现有YouTuBe上一个老哥干过类似的事情，他使用的方案正是12832 OLED+Arduino，但是OLED只有白色和蓝色，那么如何实现游戏里的橙色效果呢？<br>答案就是添加一层橙色滤膜，这位老哥使用的滤膜价格起飞，还只有小小的一块。不就是个橙色塑料片吗，窗户用的就不行吗，于是我斥巨资购买了老大一张橙色半透明塑料膜。贴到了OLED上，效果还挺好的。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/OLED.jpg?raw=true" alt="StatTrak_P1"><br>我当时觉得这个太小了，不好微型化，(2020-11-21现在回想一下，已经没有太大难度了)。</p>
+<h2 id="方案2-LED57-Arduino"><a href="#方案2-LED57-Arduino" class="headerlink" title="方案2 &#x3D; LED57+Arduino"></a>方案2 &#x3D; LED57+Arduino</h2><p>在某宝畅游一番以后，发现并没有找到合适的点阵屏幕。不过有个30mm高的倒是符合一些要求，遂决定等比放大做出实物。<br>每块屏幕使用MAX7219驱动，并联起来。<br>电路板使用KiCad绘制，于是就有了如下的效果图。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/StatTrak_P1.png?raw=true" alt="StatTrak_P1"><br>焊接好以后就是这样，至于为啥看起来不一样，因为…我…第一次失败了…点阵屏卖家给的资料是错的…自己测是测出来了,结果画原理图的时候，又搞错了。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/B4C93794FD18FC384E63AA7EF5F03593.png?raw=true" alt="preview-in-game"><br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/C5B0E88F0BD75DCE8A6F7E3A407D9D92.png?raw=true" alt="preview-in-game"><br><a href="#effect"><span title="根本不是那回事好不！装上壳以后丑爆了！你用黑色记号笔涂黑是什么意思啊？">加上一层黑色滤镜后，显示效果还凑合的样子。然而觉得外观实在是太丑了，就放弃了。</span></a><br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/88BFACF4222CBC7848843E8082CA7023.png?raw=true" alt="effect"></p>
+<p>真的丑啊，我是在什么情况下才会有要使用黑色记号笔涂黑的念头啊。</p>
+<h2 id="方案3-HDSP2072-Arduino"><a href="#方案3-HDSP2072-Arduino" class="headerlink" title="方案3 &#x3D; HDSP2072+Arduino"></a>方案3 &#x3D; HDSP2072+Arduino</h2><p>有次逛闲鱼，发现了有个屏幕的参数挺符合要求的，一问价格72，打扰了，就咬咬牙买了下来。<br>这块屏幕是上个世纪的库存了，原来是用于大哥大上的。<br><a href="#HDSP"><span title="（简直就是废话）">好在这个世纪的Arduino也可也正常驱动</span></a><br>然后觉得这次可以直接画一块完整的板子，不使用外接的Arduino了，是练手的好机会。<br>就照着SparkFun提供的Pro Micro原理图一顿抄（精简），一天时间总算是画的差不多了。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/HDSP_StatTrak_F.png?raw=true" alt="hdsp-stattrak"><br>然后找5块钱24小时加急顺丰包邮送到家的JLC加工。24小时后，板子就到家了。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/pcb.jpg?raw=true" alt="pcb"><br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/finish_pcb.jpg?raw=true" alt="finish-pcb"><br>不得不说，Type-C接口比QFN44还难焊.<a href="#HDSP"><span title="单独买芯片就比买ProMicro便宜一点点，不如直接拆一个下来了">由于我是从ProMicro上拆下来的Atmega32U芯片（掏芯窝子），所以不需要烧写bootloader.</span></a></p>
+<p>这个方案内部电路部分还是挺满意的，于是就开始着手于外壳制作，结果第一版的外壳长这样，还真是个壳子。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/shell_v1.jpg?raw=true" alt="shell-v1"><br>屏幕宽度占了整体宽度的一半，直接加壳子就像一个BB机一样了，或者说好像一个收音机啊。</p>
+<p><font color="#E2E0DE">或许我可以让PCB斜着放</font></p>
+<p><font color="#E2E0DE">或者就让他有这个大下巴了，我是救不了了</font></p>
+<p>不行，不可以在这里妥协啊，于是被迫想出了第二个方案。</p>
+<p>让我们致敬乐视的ID无边框吧<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/shell_v2.jpg?raw=true" alt="shell-v2"></p>
+<p>只要不点亮屏幕，你就永远无法知道我的实际显示区域是多少。</p>
+<p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/stat-trak/effect_v2.jpg?raw=true" alt="effect-v2"></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.sparkfun.com/products/12640">Pro Micro - 5V&#x2F;16MHz</a><br><a target="_blank" rel="noopener" href="https://www.sparkfun.com/products/15795">SparkFun Qwiic Pro Micro - USB-C (ATmega32U4)</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=beOfsqw9wTs">Real life StatTrak</a><br><a target="_blank" rel="noopener" href="https://github.com/squix78/MAX7219LedMatrix">MAX7219LedMatrix</a><br><a target="_blank" rel="noopener" href="https://github.com/ejinguan/HDSP2000_Display">HDSP2000_Display</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arduino/" rel="tag">arduino</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-display-images-side-by-side-in-hexo"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -455,69 +515,11 @@ var themeMenus = {};
     
 
   
-    <article id="post-HomeKit-ESP32-Control-Light-Part_Three"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/">HomeKit ESP32 Control Light III</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/" class="article-date">
-	  <time datetime="2020-05-12T01:33:16.000Z" itemprop="datePublished">五月 12, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="快把你家的灯接入HomeKit吧其三（整合篇）"><a href="#快把你家的灯接入HomeKit吧其三（整合篇）" class="headerlink" title="快把你家的灯接入HomeKit吧其三（整合篇）"></a>快把你家的灯接入HomeKit吧其三（整合篇）</h1><p>我的回合，抽卡。发动魔法卡–融合！</p>
-<p>第一篇文章中介绍了如何控制LED的亮灭，而第二篇文章中介绍了如何控制舵机旋转到指定的角度，那么现在让它们融合起来了吧！</p>
-<h2 id="融合前的检测"><a href="#融合前的检测" class="headerlink" title="融合前的检测"></a>融合前的检测</h2><p>在LED的Demo中，每次开灯关灯操作都会调用**led_write(bool status)**函数，所以我们只需要根据传进来的status值，旋转舵机到对应的角度即可。</p>
-<p>先让我们从mcpwm_servo_control_example.c中提取出需要的方法， 内容如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入的头文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;driver/mcpwm.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;soc/mcpwm_periph.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_attr.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 舵机参数的宏定义</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MIN_PULSEWIDTH 500 <span class="comment">// 最小脉冲时间ms</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MAX_PULSEWIDTH 2500 <span class="comment">// 最大脉冲时间ms</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MAX_DEGREE 180 <span class="comment">// 舵机最大可旋转角度</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化2号端口为PWM</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">mcpwm_example_gpio_initialize</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;initializing mcpwm servo control gpio......\n&quot;</span>);</span><br><span class="line">    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, <span class="number">18</span>);    <span class="comment">//Set GPIO 2 as PWM0A, to which servo is connected</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 该方法输入目标角度，输出对应高电平脉冲宽度单位us</span></span><br><span class="line"><span class="type">static</span> <span class="type">uint32_t</span> <span class="title function_">servo_per_degree_init</span><span class="params">(<span class="type">uint32_t</span> degree_of_rotation)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> cal_pulsewidth = <span class="number">0</span>;</span><br><span class="line">    cal_pulsewidth = (SERVO_MIN_PULSEWIDTH + (((SERVO_MAX_PULSEWIDTH - SERVO_MIN_PULSEWIDTH) * (degree_of_rotation)) / (SERVO_MAX_DEGREE)));</span><br><span class="line">    <span class="keyword">return</span> cal_pulsewidth;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开灯函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">turn_on</span><span class="params">(<span class="type">void</span> *arg)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> angle;</span><br><span class="line">    <span class="comment">//1. mcpwm gpio 初始化</span></span><br><span class="line">    mcpwm_example_gpio_initialize();</span><br><span class="line">    <span class="comment">//2. 初始化 mcpwm 配置</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Configuring Initial Parameters of mcpwm......\n&quot;</span>);</span><br><span class="line">    <span class="type">mcpwm_config_t</span> pwm_config;</span><br><span class="line">    pwm_config.frequency = <span class="number">50</span>; <span class="comment">// 舵机信号频率为50Hz,每个周期时长20ms</span></span><br><span class="line">    pwm_config.cmpr_a = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxA = 0</span></span><br><span class="line">    pwm_config.cmpr_b = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxb = 0</span></span><br><span class="line">    pwm_config.counter_mode = MCPWM_UP_COUNTER;</span><br><span class="line">    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;</span><br><span class="line">    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &amp;pwm_config); <span class="comment">//应用上面配置到 PWM0A &amp; PWM0B</span></span><br><span class="line">    <span class="comment">// 旋转角度</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Angle of rotation: %d\n&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 计算60度对应的脉冲宽度</span></span><br><span class="line">    angle = servo_per_degree_init(<span class="number">60</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pulse width: %dus\n&quot;</span>, angle);</span><br><span class="line">    mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);</span><br><span class="line">    vTaskDelay(<span class="number">10</span>); <span class="comment">//Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V</span></span><br><span class="line">    vTaskDelete(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关灯函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">turn_off</span><span class="params">(<span class="type">void</span> *arg)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> angle;</span><br><span class="line">    <span class="comment">//1. mcpwm gpio 初始化</span></span><br><span class="line">    mcpwm_example_gpio_initialize();</span><br><span class="line">    <span class="comment">//2. 初始化 mcpwm 配置</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Configuring Initial Parameters of mcpwm......\n&quot;</span>);</span><br><span class="line">    <span class="type">mcpwm_config_t</span> pwm_config;</span><br><span class="line">    pwm_config.frequency = <span class="number">50</span>; <span class="comment">//frequency = 50Hz, i.e. for every servo motor time period should be 20ms</span></span><br><span class="line">    pwm_config.cmpr_a = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxA = 0</span></span><br><span class="line">    pwm_config.cmpr_b = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxb = 0</span></span><br><span class="line">    pwm_config.counter_mode = MCPWM_UP_COUNTER;</span><br><span class="line">    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;</span><br><span class="line">    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &amp;pwm_config); <span class="comment">//ConfigurePWM0A &amp; PWM0B with above settings</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Angle of rotation: %d\n&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 计算120度对应的脉冲宽度</span></span><br><span class="line">    angle = servo_per_degree_init(<span class="number">120</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pulse width: %dus\n&quot;</span>, angle);</span><br><span class="line">    mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);</span><br><span class="line">    vTaskDelay(<span class="number">10</span>); <span class="comment">//Add delay, since it takes time for servo to rotate,generally 100ms/60degree rotation at 5V</span></span><br><span class="line">    vTaskDelete(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最后修改led_write函数为</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">led_write</span><span class="params">(<span class="type">bool</span> on)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (on)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 接收到开灯命令，执行开灯任务</span></span><br><span class="line">         xTaskCreate(turn_on, <span class="string">&quot;turn_on&quot;</span>, <span class="number">4096</span>, <span class="literal">NULL</span>, <span class="number">5</span>, <span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123; </span><br><span class="line">        <span class="comment">// 接收到关灯命令，执行关灯任务</span></span><br><span class="line">        xTaskCreate(turn_off, <span class="string">&quot;turn_off&quot;</span>, <span class="number">4096</span>, <span class="literal">NULL</span>, <span class="number">5</span>, <span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>完整的文件位于<br><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/m5Dino/blob/master/HomeKitServoLight.c">HomeKitServoLight.c</a></p>
-<h2 id="来瞅一瞅效果吧。"><a href="#来瞅一瞅效果吧。" class="headerlink" title="来瞅一瞅效果吧。"></a>来瞅一瞅效果吧。</h2><p>现在舵机就听我们的指令了哦！<br><video src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/control_servo_by_siri.mp4" controls="controls" width="640" height="640">您的浏览器不支持播放该视频！</video></p>
-<p>再配合上一个简陋的结构，就可以控制开关了。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/servo_control_light_simple.png?raw=true" alt="servo_on_light"></p>
-<p><video src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/control_light_by_siri.mp4" controls="controls" width="640" height="640">您的浏览器不支持播放该视频！</video></p>
-<p>别担心，最终的成品可不会这样寒酸。<br>本系列还没有结束，还有第四部分的结构设计，尽请期待吧！</p>
-<h1 id="下期预告-快把你家的灯接入HomeKit吧其四（结构设计篇）"><a href="#下期预告-快把你家的灯接入HomeKit吧其四（结构设计篇）" class="headerlink" title="下期预告:快把你家的灯接入HomeKit吧其四（结构设计篇）"></a>下期预告:快把你家的灯接入HomeKit吧其四（结构设计篇）</h1><p>参考资料:<br><a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/index.html">ESP-IDF 编程指南</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/espressif/esp-idf">Espressif IoT Development Framework</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/10/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/">下一页</a>
   </nav>
 
 </section>
@@ -563,6 +565,18 @@ var themeMenus = {};
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">Claude Code初体验</a></h6>
+              <span>十一月 16, 2025</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -624,18 +638,6 @@ var themeMenus = {};
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2022/12/31/Monochrome_dither_algorithm/">单色图像抖动算法</a></h6>
-              <span>十二月 31, 2022</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -668,7 +670,7 @@ var themeMenus = {};
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">十一月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
