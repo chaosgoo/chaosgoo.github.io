@@ -1,570 +1,133 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>标签: ESP32 - Do U Find IT?</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Do U Find IT?"><meta name="msapplication-TileImage" content="/images/Logo_sketch_bg_64px.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Do U Find IT?"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Do U Find IT?"><meta property="og:url" content="https://chaosgoo.com/"><meta property="og:site_name" content="Do U Find IT?"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://chaosgoo.com/img/og_image.png"><meta property="article:author" content="Chaos Goo"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://chaosgoo.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://chaosgoo.com"},"headline":"Do U Find IT?","image":["https://chaosgoo.com/img/og_image.png"],"author":{"@type":"Person","name":"Chaos Goo"},"publisher":{"@type":"Organization","name":"Do U Find IT?","logo":{"@type":"ImageObject","url":"https://chaosgoo.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/images/Logo_sketch_bg_64px.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-  <!-- PACE Progress Bar START -->
-  
-    
-<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-    
-<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-  
-  
-
-  <!-- PACE Progress Bar START -->
-
-  
-  <title>tag: esp32 | Do U Find IT?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
-  
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Do U Find IT?">
-<meta property="og:url" content="https://chaosgoo.github.io/tags/ESP32/index.html">
-<meta property="og:site_name" content="Do U Find IT?">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Chaos Goo">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/Logo_sketch_bg_64px.png">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  
-<link rel="stylesheet" href="/css/style.css">
-
-
-  
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="/css/hiero.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-  
-
-  <!-- Custom CSS -->
-  
-<link rel="stylesheet" href="/css/my.css">
-
-  <!-- Google Adsense -->
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088" crossorigin="anonymous"></script>
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ee258828-74ca-4f27-be63-43212196e947" data-blockingmode="auto" type="text/javascript">
-  </script>
-  <script>
-
-  </script>
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<script>
-var themeMenus = {};
-
-  themeMenus["/"] = "首页"; 
-
-  themeMenus["/archives"] = "归档"; 
-
-  themeMenus["/links"] = "友情链接"; 
-
-  themeMenus["/about"] = "关于我"; 
-
-  themeMenus["/privacy-policy"] = "隐私政策"; 
-
-  themeMenus["/gdpr"] = "gdpr"; 
-
-  themeMenus["/term-of-use"] = "使用条款"; 
-
-</script>
-
-
-  <body>
-
-
-  <header id="allheader" class="site-header" role="banner">
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" title="Do U Find IT?" rel="home"> Do U Find IT? </a>
-            
-          </h1>
-
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-            <div class="clearfix sf-menu">
-
-              <ul id="main-nav" class="nmenu sf-js-enabled">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/links">友情链接</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于我</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/privacy-policy">隐私政策</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/gdpr">gdpr</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/term-of-use">使用条款</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="originBgDiv" style="background: #fff; width: 100%;">
-
-      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
-        <img id="originBg" width="100%" alt="" src="">
-      </div>
-
-  </div>
-
-  <script>
-  function setAboutIMG(){
-      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
-      var random = Math.floor((Math.random() * imgUrls.length ));
-      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-        document.getElementById("originBg").src=imgUrls[random];
-      } else {
-        document.getElementById("originBg").src='/' + imgUrls[random];
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-  }
-  bgDiv=document.getElementById("originBgDiv");
-  if(location.pathname.match('about')){
-    setAboutIMG();
-    bgDiv.style.display='block';
-  }else{
-    bgDiv.style.display='none';
-  }
-  </script>
-
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main">
-  
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2024" class="archive-year">2024</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/" class="archive-article-date">
-		  <time datetime="2024-01-28T00:58:47.000Z" itemprop="datePublished">1月 28, 2024</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/">改装米家1代屏幕挂灯,接入HomeKit</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2022" class="archive-year">2022</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/" class="archive-article-date">
-		  <time datetime="2022-04-18T15:21:10.000Z" itemprop="datePublished">4月 18, 2022</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/">ESP32在休眠模式下保持PWM输出</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/" class="archive-article-date">
-		  <time datetime="2022-03-13T05:13:54.000Z" itemprop="datePublished">3月 13, 2022</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/">ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/tags/ESP32/page/2/">2</a><a class="page-number" href="/tags/ESP32/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/tags/ESP32/page/6/">6</a><a class="extend next" rel="next" href="/tags/ESP32/page/2/">下一页</a>
-  </nav>
-
-</section>
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">联系我们</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a target="_blank" rel="noopener" href="https://github.com/chaosgoo" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:admin@chaosgoo.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a target="_blank" rel="noopener" href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a target="_blank" rel="noopener" href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a target="_blank" rel="noopener" href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a target="_blank" rel="noopener" href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a target="_blank" rel="noopener" href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a target="_blank" rel="noopener" href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>最新文章</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">Claude Code初体验</a></h6>
-              <span>十一月 16, 2025</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2025/10/29/Real-life-HealthPin/">做一个CS2中的生命值胸章</a></h6>
-              <span>十月 29, 2025</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></h6>
-              <span>九月 26, 2025</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2024/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
-              <span>九月 27, 2024</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2024/07/29/Friday-Ink/">Friday Ink 今天是周五吗</a></h6>
-              <span>七月 29, 2024</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/">改装米家1代屏幕挂灯,接入HomeKit</a></h6>
-              <span>一月 28, 2024</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Arduino/" rel="tag">Arduino</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DIY/" rel="tag">DIY</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EPaper/" rel="tag">EPaper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/" rel="tag">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keyboard/" rel="tag">Keyboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micropython/" rel="tag">Micropython</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RaspberryPi/" rel="tag">RaspberryPi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/" rel="tag">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lowpoly/" rel="tag">lowpoly</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E3%80%87/" rel="tag">〇</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Arduino/" style="font-size: 16px;">Arduino</a> <a href="/tags/DIY/" style="font-size: 12px;">DIY</a> <a href="/tags/EPaper/" style="font-size: 10px;">EPaper</a> <a href="/tags/ESP32/" style="font-size: 20px;">ESP32</a> <a href="/tags/Flutter/" style="font-size: 14px;">Flutter</a> <a href="/tags/HTTP/" style="font-size: 12px;">HTTP</a> <a href="/tags/Hack/" style="font-size: 10px;">Hack</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Kotlin/" style="font-size: 14px;">Kotlin</a> <a href="/tags/Micropython/" style="font-size: 10px;">Micropython</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RaspberryPi/" style="font-size: 10px;">RaspberryPi</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lowpoly/" style="font-size: 18px;">lowpoly</a> <a href="/tags/%E3%80%87/" style="font-size: 10px;">〇</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">十一月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2025 Do U Find IT? All Rights Reserved.
-          
-      </div>
-      
-      <!-- 新增的隐私条款等链接 -->
-      <div class="site-links" style="margin-start: 10px;">
-        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a> | 
-        <a href="/privacy-policy">隐私条款</a> | 
-        <a href="/term-of-use" >使用政策</a> | 
-        <a href="/about">关于我们</a> | 
-        <a href="/gpdr">GPDR</a> 
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
-      </div>
-  </div>
-</footer>
-
-
-<!-- min height -->
-
-<script>
-    var contentdiv = document.getElementById("content");
-
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-</script>
-
-<!-- Custome JS -->
-
-<script src="/js/my.js"></script>
-
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/links" class="mobile-nav-link">友情链接</a>
-  
-    <a href="/about" class="mobile-nav-link">关于我</a>
-  
-    <a href="/privacy-policy" class="mobile-nav-link">隐私政策</a>
-  
-    <a href="/gdpr" class="mobile-nav-link">GDPR</a>
-  
-    <a href="/term-of-use" class="mobile-nav-link">使用条款</a>
-  
-</nav> -->
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-
-  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
-
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/scripts.js"></script>
-
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'true', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Do U Find IT?" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">标签</a></li><li class="is-active"><a href="#" aria-current="page">ESP32</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-01-28T00:58:47.000Z" title="2024/1/28 08:58:47">2024-01-28</time>发表</span><span class="level-item"><time dateTime="2024-06-18T13:42:21.914Z" title="2024/6/18 21:42:21">2024-06-18</time>更新</span><span class="level-item">6 分钟读完 (大约893个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/">改装米家1代屏幕挂灯,接入HomeKit</a></p><div class="content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我住的屋子床头没有插座也没有控制房间顶灯的开关,假如熄灯睡觉的话会让房间陷入一片漆黑.<br>所以很长一段时间里我都把米家屏幕挂灯的控制器放在床头,用于临时照明.<br><br>这就引发了另外一个问题,每次回家开电脑打开屏幕挂灯,我都得走到床头找到控制器开启屏幕挂灯.<br>在经历了多次麻烦后,我决定把这个屏幕挂灯接入HomeKit. 这样就可以用语音或者手机控制了.</p>
+<h2 id="资料搜集"><a href="#资料搜集" class="headerlink" title="资料搜集"></a>资料搜集</h2><p>在阅读了这篇<a target="_blank" rel="noopener" href="https://www.chongdiantou.com/archives/55542.html">拆解报告：MJ米家显示器挂灯MJGJD01YL</a>后, 需要做的工作就很明确了.<br>大致分为以下几个步骤</p>
+<ul>
+<li>阅读手册,找到控制引脚</li>
+<li>拆除芯片,替换成ESP32</li>
+<li>编写代码,接入HomeKit</li>
+</ul>
+<h2 id="阅读手册-找到控制引脚"><a href="#阅读手册-找到控制引脚" class="headerlink" title="阅读手册,找到控制引脚"></a>阅读手册,找到控制引脚</h2><p>看完拆解报告后,得知亮度由TLSR8368和SY7301A芯片控制实现, 两款芯片的资料很容易在Google上搜索到.<br><br>基本上可以确定是由TLSR8368发送PWM信号给SY7301A进行调光.</p>
+<p>TLSR8368一共就16个引脚, 对照手册配合示波器挨个测量控制引脚测出PWM引脚是由#3,#5产生, 还有一个引脚#8用于使能SY7301A芯片.</p>
+<p><img src="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/Lamp%2B%2B/measurePins.webp" alt="measurePins"></p>
+<p>测量出引脚如下</p>
+<html><div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;zoom&quot;:3,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2024-03-02T02:06:25.301Z\&quot; agent=\&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36\&quot; etag=\&quot;zmgi8oENtgMkKsBrgtmF\&quot; version=\&quot;23.0.2\&quot; type=\&quot;device\&quot;&gt;\n  &lt;diagram name=\&quot;第 1 页\&quot; id=\&quot;LCz4lk7aObaaRWTkYqqO\&quot;&gt;\n    &lt;mxGraphModel dx=\&quot;674\&quot; dy=\&quot;397\&quot; grid=\&quot;1\&quot; gridSize=\&quot;10\&quot; guides=\&quot;1\&quot; tooltips=\&quot;1\&quot; connect=\&quot;1\&quot; arrows=\&quot;1\&quot; fold=\&quot;1\&quot; page=\&quot;1\&quot; pageScale=\&quot;1\&quot; pageWidth=\&quot;1169\&quot; pageHeight=\&quot;827\&quot; math=\&quot;0\&quot; shadow=\&quot;0\&quot;&gt;\n      &lt;root&gt;\n        &lt;mxCell id=\&quot;0\&quot; /&gt;\n        &lt;mxCell id=\&quot;1\&quot; parent=\&quot;0\&quot; /&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot; value=\&quot;\&quot; style=\&quot;group;rotation=-180;\&quot; vertex=\&quot;1\&quot; connectable=\&quot;0\&quot; parent=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;520\&quot; y=\&quot;330\&quot; width=\&quot;172\&quot; height=\&quot;200\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-1\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#30312E;strokeColor=none;arcSize=0;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;2\&quot; y=\&quot;70\&quot; width=\&quot;170\&quot; height=\&quot;60\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-3\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;152\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-4\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;132\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-5\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;112\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-6\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;92\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-7\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;72\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-8\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;52\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-9\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;32\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-10\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;12\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-15\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;152\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-16\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;132\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-17\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;112\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-18\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;92\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-19\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;72\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-20\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;52\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-21\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;32\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-22\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;12\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-25\&quot; value=\&quot;\&quot; style=\&quot;ellipse;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#7C838A;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;152\&quot; y=\&quot;80\&quot; width=\&quot;10\&quot; height=\&quot;10\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-30\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#E83131;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;112\&quot; y=\&quot;160\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-31\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;3.3V&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;85\&quot; y=\&quot;155\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-34\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#363A44;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;132\&quot; y=\&quot;160\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-35\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;GND&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;105\&quot; y=\&quot;155\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-48\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#7AC943;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;112\&quot; y=\&quot;20\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-49\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;LEDA&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;85\&quot; y=\&quot;15\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-56\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#7AC943;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;72\&quot; y=\&quot;20\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-57\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;LEDB&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;45\&quot; y=\&quot;15\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-60\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#7AC943;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;12\&quot; y=\&quot;20\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-61\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;EN&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;-15\&quot; y=\&quot;15\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n      &lt;/root&gt;\n    &lt;/mxGraphModel&gt;\n  &lt;/diagram&gt;\n&lt;/mxfile&gt;\n&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
 </html>
+
+
+<h2 id="拆除芯片-替换成ESP32"><a href="#拆除芯片-替换成ESP32" class="headerlink" title="拆除芯片,替换成ESP32"></a>拆除芯片,替换成ESP32</h2><p>到了这一步需要选择合适尺寸的芯片,然后重新绘制一块板子寄生在原始位置即可.</p>
+<p>拆除原来的TLSR8368以后,留下的空间还算宽敞.<br>选用尺寸较小的ESP32-C3(对应的型号名称是ESP8685), 封装为QFN28 4x4mm</p>
+<p><img src="https://github.com/chaosgoo/blog_pic/blob/master/Lamp++/lamp++_pcb_top_view0,25x.png?raw=true" alt="Lamp++ Top View"></p>
+<p>这里右半部分的TypeC和LDO部分将会在在烧录后折断, 后续固件可以通过4P 2mm间距探针或者OTA进行更新.</p>
+<p>附上一张初版焊接后的图片, 初版为之前没有预留可折断TypeC部分的版本.</p>
+<p><img src="https://github.com/chaosgoo/blog_pic/blob/master/Lamp++/WiredPreview.jpg?raw=true" alt="Preview"></p>
+<h2 id="编写代码-接入HomeKit"><a href="#编写代码-接入HomeKit" class="headerlink" title="编写代码,接入HomeKit"></a>编写代码,接入HomeKit</h2><p>得益于HomeSpan这个库,需要编写的代码很简单.</p>
+<p>目前实现了白色LED的调光, 由于我损坏了暖黄色LED控制引脚的阻焊,所以没有对齐控制,待后续购入新的屏幕挂灯补充这部分功能.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;HomeSpan.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;extras/PwmPin.h&quot;</span>  <span class="comment">// library of various PWM functions</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">FadingLED</span> : Service::LightBulb &#123;</span><br><span class="line">  LedPin *ledPin;             <span class="comment">// reference to Led Pin</span></span><br><span class="line">  SpanCharacteristic *power;  <span class="comment">// reference to the On Characteristic</span></span><br><span class="line">  SpanCharacteristic *level;  <span class="comment">// reference to the Brightness Characteristic</span></span><br><span class="line">  SpanCharacteristic *colorTemperature;  <span class="comment">// reference to the Color Temperature</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">FadingLED</span>(<span class="type">int</span> _ledPin) : Service::<span class="built_in">LightBulb</span>() &#123;</span><br><span class="line">    power = <span class="keyword">new</span> Characteristic::<span class="built_in">On</span>();</span><br><span class="line">    level = <span class="keyword">new</span> Characteristic::<span class="built_in">Brightness</span>(<span class="number">0</span>);</span><br><span class="line">    colorTemperature = <span class="keyword">new</span> Characteristic::<span class="built_in">ColorTemperature</span>(<span class="number">200</span>, <span class="literal">true</span>);</span><br><span class="line">    ledPin = <span class="keyword">new</span> <span class="built_in">LedPin</span>(_ledPin);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">boolean <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;power-&gt;getNewVal()=%d&quot;</span>, power-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;,level-&gt;getNewVal()=%d&quot;</span>, level-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;,colorTemperature-&gt;getNewVal()=%d\n&quot;</span>,</span><br><span class="line">                  colorTemperature-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    ledPin-&gt;<span class="built_in">fade</span>(power-&gt;<span class="built_in">getNewVal</span>() * level-&gt;<span class="built_in">getNewVal</span>(), <span class="number">2000</span>,</span><br><span class="line">                 LedPin::PROPORTIONAL);</span><br><span class="line">    <span class="keyword">while</span> (ledPin-&gt;<span class="built_in">fadeStatus</span>() == LedPin::FADING)</span><br><span class="line">      ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="literal">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ledPin-&gt;<span class="built_in">fadeStatus</span>() == LedPin::COMPLETED) &#123;</span><br><span class="line">      power-&gt;<span class="built_in">setVal</span>(<span class="number">1</span> - power-&gt;<span class="built_in">getVal</span>());</span><br><span class="line">      level-&gt;<span class="built_in">setVal</span>(power-&gt;<span class="built_in">getVal</span>() ? <span class="number">100</span> : <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(<span class="number">5</span>, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(<span class="number">10</span>, OUTPUT);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">5</span>, HIGH);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">10</span>, LOW);</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">10</span>, HIGH);</span><br><span class="line"></span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;Wi-Fi is Connected!&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">enableOTA</span>(<span class="string">&quot;12345678&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">setPairingCode</span>(<span class="string">&quot;11223344&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">begin</span>(Category::Lighting, <span class="string">&quot;Lamp++&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">SpanAccessory</span>();</span><br><span class="line">  <span class="keyword">new</span> Service::<span class="built_in">AccessoryInformation</span>();</span><br><span class="line">  <span class="keyword">new</span> Characteristic::<span class="built_in">Identify</span>();</span><br><span class="line">  <span class="keyword">new</span> Characteristic::<span class="built_in">ColorTemperature</span>(<span class="number">200</span>, <span class="literal">true</span>);</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">FadingLED</span>(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123; </span><br><span class="line">  homeSpan.<span class="built_in">poll</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[env:airm2m_core_esp32c3]</span></span><br><span class="line"><span class="attr">platform</span> = espressif32@<span class="number">5.4</span>.<span class="number">0</span></span><br><span class="line"><span class="attr">board</span> = airm2m_core_esp32c3</span><br><span class="line"><span class="attr">framework</span> = ardui<span class="literal">no</span></span><br><span class="line"><span class="attr">monitor_speed</span> = <span class="number">115200</span></span><br><span class="line"><span class="attr">lib_deps</span> = homespan/HomeSpan@^<span class="number">1.8</span>.<span class="number">0</span></span><br><span class="line"><span class="comment">; upload_protocol = espota</span></span><br><span class="line"><span class="comment">; upload_flags =  --auth=12345678</span></span><br><span class="line"><span class="comment">; upload_port = 192.168.0.104</span></span><br><span class="line"><span class="attr">build_flags</span> = </span><br><span class="line">	-D <span class="attr">ARDUINO_USB_MODE</span>=<span class="number">1</span></span><br><span class="line">	-D <span class="attr">ARDUINO_USB_CDC_ON_BOOT</span>=<span class="number">1</span>  </span><br></pre></td></tr></table></figure>
+
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p><img src="https://raw.githubusercontent.com/chaosgoo/blog_pic/master/Lamp%2B%2B/controlbyphone.webp" alt="Preview2 "></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.chongdiantou.com/archives/55542.html">拆解报告：MJ米家显示器挂灯MJGJD01YL</a></li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-04-18T15:21:10.000Z" title="2022/4/18 23:21:10">2022-04-18</time>发表</span><span class="level-item"><time dateTime="2022-04-18T16:15:27.882Z" title="2022/4/19 00:15:27">2022-04-19</time>更新</span><span class="level-item">2 分钟读完 (大约338个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/">ESP32在休眠模式下保持PWM输出</a></p><div class="content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>IDF手册上说如果PWM的clk_cfg配置为<a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/api-reference/peripherals/ledc.html#ledc-api-configure-timer">RTC8M_CLK支持Light-Sleep模式</a>,但是官方的Repo里面也没有如何使用这个特性的例子.</p>
+<h2 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h2><p>经过一圈摸索.需要配置menuconfig才行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idf.py menuconfig</span><br></pre></td></tr></table></figure>
+<p><strong>找到Component config-&gt;Hardware Settings -&gt; Sleep Config, 关闭light sleep GPIO reset workaround</strong></p>
+<p>在esp-idf内置的LEDC (LED Controller) basic example的基础上修改,得到以下代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;driver/ledc.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_err.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_log.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_sleep.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_system.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;freertos/FreeRTOS.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;freertos/task.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;rtc.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PIN_LED GPIO_NUM_5</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">example_ledc_init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// Prepare and then apply the LEDC PWM timer configuration</span></span><br><span class="line">  <span class="type">ledc_timer_config_t</span> ledc_timer = &#123;</span><br><span class="line">      .duty_resolution = LEDC_TIMER_13_BIT,</span><br><span class="line">      .freq_hz = <span class="number">1000</span>,</span><br><span class="line">      .speed_mode = LEDC_LOW_SPEED_MODE,</span><br><span class="line">      .timer_num = LEDC_TIMER_0,</span><br><span class="line">      .clk_cfg = LEDC_USE_RTC8M_CLK,</span><br><span class="line">  &#125;;</span><br><span class="line">  ESP_ERROR_CHECK(ledc_timer_config(&amp;ledc_timer));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Prepare and then apply the LEDC PWM channel configuration</span></span><br><span class="line">  <span class="type">ledc_channel_config_t</span> ledc_channel = &#123;.channel = LEDC_CHANNEL_0,</span><br><span class="line">                                        .duty = <span class="number">128</span>,</span><br><span class="line">                                        .gpio_num = PIN_LED,</span><br><span class="line">                                        .speed_mode = LEDC_LOW_SPEED_MODE,</span><br><span class="line">                                        .hpoint = <span class="number">0</span>,</span><br><span class="line">                                        .timer_sel = LEDC_TIMER_0&#125;;</span><br><span class="line">  ESP_ERROR_CHECK(ledc_channel_config(&amp;ledc_channel));</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">app_main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// Set the LEDC peripheral configuration</span></span><br><span class="line">  example_ledc_init();</span><br><span class="line">  esp_sleep_pd_config(ESP_PD_DOMAIN_RTC8M, ESP_PD_OPTION_ON);</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; (<span class="number">1</span> &lt;&lt; <span class="number">13</span>); i += <span class="number">128</span>) &#123;</span><br><span class="line">      ESP_LOGE(<span class="string">&quot;Duty&quot;</span>, <span class="string">&quot;Current Duty is %d&quot;</span>, i);</span><br><span class="line">      ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, i));</span><br><span class="line">      <span class="comment">// Update duty to apply the new value</span></span><br><span class="line">      ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0));</span><br><span class="line">      esp_sleep_enable_timer_wakeup(<span class="number">1000</span> * <span class="number">1000</span> * <span class="number">1</span>);</span><br><span class="line">      esp_light_sleep_start();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-03-13T05:13:54.000Z" title="2022/3/13 13:13:54">2022-03-13</time>发表</span><span class="level-item"><time dateTime="2022-03-13T06:19:55.179Z" title="2022/3/13 14:19:55">2022-03-13</time>更新</span><span class="level-item">9 分钟读完 (大约1349个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/">ESP32-C3 PlatformIO &#039;embed_txtfiles&#039; 修复</a></p><div class="content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>9.9元入手了一块ESP32-C3板子, 用来取代手上引脚不足的ESP8266.<br>但是编译时候总是失败,从Log上看是这一步出了错误.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">prepare_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Converting .pio\build\esp32c3\lite.ttf.txt.o</span><br><span class="line"><span class="string">&#x27;xtensa-esp32-elf-objcopy&#x27;</span> \xb2\xbb\xca\xc7\xc4ڲ\xbf\xbb\xf2\xcdⲿ\xc3\xfc\xc1Ҳ\xb2\xbb\xcaǿ\xc9\xd4\xcb\xd0еĳ\xcc\xd0\xf2</span><br><span class="line">\xbb\xf2\xc5\xfa\xb4\xa6\xc0\xed\xceļ\xfe\xa1\xa3</span><br><span class="line">*** [.pio\build\esp32c3\lite.ttf.txt.o] Error 1</span><br></pre></td></tr></table></figure>
+<p>此外并没有任何提示了.</p>
+<h2 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h2><p>lite.ttf是我的一个放在src目录下的文件,</p>
+<p>为其在platformio.ini配置”board_build.embed_txtfiles &#x3D; src&#x2F;lite.ttf”,就可以让这个文件嵌入固件中.<br>从日志里看到是转化的时候出了问题, <strong>xtensa-esp32-elf-objcopy</strong></p>
+<p>xtensa是ESP32,ESP32-S2,ESP32-S3的处理器结构,而ESP32-C3是RISC-V的,所以这里出错应该是结构不匹配.<br>去ESP-IDF的文件夹搜索”elf-objcopy”后发现的确有不同很多类似关键字.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">dir</span> <span class="keyword">in</span> esp32 esp32s2 esp32c3 esp32s3; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$dir</span> = esp32 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32s2 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32s2-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32c3 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;riscv32-esp-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32s3 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32s3-elf&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$dir</span> does not exist&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [ -d <span class="string">&quot;<span class="variable">$dir</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">cd</span> <span class="variable">$dir</span></span><br><span class="line">        git status libphy.a | grep <span class="string">&quot;modified&quot;</span> &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">        <span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="variable">$dir</span>/libphy.a fixed</span><br><span class="line">            <span class="variable">$TOOLCHAIN</span>-objcopy --redefine-sym ets_printf=phy_printf libphy.a</span><br><span class="line">        <span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>所以应该是PlatformIO在转化的时候调用了错误的程序导致的.</p>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>去PlatformIO的工作目录(.platformio)下搜索<strong>xtensa-esp32-elf-objcopy</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&quot;xtensa-esp32-elf-objcopy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--input-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;binary&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--output-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;elf32-xtensa-le&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--binary-architecture&quot;</span>,</span><br><span class="line">    <span class="string">&quot;xtensa&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--rename-section&quot;</span>,</span><br><span class="line">    <span class="string">&quot;.data=.rodata.embedded&quot;</span>,</span><br><span class="line">    <span class="string">&quot;<span class="variable">$SOURCE</span>&quot;</span>,</span><br><span class="line">     <span class="string">&quot;<span class="variable">$TARGET</span>&quot;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>确实搜索到了多个包含这个关键字的文件_embed_files.py<br>(platforms\espressif32\builder\frameworks_embed_files.py)<br>其中platforms下有好几个文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── .platformio</span><br><span class="line">│   └── platforms</span><br><span class="line">│       └── espressif32</span><br><span class="line">│       └── espressif32@src-ba2d3999402da5eaf2c9d5863ef113c7</span><br><span class="line">│       └── espressif32@src-ebefb4289db63a9f0ca5ee29fa328eef</span><br><span class="line">│       └── espressif8266</span><br><span class="line">│       └── raspberrypi</span><br></pre></td></tr></table></figure>
+<p>这应该是不同项目所需的platform,凑巧这次C3项目的platform是专门下载的,所以从文件夹修改日期上来看,我这次C3使用的应该是espressif32@src-ebefb4289db63a9f0ca5ee29fa328eef<br>打开espressif32@src-ebefb4289db63a9f0ca5ee29fa328eef下的_embed_files.py<br>里面果然还在使用xtensa-esp32-elf-objcopy<br>按照ESP-IDF里面的描述,应该使用riscv32-esp-elf-objcopy,并且要把xtensa相关的都修改为riscv.</p>
+<p>所以最后修改成了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&quot;riscv32-esp-elf-objcopy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--input-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;binary&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--output-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;elf32-littleriscv&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--binary-architecture&quot;</span>,</span><br><span class="line">    <span class="string">&quot;riscv&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--rename-section&quot;</span>,</span><br><span class="line">    <span class="string">&quot;.data=.rodata.embedded&quot;</span>,</span><br><span class="line">    <span class="string">&quot;<span class="variable">$SOURCE</span>&quot;</span>,</span><br><span class="line">    <span class="string">&quot;<span class="variable">$TARGET</span>&quot;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>重新执行编译,这一次终于通过了.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Building <span class="keyword">in</span> release mode</span><br><span class="line">prepare_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Converting .pio\build\esp32c3\lite.ttf.txt.o</span><br><span class="line">revert_original_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Linking .pio\build\esp32c3\firmware.elf</span><br><span class="line">Retrieving maximum program size .pio\build\esp32c3\firmware.elf</span><br><span class="line">Checking size .pio\build\esp32c3\firmware.elf</span><br><span class="line">Advanced Memory Usage is available via <span class="string">&quot;PlatformIO Home &gt; Project Inspect&quot;</span></span><br><span class="line">RAM:   [          ]   4.7% (used 15480 bytes from 327680 bytes)</span><br><span class="line">Flash: [=         ]  14.1% (used 443870 bytes from 3145728 bytes)</span><br><span class="line">Building .pio\build\esp32c3\firmware.bin</span><br><span class="line">esptool.py v3.1</span><br><span class="line">Merged 2 ELF sections</span><br></pre></td></tr></table></figure>
+<h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><h3 id="embed-files-py"><a href="#embed-files-py" class="headerlink" title="_embed_files.py"></a>_embed_files.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Copyright 2014-present PlatformIO &lt;contact@platformio.org&gt;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></span><br><span class="line"><span class="comment"># you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="comment"># You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment"># See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment"># limitations under the License.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> SEEK_CUR, SEEK_END</span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> basename, isfile, join</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> SCons.Script <span class="keyword">import</span> Builder</span><br><span class="line"></span><br><span class="line">Import(<span class="string">&quot;env&quot;</span>)</span><br><span class="line"></span><br><span class="line">board = env.BoardConfig()</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Embedded files helpers</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_files</span>(<span class="params">cppdefines, files_type</span>):</span><br><span class="line">    files = []</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;build.&quot;</span> + files_type <span class="keyword">in</span> board:</span><br><span class="line">        files.extend(</span><br><span class="line">            [</span><br><span class="line">                join(<span class="string">&quot;$PROJECT_DIR&quot;</span>, f)</span><br><span class="line">                <span class="keyword">for</span> f <span class="keyword">in</span> board.get(<span class="string">&quot;build.&quot;</span> + files_type, <span class="string">&quot;&quot;</span>).split()</span><br><span class="line">                <span class="keyword">if</span> f</span><br><span class="line">            ]</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        files_define = <span class="string">&quot;COMPONENT_&quot;</span> + files_type.upper()</span><br><span class="line">        <span class="keyword">for</span> define <span class="keyword">in</span> cppdefines:</span><br><span class="line">            <span class="keyword">if</span> files_define <span class="keyword">not</span> <span class="keyword">in</span> define:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            value = define[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(define, <span class="built_in">tuple</span>):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Warning! %s macro cannot be empty!&quot;</span> % files_define)</span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(value, <span class="built_in">str</span>):</span><br><span class="line">                <span class="built_in">print</span>(</span><br><span class="line">                    <span class="string">&quot;Warning! %s macro must contain &quot;</span></span><br><span class="line">                    <span class="string">&quot;a list of files separated by &#x27;:&#x27;&quot;</span> % files_define</span><br><span class="line">                )</span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> f <span class="keyword">in</span> value.split(<span class="string">&quot;:&quot;</span>):</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> f:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                files.append(join(<span class="string">&quot;$PROJECT_DIR&quot;</span>, f))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isfile(env.subst(f)):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Warning! Could not find file &quot;%s&quot;&#x27;</span> % basename(f))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> files</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">remove_config_define</span>(<span class="params">cppdefines, files_type</span>):</span><br><span class="line">    <span class="keyword">for</span> define <span class="keyword">in</span> cppdefines:</span><br><span class="line">        <span class="keyword">if</span> files_type <span class="keyword">in</span> define:</span><br><span class="line">            env.ProcessUnFlags(<span class="string">&quot;-D%s&quot;</span> % <span class="string">&quot;=&quot;</span>.join(<span class="built_in">str</span>(d) <span class="keyword">for</span> d <span class="keyword">in</span> define))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prepare_file</span>(<span class="params">source, target, env</span>):</span><br><span class="line">    filepath = source[<span class="number">0</span>].get_abspath()</span><br><span class="line">    shutil.copy(filepath, filepath + <span class="string">&quot;.piobkp&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filepath, <span class="string">&quot;rb+&quot;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        fp.seek(-<span class="number">1</span>, SEEK_END)</span><br><span class="line">        <span class="keyword">if</span> fp.read(<span class="number">1</span>) != <span class="string">&quot;\0&quot;</span>:</span><br><span class="line">            fp.seek(<span class="number">0</span>, SEEK_CUR)</span><br><span class="line">            fp.write(<span class="string">b&quot;\0&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">revert_original_file</span>(<span class="params">source, target, env</span>):</span><br><span class="line">    filepath = source[<span class="number">0</span>].get_abspath()</span><br><span class="line">    <span class="keyword">if</span> isfile(filepath + <span class="string">&quot;.piobkp&quot;</span>):</span><br><span class="line">        shutil.move(filepath + <span class="string">&quot;.piobkp&quot;</span>, filepath)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">embed_files</span>(<span class="params">files, files_type</span>):</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">        filename = basename(f) + <span class="string">&quot;.txt.o&quot;</span></span><br><span class="line">        file_target = env.TxtToBin(join(<span class="string">&quot;$BUILD_DIR&quot;</span>, filename), f)</span><br><span class="line">        env.Depends(<span class="string">&quot;$PIOMAINPROG&quot;</span>, file_target)</span><br><span class="line">        <span class="keyword">if</span> files_type == <span class="string">&quot;embed_txtfiles&quot;</span>:</span><br><span class="line">            env.AddPreAction(file_target, prepare_file)</span><br><span class="line">            env.AddPostAction(file_target, revert_original_file)</span><br><span class="line">        env.AppendUnique(PIOBUILDFILES=[env.File(join(<span class="string">&quot;$BUILD_DIR&quot;</span>, filename))])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_to_asm</span>(<span class="params">target, source, env</span>):</span><br><span class="line">    files = [join(<span class="string">&quot;$BUILD_DIR&quot;</span>, s.name + <span class="string">&quot;.S&quot;</span>) <span class="keyword">for</span> s <span class="keyword">in</span> source]</span><br><span class="line">    <span class="keyword">return</span> files, source</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">env.Append(</span><br><span class="line">    BUILDERS=<span class="built_in">dict</span>(</span><br><span class="line">        TxtToBin=Builder(</span><br><span class="line">            action=env.VerboseAction(</span><br><span class="line">                <span class="string">&quot; &quot;</span>.join(</span><br><span class="line">                    [</span><br><span class="line">                        <span class="string">&quot;riscv32-esp-elf-objcopy&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;--input-target&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;binary&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;--output-target&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;elf32-littleriscv&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;--binary-architecture&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;riscv&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;--rename-section&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;.data=.rodata.embedded&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;$SOURCE&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;$TARGET&quot;</span>,</span><br><span class="line">                    ]</span><br><span class="line">                ),</span><br><span class="line">                <span class="string">&quot;Converting $TARGET&quot;</span>,</span><br><span class="line">            ),</span><br><span class="line">            suffix=<span class="string">&quot;.txt.o&quot;</span>,</span><br><span class="line">        ),</span><br><span class="line">        TxtToAsm=Builder(</span><br><span class="line">            action=env.VerboseAction(</span><br><span class="line">                <span class="string">&quot; &quot;</span>.join(</span><br><span class="line">                    [</span><br><span class="line">                        join(</span><br><span class="line">                            env.PioPlatform().get_package_dir(<span class="string">&quot;tool-cmake&quot;</span>) <span class="keyword">or</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;bin&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;cmake&quot;</span>,</span><br><span class="line">                        ),</span><br><span class="line">                        <span class="string">&quot;-DDATA_FILE=$SOURCE&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;-DSOURCE_FILE=$TARGET&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;-DFILE_TYPE=TEXT&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;-P&quot;</span>,</span><br><span class="line">                        join(</span><br><span class="line">                            env.PioPlatform().get_package_dir(<span class="string">&quot;framework-espidf&quot;</span>) <span class="keyword">or</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;tools&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;cmake&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;scripts&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;data_file_embed_asm.cmake&quot;</span>,</span><br><span class="line">                        ),</span><br><span class="line">                    ]</span><br><span class="line">                ),</span><br><span class="line">                <span class="string">&quot;Generating assembly for $TARGET&quot;</span>,</span><br><span class="line">            ),</span><br><span class="line">            emitter=transform_to_asm,</span><br><span class="line">            single_source=<span class="literal">True</span>,</span><br><span class="line">        ),</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flags = env.get(<span class="string">&quot;CPPDEFINES&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> files_type <span class="keyword">in</span> (<span class="string">&quot;embed_txtfiles&quot;</span>, <span class="string">&quot;embed_files&quot;</span>):</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        <span class="string">&quot;COMPONENT_&quot;</span> + files_type.upper() <span class="keyword">not</span> <span class="keyword">in</span> env.Flatten(flags)</span><br><span class="line">        <span class="keyword">and</span> <span class="string">&quot;build.&quot;</span> + files_type <span class="keyword">not</span> <span class="keyword">in</span> board</span><br><span class="line">    ):</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    files = extract_files(flags, files_type)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;espidf&quot;</span> <span class="keyword">in</span> env.subst(<span class="string">&quot;$PIOFRAMEWORK&quot;</span>):</span><br><span class="line">        env.Requires(join(<span class="string">&quot;$BUILD_DIR&quot;</span>, <span class="string">&quot;$&#123;PROGNAME&#125;.elf&quot;</span>), env.TxtToAsm(files))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        embed_files(files, files_type)</span><br><span class="line">        remove_config_define(flags, files_type)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PLATFORM: Espressif 32 (3.3.0+sha.3b5de56) &gt; Espressif ESP32 Dev Module</span><br><span class="line"> - framework-arduinoespressif32 0.0.0+sha.68daea4</span><br><span class="line"> - tool-esptoolpy 1.30100.210531 (3.1.0)</span><br><span class="line"> - toolchain-riscv-esp 1.80400.0 (8.4.0)</span><br><span class="line"> - toolchain-riscv32-esp 8.4.0+2021r1</span><br></pre></td></tr></table></figure></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/tags/ESP32/page/0/">上一页</a></div><div class="pagination-next"><a href="/tags/ESP32/page/2/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/tags/ESP32/">1</a></li><li><a class="pagination-link" href="/tags/ESP32/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/tags/ESP32/page/6/">6</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/Logo_Sketch.png" alt="Goo"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Goo</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>CN</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">58</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">22</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/chaosgoo"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="bilibili" href="https://space.bilibili.com/3493265206676106"><i class="fab fa-bilibili"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Youtube" href="https://www.youtube.com/@chaosgoo"><i class="fab fa-youtube"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.vimc.cc" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">大黄猫の博客</span></span><span class="level-right"><span class="level-item tag">blog.vimc.cc</span></span></a></li><li><a class="level is-mobile" href="http://liga.tech" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">粤北山区的技术宅</span></span><span class="level-right"><span class="level-item tag">liga.tech</span></span></a></li><li><a class="level is-mobile" href="https://github.com/YanHeDoki" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">YanHeDoki</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-11-16T15:39:44.000Z">2025-11-16</time></p><p class="title"><a href="/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">Claude Code初体验</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-10-29T01:56:54.000Z">2025-10-29</time></p><p class="title"><a href="/2025/10/29/Real-life-HealthPin/">做一个CS2中的生命值胸章</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-09-26T08:35:34.000Z">2025-09-26</time></p><p class="title"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-09-27T15:17:01.000Z">2024-09-27</time></p><p class="title"><a href="/2024/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-07-29T13:36:21.000Z">2024-07-29</time></p><p class="title"><a href="/2024/07/29/Friday-Ink/">Friday Ink 今天是周五吗</a></p></div></article></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Arduino/"><span class="tag">Arduino</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Claude-Code/"><span class="tag">Claude Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Codex/"><span class="tag">Codex</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DIY/"><span class="tag">DIY</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EPaper/"><span class="tag">EPaper</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ESP32/"><span class="tag">ESP32</span><span class="tag">17</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Flutter/"><span class="tag">Flutter</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/HTTP/"><span class="tag">HTTP</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hack/"><span class="tag">Hack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hexo/"><span class="tag">Hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Keras/"><span class="tag">Keras</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Keyboard/"><span class="tag">Keyboard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kotlin/"><span class="tag">Kotlin</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Micropython/"><span class="tag">Micropython</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/RaspberryPi/"><span class="tag">RaspberryPi</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/arduino/"><span class="tag">arduino</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/lowpoly/"><span class="tag">lowpoly</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%87/"><span class="tag">〇</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2025/11/"><span class="level-start"><span class="level-item">十一月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/10/"><span class="level-start"><span class="level-item">十月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/09/"><span class="level-start"><span class="level-item">九月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">九月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">七月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">十二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">十一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/02/"><span class="level-start"><span class="level-item">二月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">十一月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">十月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">九月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">七月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">十一月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">六月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/11/"><span class="level-start"><span class="level-item">十一月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/10/"><span class="level-start"><span class="level-item">十月 2017</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Do U Find IT?" height="28"></a><p class="is-size-7"><span>&copy; 2025 Chaos Goo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="皖ICP备2024054743号" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="隐私条款" href="/privacy-policy">隐私条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="使用政策" href="/term-of-use">使用政策</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="关于我" href="/about">关于我</a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

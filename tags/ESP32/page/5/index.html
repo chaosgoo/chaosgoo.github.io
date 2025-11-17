@@ -1,560 +1,179 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>标签: ESP32 - Do U Find IT?</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Do U Find IT?"><meta name="msapplication-TileImage" content="/images/Logo_sketch_bg_64px.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Do U Find IT?"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Do U Find IT?"><meta property="og:url" content="https://chaosgoo.com/"><meta property="og:site_name" content="Do U Find IT?"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://chaosgoo.com/img/og_image.png"><meta property="article:author" content="Chaos Goo"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://chaosgoo.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://chaosgoo.com"},"headline":"Do U Find IT?","image":["https://chaosgoo.com/img/og_image.png"],"author":{"@type":"Person","name":"Chaos Goo"},"publisher":{"@type":"Organization","name":"Do U Find IT?","logo":{"@type":"ImageObject","url":"https://chaosgoo.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/images/Logo_sketch_bg_64px.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-  <!-- PACE Progress Bar START -->
-  
-    
-<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-    
-<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-  
-  
-
-  <!-- PACE Progress Bar START -->
-
-  
-  <title>tag: esp32 | Do U Find IT?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
-  
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Do U Find IT?">
-<meta property="og:url" content="https://chaosgoo.github.io/tags/ESP32/page/5/index.html">
-<meta property="og:site_name" content="Do U Find IT?">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Chaos Goo">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/Logo_sketch_bg_64px.png">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  
-<link rel="stylesheet" href="/css/style.css">
-
-
-  
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="/css/hiero.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-  
-
-  <!-- Custom CSS -->
-  
-<link rel="stylesheet" href="/css/my.css">
-
-  <!-- Google Adsense -->
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088" crossorigin="anonymous"></script>
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ee258828-74ca-4f27-be63-43212196e947" data-blockingmode="auto" type="text/javascript">
-  </script>
-  <script>
-
-  </script>
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<script>
-var themeMenus = {};
-
-  themeMenus["/"] = "首页"; 
-
-  themeMenus["/archives"] = "归档"; 
-
-  themeMenus["/links"] = "友情链接"; 
-
-  themeMenus["/about"] = "关于我"; 
-
-  themeMenus["/privacy-policy"] = "隐私政策"; 
-
-  themeMenus["/gdpr"] = "gdpr"; 
-
-  themeMenus["/term-of-use"] = "使用条款"; 
-
-</script>
-
-
-  <body>
-
-
-  <header id="allheader" class="site-header" role="banner">
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" title="Do U Find IT?" rel="home"> Do U Find IT? </a>
-            
-          </h1>
-
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-            <div class="clearfix sf-menu">
-
-              <ul id="main-nav" class="nmenu sf-js-enabled">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/links">友情链接</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于我</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/privacy-policy">隐私政策</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/gdpr">gdpr</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/term-of-use">使用条款</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="originBgDiv" style="background: #fff; width: 100%;">
-
-      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
-        <img id="originBg" width="100%" alt="" src="">
-      </div>
-
-  </div>
-
-  <script>
-  function setAboutIMG(){
-      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
-      var random = Math.floor((Math.random() * imgUrls.length ));
-      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-        document.getElementById("originBg").src=imgUrls[random];
-      } else {
-        document.getElementById("originBg").src='/' + imgUrls[random];
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-  }
-  bgDiv=document.getElementById("originBgDiv");
-  if(location.pathname.match('about')){
-    setAboutIMG();
-    bgDiv.style.display='block';
-  }else{
-    bgDiv.style.display='none';
-  }
-  </script>
-
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main">
-  
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2020" class="archive-year">2020</a></h1>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2020/12/14/ESP32-Streaming/" class="archive-article-date">
-		  <time datetime="2020-12-14T06:35:49.000Z" itemprop="datePublished">12月 14, 2020</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2020/12/14/ESP32-Streaming/">ESP32-串流显示</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2020/12/04/ESP32-ST7789/" class="archive-article-date">
-		  <time datetime="2020-12-04T11:40:47.000Z" itemprop="datePublished">12月 04, 2020</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2020/12/04/ESP32-ST7789/">ESP32驱动ST7789液晶屏</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-
-      <a href="/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/" class="archive-article-date">
-		  <time datetime="2020-05-12T01:33:16.000Z" itemprop="datePublished">5月 12, 2020</time>
-	  </a>
-      
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/">HomeKit ESP32 Control Light III</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/tags/ESP32/page/4/">上一页</a><a class="page-number" href="/tags/ESP32/">1</a><span class="space">&hellip;</span><a class="page-number" href="/tags/ESP32/page/3/">3</a><a class="page-number" href="/tags/ESP32/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/tags/ESP32/page/6/">6</a><a class="extend next" rel="next" href="/tags/ESP32/page/6/">下一页</a>
-  </nav>
-
-</section>
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">联系我们</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a target="_blank" rel="noopener" href="https://github.com/chaosgoo" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:admin@chaosgoo.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a target="_blank" rel="noopener" href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a target="_blank" rel="noopener" href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a target="_blank" rel="noopener" href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a target="_blank" rel="noopener" href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a target="_blank" rel="noopener" href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a target="_blank" rel="noopener" href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>最新文章</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">Claude Code初体验</a></h6>
-              <span>十一月 16, 2025</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2025/10/29/Real-life-HealthPin/">做一个CS2中的生命值胸章</a></h6>
-              <span>十月 29, 2025</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></h6>
-              <span>九月 26, 2025</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2024/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></h6>
-              <span>九月 27, 2024</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2024/07/29/Friday-Ink/">Friday Ink 今天是周五吗</a></h6>
-              <span>七月 29, 2024</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/">改装米家1代屏幕挂灯,接入HomeKit</a></h6>
-              <span>一月 28, 2024</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Arduino/" rel="tag">Arduino</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DIY/" rel="tag">DIY</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EPaper/" rel="tag">EPaper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ESP32/" rel="tag">ESP32</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/" rel="tag">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keyboard/" rel="tag">Keyboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micropython/" rel="tag">Micropython</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RaspberryPi/" rel="tag">RaspberryPi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/" rel="tag">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lowpoly/" rel="tag">lowpoly</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E3%80%87/" rel="tag">〇</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Arduino/" style="font-size: 16px;">Arduino</a> <a href="/tags/DIY/" style="font-size: 12px;">DIY</a> <a href="/tags/EPaper/" style="font-size: 10px;">EPaper</a> <a href="/tags/ESP32/" style="font-size: 20px;">ESP32</a> <a href="/tags/Flutter/" style="font-size: 14px;">Flutter</a> <a href="/tags/HTTP/" style="font-size: 12px;">HTTP</a> <a href="/tags/Hack/" style="font-size: 10px;">Hack</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Kotlin/" style="font-size: 14px;">Kotlin</a> <a href="/tags/Micropython/" style="font-size: 10px;">Micropython</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RaspberryPi/" style="font-size: 10px;">RaspberryPi</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lowpoly/" style="font-size: 18px;">lowpoly</a> <a href="/tags/%E3%80%87/" style="font-size: 10px;">〇</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">十一月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">九月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">九月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">5</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2025 Do U Find IT? All Rights Reserved.
-          
-      </div>
-      
-      <!-- 新增的隐私条款等链接 -->
-      <div class="site-links" style="margin-start: 10px;">
-        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a> | 
-        <a href="/privacy-policy">隐私条款</a> | 
-        <a href="/term-of-use" >使用政策</a> | 
-        <a href="/about">关于我们</a> | 
-        <a href="/gpdr">GPDR</a> 
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
-      </div>
-  </div>
-</footer>
-
-
-<!-- min height -->
-
-<script>
-    var contentdiv = document.getElementById("content");
-
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-</script>
-
-<!-- Custome JS -->
-
-<script src="/js/my.js"></script>
-
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/links" class="mobile-nav-link">友情链接</a>
-  
-    <a href="/about" class="mobile-nav-link">关于我</a>
-  
-    <a href="/privacy-policy" class="mobile-nav-link">隐私政策</a>
-  
-    <a href="/gdpr" class="mobile-nav-link">GDPR</a>
-  
-    <a href="/term-of-use" class="mobile-nav-link">使用条款</a>
-  
-</nav> -->
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-
-  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
-
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/scripts.js"></script>
-
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'true', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
-</html>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Do U Find IT?" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">标签</a></li><li class="is-active"><a href="#" aria-current="page">ESP32</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-12-14T06:35:49.000Z" title="2020/12/14 14:35:49">2020-12-14</time>发表</span><span class="level-item"><time dateTime="2023-05-14T06:51:18.591Z" title="2023/5/14 14:51:18">2023-05-14</time>更新</span><span class="level-item">16 分钟读完 (大约2465个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/12/14/ESP32-Streaming/">ESP32-串流显示</a></p><div class="content"><h1 id="让你的ESP32试试串流吧"><a href="#让你的ESP32试试串流吧" class="headerlink" title="让你的ESP32试试串流吧"></a>让你的ESP32试试串流吧</h1><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-streaming/EE09FFA8826B4A300111C1F5B9C54EF7.png?raw=true" alt="header-preview"><br>既然有了屏幕，又有了网络，那岂不是可以串流了！</p>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p><a style="color:#d44375" target="_blank" rel="noopener" href="https://www.chaosgoo.com/2020/12/14/ESP32-ST7789/">上篇文章</a>已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a>就可以实现，只是在帧率上会有所区别。<br>这个视频为你展示了在M5StickC上的运行效果<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uz4y1k7Dr/">现在是除了游戏性以外，一无所有的原神@bilibili</a></p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p>电脑作为发送端，负责发送图像数据-&gt;EPS32作为接收端，负责接收并绘制图像数据<br>发送端使用python编写，使用<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/BoboTiG/python-mss">mss</a>模块捕获屏幕画面，再使用python opencv 编码为JPG</p>
+<p>接收端使用C++编写，<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TJpg_Decoder">TJpg_Decoder</a>解码，<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a>绘制</p>
+<p>发送的数据以帧为单位，为了减小帧的体积，将会对每一帧原始位图数据使用JPG编码，ESP32接收到数据以后，先对JPG进行解码，再进行绘制。</p>
+<p>一次完整通信流程为:<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-streaming/ESP32-Streaming?raw=true" alt="workflow"></p>
+<h2 id="精简的代码"><a href="#精简的代码" class="headerlink" title="精简的代码"></a>精简的代码</h2><figure class="highlight c"><figcaption><span>common_macro.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> COMMON_MACRO_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> COMMON_MACRO_H_</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Debug情况下，暂时不去测试串流，也无需连接wifi</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEBUG</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">======================串流相关======================</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 帧数据接收完毕</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FRAMEOK  0x01</span></span><br><span class="line"><span class="comment">// 头部接收完毕，接收帧</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> HEADEROK  0x02</span></span><br><span class="line"><span class="comment">// 准备完毕，接收头部 注:0x03无法正常发送</span></span><br><span class="line"><span class="comment">// https://www.cnblogs.com/young525/p/5873795.html</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PREPAREOK  0x41</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">======================屏幕相关======================</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SCREEN_WIDTH 240</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SCREEN_HEIGHT 135</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">======================WiFi相关======================</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ssid <span class="string">&quot;CloseWrt_2.5G&quot;</span></span></span><br><span class="line"><span class="comment">// WiFi 密码</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> password <span class="string">&quot;have5seeds&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> </span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><figcaption><span>StreamingComponent.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> STREAMINGCOMPONENT_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STREAMINGCOMPONENT_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IDLES 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> RUNNING 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EXITING 2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TFT_eSPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TJpg_Decoder.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;WiFi.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;utils.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;common_macro.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">StreamingComponent</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">StreamingComponent</span>(WiFiClient &amp;clt, TFT_eSPI &amp;tft);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="type">uint8_t</span> status = IDLES;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">enter</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">exit</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">drawCallBack</span><span class="params">(<span class="type">int16_t</span> x, <span class="type">int16_t</span> y, <span class="type">uint16_t</span> w, <span class="type">uint16_t</span> h,</span></span></span><br><span class="line"><span class="params"><span class="function">                      <span class="type">uint16_t</span> *bitmap)</span></span>;</span><br><span class="line"><span class="comment">//    ~StreamingComponent() &#123;</span></span><br><span class="line"><span class="comment">//        Serial.printf(&quot;~StreamingComponent\n&quot;);</span></span><br><span class="line"><span class="comment">//        free(wifiBuffer);</span></span><br><span class="line"><span class="comment">//        free(headerBuffer);</span></span><br><span class="line"><span class="comment">//        free(frameSizeBuffer);</span></span><br><span class="line"><span class="comment">//    &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// WiFiClient指针</span></span><br><span class="line">    WiFiClient *client;</span><br><span class="line">    <span class="comment">// TFT_eSPI指针</span></span><br><span class="line">    TFT_eSPI *Tft;</span><br><span class="line">    <span class="comment">// 帧率相关</span></span><br><span class="line">    <span class="type">double</span> fps_avg = <span class="number">0.0</span>;</span><br><span class="line">    <span class="type">uint32_t</span> sec&#123;&#125;, psec&#123;&#125;;</span><br><span class="line">    <span class="type">uint16_t</span> fps = <span class="number">0</span>, frame_count = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 帧率相关</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行时间相关</span></span><br><span class="line">    <span class="comment">// 函数执行时间</span></span><br><span class="line">    <span class="type">uint32_t</span> cost&#123;&#125;;</span><br><span class="line">    <span class="comment">// 一次loop执行时间</span></span><br><span class="line">    <span class="type">uint32_t</span> loopCost&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 缓冲部分</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 帧数据大小</span></span><br><span class="line">    <span class="type">uint16_t</span> size&#123;&#125;;</span><br><span class="line">    <span class="comment">// 已经下载帧数据大小</span></span><br><span class="line">    <span class="type">uint16_t</span> bSize&#123;&#125;;</span><br><span class="line">    <span class="comment">// DMA缓冲相关</span></span><br><span class="line">    <span class="comment">// 2020.12.04若出现发送端发送超过wifiFrameSize大小(32kb)，</span></span><br><span class="line">    <span class="comment">// 则会导致出错，而此处无法分配更大内存。</span></span><br><span class="line">    <span class="comment">// 暂时未找到正确开启SPIRAM方法</span></span><br><span class="line">    <span class="comment">// 2020.12.04将图片压缩方式从LZO改为jpg</span></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> wifiFrameSize = <span class="number">1024</span> * <span class="number">32</span>;</span><br><span class="line">    <span class="comment">// 头数据大小</span></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> headerFrameSize = <span class="number">10</span>;</span><br><span class="line">    <span class="comment">// 待下载的jpg图片缓冲</span></span><br><span class="line">    <span class="type">uint8_t</span> *wifiBuffer =</span><br><span class="line">            (<span class="type">uint8_t</span> *) <span class="built_in">heap_caps_malloc</span>(wifiFrameSize, MALLOC_CAP_8BIT);</span><br><span class="line">    <span class="comment">// 头数据缓冲</span></span><br><span class="line">    <span class="type">uint8_t</span> *headerBuffer =</span><br><span class="line">            (<span class="type">uint8_t</span> *) <span class="built_in">heap_caps_malloc</span>(headerFrameSize, MALLOC_CAP_8BIT);</span><br><span class="line">    <span class="comment">// 帧数据大小缓冲，用于解析字符串为int</span></span><br><span class="line">    <span class="type">uint8_t</span> *frameSizeBuffer =</span><br><span class="line">            (<span class="type">uint8_t</span> *) <span class="built_in">heap_caps_malloc</span>(headerFrameSize - <span class="number">1</span>, MALLOC_CAP_8BIT);</span><br><span class="line">    <span class="comment">// DMA 双缓冲模式</span></span><br><span class="line">    <span class="type">uint16_t</span> dmaBuffer1[<span class="number">16</span> * <span class="number">16</span>]&#123;&#125;;  <span class="comment">// Toggle buffer for 16*16 MCU block, 512bytes</span></span><br><span class="line">    <span class="type">uint16_t</span> dmaBuffer2[<span class="number">16</span> * <span class="number">16</span>]&#123;&#125;;  <span class="comment">// Toggle buffer for 16*16 MCU block, 512bytes</span></span><br><span class="line">    <span class="type">uint16_t</span> *dmaBufferPtr = dmaBuffer1;</span><br><span class="line">    <span class="comment">// 当前使用的DMA缓冲</span></span><br><span class="line">    <span class="type">bool</span> dmaBufferSel = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 显示回调，用于Tjpeg</span></span><br><span class="line"><span class="comment">     * 2020-12-06</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接收数据</span></span><br><span class="line"><span class="comment">     * 2020-12-01</span></span><br><span class="line"><span class="comment">     * size: 5222 bytes</span></span><br><span class="line"><span class="comment">     * cost: 16 ms</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">onReceiveData</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><figcaption><span>StreamingComponent.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;StreamingComponent.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">StreamingComponent::<span class="built_in">StreamingComponent</span>(WiFiClient &amp;clt, TFT_eSPI &amp;tft) &#123;</span><br><span class="line">  <span class="keyword">this</span>-&gt;client = &amp;clt;</span><br><span class="line">  <span class="keyword">this</span>-&gt;Tft = &amp;tft;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;StreamingComponent Constuctor&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">StreamingComponent::enter</span><span class="params">()</span> </span>&#123; status = RUNNING; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">StreamingComponent::exit</span><span class="params">()</span> </span>&#123; status = EXITING; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">StreamingComponent::loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (status == RUNNING) &#123;</span><br><span class="line">    Serial.<span class="built_in">println</span>(<span class="string">&quot;StreamingComponent loop&quot;</span>);</span><br><span class="line">    loopCost = <span class="built_in">millis</span>();</span><br><span class="line">    <span class="built_in">onReceiveData</span>();</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;fps_avg:%f,loop cost:%d ms\n&quot;</span>, fps_avg, <span class="built_in">millis</span>() - loopCost);</span><br><span class="line">    Tft-&gt;<span class="built_in">drawString</span>(<span class="built_in">String</span>(fps_avg), <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (status == EXITING) &#123;</span><br><span class="line">    <span class="comment">// 啥也不做</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">StreamingComponent::drawCallBack</span><span class="params">(<span class="type">int16_t</span> x, <span class="type">int16_t</span> y, <span class="type">uint16_t</span> w,</span></span></span><br><span class="line"><span class="params"><span class="function">                                      <span class="type">uint16_t</span> h, <span class="type">uint16_t</span> *bitmap)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (status == RUNNING) &#123;</span><br><span class="line">    <span class="keyword">if</span> (y &gt;= SCREEN_HEIGHT) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (dmaBufferSel) &#123;</span><br><span class="line">      dmaBufferPtr = dmaBuffer2;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      dmaBufferPtr = dmaBuffer1;</span><br><span class="line">    &#125;</span><br><span class="line">    dmaBufferSel = !dmaBufferSel;</span><br><span class="line">    Tft-&gt;<span class="built_in">pushImageDMA</span>(x, y, w, h, bitmap, dmaBufferPtr);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    ~StreamingComponent() &#123;</span></span><br><span class="line"><span class="comment">//        Serial.printf(&quot;~StreamingComponent\n&quot;);</span></span><br><span class="line"><span class="comment">//        free(wifiBuffer);</span></span><br><span class="line"><span class="comment">//        free(headerBuffer);</span></span><br><span class="line"><span class="comment">//        free(frameSizeBuffer);</span></span><br><span class="line"><span class="comment">//    &#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">StreamingComponent::onReceiveData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;StreamingComponent onReceiveData&quot;</span>);</span><br><span class="line">  StreamingComponent::client-&gt;<span class="built_in">write</span>(PREPAREOK);</span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;StreamingComponent client.write(PREPAREOK);&quot;</span>);</span><br><span class="line">  cost = <span class="built_in">millis</span>();</span><br><span class="line">  <span class="keyword">if</span> (headerBuffer == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;headerBuffer is null.\n&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    client-&gt;<span class="built_in">readBytes</span>(headerBuffer, headerFrameSize);</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;receive header cost:%d ms\n&quot;</span>, <span class="built_in">millis</span>() - cost);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> sum = <span class="built_in">checkSum</span>((<span class="type">const</span> <span class="type">char</span> *)headerBuffer, <span class="number">8</span>);</span><br><span class="line">  <span class="comment">// Serial.printf(&quot;headerBuffer checkSum: %d\n&quot;, sum);</span></span><br><span class="line">  <span class="keyword">if</span> ((sum &amp; <span class="number">0xf</span>) == <span class="built_in">c2i</span>(headerBuffer[<span class="number">9</span>]) &amp;&amp;</span><br><span class="line">      (sum &gt;&gt; <span class="number">4</span>) == <span class="built_in">c2i</span>(headerBuffer[<span class="number">8</span>])) &#123;</span><br><span class="line">    <span class="comment">// 有效头数据，准备接收帧数据</span></span><br><span class="line">    <span class="built_in">strncpy</span>((<span class="type">char</span> *)frameSizeBuffer, (<span class="type">char</span> *)headerBuffer, <span class="number">8</span>);</span><br><span class="line">    frameSizeBuffer[<span class="number">9</span>] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    size = <span class="built_in">atoi</span>((<span class="type">char</span> *)frameSizeBuffer);</span><br><span class="line">    <span class="comment">// Serial.printf(&quot;valid header frame size: %d bytes\n&quot;, size);</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 无效头数据，丢弃</span></span><br><span class="line">    <span class="comment">// Serial.printf(&quot;invalid header\n&quot;);</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  client-&gt;<span class="built_in">write</span>(HEADEROK);</span><br><span class="line">  <span class="comment">// // Serial.printf(&quot;send HEADEROK\n&quot;);</span></span><br><span class="line">  cost = <span class="built_in">millis</span>();</span><br><span class="line">  bSize = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (wifiBuffer == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;wifiBuffer is null.\n&quot;</span>);</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;MALLOC_CAP_8BIT heap_caps_get_largest_free_block: %d.\n&quot;</span>,</span><br><span class="line">                  <span class="built_in">heap_caps_get_largest_free_block</span>(MALLOC_CAP_8BIT));</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;MALLOC_CAP_32BIT heap_caps_get_largest_free_block: %d.\n&quot;</span>,</span><br><span class="line">                  <span class="built_in">heap_caps_get_largest_free_block</span>(MALLOC_CAP_32BIT));</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;MALLOC_CAP_SPIRAM heap_caps_get_largest_free_block: %d.\n&quot;</span>,</span><br><span class="line">                  <span class="built_in">heap_caps_get_largest_free_block</span>(MALLOC_CAP_SPIRAM));</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;MALLOC_CAP_8BIT: %d.\n&quot;</span>,</span><br><span class="line">                  <span class="built_in">heap_caps_get_free_size</span>(MALLOC_CAP_8BIT));</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;MALLOC_CAP_32BIT: %d.\n&quot;</span>,</span><br><span class="line">                  <span class="built_in">heap_caps_get_free_size</span>(MALLOC_CAP_32BIT));</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;MALLOC_CAP_SPIRAM: %d.\n&quot;</span>,</span><br><span class="line">                  <span class="built_in">heap_caps_get_free_size</span>(MALLOC_CAP_SPIRAM));</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    bSize = client-&gt;<span class="built_in">readBytes</span>(wifiBuffer, size);</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;frame size: %d bytes, receive frame cost:%d ms\n&quot;</span>, bSize,</span><br><span class="line">                  <span class="built_in">millis</span>() - cost);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (bSize &gt; <span class="number">64</span> &amp;&amp; bSize == size) &#123;</span><br><span class="line">    cost = <span class="built_in">millis</span>();</span><br><span class="line">    Tft-&gt;<span class="built_in">startWrite</span>();</span><br><span class="line">    TJpgDec.<span class="built_in">drawJpg</span>(<span class="number">0</span>, <span class="number">0</span>, wifiBuffer, bSize);</span><br><span class="line">    Tft-&gt;<span class="built_in">endWrite</span>();</span><br><span class="line">    frame_count++;</span><br><span class="line">    sec = <span class="built_in">millis</span>() / <span class="number">1000</span>;</span><br><span class="line">    <span class="keyword">if</span> (psec != sec) &#123;</span><br><span class="line">      psec = sec;</span><br><span class="line">      fps = frame_count;</span><br><span class="line">      fps_avg = (fps_avg + fps) / <span class="number">2.0</span>;</span><br><span class="line">      frame_count = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 31ms</span></span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;draw cost:%d ms\n&quot;</span>, <span class="built_in">millis</span>() - cost);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 无效帧，丢弃</span></span><br><span class="line">    <span class="comment">// return;</span></span><br><span class="line">  &#125;</span><br><span class="line">  client-&gt;<span class="built_in">write</span>(FRAMEOK);</span><br><span class="line">  <span class="comment">// // Serial.printf(&quot;send FRAMEOK\n&quot;);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+<figure class="highlight cpp"><figcaption><span>utils.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> LIB_UTILS_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LIB_UTILS_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;TFT_eSPI.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">checkSum</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* src, <span class="type">int</span> length)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">c2i</span><span class="params">(<span class="type">char</span> ch)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getTextWidth</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* text, TFT_eSprite &amp;sprite)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getTextWidth</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* text, TFT_eSprite *sprite)</span></span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><figcaption><span>utils.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;utils.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief 计算16校验和计算</span></span><br><span class="line"><span class="comment"> * @param src 待校验内容</span></span><br><span class="line"><span class="comment"> * @param length 待校验内容长度</span></span><br><span class="line"><span class="comment"> * @retval 校验和</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">checkSum</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *src, <span class="type">int</span> length)</span> </span>&#123;</span><br><span class="line">  <span class="type">int16_t</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    sum += src[i];</span><br><span class="line">  &#125;</span><br><span class="line">  sum = (sum &amp; <span class="number">0xff</span>) + (sum &gt;&gt; <span class="number">16</span>);</span><br><span class="line">  <span class="keyword">return</span> ~sum &amp; <span class="number">0xff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief 16进制字符转int</span></span><br><span class="line"><span class="comment"> * @param ch 待转换内容</span></span><br><span class="line"><span class="comment"> * @retval 校验和</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="comment">// https://www.cnblogs.com/lidabo/p/3995055.html</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">c2i</span><span class="params">(<span class="type">char</span> ch)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 如果是数字，则用数字的ASCII码减去48, 如果ch = &#x27;2&#x27; ,则 &#x27;2&#x27; - 48 = 2</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">isdigit</span>(ch)) <span class="keyword">return</span> ch - <span class="number">48</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果是字母，但不是A~F,a~f则返回</span></span><br><span class="line">  <span class="keyword">if</span> (ch &lt; <span class="string">&#x27;A&#x27;</span> || (ch &gt; <span class="string">&#x27;F&#x27;</span> &amp;&amp; ch &lt; <span class="string">&#x27;a&#x27;</span>) || ch &gt; <span class="string">&#x27;z&#x27;</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果是大写字母，则用数字的ASCII码减去55, 如果ch = &#x27;A&#x27; ,则 &#x27;A&#x27; - 55 = 10</span></span><br><span class="line">  <span class="comment">// 如果是小写字母，则用数字的ASCII码减去87, 如果ch = &#x27;a&#x27; ,则 &#x27;a&#x27; - 87 = 10</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">isalpha</span>(ch)) <span class="keyword">return</span> <span class="built_in">isupper</span>(ch) ? ch - <span class="number">55</span> : ch - <span class="number">87</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getTextWidth</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* text, TFT_eSprite &amp;sprite)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sprite.<span class="built_in">textWidth</span>(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getTextWidth</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* text, TFT_eSprite *sprite)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sprite-&gt;<span class="built_in">textWidth</span>(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><figcaption><span>tiny_monitor.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(<span class="string">&quot;O3&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TFT_eSPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TJpg_Decoder.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;WiFi.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Wire.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;StreamingComponent.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第三方基础组件</span></span><br><span class="line"><span class="comment">// WiFi客户端实例</span></span><br><span class="line">WiFiClient client;</span><br><span class="line"><span class="comment">// 显示屏驱动实例</span></span><br><span class="line">TFT_eSPI Tft = <span class="built_in">TFT_eSPI</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义对象</span></span><br><span class="line">StreamingComponent *streaming;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">drawCallback</span><span class="params">(<span class="type">int16_t</span> x, <span class="type">int16_t</span> y, <span class="type">uint16_t</span> w, <span class="type">uint16_t</span> h,</span></span></span><br><span class="line"><span class="params"><span class="function">                  <span class="type">uint16_t</span> *bitmap)</span> </span>&#123;</span><br><span class="line">    streaming-&gt;<span class="built_in">drawCallBack</span>(x, y, w, h, bitmap);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main_setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 配置串口</span></span><br><span class="line">    Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">    <span class="comment">// 配置显示</span></span><br><span class="line">    Tft.<span class="built_in">init</span>();</span><br><span class="line">    Tft.<span class="built_in">setRotation</span>(<span class="number">1</span>);</span><br><span class="line">    Tft.<span class="built_in">fillScreen</span>(TFT_BLACK);</span><br><span class="line">    Tft.<span class="built_in">initDMA</span>();</span><br><span class="line">    <span class="comment">// 配置TJpeg</span></span><br><span class="line">    TJpgDec.<span class="built_in">setJpgScale</span>(<span class="number">1</span>);</span><br><span class="line">    TJpgDec.<span class="built_in">setSwapBytes</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="comment">// 设置TJpg解码器回调函数</span></span><br><span class="line">    TJpgDec.<span class="built_in">setCallback</span>(drawCallback);</span><br><span class="line">    <span class="comment">// 配置WiFi</span></span><br><span class="line">    client.<span class="built_in">setTimeout</span>(<span class="number">1</span>);</span><br><span class="line">    WiFi.<span class="built_in">begin</span>(ssid, password);</span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">if</span> (WiFi.<span class="built_in">status</span>() == WL_CONNECTED) &#123;</span><br><span class="line">       <span class="type">const</span> <span class="type">int</span> httpPort = <span class="number">715</span>;</span><br><span class="line">       client.<span class="built_in">connect</span>(<span class="string">&quot;192.168.10.207&quot;</span>, httpPort);</span><br><span class="line">       Serial.<span class="built_in">println</span>(<span class="string">&quot;Socket Connected&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用户自定义对象初始化区</span></span><br><span class="line">    streaming = <span class="keyword">new</span> <span class="built_in">StreamingComponent</span>(client, Tft);</span><br><span class="line">    streaming-&gt;status = RUNNING;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">main_setup</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  streaming-&gt;<span class="built_in">loop</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><figcaption><span>tiny_monitor.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Queue,Value,Manager</span><br><span class="line"><span class="keyword">from</span> multiprocessing.sharedctypes <span class="keyword">import</span> Array</span><br><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line"><span class="keyword">from</span> mss.tools <span class="keyword">import</span> to_png</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> lzo</span><br><span class="line"><span class="keyword">import</span> mss</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">ip = <span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line">port = <span class="number">715</span></span><br><span class="line">fps = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="keyword">global</span> fps</span><br><span class="line">    <span class="comment"># 1. 创建套接字 socket</span></span><br><span class="line">    <span class="keyword">if</span> <span class="literal">True</span>:</span><br><span class="line">        tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">        <span class="comment"># 2. 绑定本地信息 bind</span></span><br><span class="line">        tcp_server_socket.bind((ip, port))</span><br><span class="line">        <span class="comment"># 3. 让默认的套接字由主动变为被动 listen</span></span><br><span class="line">        tcp_server_socket.listen(<span class="number">128</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;启动TCP服务器\r\n&quot;</span> + <span class="string">f&#x27;启动在<span class="subst">&#123;ip&#125;</span>:<span class="subst">&#123;port&#125;</span>上&#x27;</span>)</span><br><span class="line">        <span class="comment"># 4. 等待客户端的链接 accept</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;等待客户端的链接\r\n&quot;</span>)</span><br><span class="line">        new_client_socket, client_addr = tcp_server_socket.accept()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;当前链接：<span class="subst">&#123;client_addr&#125;</span>&#x27;</span>)</span><br><span class="line">        frame_buffer = grab_screen_to_buffer(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1920</span>, <span class="number">1080</span>)</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            s = time.time()</span><br><span class="line">            recv = new_client_socket.recv(<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> recv == <span class="string">b&#x27;\x41&#x27;</span>:</span><br><span class="line">                <span class="comment"># 客户端就绪，发送头数据</span></span><br><span class="line">                start_time = time.time()</span><br><span class="line">                header = <span class="built_in">len</span>(frame_buffer.tobytes())</span><br><span class="line">                header = package_header(header)</span><br><span class="line">                new_client_socket.sendall(header)</span><br><span class="line">                end_time = time.time()</span><br><span class="line">                cost = end_time - start_time</span><br><span class="line">                <span class="comment"># print(&quot;客户端就绪，发送头数据&quot;)</span></span><br><span class="line">            <span class="keyword">elif</span> recv == <span class="string">b&#x27;\x02&#x27;</span>:</span><br><span class="line">                <span class="comment"># 客户端准备头部接收完成，发送帧数据</span></span><br><span class="line">                new_client_socket.sendall(frame_buffer.tobytes())</span><br><span class="line">                frame_buffer = grab_screen_to_buffer(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1920</span>, <span class="number">1080</span>)</span><br><span class="line">                <span class="comment"># print(&quot;客户端准备头部接收完成，发送帧数据&quot;)</span></span><br><span class="line">            <span class="keyword">elif</span> recv == <span class="string">b&#x27;\x01&#x27;</span>:</span><br><span class="line">                <span class="comment"># pass</span></span><br><span class="line">                <span class="comment"># 客户端准备帧数据接收完成，等待客户端就绪</span></span><br><span class="line">                <span class="comment"># print(&quot;客户端准备帧数据接收完成，等待客户端就绪&quot;)</span></span><br><span class="line">                end_time = time.time()</span><br><span class="line">                cost = end_time - start_time</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Backend FPS:&#123;:.2f&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">1.0</span> / cost))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## grab screen by left top width height</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">grab_screen_to_buffer</span>(<span class="params">l, t, w, h</span>):</span><br><span class="line">    monitor = &#123;<span class="string">&quot;top&quot;</span>: t, <span class="string">&quot;left&quot;</span>: l, <span class="string">&quot;width&quot;</span>: w, <span class="string">&quot;height&quot;</span>: h&#125;</span><br><span class="line">    <span class="keyword">with</span> mss.mss() <span class="keyword">as</span> sct:</span><br><span class="line">        sct_frame = sct.grab(monitor)</span><br><span class="line">        img = np.array(sct_frame)</span><br><span class="line">        img = cv2.resize(img, dsize=(<span class="number">240</span>, <span class="number">135</span>))</span><br><span class="line">        <span class="comment"># img = cv2.cvtColor(img, cv2.COLOR_BGR2BGR565)</span></span><br><span class="line">        <span class="comment"># print(&quot;bmp no comporess size:&#123;&#125;&quot;,len(img.tobytes()))</span></span><br><span class="line">        <span class="comment"># print(&quot;bmp lzo comporess size:&#123;&#125;&quot;,len(lzo.compress(img.tobytes(), 9, False)))</span></span><br><span class="line">        quality = <span class="number">60</span></span><br><span class="line">        encode_params = [cv2.IMWRITE_JPEG_QUALITY,quality,cv2.IMWRITE_JPEG_PROGRESSIVE,<span class="number">0</span>]</span><br><span class="line">        retval, img = cv2.imencode(<span class="string">&quot;.jpg&quot;</span>, img, encode_params)</span><br><span class="line">        <span class="comment"># with open(&quot;write.jpg&quot;, &quot;wb&quot;) as f:</span></span><br><span class="line">        <span class="comment">#     f.write(img.tobytes())</span></span><br><span class="line">        <span class="comment"># img = img[..., ::-1]</span></span><br><span class="line">        <span class="comment"># print(&quot;jpg no comporess size:&#123;&#125;&quot;,len(img.tobytes()))</span></span><br><span class="line">        <span class="comment"># print(&quot;jpg lzo comporess size:&#123;&#125;&quot;,len(lzo.compress(img.tobytes(), 9, False)))</span></span><br><span class="line">        <span class="keyword">return</span> img</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">package_header</span>(<span class="params">size</span>):</span><br><span class="line">    data = num_package(size)</span><br><span class="line">    header = <span class="string">&#x27;&#x27;</span>.join(data).encode() + <span class="built_in">hex</span>(check_sum(data)).encode()[<span class="number">2</span>:]</span><br><span class="line">    <span class="keyword">return</span> header</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 校验和</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_sum</span>(<span class="params">value</span>):</span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> value:</span><br><span class="line">        s += <span class="built_in">ord</span>(d)</span><br><span class="line">    s = (s &amp; <span class="number">0xff</span>) + (s &gt;&gt; <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">return</span> ~s &amp; <span class="number">0xff</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包数字</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">num_package</span>(<span class="params">num</span>):</span><br><span class="line">    <span class="keyword">if</span> num &lt; <span class="number">100000000</span>:</span><br><span class="line">        li_str = <span class="built_in">list</span>(<span class="built_in">str</span>(num))</span><br><span class="line">        result = [<span class="string">&#x27;0&#x27;</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>)]</span><br><span class="line">        <span class="keyword">for</span> index, item <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="built_in">len</span>(li_str)), li_str):</span><br><span class="line">            result[-index + <span class="built_in">len</span>(li_str) - <span class="number">1</span>] = item</span><br><span class="line">        <span class="keyword">return</span> result[::-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> [<span class="string">&#x27;9&#x27;</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-streaming/811F8932F05ACA4E44F71EA6C4D9FA72.png?raw=true" alt="header-preview"></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>以下内容为实际开发中参考过的资料，有些资料中的方案已经舍弃，并未体现在上述代码中，特此列出，但俺仍要向他们表示由衷的感谢。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40112386/article/details/103554699">windows环境安装lzo和python-lzo</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lzfcc/LearnArduino/blob/master/hop/hop.ino">https://github.com/lzfcc/LearnArduino</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27114397/article/details/82288917">ESP32 官方文档（五）严重错误</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.xuite.net/iamleon/blog/589421027?fb_comment_id=3635507566516907_3733707560030240">ESP32-CAM: 連接ILI9341液晶螢幕</a></li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-12-04T11:40:47.000Z" title="2020/12/4 19:40:47">2020-12-04</time>发表</span><span class="level-item"><time dateTime="2023-05-13T06:03:11.916Z" title="2023/5/13 14:03:11">2023-05-13</time>更新</span><span class="level-item">3 分钟读完 (大约391个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/12/04/ESP32-ST7789/">ESP32驱动ST7789液晶屏</a></p><div class="content"><h1 id="让你的ESP32点亮一块ST7789液晶屏吧"><a href="#让你的ESP32点亮一块ST7789液晶屏吧" class="headerlink" title="让你的ESP32点亮一块ST7789液晶屏吧"></a>让你的ESP32点亮一块ST7789液晶屏吧</h1><p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-st7789/IMG_1969.JPG?raw=true" alt="hello-world"></p>
+<p>这块液晶屏尺寸是<font color="#d44375">1.14</font>寸，分辨率为<font color="#d44375">135x240</font>，驱动是<font color="#d44375">ST7789</font>。<br>（不小心多买了一个并口版本，因为串口方式连接就能满足我的需求，所以并口屏幕吃灰预定了）</p>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>简单下介绍点亮这块屏幕的方法，介绍下如何配置参数并正确的显示内容。</p>
+<h2 id="下载驱动库"><a href="#下载驱动库" class="headerlink" title="下载驱动库"></a>下载驱动库</h2><p>我使用的驱动库为<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a></p>
+<p>接线如下:</p>
+<table>
+<thead>
+<tr>
+<th align="center">ESP32引脚名称</th>
+<th align="center">液晶屏引脚名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><font color="red">3V3</font></td>
+<td align="center"><font color="red">VCC</font></td>
+</tr>
+<tr>
+<td align="center"><font color="black">GND</font></td>
+<td align="center"><font color="black">GND</font></td>
+</tr>
+<tr>
+<td align="center"><font color="green">G15</font></td>
+<td align="center"><font color="green">SDA</font></td>
+</tr>
+<tr>
+<td align="center"><font color="blue">G13</font></td>
+<td align="center"><font color="blue">SCL</font></td>
+</tr>
+<tr>
+<td align="center"><font color="Orange">G23</font></td>
+<td align="center"><font color="Orange">DC</font></td>
+</tr>
+<tr>
+<td align="center"><font color="grey">G18</font></td>
+<td align="center"><font color="grey">RES</font></td>
+</tr>
+<tr>
+<td align="center"><font color="purple">G5</font></td>
+<td align="center"><font color="purple">CS</font></td>
+</tr>
+<tr>
+<td align="center"><font color="black">不接</font></td>
+<td align="center"><font color="black">BLK</font></td>
+</tr>
+</tbody></table>
+<h2 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h2><figure class="highlight cpp"><figcaption><span>Setup135_ST7789.h文件修改内容</span><a target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI/blob/master/User_Setups/Setup135_ST7789.h">Setup135_ST7789.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改下面参数，和上面的接线对应上</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_SCLK      13</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_MOSI      15</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_RST       18</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_DC        23  <span class="comment">// Data/command line for TFT on Shield</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TFT_CS        5   <span class="comment">// Chip select line for TFT display on Shield</span></span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><figcaption><span>User_Setup_Select.h文件修改内容</span><a target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI/blob/master/User_Setup_Select.h">User_Setup_Select.h</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ....</span></span><br><span class="line"><span class="comment">//#include &lt;User_Setup.h&gt;           // 注释这个一行</span></span><br><span class="line"><span class="comment">// ....</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;User_Setups/Setup135_ST7789.h&gt;</span><span class="comment">// 取消第79行注释</span></span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="简单的示例"><a href="#简单的示例" class="headerlink" title="简单的示例"></a>简单的示例</h2><figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(<span class="string">&quot;O3&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TFT_eSPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Wire.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">TFT_eSPI TFT = <span class="built_in">TFT_eSPI</span>();</span><br><span class="line">TFT_eSprite eSprite = <span class="built_in">TFT_eSprite</span>(&amp;TFT);</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    TFT.<span class="built_in">init</span>();</span><br><span class="line">    TFT.<span class="built_in">setRotation</span>(<span class="number">1</span>);</span><br><span class="line">    TFT.<span class="built_in">fillScreen</span>(TFT_BLACK);</span><br><span class="line">    TFT.<span class="built_in">initDMA</span>();</span><br><span class="line">    eSprite.<span class="built_in">setTextFont</span>(<span class="number">1</span>);</span><br><span class="line">    eSprite.<span class="built_in">setTextColor</span>(TFT_WHITE);</span><br><span class="line">    eSprite.<span class="built_in">createSprite</span>(<span class="number">240</span>, <span class="number">135</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    eSprite.<span class="built_in">setTextFont</span>(<span class="number">1</span>);</span><br><span class="line">    eSprite.<span class="built_in">setCursor</span>(<span class="number">20</span>, <span class="number">20</span>);</span><br><span class="line">    eSprite.<span class="built_in">println</span>(<span class="string">&quot;Hello World\n&quot;</span>);</span><br><span class="line">    eSprite.<span class="built_in">pushSprite</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32-st7789/QQ%E6%88%AA%E5%9B%BE20201214210051.png?raw=true" alt="hello-world"></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-05-12T01:33:16.000Z" title="2020/5/12 09:33:16">2020-05-12</time>发表</span><span class="level-item"><time dateTime="2023-05-13T06:03:11.676Z" title="2023/5/13 14:03:11">2023-05-13</time>更新</span><span class="level-item">6 分钟读完 (大约938个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/">HomeKit ESP32 Control Light III</a></p><div class="content"><h1 id="快把你家的灯接入HomeKit吧其三（整合篇）"><a href="#快把你家的灯接入HomeKit吧其三（整合篇）" class="headerlink" title="快把你家的灯接入HomeKit吧其三（整合篇）"></a>快把你家的灯接入HomeKit吧其三（整合篇）</h1><p>我的回合，抽卡。发动魔法卡–融合！</p>
+<p>第一篇文章中介绍了如何控制LED的亮灭，而第二篇文章中介绍了如何控制舵机旋转到指定的角度，那么现在让它们融合起来了吧！</p>
+<h2 id="融合前的检测"><a href="#融合前的检测" class="headerlink" title="融合前的检测"></a>融合前的检测</h2><p>在LED的Demo中，每次开灯关灯操作都会调用**led_write(bool status)**函数，所以我们只需要根据传进来的status值，旋转舵机到对应的角度即可。</p>
+<p>先让我们从mcpwm_servo_control_example.c中提取出需要的方法， 内容如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入的头文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;driver/mcpwm.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;soc/mcpwm_periph.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_attr.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 舵机参数的宏定义</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MIN_PULSEWIDTH 500 <span class="comment">// 最小脉冲时间ms</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MAX_PULSEWIDTH 2500 <span class="comment">// 最大脉冲时间ms</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVO_MAX_DEGREE 180 <span class="comment">// 舵机最大可旋转角度</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化2号端口为PWM</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">mcpwm_example_gpio_initialize</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;initializing mcpwm servo control gpio......\n&quot;</span>);</span><br><span class="line">    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, <span class="number">18</span>);    <span class="comment">//Set GPIO 2 as PWM0A, to which servo is connected</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 该方法输入目标角度，输出对应高电平脉冲宽度单位us</span></span><br><span class="line"><span class="type">static</span> <span class="type">uint32_t</span> <span class="title function_">servo_per_degree_init</span><span class="params">(<span class="type">uint32_t</span> degree_of_rotation)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> cal_pulsewidth = <span class="number">0</span>;</span><br><span class="line">    cal_pulsewidth = (SERVO_MIN_PULSEWIDTH + (((SERVO_MAX_PULSEWIDTH - SERVO_MIN_PULSEWIDTH) * (degree_of_rotation)) / (SERVO_MAX_DEGREE)));</span><br><span class="line">    <span class="keyword">return</span> cal_pulsewidth;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开灯函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">turn_on</span><span class="params">(<span class="type">void</span> *arg)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> angle;</span><br><span class="line">    <span class="comment">//1. mcpwm gpio 初始化</span></span><br><span class="line">    mcpwm_example_gpio_initialize();</span><br><span class="line">    <span class="comment">//2. 初始化 mcpwm 配置</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Configuring Initial Parameters of mcpwm......\n&quot;</span>);</span><br><span class="line">    <span class="type">mcpwm_config_t</span> pwm_config;</span><br><span class="line">    pwm_config.frequency = <span class="number">50</span>; <span class="comment">// 舵机信号频率为50Hz,每个周期时长20ms</span></span><br><span class="line">    pwm_config.cmpr_a = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxA = 0</span></span><br><span class="line">    pwm_config.cmpr_b = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxb = 0</span></span><br><span class="line">    pwm_config.counter_mode = MCPWM_UP_COUNTER;</span><br><span class="line">    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;</span><br><span class="line">    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &amp;pwm_config); <span class="comment">//应用上面配置到 PWM0A &amp; PWM0B</span></span><br><span class="line">    <span class="comment">// 旋转角度</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Angle of rotation: %d\n&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 计算60度对应的脉冲宽度</span></span><br><span class="line">    angle = servo_per_degree_init(<span class="number">60</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pulse width: %dus\n&quot;</span>, angle);</span><br><span class="line">    mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);</span><br><span class="line">    vTaskDelay(<span class="number">10</span>); <span class="comment">//Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V</span></span><br><span class="line">    vTaskDelete(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关灯函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">turn_off</span><span class="params">(<span class="type">void</span> *arg)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> angle;</span><br><span class="line">    <span class="comment">//1. mcpwm gpio 初始化</span></span><br><span class="line">    mcpwm_example_gpio_initialize();</span><br><span class="line">    <span class="comment">//2. 初始化 mcpwm 配置</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Configuring Initial Parameters of mcpwm......\n&quot;</span>);</span><br><span class="line">    <span class="type">mcpwm_config_t</span> pwm_config;</span><br><span class="line">    pwm_config.frequency = <span class="number">50</span>; <span class="comment">//frequency = 50Hz, i.e. for every servo motor time period should be 20ms</span></span><br><span class="line">    pwm_config.cmpr_a = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxA = 0</span></span><br><span class="line">    pwm_config.cmpr_b = <span class="number">0</span>;     <span class="comment">//duty cycle of PWMxb = 0</span></span><br><span class="line">    pwm_config.counter_mode = MCPWM_UP_COUNTER;</span><br><span class="line">    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;</span><br><span class="line">    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &amp;pwm_config); <span class="comment">//ConfigurePWM0A &amp; PWM0B with above settings</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Angle of rotation: %d\n&quot;</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 计算120度对应的脉冲宽度</span></span><br><span class="line">    angle = servo_per_degree_init(<span class="number">120</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pulse width: %dus\n&quot;</span>, angle);</span><br><span class="line">    mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);</span><br><span class="line">    vTaskDelay(<span class="number">10</span>); <span class="comment">//Add delay, since it takes time for servo to rotate,generally 100ms/60degree rotation at 5V</span></span><br><span class="line">    vTaskDelete(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最后修改led_write函数为</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">led_write</span><span class="params">(<span class="type">bool</span> on)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (on)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 接收到开灯命令，执行开灯任务</span></span><br><span class="line">         xTaskCreate(turn_on, <span class="string">&quot;turn_on&quot;</span>, <span class="number">4096</span>, <span class="literal">NULL</span>, <span class="number">5</span>, <span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123; </span><br><span class="line">        <span class="comment">// 接收到关灯命令，执行关灯任务</span></span><br><span class="line">        xTaskCreate(turn_off, <span class="string">&quot;turn_off&quot;</span>, <span class="number">4096</span>, <span class="literal">NULL</span>, <span class="number">5</span>, <span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整的文件位于<br><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/m5Dino/blob/master/HomeKitServoLight.c">HomeKitServoLight.c</a></p>
+<h2 id="来瞅一瞅效果吧。"><a href="#来瞅一瞅效果吧。" class="headerlink" title="来瞅一瞅效果吧。"></a>来瞅一瞅效果吧。</h2><p>现在舵机就听我们的指令了哦！<br><video src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/control_servo_by_siri.mp4" controls="controls" width="640" height="640">您的浏览器不支持播放该视频！</video></p>
+<p>再配合上一个简陋的结构，就可以控制开关了。<br><img src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/servo_control_light_simple.png?raw=true" alt="servo_on_light"></p>
+<p><video src="https://github.com/chaosgoo/blog_pic/blob/master/oss_backup/blog_pic/esp32homekit/control_light_by_siri.mp4" controls="controls" width="640" height="640">您的浏览器不支持播放该视频！</video></p>
+<p>别担心，最终的成品可不会这样寒酸。<br>本系列还没有结束，还有第四部分的结构设计，尽请期待吧！</p>
+<h1 id="下期预告-快把你家的灯接入HomeKit吧其四（结构设计篇）"><a href="#下期预告-快把你家的灯接入HomeKit吧其四（结构设计篇）" class="headerlink" title="下期预告:快把你家的灯接入HomeKit吧其四（结构设计篇）"></a>下期预告:快把你家的灯接入HomeKit吧其四（结构设计篇）</h1><p>参考资料:<br><a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/index.html">ESP-IDF 编程指南</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/espressif/esp-idf">Espressif IoT Development Framework</a></p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/tags/ESP32/page/4/">上一页</a></div><div class="pagination-next"><a href="/tags/ESP32/page/6/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/tags/ESP32/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/tags/ESP32/page/4/">4</a></li><li><a class="pagination-link is-current" href="/tags/ESP32/page/5/">5</a></li><li><a class="pagination-link" href="/tags/ESP32/page/6/">6</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/Logo_Sketch.png" alt="Goo"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Goo</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>CN</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">58</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">22</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/chaosgoo"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="bilibili" href="https://space.bilibili.com/3493265206676106"><i class="fab fa-bilibili"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Youtube" href="https://www.youtube.com/@chaosgoo"><i class="fab fa-youtube"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.vimc.cc" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">大黄猫の博客</span></span><span class="level-right"><span class="level-item tag">blog.vimc.cc</span></span></a></li><li><a class="level is-mobile" href="http://liga.tech" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">粤北山区的技术宅</span></span><span class="level-right"><span class="level-item tag">liga.tech</span></span></a></li><li><a class="level is-mobile" href="https://github.com/YanHeDoki" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">YanHeDoki</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-11-16T15:39:44.000Z">2025-11-16</time></p><p class="title"><a href="/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">Claude Code初体验</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-10-29T01:56:54.000Z">2025-10-29</time></p><p class="title"><a href="/2025/10/29/Real-life-HealthPin/">做一个CS2中的生命值胸章</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-09-26T08:35:34.000Z">2025-09-26</time></p><p class="title"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-09-27T15:17:01.000Z">2024-09-27</time></p><p class="title"><a href="/2024/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-07-29T13:36:21.000Z">2024-07-29</time></p><p class="title"><a href="/2024/07/29/Friday-Ink/">Friday Ink 今天是周五吗</a></p></div></article></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Arduino/"><span class="tag">Arduino</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Claude-Code/"><span class="tag">Claude Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Codex/"><span class="tag">Codex</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DIY/"><span class="tag">DIY</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EPaper/"><span class="tag">EPaper</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ESP32/"><span class="tag">ESP32</span><span class="tag">17</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Flutter/"><span class="tag">Flutter</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/HTTP/"><span class="tag">HTTP</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hack/"><span class="tag">Hack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hexo/"><span class="tag">Hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Keras/"><span class="tag">Keras</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Keyboard/"><span class="tag">Keyboard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kotlin/"><span class="tag">Kotlin</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Micropython/"><span class="tag">Micropython</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/RaspberryPi/"><span class="tag">RaspberryPi</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/arduino/"><span class="tag">arduino</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/lowpoly/"><span class="tag">lowpoly</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%87/"><span class="tag">〇</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2025/11/"><span class="level-start"><span class="level-item">十一月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/10/"><span class="level-start"><span class="level-item">十月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/09/"><span class="level-start"><span class="level-item">九月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">九月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">七月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">十二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">十一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/02/"><span class="level-start"><span class="level-item">二月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">十一月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">十月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">九月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">七月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">十一月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">六月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/11/"><span class="level-start"><span class="level-item">十一月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/10/"><span class="level-start"><span class="level-item">十月 2017</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Do U Find IT?" height="28"></a><p class="is-size-7"><span>&copy; 2025 Chaos Goo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="皖ICP备2024054743号" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="隐私条款" href="/privacy-policy">隐私条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="使用政策" href="/term-of-use">使用政策</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="关于我" href="/about">关于我</a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

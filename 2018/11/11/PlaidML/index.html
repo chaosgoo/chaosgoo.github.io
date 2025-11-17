@@ -1,213 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程 - Do U Find IT?</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Do U Find IT?"><meta name="msapplication-TileImage" content="/images/Logo_sketch_bg_64px.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Do U Find IT?"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="前言自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&amp;gt;PlaidML!地"><meta property="og:type" content="blog"><meta property="og:title" content="Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程"><meta property="og:url" content="https://chaosgoo.com/2018/11/11/PlaidML/"><meta property="og:site_name" content="Do U Find IT?"><meta property="og:description" content="前言自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&amp;gt;PlaidML!地"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://chaosgoo.com/img/og_image.png"><meta property="article:published_time" content="2018-11-11T03:36:09.000Z"><meta property="article:modified_time" content="2019-07-28T03:20:47.000Z"><meta property="article:author" content="Chaos Goo"><meta property="article:tag" content="Keras"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://chaosgoo.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://chaosgoo.com/2018/11/11/PlaidML/"},"headline":"Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程","image":["https://chaosgoo.com/img/og_image.png"],"datePublished":"2018-11-11T03:36:09.000Z","dateModified":"2019-07-28T03:20:47.000Z","author":{"@type":"Person","name":"Chaos Goo"},"publisher":{"@type":"Organization","name":"Do U Find IT?","logo":{"@type":"ImageObject","url":"https://chaosgoo.com/img/logo.svg"}},"description":"前言自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&gt;PlaidML!地"}</script><link rel="canonical" href="https://chaosgoo.com/2018/11/11/PlaidML/"><link rel="icon" href="/images/Logo_sketch_bg_64px.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-  <!-- PACE Progress Bar START -->
-  
-    
-<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-    
-<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-  
-  
-
-  <!-- PACE Progress Bar START -->
-
-  
-  <title>code plaidml-支持amd显卡的深度学习框架-plaidml安装教程 | Do U Find IT?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="keywords" content="Keras" />
-  
-  
-  
-  
-  <meta name="description" content="前言自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&gt;PlaidML!地">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程">
-<meta property="og:url" content="https://chaosgoo.github.io/2018/11/11/PlaidML/index.html">
-<meta property="og:site_name" content="Do U Find IT?">
-<meta property="og:description" content="前言自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&gt;PlaidML!地">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-11-11T03:36:09.000Z">
-<meta property="article:modified_time" content="2019-07-28T03:20:47.000Z">
-<meta property="article:author" content="Chaos Goo">
-<meta property="article:tag" content="Keras">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Do U Find IT?" type="application/atom+xml">
-  
-  <link rel="icon" href="/css/images/Logo_sketch_bg_64px.png">
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
-  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
-    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
-    
-  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
-  
-<link rel="stylesheet" href="/css/style.css">
-
-
-  
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="/css/hiero.css" >
-  <link rel="stylesheet" href="/css/glyphs.css" >
-  
-
-  <!-- Custom CSS -->
-  
-<link rel="stylesheet" href="/css/my.css">
-
-  <!-- Google Adsense -->
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088" crossorigin="anonymous"></script>
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="ee258828-74ca-4f27-be63-43212196e947" data-blockingmode="auto" type="text/javascript">
-  </script>
-  <script>
-
-  </script>
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<script>
-var themeMenus = {};
-
-  themeMenus["/"] = "首页"; 
-
-  themeMenus["/archives"] = "归档"; 
-
-  themeMenus["/links"] = "友情链接"; 
-
-  themeMenus["/about"] = "关于我"; 
-
-  themeMenus["/privacy-policy"] = "隐私政策"; 
-
-  themeMenus["/gdpr"] = "gdpr"; 
-
-  themeMenus["/term-of-use"] = "使用条款"; 
-
-</script>
-
-
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
-
-
-  <header id="allheader" class="site-header" role="banner">
-  <div class="clearfix container">
-      <div class="site-branding">
-
-          <h1 class="site-title">
-            
-              <a href="/" title="Do U Find IT?" rel="home"> Do U Find IT? </a>
-            
-          </h1>
-
-          
-            
-          <nav id="main-navigation" class="main-navigation" role="navigation">
-            <a class="nav-open">Menu</a>
-            <a class="nav-close">Close</a>
-            <div class="clearfix sf-menu">
-
-              <ul id="main-nav" class="nmenu sf-js-enabled">
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">首页</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">归档</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/links">友情链接</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">关于我</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/privacy-policy">隐私政策</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/gdpr">gdpr</a> </li>
-                    
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/term-of-use">使用条款</a> </li>
-                    
-              </ul>
-            </div>
-          </nav>
-
-
-      </div>
-  </div>
-</header>
-
-
-  <div id="originBgDiv" style="background: #fff; width: 100%;">
-
-      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
-        <img id="originBg" width="100%" alt="" src="">
-      </div>
-
-  </div>
-
-  <script>
-  function setAboutIMG(){
-      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
-      var random = Math.floor((Math.random() * imgUrls.length ));
-      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
-        document.getElementById("originBg").src=imgUrls[random];
-      } else {
-        document.getElementById("originBg").src='/' + imgUrls[random];
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-  }
-  bgDiv=document.getElementById("originBgDiv");
-  if(location.pathname.match('about')){
-    setAboutIMG();
-    bgDiv.style.display='block';
-  }else{
-    bgDiv.style.display='none';
-  }
-  </script>
-
-
-
-  <div id="container">
-    <div id="wrap">
-            
-      <div id="content" class="outer">
-        
-          <section id="main" style="float:none;"><article id="post-PlaidML" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" class="article-title" itemprop="name">
-      Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2018/11/11/PlaidML/" class="article-date">
-	  <time datetime="2018-11-11T03:36:09.000Z" itemprop="datePublished">十一月 11, 2018</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&gt;PlaidML!<br>地址为(<a target="_blank" rel="noopener" href="https://github.com/plaidml/plaidml">https://github.com/plaidml/plaidml</a>)</p>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Do U Find IT?" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-11-11T03:36:09.000Z" title="2018/11/11 11:36:09">2018-11-11</time>发表</span><span class="level-item"><time dateTime="2019-07-28T03:20:47.000Z" title="2019/7/28 11:20:47">2019-07-28</time>更新</span><span class="level-item">6 分钟读完 (大约896个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程</h1><div class="content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自从Ryzen发布以后，AMD的CPU部门慢慢赶上了Intel。但A家的显卡这几年却还是慢悠悠的发展着，老黄在游戏卡领域叱咤风云，还借着深度学习的热潮，又在云计算这种专业领域也分到了不少蛋糕。诸如TensorFlow、Pytorch等深度学习框架均只支持N卡，作为AMD精神股东的我一直对此表示羡慕。今天终于可以不用羡慕了，因为我知道了一款支持AMD显卡的深度学习框架—&gt;PlaidML!<br>地址为(<a target="_blank" rel="noopener" href="https://github.com/plaidml/plaidml">https://github.com/plaidml/plaidml</a>)</p>
 <p>更让人激动的是，这款框架可以作为Keras的后端来使用，也就是说我之前略知一二的Keras知识可以直接用了。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>[Windows]<br>直接上pip即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install plaidml-keras</span><br></pre></td></tr></table></figure>
@@ -228,197 +50,48 @@ var themeMenus = {};
 <li>[<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/56973032/how-to-install-plaidml-plaidml-keras]">https://stackoverflow.com/questions/56973032/how-to-install-plaidml-plaidml-keras]</a></li>
 <li>[<a target="_blank" rel="noopener" href="https://keras.io/]">https://keras.io/]</a></li>
 </ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keras/" rel="tag">Keras</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/05/13/soul-of-library/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Low Poly 图书馆之魂
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/11/04/Flutter-Stop-Watch/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Code Flutter Stop Watch</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-<!-- Table of Contents -->
-
-  <aside id="sidebar">
-    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
-    <strong class="toc-title">文章目录</strong>
-    
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="nav-number">4.1.</span> <span class="nav-text">测试代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">4.2.</span> <span class="nav-text">运行结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84"><span class="nav-number">4.3.</span> <span class="nav-text">附:</span></a></li></ol></li></ol>
-    
-    </div>
-  </aside>
-</section>
-        
-      </div>
-      <footer id="footer" class="site-footer">
-  
-
-  <div class="clearfix container">
-      <div class="site-info">
-	      &copy; 2025 Do U Find IT? All Rights Reserved.
-          
-      </div>
-      
-      <!-- 新增的隐私条款等链接 -->
-      <div class="site-links" style="margin-start: 10px;">
-        <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a> | 
-        <a href="/privacy-policy">隐私条款</a> | 
-        <a href="/term-of-use" >使用政策</a> | 
-        <a href="/about">关于我们</a> | 
-        <a href="/gpdr">GPDR</a> 
-      </div>
-      <div class="site-credit">
-        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
-      </div>
-  </div>
-</footer>
-
-
-<!-- min height -->
-
-<script>
-    var contentdiv = document.getElementById("content");
-
-    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
-</script>
-
-<!-- Custome JS -->
-
-<script src="/js/my.js"></script>
-
-    </div>
-    <!-- <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/links" class="mobile-nav-link">友情链接</a>
-  
-    <a href="/about" class="mobile-nav-link">关于我</a>
-  
-    <a href="/privacy-policy" class="mobile-nav-link">隐私政策</a>
-  
-    <a href="/gdpr" class="mobile-nav-link">GDPR</a>
-  
-    <a href="/term-of-use" class="mobile-nav-link">使用条款</a>
-  
-</nav> -->
-    
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-
-  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
-
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/scripts.js"></script>
-
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'true', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-
-
-
-
-  <div style="display: none;">
-    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
-  </div>
-
-
-
-
-
-
-
-
-  </div>
-
-  <a id="rocket" href="#top" class=""></a>
-  <script type="text/javascript" src="/js/totop.js" async=""></script>
-</body>
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Code PlaidML-支持AMD显卡的深度学习框架-PlaidML安装教程</p><p><a href="https://chaosgoo.com/2018/11/11/PlaidML/">https://chaosgoo.com/2018/11/11/PlaidML/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Chaos Goo</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2018-11-11</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2019-07-28</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Keras/">Keras</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="https://afdian.com/a/sindoutriqua" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" href="https://buymeacoffee.com/chaosgoo" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/05/13/soul-of-library/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Low Poly 图书馆之魂</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/11/04/Flutter-Stop-Watch/"><span class="level-item">Code Flutter Stop Watch</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/Logo_Sketch.png" alt="Goo"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Goo</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>CN</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">58</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">22</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/chaosgoo"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="bilibili" href="https://space.bilibili.com/3493265206676106"><i class="fab fa-bilibili"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Youtube" href="https://www.youtube.com/@chaosgoo"><i class="fab fa-youtube"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.vimc.cc" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">大黄猫の博客</span></span><span class="level-right"><span class="level-item tag">blog.vimc.cc</span></span></a></li><li><a class="level is-mobile" href="http://liga.tech" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">粤北山区的技术宅</span></span><span class="level-right"><span class="level-item tag">liga.tech</span></span></a></li><li><a class="level is-mobile" href="https://github.com/YanHeDoki" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">YanHeDoki</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-11-16T15:39:44.000Z">2025-11-16</time></p><p class="title"><a href="/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">Claude Code初体验</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-10-29T01:56:54.000Z">2025-10-29</time></p><p class="title"><a href="/2025/10/29/Real-life-HealthPin/">做一个CS2中的生命值胸章</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-09-26T08:35:34.000Z">2025-09-26</time></p><p class="title"><a href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">踩坑与收获：2025独立开发者Google Play上架实战复盘</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-09-27T15:17:01.000Z">2024-09-27</time></p><p class="title"><a href="/2024/09/27/uno-r4-wifi-and-home-assistant/">UNO R4 Wi-Fi 接入 Home Assistant</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-07-29T13:36:21.000Z">2024-07-29</time></p><p class="title"><a href="/2024/07/29/Friday-Ink/">Friday Ink 今天是周五吗</a></p></div></article></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Arduino/"><span class="tag">Arduino</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Claude-Code/"><span class="tag">Claude Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Codex/"><span class="tag">Codex</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DIY/"><span class="tag">DIY</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EPaper/"><span class="tag">EPaper</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ESP32/"><span class="tag">ESP32</span><span class="tag">17</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Flutter/"><span class="tag">Flutter</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/HTTP/"><span class="tag">HTTP</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hack/"><span class="tag">Hack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hexo/"><span class="tag">Hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Keras/"><span class="tag">Keras</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Keyboard/"><span class="tag">Keyboard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kotlin/"><span class="tag">Kotlin</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Micropython/"><span class="tag">Micropython</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/RaspberryPi/"><span class="tag">RaspberryPi</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/arduino/"><span class="tag">arduino</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/lowpoly/"><span class="tag">lowpoly</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E3%80%87/"><span class="tag">〇</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2025/11/"><span class="level-start"><span class="level-item">十一月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/10/"><span class="level-start"><span class="level-item">十月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/09/"><span class="level-start"><span class="level-item">九月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">九月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">七月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">十二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">十一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/02/"><span class="level-start"><span class="level-item">二月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">十一月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/10/"><span class="level-start"><span class="level-item">十月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">九月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">七月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">十一月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">六月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/11/"><span class="level-start"><span class="level-item">十一月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/10/"><span class="level-start"><span class="level-item">十月 2017</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Do U Find IT?" height="28"></a><p class="is-size-7"><span>&copy; 2025 Chaos Goo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="皖ICP备2024054743号" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="隐私条款" href="/privacy-policy">隐私条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="使用政策" href="/term-of-use">使用政策</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="关于我" href="/about">关于我</a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
