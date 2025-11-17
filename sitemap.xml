@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://chaosgoo.com/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/</loc>
+    <loc>https://chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/</loc>
     
     <lastmod>2025-11-17</lastmod>
     
@@ -11,7 +11,34 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/</loc>
+    
+    <lastmod>2025-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/</loc>
+    
+    <lastmod>2025-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2020/12/14/ESP32-Streaming/</loc>
+    
+    <lastmod>2025-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/</loc>
     
     <lastmod>2025-11-17</lastmod>
     
@@ -21,6 +48,33 @@
   
   <url>
     <loc>https://chaosgoo.com/2025/10/29/Real-life-HealthPin/</loc>
+    
+    <lastmod>2025-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/</loc>
+    
+    <lastmod>2025-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2024/09/27/uno-r4-wifi-and-home-assistant/</loc>
+    
+    <lastmod>2025-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2025-11-17</lastmod>
     
@@ -65,15 +119,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2024/09/27/uno-r4-wifi-and-home-assistant/</loc>
-    
-    <lastmod>2025-10-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2021/12/18/lvgl-freetype-and-esp32/</loc>
     
     <lastmod>2025-09-21</lastmod>
@@ -92,27 +137,9 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/</loc>
-    
-    <lastmod>2025-09-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/</loc>
     
     <lastmod>2025-09-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2024/07/29/Friday-Ink/</loc>
-    
-    <lastmod>2024-09-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -155,25 +182,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2021/03/14/Project-Firefly/</loc>
-    
-    <lastmod>2023-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2020/04/25/pro-micro/</loc>
-    
-    <lastmod>2023-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/12/14/ESP32-Streaming/</loc>
     
     <lastmod>2023-05-14</lastmod>
     
@@ -185,123 +194,6 @@
     <loc>https://chaosgoo.com/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/</loc>
     
     <lastmod>2023-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2021/02/03/ESP-32-Play-GIF/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2021/02/13/TFT-eSPI-Custom-Font/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/10/21/display-images-side-by-side-in-hexo/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2021/02/20/ESP32-Async-Request/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2019/06/21/Dracarys/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/12/04/ESP32-ST7789/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/04/19/Insert-new-page-into-pdf-file-in-android/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2019/11/17/Low-Poly-Piano-on-the-ocean/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2019/05/27/Low-Poly%E7%BB%83%E4%B9%A0/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2019/07/20/LowPoly%E7%BB%83%E4%B9%A0/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -326,69 +218,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2019/05/13/soul-of-library/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/02/20/Dino-Run-on-M5StickC/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/02/16/Low-Poly-Bee/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2021/04/01/%E5%81%9A%E4%B8%80%E6%8A%8A2021%E5%B9%B4Stack%20Overflow%E7%9A%84%E6%84%9A%E4%BA%BA%E8%8A%82%E9%94%AE%E7%9B%98/</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2022/12/31/Monochrome_dither_algorithm/</loc>
-    
-    <lastmod>2023-01-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2022/09/20/esp32-spiffs-ota-demo/</loc>
-    
-    <lastmod>2022-09-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/</loc>
-    
-    <lastmod>2022-04-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/</loc>
     
     <lastmod>2022-03-13</lastmod>
@@ -398,162 +227,9 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2021/03/28/genshin_auto_play/</loc>
-    
-    <lastmod>2021-04-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2019/10/07/Flutter-Vanilla-1/</loc>
-    
-    <lastmod>2020-11-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2019/11/18/Flutter-Vanilla-3/</loc>
-    
-    <lastmod>2020-11-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2019/10/08/Flutter-Vanilla-2/</loc>
-    
-    <lastmod>2020-11-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/02/10/M5StickC-Balls/</loc>
-    
-    <lastmod>2020-04-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2018/11/11/PlaidML/</loc>
-    
-    <lastmod>2019-07-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2017/10/30/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x03/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2017/10/27/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x02/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2017/10/26/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x01/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2018/11/04/Flutter-Stop-Watch/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2018/03/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2018/06/17/library_balcony/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2019/07/11/lowpoly-sakura/</loc>
-    
-    <lastmod>2019-07-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2017/10/10/launch_again/</loc>
-    
-    <lastmod>2017-10-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
