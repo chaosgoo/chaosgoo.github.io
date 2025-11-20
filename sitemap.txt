@@ -1,3 +1,4 @@
+https://chaosgoo.com/404.html
 https://chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/
 https://chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/
 https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/
