@@ -1,3 +1,4 @@
+https://chaosgoo.com/2022/02/12/Parallel-LCD-VS-SPI-LCD/
 https://chaosgoo.com/2020/12/14/ESP32-Streaming/
 https://chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/
 https://chaosgoo.com/gdpr/index.html
@@ -16,7 +17,6 @@ https://chaosgoo.com/privacy-policy/index.html
 https://chaosgoo.com/2021/12/18/lvgl-freetype-and-esp32/
 https://chaosgoo.com/2019/09/06/fgo-summon-stats/
 https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/
-https://chaosgoo.com/2022/02/12/Parallel-LCD-VS-SPI-LCD/
 https://chaosgoo.com/2022/01/03/lvgl-freetype-and-esp32-2/
 https://chaosgoo.com/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/
 https://chaosgoo.com/2021/12/12/FreeType-and-LVGL/

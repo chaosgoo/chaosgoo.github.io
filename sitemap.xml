@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chaosgoo.com/2022/02/12/Parallel-LCD-VS-SPI-LCD/</loc>
+    
+    <lastmod>2025-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/2020/12/14/ESP32-Streaming/</loc>
     
     <lastmod>2025-11-27</lastmod>
@@ -164,15 +173,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2022/02/12/Parallel-LCD-VS-SPI-LCD/</loc>
-    
-    <lastmod>2024-09-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2022/01/03/lvgl-freetype-and-esp32-2/</loc>
     
     <lastmod>2024-07-29</lastmod>
@@ -256,7 +256,7 @@
 
   <url>
     <loc>https://chaosgoo.com/</loc>
-    <lastmod>2025-11-27</lastmod>
+    <lastmod>2025-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
