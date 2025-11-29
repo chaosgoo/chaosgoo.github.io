@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://chaosgoo.com/2022/01/03/lvgl-freetype-and-esp32-2/</loc>
+    <loc>https://chaosgoo.com/2025/11/21/hexo-seo-gsc-canonical-301/</loc>
     
     <lastmod>2025-11-29</lastmod>
     
@@ -11,61 +11,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2021/12/18/lvgl-freetype-and-esp32/</loc>
-    
-    <lastmod>2025-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2021/12/12/FreeType-and-LVGL/</loc>
-    
-    <lastmod>2025-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/about/index.html</loc>
-    
-    <lastmod>2025-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2024/07/29/Friday-Ink/</loc>
-    
-    <lastmod>2025-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/</loc>
-    
-    <lastmod>2025-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/</loc>
-    
-    <lastmod>2025-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/</loc>
+    <loc>https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2025-11-29</lastmod>
     
@@ -83,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2020/11/20/StatTrak/</loc>
+    <loc>https://chaosgoo.com/2019/09/06/fgo-summon-stats/</loc>
     
     <lastmod>2025-11-29</lastmod>
     
@@ -92,7 +38,25 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2019/09/06/fgo-summon-stats/</loc>
+    <loc>https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2021/12/12/FreeType-and-LVGL/</loc>
     
     <lastmod>2025-11-29</lastmod>
     
@@ -119,7 +83,97 @@
   </url>
   
   <url>
+    <loc>https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2022/01/03/lvgl-freetype-and-esp32-2/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2021/12/18/lvgl-freetype-and-esp32/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2020/04/25/pro-micro/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2020/11/20/StatTrak/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/2024/09/27/uno-r4-wifi-and-home-assistant/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/contact/index.html</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/about/index.html</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2024/07/29/Friday-Ink/</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/</loc>
     
     <lastmod>2025-11-29</lastmod>
     
@@ -182,15 +236,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2025/11/21/hexo-seo-gsc-canonical-301/</loc>
-    
-    <lastmod>2025-11-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/404.html</loc>
     
     <lastmod>2025-11-20</lastmod>
@@ -200,34 +245,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/</loc>
-    
-    <lastmod>2025-11-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2025/10/29/Real-life-HealthPin/</loc>
-    
-    <lastmod>2025-11-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/</loc>
-    
-    <lastmod>2025-11-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2025-11-17</lastmod>
     
@@ -253,15 +271,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://chaosgoo.com/2020/04/25/pro-micro/</loc>
-    
-    <lastmod>2023-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://chaosgoo.com/</loc>
@@ -272,5 +281,19 @@
 
   
 
+  
+  <url>
+    <loc>https://chaosgoo.com/categories/%E8%BD%AF%E4%BB%B6%E4%B8%8E%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/categories/%E6%8A%98%E8%85%BE%E7%A1%AC%E4%BB%B6/</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
