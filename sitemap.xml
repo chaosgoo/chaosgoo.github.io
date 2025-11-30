@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chaosgoo.com/2025/12/02/ch58x-dma-spi-ws2812-driver/</loc>
+    
+    <lastmod>2025-11-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/term-of-use/index.html</loc>
+    
+    <lastmod>2025-11-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/2025/11/21/hexo-seo-gsc-canonical-301/</loc>
     
     <lastmod>2025-11-29</lastmod>
@@ -254,15 +272,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/term-of-use/index.html</loc>
-    
-    <lastmod>2025-11-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/privacy-policy/index.html</loc>
     
     <lastmod>2025-10-17</lastmod>
@@ -274,7 +283,7 @@
 
   <url>
     <loc>https://chaosgoo.com/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <lastmod>2025-11-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -284,14 +293,14 @@
   
   <url>
     <loc>https://chaosgoo.com/categories/%E8%BD%AF%E4%BB%B6%E4%B8%8E%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <lastmod>2025-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/%E6%8A%98%E8%85%BE%E7%A1%AC%E4%BB%B6/</loc>
-    <lastmod>2025-11-29</lastmod>
+    <lastmod>2025-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
