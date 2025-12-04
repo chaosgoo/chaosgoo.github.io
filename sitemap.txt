@@ -1,4 +1,5 @@
-https://chaosgoo.com/2025/12/02/ch58x-dma-spi-ws2812-driver/
+https://chaosgoo.com/2025/12/07/esp32-pppos-4g-modem/
+https://chaosgoo.com/2025/12/01/ch58x-dma-spi-ws2812-driver/
 https://chaosgoo.com/term-of-use/index.html
 https://chaosgoo.com/2025/11/21/hexo-seo-gsc-canonical-301/
 https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/
@@ -30,5 +31,5 @@ https://chaosgoo.com/404.html
 https://chaosgoo.com/2025/10/29/Real-life-HealthPin/
 https://chaosgoo.com/privacy-policy/index.html
 https://chaosgoo.com/
-https://chaosgoo.com/categories/%E8%BD%AF%E4%BB%B6%E4%B8%8E%E6%8A%80%E6%9C%AF/
 https://chaosgoo.com/categories/%E6%8A%98%E8%85%BE%E7%A1%AC%E4%BB%B6/
+https://chaosgoo.com/categories/%E8%BD%AF%E4%BB%B6%E4%B8%8E%E6%8A%80%E6%9C%AF/
