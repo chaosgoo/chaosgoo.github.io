@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /links/
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /page/
+User-agent: AdsBot-Google
+
+# 明确允许 AdSense 爬虫访问所有内容
+Allow: /
+
+
+Sitemap: https://chaosgoo.com/sitemap.xml

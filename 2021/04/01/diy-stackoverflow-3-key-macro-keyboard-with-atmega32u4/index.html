@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南 - chaosgoo的电子手账</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="chaosgoo的电子手账"><meta name="msapplication-TileImage" content="/images/favicon_chaosgoo.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="chaosgoo的电子手账"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本文深度复盘了 2021 年复刻 Stack Overflow 愚人节 3 键宏键盘的完整流程。包含基于 ATMega32u4 的原生 HID 电路设计、KiCad 硬件开发心得以及 Arduino 组合键逻辑实现，是一份硬核的硬件 DIY 实战指南。"><meta property="og:type" content="blog"><meta property="og:title" content="复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南"><meta property="og:url" content="https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/"><meta property="og:site_name" content="chaosgoo的电子手账"><meta property="og:description" content="本文深度复盘了 2021 年复刻 Stack Overflow 愚人节 3 键宏键盘的完整流程。包含基于 ATMega32u4 的原生 HID 电路设计、KiCad 硬件开发心得以及 Arduino 组合键逻辑实现，是一份硬核的硬件 DIY 实战指南。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://chaosgoo.com/images/archives/aprilfoolskeyboard/keyboard_by_stackOverflow.png"><meta property="og:image" content="https://chaosgoo.com/images/archives/aprilfoolskeyboard/keyboard_renderer_1.png"><meta property="og:image" content="https://chaosgoo.com/images/archives/aprilfoolskeyboard/keyboard_renderer_2.png"><meta property="og:image" content="https://chaosgoo.com/images/archives/aprilfoolskeyboard/material_preview.png"><meta property="og:image" content="https://chaosgoo.com/images/archives/aprilfoolskeyboard/solidering_pcb.png"><meta property="og:image" content="https://chaosgoo.com/images/archives/aprilfoolskeyboard/real.png"><meta property="og:image" content="https://chaosgoo.com/images/archives/aprilfoolskeyboard/real2.png"><meta property="article:published_time" content="2021-04-01T08:35:27.000Z"><meta property="article:modified_time" content="2025-12-18T12:10:00.000Z"><meta property="article:author" content="Chaos Goo"><meta property="article:tag" content="Arduino"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://chaosgoo.com/images/archives/aprilfoolskeyboard/keyboard_by_stackOverflow.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/"},"headline":"复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南","image":["https://chaosgoo.com/images/archives/aprilfoolskeyboard/keyboard_by_stackOverflow.png","https://chaosgoo.com/images/archives/aprilfoolskeyboard/keyboard_renderer_1.png","https://chaosgoo.com/images/archives/aprilfoolskeyboard/keyboard_renderer_2.png","https://chaosgoo.com/images/archives/aprilfoolskeyboard/material_preview.png","https://chaosgoo.com/images/archives/aprilfoolskeyboard/solidering_pcb.png","https://chaosgoo.com/images/archives/aprilfoolskeyboard/real.png","https://chaosgoo.com/images/archives/aprilfoolskeyboard/real2.png"],"datePublished":"2021-04-01T08:35:27.000Z","dateModified":"2025-12-18T12:10:00.000Z","author":{"@type":"Person","name":"Chaos Goo"},"publisher":{"@type":"Organization","name":"chaosgoo的电子手账","logo":{"@type":"ImageObject","url":"https://chaosgoo.com/img/logo.svg"}},"description":"本文深度复盘了 2021 年复刻 Stack Overflow 愚人节 3 键宏键盘的完整流程。包含基于 ATMega32u4 的原生 HID 电路设计、KiCad 硬件开发心得以及 Arduino 组合键逻辑实现，是一份硬核的硬件 DIY 实战指南。"}</script><link rel="canonical" href="https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/"><link rel="icon" href="/images/favicon_chaosgoo.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-EVWTNN57LZ');</script><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="pub-1189115759021088" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="chaosgoo的电子手账" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/contact">Contact</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-01T08:35:27.000Z" title="4/1/2021, 4:35:27 PM">2021-04-01</time>发表</span><span class="level-item"><time dateTime="2025-12-18T12:10:00.000Z" title="12/18/2025, 8:10:00 PM">2025-12-18</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/">硬件开发</a></span><span class="level-item">10 分钟读完 (大约1506个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南</h1><div class="content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>2021 年愚人节，Stack Overflow 搞了一个非常有意思的彩蛋：限制用户的复制次数，并“推销”了一款只有三个键的定制键盘。</p>
+<p>这个小巧精致的键盘激发了我的创作欲。思考了一下，实现逻辑其实非常简单，基本上把我之前做的“原神自动弹琴装置”稍加修改即可，核心代码甚至在百行以内。<br><img src="/./images/archives/aprilfoolskeyboard/keyboard_by_stackOverflow.png"></p>
+<h2 id="随后我打开-KiCad-直接开干，从原理图到-3D-渲染一气呵成。"><a href="#随后我打开-KiCad-直接开干，从原理图到-3D-渲染一气呵成。" class="headerlink" title="随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。"></a>随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。<br><span id="more"></span></h2><h2 id="🛠️-核心设计思路：为什么是-ATMega32u4？"><a href="#🛠️-核心设计思路：为什么是-ATMega32u4？" class="headerlink" title="🛠️ 核心设计思路：为什么是 ATMega32u4？"></a>🛠️ 核心设计思路：为什么是 ATMega32u4？</h2><p>在开始制作之前，选型是关键。Stack Overflow 官方彩蛋中的键盘只有三个键：<strong>Ctrl</strong>、<strong>C</strong>、<strong>V</strong>。</p>
+<p>为了实现这个功能，我选择了 <strong>ATMega32u4</strong> 作为主控：</p>
+<ul>
+<li><strong>原生 HID 支持：</strong> 与普通的 ESP32 或 ATMega328P 不同，32u4 自带硬件 USB 支持，可以直接被电脑识别为标准键盘（HID 终端），无需额外的串口转 USB 芯片。</li>
+<li><strong>成熟的固件库：</strong> 利用 Arduino 的 <code>Keyboard.h</code> 库，可以极速实现组合键逻辑。</li>
+</ul>
+<hr>
+<h2 id="📐-硬件开发：KiCad-流程与-PCB-细节"><a href="#📐-硬件开发：KiCad-流程与-PCB-细节" class="headerlink" title="📐 硬件开发：KiCad 流程与 PCB 细节"></a>📐 硬件开发：KiCad 流程与 PCB 细节</h2><p>在 KiCad 中，我设计了一块极简的 <strong>3% 配列</strong> 线路板。</p>
+<h3 id="渲染效果"><a href="#渲染效果" class="headerlink" title="渲染效果"></a>渲染效果</h3><p><img src="/./images/archives/aprilfoolskeyboard/keyboard_renderer_1.png"><br><img src="/./images/archives/aprilfoolskeyboard/keyboard_renderer_2.png"></p>
+<h3 id="关键电路特性"><a href="#关键电路特性" class="headerlink" title="关键电路特性"></a>关键电路特性</h3><ol>
+<li><strong>热插拔支持：</strong> 引入了凯华热插拔轴座（1511 系列），这意味着你可以随时更换青轴、红轴或静音轴。</li>
+<li><strong>电源管理：</strong> 使用了 AP2112K-3.3 LDO 芯片，确保 32u4 在稳定的电压下工作，并加入肖特基二极管防止 Type-C 接口反向供电。</li>
+<li><strong>模式切换：</strong> 增加了一个 <strong>2 位拨码开关</strong>。这不仅可以用来切换不同的按键映射（如 Mac&#x2F;Win 切换），还能开启或关闭“连发模式”。</li>
+</ol>
+<hr>
+<h2 id="💻-软件实现：组合键逻辑"><a href="#💻-软件实现：组合键逻辑" class="headerlink" title="💻 软件实现：组合键逻辑"></a>💻 软件实现：组合键逻辑</h2><p>固件的核心逻辑是将物理按键的电平变化映射为标准的 HID 编码。实现 <code>Ctrl + C</code> 的逻辑如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：实现 Ctrl + C 的伪代码</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">digitalRead</span>(KEY_C_PIN) == LOW) &#123;</span><br><span class="line">    Keyboard.<span class="built_in">press</span>(KEY_LEFT_CTRL); <span class="comment">// 先按下 Ctrl</span></span><br><span class="line">    Keyboard.<span class="built_in">press</span>(<span class="string">&#x27;c&#x27;</span>);           <span class="comment">// 再按下 C</span></span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">100</span>);                    <span class="comment">// 保持一小段时间</span></span><br><span class="line">    Keyboard.<span class="built_in">releaseAll</span>();         <span class="comment">// 释放所有按键</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="材料清单-BOM"><a href="#材料清单-BOM" class="headerlink" title="材料清单 (BOM)"></a>材料清单 (BOM)</h1><p><img src="/./images/archives/aprilfoolskeyboard/material_preview.png"></p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>名称</th>
+<th>数量</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>ATMega32u4</td>
+<td>1</td>
+<td>主控芯片 QFN44封装</td>
+</tr>
+<tr>
+<td>2</td>
+<td>AP2112K-3.3</td>
+<td>1</td>
+<td>5V转3.3V芯片 SOT-23-5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>16Mhz晶振</td>
+<td>1</td>
+<td>2.0*1.6</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1uF电容</td>
+<td>1</td>
+<td>0603</td>
+</tr>
+<tr>
+<td>5</td>
+<td>22pf电容</td>
+<td>2</td>
+<td>0603</td>
+</tr>
+<tr>
+<td>6</td>
+<td>10uf电容</td>
+<td>2</td>
+<td>0603</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1KΩ电阻</td>
+<td>5</td>
+<td>0805</td>
+</tr>
+<tr>
+<td>8</td>
+<td>10KΩ电阻</td>
+<td>1</td>
+<td>0805</td>
+</tr>
+<tr>
+<td>9</td>
+<td>22Ω电阻</td>
+<td>2</td>
+<td>0805</td>
+</tr>
+<tr>
+<td>10</td>
+<td>凯华热插拔轴座</td>
+<td>3</td>
+<td>1511系列</td>
+</tr>
+<tr>
+<td>11</td>
+<td>轴体</td>
+<td>3</td>
+<td>任意轴体</td>
+</tr>
+<tr>
+<td>12</td>
+<td>2位拨码开关</td>
+<td>1</td>
+<td>1.27mm</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Type-C接口</td>
+<td>1</td>
+<td>16p</td>
+</tr>
+<tr>
+<td>14</td>
+<td>肖特基二极管</td>
+<td>1</td>
+<td>BAT60JFILM SOD-323</td>
+</tr>
+<tr>
+<td>15</td>
+<td>微动开关</td>
+<td>1</td>
+<td>3x4x2.5 四脚贴片</td>
+</tr>
+</tbody></table>
+<h1 id="焊接与组装"><a href="#焊接与组装" class="headerlink" title="焊接与组装"></a>焊接与组装</h1><p>焊接心得： QFN44 封装虽然引脚密集，但在涂抹适量锡膏后，配合热风枪（建议 350°C，中等风速）可以实现自动对准吸附。</p>
+<p><img src="/./images/archives/aprilfoolskeyboard/solidering_pcb.png"></p>
+<p><strong>组装</strong>： 简单的画了个方盒子作为外壳，然后从我的旧键盘上扣下来三个键帽装上去。</p>
+<p><img src="/./images/archives/aprilfoolskeyboard/real.png"><br><img src="/./images/archives/aprilfoolskeyboard/real2.png"></p>
+<h1 id="进阶特性与开源"><a href="#进阶特性与开源" class="headerlink" title="进阶特性与开源"></a>进阶特性与开源</h1><p>这把键盘虽然源于彩蛋，但具备很强的实用性：</p>
+<p>连发模式： 通过拨码开关开启，适合某些需要快速重复操作的场景。</p>
+<p>全平台兼容： 基于标准 HID 协议，插上即用，无需安装驱动。</p>
+<p>开源地址： <a target="_blank" rel="noopener" href="https://github.com/chaosgoo/HairsPP">https://github.com/chaosgoo/HairsPP</a></p>
+<h1 id="附：HID-扫描码速查表-部分"><a href="#附：HID-扫描码速查表-部分" class="headerlink" title="附：HID 扫描码速查表 (部分)"></a>附：HID 扫描码速查表 (部分)</h1><p>为了方便自定义按键，我整理了常用的非标准按键编码。你可以通过修改固件，实现 F13-F24 等宏功能。</p>
+<h2 id="控制与修饰键-Modifier-Keys"><a href="#控制与修饰键-Modifier-Keys" class="headerlink" title="控制与修饰键 (Modifier Keys)"></a>控制与修饰键 (Modifier Keys)</h2><table>
+<thead>
+<tr>
+<th>定义</th>
+<th>编码 (Hex)</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>KEY_LEFT_CTRL</td>
+<td>0x80</td>
+<td>左侧 Ctrl 键</td>
+</tr>
+<tr>
+<td>KEY_LEFT_SHIFT</td>
+<td>0x81</td>
+<td>左侧 Shift 键</td>
+</tr>
+<tr>
+<td>KEY_LEFT_ALT</td>
+<td>0x82</td>
+<td>左侧 Alt 键</td>
+</tr>
+<tr>
+<td>KEY_LEFT_GUI</td>
+<td>0x83</td>
+<td>左侧 Win &#x2F; Command 键</td>
+</tr>
+<tr>
+<td>KEY_RIGHT_CTRL</td>
+<td>0x84</td>
+<td>右侧 Ctrl 键</td>
+</tr>
+<tr>
+<td>KEY_RIGHT_SHIFT</td>
+<td>0x85</td>
+<td>右侧 Shift 键</td>
+</tr>
+<tr>
+<td>KEY_RIGHT_ALT</td>
+<td>0x86</td>
+<td>右侧 Alt 键</td>
+</tr>
+<tr>
+<td>KEY_RIGHT_GUI</td>
+<td>0x87</td>
+<td>右侧 Win &#x2F; Command 键</td>
+</tr>
+</tbody></table>
+<h2 id="系统与导航键-System-Navigation"><a href="#系统与导航键-System-Navigation" class="headerlink" title="系统与导航键 (System &amp; Navigation)"></a>系统与导航键 (System &amp; Navigation)</h2><table>
+<thead>
+<tr>
+<th>定义</th>
+<th>编码 (Hex)</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>KEY_UP_ARROW</td>
+<td>0xDA</td>
+<td>方向键：上</td>
+</tr>
+<tr>
+<td>KEY_DOWN_ARROW</td>
+<td>0xD9</td>
+<td>方向键：下</td>
+</tr>
+<tr>
+<td>KEY_LEFT_ARROW</td>
+<td>0xD8</td>
+<td>方向键：左</td>
+</tr>
+<tr>
+<td>KEY_RIGHT_ARROW</td>
+<td>0xD7</td>
+<td>方向键：右</td>
+</tr>
+<tr>
+<td>KEY_BACKSPACE</td>
+<td>0xB2</td>
+<td>退格键 (Backspace)</td>
+</tr>
+<tr>
+<td>KEY_TAB</td>
+<td>0xB3</td>
+<td>制表键 (Tab)</td>
+</tr>
+<tr>
+<td>KEY_RETURN</td>
+<td>0xB0</td>
+<td>回车键 (Enter)</td>
+</tr>
+<tr>
+<td>KEY_ESC</td>
+<td>0xB1</td>
+<td>退出键 (Esc)</td>
+</tr>
+<tr>
+<td>KEY_INSERT</td>
+<td>0xD1</td>
+<td>插入键 (Insert)</td>
+</tr>
+<tr>
+<td>KEY_DELETE</td>
+<td>0xD4</td>
+<td>删除键 (Delete)</td>
+</tr>
+<tr>
+<td>KEY_PAGE_UP</td>
+<td>0xD3</td>
+<td>上翻页键 (Page Up)</td>
+</tr>
+<tr>
+<td>KEY_PAGE_DOWN</td>
+<td>0xD6</td>
+<td>下翻页键 (Page Down)</td>
+</tr>
+<tr>
+<td>KEY_HOME</td>
+<td>0xD2</td>
+<td>起始键 (Home)</td>
+</tr>
+<tr>
+<td>KEY_END</td>
+<td>0xD5</td>
+<td>结束键 (End)</td>
+</tr>
+<tr>
+<td>KEY_CAPS_LOCK</td>
+<td>0xC1</td>
+<td>大写锁定键 (Caps Lock)</td>
+</tr>
+</tbody></table>
+<h2 id="功能键-Function-Keys"><a href="#功能键-Function-Keys" class="headerlink" title="功能键 (Function Keys)"></a>功能键 (Function Keys)</h2><table>
+<thead>
+<tr>
+<th>定义</th>
+<th>编码 (Hex)</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>KEY_F1 - KEY_F12</td>
+<td>0xC2 - 0xCD</td>
+<td>标准功能键 F1 至 F12</td>
+</tr>
+<tr>
+<td>KEY_F13 - KEY_F24</td>
+<td>0xF0 - 0xFB</td>
+<td>扩展功能键（常用于绑定宏命令，不会与系统快捷键冲突）</td>
+</tr>
+</tbody></table>
+<h1 id="总结与展望"><a href="#总结与展望" class="headerlink" title="总结与展望"></a>总结与展望</h1><p>这把复刻自 Stack Overflow 愚人节彩蛋的 3 键宏键盘，虽然初衷是为了好玩，但在实际制作过程中，它涵盖了 原生 USB-HID 通信、硬件电路设计以及人体工程学按键映射等多个核心知识点。</p>
+<p>通过本项目，我们不仅实现了一个极简的生产力工具，更深入理解了：</p>
+<ul>
+<li>主控选型的重要性：ATMega32u4 的硬件 USB 支持是实现低延迟、高兼容性 HID 设备的关键。</li>
+<li>模块化设计的优势：引入热插拔轴座和拨码开关，让一个小巧的硬件具备了极高的自定义程度。</li>
+<li>软硬结合的魅力：简单的几行代码，配合精准的硬件触发，就能大幅提升日常办公中高频操作（如剪贴、代码重构、宏命令执行）的效率。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南</p><p><a href="https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/">https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Chaos Goo</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-04-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-12-18</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Arduino/">Arduino</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="https://afdian.com/a/sindoutriqua" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" href="https://buymeacoffee.com/chaosgoo" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/12/12/FreeType-and-LVGL/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">在LVGL中实现可变字体(Variable Font)-第一章</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/03/04/ESP32-display-remote-JPG/"><span class="level-item">让你的ESP32显示一张公网图片吧</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/Logo_Sketch.png" alt="Goo"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Goo</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>CN</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">30</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">15</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/chaosgoo" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/chaosgoo"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="bilibili" href="https://space.bilibili.com/3493265206676106"><i class="fab fa-bilibili"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Youtube" href="https://www.youtube.com/@chaosgoo"><i class="fab fa-youtube"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.vimc.cc" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">大黄猫の博客</span></span><span class="level-right"><span class="level-item tag">blog.vimc.cc</span></span></a></li><li><a class="level is-mobile" href="http://liga.tech" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">粤北山区的技术宅</span></span><span class="level-right"><span class="level-item tag">liga.tech</span></span></a></li><li><a class="level is-mobile" href="https://github.com/YanHeDoki" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">YanHeDoki</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E6%8A%98%E8%85%BE%E7%A1%AC%E4%BB%B6/"><span class="level-start"><span class="level-item">折腾硬件</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91/"><span class="level-start"><span class="level-item">硬件开发</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%BD%AF%E4%BB%B6%E4%B8%8E%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">软件与技术</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><figure class="media-left"><a class="image" href="/2025/12/22/Ditherpunk-The-Art-of-Dithering/"><img src="/images/archives/ditherpunk/returnofobradinn.png" alt="屏幕不够，算法来凑(一)：Ditherpunk 抖动算法原理与 JS 实时演示"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-12-22T02:15:30.000Z">2025-12-22</time></p><p class="title"><a href="/2025/12/22/Ditherpunk-The-Art-of-Dithering/">屏幕不够，算法来凑(一)：Ditherpunk 抖动算法原理与 JS 实时演示</a></p><p class="categories"><a href="/categories/%E8%BD%AF%E4%BB%B6%E4%B8%8E%E6%8A%80%E6%9C%AF/">软件与技术</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-12-12T16:09:14.000Z">2025-12-13</time></p><p class="title"><a href="/2025/12/13/esp32-pppos-4g-modem/">告别AT指令：ESP32通过PPPoS驱动4G模块上网</a></p><p class="categories"><a href="/categories/%E6%8A%98%E8%85%BE%E7%A1%AC%E4%BB%B6/">折腾硬件</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-12-04T18:57:15.000Z">2025-12-05</time></p><p class="title"><a href="/2025/12/05/rust-bindgen-for-elk/">使用Bindgen为ELK生成Rust绑定</a></p><p class="categories"><a href="/categories/%E8%BD%AF%E4%BB%B6%E4%B8%8E%E6%8A%80%E6%9C%AF/">软件与技术</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-12-01T03:20:00.000Z">2025-12-01</time></p><p class="title"><a href="/2025/12/01/ch58x-dma-spi-ws2812-driver/">CH592F利用SPI+DMA驱动WS2812灯珠</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-11-21T05:27:47.000Z">2025-11-21</time></p><p class="title"><a href="/2025/11/21/hexo-seo-gsc-canonical-301/">(终极复盘)为 AdSense 铺路：我如何修复 &#039;GSC 重复网页&#039; 与 Canonical 致命错误(Hexo, 301, robots 详解)</a></p><p class="categories"><a href="/categories/%E8%BD%AF%E4%BB%B6%E4%B8%8E%E6%8A%80%E6%9C%AF/">软件与技术</a></p></div></article></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Arduino/"><span class="tag">Arduino</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Claude-Code/"><span class="tag">Claude Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DIY/"><span class="tag">DIY</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ESP32/"><span class="tag">ESP32</span><span class="tag">13</span></a></div><div class="control"><a class="tags has-addons" href="/tags/HTTP/"><span class="tag">HTTP</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hack/"><span class="tag">Hack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Keyboard/"><span class="tag">Keyboard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Rust/"><span class="tag">Rust</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SEO/"><span class="tag">SEO</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/WCH/"><span class="tag">WCH</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><span class="tag">图像处理</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2025/12/"><span class="level-start"><span class="level-item">十二月 2025</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/11/"><span class="level-start"><span class="level-item">十一月 2025</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/10/"><span class="level-start"><span class="level-item">十月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/09/"><span class="level-start"><span class="level-item">九月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">九月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">七月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">十一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">九月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="chaosgoo的电子手账" height="28"></a><p class="is-size-7"><span>&copy; 2025 Chaos Goo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="皖ICP备2024054743号" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="隐私条款" href="/privacy-policy">隐私条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="GDPR" href="/gdpr">GDPR</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="使用条款" href="/term-of-use">使用条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="联系方式" href="/contact">联系方式</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="关于我" href="/about">关于我</a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
