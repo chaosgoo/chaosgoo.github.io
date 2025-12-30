@@ -1,0 +1,38 @@
+# 精确重定向：将旧的抖动算法文章导向新的 Ditherpunk 深度解析
+/2022/12/31/Monochrome_dither_algorithm/    /2025/12/22/Ditherpunk-The-Art-of-Dithering/    301
+
+# 精确重定向：修正日期或路径微调
+/2025/12/02/ch58x-dma-spi-ws2812-driver/    /2025/12/01/ch58x-dma-spi-ws2812-driver/    301
+/2021/04/01/%E5%81%9A%E4%B8%80%E6%8A%8A2021%E5%B9%B4Stack%20Overflow%E7%9A%84%E6%84%9A%E4%BA%BA%E8%8A%82%E9%94%AE%E7%9B%98/    /2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/    301
+/2021/02/20/ESP32-Async-Request/    /2022/09/20/esp32-advanced-dev-tips/    301
+/2022/11/13/Lenovo-R720-Keyboard-Matrix    /2022/11/13/Lenovo-R720-Keyboard-Matrix/    301
+
+# 补全了缺失前导斜杠的规则
+/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/    /    301
+/2017/10/10/launch_again/    /    301
+/2019/07/20/LowPoly%E7%BB%83%E4%B9%A0/    /    301
+/2018/03/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/    /    301
+
+# 其他批量清理 404 的规则
+/2021/02/13/TFT-eSPI-Custom-Font/    /    301
+/2020/04/19/Insert-new-page-into-pdf-file-in-android/    /    301
+/2017/10/27/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x02/    /    301
+/2019/07/11/lowpoly-sakura/    /    301
+/2019/05/13/soul-of-library/    /    301
+/2020/10/21/display-images-side-by-side-in-hexo/    /    301
+/2021/03/14/Project-Firefly/    /    301
+/2019/06/21/Dracarys/    /    301
+/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/    /    301
+/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/    /    301
+/2019/11/18/Flutter-Vanilla-3/    /    301
+/2021/03/28/genshin_auto_play/    /    301
+/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/    /    301
+/2017/10/30/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x03/    /    301
+/2019/10/08/Flutter-Vanilla-2/    /    301
+/2018/11/11/PlaidML/    /    301
+/ESP32-ST7789/    /    301
+/cdn-cgi/l/email-protection    /    301
+
+# 通配符批量重定向
+/archives/* /    301
+/tags/* /    301
