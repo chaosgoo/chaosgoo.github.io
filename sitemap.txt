@@ -1,8 +1,9 @@
+https://chaosgoo.com/privacy-policy/index.html
+https://chaosgoo.com/2025/12/22/Ditherpunk-The-Art-of-Dithering/
 https://chaosgoo.com/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/
 https://chaosgoo.com/term-of-use/index.html
 https://chaosgoo.com/gdpr/index.html
 https://chaosgoo.com/about/index.html
-https://chaosgoo.com/2025/12/22/Ditherpunk-The-Art-of-Dithering/
 https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/
 https://chaosgoo.com/2025/12/13/esp32-pppos-4g-modem/
 https://chaosgoo.com/2025/12/05/rust-bindgen-for-elk/
@@ -19,7 +20,6 @@ https://chaosgoo.com/2025/11/21/hexo-seo-gsc-canonical-301/
 https://chaosgoo.com/404.html
 https://chaosgoo.com/2025/10/29/Real-life-HealthPin/
 https://chaosgoo.com/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/
-https://chaosgoo.com/privacy-policy/index.html
 https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/
 https://chaosgoo.com/2024/09/27/uno-r4-wifi-and-home-assistant/
 https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/

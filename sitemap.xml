@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chaosgoo.com/privacy-policy/index.html</loc>
+    
+    <lastmod>2025-12-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2025/12/22/Ditherpunk-The-Art-of-Dithering/</loc>
+    
+    <lastmod>2025-12-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/</loc>
     
     <lastmod>2025-12-30</lastmod>
@@ -30,15 +48,6 @@
   
   <url>
     <loc>https://chaosgoo.com/about/index.html</loc>
-    
-    <lastmod>2025-12-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2025/12/22/Ditherpunk-The-Art-of-Dithering/</loc>
     
     <lastmod>2025-12-22</lastmod>
     
@@ -191,15 +200,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/privacy-policy/index.html</loc>
-    
-    <lastmod>2025-10-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2025-09-26</lastmod>
@@ -337,7 +337,7 @@
 
   <url>
     <loc>https://chaosgoo.com/</loc>
-    <lastmod>2025-12-30</lastmod>
+    <lastmod>2025-12-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -347,21 +347,21 @@
   
   <url>
     <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
-    <lastmod>2025-12-30</lastmod>
+    <lastmod>2025-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
-    <lastmod>2025-12-30</lastmod>
+    <lastmod>2025-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Project-Logs/</loc>
-    <lastmod>2025-12-30</lastmod>
+    <lastmod>2025-12-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
