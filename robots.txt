@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /content.json
+
+User-agent: Mediapartners-Google
+Allow: /
+Disallow: /content.json
 
 Sitemap: https://chaosgoo.com/sitemap.xml
