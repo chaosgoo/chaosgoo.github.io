@@ -15,6 +15,7 @@
 
 # 其他批量清理 404 的规则
 /2021/02/13/TFT-eSPI-Custom-Font/    /    301
+/2022/09/20/esp32-spiffs-ota-demo/    /    301
 /2020/04/19/Insert-new-page-into-pdf-file-in-android/    /    301
 /2017/10/27/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x02/    /    301
 /2019/07/11/lowpoly-sakura/    /    301
@@ -30,8 +31,12 @@
 /2017/10/30/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x03/    /    301
 /2019/10/08/Flutter-Vanilla-2/    /    301
 /2018/11/11/PlaidML/    /    301
+/2018/11/04/Flutter-Stop-Watch/    /    301
+/2020/02/20/Dino-Run-on-M5StickC/    /    301
 /ESP32-ST7789/    /    301
+/2020/02/16/Low-Poly-Bee/    /    301
 /cdn-cgi/l/email-protection    /    301
+/2018/06/17/library_balcony/    /    301
 
 # 通配符批量重定向
 /archives/* /    301
