@@ -1,10 +1,10 @@
+https://chaosgoo.com/about/index.html
 https://chaosgoo.com/2026/01/04/ESP-IDF-embed-txtfiles-tricks/
 https://chaosgoo.com/privacy-policy/index.html
 https://chaosgoo.com/2025/12/22/Ditherpunk-The-Art-of-Dithering/
 https://chaosgoo.com/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/
 https://chaosgoo.com/term-of-use/index.html
 https://chaosgoo.com/gdpr/index.html
-https://chaosgoo.com/about/index.html
 https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/
 https://chaosgoo.com/2025/12/13/esp32-pppos-4g-modem/
 https://chaosgoo.com/2025/12/05/rust-bindgen-for-elk/
