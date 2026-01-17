@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chaosgoo.com/2020/11/20/StatTrak/</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2020/04/25/pro-micro/</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/esp32-guide/index.html</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/about/index.html</loc>
     
     <lastmod>2026-01-15</lastmod>
@@ -281,15 +308,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2020/11/20/StatTrak/</loc>
-    
-    <lastmod>2020-11-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/</loc>
     
     <lastmod>2020-05-11</lastmod>
@@ -302,15 +320,6 @@
     <loc>https://chaosgoo.com/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/</loc>
     
     <lastmod>2020-05-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/04/25/pro-micro/</loc>
-    
-    <lastmod>2020-04-25</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -346,7 +355,7 @@
 
   <url>
     <loc>https://chaosgoo.com/</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -356,21 +365,21 @@
   
   <url>
     <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Project-Logs/</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
