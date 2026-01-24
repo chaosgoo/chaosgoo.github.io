@@ -39,5 +39,5 @@
 /2018/06/17/library_balcony/    /    301
 
 # 通配符批量重定向
-/archives/* /    301
+; /archives/* /    301
 ; /tags/* /    301
