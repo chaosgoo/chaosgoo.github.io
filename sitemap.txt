@@ -39,6 +39,6 @@ https://chaosgoo.com/2019/09/06/fgo-summon-stats/
 https://chaosgoo.com/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/
 https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/
 https://chaosgoo.com/
-https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Hardware-IoT/
+https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Project-Logs/
