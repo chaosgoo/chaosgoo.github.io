@@ -5,8 +5,10 @@ Disallow: /content.json
 # 专门为 Google 广告程序放行
 User-agent: Mediapartners-Google
 Allow: /
+Disallow: /tags/
 
 User-agent: Google-Display-Ad-Bot
 Allow: /
+Disallow: /tags/
 
 Sitemap: https://chaosgoo.com/sitemap.xml
