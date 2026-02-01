@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /content.json
+Disallow: /archives/
+Disallow: /tags/
 
 User-agent: Mediapartners-Google
 Allow: /
