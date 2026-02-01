@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chaosgoo.com/privacy-policy/index.html</loc>
+    
+    <lastmod>2026-01-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/2020/11/20/StatTrak/</loc>
     
     <lastmod>2026-01-17</lastmod>
@@ -50,15 +59,6 @@
     <loc>https://chaosgoo.com/2026/01/04/ESP-IDF-embed-txtfiles-tricks/</loc>
     
     <lastmod>2026-01-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/privacy-policy/index.html</loc>
-    
-    <lastmod>2025-12-31</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
