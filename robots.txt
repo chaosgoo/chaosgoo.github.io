@@ -1,11 +1,12 @@
 User-agent: *
 Allow: /
 Disallow: /content.json
-Disallow: /archives/
-Disallow: /tags/
 
+# 专门为 Google 广告程序放行
 User-agent: Mediapartners-Google
 Allow: /
-Disallow: /content.json
+
+User-agent: Google-Display-Ad-Bot
+Allow: /
 
 Sitemap: https://chaosgoo.com/sitemap.xml
