@@ -35,5 +35,4 @@ https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/
 https://chaosgoo.com/
 https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Hardware-IoT/
-https://chaosgoo.com/categories/Android-Development/
 https://chaosgoo.com/categories/Project-Logs/
