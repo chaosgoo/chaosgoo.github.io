@@ -41,3 +41,5 @@
 # 通配符批量重定向
 ; /archives/* /    301
 ; /tags/* /    301
+
+/term-of-use/ /terms/ 301
