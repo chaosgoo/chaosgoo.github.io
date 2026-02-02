@@ -7,7 +7,7 @@ User-agent: Mediapartners-Google
 Allow: /
 Disallow: /tags/
 
-User-agent: Google-Display-Ad-Bot
+User-agent: Google-Display-Ads-Bot
 Allow: /
 Disallow: /tags/
 
