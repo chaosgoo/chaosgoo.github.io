@@ -14,8 +14,6 @@ https://chaosgoo.com/2025/12/01/ch58x-dma-spi-ws2812-driver/
 https://chaosgoo.com/contact/index.html
 https://chaosgoo.com/2024/07/29/Friday-Ink/
 https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/
-https://chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/
-https://chaosgoo.com/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/
 https://chaosgoo.com/2022/02/12/Parallel-LCD-VS-SPI-LCD/
 https://chaosgoo.com/2020/12/14/ESP32-Streaming/
 https://chaosgoo.com/2021/03/04/ESP32-display-remote-JPG/
@@ -23,7 +21,6 @@ https://chaosgoo.com/2025/11/21/hexo-seo-gsc-canonical-301/
 https://chaosgoo.com/404.html
 https://chaosgoo.com/2025/10/29/Real-life-HealthPin/
 https://chaosgoo.com/terms/index.html
-https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/
 https://chaosgoo.com/2025/01/12/DWM3001CDK-spi-ws2812-driver/
 https://chaosgoo.com/2024/09/27/uno-r4-wifi-and-home-assistant/
 https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/
@@ -33,8 +30,6 @@ https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/
 https://chaosgoo.com/2022/01/03/lvgl-freetype-and-esp32-2/
 https://chaosgoo.com/2021/12/18/lvgl-freetype-and-esp32/
 https://chaosgoo.com/2021/12/12/FreeType-and-LVGL/
-https://chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/
-https://chaosgoo.com/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/
 https://chaosgoo.com/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/
 https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/
 https://chaosgoo.com/

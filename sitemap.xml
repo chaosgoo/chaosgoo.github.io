@@ -146,24 +146,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/</loc>
-    
-    <lastmod>2025-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/</loc>
-    
-    <lastmod>2025-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2022/02/12/Parallel-LCD-VS-SPI-LCD/</loc>
     
     <lastmod>2025-11-28</lastmod>
@@ -221,15 +203,6 @@
     <loc>https://chaosgoo.com/terms/index.html</loc>
     
     <lastmod>2025-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/</loc>
-    
-    <lastmod>2025-09-26</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -311,24 +284,6 @@
     <loc>https://chaosgoo.com/2021/12/12/FreeType-and-LVGL/</loc>
     
     <lastmod>2021-12-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/</loc>
-    
-    <lastmod>2020-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/</loc>
-    
-    <lastmod>2020-05-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

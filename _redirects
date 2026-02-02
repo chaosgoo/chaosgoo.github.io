@@ -43,3 +43,10 @@
 ; /tags/* /    301
 
 /term-of-use/ /terms/ 301
+; 暂时禁用
+/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/ / 301
+/2020/05/11/HomeKit-ESP32-Control-Light-Part_One/ / 301
+/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/ / 301
+/2020/05/12/HomeKit-ESP32-Control-Light-Part_Three/ / 301
+/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/ / 301
+/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/ / 301
