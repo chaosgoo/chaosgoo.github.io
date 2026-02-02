@@ -23,7 +23,7 @@ https://chaosgoo.com/2025/11/21/hexo-seo-gsc-canonical-301/
 https://chaosgoo.com/404.html
 https://chaosgoo.com/2025/10/29/Real-life-HealthPin/
 https://chaosgoo.com/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/
-https://chaosgoo.com/term-of-use/index.html
+https://chaosgoo.com/terms/index.html
 https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/
 https://chaosgoo.com/2025/01/12/DWM3001CDK-spi-ws2812-driver/
 https://chaosgoo.com/2024/09/27/uno-r4-wifi-and-home-assistant/
@@ -39,6 +39,7 @@ https://chaosgoo.com/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/
 https://chaosgoo.com/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/
 https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/
 https://chaosgoo.com/
-https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Hardware-IoT/
+https://chaosgoo.com/categories/Android-Development/
+https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Project-Logs/
