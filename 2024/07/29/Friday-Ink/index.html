@@ -1,39 +1,197 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://use.fontawesome.com"><meta><meta name="google-adsense-account" content="ca-pub-1189115759021088"><meta name="description" content="墨水屏时钟Friday Ink。CH582F/CR2032电池实现≈3μA休眠超低功耗。对比SSD1607与SSD1681驱动，Rust固件开发、DCDC断电控制记录。"><title>Friday Ink 今天是周五吗 - Chaosgoo</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#333333"><meta name="application-name" content="Chaosgoo 技术博客"><meta name="msapplication-TileImage" content="/images/android-chrome-192x192.png"><meta name="msapplication-TileColor" content="#333333"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Chaosgoo 技术博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="192x192" href="/images/android-chrome-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="/images/android-chrome-512x512.png"><meta name="description" content="墨水屏时钟Friday Ink。CH582F&amp;#x2F;CR2032电池实现≈3μA休眠超低功耗。对比SSD1607与SSD1681驱动，Rust固件开发、DCDC断电控制记录。"><meta property="og:type" content="article"><meta property="og:title" content="Friday Ink 今天是周五吗"><meta property="og:url" content="https://chaosgoo.com/2024/07/29/Friday-Ink/"><meta property="og:site_name" content="Chaosgoo | ESP32 &amp; IoT 技术博客"><meta property="og:description" content="墨水屏时钟Friday Ink。CH582F&amp;#x2F;CR2032电池实现≈3μA休眠超低功耗。对比SSD1607与SSD1681驱动，Rust固件开发、DCDC断电控制记录。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://chaosgoo.com/images/social-image.png"><meta property="article:published_time" content="2024-07-29T13:36:21.000Z"><meta property="article:modified_time" content="2025-11-29T03:16:59.000Z"><meta property="article:author" content="Chaos Goo"><meta property="article:tag" content="DIY"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image:src" content="https://chaosgoo.com/images/social-image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://chaosgoo.com/2024/07/29/Friday-Ink/"},"headline":"Friday Ink 今天是周五吗","image":["https://chaosgoo.com/images/archives/PreviewInFusion.png","https://chaosgoo.com/images/archives/old.png","https://chaosgoo.com/images/archives/IMG_3452.jpg","https://chaosgoo.com/images/archives/friday_ink/fridayink_make_by_fans.png"],"author":{"@type":"Person","name":"Chaos Goo"},"publisher":{"@type":"Organization","name":"Chaosgoo 技术博客","logo":{"@type":"ImageObject","url":"https://chaosgoo.com/images/Logo_Sketch.png"}},"description":"墨水屏时钟Friday Ink。CH582F/CR2032电池实现≈3μA休眠超低功耗。对比SSD1607与SSD1681驱动，Rust固件开发、DCDC断电控制记录。","datePublished":"2024-07-29T13:36:21.000Z","dateModified":"2025-11-29T03:16:59.000Z"}</script><link rel="canonical" href="https://chaosgoo.com/2024/07/29/Friday-Ink/"><link rel="icon" href="/images/favicon_chaosgoo.ico"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro&amp;display=swap"><link data-pjax rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088" crossorigin="anonymous"></script><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="墨水屏时钟Friday Ink。CH582F&#x2F;CR2032电池实现≈3μA休眠超低功耗。对比SSD1607与SSD1681驱动，Rust固件开发、DCDC断电控制记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Friday Ink 今天是周五吗">
+<meta property="og:url" content="https://chaosgoo.com/2024/07/29/Friday-Ink/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="墨水屏时钟Friday Ink。CH582F&#x2F;CR2032电池实现≈3μA休眠超低功耗。对比SSD1607与SSD1681驱动，Rust固件开发、DCDC断电控制记录。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/PreviewInFusion.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/old.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/IMG_3452.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/friday_ink/fridayink_make_by_fans.png">
+<meta property="article:published_time" content="2024-07-29T13:36:21.000Z">
+<meta property="article:modified_time" content="2025-11-29T03:16:59.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="DIY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/archives/PreviewInFusion.png">
     
-        gtag('config', 'G-EVWTNN57LZ');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.png"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.png">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            Friday Ink 今天是周五吗
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/2024/07/29/Friday-Ink/">
+                                                          <!-- async scripts -->
+                                                          <!-- Google Analytics -->
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+  </script>
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/Logo_Sketch.png" alt="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog - 嵌入式开发与硬件实战笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/esp32-guide">ESP32 指南</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/contact">联系我们</a><a class="navbar-item" href="/about">关于</a><a class="navbar-item" href="/privacy-policy">隐私政策</a><a class="navbar-item" href="/gdpr">GDPR合规</a><a class="navbar-item" href="/terms">使用条款</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-07-29T13:36:21.000Z" title="7/29/2024, 9:36:21 PM">2024-07-29</time>发表</span><span class="level-item"><time dateTime="2025-11-29T03:16:59.000Z" title="11/29/2025, 11:16:59 AM">2025-11-29</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Project-Logs/">Project Logs</a></span><span class="level-item">9 分钟读完 (大约1289个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Friday Ink 今天是周五吗</h1><div class="content"><h2 id="今天是周五吗"><a href="#今天是周五吗" class="headerlink" title="今天是周五吗"></a>今天是周五吗</h2><blockquote>
+                                                            <!-- Umami Analytics -->
+
+
+                                                              <!-- styles -->
+                                                              
+<link rel="stylesheet" href="/css/style.css">
+
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                <script async
+                                                                                  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                  crossorigin="anonymous"></script>
+                                                                                <!-- mathjax -->
+                                                                                
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/09/27/uno-r4-wifi-and-home-assistant/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2024/07/29/Friday-Ink/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&text=Friday Ink 今天是周五吗"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&is_video=false&description=Friday Ink 今天是周五吗"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Friday Ink 今天是周五吗&body=Check out this article: https://chaosgoo.com/2024/07/29/Friday-Ink/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&name=Friday Ink 今天是周五吗&description=&lt;h2 id=&#34;今天是周五吗&#34;&gt;&lt;a href=&#34;#今天是周五吗&#34; class=&#34;headerlink&#34; title=&#34;今天是周五吗&#34;&gt;&lt;/a&gt;今天是周五吗&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;2025年11月29日更新：根据读者的反馈和长达一年的实测，我补充了关于 SSD1607 与 SSD1681 屏幕驱动的功耗对比细节，以及 Rust 固件开发的更多背景。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;/images/archives/PreviewInFusion.png&#34; alt=&#34;预览图 - Fusion 360 建模&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;这是一个拖了很久的项目, 有很多废案. 隔一段时间想起来有这回事情,于是缝缝补补, 推倒很多次.&lt;/p&gt;
+&lt;!-- &lt;div align=&#34;center&#34;&gt;
+&lt;iframe src=&#34;https://player.bilibili.com/player.html?isOutside=true&amp;aid=112818036674466&amp;bvid=BV1gf8TerEiX&amp;cid=500001621427933&amp;p=1&#34; scrolling=&#34;no&#34;  width=&#34;320px&#34; border=&#34;0&#34; frameborder=&#34;no&#34; framespacing=&#34;0&#34; allowfullscreen=&#34;true&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt; --&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2024/07/29/Friday-Ink/&t=Friday Ink 今天是周五吗"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A7%E8%AE%BE%E8%AE%A1%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.</span> <span class="toc-text">旧设计回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">基础参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">硬件参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">注:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8"><span class="toc-number">1.3.2.</span> <span class="toc-text">尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%97%E7%94%B5%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">耗电信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E5%9B%BA%E4%BB%B6%E5%BC%80%E5%8F%91"><span class="toc-number">1.4.</span> <span class="toc-text">Rust固件开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.</span> <span class="toc-text">Friday Ink的核心功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-A"><span class="toc-number">1.6.</span> <span class="toc-text">Q&amp;A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E6%97%B6%E5%80%99%E5%8D%A1%E5%9C%A8%E6%A0%A1%E5%87%86%E9%A1%B5%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">Q: 时间校准时候卡在校准页怎么办</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%8E%A8%E8%8D%90%E6%8F%90%E5%89%8D%E5%8F%91%E9%80%81%E6%97%B6%E9%97%B4%E5%B9%BF%E6%92%AD-%E8%AE%A9%E6%89%8B%E6%9C%BA%E5%92%8C%E8%A3%85%E7%BD%AE%E8%B6%B3%E5%A4%9F%E6%8E%A5%E8%BF%91-%E7%84%B6%E5%90%8E%E8%A3%85%E7%BD%AE%E8%BF%9B%E5%85%A5%E6%A0%A1%E5%87%86-%E5%B9%B6%E5%9C%A8%E5%8F%91%E7%8E%B020S%E5%90%8E%E6%9C%AA%E8%83%BD%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%88%96%E6%8C%89%E9%92%AE%E6%97%A0%E6%B3%95%E5%BC%BA%E5%88%B6%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%97%B6-%E5%8F%96%E4%B8%8B%E7%94%B5%E6%B1%A0-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E7%94%B5%E6%B1%A0"><span class="toc-number">1.6.2.</span> <span class="toc-text">A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B7%B2%E7%BB%8F%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.3.</span> <span class="toc-text">Q: 小程序已经无法使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E5%8D%8F%E8%AE%AE%E5%B7%B2%E7%BB%8F%E5%85%AC%E5%BC%80-%E8%BF%98%E8%AF%B7%E5%90%84%E4%BD%8D%E5%A4%8D%E5%88%BB%E8%80%85%E4%BD%BF%E7%94%A8%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%9D%BF%E5%8F%91%E5%B8%83%E7%AC%A6%E5%90%88%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B9%BF%E6%92%AD%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-number">1.6.4.</span> <span class="toc-text">A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E5%A4%8D%E5%88%BB%E5%B1%95%E7%A4%BA"><span class="toc-number">1.7.</span> <span class="toc-text">社区复刻展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">项目链接</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Friday Ink 今天是周五吗
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-07-29T13:36:21.000Z" class="dt-published" itemprop="datePublished">2024-07-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Project-Logs/">Project Logs</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/DIY/" rel="tag">DIY</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="今天是周五吗"><a href="#今天是周五吗" class="headerlink" title="今天是周五吗"></a>今天是周五吗</h2><blockquote>
 <p>2025年11月29日更新：根据读者的反馈和长达一年的实测，我补充了关于 SSD1607 与 SSD1681 屏幕驱动的功耗对比细节，以及 Rust 固件开发的更多背景。</p>
 </blockquote>
 <p><img src="/images/archives/PreviewInFusion.png" alt="预览图 - Fusion 360 建模"></p>
@@ -89,48 +247,164 @@
 <h3 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h3><h4 id="Q-时间校准时候卡在校准页怎么办"><a href="#Q-时间校准时候卡在校准页怎么办" class="headerlink" title="Q: 时间校准时候卡在校准页怎么办"></a>Q: 时间校准时候卡在校准页怎么办</h4><h4 id="A-推荐提前发送时间广播-让手机和装置足够接近-然后装置进入校准-并在发现20S后未能自动退出校准或按钮无法强制退出校准时-取下电池-重新安装电池"><a href="#A-推荐提前发送时间广播-让手机和装置足够接近-然后装置进入校准-并在发现20S后未能自动退出校准或按钮无法强制退出校准时-取下电池-重新安装电池" class="headerlink" title="A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池."></a>A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</h4><h4 id="Q-小程序已经无法使用"><a href="#Q-小程序已经无法使用" class="headerlink" title="Q: 小程序已经无法使用"></a>Q: 小程序已经无法使用</h4><h4 id="A-时间校准协议已经公开-还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步"><a href="#A-时间校准协议已经公开-还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步" class="headerlink" title="A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步"></a>A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</h4><h3 id="社区复刻展示"><a href="#社区复刻展示" class="headerlink" title="社区复刻展示"></a>社区复刻展示</h3><p>很高兴在项目开源之后有小伙伴做了出来, 还加上了一个麦金塔的外壳.</p>
 <p><img src="/images/archives/friday_ink/fridayink_make_by_fans.png" alt="耗电信息"></p>
 <h2 id="项目链接"><a href="#项目链接" class="headerlink" title="项目链接"></a>项目链接</h2><p><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/friday_ink">GitHub项目地址</a><br><a target="_blank" rel="noopener" href="https://oshwhub.com/chaosgoo/firdayink-rec">立创开源广场</a></p>
-</div><div class="article-licensing box"><div class="licensing-title"><p>Friday Ink 今天是周五吗</p><p><a href="https://chaosgoo.com/2024/07/29/Friday-Ink/">https://chaosgoo.com/2024/07/29/Friday-Ink/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Chaos Goo</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-07-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-11-29</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/DIY/">DIY</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/09/27/uno-r4-wifi-and-home-assistant/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">UNO R4 Wi-Fi 接入 Home Assistant</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/"><span class="level-item">声明式 UI 架构下的生命周期演进：从内建属性到显式订阅</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-01-04T04:12:44.000Z">2026-01-04</time></p><p class="title"><a href="/2026/01/04/ESP-IDF-embed-txtfiles-tricks/">ESP-IDF 插件：用 embed_txtfiles 优雅地在固件里“塞”文件</a></p><p class="categories"><a href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/"><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/thumbnail.jpg" alt="屏幕不够，算法来凑(二)：ESP32 单色屏上的 Ditherpunk 实战"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-12-30T05:38:00.000Z">2025-12-30</time></p><p class="title"><a href="/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/">屏幕不够，算法来凑(二)：ESP32 单色屏上的 Ditherpunk 实战</a></p><p class="categories"><a href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2025/12/22/Ditherpunk-The-Art-of-Dithering/"><img src="/images/archives/ditherpunk/returnofobradinn.png" alt="屏幕不够，算法来凑(一)：Ditherpunk 抖动算法原理与 JS 实时演示"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-12-22T02:15:30.000Z">2025-12-22</time></p><p class="title"><a href="/2025/12/22/Ditherpunk-The-Art-of-Dithering/">屏幕不够，算法来凑(一)：Ditherpunk 抖动算法原理与 JS 实时演示</a></p><p class="categories"><a href="/categories/Software-Dev/">Software &amp; Dev</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-12-12T16:09:14.000Z">2025-12-13</time></p><p class="title"><a href="/2025/12/13/esp32-pppos-4g-modem/">告别AT指令：ESP32通过PPPoS驱动4G模块上网</a></p><p class="categories"><a href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-12-04T18:57:15.000Z">2025-12-05</time></p><p class="title"><a href="/2025/12/05/rust-bindgen-for-elk/">使用Bindgen为ELK生成Rust绑定</a></p><p class="categories"><a href="/categories/Software-Dev/">Software &amp; Dev</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Hardware-IoT/"><span class="level-start"><span class="level-item">Hardware &amp; IoT</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li><li><a class="level is-mobile" href="/categories/Project-Logs/"><span class="level-start"><span class="level-item">Project Logs</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/Software-Dev/"><span class="level-start"><span class="level-item">Software &amp; Dev</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/Logo_Sketch.png" alt="Goo"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Goo</p><p class="is-size-6 is-block">嵌入式开发工程师 | ESP32 &amp; IoT 开发者</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>合肥, 中国</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">27</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/chaosgoo" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/chaosgoo"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="bilibili" href="https://space.bilibili.com/3493265206676106"><i class="fab fa-bilibili"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Youtube" href="https://www.youtube.com/@chaosgoo"><i class="fab fa-youtube"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.vimc.cc" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">大黄猫の博客</span></span><span class="level-right"><span class="level-item tag">blog.vimc.cc</span></span></a></li><li><a class="level is-mobile" href="http://liga.tech" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">粤北山区的技术宅</span></span><span class="level-right"><span class="level-item tag">liga.tech</span></span></a></li><li><a class="level is-mobile" href="https://github.com/YanHeDoki" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">YanHeDoki</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/Logo_Sketch.png" alt="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog - 嵌入式开发与硬件实战笔记" height="28"></a><p class="is-size-7"><span>&copy; 2026 Chaos Goo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="皖ICP备2024054743号" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="隐私政策" href="/privacy-policy">隐私政策</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="GDPR合规" href="/gdpr">GDPR合规</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="使用条款" href="/terms">使用条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="联系我们" href="/contact">联系我们</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="关于" href="/about">关于</a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script data-pjax src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "/privacy-policy",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A7%E8%AE%BE%E8%AE%A1%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.</span> <span class="toc-text">旧设计回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">基础参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">硬件参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">注:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8"><span class="toc-number">1.3.2.</span> <span class="toc-text">尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%97%E7%94%B5%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">耗电信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E5%9B%BA%E4%BB%B6%E5%BC%80%E5%8F%91"><span class="toc-number">1.4.</span> <span class="toc-text">Rust固件开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.</span> <span class="toc-text">Friday Ink的核心功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-A"><span class="toc-number">1.6.</span> <span class="toc-text">Q&amp;A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E6%97%B6%E5%80%99%E5%8D%A1%E5%9C%A8%E6%A0%A1%E5%87%86%E9%A1%B5%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">Q: 时间校准时候卡在校准页怎么办</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%8E%A8%E8%8D%90%E6%8F%90%E5%89%8D%E5%8F%91%E9%80%81%E6%97%B6%E9%97%B4%E5%B9%BF%E6%92%AD-%E8%AE%A9%E6%89%8B%E6%9C%BA%E5%92%8C%E8%A3%85%E7%BD%AE%E8%B6%B3%E5%A4%9F%E6%8E%A5%E8%BF%91-%E7%84%B6%E5%90%8E%E8%A3%85%E7%BD%AE%E8%BF%9B%E5%85%A5%E6%A0%A1%E5%87%86-%E5%B9%B6%E5%9C%A8%E5%8F%91%E7%8E%B020S%E5%90%8E%E6%9C%AA%E8%83%BD%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%88%96%E6%8C%89%E9%92%AE%E6%97%A0%E6%B3%95%E5%BC%BA%E5%88%B6%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%97%B6-%E5%8F%96%E4%B8%8B%E7%94%B5%E6%B1%A0-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E7%94%B5%E6%B1%A0"><span class="toc-number">1.6.2.</span> <span class="toc-text">A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B7%B2%E7%BB%8F%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.3.</span> <span class="toc-text">Q: 小程序已经无法使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E5%8D%8F%E8%AE%AE%E5%B7%B2%E7%BB%8F%E5%85%AC%E5%BC%80-%E8%BF%98%E8%AF%B7%E5%90%84%E4%BD%8D%E5%A4%8D%E5%88%BB%E8%80%85%E4%BD%BF%E7%94%A8%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%9D%BF%E5%8F%91%E5%B8%83%E7%AC%A6%E5%90%88%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B9%BF%E6%92%AD%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-number">1.6.4.</span> <span class="toc-text">A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E5%A4%8D%E5%88%BB%E5%B1%95%E7%A4%BA"><span class="toc-number">1.7.</span> <span class="toc-text">社区复刻展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">项目链接</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2024/07/29/Friday-Ink/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&text=Friday Ink 今天是周五吗"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&is_video=false&description=Friday Ink 今天是周五吗"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Friday Ink 今天是周五吗&body=Check out this article: https://chaosgoo.com/2024/07/29/Friday-Ink/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&title=Friday Ink 今天是周五吗"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2024/07/29/Friday-Ink/&name=Friday Ink 今天是周五吗&description=&lt;h2 id=&#34;今天是周五吗&#34;&gt;&lt;a href=&#34;#今天是周五吗&#34; class=&#34;headerlink&#34; title=&#34;今天是周五吗&#34;&gt;&lt;/a&gt;今天是周五吗&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;2025年11月29日更新：根据读者的反馈和长达一年的实测，我补充了关于 SSD1607 与 SSD1681 屏幕驱动的功耗对比细节，以及 Rust 固件开发的更多背景。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;/images/archives/PreviewInFusion.png&#34; alt=&#34;预览图 - Fusion 360 建模&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;这是一个拖了很久的项目, 有很多废案. 隔一段时间想起来有这回事情,于是缝缝补补, 推倒很多次.&lt;/p&gt;
+&lt;!-- &lt;div align=&#34;center&#34;&gt;
+&lt;iframe src=&#34;https://player.bilibili.com/player.html?isOutside=true&amp;aid=112818036674466&amp;bvid=BV1gf8TerEiX&amp;cid=500001621427933&amp;p=1&#34; scrolling=&#34;no&#34;  width=&#34;320px&#34; border=&#34;0&#34; frameborder=&#34;no&#34; framespacing=&#34;0&#34; allowfullscreen=&#34;true&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt; --&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2024/07/29/Friday-Ink/&t=Friday Ink 今天是周五吗"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/privacy-policy/">
+              隐私政策
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/terms/">
+              使用条款
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/contact/">
+              联系我们
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+              皖ICP备2024054743号
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

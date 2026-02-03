@@ -11,15 +11,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/2020/11/20/StatTrak/</loc>
-    
-    <lastmod>2026-01-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/2020/04/25/pro-micro/</loc>
     
     <lastmod>2026-01-17</lastmod>
@@ -86,15 +77,6 @@
     <loc>https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/</loc>
     
     <lastmod>2025-12-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2025/12/13/esp32-pppos-4g-modem/</loc>
-    
-    <lastmod>2025-12-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -183,15 +165,6 @@
   
   <url>
     <loc>https://chaosgoo.com/404.html</loc>
-    
-    <lastmod>2025-11-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/2025/10/29/Real-life-HealthPin/</loc>
     
     <lastmod>2025-11-20</lastmod>
     
@@ -298,15 +271,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/</loc>
-    
-    <lastmod>2018-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://chaosgoo.com/</loc>
@@ -319,14 +283,14 @@
 
   
   <url>
-    <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
+    <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
     <lastmod>2026-02-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
+    <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
     <lastmod>2026-02-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

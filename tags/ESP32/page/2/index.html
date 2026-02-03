@@ -1,113 +1,274 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://use.fontawesome.com"><meta><meta name="google-adsense-account" content="ca-pub-1189115759021088"><meta name="description" content="ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。"><title>标签: ESP32 - Chaosgoo</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#333333"><meta name="application-name" content="Chaosgoo 技术博客"><meta name="msapplication-TileImage" content="/images/android-chrome-192x192.png"><meta name="msapplication-TileColor" content="#333333"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Chaosgoo 技术博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="192x192" href="/images/android-chrome-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="/images/android-chrome-512x512.png"><meta name="description" content="ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。"><meta property="og:type" content="blog"><meta property="og:title" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog - 嵌入式开发与硬件实战笔记"><meta property="og:url" content="https://chaosgoo.com/"><meta property="og:site_name" content="Chaosgoo | ESP32 &amp; IoT 技术博客"><meta property="og:description" content="ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://chaosgoo.com/images/social-image.png"><meta property="article:author" content="Chaos Goo"><meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image:src" content="https://chaosgoo.com/images/social-image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","mainEntityOfPage":{"@type":"WebPage","@id":"https://chaosgoo.com"},"headline":"Chaosgoo | ESP32, IoT & Hardware DIY Blog - 嵌入式开发与硬件实战笔记","image":["https://chaosgoo.com/images/social-image.png"],"author":{"@type":"Person","name":"Chaos Goo"},"publisher":{"@type":"Organization","name":"Chaosgoo 技术博客","logo":{"@type":"ImageObject","url":"https://chaosgoo.com/images/Logo_Sketch.png"}},"description":"ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。"}</script><link rel="canonical" href="https://chaosgoo.com"><link rel="icon" href="/images/favicon_chaosgoo.ico"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro&amp;display=swap"><link data-pjax rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088" crossorigin="anonymous"></script><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ" async></script><script>window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:url" content="https://chaosgoo.com/tags/ESP32/page/2/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术">
+<meta name="twitter:card" content="summary">
     
-        gtag('config', 'G-EVWTNN57LZ');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.png"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.png">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            标签: ESP32
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/tags/ESP32/page/2/">
+                                                          <!-- async scripts -->
+                                                          <!-- Google Analytics -->
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+  </script>
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/Logo_Sketch.png" alt="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog - 嵌入式开发与硬件实战笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/esp32-guide">ESP32 指南</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/contact">联系我们</a><a class="navbar-item" href="/about">关于</a><a class="navbar-item" href="/privacy-policy">隐私政策</a><a class="navbar-item" href="/gdpr">GDPR合规</a><a class="navbar-item" href="/terms">使用条款</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">标签</a></li><li class="is-active"><a href="#" aria-current="page">ESP32</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-01-03T04:40:53.000Z" title="1/3/2022, 12:40:53 PM">2022-01-03</time>发表</span><span class="level-item"><time dateTime="2022-01-03T04:40:53.000Z" title="1/3/2022, 12:40:53 PM">2022-01-03</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></span><span class="level-item">16 分钟读完 (大约2376个字)</span></div></div><h2 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/01/03/lvgl-freetype-and-esp32-2/">在LVGL中实现可变字体(Variable Font)-第三章</a></h2><div class="content"><ul>
-<li><a href="/2021/12/12/FreeType-and-LVGL/">在LVGL中实现可变字体(Variable Font)-第一章</a></li>
-<li><a href="/2021/12/18/lvgl-freetype-and-esp32/">在LVGL中实现可变字体(Variable Font)-第二章</a></li>
-<li><strong>在LVGL中实现可变字体(Variable Font)-第三章</strong></li>
-</ul>
-<strong><a href="#前言" class="headerlink" title="前言"></a>前言</strong><blockquote>
-<p>(2025年11月 重制版说明):<br>这篇文章的初版我曾发布于第三方平台（简书+Bilibili），并累计获得了<strong>50,000+</strong> 次阅读 和大量开发者的反馈。<br>为了提供更好的阅读体验，我对文章排版和部分内容进行了优化，并将其<strong>独家</strong>发布在此个人博客</p>
-</blockquote>
-<p><a href="/2021/12/18/lvgl-freetype-and-esp32/">第二章</a>中介绍了如何在ESP32上运行LVGL,现在终于可以开始奔着<a href="/2021/12/12/FreeType-and-LVGL/">第一章</a>文章末尾的效果去了.</p></div><a class="article-more button is-small is-size-7" href="/2022/01/03/lvgl-freetype-and-esp32-2/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-18T13:47:07.000Z" title="12/18/2021, 9:47:07 PM">2021-12-18</time>发表</span><span class="level-item"><time dateTime="2021-12-18T13:47:07.000Z" title="12/18/2021, 9:47:07 PM">2021-12-18</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></span><span class="level-item">12 分钟读完 (大约1767个字)</span></div></div><h2 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/18/lvgl-freetype-and-esp32/">在LVGL中实现可变字体(Variable Font)-第二章</a></h2><div class="content"><ul>
-<li><a href="/2021/12/12/FreeType-and-LVGL/">在LVGL中实现可变字体(Variable Font)-第一章</a></li>
-<li><strong>在LVGL中实现可变字体(Variable Font)-第二章</strong></li>
-<li><a href="/2022/01/03/lvgl-freetype-and-esp32-2/">在LVGL中实现可变字体(Variable Font)-第三章</a></li>
-</ul>
-<strong><a href="#前言" class="headerlink" title="前言"></a>前言</strong><blockquote>
-<p>(2025年11月 重制版说明):<br>这篇文章的初版我曾发布于第三方平台（简书+Bilibili），并累计获得了<strong>50,000+</strong> 次阅读 和大量开发者的反馈。<br>为了提供更好的阅读体验，我对文章排版和部分内容进行了优化，并将其<strong>独家</strong>发布在此个人博客</p>
-</blockquote>
-<p>我们在<a href="/2021/12/12/FreeType-and-LVGL/">第一章</a>中已经实现了模拟器环境下可变字体字重的设置.</p>
-<p>是时候掏出你吃灰已久的ESP32了.</p>
-<p>本文会使用<a target="_blank" rel="noopener" href="https://platformio.org/">PlatformIO</a>创建一个全新的项目,直到显示出现<a class="toc-link" href="/2021/12/12/FreeType-and-LVGL/">上篇文章</a>末尾的动图为止.<br>如遇到问题,可参考<a class="toc-link" href="#常见问题">常见问题</a>内解答.</p></div><a class="article-more button is-small is-size-7" href="/2021/12/18/lvgl-freetype-and-esp32/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-12T09:09:13.000Z" title="12/12/2021, 5:09:13 PM">2021-12-12</time>发表</span><span class="level-item"><time dateTime="2021-12-12T09:09:13.000Z" title="12/12/2021, 5:09:13 PM">2021-12-12</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Software-Dev/">Software &amp; Dev</a></span><span class="level-item">25 分钟读完 (大约3696个字)</span></div></div><h2 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/12/FreeType-and-LVGL/">在LVGL中实现可变字体(Variable Font)-第一章</a></h2><div class="content"><ul>
-<li><strong>在LVGL中实现可变字体(Variable Font)-第一章</strong></li>
-<li><a href="/2021/12/18/lvgl-freetype-and-esp32/">在LVGL中实现可变字体(Variable Font)-第二章</a></li>
-<li><a href="/2021/12/18/lvgl-freetype-and-esp32-2/">在LVGL中实现可变字体(Variable Font)-第三章</a></li>
-</ul>
-<strong><a href="#前言" class="headerlink" title="前言"></a>前言</strong><blockquote>
-<p>(2025年11月 重制版说明):<br>这篇文章的初版我曾发布于第三方平台（简书+Bilibili），并累计获得了<strong>50,000+</strong> 次阅读 和大量开发者的反馈。<br>为了提供更好的阅读体验，我对文章排版和部分内容进行了优化，并将其<strong>独家</strong>发布在此个人博客</p>
-</blockquote>
-<p>不知道多久前看到了MIUI更新了”<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1UJ411v7Jc">动态字体系统</a>“功能,不过当时没太在意(毕竟我用的也不是MIUI,哈哈哈,不过确实挺方便的),演示视频里面展示了随意调节字体粗细的功能,后来知道这个参数叫做字重(zhong第四声).</p>
-<div align="center">
-<iframe src="//player.bilibili.com/player.html?aid=78632112&bvid=BV1UJ411v7Jc&cid=134544342&page=1" scrolling="no"   width="320px" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-</div></div><a class="article-more button is-small is-size-7" href="/2021/12/12/FreeType-and-LVGL/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-03-04T08:07:35.000Z" title="3/4/2021, 4:07:35 PM">2021-03-04</time>发表</span><span class="level-item"><time dateTime="2025-11-24T16:07:26.000Z" title="11/25/2025, 12:07:26 AM">2025-11-25</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></span><span class="level-item">16 分钟读完 (大约2336个字)</span></div></div><h2 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/03/04/ESP32-display-remote-JPG/">让你的ESP32显示一张公网图片吧</a></h2><div class="content"><strong><a href="#让你的ESP32显示一张公网图片吧" class="headerlink" title="让你的ESP32显示一张公网图片吧"></a>让你的ESP32显示一张公网图片吧</strong><p><code>这篇文章写于 4 年前，但其核心原理（手动解析 HTTP 报文）在今天依然完全有效。请注意，AsyncTCP-esphome 库现在可能已有更新版本，但本教程中关于‘onData’分块处理和‘Content-Length’解析的逻辑，是您理解嵌入式网络编程的基础。</code><br><img src="/images/migrated/b58dd0ed_AsyncImage.png" width="640"/></p>
-<p>众所周知，ESP32它是能联网的，而配上屏幕，它就可以显示一张图片，那么它可以显示一张互联网上的图片吗？当然可以！<br>虽然<a href="/2020/12/14/ESP32-Streaming/">之前</a>已经做过了视频的传输，而视频不过是很多图片的集合，但是那篇文章中的传输都是建立在局域网之中，通信建立在Socket上。<br>而这次要突破局域网，使用HTTP协议来传输数据，所以会比之前复杂一些。</p></div><a class="article-more button is-small is-size-7" href="/2021/03/04/ESP32-display-remote-JPG/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-12-14T06:35:49.000Z" title="12/14/2020, 2:35:49 PM">2020-12-14</time>发表</span><span class="level-item"><time dateTime="2025-11-27T01:40:31.000Z" title="11/27/2025, 9:40:31 AM">2025-11-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></span><span class="level-item">19 分钟读完 (大约2815个字)</span></div></div><h2 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/12/14/ESP32-Streaming/">ESP32-串流显示</a></h2><div class="content"><strong><a href="#让你的ESP32试试串流吧" class="headerlink" title="让你的ESP32试试串流吧"></a>让你的ESP32试试串流吧</strong><blockquote>
-<p>（2025 年 11 月更新）这篇文章写于 5 年前，但它至今仍是我流量最高的文章之一。<br>它所展示的‘PC 到 ESP32 实时串流’的核心原理——即‘Python 抓帧&#x2F;编码’ + ‘自定义 TCP 协议’ + ‘ESP32 解码&#x2F;DMA 渲染’——这个架构在今天依然极具参考价值。</p>
-</blockquote>
-<p><img src="/images/migrated/db113578_EE09FFA8826B4A300111C1F5B9C54EF7.png" alt="header-preview"><br>既然有了屏幕，又有了网络，那岂不是可以串流了！</p></div><a class="article-more button is-small is-size-7" href="/2020/12/14/ESP32-Streaming/#more">阅读更多</a></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/tags/ESP32/">上一页</a></div><div class="pagination-next is-invisible is-hidden-mobile"><a href="/tags/ESP32/page/3/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/tags/ESP32/">1</a></li><li><a class="pagination-link is-current" href="/tags/ESP32/page/2/">2</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-01-04T04:12:44.000Z">2026-01-04</time></p><p class="title"><a href="/2026/01/04/ESP-IDF-embed-txtfiles-tricks/">ESP-IDF 插件：用 embed_txtfiles 优雅地在固件里“塞”文件</a></p><p class="categories"><a href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/"><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/thumbnail.jpg" alt="屏幕不够，算法来凑(二)：ESP32 单色屏上的 Ditherpunk 实战"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-12-30T05:38:00.000Z">2025-12-30</time></p><p class="title"><a href="/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/">屏幕不够，算法来凑(二)：ESP32 单色屏上的 Ditherpunk 实战</a></p><p class="categories"><a href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2025/12/22/Ditherpunk-The-Art-of-Dithering/"><img src="/images/archives/ditherpunk/returnofobradinn.png" alt="屏幕不够，算法来凑(一)：Ditherpunk 抖动算法原理与 JS 实时演示"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-12-22T02:15:30.000Z">2025-12-22</time></p><p class="title"><a href="/2025/12/22/Ditherpunk-The-Art-of-Dithering/">屏幕不够，算法来凑(一)：Ditherpunk 抖动算法原理与 JS 实时演示</a></p><p class="categories"><a href="/categories/Software-Dev/">Software &amp; Dev</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-12-12T16:09:14.000Z">2025-12-13</time></p><p class="title"><a href="/2025/12/13/esp32-pppos-4g-modem/">告别AT指令：ESP32通过PPPoS驱动4G模块上网</a></p><p class="categories"><a href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2025-12-04T18:57:15.000Z">2025-12-05</time></p><p class="title"><a href="/2025/12/05/rust-bindgen-for-elk/">使用Bindgen为ELK生成Rust绑定</a></p><p class="categories"><a href="/categories/Software-Dev/">Software &amp; Dev</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Hardware-IoT/"><span class="level-start"><span class="level-item">Hardware &amp; IoT</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li><li><a class="level is-mobile" href="/categories/Project-Logs/"><span class="level-start"><span class="level-item">Project Logs</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/Software-Dev/"><span class="level-start"><span class="level-item">Software &amp; Dev</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/Logo_Sketch.png" alt="Goo"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Goo</p><p class="is-size-6 is-block">嵌入式开发工程师 | ESP32 &amp; IoT 开发者</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>合肥, 中国</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">27</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/chaosgoo" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/chaosgoo"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="bilibili" href="https://space.bilibili.com/3493265206676106"><i class="fab fa-bilibili"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Youtube" href="https://www.youtube.com/@chaosgoo"><i class="fab fa-youtube"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.vimc.cc" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">大黄猫の博客</span></span><span class="level-right"><span class="level-item tag">blog.vimc.cc</span></span></a></li><li><a class="level is-mobile" href="http://liga.tech" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">粤北山区的技术宅</span></span><span class="level-right"><span class="level-item tag">liga.tech</span></span></a></li><li><a class="level is-mobile" href="https://github.com/YanHeDoki" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">YanHeDoki</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/Logo_Sketch.png" alt="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog - 嵌入式开发与硬件实战笔记" height="28"></a><p class="is-size-7"><span>&copy; 2026 Chaos Goo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="皖ICP备2024054743号" href="https://beian.miit.gov.cn/">皖ICP备2024054743号</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="隐私政策" href="/privacy-policy">隐私政策</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="GDPR合规" href="/gdpr">GDPR合规</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="使用条款" href="/terms">使用条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="联系我们" href="/contact">联系我们</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="关于" href="/about">关于</a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script data-pjax src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "/privacy-policy",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+                                                            <!-- Umami Analytics -->
+
+
+                                                              <!-- styles -->
+                                                              
+<link rel="stylesheet" href="/css/style.css">
+
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                <script async
+                                                                                  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                  crossorigin="anonymous"></script>
+                                                                                <!-- mathjax -->
+                                                                                
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/Logo_Sketch.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首页</a></li><!--
+   --><!--
+     --><li><a href="/archives/">归档</a></li><!--
+   --><!--
+     --><li><a href="/about/">关于</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <div id="archive">
+  <ul class="post-list">
+    
+    
+    
+    
+      
+      
+      
+      
+        <li class="post-year"><h2>2025</h2></li>
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2020-12-14T06:35:49.000Z" class="dt-published" itemprop="datePublished">2020-12-14</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2020/12/14/ESP32-Streaming/">ESP32-串流显示</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2021-03-04T08:07:35.000Z" class="dt-published" itemprop="datePublished">2021-03-04</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/03/04/ESP32-display-remote-JPG/">让你的ESP32显示一张公网图片吧</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
+      
+        <li class="post-year"><h2>2021</h2></li>
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2021-12-12T09:09:13.000Z" class="dt-published" itemprop="datePublished">2021-12-12</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/12/12/FreeType-and-LVGL/">在LVGL中实现可变字体(Variable Font)-第一章</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    <div class="pagination">
+        
+            <a href="/tags/ESP32/"><i class="fa-solid fa-angle-left"></i></a>
+        
+        <span class="page-number">第 2 页，共 2 页</span>
+        
+    </div>
+
+
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/privacy-policy/">
+              隐私政策
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/terms/">
+              使用条款
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/contact/">
+              联系我们
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+              皖ICP备2024054743号
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
