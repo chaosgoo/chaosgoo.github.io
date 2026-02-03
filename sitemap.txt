@@ -29,6 +29,6 @@ https://chaosgoo.com/2021/12/18/lvgl-freetype-and-esp32/
 https://chaosgoo.com/2021/12/12/FreeType-and-LVGL/
 https://chaosgoo.com/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/
 https://chaosgoo.com/
-https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Hardware-IoT/
+https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Project-Logs/
