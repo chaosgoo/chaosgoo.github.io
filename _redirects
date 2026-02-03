@@ -8,35 +8,35 @@
 ; /2022/11/13/Lenovo-R720-Keyboard-Matrix    /2022/11/13/Lenovo-R720-Keyboard-Matrix/    301
 
 # 补全了缺失前导斜杠的规则
-/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/    /    410
-/2017/10/10/launch_again/    /    410
-/2019/07/20/LowPoly%E7%BB%83%E4%B9%A0/    /    410
-/2018/03/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/    /    410
+/2017/10/10/Change-address-bar-color-in-Chrome-Mobile/    /410    410
+/2017/10/10/launch_again/    /410    410
+/2019/07/20/LowPoly%E7%BB%83%E4%B9%A0/    /410    410
+/2018/03/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/    /410    410
 
 # 其他批量清理 404 的规则
-/2021/02/13/TFT-eSPI-Custom-Font/    /    410
-/2022/09/20/esp32-spiffs-ota-demo/    /    410
-/2020/04/19/Insert-new-page-into-pdf-file-in-android/    /    410
-/2017/10/27/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x02/    /    410
-/2019/07/11/lowpoly-sakura/    /    410
-/2019/05/13/soul-of-library/    /    410
-/2020/10/21/display-images-side-by-side-in-hexo/    /    410
-/2021/03/14/Project-Firefly/    /    410
-/2019/06/21/Dracarys/    /    410
-/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/    /    410
-/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/    /    410
-/2019/11/18/Flutter-Vanilla-3/    /    410
-/2021/03/28/genshin_auto_play/    /    410
-/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/    /    410
-/2017/10/30/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x03/    /    410
-/2019/10/08/Flutter-Vanilla-2/    /    410
-/2018/11/11/PlaidML/    /    410
-/2018/11/04/Flutter-Stop-Watch/    /    410
-/2020/02/20/Dino-Run-on-M5StickC/    /    410
-/2020/12/04/ESP32-ST7789/    /    410
-/2020/02/16/Low-Poly-Bee/    /    410
-/cdn-cgi/l/email-protection    /    410
-/2018/06/17/library_balcony/    /    410
+/2021/02/13/TFT-eSPI-Custom-Font/    /410    410
+/2022/09/20/esp32-spiffs-ota-demo/    /410    410
+/2020/04/19/Insert-new-page-into-pdf-file-in-android/    /410    410
+/2017/10/27/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x02/    /410    410
+/2019/07/11/lowpoly-sakura/    /410    410
+/2019/05/13/soul-of-library/    /410    410
+/2020/10/21/display-images-side-by-side-in-hexo/    /410    410
+/2021/03/14/Project-Firefly/    /410    410
+/2019/06/21/Dracarys/    /410    410
+/2017/12/24/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x05/    /410    410
+/2022/04/18/ESP32-keeps-Pwm-in-the-sleep-mode/    /410    410
+/2019/11/18/Flutter-Vanilla-3/    /410    410
+/2021/03/28/genshin_auto_play/    /410    410
+/2017/11/06/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x04/    /410    410
+/2017/10/30/Kotlin%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B00x03/    /410    410
+/2019/10/08/Flutter-Vanilla-2/    /410    410
+/2018/11/11/PlaidML/    /410    410
+/2018/11/04/Flutter-Stop-Watch/    /410    410
+/2020/02/20/Dino-Run-on-M5StickC/    /410    410
+/2020/12/04/ESP32-ST7789/    /410    410
+/2020/02/16/Low-Poly-Bee/    /410    410
+/cdn-cgi/l/email-protection    /410    410
+/2018/06/17/library_balcony/    /410    410
 
 # 通配符批量重定向
 ; /archives/* /    301
