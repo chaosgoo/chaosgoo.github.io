@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="基于 WCH CH592F 的硬件 DIY 研究。介绍如何利用 C++、BLE 蓝牙 HID 与游戏 GSI 协议，制作一个具有交互功能的同人电子饰品。包含 PCB 设计、电源管理及自定义 Device Script 实现方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动">
+<meta property="og:url" content="https://chaosgoo.com/2025/10/29/Real-life-HealthPin/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="基于 WCH CH592F 的硬件 DIY 研究。介绍如何利用 C++、BLE 蓝牙 HID 与游戏 GSI 协议，制作一个具有交互功能的同人电子饰品。包含 PCB 设计、电源管理及自定义 Device Script 实现方案。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/healthpin_in_game.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/healthpin_in_cs2.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/ch592.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/healthpin3dmodel.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/real_health_pin.jpeg">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/aurora_add_script_device.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/aurora_cs2_profile.png">
+<meta property="article:published_time" content="2025-10-29T01:56:54.000Z">
+<meta property="article:modified_time" content="2025-11-20T10:45:00.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="Hardware Analysis">
+<meta property="article:tag" content="WCH">
+<meta property="article:tag" content="CH592">
+<meta property="article:tag" content="IoT">
+<meta property="article:tag" content="BLE">
+<meta property="article:tag" content="Hardware DIY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/archives/healthpin_in_game.jpg">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/2025/10/29/Real-life-HealthPin/">
+                                                          <!-- async scripts -->
+                                                          <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+
+                                                              <!-- styles -->
+                                                              <link rel="preload" href="/css/style.css"
+                                                                as="style"
+                                                                onload="this.onload=null;this.rel='stylesheet'">
+                                                              <noscript>
+                                                                <link rel="stylesheet"
+                                                                  href="/css/style.css">
+                                                              </noscript>
+                                                              <!-- persian styles -->
+                                                              
+                                                                    <!-- rss -->
+                                                                    
+                                                                          
+                                                                              <script async
+                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                crossorigin="anonymous"></script>
+                                                                              <!-- mathjax -->
+                                                                              
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&text=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&is_video=false&description=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动&body=Check out this article: https://chaosgoo.com/2025/10/29/Real-life-HealthPin/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&name=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动&description=&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;免责声明 (Disclaimer)&lt;/strong&gt;&lt;br&gt;本项目仅为作者出于技术探索和个人兴趣进行的&lt;strong&gt;非商业同人创作&lt;/strong&gt; (Fan-made Project)。所有设计资源（PCB&amp;#x2F;代码）仅供电子技术交流与学习参考，&lt;strong&gt;严禁用于任何商业用途或批量生产销售&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关于权属&lt;/strong&gt;：文中提及的 “Counter-Strike 2” (CS2) 及其相关素材权属归 &lt;strong&gt;Valve Corporation&lt;/strong&gt; 所有。本站与 Valve 无任何关联，亦未获得官方授权，本项目是对游戏机制在硬件层面的同步技术验证。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;/images/archives/healthpin_in_game.jpg&#34; alt=&#34;healthpin_in_game&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;在CS2中(CS:GO里面也有)中有一个叫做生命值胸章的饰品&lt;br&gt;&lt;img src=&#34;/images/archives/healthpin_in_cs2.png&#34; alt=&#34;healthpin_in_cs2&#34;&gt;&lt;br&gt;第一次看到时候就觉得这个很适合使用LED做出来.&lt;br&gt;而且还可以通过CSGO GSI同步游戏中生命值状态.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&t=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">补充说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E4%BB%B6%E9%80%89%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">元件选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MCU%E9%80%89%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">MCU选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LDO%E9%80%89%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">LDO选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%82%E7%94%B5%E6%B1%A0%E5%85%85%E7%94%B5%E8%8A%AF%E7%89%87%E9%80%89%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">锂电池充电芯片选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%AF%E7%8F%A0%E5%92%8CMOS%E9%80%89%E6%8B%A9"><span class="toc-number">2.4.</span> <span class="toc-text">灯珠和MOS选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCB%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">PCB设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%89%A9%E7%84%8A%E6%8E%A5%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">4.</span> <span class="toc-text">实物焊接效果展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StatTrak%E9%A1%B9%E7%9B%AE%E5%9B%9E%E9%A1%BE"><span class="toc-number">5.1.</span> <span class="toc-text">StatTrak项目回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auraro"><span class="toc-number">5.2.</span> <span class="toc-text">Auraro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Device-Script%E7%BC%96%E5%86%99"><span class="toc-number">5.3.</span> <span class="toc-text">Device Script编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E6%8B%9F%E5%AE%9A%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.3.1.</span> <span class="toc-text">协议拟定和实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Device-Script%E5%AE%8C%E5%96%84"><span class="toc-number">5.3.2.</span> <span class="toc-text">Device Script完善</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E4%BD%8D%E6%9C%BA%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.4.</span> <span class="toc-text">下位机程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8WS2812B"><span class="toc-number">5.4.1.</span> <span class="toc-text">驱动WS2812B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HID%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90"><span class="toc-number">5.4.2.</span> <span class="toc-text">HID命令解析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91"><span class="toc-number">6.</span> <span class="toc-text">视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E5%BE%8B%E5%8F%8A%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="toc-number">6.1.</span> <span class="toc-text">法律及版权说明</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-10-29T01:56:54.000Z" class="dt-published" itemprop="datePublished">2025-10-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Project-Logs/">Project Logs</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/BLE/" rel="tag">BLE</a>, <a class="p-category" href="/tags/CH592/" rel="tag">CH592</a>, <a class="p-category" href="/tags/Hardware-Analysis/" rel="tag">Hardware Analysis</a>, <a class="p-category" href="/tags/Hardware-DIY/" rel="tag">Hardware DIY</a>, <a class="p-category" href="/tags/IoT/" rel="tag">IoT</a>, <a class="p-category" href="/tags/WCH/" rel="tag">WCH</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <blockquote>
+<p><strong>免责声明 (Disclaimer)</strong><br>本项目仅为作者出于技术探索和个人兴趣进行的<strong>非商业同人创作</strong> (Fan-made Project)。所有设计资源（PCB&#x2F;代码）仅供电子技术交流与学习参考，<strong>严禁用于任何商业用途或批量生产销售</strong>。</p>
+<p><strong>关于权属</strong>：文中提及的 “Counter-Strike 2” (CS2) 及其相关素材权属归 <strong>Valve Corporation</strong> 所有。本站与 Valve 无任何关联，亦未获得官方授权，本项目是对游戏机制在硬件层面的同步技术验证。</p>
+</blockquote>
+<p><img src="/images/archives/healthpin_in_game.jpg" alt="healthpin_in_game"></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在CS2中(CS:GO里面也有)中有一个叫做生命值胸章的饰品<br><img src="/images/archives/healthpin_in_cs2.png" alt="healthpin_in_cs2"><br>第一次看到时候就觉得这个很适合使用LED做出来.<br>而且还可以通过CSGO GSI同步游戏中生命值状态.</p>
+<span id="more"></span> 
+
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><p>有不少人指出胸章出自半条命:Alyx,以前只在朋友家玩过开头, 对这个装置在半条命中的印象不是很深了.<br>观看了一些Alyx的实况视频后了解到这个装置的更为具体的一些信息, 或许将来可以制作三个完整的爱心版本,然后像Alyx中的一样, 每颗心都有大小的变化, 极大的提高了丰富表现力.</p>
+<h2 id="元件选型"><a href="#元件选型" class="headerlink" title="元件选型"></a>元件选型</h2><h3 id="MCU选型"><a href="#MCU选型" class="headerlink" title="MCU选型"></a>MCU选型</h3><p>由于胸章的尺寸较小(60mmx20mm), 而且我也不希望成品太厚无法佩戴,还不想拖着一根线,所以主控得是一个支持无线(乐鑫:有人叫我?)的芯片.<br>虽然我很喜欢乐鑫家的芯片(我之前写过很多关于 <a href="/2020/12/14/ESP32-Streaming/">ESP32 串流</a> 和 <a href="/2021/03/04/ESP32-display-remote-JPG/">ESP32 显示公网图片</a> 的教程）),但是抱歉, 这次真的对不起,你的功耗实在是太高了.</p>
+<p>之前在制作Friday Ink时候,用的芯片是CH582F, 使我对WCH王翠花家的芯片略有好感,不仅便宜够用,功耗还低.</p>
+<p>结合成本和开发量评估后, 最终选择WCH王翠花家的CH592F作为主控, 和之前的CH582F对比, 只是RAM略有些减少, 但是对于当前的HealthPin是绝对足够的.</p>
+<p><img src="/images/archives/ch592.png" alt="ch592"></p>
+<h3 id="LDO选型"><a href="#LDO选型" class="headerlink" title="LDO选型"></a>LDO选型</h3><p>之前爱用的LDO是AP2112K-3.3TRG, 源自多年前抄Arduino Pro micro时候形成的习惯.</p>
+<p>为了进一步压缩成本, LDO换成了更容易购买到而且仅需0.18元的ME6211. </p>
+<h3 id="锂电池充电芯片选型"><a href="#锂电池充电芯片选型" class="headerlink" title="锂电池充电芯片选型"></a>锂电池充电芯片选型</h3><p>在之前的罗盘设计中, 锂电池充电管理芯片用的是MCP73831, 这款IC我首次购买时候4元,后来居然涨价到了8元(不过最近有所回落,但还是让我有所忌惮).<br>因此充电管理芯片换成了仅需0.45元的TP4057, 二者外围器件差异不大,仅需注意引脚定义.</p>
+<h3 id="灯珠和MOS选择"><a href="#灯珠和MOS选择" class="headerlink" title="灯珠和MOS选择"></a>灯珠和MOS选择</h3><p>你知道的, RGB可以提升300%性能,所以灯珠毫不犹豫的选择了内置WS2812B的1mm x 1mm RGB灯珠.</p>
+<p>考虑到WS2812B的静态功耗有点大, 对于我们本来就不大的电池来说雪上加霜, 所以三颗心分为三组, 除了最小的那颗心无法主动关闭供电外, 其余两颗心都会使用MOS管控制电源开关,达到不用时候彻底关闭省电的目的.<br><code>对于灯泡、电机这类无源负载，通常使用驱动简单的NMOS作为下管来控制其地线回路。而对于WS2812B这类需要与MCU进行精确数字通信的有源器件，为了确保通信信号的完整性以及两者之间的稳定共地，优选使用PMOS作为上管来控制其电源，而不是控制其地线。</code><br>为了节省空间, 选择一个SOT23-6封装的BRCS4953提供双PMOS.</p>
+<blockquote>
+<p>关于 WS2812 的驱动原理，我最终采用了 SPI+DMA 零 CPU 占用方案。<br>详细的实现原理和代码解析，请参阅本项目的深度分析文章：<a href="/2025/12/02/ch58x-dma-spi-ws2812-driver/">《CH592F利用SPI+DMA驱动WS2812灯珠》</a>。</p>
+</blockquote>
+<h2 id="PCB设计"><a href="#PCB设计" class="headerlink" title="PCB设计"></a>PCB设计</h2><p>尝试过把灯珠和主控分别放在两张板子上, 再焊接方式粘在一起, 但是这样会增加一个板子的厚度,成本也会因此上升.<br>遂放弃这个方案, 继而使用传统的双面元件方式实现.<br>PCBA最终渲染如下:<br><img src="/images/archives/healthpin3dmodel.png" alt="healthpin3dmodel"><br>其中电池外围则印有<code>BOMB HAS BEEN PLANTED HANDLE WITH CARE</code>字样彩蛋.</p>
+<h2 id="实物焊接效果展示"><a href="#实物焊接效果展示" class="headerlink" title="实物焊接效果展示"></a>实物焊接效果展示</h2><p>由于没有外壳, 而且阻焊是白色,所以看上去和游戏原设计有所出入.<br><img src="/images/archives/real_health_pin.jpeg" alt="real_health_pin"></p>
+<h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><h3 id="StatTrak项目回顾"><a href="#StatTrak项目回顾" class="headerlink" title="StatTrak项目回顾"></a>StatTrak项目回顾</h3><p>在CS:GO还没升级成为CS2的时候,我就在现实中制作过一个可以和游戏联动的<code>StatTrak</code>.<br>当时方案是直接编写一个python脚本和CS:GO GSI通信, 再借助pyserial向装置发送击杀数据.</p>
+<h3 id="Auraro"><a href="#Auraro" class="headerlink" title="Auraro"></a>Auraro</h3><p>我记得罗技的GHUB是能够控制自家设备和游戏的联动, 于是就在想是否有类似的开源方案来做到类似的统一管理.</p>
+<p>一方搜索后得知了<a target="_blank" rel="noopener" href="https://www.project-aurora.com/">Project Aurora</a>这个开源项目.</p>
+<p>最最令人激动的是, Aurora不仅仅适配了很多知名厂商的设备, 他甚至还有一套<strong>Device Script</strong>来供第三方设备实现对接.</p>
+<h3 id="Device-Script编写"><a href="#Device-Script编写" class="headerlink" title="Device Script编写"></a>Device Script编写</h3><p>在Aurora的仓库下有一个<a target="_blank" rel="noopener" href="https://github.com/Aurora-RGB/Aurora/blob/master/Script%20Examples/Devices/example_script.cs">example_script.cs</a>提供了简单的示例.<br>HealthPin的通信方式是使用蓝牙HID, 而蓝牙HID装置在连接电脑后会被视作一个普通的HID装置, 只需要使用标准HID通信API向装置发送数据即可.</p>
+<h4 id="协议拟定和实现"><a href="#协议拟定和实现" class="headerlink" title="协议拟定和实现"></a>协议拟定和实现</h4><p>我们的装置有LED和蜂鸣器, 所以协议中在将装置这些能力暴露出来.</p>
+<p>初步定义如下类型的协议结构和Command, 并且着重介绍SetHeartColor命令</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命令 ID 枚举</span></span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">HidCommand</span> : <span class="type">uint8_t</span> &#123;</span><br><span class="line">  Ping = <span class="number">0x01</span>,</span><br><span class="line">  Reboot = <span class="number">0x0F</span>,</span><br><span class="line">  SetAllLEDs = <span class="number">0x11</span>,</span><br><span class="line">  ShowLEDs = <span class="number">0x12</span>,</span><br><span class="line">  ClearAllLEDs = <span class="number">0x13</span>,</span><br><span class="line">  SetSingleLED = <span class="number">0x14</span>,</span><br><span class="line">  SetHeartColor = <span class="number">0x15</span>,</span><br><span class="line">  SetLEDRange = <span class="number">0x16</span>,</span><br><span class="line">  PlayBeep = <span class="number">0x21</span>,</span><br><span class="line">  BuzzerOn = <span class="number">0x22</span>,</span><br><span class="line">  BuzzerOff = <span class="number">0x23</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CMD 0x15 (Set Heart)</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Payload_SetHeart</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> heart_id;</span><br><span class="line">  <span class="type">uint8_t</span> r;</span><br><span class="line">  <span class="type">uint8_t</span> g;</span><br><span class="line">  <span class="type">uint8_t</span> b;</span><br><span class="line">  <span class="type">uint8_t</span> reserved[<span class="number">3</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Payload 的 Union</span></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">HidPayloadUnion</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> raw[<span class="number">7</span>]; <span class="comment">// 原始 7 字节</span></span><br><span class="line">  Payload_SetAll setAll;</span><br><span class="line">  Payload_SetSingle setSingle;</span><br><span class="line">  Payload_SetHeart setHeart;</span><br><span class="line">  Payload_SetRange setRange;</span><br><span class="line">  Payload_PlayBeep playBeep;</span><br><span class="line">  Payload_BuzzerOn buzzerOn;</span><br><span class="line">  Payload_NoArgs noArgs;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief HID 命令包结构体</span></span><br><span class="line"><span class="comment"> * HID 堆栈已经消费了 Report ID，所以不包含 Report ID，</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HidCommandPacket</span> &#123;</span><br><span class="line">    <span class="type">uint8_t</span> cmd;             <span class="comment">// Byte 0 (命令 ID)</span></span><br><span class="line">    HidPayloadUnion payload; <span class="comment">// Bytes 1-7 (负载)</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Device-Script完善"><a href="#Device-Script完善" class="headerlink" title="Device Script完善"></a>Device Script完善</h4><p>Aurora下发颜色配置时候, 会触发Script Device的<code>UpdateDevice(object keyColors, bool forced)</code>函数, 这个函数里面我们可以查询到所有键位颜色信息.</p>
+<p>而HealthPin三颗心分别被映射到了键盘的<code>7</code>,<code>8</code>,<code>9</code>三个键,所以只关注这三个键的数据即可. 当然如果你想关注F1,F2,F3的配置也没问题, 只是需要注意在调整Profiles时候要设置对应的按键.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Color targetHeart1 = Color.Black;</span><br><span class="line">Color targetHeart2 = Color.Black;</span><br><span class="line">Color targetHeart3 = Color.Black;</span><br><span class="line"><span class="keyword">var</span> dict = keyColors <span class="keyword">as</span> IDictionary;</span><br><span class="line"><span class="keyword">foreach</span> (DictionaryEntry entry <span class="keyword">in</span> dict)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> key = entry.Key?.ToString();</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrEmpty(key)) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">if</span> (key.Equals(<span class="string">&quot;NUM_SEVEN&quot;</span>, StringComparison.OrdinalIgnoreCase))</span><br><span class="line">    &#123;</span><br><span class="line">        targetHeart1 = ParseColorObject(entry.Value);</span><br><span class="line">        hasUpdate = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (key.Equals(<span class="string">&quot;NUM_EIGHT&quot;</span>, StringComparison.OrdinalIgnoreCase))</span><br><span class="line">    &#123;</span><br><span class="line">        targetHeart2 = ParseColorObject(entry.Value);</span><br><span class="line">        hasUpdate = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (key.Equals(<span class="string">&quot;NUM_NINE&quot;</span>, StringComparison.OrdinalIgnoreCase))</span><br><span class="line">    &#123;</span><br><span class="line">        targetHeart3 = ParseColorObject(entry.Value);</span><br><span class="line">        hasUpdate = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取到颜色数据,只需要使用HidD_SetFeature函数发送数据即可.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="built_in">bool</span> <span class="title">HidD_SetFeature</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">        SafeFileHandle HidDeviceObject,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="built_in">byte</span>[] ReportBuffer,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="built_in">uint</span> ReportBufferLength</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="下位机程序"><a href="#下位机程序" class="headerlink" title="下位机程序"></a>下位机程序</h3><p>当初选择CH592F有大原因就是有很多人用它做键盘, 而且官方的例子中就有一个基于蓝牙的<code>HID_Keyboard</code> example.</p>
+<p>在构思本项目时候, 就像好了要伪装成为一个HID设备, 再和电脑走HID进行通信. 这个方案不用考虑串口驱动或者其他USB驱动的麻烦事情了.</p>
+<h4 id="驱动WS2812B"><a href="#驱动WS2812B" class="headerlink" title="驱动WS2812B"></a>驱动WS2812B</h4><p>具体可以参考WCH官方实现, 巧妙地使用了SPI来模拟WS2812时序,这里不做赘述.</p>
+<!-- 接下来几天会单独写一个文章解析如何使用SPI模拟WS2812时序 -->
+
+<h4 id="HID命令解析"><a href="#HID命令解析" class="headerlink" title="HID命令解析"></a>HID命令解析</h4><p>这部分和上位机反着处理即可, 在hidEmuRptCB函数中, 处理HID_DEV_OPER_WRITE的情况,然后区分是否是我们需要关注的事件.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解析自定义的HID灯光协议</span></span><br><span class="line">HidCommandPacket *packet = <span class="built_in">reinterpret_cast</span>&lt;HidCommandPacket *&gt; (pData);</span><br><span class="line"><span class="comment">// USB_Printf(&quot;  -&gt; Received Command ID: %d\n&quot;, packet-&gt;cmd);</span></span><br><span class="line"><span class="keyword">switch</span> (<span class="built_in">static_cast</span>&lt;HidCommand&gt; (packet-&gt;cmd)) &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> HidCommand::ShowLEDs: &#123;</span><br><span class="line">    <span class="keyword">extern</span> NeoPixelController *g_pLeds;</span><br><span class="line">    <span class="keyword">if</span> (g_pLeds) &#123;</span><br><span class="line">        g_pLeds-&gt;<span class="built_in">show</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> HidCommand::SetHeartColor: &#123;</span><br><span class="line">    <span class="type">uint8_t</span> heart_id = packet-&gt;payload.setHeart.heart_id;</span><br><span class="line">    <span class="type">uint8_t</span> r = packet-&gt;payload.setHeart.r;</span><br><span class="line">    <span class="type">uint8_t</span> g = packet-&gt;payload.setHeart.g;</span><br><span class="line">    <span class="type">uint8_t</span> b = packet-&gt;payload.setHeart.b;</span><br><span class="line">    <span class="keyword">extern</span> NeoPixelController *g_pLeds;</span><br><span class="line">    <span class="keyword">if</span> (g_pLeds) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (heart_id) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            g_pLeds-&gt;<span class="built_in">heart1</span> (r &lt;&lt; <span class="number">16</span> | g &lt;&lt; <span class="number">8</span> | b);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            g_pLeds-&gt;<span class="built_in">heart2</span> (r &lt;&lt; <span class="number">16</span> | g &lt;&lt; <span class="number">8</span> | b);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            g_pLeds-&gt;<span class="built_in">heart3</span> (r &lt;&lt; <span class="number">16</span> | g &lt;&lt; <span class="number">8</span> | b);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="comment">// 无效的 heart_id，忽略</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> HidCommand::PlayBeep: </span><br><span class="line"><span class="keyword">case</span> HidCommand::BuzzerOff:</span><br><span class="line"><span class="keyword">case</span> HidCommand::SetSingleLED:</span><br><span class="line"><span class="keyword">case</span> HidCommand::SetAllLEDs: &#123;</span><br><span class="line">    <span class="comment">// 省略其余具体实现</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="comment">// 收到未知命令</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后享受Aurora对大量游戏的支持,以及丰富的灯光配置.<br><img src="/images/archives/aurora_add_script_device.png" alt="aurora_add_script_device"></p>
+<p><img src="/images/archives/aurora_cs2_profile.png" alt="aurora_cs2_profile"></p>
+<h2 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h2><iframe width="640" height="360" src="//player.bilibili.com/player.html?isOutside=true&aid=115445315273167&bvid=BV14is1zXEyK&cid=33437781496&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
+<hr>
+<h3 id="法律及版权说明"><a href="#法律及版权说明" class="headerlink" title="法律及版权说明"></a><strong>法律及版权说明</strong></h3><ul>
+<li><strong>软件协议</strong>：本项目中涉及的代码部分仅供学习研究。</li>
+<li><strong>商标声明</strong>：Valve, Counter-Strike, Steam, Half-Life 及其对应的徽标均为 Valve Corporation 的商标及&#x2F;或注册商标。</li>
+<li><strong>不诚实行为合规</strong>：本项目不涉及对游戏的修改、破解或作弊，仅通过官方允许的 GSI (Game State Integration) 接口读取只读数据展示呼吸灯效果。</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">补充说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E4%BB%B6%E9%80%89%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">元件选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MCU%E9%80%89%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">MCU选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LDO%E9%80%89%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">LDO选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%82%E7%94%B5%E6%B1%A0%E5%85%85%E7%94%B5%E8%8A%AF%E7%89%87%E9%80%89%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">锂电池充电芯片选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%AF%E7%8F%A0%E5%92%8CMOS%E9%80%89%E6%8B%A9"><span class="toc-number">2.4.</span> <span class="toc-text">灯珠和MOS选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCB%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">PCB设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%89%A9%E7%84%8A%E6%8E%A5%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">4.</span> <span class="toc-text">实物焊接效果展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StatTrak%E9%A1%B9%E7%9B%AE%E5%9B%9E%E9%A1%BE"><span class="toc-number">5.1.</span> <span class="toc-text">StatTrak项目回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auraro"><span class="toc-number">5.2.</span> <span class="toc-text">Auraro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Device-Script%E7%BC%96%E5%86%99"><span class="toc-number">5.3.</span> <span class="toc-text">Device Script编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E6%8B%9F%E5%AE%9A%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.3.1.</span> <span class="toc-text">协议拟定和实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Device-Script%E5%AE%8C%E5%96%84"><span class="toc-number">5.3.2.</span> <span class="toc-text">Device Script完善</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E4%BD%8D%E6%9C%BA%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.4.</span> <span class="toc-text">下位机程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8WS2812B"><span class="toc-number">5.4.1.</span> <span class="toc-text">驱动WS2812B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HID%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90"><span class="toc-number">5.4.2.</span> <span class="toc-text">HID命令解析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91"><span class="toc-number">6.</span> <span class="toc-text">视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E5%BE%8B%E5%8F%8A%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="toc-number">6.1.</span> <span class="toc-text">法律及版权说明</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&text=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&is_video=false&description=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动&body=Check out this article: https://chaosgoo.com/2025/10/29/Real-life-HealthPin/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&name=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动&description=&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;免责声明 (Disclaimer)&lt;/strong&gt;&lt;br&gt;本项目仅为作者出于技术探索和个人兴趣进行的&lt;strong&gt;非商业同人创作&lt;/strong&gt; (Fan-made Project)。所有设计资源（PCB&amp;#x2F;代码）仅供电子技术交流与学习参考，&lt;strong&gt;严禁用于任何商业用途或批量生产销售&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关于权属&lt;/strong&gt;：文中提及的 “Counter-Strike 2” (CS2) 及其相关素材权属归 &lt;strong&gt;Valve Corporation&lt;/strong&gt; 所有。本站与 Valve 无任何关联，亦未获得官方授权，本项目是对游戏机制在硬件层面的同步技术验证。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;/images/archives/healthpin_in_game.jpg&#34; alt=&#34;healthpin_in_game&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;在CS2中(CS:GO里面也有)中有一个叫做生命值胸章的饰品&lt;br&gt;&lt;img src=&#34;/images/archives/healthpin_in_cs2.png&#34; alt=&#34;healthpin_in_cs2&#34;&gt;&lt;br&gt;第一次看到时候就觉得这个很适合使用LED做出来.&lt;br&gt;而且还可以通过CSGO GSI同步游戏中生命值状态.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2025/10/29/Real-life-HealthPin/&t=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/privacy-policy/">
+              隐私政策
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/terms/">
+              使用条款
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/contact/">
+              联系我们
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+              皖ICP备2024054743号
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="2025年起Google Play要求新开发者账号完成14天封闭测试。记录从注册账号、准备材料、利用Reddit社区互助完成测试，到解决隐私政策问题最终上架的完整过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="踩坑与收获：2025独立开发者Google Play上架实战复盘">
+<meta property="og:url" content="https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="2025年起Google Play要求新开发者账号完成14天封闭测试。记录从注册账号、准备材料、利用Reddit社区互助完成测试，到解决隐私政策问题最终上架的完整过程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/play_store_old_account_screenshot.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/register_play_developer_account.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/play_develop_payment_record.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/release_espflash.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/first_paid_user.png">
+<meta property="article:published_time" content="2025-09-26T08:35:34.000Z">
+<meta property="article:modified_time" content="2025-09-26T08:35:34.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/archives/play_store_old_account_screenshot.png">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            踩坑与收获：2025独立开发者Google Play上架实战复盘
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/">
+                                                          <!-- async scripts -->
+                                                          <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+
+                                                              <!-- styles -->
+                                                              <link rel="preload" href="/css/style.css"
+                                                                as="style"
+                                                                onload="this.onload=null;this.rel='stylesheet'">
+                                                              <noscript>
+                                                                <link rel="stylesheet"
+                                                                  href="/css/style.css">
+                                                              </noscript>
+                                                              <!-- persian styles -->
+                                                              
+                                                                    <!-- rss -->
+                                                                    
+                                                                          
+                                                                              <script async
+                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                crossorigin="anonymous"></script>
+                                                                              <!-- mathjax -->
+                                                                              
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2025/10/29/Real-life-HealthPin/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2025/01/12/DWM3001CDK-spi-ws2812-driver/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&text=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&is_video=false&description=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=踩坑与收获：2025独立开发者Google Play上架实战复盘&body=Check out this article: https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&name=踩坑与收获：2025独立开发者Google Play上架实战复盘&description=&lt;h2 id=&#34;背景与初衷&#34;&gt;&lt;a href=&#34;#背景与初衷&#34; class=&#34;headerlink&#34; title=&#34;背景与初衷&#34;&gt;&lt;/a&gt;背景与初衷&lt;/h2&gt;&lt;p&gt;入行安卓开发已有一段时间。学生时期曾注册并使用过&lt;br&gt;Google Play 开发者账号，在当时的审核环境下完成过&lt;br&gt;多款应用的发布与实践。&lt;/p&gt;
+&lt;p&gt;随着平台政策和合规要求的持续调整，&lt;br&gt;该历史账号已主动终止使用，相关应用亦已停止维护。&lt;br&gt;该阶段的经历主要作为个人技术成长过程的一部分予以记录。&lt;br&gt;&lt;img src=&#34;/images/archives/play_store_old_account_screenshot.png&#34; alt=&#34;play_store_old_account_screenshot&#34;&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&t=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%B8%8E%E5%88%9D%E8%A1%B7"><span class="toc-number">1.</span> <span class="toc-text">背景与初衷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E7%AB%AF%EF%BC%9A%E6%B3%A8%E5%86%8C%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7"><span class="toc-number">2.</span> <span class="toc-text">开端：注册开发者账号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E5%92%8C%E5%AE%8C%E5%96%84%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">创建应用和完善信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E9%97%AD%E6%B5%8B%E8%AF%95%EF%BC%9A%E5%9C%A8%E5%BC%80%E5%8F%91%E8%80%85%E7%A4%BE%E5%8C%BA%E6%89%BE%E4%BA%BA%E2%80%9C%E6%90%AD%E4%BC%99%E2%80%9D"><span class="toc-number">4.</span> <span class="toc-text">封闭测试：在开发者社区找人“搭伙”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E7%89%88"><span class="toc-number">5.</span> <span class="toc-text">正式版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-number">7.</span> <span class="toc-text">后续</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        踩坑与收获：2025独立开发者Google Play上架实战复盘
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-09-26T08:35:34.000Z" class="dt-published" itemprop="datePublished">2025-09-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Software-Dev/">Software & Dev</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="背景与初衷"><a href="#背景与初衷" class="headerlink" title="背景与初衷"></a>背景与初衷</h2><p>入行安卓开发已有一段时间。学生时期曾注册并使用过<br>Google Play 开发者账号，在当时的审核环境下完成过<br>多款应用的发布与实践。</p>
+<p>随着平台政策和合规要求的持续调整，<br>该历史账号已主动终止使用，相关应用亦已停止维护。<br>该阶段的经历主要作为个人技术成长过程的一部分予以记录。<br><img src="/images/archives/play_store_old_account_screenshot.png" alt="play_store_old_account_screenshot"></p>
+<span id="more"></span> 
+
+<p>最近一段时间，出于对Compose的兴趣，我边学边做，开发了一款安卓平台的ESP32烧录工具，命名为<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=io.serialflow.espflash">ESPFlash</a></p>
+<h2 id="开端：注册开发者账号"><a href="#开端：注册开发者账号" class="headerlink" title="开端：注册开发者账号"></a>开端：注册开发者账号</h2><p>上架Play Store的第一步，是使用谷歌账号支付25美元注册成为Play开发者。<br>注册链接是<a target="_blank" rel="noopener" href="https://play.google.com/console/signup">https://play.google.com/console/signup</a></p>
+<p>作为个人开发者，我选择注册个人类型的账号。<br><img src="/images/archives/register_play_developer_account.png" alt="register_play_developer_account"></p>
+<p>填写完基本信息后，输入信用卡信息完成扣款。我使用的是学生时代办理的交通银行Youth Power卡，支持银联和VISA。<br><img src="/images/archives/play_develop_payment_record.png" alt="play_develop_payment_record"></p>
+<h2 id="创建应用和完善信息"><a href="#创建应用和完善信息" class="headerlink" title="创建应用和完善信息"></a>创建应用和完善信息</h2><p>在开发者控制台创建应用后，需要填写基本信息，并准备应用截图和隐私政策页面。</p>
+<ul>
+<li>尺寸符合要求即可。若追求美观，可使用 <a target="_blank" rel="noopener" href="https://theapplaunchpad.com/">theapplaunchpad</a> 或 <a target="_blank" rel="noopener" href="https://app-mockup.com/">app-mockup</a>-mockup 等在线工具生成。</li>
+<li>隐私政策：这是关键。即使你的APP是工具类，未主动收集用户数据，但只要接入了Firebase、AdMob等第三方SDK，就必须在隐私政策中明确告知。我使用 <a target="_blank" rel="noopener" href="https://www.freeprivacypolicy.com/">free privacy policy</a> 这类工具生成内容，并托管在自己的域名下。</li>
+</ul>
+<h2 id="封闭测试：在开发者社区找人“搭伙”"><a href="#封闭测试：在开发者社区找人“搭伙”" class="headerlink" title="封闭测试：在开发者社区找人“搭伙”"></a>封闭测试：在开发者社区找人“搭伙”</h2><p>这是整个流程里最消磨耐心的地方。按照<a target="_blank" rel="noopener" href="https://support.google.com/googleplay/android-developer/answer/14151465?hl=zh-Hans">谷歌的新政策</a>，新注册的个人账号必须找齐12个人，连续不间断地测试14天才能申请正式上架。</p>
+<p>刚看到这个要求时我是一头雾水的——身边哪来那么多安卓用户，还得天天帮我点开APP？好在后来我摸到了Reddit的 <a target="_blank" rel="noopener" href="https://www.reddit.com/r/AndroidClosedTesting/">AndroidClosedTesting</a> 板块。这地方简直是独立开发者的“互助加油站”，大家都在面临同样的困境。</p>
+<p>我在社区里发了贴，很快就凑够了人头。这种互助是双向的：别人帮我测，我也得帮别人测。那两周我手机里装了五六十个奇奇怪怪的 APP，每天的任务就是挨个点开刷一遍。虽然有点累，但看着测试进度一天天走完，心里确实踏实了不少。</p>
+<p>国内也可以在V2EX的<a target="_blank" rel="noopener" href="https://www.v2ex.com/go/create">分享创造</a>板块发布自己的APP, 凭借我潜水多年的经验了. 看到过不少开发者发布自己的APP后, 堆起万丈高楼(夸张了,几百层还是有的).</p>
+<h2 id="正式版"><a href="#正式版" class="headerlink" title="正式版"></a>正式版</h2><p>14天测试期满后，即可在控制台提交正式版发布申请。<br><img src="/images/archives/release_espflash.jpg" alt="release_espflash"><br>约3天后，我收到了审核未通过的邮件，要求整改。排查后发现，问题很可能出在隐私政策上——初始版本未充分说明Firebase和AdMob的数据处理情况。</p>
+<p>更新隐私政策并重新提交后，仅用了几个小时就审核通过，成功上架Google Play。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>政策研究要先行：尤其关注测试和隐私政策要求。</li>
+<li>封闭测试：别硬扛，去社区找同伴。互助测试比自己找亲戚朋友靠谱得多。</li>
+<li>隐私政策无小事：必须覆盖所有第三方SDK的行为。</li>
+<li>耐心与细致：审核被拒是常态，仔细阅读反馈，针对性修改。</li>
+</ul>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>差不多过了一个月,迎接了第一份付费用户.<br><img src="/images/archives/first_paid_user.png" alt="first_paid_user"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%B8%8E%E5%88%9D%E8%A1%B7"><span class="toc-number">1.</span> <span class="toc-text">背景与初衷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E7%AB%AF%EF%BC%9A%E6%B3%A8%E5%86%8C%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7"><span class="toc-number">2.</span> <span class="toc-text">开端：注册开发者账号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E5%92%8C%E5%AE%8C%E5%96%84%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">创建应用和完善信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E9%97%AD%E6%B5%8B%E8%AF%95%EF%BC%9A%E5%9C%A8%E5%BC%80%E5%8F%91%E8%80%85%E7%A4%BE%E5%8C%BA%E6%89%BE%E4%BA%BA%E2%80%9C%E6%90%AD%E4%BC%99%E2%80%9D"><span class="toc-number">4.</span> <span class="toc-text">封闭测试：在开发者社区找人“搭伙”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E7%89%88"><span class="toc-number">5.</span> <span class="toc-text">正式版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-number">7.</span> <span class="toc-text">后续</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&text=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&is_video=false&description=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=踩坑与收获：2025独立开发者Google Play上架实战复盘&body=Check out this article: https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&title=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&name=踩坑与收获：2025独立开发者Google Play上架实战复盘&description=&lt;h2 id=&#34;背景与初衷&#34;&gt;&lt;a href=&#34;#背景与初衷&#34; class=&#34;headerlink&#34; title=&#34;背景与初衷&#34;&gt;&lt;/a&gt;背景与初衷&lt;/h2&gt;&lt;p&gt;入行安卓开发已有一段时间。学生时期曾注册并使用过&lt;br&gt;Google Play 开发者账号，在当时的审核环境下完成过&lt;br&gt;多款应用的发布与实践。&lt;/p&gt;
+&lt;p&gt;随着平台政策和合规要求的持续调整，&lt;br&gt;该历史账号已主动终止使用，相关应用亦已停止维护。&lt;br&gt;该阶段的经历主要作为个人技术成长过程的一部分予以记录。&lt;br&gt;&lt;img src=&#34;/images/archives/play_store_old_account_screenshot.png&#34; alt=&#34;play_store_old_account_screenshot&#34;&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2025/09/26/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/&t=踩坑与收获：2025独立开发者Google Play上架实战复盘"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/privacy-policy/">
+              隐私政策
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/terms/">
+              使用条款
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/contact/">
+              联系我们
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+              皖ICP备2024054743号
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
