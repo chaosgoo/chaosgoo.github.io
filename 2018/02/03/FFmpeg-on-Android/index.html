@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
   <meta name="description" content="在Android NDK上移植FFmpeg并编译so文件。MediaCodec等四种解码方式对比，版本命名、NDK交叉编译链配置(MinGW&#x2F;msys)等问题的解决记录。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Code FFmpeg on Android">
+<meta property="og:title" content="移植FFMPEG到安卓">
 <meta property="og:url" content="https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/index.html">
 <meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
 <meta property="og:description" content="在Android NDK上移植FFmpeg并编译so文件。MediaCodec等四种解码方式对比，版本命名、NDK交叉编译链配置(MinGW&#x2F;msys)等问题的解决记录。">
@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2018-02-03T13:01:08.000Z">
 <meta property="article:author" content="Chaos Goo">
 <meta property="article:tag" content="Android">
+<meta property="article:tag" content="移动开发">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://chaosgoo.com/images/archives/FFmpegOnAndroidP1.png">
     
@@ -43,7 +44,7 @@
                                                         
                                                           <!-- title -->
                                                           <title>
-                                                            Code FFmpeg on Android
+                                                            移植FFMPEG到安卓
                                                           </title>
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/">
@@ -118,15 +119,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&text=Code FFmpeg on Android"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&is_video=false&description=Code FFmpeg on Android"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code FFmpeg on Android&body=Check out this article: https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&name=Code FFmpeg on Android&description=&lt;h2 id=&#34;移植FFmpeg到Android上&#34;&gt;&lt;a href=&#34;#移植FFmpeg到Android上&#34; class=&#34;headerlink&#34; title=&#34;移植FFmpeg到Android上&#34;&gt;&lt;/a&gt;移植FFmpeg到Android上&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/images/archives/FFmpegOnAndroidP1.png&#34; alt=&#34;Ffmpegonandroidp1&#34;&gt;&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&text=移植FFMPEG到安卓"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&is_video=false&description=移植FFMPEG到安卓"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=移植FFMPEG到安卓&body=Check out this article: https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&name=移植FFMPEG到安卓&description=&lt;h2 id=&#34;移植FFmpeg到Android上&#34;&gt;&lt;a href=&#34;#移植FFmpeg到Android上&#34; class=&#34;headerlink&#34; title=&#34;移植FFmpeg到Android上&#34;&gt;&lt;/a&gt;移植FFmpeg到Android上&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/images/archives/FFmpegOnAndroidP1.png&#34; alt=&#34;Ffmpegonandroidp1&#34;&gt;&lt;/p&gt;
 &lt;p&gt;因为&lt;a href=&#34;https://www.coolapk.com/apk/com.chaosgoo.mixmusic&#34;&gt;&lt;font color=#9966cc&gt;Mix Music&lt;/font&gt;&lt;/a&gt;解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是&lt;a href=&#34;https://ffmpeg.org/&#34;&gt;&lt;font color=#333333&gt;FFmpeg&lt;/font&gt;&lt;/a&gt;的效果最好&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.android.google.cn/reference/android/media/MediaCodec.html&#34;&gt;&lt;font color=#FF4081&gt;MediaCodec&lt;/font&gt;&lt;/a&gt;配合&lt;a href=&#34;https://developer.android.google.cn/reference/android/media/MediaExtractor.html&#34;&gt;&lt;font color=#448aff&gt;MediaExtractor&lt;/font&gt;&lt;/a&gt;进行解码操作&lt;ul&gt;
@@ -146,7 +147,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&t=Code FFmpeg on Android"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&t=移植FFMPEG到安卓"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -166,7 +167,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Code FFmpeg on Android
+        移植FFMPEG到安卓
     </h1>
 
 
@@ -194,7 +195,7 @@
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Android/" rel="tag">Android</a>
+        <a class="p-category" href="/tags/Android/" rel="tag">Android</a>, <a class="p-category" href="/tags/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/" rel="tag">移动开发</a>
     </div>
 
 
@@ -315,15 +316,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&text=Code FFmpeg on Android"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&is_video=false&description=Code FFmpeg on Android"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Code FFmpeg on Android&body=Check out this article: https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=Code FFmpeg on Android"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&name=Code FFmpeg on Android&description=&lt;h2 id=&#34;移植FFmpeg到Android上&#34;&gt;&lt;a href=&#34;#移植FFmpeg到Android上&#34; class=&#34;headerlink&#34; title=&#34;移植FFmpeg到Android上&#34;&gt;&lt;/a&gt;移植FFmpeg到Android上&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/images/archives/FFmpegOnAndroidP1.png&#34; alt=&#34;Ffmpegonandroidp1&#34;&gt;&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&text=移植FFMPEG到安卓"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&is_video=false&description=移植FFMPEG到安卓"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=移植FFMPEG到安卓&body=Check out this article: https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&title=移植FFMPEG到安卓"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&name=移植FFMPEG到安卓&description=&lt;h2 id=&#34;移植FFmpeg到Android上&#34;&gt;&lt;a href=&#34;#移植FFmpeg到Android上&#34; class=&#34;headerlink&#34; title=&#34;移植FFmpeg到Android上&#34;&gt;&lt;/a&gt;移植FFmpeg到Android上&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/images/archives/FFmpegOnAndroidP1.png&#34; alt=&#34;Ffmpegonandroidp1&#34;&gt;&lt;/p&gt;
 &lt;p&gt;因为&lt;a href=&#34;https://www.coolapk.com/apk/com.chaosgoo.mixmusic&#34;&gt;&lt;font color=#9966cc&gt;Mix Music&lt;/font&gt;&lt;/a&gt;解码的需求,所以得选择合适的解码工具.尝试了4种解码方式,最后还是&lt;a href=&#34;https://ffmpeg.org/&#34;&gt;&lt;font color=#333333&gt;FFmpeg&lt;/font&gt;&lt;/a&gt;的效果最好&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.android.google.cn/reference/android/media/MediaCodec.html&#34;&gt;&lt;font color=#FF4081&gt;MediaCodec&lt;/font&gt;&lt;/a&gt;配合&lt;a href=&#34;https://developer.android.google.cn/reference/android/media/MediaExtractor.html&#34;&gt;&lt;font color=#448aff&gt;MediaExtractor&lt;/font&gt;&lt;/a&gt;进行解码操作&lt;ul&gt;
@@ -343,7 +344,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&t=Code FFmpeg on Android"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2018/02/03/FFmpeg-on-Android/&t=移植FFMPEG到安卓"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
