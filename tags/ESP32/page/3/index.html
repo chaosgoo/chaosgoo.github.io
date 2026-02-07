@@ -68,10 +68,7 @@
                                                                 href="/css/style.css">
                                                               <!-- styles -->
 
-
-            
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-                
+            <!-- Font Awesome removed - using inline SVG icons instead -->
                                                                 <!-- persian styles -->
                                                                 
                                                                       <!-- rss -->
@@ -119,7 +116,13 @@
   <div id="nav">
     <ul>
       <li class="icon">
-        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+        <a href="#" aria-label="目录"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg></a>
       </li>
       <!--
      -->
@@ -188,13 +191,14 @@
   
     <div class="pagination">
         
-            <a href="/tags/ESP32/page/2/"><i class="fa-solid fa-angle-left"></i></a>
-        
-        <span class="page-number">第 3 页，共 3 页</span>
-        
+            <a href="/tags/ESP32/page/2/">‹</a>
+            
+                <span class="page-number">
+                    第 3 页，共 3 页
+                </span>
+                
     </div>
-
-
+    
 </div>
 
                     
