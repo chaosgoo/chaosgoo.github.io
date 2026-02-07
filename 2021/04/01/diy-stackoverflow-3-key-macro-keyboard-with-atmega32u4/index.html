@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,21 +62,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -75,18 +205,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -99,6 +257,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -135,7 +295,8 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/&title=复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/&name=复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南&description=&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;2021 年愚人节，Stack Overflow 搞了一个非常有意思的彩蛋：限制用户的复制次数，并“推销”了一款只有三个键的定制键盘。&lt;/p&gt;
 &lt;p&gt;这个小巧精致的键盘激发了我的创作欲。思考了一下，实现逻辑其实非常简单，基本上把我之前做的“原神自动弹琴装置”稍加修改即可，核心代码甚至在百行以内。&lt;br&gt;&lt;img src=&#34;/images/archives/aprilfoolskeyboard/keyboard_by_stackOverflow.png&#34; alt=&#34;键盘 by StackOverflow&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;随后我打开-KiCad-直接开干，从原理图到-3D-渲染一气呵成。&#34;&gt;&lt;a href=&#34;#随后我打开-KiCad-直接开干，从原理图到-3D-渲染一气呵成。&#34; class=&#34;headerlink&#34; title=&#34;随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。&#34;&gt;&lt;/a&gt;随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+&lt;p&gt;随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。&lt;/p&gt;
+&lt;h2 id=&#34;&#34;&gt;&lt;a href=&#34;#&#34; class=&#34;headerlink&#34; title=&#34;&#34;&gt;&lt;/a&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/&t=复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
@@ -143,16 +304,16 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E5%90%8E%E6%88%91%E6%89%93%E5%BC%80-KiCad-%E7%9B%B4%E6%8E%A5%E5%BC%80%E5%B9%B2%EF%BC%8C%E4%BB%8E%E5%8E%9F%E7%90%86%E5%9B%BE%E5%88%B0-3D-%E6%B8%B2%E6%9F%93%E4%B8%80%E6%B0%94%E5%91%B5%E6%88%90%E3%80%82"><span class="toc-number">2.</span> <span class="toc-text">随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-ATMega32u4%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">🛠️ 核心设计思路：为什么是 ATMega32u4？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%90-%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%9AKiCad-%E6%B5%81%E7%A8%8B%E4%B8%8E-PCB-%E7%BB%86%E8%8A%82"><span class="toc-number">3.1.</span> <span class="toc-text">📐 硬件开发：KiCad 流程与 PCB 细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C"><span class="toc-number">3.1.1.</span> <span class="toc-text">渲染效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%94%B5%E8%B7%AF%E7%89%B9%E6%80%A7"><span class="toc-number">3.1.2.</span> <span class="toc-text">关键电路特性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%BB-%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0%EF%BC%9A%E7%BB%84%E5%90%88%E9%94%AE%E9%80%BB%E8%BE%91"><span class="toc-number">4.</span> <span class="toc-text">💻 软件实现：组合键逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95-BOM"><span class="toc-number">5.</span> <span class="toc-text">材料清单 (BOM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%8A%E6%8E%A5%E4%B8%8E%E7%BB%84%E8%A3%85"><span class="toc-number">6.</span> <span class="toc-text">焊接与组装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E7%89%B9%E6%80%A7%E4%B8%8E%E5%BC%80%E6%BA%90"><span class="toc-number">7.</span> <span class="toc-text">进阶特性与开源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9AHID-%E6%89%AB%E6%8F%8F%E7%A0%81%E9%80%9F%E6%9F%A5%E8%A1%A8-%E9%83%A8%E5%88%86"><span class="toc-number">8.</span> <span class="toc-text">附：HID 扫描码速查表 (部分)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%B8%8E%E4%BF%AE%E9%A5%B0%E9%94%AE-Modifier-Keys"><span class="toc-number">9.</span> <span class="toc-text">控制与修饰键 (Modifier Keys)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA%E9%94%AE-System-Navigation"><span class="toc-number">10.</span> <span class="toc-text">系统与导航键 (System &amp; Navigation)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E9%94%AE-Function-Keys"><span class="toc-number">11.</span> <span class="toc-text">功能键 (Function Keys)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">12.</span> <span class="toc-text">总结与展望</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-ATMega32u4%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">🛠️ 核心设计思路：为什么是 ATMega32u4？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%90-%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%9AKiCad-%E6%B5%81%E7%A8%8B%E4%B8%8E-PCB-%E7%BB%86%E8%8A%82"><span class="toc-number">3.1.</span> <span class="toc-text">📐 硬件开发：KiCad 流程与 PCB 细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C"><span class="toc-number">3.1.1.</span> <span class="toc-text">渲染效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%94%B5%E8%B7%AF%E7%89%B9%E6%80%A7"><span class="toc-number">3.1.2.</span> <span class="toc-text">关键电路特性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%BB-%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0%EF%BC%9A%E7%BB%84%E5%90%88%E9%94%AE%E9%80%BB%E8%BE%91"><span class="toc-number">4.</span> <span class="toc-text">💻 软件实现：组合键逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95-BOM"><span class="toc-number">5.</span> <span class="toc-text">材料清单 (BOM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%8A%E6%8E%A5%E4%B8%8E%E7%BB%84%E8%A3%85"><span class="toc-number">6.</span> <span class="toc-text">焊接与组装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E7%89%B9%E6%80%A7%E4%B8%8E%E5%BC%80%E6%BA%90"><span class="toc-number">7.</span> <span class="toc-text">进阶特性与开源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9AHID-%E6%89%AB%E6%8F%8F%E7%A0%81%E9%80%9F%E6%9F%A5%E8%A1%A8-%E9%83%A8%E5%88%86"><span class="toc-number">8.</span> <span class="toc-text">附：HID 扫描码速查表 (部分)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%B8%8E%E4%BF%AE%E9%A5%B0%E9%94%AE-Modifier-Keys"><span class="toc-number">9.</span> <span class="toc-text">控制与修饰键 (Modifier Keys)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA%E9%94%AE-System-amp-Navigation"><span class="toc-number">10.</span> <span class="toc-text">系统与导航键 (System &amp; Navigation)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E9%94%AE-Function-Keys"><span class="toc-number">11.</span> <span class="toc-text">功能键 (Function Keys)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">12.</span> <span class="toc-text">总结与展望</span></a></li></ol>
       </div>
     
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -195,7 +356,8 @@
   <div class="content e-content" itemprop="articleBody">
     <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>2021 年愚人节，Stack Overflow 搞了一个非常有意思的彩蛋：限制用户的复制次数，并“推销”了一款只有三个键的定制键盘。</p>
 <p>这个小巧精致的键盘激发了我的创作欲。思考了一下，实现逻辑其实非常简单，基本上把我之前做的“原神自动弹琴装置”稍加修改即可，核心代码甚至在百行以内。<br><img src="/images/archives/aprilfoolskeyboard/keyboard_by_stackOverflow.png" alt="键盘 by StackOverflow"></p>
-<h2 id="随后我打开-KiCad-直接开干，从原理图到-3D-渲染一气呵成。"><a href="#随后我打开-KiCad-直接开干，从原理图到-3D-渲染一气呵成。" class="headerlink" title="随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。"></a>随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。<br><span id="more"></span></h2><h2 id="🛠️-核心设计思路：为什么是-ATMega32u4？"><a href="#🛠️-核心设计思路：为什么是-ATMega32u4？" class="headerlink" title="🛠️ 核心设计思路：为什么是 ATMega32u4？"></a>🛠️ 核心设计思路：为什么是 ATMega32u4？</h2><p>在开始制作之前，选型是关键。Stack Overflow 官方彩蛋中的键盘只有三个键：<strong>Ctrl</strong>、<strong>C</strong>、<strong>V</strong>。</p>
+<p>随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="🛠️-核心设计思路：为什么是-ATMega32u4？"><a href="#🛠️-核心设计思路：为什么是-ATMega32u4？" class="headerlink" title="🛠️ 核心设计思路：为什么是 ATMega32u4？"></a>🛠️ 核心设计思路：为什么是 ATMega32u4？</h2><p>在开始制作之前，选型是关键。Stack Overflow 官方彩蛋中的键盘只有三个键：<strong>Ctrl</strong>、<strong>C</strong>、<strong>V</strong>。</p>
 <p>为了实现这个功能，我选择了 <strong>ATMega32u4</strong> 作为主控：</p>
 <ul>
 <li><strong>原生 HID 支持：</strong> 与普通的 ESP32 或 ATMega328P 不同，32u4 自带硬件 USB 支持，可以直接被电脑识别为标准键盘（HID 终端），无需额外的串口转 USB 芯片。</li>
@@ -207,13 +369,13 @@
 <h4 id="关键电路特性"><a href="#关键电路特性" class="headerlink" title="关键电路特性"></a>关键电路特性</h4><ol>
 <li><strong>热插拔支持：</strong> 引入了凯华热插拔轴座（1511 系列），这意味着你可以随时更换青轴、红轴或静音轴。</li>
 <li><strong>电源管理：</strong> 使用了 AP2112K-3.3 LDO 芯片，确保 32u4 在稳定的电压下工作，并加入肖特基二极管防止 Type-C 接口反向供电。</li>
-<li><strong>模式切换：</strong> 增加了一个 <strong>2 位拨码开关</strong>。这不仅可以用来切换不同的按键映射（如 Mac&#x2F;Win 切换），还能开启或关闭“连发模式”。</li>
+<li><strong>模式切换：</strong> 增加了一个 <strong>2 位拨码开关</strong>。这不仅可以用来切换不同的按键映射（如 Mac/Win 切换），还能开启或关闭“连发模式”。</li>
 </ol>
 <hr>
 <h2 id="💻-软件实现：组合键逻辑"><a href="#💻-软件实现：组合键逻辑" class="headerlink" title="💻 软件实现：组合键逻辑"></a>💻 软件实现：组合键逻辑</h2><p>固件的核心逻辑是将物理按键的电平变化映射为标准的 HID 编码。实现 <code>Ctrl + C</code> 的逻辑如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：实现 Ctrl + C 的伪代码</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">digitalRead</span>(KEY_C_PIN) == LOW) &#123;</span><br><span class="line">    Keyboard.<span class="built_in">press</span>(KEY_LEFT_CTRL); <span class="comment">// 先按下 Ctrl</span></span><br><span class="line">    Keyboard.<span class="built_in">press</span>(<span class="string">&#x27;c&#x27;</span>);           <span class="comment">// 再按下 C</span></span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">100</span>);                    <span class="comment">// 保持一小段时间</span></span><br><span class="line">    Keyboard.<span class="built_in">releaseAll</span>();         <span class="comment">// 释放所有按键</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="材料清单-BOM"><a href="#材料清单-BOM" class="headerlink" title="材料清单 (BOM)"></a>材料清单 (BOM)</h2><p><img src="/images/archives/aprilfoolskeyboard/material_preview.png" alt="预览图"></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -223,7 +385,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1</td>
 <td>ATMega32u4</td>
 <td>1</td>
@@ -313,7 +476,9 @@
 <td>1</td>
 <td>3x4x2.5 四脚贴片</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="焊接与组装"><a href="#焊接与组装" class="headerlink" title="焊接与组装"></a>焊接与组装</h2><p>焊接心得： QFN44 封装虽然引脚密集，但在涂抹适量锡膏后，配合热风枪（建议 350°C，中等风速）可以实现自动对准吸附。</p>
 <p><img src="/images/archives/aprilfoolskeyboard/solidering_pcb.png" alt="PCB 电路板"></p>
 <p><strong>组装</strong>： 简单的画了个方盒子作为外壳，然后从我的旧键盘上扣下来三个键帽装上去。</p>
@@ -323,7 +488,8 @@
 <p>全平台兼容： 基于标准 HID 协议，插上即用，无需安装驱动。</p>
 <p>开源地址： <a target="_blank" rel="noopener" href="https://github.com/chaosgoo/HairsPP">https://github.com/chaosgoo/HairsPP</a></p>
 <h2 id="附：HID-扫描码速查表-部分"><a href="#附：HID-扫描码速查表-部分" class="headerlink" title="附：HID 扫描码速查表 (部分)"></a>附：HID 扫描码速查表 (部分)</h2><p>为了方便自定义按键，我整理了常用的非标准按键编码。你可以通过修改固件，实现 F13-F24 等宏功能。</p>
-<h2 id="控制与修饰键-Modifier-Keys"><a href="#控制与修饰键-Modifier-Keys" class="headerlink" title="控制与修饰键 (Modifier Keys)"></a>控制与修饰键 (Modifier Keys)</h2><table>
+<h2 id="控制与修饰键-Modifier-Keys"><a href="#控制与修饰键-Modifier-Keys" class="headerlink" title="控制与修饰键 (Modifier Keys)"></a>控制与修饰键 (Modifier Keys)</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>定义</th>
@@ -331,7 +497,8 @@
 <th>功能描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>KEY_LEFT_CTRL</td>
 <td>0x80</td>
 <td>左侧 Ctrl 键</td>
@@ -349,7 +516,7 @@
 <tr>
 <td>KEY_LEFT_GUI</td>
 <td>0x83</td>
-<td>左侧 Win &#x2F; Command 键</td>
+<td>左侧 Win / Command 键</td>
 </tr>
 <tr>
 <td>KEY_RIGHT_CTRL</td>
@@ -369,10 +536,13 @@
 <tr>
 <td>KEY_RIGHT_GUI</td>
 <td>0x87</td>
-<td>右侧 Win &#x2F; Command 键</td>
+<td>右侧 Win / Command 键</td>
 </tr>
-</tbody></table>
-<h2 id="系统与导航键-System-Navigation"><a href="#系统与导航键-System-Navigation" class="headerlink" title="系统与导航键 (System &amp; Navigation)"></a>系统与导航键 (System &amp; Navigation)</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="系统与导航键-System-amp-Navigation"><a href="#系统与导航键-System-amp-Navigation" class="headerlink" title="系统与导航键 (System &amp; Navigation)"></a>系统与导航键 (System &amp; Navigation)</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>定义</th>
@@ -380,7 +550,8 @@
 <th>功能描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>KEY_UP_ARROW</td>
 <td>0xDA</td>
 <td>方向键：上</td>
@@ -455,8 +626,11 @@
 <td>0xC1</td>
 <td>大写锁定键 (Caps Lock)</td>
 </tr>
-</tbody></table>
-<h2 id="功能键-Function-Keys"><a href="#功能键-Function-Keys" class="headerlink" title="功能键 (Function Keys)"></a>功能键 (Function Keys)</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="功能键-Function-Keys"><a href="#功能键-Function-Keys" class="headerlink" title="功能键 (Function Keys)"></a>功能键 (Function Keys)</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>定义</th>
@@ -464,7 +638,8 @@
 <th>功能描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>KEY_F1 - KEY_F12</td>
 <td>0xC2 - 0xCD</td>
 <td>标准功能键 F1 至 F12</td>
@@ -474,7 +649,9 @@
 <td>0xF0 - 0xFB</td>
 <td>扩展功能键（常用于绑定宏命令，不会与系统快捷键冲突）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="总结与展望"><a href="#总结与展望" class="headerlink" title="总结与展望"></a>总结与展望</h2><p>这把复刻自 Stack Overflow 愚人节彩蛋的 3 键宏键盘，虽然初衷是为了好玩，但在实际制作过程中，它涵盖了 原生 USB-HID 通信、硬件电路设计以及人体工程学按键映射等多个核心知识点。</p>
 <p>通过本项目，我们不仅实现了一个极简的生产力工具，更深入理解了：</p>
 <ul>
@@ -488,8 +665,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -499,6 +676,8 @@
         
           <li><a href="/archives/">归档</a></li>
         
+          <li><a href="/projects/">项目</a></li>
+        
           <li><a href="/about/">关于</a></li>
         
       </ul>
@@ -507,7 +686,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E5%90%8E%E6%88%91%E6%89%93%E5%BC%80-KiCad-%E7%9B%B4%E6%8E%A5%E5%BC%80%E5%B9%B2%EF%BC%8C%E4%BB%8E%E5%8E%9F%E7%90%86%E5%9B%BE%E5%88%B0-3D-%E6%B8%B2%E6%9F%93%E4%B8%80%E6%B0%94%E5%91%B5%E6%88%90%E3%80%82"><span class="toc-number">2.</span> <span class="toc-text">随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-ATMega32u4%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">🛠️ 核心设计思路：为什么是 ATMega32u4？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%90-%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%9AKiCad-%E6%B5%81%E7%A8%8B%E4%B8%8E-PCB-%E7%BB%86%E8%8A%82"><span class="toc-number">3.1.</span> <span class="toc-text">📐 硬件开发：KiCad 流程与 PCB 细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C"><span class="toc-number">3.1.1.</span> <span class="toc-text">渲染效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%94%B5%E8%B7%AF%E7%89%B9%E6%80%A7"><span class="toc-number">3.1.2.</span> <span class="toc-text">关键电路特性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%BB-%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0%EF%BC%9A%E7%BB%84%E5%90%88%E9%94%AE%E9%80%BB%E8%BE%91"><span class="toc-number">4.</span> <span class="toc-text">💻 软件实现：组合键逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95-BOM"><span class="toc-number">5.</span> <span class="toc-text">材料清单 (BOM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%8A%E6%8E%A5%E4%B8%8E%E7%BB%84%E8%A3%85"><span class="toc-number">6.</span> <span class="toc-text">焊接与组装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E7%89%B9%E6%80%A7%E4%B8%8E%E5%BC%80%E6%BA%90"><span class="toc-number">7.</span> <span class="toc-text">进阶特性与开源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9AHID-%E6%89%AB%E6%8F%8F%E7%A0%81%E9%80%9F%E6%9F%A5%E8%A1%A8-%E9%83%A8%E5%88%86"><span class="toc-number">8.</span> <span class="toc-text">附：HID 扫描码速查表 (部分)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%B8%8E%E4%BF%AE%E9%A5%B0%E9%94%AE-Modifier-Keys"><span class="toc-number">9.</span> <span class="toc-text">控制与修饰键 (Modifier Keys)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA%E9%94%AE-System-Navigation"><span class="toc-number">10.</span> <span class="toc-text">系统与导航键 (System &amp; Navigation)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E9%94%AE-Function-Keys"><span class="toc-number">11.</span> <span class="toc-text">功能键 (Function Keys)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">12.</span> <span class="toc-text">总结与展望</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-ATMega32u4%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">🛠️ 核心设计思路：为什么是 ATMega32u4？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%90-%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%9AKiCad-%E6%B5%81%E7%A8%8B%E4%B8%8E-PCB-%E7%BB%86%E8%8A%82"><span class="toc-number">3.1.</span> <span class="toc-text">📐 硬件开发：KiCad 流程与 PCB 细节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C"><span class="toc-number">3.1.1.</span> <span class="toc-text">渲染效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%94%B5%E8%B7%AF%E7%89%B9%E6%80%A7"><span class="toc-number">3.1.2.</span> <span class="toc-text">关键电路特性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%BB-%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0%EF%BC%9A%E7%BB%84%E5%90%88%E9%94%AE%E9%80%BB%E8%BE%91"><span class="toc-number">4.</span> <span class="toc-text">💻 软件实现：组合键逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95-BOM"><span class="toc-number">5.</span> <span class="toc-text">材料清单 (BOM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%8A%E6%8E%A5%E4%B8%8E%E7%BB%84%E8%A3%85"><span class="toc-number">6.</span> <span class="toc-text">焊接与组装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E7%89%B9%E6%80%A7%E4%B8%8E%E5%BC%80%E6%BA%90"><span class="toc-number">7.</span> <span class="toc-text">进阶特性与开源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9AHID-%E6%89%AB%E6%8F%8F%E7%A0%81%E9%80%9F%E6%9F%A5%E8%A1%A8-%E9%83%A8%E5%88%86"><span class="toc-number">8.</span> <span class="toc-text">附：HID 扫描码速查表 (部分)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%B8%8E%E4%BF%AE%E9%A5%B0%E9%94%AE-Modifier-Keys"><span class="toc-number">9.</span> <span class="toc-text">控制与修饰键 (Modifier Keys)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA%E9%94%AE-System-amp-Navigation"><span class="toc-number">10.</span> <span class="toc-text">系统与导航键 (System &amp; Navigation)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E9%94%AE-Function-Keys"><span class="toc-number">11.</span> <span class="toc-text">功能键 (Function Keys)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">12.</span> <span class="toc-text">总结与展望</span></a></li></ol>
       </div>
     
 
@@ -524,7 +703,8 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/&title=复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/&name=复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南&description=&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;2021 年愚人节，Stack Overflow 搞了一个非常有意思的彩蛋：限制用户的复制次数，并“推销”了一款只有三个键的定制键盘。&lt;/p&gt;
 &lt;p&gt;这个小巧精致的键盘激发了我的创作欲。思考了一下，实现逻辑其实非常简单，基本上把我之前做的“原神自动弹琴装置”稍加修改即可，核心代码甚至在百行以内。&lt;br&gt;&lt;img src=&#34;/images/archives/aprilfoolskeyboard/keyboard_by_stackOverflow.png&#34; alt=&#34;键盘 by StackOverflow&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;随后我打开-KiCad-直接开干，从原理图到-3D-渲染一气呵成。&#34;&gt;&lt;a href=&#34;#随后我打开-KiCad-直接开干，从原理图到-3D-渲染一气呵成。&#34; class=&#34;headerlink&#34; title=&#34;随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。&#34;&gt;&lt;/a&gt;随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+&lt;p&gt;随后我打开 KiCad 直接开干，从原理图到 3D 渲染一气呵成。&lt;/p&gt;
+&lt;h2 id=&#34;&#34;&gt;&lt;a href=&#34;#&#34; class=&#34;headerlink&#34; title=&#34;&#34;&gt;&lt;/a&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2021/04/01/diy-stackoverflow-3-key-macro-keyboard-with-atmega32u4/&t=复刻 Stack Overflow 愚人节“神作”：3 键机械键盘实战指南"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -542,8 +722,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -556,85 +736,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

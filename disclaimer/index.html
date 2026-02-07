@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="技术风险提示本站（Chaosgoo）发布的所有关于嵌入式系统、硬件电路设计（如 ESP32、WCH 芯片）、焊接、3D 打印及软件开发的内容仅供参考和教育目的。硬件开发涉及电力安全、高温焊接和机械操作，任何操作均存在烧毁设备、引发火灾或造成人身伤害的风险。读者在参考本站内容进行实践时，需具备相应的专业背景，并对自己的行为承担全部责任。 内容准确性尽管站长（Chaos Goo）努力确保文章内容的准确">
+<meta property="og:type" content="website">
+<meta property="og:title" content="免责声明">
+<meta property="og:url" content="https://chaosgoo.com/disclaimer/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="技术风险提示本站（Chaosgoo）发布的所有关于嵌入式系统、硬件电路设计（如 ESP32、WCH 芯片）、焊接、3D 打印及软件开发的内容仅供参考和教育目的。硬件开发涉及电力安全、高温焊接和机械操作，任何操作均存在烧毁设备、引发火灾或造成人身伤害的风险。读者在参考本站内容进行实践时，需具备相应的专业背景，并对自己的行为承担全部责任。 内容准确性尽管站长（Chaos Goo）努力确保文章内容的准确">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-03T15:05:59.000Z">
+<meta property="article:modified_time" content="2026-02-03T15:05:59.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术">
+<meta name="twitter:card" content="summary">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            免责声明
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/disclaimer/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
+
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
+                                                              <link rel="preload" href="/css/style.css"
+                                                                as="style"
+                                                                onload="this.onload=null;this.rel='stylesheet'">
+                                                              <noscript>
+                                                                <link rel="stylesheet"
+                                                                  href="/css/style.css">
+                                                              </noscript>
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+          <div class="content index py4 ">
+            
+              <header id="header">
+  <a class="u-url u-uid" href="/%20/">
+    
+      
+                <img id="logo" alt class="u-logo" src="/images/Logo_Sketch_88.png" width="50" height="50" />
+                
+                  
+                    <div id="title">
+                      <h1 class="p-name">
+                        Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog
+                      </h1>
+                    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     -->
+        <li><a href="/">
+            首页
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/archives/">
+            归档
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/projects/">
+            项目
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/about/">
+            关于
+          </a></li><!--
+   -->
+        
+          
+            <!--
+     -->
+              <!--
+     -->
+                <!--
+     -->
+                  <li class="lang-switch-item">
+                    <a href="/en/disclaimer/index.html" title="Switch to English"
+                      class="lang-switch">
+                      English
+                    </a>
+                  </li><!--
+   -->
+                  
+    </ul>
+  </div>
+</header>
+                
+                  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <h2 id="技术风险提示"><a href="#技术风险提示" class="headerlink" title="技术风险提示"></a>技术风险提示</h2><p>本站（Chaosgoo）发布的所有关于嵌入式系统、硬件电路设计（如 ESP32、WCH 芯片）、焊接、3D 打印及软件开发的内容仅供参考和教育目的。硬件开发涉及电力安全、高温焊接和机械操作，任何操作均存在烧毁设备、引发火灾或造成人身伤害的风险。读者在参考本站内容进行实践时，需具备相应的专业背景，并对自己的行为承担全部责任。</p>
+<h2 id="内容准确性"><a href="#内容准确性" class="headerlink" title="内容准确性"></a>内容准确性</h2><p>尽管站长（Chaos Goo）努力确保文章内容的准确性，但技术环境、库版本（如 LVGL, ESP-IDF）及硬件参数更新迅速。本站不保证所有信息在任何时间点都是完整、准确或最新的。</p>
+<h2 id="第三方链接"><a href="#第三方链接" class="headerlink" title="第三方链接"></a>第三方链接</h2><p>本站可能包含指向外部网站或资源的链接。这些链接仅为方便读者提供，本站无法控制这些外部站点的内容，且不对其准确性、合法性或安全性负责。</p>
+<h2 id="广告与附属链接"><a href="#广告与附属链接" class="headerlink" title="广告与附属链接"></a>广告与附属链接</h2><p>本站可能会展示由 Google AdSense 提供的广告。广告内容由第三方系统自动生成，并不代表本站对该产品或服务的认可。</p>
+
+        
+  </div>
+</article>
+
+                    
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

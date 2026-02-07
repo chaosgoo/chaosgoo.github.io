@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,21 +59,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -72,18 +202,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -96,6 +254,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -139,16 +299,16 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">0x00 序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">0x01 硬件环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98"><span class="toc-number">3.</span> <span class="toc-text">0x02 核心挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">0x03 代码实现详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Gamma-%E6%9F%A5%E6%89%BE%E8%A1%A8-LUT"><span class="toc-number">4.1.</span> <span class="toc-text">建立 Gamma 查找表 (LUT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%EF%BC%9AThreshold-Random"><span class="toc-number">4.2.</span> <span class="toc-text">基础算法：Threshold &amp; Random</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E6%8A%96%E5%8A%A8%EF%BC%9ABayer-Matrix"><span class="toc-number">4.3.</span> <span class="toc-text">有序抖动：Bayer Matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%89%A9%E6%95%A3%EF%BC%9AFloyd-Steinberg-Atkinson"><span class="toc-number">4.4.</span> <span class="toc-text">误差扩散：Floyd-Steinberg &amp; Atkinson</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%AB%E6%9C%89%E9%A3%8E%E5%91%B3%EF%BC%9ABlue-Noise-%E8%93%9D%E5%99%AA%E5%A3%B0"><span class="toc-number">4.5.</span> <span class="toc-text">别有风味：Blue Noise (蓝噪声)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">0x04 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">6.</span> <span class="toc-text">0x05 参考资料</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">0x00 序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">0x01 硬件环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98"><span class="toc-number">3.</span> <span class="toc-text">0x02 核心挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">0x03 代码实现详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Gamma-%E6%9F%A5%E6%89%BE%E8%A1%A8-LUT"><span class="toc-number">4.1.</span> <span class="toc-text">建立 Gamma 查找表 (LUT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%EF%BC%9AThreshold-amp-Random"><span class="toc-number">4.2.</span> <span class="toc-text">基础算法：Threshold &amp; Random</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E6%8A%96%E5%8A%A8%EF%BC%9ABayer-Matrix"><span class="toc-number">4.3.</span> <span class="toc-text">有序抖动：Bayer Matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%89%A9%E6%95%A3%EF%BC%9AFloyd-Steinberg-amp-Atkinson"><span class="toc-number">4.4.</span> <span class="toc-text">误差扩散：Floyd-Steinberg &amp; Atkinson</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%AB%E6%9C%89%E9%A3%8E%E5%91%B3%EF%BC%9ABlue-Noise-%E8%93%9D%E5%99%AA%E5%A3%B0"><span class="toc-number">4.5.</span> <span class="toc-text">别有风味：Blue Noise (蓝噪声)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">0x04 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">6.</span> <span class="toc-text">0x05 参考资料</span></a></li></ol>
       </div>
     
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -192,7 +352,6 @@
     <h2 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h2><p>在<a href="/2025/12/22/Ditherpunk-The-Art-of-Dithering/">上一篇文章</a>中，我们在浏览器中通过 JavaScript 模拟了各种抖动算法的视觉效果。虽然原理通透了，但真正的挑战在于硬件端：<strong>如何在资源受限的嵌入式设备上复现这些效果？</strong></p>
 <p>本文将记录我基于 ESP32-S3 和一块 1.54 寸 ST7305 单色屏的实战过程，探讨如何在单片机上实现从基础的阈值法到复杂的误差扩散等多种图像处理算法。</p>
 <span id="more"></span>
-
 <h2 id="0x01-硬件环境"><a href="#0x01-硬件环境" class="headerlink" title="0x01 硬件环境"></a>0x01 硬件环境</h2><ul>
 <li><strong>MCU</strong>: ESP32-S3 (当然，普通的 ESP32 甚至 ESP8266 也完全足以胜任)</li>
 <li><strong>屏幕</strong>: 1.54 inch Monochrome Display 鱼鹰光电单色屏幕</li>
@@ -206,32 +365,26 @@
 <li><strong>Gamma 校正</strong>：必须在 C 语言中手动实现 Gamma Table，否则画面会严重偏暗。</li>
 <li><strong>驱动适配</strong>：屏幕通常需要较为复杂的 SPI 初始化序列，特别是针对不同的屏幕玻璃面板，需要配置正确的电压和驱屏波形。</li>
 </ol>
-<h2 id="0x03-代码实现详解"><a href="#0x03-代码实现详解" class="headerlink" title="0x03 代码实现详解"></a>0x03 代码实现详解</h2><p>项目工程结构如下：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">main/</span><br><span class="line">├── blue_noise.h      // 预计算的蓝噪声纹理数组</span><br><span class="line">├── esp_lcd_st7305.c  // 屏幕驱动实现</span><br><span class="line">├── hello_world_main.c// 核心逻辑与算法实现</span><br><span class="line">└── sample_img.h      // 测试用灰度图片数组</span><br></pre></td></tr></table></figure>
-
+<h2 id="0x03-代码实现详解"><a href="#0x03-代码实现详解" class="headerlink" title="0x03 代码实现详解"></a>0x03 代码实现详解</h2><p>项目工程结构如下：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">main/</span><br><span class="line">├── blue_noise.h      // 预计算的蓝噪声纹理数组</span><br><span class="line">├── esp_lcd_st7305.c  // 屏幕驱动实现</span><br><span class="line">├── hello_world_main.c// 核心逻辑与算法实现</span><br><span class="line">└── sample_img.h      // 测试用灰度图片数组</span><br></pre></td></tr></table></figure></p>
 <h3 id="建立-Gamma-查找表-LUT"><a href="#建立-Gamma-查找表-LUT" class="headerlink" title="建立 Gamma 查找表 (LUT)"></a>建立 Gamma 查找表 (LUT)</h3><p>正如第一篇所述，这是最关键的一步。如果不做 Gamma 校正，线性空间的抖动算法处理 sRGB 图片时，中间调会偏暗。由于 <code>powf</code> 函数在嵌入式上计算非常昂贵，我们绝对不能对每个像素实时计算。为了性能，我们在启动时预计算一个 256 长度的查找表。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Gamma correction LUT (0-255 -&gt; 0.0-1.0 linear)</span></span><br><span class="line"><span class="type">static</span> <span class="type">float</span> s_gamma_lut[<span class="number">256</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">init_gamma_lut</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// sRGB to Linear: ((val / 255.0) ^ 2.2)</span></span><br><span class="line">    s_gamma_lut[i] = powf(i / <span class="number">255.0f</span>, <span class="number">2.2f</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>任何后续的像素读取，都通过 <code>s_gamma_lut[pixel]</code> 来获取其线性亮度值。这是一种经典的空间换时间策略。</p>
-<h3 id="基础算法：Threshold-Random"><a href="#基础算法：Threshold-Random" class="headerlink" title="基础算法：Threshold &amp; Random"></a>基础算法：Threshold &amp; Random</h3><p>最简单的算法往往是很好的基准线。</p>
-<p><strong>Threshold (阈值法)</strong> ：<br>也就是二值化。这是最快的方法，但也是效果最差的方法。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dither_threshold</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *src, <span class="type">uint8_t</span> *dst)</span> &#123;</span><br><span class="line">  <span class="built_in">memset</span>(dst, <span class="number">0</span>, ST7305_FRAMEBUFFER_SIZE);</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; ST7305_WIDTH * ST7305_HEIGHT; i++) &#123;</span><br><span class="line">    <span class="type">float</span> val = s_gamma_lut[src[i]];</span><br><span class="line">    <span class="type">bool</span> white = val &gt; <span class="number">0.5f</span>;</span><br><span class="line">    set_pixel_1bit(dst, i % ST7305_WIDTH, i / ST7305_WIDTH, white);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>实拍效果</strong>：细节大量丢失，俗称“两色图”。它只能保留最硬的边缘，几乎完全丢失了所有的灰度信息。<br><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/Threshold.jpg" alt="Threshold 效果"></p>
+<h3 id="基础算法：Threshold-amp-Random"><a href="#基础算法：Threshold-amp-Random" class="headerlink" title="基础算法：Threshold &amp; Random"></a>基础算法：Threshold &amp; Random</h3><p>最简单的算法往往是很好的基准线。</p>
+<p><strong>Threshold (阈值法)</strong> ：<br>也就是二值化。这是最快的方法，但也是效果最差的方法。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dither_threshold</span><span class="params">(<span class="type">const</span> <span class="type">uint8_t</span> *src, <span class="type">uint8_t</span> *dst)</span> &#123;</span><br><span class="line">  <span class="built_in">memset</span>(dst, <span class="number">0</span>, ST7305_FRAMEBUFFER_SIZE);</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; ST7305_WIDTH * ST7305_HEIGHT; i++) &#123;</span><br><span class="line">    <span class="type">float</span> val = s_gamma_lut[src[i]];</span><br><span class="line">    <span class="type">bool</span> white = val &gt; <span class="number">0.5f</span>;</span><br><span class="line">    set_pixel_1bit(dst, i % ST7305_WIDTH, i / ST7305_WIDTH, white);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><strong>实拍效果</strong>：细节大量丢失，俗称“两色图”。它只能保留最硬的边缘，几乎完全丢失了所有的灰度信息。<br><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/Threshold.jpg" alt="Threshold 效果"></p>
 <p><strong>Random (随机抖动)</strong><br>为了找回丢失的灰度，我们引入 <code>rand()</code> 来打破量化阶梯。通过给每个像素值增加一个随机噪声，使得原本在阈值附近的像素有一半概率翻转，从而宏观上表现出灰度。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> noise = ((<span class="type">float</span>)rand() / RAND_MAX) - <span class="number">0.5f</span>; <span class="comment">// -0.5 to 0.5</span></span><br><span class="line"><span class="type">bool</span> white = (val + noise) &gt; <span class="number">0.5f</span>;</span><br></pre></td></tr></table></figure>
 <p><strong>实拍效果</strong>：虽然有灰度感了，但画面非常脏，充满了白噪声。这种高频噪声在人眼看来就是“雪花点”，并不讨喜。<br><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/Random.jpg" alt="Random 效果"></p>
 <h3 id="有序抖动：Bayer-Matrix"><a href="#有序抖动：Bayer-Matrix" class="headerlink" title="有序抖动：Bayer Matrix"></a>有序抖动：Bayer Matrix</h3><p>有序抖动非常适合没有 Framebuffer 的超低端单片机（如 Arduino Uno, ATtiny85），因为它是 <strong>Point-Operation（点操作）</strong>，不需要知道邻居像素的信息，也不需要存储上一行的误差。我们可以对每个像素独立计算。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">float</span> s_bayer_matrix[<span class="number">4</span>][<span class="number">4</span>] = &#123;</span><br><span class="line">    &#123;<span class="number">0.0f</span> / <span class="number">16.0f</span>, <span class="number">8.0f</span> / <span class="number">16.0f</span>, <span class="number">2.0f</span> / <span class="number">16.0f</span>, <span class="number">10.0f</span> / <span class="number">16.0f</span>&#125;,</span><br><span class="line">    &#123;<span class="number">12.0f</span> / <span class="number">16.0f</span>, <span class="number">4.0f</span> / <span class="number">16.0f</span>, <span class="number">14.0f</span> / <span class="number">16.0f</span>, <span class="number">6.0f</span> / <span class="number">16.0f</span>&#125;,</span><br><span class="line">    <span class="comment">// ... complete matrix</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Inside loop</span></span><br><span class="line"><span class="type">float</span> threshold = s_bayer_matrix[y % <span class="number">4</span>][x % <span class="number">4</span>];</span><br><span class="line"><span class="type">bool</span> white = (val &gt; threshold);</span><br></pre></td></tr></table></figure>
 <p><strong>实拍效果</strong>：经典的十字交叉网纹。这种风格在复古 GameBoy 游戏和早期的 Macintosh 系统中非常常见。它通过规则的纹理来模拟灰度，虽然看起来有点“人工”，但比随机抖动干净得多。<br><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/Bayer.jpg" alt="Bayer 效果"></p>
-<h3 id="误差扩散：Floyd-Steinberg-Atkinson"><a href="#误差扩散：Floyd-Steinberg-Atkinson" class="headerlink" title="误差扩散：Floyd-Steinberg &amp; Atkinson"></a>误差扩散：Floyd-Steinberg &amp; Atkinson</h3><p>对于支持 Framebuffer 的设备（ESP32 有足够 RAM），误差扩散是最佳选择。你需要一个浮点数 Buffer 来存储扩散过程中的误差。</p>
-<p><strong>Floyd-Steinberg</strong> 是教科书般的标准，扩散系数为 <code>7, 3, 5, 1</code> (&#x2F;16)。它试图将量化产生的每一个误差都完美地分配给邻居，从数学上讲是最精确的。<br><strong>实拍效果</strong>：<br><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/FloydSteinberg.jpg" alt="Floyd-Steinberg 效果"></p>
+<h3 id="误差扩散：Floyd-Steinberg-amp-Atkinson"><a href="#误差扩散：Floyd-Steinberg-amp-Atkinson" class="headerlink" title="误差扩散：Floyd-Steinberg &amp; Atkinson"></a>误差扩散：Floyd-Steinberg &amp; Atkinson</h3><p>对于支持 Framebuffer 的设备（ESP32 有足够 RAM），误差扩散是最佳选择。你需要一个浮点数 Buffer 来存储扩散过程中的误差。</p>
+<p><strong>Floyd-Steinberg</strong> 是教科书般的标准，扩散系数为 <code>7, 3, 5, 1</code> (/16)。它试图将量化产生的每一个误差都完美地分配给邻居，从数学上讲是最精确的。<br><strong>实拍效果</strong>：<br><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/FloydSteinberg.jpg" alt="Floyd-Steinberg 效果"></p>
 <p><strong>Atkinson</strong> 则更适合这种高解析度但低色深的屏幕。它由 Bill Atkinson 设计，不像 Floyd-Steinberg 那样保留 100% 的误差，而是只保留 75% 的误差用于扩散，这就人为制造了一些“死黑”和“死白”区域。这听起来像是缺点，但在低对比度的单色屏上，但这反而增加了局部对比度，让图像看起来更清晰锐利，减少了“蠕虫”伪影。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Distribute 1/8 to neighbors (Atkinson)</span></span><br><span class="line"><span class="type">float</span> err_part = quant_error / <span class="number">8.0f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (x + <span class="number">1</span> &lt; ST7305_WIDTH)</span><br><span class="line">  work_buf[y * ST7305_WIDTH + x + <span class="number">1</span>] += err_part;</span><br><span class="line"><span class="keyword">if</span> (x + <span class="number">2</span> &lt; ST7305_WIDTH)</span><br><span class="line">  work_buf[y * ST7305_WIDTH + x + <span class="number">2</span>] += err_part;</span><br><span class="line"><span class="comment">// ... bottom neighbors</span></span><br></pre></td></tr></table></figure>
 <p><strong>实拍效果</strong>：这是我在这块屏上最喜欢的算法。线条硬朗，质感极佳，特别适合显示文字和 icon 混合的 UI 界面。<br><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/Atkinson.jpg" alt="Atkinson 效果"></p>
 <h3 id="别有风味：Blue-Noise-蓝噪声"><a href="#别有风味：Blue-Noise-蓝噪声" class="headerlink" title="别有风味：Blue Noise (蓝噪声)"></a>别有风味：Blue Noise (蓝噪声)</h3><p>如果在嵌入式设备上想要模拟胶片感，蓝噪声是唯一的选择。它的计算成本和 Bayer 一样低（只需要查表），但效果却能通过“排列无序但分布均匀”的噪点来欺骗人眼。</p>
 <p>我们需要将一张预计算好的蓝噪声纹理转换成 C 数组 (<code>blue_noise.h</code>) 存储在 Flash 中。这意味着你需要牺牲几十 KB 的 Flash 空间来换取这种效果。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Map 0-255 texture to 0.0-1.0</span></span><br><span class="line"><span class="type">float</span> threshold = blue_noise_map[(y % BN_H) * BN_W + (x % BN_W)] / <span class="number">255.0f</span>;</span><br><span class="line"><span class="type">bool</span> white = (val &gt; threshold);</span><br></pre></td></tr></table></figure>
-
 <p><strong>实拍效果</strong>：非常自然的颗粒感，没有任何规律性条纹，就像一张老照片。这种算法特别适合显示人像和风景摄影。<br><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/BlueNoise.jpg" alt="Blue Noise 效果"></p>
 <h2 id="0x04-总结"><a href="#0x04-总结" class="headerlink" title="0x04 总结"></a>0x04 总结</h2><p>在 ESP32 这种级别的 MCU 上，我们完全可以实现高质量的即时图像抖动。不同的算法适用于不同的场景：</p>
 <ul>
@@ -241,8 +394,8 @@
 </ul>
 <p>希望本文能为你在单色屏幕开发中提供一些思路。</p>
 <h2 id="0x05-参考资料"><a href="#0x05-参考资料" class="headerlink" title="0x05 参考资料"></a>0x05 参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/Kevincoooool/esp_lcd_st7305">Kevincoooool&#x2F;esp_lcd_st7305</a> - 本文 ST7305 驱动移植参考</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/DuRuofu/esp-idf-st7305-Ink-screen">DuRuofu&#x2F;esp-idf-st7305-Ink-screen</a> - 另一个优秀的 ST7305 驱动实现</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kevincoooool/esp_lcd_st7305">Kevincoooool/esp_lcd_st7305</a> - 本文 ST7305 驱动移植参考</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/DuRuofu/esp-idf-st7305-Ink-screen">DuRuofu/esp-idf-st7305-Ink-screen</a> - 另一个优秀的 ST7305 驱动实现</li>
 </ul>
 
   </div>
@@ -250,8 +403,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -261,6 +414,8 @@
         
           <li><a href="/archives/">归档</a></li>
         
+          <li><a href="/projects/">项目</a></li>
+        
           <li><a href="/about/">关于</a></li>
         
       </ul>
@@ -269,7 +424,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">0x00 序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">0x01 硬件环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98"><span class="toc-number">3.</span> <span class="toc-text">0x02 核心挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">0x03 代码实现详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Gamma-%E6%9F%A5%E6%89%BE%E8%A1%A8-LUT"><span class="toc-number">4.1.</span> <span class="toc-text">建立 Gamma 查找表 (LUT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%EF%BC%9AThreshold-Random"><span class="toc-number">4.2.</span> <span class="toc-text">基础算法：Threshold &amp; Random</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E6%8A%96%E5%8A%A8%EF%BC%9ABayer-Matrix"><span class="toc-number">4.3.</span> <span class="toc-text">有序抖动：Bayer Matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%89%A9%E6%95%A3%EF%BC%9AFloyd-Steinberg-Atkinson"><span class="toc-number">4.4.</span> <span class="toc-text">误差扩散：Floyd-Steinberg &amp; Atkinson</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%AB%E6%9C%89%E9%A3%8E%E5%91%B3%EF%BC%9ABlue-Noise-%E8%93%9D%E5%99%AA%E5%A3%B0"><span class="toc-number">4.5.</span> <span class="toc-text">别有风味：Blue Noise (蓝噪声)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">0x04 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">6.</span> <span class="toc-text">0x05 参考资料</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">0x00 序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">0x01 硬件环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98"><span class="toc-number">3.</span> <span class="toc-text">0x02 核心挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">0x03 代码实现详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Gamma-%E6%9F%A5%E6%89%BE%E8%A1%A8-LUT"><span class="toc-number">4.1.</span> <span class="toc-text">建立 Gamma 查找表 (LUT)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%EF%BC%9AThreshold-amp-Random"><span class="toc-number">4.2.</span> <span class="toc-text">基础算法：Threshold &amp; Random</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E6%8A%96%E5%8A%A8%EF%BC%9ABayer-Matrix"><span class="toc-number">4.3.</span> <span class="toc-text">有序抖动：Bayer Matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AF%E5%B7%AE%E6%89%A9%E6%95%A3%EF%BC%9AFloyd-Steinberg-amp-Atkinson"><span class="toc-number">4.4.</span> <span class="toc-text">误差扩散：Floyd-Steinberg &amp; Atkinson</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%AB%E6%9C%89%E9%A3%8E%E5%91%B3%EF%BC%9ABlue-Noise-%E8%93%9D%E5%99%AA%E5%A3%B0"><span class="toc-number">4.5.</span> <span class="toc-text">别有风味：Blue Noise (蓝噪声)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">0x04 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">6.</span> <span class="toc-text">0x05 参考资料</span></a></li></ol>
       </div>
     
 
@@ -303,8 +458,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -317,85 +472,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

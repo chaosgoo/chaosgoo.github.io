@@ -438,7 +438,7 @@ body td {
   font-style: normal;
   font-family: "Meslo LG";
   font-display: swap;
-  src: local("Meslo LG S"), url("../lib/meslo-LG/MesloLGS-Regular.ttf") format("truetype");
+  src: local("Meslo LG S"), url("../lib/meslo-LG/MesloLGS-Regular.woff2") format("woff2"), url("../lib/meslo-LG/MesloLGS-Regular.ttf") format("truetype");
 }
 *,
 *:before,
@@ -633,13 +633,19 @@ body {
 }
 #header #nav ul {
   margin: 0;
-  padding: 0;
+  padding: 5px 0;
   list-style-type: none;
-  line-height: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: normal;
+  overflow: visible;
 }
 #header #nav ul a {
   margin-right: 15px;
   color: #2bbc8a;
+  display: inline-block;
+  vertical-align: middle;
 }
 #header #nav ul a:hover {
   background-image: linear-gradient(transparent, transparent 5px, #2bbc8a 5px, #2bbc8a);
@@ -648,11 +654,46 @@ body {
   background-repeat: repeat-x;
 }
 #header #nav ul li {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-right: 15px;
   border-right: 1px dotted;
   border-color: #2bbc8a;
+  height: 32px;
   vertical-align: middle;
+}
+#header #nav ul .lang-switch-item {
+  border-right: none;
+  margin-right: 0;
+  margin-left: 5px;
+}
+#header #nav ul .lang-switch {
+  padding: 2px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #2bbc8a;
+  background-color: rgba(43,188,138,0.05);
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  line-height: normal;
+  vertical-align: middle;
+  transition: all 0.2s ease-in-out;
+  margin-top: 0;
+  background-image: none !important;
+  box-shadow: none;
+}
+#header #nav ul .lang-switch i {
+  margin-right: 6px;
+  margin-bottom: 2px;
+}
+#header #nav ul .lang-switch:hover {
+  background-color: #2bbc8a;
+  color: #fff !important;
+  background-image: none !important;
+  text-decoration: none !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 #header #nav ul .icon {
   display: none;
@@ -704,6 +745,18 @@ body {
     padding-top: 1rem;
     padding-left: 70px;
     font-size: 1rem;
+  }
+  #header #nav .lang-switch-item {
+    padding-top: 1rem;
+    padding-left: 70px;
+    display: none;
+  }
+  #header #nav ul.responsive .lang-switch-item {
+    display: block;
+  }
+  #header #nav .lang-switch {
+    margin-left: 0;
+    margin-top: 5px;
   }
 }
 #header-post {

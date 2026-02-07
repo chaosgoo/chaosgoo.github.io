@@ -10,12 +10,12 @@ if (!!$.prototype.justifiedGallery) {
   $(".article-gallery").justifiedGallery(options);
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   /**
    * Shows the responsive navigation menu on mobile.
    */
-  $("#header > #nav > ul > .icon").click(function() {
+  $("#header > #nav > ul > .icon").click(function () {
     $("#header > #nav > ul").toggleClass("responsive");
   });
 
@@ -30,9 +30,9 @@ $(document).ready(function() {
     var menuIcon = $("#menu-icon, #menu-icon-tablet");
 
     /**
-     * Display the menu on hi-res laptops and desktops.
+     * Display the menu on laptops and desktops.
      */
-    if ($(document).width() >= 1440) {
+    if ($(document).width() >= 900) {
       menu.show();
       menuIcon.addClass("active");
     }
@@ -40,7 +40,7 @@ $(document).ready(function() {
     /**
      * Display the menu if the menu icon is clicked.
      */
-    menuIcon.click(function() {
+    menuIcon.click(function () {
       if (menu.is(":hidden")) {
         menu.show();
         menuIcon.addClass("active");
@@ -52,25 +52,18 @@ $(document).ready(function() {
     });
 
     /**
-     * Add a scroll listener to the menu to hide/show the navigation links.
+     * Add a scroll listener to the menu to handle tablet tab transitions
      */
     if (menu.length) {
-      $(window).on("scroll", function() {
-        var topDistance = menu.offset().top;
-
-        // hide only the navigation links on desktop
-        if (!nav.is(":visible") && topDistance < 50) {
-          nav.show();
-        } else if (nav.is(":visible") && topDistance > 100) {
-          nav.hide();
-        }
+      $(window).on("scroll", function () {
+        var topDistance = $(window).scrollTop();
 
         // on tablet, hide the navigation icon as well and show a "scroll to top
         // icon" instead
-        if ( ! $( "#menu-icon" ).is(":visible") && topDistance < 50 ) {
+        if (!$("#menu-icon").is(":visible") && topDistance < 50) {
           $("#menu-icon-tablet").show();
           $("#top-icon-tablet").hide();
-        } else if (! $( "#menu-icon" ).is(":visible") && topDistance > 100) {
+        } else if (!$("#menu-icon").is(":visible") && topDistance > 100) {
           $("#menu-icon-tablet").hide();
           $("#top-icon-tablet").show();
         }
@@ -81,12 +74,12 @@ $(document).ready(function() {
      * Show mobile navigation menu after scrolling upwards,
      * hide it again after scrolling downwards.
      */
-    if ($( "#footer-post").length) {
+    if ($("#footer-post").length) {
       var lastScrollTop = 0;
-      $(window).on("scroll", function() {
+      $(window).on("scroll", function () {
         var topDistance = $(window).scrollTop();
 
-        if (topDistance > lastScrollTop){
+        if (topDistance > lastScrollTop) {
           // downscroll -> show menu
           $("#footer-post").hide();
         } else {

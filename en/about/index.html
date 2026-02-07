@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html
+  lang="en">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="Chaosgoo Tech Blog - ESP32, WCH Chip development and Hardware DIY. Recording experience in embedded systems, smart home, and game prop replicas.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About Chaosgoo">
+<meta property="og:url" content="https://chaosgoo.com/en/about/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="Chaosgoo Tech Blog - ESP32, WCH Chip development and Hardware DIY. Recording experience in embedded systems, smart home, and game prop replicas.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chaosgoo.com/images/about.jpg">
+<meta property="article:published_time" content="2026-01-15T10:45:00.000Z">
+<meta property="article:modified_time" content="2026-01-15T10:45:00.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/about.jpg">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            About Chaosgoo
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/en/about/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
+
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
+                                                              <link rel="preload" href="/css/style.css"
+                                                                as="style"
+                                                                onload="this.onload=null;this.rel='stylesheet'">
+                                                              <noscript>
+                                                                <link rel="stylesheet"
+                                                                  href="/css/style.css">
+                                                              </noscript>
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+          <div class="content index py4 ">
+            
+              <header id="header">
+  <a class="u-url u-uid" href="/%20/">
+    
+      
+                <img id="logo" alt class="u-logo" src="/images/Logo_Sketch_88.png" width="50" height="50" />
+                
+                  
+                    <div id="title">
+                      <h1 class="p-name">
+                        Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog
+                      </h1>
+                    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     -->
+        <li><a href="/">
+            Home
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/archives/">
+            Writing
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/projects/">
+            Projects
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/about/">
+            About
+          </a></li><!--
+   -->
+        
+          
+            <!--
+     -->
+              <!--
+     -->
+                <!--
+     -->
+                  <li class="lang-switch-item">
+                    <a href="/about/index.html" title="切换至中文"
+                      class="lang-switch">
+                      中文
+                    </a>
+                  </li><!--
+   -->
+                  
+    </ul>
+  </div>
+</header>
+                
+                  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <p>Chaosgoo is an independently run technical blog created and maintained by Chaos Goo.</p>
+<p>This website focuses on publishing original practical technical articles related to embedded systems, electronic engineering, and the combination of software and hardware. All content on this site is written, edited, and maintained by the webmaster based on real development and engineering practices.</p>
+<p>This site is under continuous maintenance and is planned for long-term publication.<br>There is no collected, automatically generated, or aggregated content on this site.</p>
+<p>For inquiries regarding content, copyright, or advertising cooperation, please contact the webmaster via admin@chaosgoo.com.</p>
+<hr>
+<h2 id="About-Me"><a href="#About-Me" class="headerlink" title="About Me"></a>About Me</h2><p><img src="/images/about.jpg" alt="Chaosgoo&#39;s Workbench - Oscilloscope starting up and entering debugging state"></p>
+<p>Hello~ I’m <strong>Goo (Chaos Goo)</strong>, a DIY enthusiast.</p>
+<p>Here I record experimental code, debugging experience, and design ideas during the development process, while preserving thoughts and summaries from actual development.</p>
+<h3 id="Tech-Stack-amp-Specialties"><a href="#Tech-Stack-amp-Specialties" class="headerlink" title="Tech Stack &amp; Specialties"></a>Tech Stack &amp; Specialties</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Domain</th>
+<th style="text-align:left">Technolgies / Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Embedded Development</strong></td>
+<td style="text-align:left">ESP32 / ESP-IDF / ESP8266 / WCH (CH58x/CH592) / Arduino</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>GUI Frameworks</strong></td>
+<td style="text-align:left">LVGL / FreeType Font Engine / TFT_eSPI</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Smart Home</strong></td>
+<td style="text-align:left">HomeKit / Home Assistant / MQTT</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Mobile Development</strong></td>
+<td style="text-align:left">Android (Kotlin / Flutter)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Hardware Design</strong></td>
+<td style="text-align:left">KiCad / Fusion 360 / 3D Printing (Bambu Lab P1SC)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Version Control</strong></td>
+<td style="text-align:left">Git / GitHub</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Core-Exploration-Directions"><a href="#Core-Exploration-Directions" class="headerlink" title="Core Exploration Directions"></a>Core Exploration Directions</h3><ul>
+<li><strong>Creative Applications of Low-cost Chips</strong>: Primarily using the Espressif ESP32 series, independently completing the entire process from conception to PCB design, soldering, and firmware development.</li>
+<li><strong>WCH Chip Exploration</strong>: Recently unlocking ultra-low power chips like CH58x/CH592, researching extreme applications of Bluetooth BLE + E-ink screens.</li>
+<li><strong>Game Prop Replicas</strong>: Not just achieving a similar appearance, but replicating core functions — lighting, sound effects, and interactive animations.</li>
+</ul>
+<h3 id="Featured-Projects"><a href="#Featured-Projects" class="headerlink" title="Featured Projects"></a>Featured Projects</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Project</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>ESPFlash</strong></td>
+<td style="text-align:left">ESP32 flashing tool for Android, available on Google Play</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=io.serialflow.espflash">Play Store</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>SerialFlow</strong></td>
+<td style="text-align:left">Android serial monitor with search filtering, available on Google Play</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=io.serialflow.terminal">Play Store</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CS2 HealthPin</strong></td>
+<td style="text-align:left">Real-life CS2 Health Pin, supports real-time synchronization via Game GSI</td>
+<td style="text-align:left"><a href="/2025/10/29/Real-life-HealthPin/">Post</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Friday Ink</strong></td>
+<td style="text-align:left">Ultra-low power E-ink clock based on CH582F (≈3μA sleep)</td>
+<td style="text-align:left"><a href="/2024/07/29/Friday-Ink/">Post</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>LVGL FreeType Series</strong></td>
+<td style="text-align:left">Dynamic font weights on ESP32 (50,000+ views)</td>
+<td style="text-align:left"><a href="/2021/12/12/FreeType-and-LVGL/">Series</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Hardware-Gear"><a href="#Hardware-Gear" class="headerlink" title="Hardware Gear"></a>Hardware Gear</h3><ul>
+<li><strong>3D Printer</strong>: Bambu Lab P1SC (Custom enclosures and mechanical parts)</li>
+<li><strong>Modeling Software</strong>: Fusion 360 (Lighter and easier than Inventor)</li>
+</ul>
+<hr>
+<h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2><ul>
+<li><strong>Email</strong>: admin@chaosgoo.com</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/chaosgoo">github.com/chaosgoo</a></li>
+<li><strong>Bilibili</strong>: <a target="_blank" rel="noopener" href="https://space.bilibili.com/3493265206676106">Personal Homepage</a></li>
+<li><strong>YouTube</strong>: <a target="_blank" rel="noopener" href="https://www.youtube.com/@chaosgoo">@chaosgoo</a></li>
+</ul>
+<p>This email address is managed directly by the webmaster.</p>
+<hr>
+<h2 id="Copyright-Notice"><a href="#Copyright-Notice" class="headerlink" title="Copyright Notice"></a>Copyright Notice</h2><p>This site serves as the author’s <strong>only official technical archive</strong> and is continuously updated.</p>
+<p>All original articles, code snippets, and project materials are released under the <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> license.</p>
+<blockquote>
+<p>Early versions of some articles on this site were published on other platforms, but have now been revised, integrated, and are exclusively maintained by this site.<br>All content is created for educational and informational purposes and is reviewed before publication.<br>This site does not accept user-generated content or public submissions.<br>Any advertisements displayed on this site do not affect editorial decisions or content creation.</p>
+</blockquote>
+<h2 id="Ads-amp-Commercialization"><a href="#Ads-amp-Commercialization" class="headerlink" title="Ads &amp; Commercialization"></a>Ads &amp; Commercialization</h2><p>This website may display third-party advertisements (such as Google AdSense) to support website hosting and ongoing content creation.</p>
+<p>Advertising does not affect editorial independence.</p>
+<h3 id="Historical-Accounts"><a href="#Historical-Accounts" class="headerlink" title="Historical Accounts"></a>Historical Accounts</h3><ul>
+<li><strong>Bilibili (Old)</strong>: uid:14374079 (Closed)</li>
+<li><strong>Jianshu</strong>: 一只不咕的鸽子 (Discontinued)</li>
+</ul>
+
+        
+  </div>
+</article>
+
+                    
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/en/privacy-policy/">
+                Privacy Policy
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/terms/">
+                Terms of Use
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/disclaimer/">
+                Disclaimer
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/contact/">
+                Contact Us
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

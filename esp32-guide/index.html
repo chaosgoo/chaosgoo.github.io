@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,21 +54,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/esp32-guide/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -67,31 +197,61 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
-    <div class="content index py4 ">
-        
-          <header id="header">
-  <a class="u-url u-uid" href="/">
-  
+          <div class="content index py4 ">
+            
+              <header id="header">
+  <a class="u-url u-uid" href="/%20/">
     
-      <img id="logo" alt class="u-logo" src="/images/Logo_Sketch.webp" />
-    
-  
-    <div id="title">
-      <h1 class="p-name">Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog</h1>
-    </div>
+      
+                <img id="logo" alt class="u-logo" src="/images/Logo_Sketch_88.png" width="50" height="50" />
+                
+                  
+                    <div id="title">
+                      <h1 class="p-name">
+                        Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog
+                      </h1>
+                    </div>
   </a>
   <div id="nav">
     <ul>
@@ -99,18 +259,37 @@
         <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
       </li>
       <!--
-     --><li><a href="/">首页</a></li><!--
-   --><!--
-     --><li><a href="/archives/">归档</a></li><!--
-   --><!--
-     --><li><a href="/about/">关于</a></li><!--
+     -->
+        <li><a href="/">
+            首页
+          </a></li><!--
    -->
+        <!--
+     -->
+        <li><a href="/archives/">
+            归档
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/projects/">
+            项目
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/about/">
+            关于
+          </a></li><!--
+   -->
+        
+          
+            
     </ul>
   </div>
 </header>
-
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                
+                  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   
 
   <div class="content" itemprop="articleBody">
@@ -118,7 +297,8 @@
           <h2 id="ESP32-开发资源汇总"><a href="#ESP32-开发资源汇总" class="headerlink" title="ESP32 开发资源汇总"></a>ESP32 开发资源汇总</h2><p><strong>ESP32</strong> 是乐鑫（Espressif）推出的一款低成本、低功耗的系统级芯片（SoC），集成了 Wi-Fi 和蓝牙功能，广泛应用于物联网（IoT）、智能家居、可穿戴设备等领域。</p>
 <p>本页面汇总了本站所有与 ESP32 开发相关的技术文章，涵盖从基础入门到高级应用的完整知识体系。</p>
 <hr>
-<h2 id="文章索引"><a href="#文章索引" class="headerlink" title="文章索引"></a>文章索引</h2><h3 id="GUI-开发：LVGL-FreeType-可变字体系列"><a href="#GUI-开发：LVGL-FreeType-可变字体系列" class="headerlink" title="GUI 开发：LVGL + FreeType 可变字体系列"></a>GUI 开发：LVGL + FreeType 可变字体系列</h3><p>这是本站最受欢迎的系列文章，累计阅读量超过 **50,000+**。</p>
+<h2 id="文章索引"><a href="#文章索引" class="headerlink" title="文章索引"></a>文章索引</h2><h3 id="GUI-开发：LVGL-FreeType-可变字体系列"><a href="#GUI-开发：LVGL-FreeType-可变字体系列" class="headerlink" title="GUI 开发：LVGL + FreeType 可变字体系列"></a>GUI 开发：LVGL + FreeType 可变字体系列</h3><p>这是本站最受欢迎的系列文章，累计阅读量超过 <strong>50,000+</strong>。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -127,7 +307,8 @@
 <th>简介</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>第一章</td>
 <td><a href="/2021/12/12/FreeType-and-LVGL/">在 LVGL 中实现可变字体 (Variable Font)</a></td>
 <td>FreeType 字体引擎基础，在 Windows 模拟器上实现动态字重</td>
@@ -142,16 +323,20 @@
 <td><a href="/2022/01/03/lvgl-freetype-and-esp32-2/">LVGL + FreeType - 动画效果实现</a></td>
 <td>SD 卡加载字体，字重动画实现</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
-<h3 id="网络与通信"><a href="#网络与通信" class="headerlink" title="网络与通信"></a>网络与通信</h3><table>
+<h3 id="网络与通信"><a href="#网络与通信" class="headerlink" title="网络与通信"></a>网络与通信</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>文章</th>
 <th>简介</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><a href="/2020/11/14/ESP32-display-remote-JPG/">ESP32 显示公网 JPG 图片</a></td>
 <td>HTTP 协议详解，AsyncTCP 分块传输，Content-Length 解析</td>
 </tr>
@@ -163,9 +348,12 @@
 <td><a href="/2020/05/28/ESP32-Streaming/">ESP32 PC 画面实时串流</a></td>
 <td>Python 抓帧编码 + 自定义 TCP 协议 + DMA 渲染</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
-<h3 id="智能家居：HomeKit-系列"><a href="#智能家居：HomeKit-系列" class="headerlink" title="智能家居：HomeKit 系列"></a>智能家居：HomeKit 系列</h3><table>
+<h3 id="智能家居：HomeKit-系列"><a href="#智能家居：HomeKit-系列" class="headerlink" title="智能家居：HomeKit 系列"></a>智能家居：HomeKit 系列</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>章节</th>
@@ -173,7 +361,8 @@
 <th>简介</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>第一章</td>
 <td><a href="/2020/12/26/HomeKit-ESP32-Control-Light-Part_One/">ESP32 控制灯光 - 舵机方案</a></td>
 <td>非侵入式改造，舵机 PWM 控制原理</td>
@@ -188,26 +377,30 @@
 <td><a href="/2020/12/27/HomeKit-ESP32-Control-Light-Part_Three/">ESP32 控制灯光 - 代码融合</a></td>
 <td>Siri 语音控制闭环实现</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>进阶项目：</strong></p>
 <ul>
 <li><a href="/2024/01/09/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/">米家屏幕挂灯 HomeKit 改造</a> - 拆解分析 + 芯片替换</li>
 </ul>
 <hr>
-<h3 id="开发技巧与填坑指南"><a href="#开发技巧与填坑指南" class="headerlink" title="开发技巧与填坑指南"></a>开发技巧与填坑指南</h3><table>
+<h3 id="开发技巧与填坑指南"><a href="#开发技巧与填坑指南" class="headerlink" title="开发技巧与填坑指南"></a>开发技巧与填坑指南</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>文章</th>
 <th>简介</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><a href="/2025/11/29/esp32-advanced-dev-tips/">ESP32 进阶开发技巧</a></td>
 <td>异步 HTTP、Light-Sleep PWM、GIF 播放、SPIFFS OTA</td>
 </tr>
 <tr>
 <td><a href="/2024/07/31/ESP-IDF-embed-txtfiles-tricks/">ESP-IDF embed_txtfiles 使用技巧</a></td>
-<td>资源嵌入机制详解，证书&#x2F;HTML 管理最佳实践</td>
+<td>资源嵌入机制详解，证书/HTML 管理最佳实践</td>
 </tr>
 <tr>
 <td><a href="/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/">ESP32-C3 PlatformIO embed_txtfiles 修复</a></td>
@@ -217,16 +410,20 @@
 <td><a href="/2020/07/17/Parallel-LCD-VS-SPI-LCD/">SPI LCD vs 并口 LCD 性能对比</a></td>
 <td>60MHz SPI 与 8 位并口实测数据分析</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
-<h3 id="图像处理：Ditherpunk-抖动算法"><a href="#图像处理：Ditherpunk-抖动算法" class="headerlink" title="图像处理：Ditherpunk 抖动算法"></a>图像处理：Ditherpunk 抖动算法</h3><table>
+<h3 id="图像处理：Ditherpunk-抖动算法"><a href="#图像处理：Ditherpunk-抖动算法" class="headerlink" title="图像处理：Ditherpunk 抖动算法"></a>图像处理：Ditherpunk 抖动算法</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>文章</th>
 <th>简介</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><a href="/2025/12/22/Ditherpunk-The-Art-of-Dithering/">Ditherpunk (一)：算法原理与 JS 实时演示</a></td>
 <td>Gamma 校正、Bayer 矩阵、误差扩散算法详解</td>
 </tr>
@@ -234,7 +431,9 @@
 <td><a href="/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/">Ditherpunk (二)：ESP32 + 单色屏实战</a></td>
 <td>ST7305 1.54 寸屏驱动，全套抖动效果移植</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <h2 id="推荐外部资源"><a href="#推荐外部资源" class="headerlink" title="推荐外部资源"></a>推荐外部资源</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/en/latest/">ESP-IDF 官方文档</a></li>
@@ -245,8 +444,8 @@
 <hr>
 <h2 id="联系与反馈"><a href="#联系与反馈" class="headerlink" title="联系与反馈"></a>联系与反馈</h2><p>如果你在 ESP32 开发过程中遇到问题，或者对文章内容有任何建议，欢迎通过以下方式联系我：</p>
 <ul>
-<li><strong>Email</strong>: <a href="mailto:&#x61;&#100;&#109;&#105;&#x6e;&#64;&#99;&#104;&#97;&#111;&#x73;&#103;&#111;&#x6f;&#x2e;&#x63;&#111;&#109;">&#x61;&#100;&#109;&#105;&#x6e;&#64;&#99;&#104;&#97;&#111;&#x73;&#103;&#111;&#x6f;&#x2e;&#x63;&#111;&#109;</a></li>
-<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/chaosgoo">github.com&#x2F;chaosgoo</a></li>
+<li><strong>Email</strong>: admin@chaosgoo.com</li>
+<li><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/chaosgoo">github.com/chaosgoo</a></li>
 </ul>
 <hr>
 <p><em>本页面持续更新中，收录本站所有 ESP32 相关技术文章。</em></p>
@@ -255,8 +454,8 @@
   </div>
 </article>
 
-        
-        <footer id="footer">
+                    
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -269,62 +468,67 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-
+                        <!-- clipboard -->
+                        
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,21 +59,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2024/07/29/Friday-Ink/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -72,18 +202,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -96,6 +254,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -145,16 +305,16 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A7%E8%AE%BE%E8%AE%A1%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.</span> <span class="toc-text">旧设计回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">基础参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">硬件参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">注:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8"><span class="toc-number">1.3.2.</span> <span class="toc-text">尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%97%E7%94%B5%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">耗电信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E5%9B%BA%E4%BB%B6%E5%BC%80%E5%8F%91"><span class="toc-number">1.4.</span> <span class="toc-text">Rust固件开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.</span> <span class="toc-text">Friday Ink的核心功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-A"><span class="toc-number">1.6.</span> <span class="toc-text">Q&amp;A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E6%97%B6%E5%80%99%E5%8D%A1%E5%9C%A8%E6%A0%A1%E5%87%86%E9%A1%B5%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">Q: 时间校准时候卡在校准页怎么办</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%8E%A8%E8%8D%90%E6%8F%90%E5%89%8D%E5%8F%91%E9%80%81%E6%97%B6%E9%97%B4%E5%B9%BF%E6%92%AD-%E8%AE%A9%E6%89%8B%E6%9C%BA%E5%92%8C%E8%A3%85%E7%BD%AE%E8%B6%B3%E5%A4%9F%E6%8E%A5%E8%BF%91-%E7%84%B6%E5%90%8E%E8%A3%85%E7%BD%AE%E8%BF%9B%E5%85%A5%E6%A0%A1%E5%87%86-%E5%B9%B6%E5%9C%A8%E5%8F%91%E7%8E%B020S%E5%90%8E%E6%9C%AA%E8%83%BD%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%88%96%E6%8C%89%E9%92%AE%E6%97%A0%E6%B3%95%E5%BC%BA%E5%88%B6%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%97%B6-%E5%8F%96%E4%B8%8B%E7%94%B5%E6%B1%A0-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E7%94%B5%E6%B1%A0"><span class="toc-number">1.6.2.</span> <span class="toc-text">A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B7%B2%E7%BB%8F%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.3.</span> <span class="toc-text">Q: 小程序已经无法使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E5%8D%8F%E8%AE%AE%E5%B7%B2%E7%BB%8F%E5%85%AC%E5%BC%80-%E8%BF%98%E8%AF%B7%E5%90%84%E4%BD%8D%E5%A4%8D%E5%88%BB%E8%80%85%E4%BD%BF%E7%94%A8%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%9D%BF%E5%8F%91%E5%B8%83%E7%AC%A6%E5%90%88%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B9%BF%E6%92%AD%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-number">1.6.4.</span> <span class="toc-text">A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E5%A4%8D%E5%88%BB%E5%B1%95%E7%A4%BA"><span class="toc-number">1.7.</span> <span class="toc-text">社区复刻展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">项目链接</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A7%E8%AE%BE%E8%AE%A1%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.</span> <span class="toc-text">旧设计回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">基础参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">硬件参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">注:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8"><span class="toc-number">1.3.2.</span> <span class="toc-text">尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%97%E7%94%B5%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">耗电信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E5%9B%BA%E4%BB%B6%E5%BC%80%E5%8F%91"><span class="toc-number">1.4.</span> <span class="toc-text">Rust固件开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.</span> <span class="toc-text">Friday Ink的核心功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-amp-A"><span class="toc-number">1.6.</span> <span class="toc-text">Q&amp;A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E6%97%B6%E5%80%99%E5%8D%A1%E5%9C%A8%E6%A0%A1%E5%87%86%E9%A1%B5%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">Q: 时间校准时候卡在校准页怎么办</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%8E%A8%E8%8D%90%E6%8F%90%E5%89%8D%E5%8F%91%E9%80%81%E6%97%B6%E9%97%B4%E5%B9%BF%E6%92%AD-%E8%AE%A9%E6%89%8B%E6%9C%BA%E5%92%8C%E8%A3%85%E7%BD%AE%E8%B6%B3%E5%A4%9F%E6%8E%A5%E8%BF%91-%E7%84%B6%E5%90%8E%E8%A3%85%E7%BD%AE%E8%BF%9B%E5%85%A5%E6%A0%A1%E5%87%86-%E5%B9%B6%E5%9C%A8%E5%8F%91%E7%8E%B020S%E5%90%8E%E6%9C%AA%E8%83%BD%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%88%96%E6%8C%89%E9%92%AE%E6%97%A0%E6%B3%95%E5%BC%BA%E5%88%B6%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%97%B6-%E5%8F%96%E4%B8%8B%E7%94%B5%E6%B1%A0-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E7%94%B5%E6%B1%A0"><span class="toc-number">1.6.2.</span> <span class="toc-text">A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B7%B2%E7%BB%8F%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.3.</span> <span class="toc-text">Q: 小程序已经无法使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E5%8D%8F%E8%AE%AE%E5%B7%B2%E7%BB%8F%E5%85%AC%E5%BC%80-%E8%BF%98%E8%AF%B7%E5%90%84%E4%BD%8D%E5%A4%8D%E5%88%BB%E8%80%85%E4%BD%BF%E7%94%A8%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%9D%BF%E5%8F%91%E5%B8%83%E7%AC%A6%E5%90%88%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B9%BF%E6%92%AD%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-number">1.6.4.</span> <span class="toc-text">A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E5%A4%8D%E5%88%BB%E5%B1%95%E7%A4%BA"><span class="toc-number">1.7.</span> <span class="toc-text">社区复刻展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">项目链接</span></a></li></ol>
       </div>
     
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -203,9 +363,7 @@
 <!-- <div align="center">
 <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=112818036674466&bvid=BV1gf8TerEiX&cid=500001621427933&p=1" scrolling="no"  width="320px" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 </div> -->
-
 <span id="more"></span>
-
 <h3 id="旧设计回顾"><a href="#旧设计回顾" class="headerlink" title="旧设计回顾"></a>旧设计回顾</h3><p>MCU从最开始使用的是ESP32, 也用过ESP32C3, 最后使用是CH582F.</p>
 <p>起初他有很多功能,比如移植了一个lua解析器, 这样就可以动态的加载lua脚本, 以显示不同的内容.</p>
 <p>也引入过FreeType, 用来解析.ttf字体, 以具有显示不同尺寸文字的效果.</p>
@@ -239,16 +397,14 @@
 <li>休眠状态下≈3μA</li>
 <li>刷新 10~20mA, 刷新完毕后会立刻进入休眠</li>
 </ul>
-<p>用纽扣电池作为输入,然后接上合宙的电流表, 110小时后统计信息如下:</p>
-<!-- ![图片](/images/archives/IMG_7486.jpg)
+<p>用纽扣电池作为输入,然后接上合宙的电流表, 110小时后统计信息如下:<br><!-- ![图片](/images/archives/IMG_7486.jpg)
 ![E4C2B37A 0422 46Df 90Eb 9Faac66F8440](/images/archives/E4C2B37A-0422-46DF-90EB-9FAAC66F8440.jpg)
 ![Power Consumption](/images/archives/IMG_0889.jpg)
-![Power Consumption](/images/archives/IMG_3435.jpg) -->
-<p><img src="/images/archives/IMG_3452.jpg" alt="Power Consumption"></p>
+![Power Consumption](/images/archives/IMG_3435.jpg) --><br><img src="/images/archives/IMG_3452.jpg" alt="Power Consumption"></p>
 <h3 id="Rust固件开发"><a href="#Rust固件开发" class="headerlink" title="Rust固件开发"></a>Rust固件开发</h3><p>固件最开始是使用C开发的, 而且完成度也是很高, 只差休眠和蓝牙部分了. 结果这时候莫名其妙的加了一个Rust嵌入式的群, 群里面有个佬又正好做了CH582F的Rust适配.<br>于是决定试试Rust来开发.<br>显示部分直接用了bindgen把u8g2绑过来, bind就完事.<br>休眠部分, ch58x-hal没有封装, 所以这次只能手搓寄存器, 于是对着官方的休眠代码, 人肉翻译了起来. 好在最后能工作(当然能工作, 毕竟我只是翻译了一下)</p>
 <h3 id="Friday-Ink的核心功能"><a href="#Friday-Ink的核心功能" class="headerlink" title="Friday Ink的核心功能"></a>Friday Ink的核心功能</h3><p>只要启动时候检测一下有没有按下按钮,按下就显示一张图片, 再去扫描周边的蓝牙广播,扫描到符合时间协议的就设置本地RTC执行重启.<br>如果没有按下按钮就检测今天是不是星期五, 执行刷屏, 此时设备立刻休眠. 直到第二天00:00唤醒.</p>
 <p><code>附加说明:在315天后的2025年6月24日, 我手上使用SSD1607版本的Friday Ink没电了, 理论上SSD1681版本功耗表现更加优异, 经过反馈续航大概在400天.</code></p>
-<h3 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h3><h4 id="Q-时间校准时候卡在校准页怎么办"><a href="#Q-时间校准时候卡在校准页怎么办" class="headerlink" title="Q: 时间校准时候卡在校准页怎么办"></a>Q: 时间校准时候卡在校准页怎么办</h4><h4 id="A-推荐提前发送时间广播-让手机和装置足够接近-然后装置进入校准-并在发现20S后未能自动退出校准或按钮无法强制退出校准时-取下电池-重新安装电池"><a href="#A-推荐提前发送时间广播-让手机和装置足够接近-然后装置进入校准-并在发现20S后未能自动退出校准或按钮无法强制退出校准时-取下电池-重新安装电池" class="headerlink" title="A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池."></a>A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</h4><h4 id="Q-小程序已经无法使用"><a href="#Q-小程序已经无法使用" class="headerlink" title="Q: 小程序已经无法使用"></a>Q: 小程序已经无法使用</h4><h4 id="A-时间校准协议已经公开-还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步"><a href="#A-时间校准协议已经公开-还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步" class="headerlink" title="A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步"></a>A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</h4><h3 id="社区复刻展示"><a href="#社区复刻展示" class="headerlink" title="社区复刻展示"></a>社区复刻展示</h3><p>很高兴在项目开源之后有小伙伴做了出来, 还加上了一个麦金塔的外壳.</p>
+<h3 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h3><h4 id="Q-时间校准时候卡在校准页怎么办"><a href="#Q-时间校准时候卡在校准页怎么办" class="headerlink" title="Q: 时间校准时候卡在校准页怎么办"></a>Q: 时间校准时候卡在校准页怎么办</h4><h4 id="A-推荐提前发送时间广播-让手机和装置足够接近-然后装置进入校准-并在发现20S后未能自动退出校准或按钮无法强制退出校准时-取下电池-重新安装电池"><a href="#A-推荐提前发送时间广播-让手机和装置足够接近-然后装置进入校准-并在发现20S后未能自动退出校准或按钮无法强制退出校准时-取下电池-重新安装电池" class="headerlink" title="A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池."></a>A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</h4><h4 id="Q-小程序已经无法使用"><a href="#Q-小程序已经无法使用" class="headerlink" title="Q: 小程序已经无法使用"></a>Q: 小程序已经无法使用</h4><h4 id="A-时间校准协议已经公开-还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步"><a href="#A-时间校准协议已经公开-还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步" class="headerlink" title="A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步"></a>A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</h4><h3 id="社区复刻展示"><a href="#社区复刻展示" class="headerlink" title="社区复刻展示"></a>社区复刻展示</h3><p>很高兴在项目开源之后有小伙伴做了出来, 还加上了一个麦金塔的外壳.</p>
 <p><img src="/images/archives/friday_ink/fridayink_make_by_fans.png" alt="耗电信息"></p>
 <h2 id="项目链接"><a href="#项目链接" class="headerlink" title="项目链接"></a>项目链接</h2><p><a target="_blank" rel="noopener" href="https://github.com/chaosgoo/friday_ink">GitHub项目地址</a><br><a target="_blank" rel="noopener" href="https://oshwhub.com/chaosgoo/firdayink-rec">立创开源广场</a></p>
 
@@ -257,8 +413,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -268,6 +424,8 @@
         
           <li><a href="/archives/">归档</a></li>
         
+          <li><a href="/projects/">项目</a></li>
+        
           <li><a href="/about/">关于</a></li>
         
       </ul>
@@ -276,7 +434,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A7%E8%AE%BE%E8%AE%A1%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.</span> <span class="toc-text">旧设计回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">基础参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">硬件参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">注:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8"><span class="toc-number">1.3.2.</span> <span class="toc-text">尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%97%E7%94%B5%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">耗电信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E5%9B%BA%E4%BB%B6%E5%BC%80%E5%8F%91"><span class="toc-number">1.4.</span> <span class="toc-text">Rust固件开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.</span> <span class="toc-text">Friday Ink的核心功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-A"><span class="toc-number">1.6.</span> <span class="toc-text">Q&amp;A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E6%97%B6%E5%80%99%E5%8D%A1%E5%9C%A8%E6%A0%A1%E5%87%86%E9%A1%B5%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">Q: 时间校准时候卡在校准页怎么办</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%8E%A8%E8%8D%90%E6%8F%90%E5%89%8D%E5%8F%91%E9%80%81%E6%97%B6%E9%97%B4%E5%B9%BF%E6%92%AD-%E8%AE%A9%E6%89%8B%E6%9C%BA%E5%92%8C%E8%A3%85%E7%BD%AE%E8%B6%B3%E5%A4%9F%E6%8E%A5%E8%BF%91-%E7%84%B6%E5%90%8E%E8%A3%85%E7%BD%AE%E8%BF%9B%E5%85%A5%E6%A0%A1%E5%87%86-%E5%B9%B6%E5%9C%A8%E5%8F%91%E7%8E%B020S%E5%90%8E%E6%9C%AA%E8%83%BD%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%88%96%E6%8C%89%E9%92%AE%E6%97%A0%E6%B3%95%E5%BC%BA%E5%88%B6%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%97%B6-%E5%8F%96%E4%B8%8B%E7%94%B5%E6%B1%A0-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E7%94%B5%E6%B1%A0"><span class="toc-number">1.6.2.</span> <span class="toc-text">A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B7%B2%E7%BB%8F%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.3.</span> <span class="toc-text">Q: 小程序已经无法使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E5%8D%8F%E8%AE%AE%E5%B7%B2%E7%BB%8F%E5%85%AC%E5%BC%80-%E8%BF%98%E8%AF%B7%E5%90%84%E4%BD%8D%E5%A4%8D%E5%88%BB%E8%80%85%E4%BD%BF%E7%94%A8%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%9D%BF%E5%8F%91%E5%B8%83%E7%AC%A6%E5%90%88%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B9%BF%E6%92%AD%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-number">1.6.4.</span> <span class="toc-text">A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E5%A4%8D%E5%88%BB%E5%B1%95%E7%A4%BA"><span class="toc-number">1.7.</span> <span class="toc-text">社区复刻展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">项目链接</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E5%A4%A9%E6%98%AF%E5%91%A8%E4%BA%94%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">今天是周五吗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A7%E8%AE%BE%E8%AE%A1%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.</span> <span class="toc-text">旧设计回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">基础参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">硬件参数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">注:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8"><span class="toc-number">1.3.2.</span> <span class="toc-text">尺寸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%97%E7%94%B5%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.3.</span> <span class="toc-text">耗电信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust%E5%9B%BA%E4%BB%B6%E5%BC%80%E5%8F%91"><span class="toc-number">1.4.</span> <span class="toc-text">Rust固件开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Friday-Ink%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.</span> <span class="toc-text">Friday Ink的核心功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q-amp-A"><span class="toc-number">1.6.</span> <span class="toc-text">Q&amp;A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E6%97%B6%E5%80%99%E5%8D%A1%E5%9C%A8%E6%A0%A1%E5%87%86%E9%A1%B5%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">Q: 时间校准时候卡在校准页怎么办</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%8E%A8%E8%8D%90%E6%8F%90%E5%89%8D%E5%8F%91%E9%80%81%E6%97%B6%E9%97%B4%E5%B9%BF%E6%92%AD-%E8%AE%A9%E6%89%8B%E6%9C%BA%E5%92%8C%E8%A3%85%E7%BD%AE%E8%B6%B3%E5%A4%9F%E6%8E%A5%E8%BF%91-%E7%84%B6%E5%90%8E%E8%A3%85%E7%BD%AE%E8%BF%9B%E5%85%A5%E6%A0%A1%E5%87%86-%E5%B9%B6%E5%9C%A8%E5%8F%91%E7%8E%B020S%E5%90%8E%E6%9C%AA%E8%83%BD%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%88%96%E6%8C%89%E9%92%AE%E6%97%A0%E6%B3%95%E5%BC%BA%E5%88%B6%E9%80%80%E5%87%BA%E6%A0%A1%E5%87%86%E6%97%B6-%E5%8F%96%E4%B8%8B%E7%94%B5%E6%B1%A0-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E7%94%B5%E6%B1%A0"><span class="toc-number">1.6.2.</span> <span class="toc-text">A: 推荐提前发送时间广播, 让手机和装置足够接近. 然后装置进入校准, 并在发现20S后未能自动退出校准或按钮无法强制退出校准时, 取下电池, 重新安装电池.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B7%B2%E7%BB%8F%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.3.</span> <span class="toc-text">Q: 小程序已经无法使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E5%8D%8F%E8%AE%AE%E5%B7%B2%E7%BB%8F%E5%85%AC%E5%BC%80-%E8%BF%98%E8%AF%B7%E5%90%84%E4%BD%8D%E5%A4%8D%E5%88%BB%E8%80%85%E4%BD%BF%E7%94%A8%E8%93%9D%E7%89%99%E5%BC%80%E5%8F%91%E6%9D%BF%E5%8F%91%E5%B8%83%E7%AC%A6%E5%90%88%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B9%BF%E6%92%AD%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5"><span class="toc-number">1.6.4.</span> <span class="toc-text">A: 时间校准协议已经公开, 还请各位复刻者使用蓝牙开发板发布符合协议的广播进行时间同步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E5%A4%8D%E5%88%BB%E5%B1%95%E7%A4%BA"><span class="toc-number">1.7.</span> <span class="toc-text">社区复刻展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">项目链接</span></a></li></ol>
       </div>
     
 
@@ -316,8 +474,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -330,85 +488,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

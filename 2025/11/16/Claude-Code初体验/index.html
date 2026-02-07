@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,21 +60,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -73,18 +203,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -97,6 +255,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -146,10 +306,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -193,10 +353,7 @@
     <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前买的Jetpack Compose教程的群群主最近一直在称赞Codex,Claude Code之类的有多么强大, 激发了我对这种CLI式的AI兴趣.是时候研究一下了.<br><img src="/images/archives/claude_on_espflash.png" alt="claude"></p>
 <h2 id="初步了解"><a href="#初步了解" class="headerlink" title="初步了解"></a>初步了解</h2><p>在哔哩哔哩上简单搜索到几个介绍视频, 尤其是看到了Codex的那个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KEpRzuEkS/">演示</a>, 一个人下发多个任务,然后每个任务后面都有一个AI在不同分支为他自动修改代码,调试代码直到完成任务,更是迫不及待的体验一下这种<code>一个人就是一个团队</code>的力量.</p>
 <span id="more"></span> 
-
-<h2 id="获取API"><a href="#获取API" class="headerlink" title="获取API"></a>获取API</h2><p>OpenAI和Claude的政策原因(还有我的卡无法直接付款购买), 所以我没有选择直接购买Chat GPT Plus和Claude Pro.<br>综合考虑我选择代理公司提供的API中转服务.这种方式优点是便宜, 而且既能用Codex也能用Claude, 还无需配置额外的网络代理.<br>为了获得较好的体验,我购买了160美元的额度.<br><code>主流的模型都是以token来计费, 代理商还会根据模型类型设置不同的倍率,比如codex是0.5倍率, claude则是正常的1倍率.</code></p>
-<!-- 我用的是[88code](https://www.88code.org/register?ref=DMQBE6)这个平台, 购买了PAYGO套餐. -->
-
+<h2 id="获取API"><a href="#获取API" class="headerlink" title="获取API"></a>获取API</h2><p>OpenAI和Claude的政策原因(还有我的卡无法直接付款购买), 所以我没有选择直接购买Chat GPT Plus和Claude Pro.<br>综合考虑我选择代理公司提供的API中转服务.这种方式优点是便宜, 而且既能用Codex也能用Claude, 还无需配置额外的网络代理.<br>为了获得较好的体验,我购买了160美元的额度.<br><code>主流的模型都是以token来计费, 代理商还会根据模型类型设置不同的倍率,比如codex是0.5倍率, claude则是正常的1倍率.</code><br><!-- 我用的是[88code](https://www.88code.org/register?ref=DMQBE6)这个平台, 购买了PAYGO套餐. --></p>
 <h2 id="安装Codex和Claude-Code"><a href="#安装Codex和Claude-Code" class="headerlink" title="安装Codex和Claude Code"></a>安装Codex和Claude Code</h2><p>Codex和Claude Code都提供了插件式和命令行形式的使用方法.<br>出于灵活性考虑,我没有选择插件式安装,因为我不确定Idea的插件能否直接在Android Stduio的上使用.<br>最终选择了CLI方式安装和使用,这样不管我用什么代码编辑器或者IDE均可以使用.</p>
 <p>两个工具的CLI版本安装方式都很简单, 官方均提供安装脚本方法.</p>
 <h3 id="安装Codex"><a href="#安装Codex" class="headerlink" title="安装Codex"></a>安装Codex</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @openai/codex</span><br></pre></td></tr></table></figure>
@@ -206,9 +363,7 @@
 <h2 id="配置API"><a href="#配置API" class="headerlink" title="配置API"></a>配置API</h2><p>因为用的是中转,所以我需要额外配置才可以正常使用.<br>好在我的中转商提供命令配置工具, 让这件事变得不再费心.</p>
 <h3 id="安装88-auto-config配置工具"><a href="#安装88-auto-config配置工具" class="headerlink" title="安装88-auto-config配置工具"></a>安装88-auto-config配置工具</h3><p>这里我使用88code提供的命令行配置工具</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g 88-auto-config</span><br></pre></td></tr></table></figure>
-<p>启动配置工具</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[1] 配置 Claude Code (已安装)</span><br><span class="line">[2] 配置 Codex (已安装)</span><br><span class="line">[3] 配置 Claude Code + Codex 🚀 (推荐新手使用)</span><br><span class="line">[4] 自定义选择</span><br><span class="line">[5] 配置 Droid 自定义模型 (自动配置三个模型)</span><br><span class="line">[8] 检测配置是否生效 🔍</span><br><span class="line">[9] 配置 VS Code Claude 插件 📝</span><br><span class="line">[0] 退出</span><br></pre></td></tr></table></figure>
-<p>直接输入<code>3</code>, 回车, 再输入88code创建的API, 回车即可.</p>
+<p>启动配置工具<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[1] 配置 Claude Code (已安装)</span><br><span class="line">[2] 配置 Codex (已安装)</span><br><span class="line">[3] 配置 Claude Code + Codex 🚀 (推荐新手使用)</span><br><span class="line">[4] 自定义选择</span><br><span class="line">[5] 配置 Droid 自定义模型 (自动配置三个模型)</span><br><span class="line">[8] 检测配置是否生效 🔍</span><br><span class="line">[9] 配置 VS Code Claude 插件 📝</span><br><span class="line">[0] 退出</span><br></pre></td></tr></table></figure><br>直接输入<code>3</code>, 回车, 再输入88code创建的API, 回车即可.</p>
 <p>保存配置<code>source ~/.zshrc</code>刷新终端缓存或者重启终端</p>
 <h3 id="暂时放弃codex"><a href="#暂时放弃codex" class="headerlink" title="暂时放弃codex"></a>暂时放弃codex</h3><p>不知道什么原因,我的codex无法正常使用,总是报401错误. 后面单独开一个新的坑来分析和排查究竟为什么无法使用.<br>于是转而使用claude code,等将来会再次回来用用codex,因为他的token消耗速率只有一半.</p>
 <h2 id="第一个任务"><a href="#第一个任务" class="headerlink" title="第一个任务"></a>第一个任务</h2><p>进入到项目工程目录后,输入<code>claude</code>,再使用<code>/init</code>命令让claude分析当前工程,创建基础的配置.<br>配置创建完成之后,根目录则会生成一个<code>CLAUDE.md</code>, 里面记录了Claude对项目的理解. 我们也可以手动修改<code>CLAUDE.md</code>内容补充说明或者纠正.<br>检查<code>CLAUDE.md</code>内容无误后, 我告诉Claude希望Claude能为我的烧录软件开发串口监视器部分.而此前我已经预留了底部NavigationBar的路由和占位页面, 不知道他会开发到什么程度, 还要求Claude考虑串口占用问题.<br><img src="/images/archives/serial_monitor_plan.png" width=480/><br>对话完成后,Claude开始工作, 接下来的过程中他自己会检测语法错误, 并且会调用编译检查编译是否成功.活脱脱一个真实的人在写代码.</p>
@@ -223,8 +378,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -233,6 +388,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -276,8 +433,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -290,85 +447,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html
+  lang="en">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="Back to Build Guide How to Get FirmwareIf you don’t plan to modify the source code, you can directly download the pre-compiled binary files (Firmware). 1. Download from GitHub Actions (Recommended)Thi">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MCompass Firmware &amp; Compilation">
+<meta property="og:url" content="https://chaosgoo.com/en/mcompass/guide.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="Back to Build Guide How to Get FirmwareIf you don’t plan to modify the source code, you can directly download the pre-compiled binary files (Firmware). 1. Download from GitHub Actions (Recommended)Thi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
+<meta property="article:published_time" content="2026-02-04T12:25:30.000Z">
+<meta property="article:modified_time" content="2026-02-04T12:25:30.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            MCompass Firmware &amp; Compilation
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/en/mcompass/guide.html">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
+
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
+                                                              <link rel="preload" href="/css/style.css"
+                                                                as="style"
+                                                                onload="this.onload=null;this.rel='stylesheet'">
+                                                              <noscript>
+                                                                <link rel="stylesheet"
+                                                                  href="/css/style.css">
+                                                              </noscript>
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+          <div class="content index py4 ">
+            
+              <header id="header">
+  <a class="u-url u-uid" href="/%20/">
+    
+      
+                <img id="logo" alt class="u-logo" src="/images/Logo_Sketch_88.png" width="50" height="50" />
+                
+                  
+                    <div id="title">
+                      <h1 class="p-name">
+                        Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog
+                      </h1>
+                    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     -->
+        <li><a href="/">
+            Home
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/archives/">
+            Writing
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/projects/">
+            Projects
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/about/">
+            About
+          </a></li><!--
+   -->
+        
+          
+            <!--
+     -->
+              <!--
+     -->
+                <!--
+     -->
+                  <li class="lang-switch-item">
+                    <a href="/mcompass/guide.html" title="切换至中文"
+                      class="lang-switch">
+                      中文
+                    </a>
+                  </li><!--
+   -->
+                  
+    </ul>
+  </div>
+</header>
+                
+                  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <p><a href="./">Back to Build Guide</a></p>
+<h2 id="How-to-Get-Firmware"><a href="#How-to-Get-Firmware" class="headerlink" title="How to Get Firmware"></a>How to Get Firmware</h2><p>If you don’t plan to modify the source code, you can directly download the pre-compiled binary files (Firmware).</p>
+<h3 id="1-Download-from-GitHub-Actions-Recommended"><a href="#1-Download-from-GitHub-Actions-Recommended" class="headerlink" title="1. Download from GitHub Actions (Recommended)"></a>1. Download from GitHub Actions (Recommended)</h3><p>This project is configured with GitHub Actions for automatic compilation. This way, you can always get the firmware corresponding to the latest code:</p>
+<ol>
+<li>Go to the <a target="_blank" rel="noopener" href="https://github.com/chaosgoo/mcompass/actions">Actions</a> page of the GitHub project.</li>
+<li>Find the most recent successful <strong>“Build Firmware Workflow”</strong> record.</li>
+<li>In the <strong>Artifacts</strong> section at the bottom of the page, select the corresponding <code>.bin</code> file according to your needs:</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Filename Keyword</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>GPS</strong></td>
+<td style="text-align:left">Version with GPS module installed</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>LITE</strong></td>
+<td style="text-align:left">Standard version (No GPS or GPS shielded)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>BLE</strong></td>
+<td style="text-align:left">Bluetooth mode enabled by default</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>WIFI</strong></td>
+<td style="text-align:left">WiFi mode enabled by default (Web Dashboard)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-Manual-Compilation"><a href="#2-Manual-Compilation" class="headerlink" title="2. Manual Compilation"></a>2. Manual Compilation</h3><p>This project is managed using <strong>PlatformIO</strong>:</p>
+<ul>
+<li><strong>Firmware</strong>: Based on the Arduino framework, dependency libraries have been fully migrated to the local <code>lib</code> folder.</li>
+<li><strong>Web Resources (Web Server)</strong>: The WiFi mode backend is developed using Next.js.<ul>
+<li>Enter the <code>Server</code> folder, run <code>npm i</code> and <code>npm run build</code>.</li>
+<li>Copy the generated <code>out</code> directory contents to the <code>data</code> folder of the firmware.</li>
+<li>Use <code>Firmware/assets/compass_web_data.py</code> to compress resources to reduce Flash occupancy.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Flashing-Guide"><a href="#Flashing-Guide" class="headerlink" title="Flashing Guide"></a>Flashing Guide</h2><h3 id="1-Using-Official-Tool-PC"><a href="#1-Using-Official-Tool-PC" class="headerlink" title="1. Using Official Tool (PC)"></a>1. Using Official Tool (PC)</h3><p>Download <a target="_blank" rel="noopener" href="https://www.espressif.com/en/support/download/other-tools">Flash Download Tool</a>:</p>
+<ul>
+<li><strong>Chip Selection</strong>: ESP32-C3</li>
+<li><strong>DownLoad Mode</strong>: USB</li>
+<li><strong>File Selection</strong>: Load the downloaded <code>.bin</code> file to address <strong>0x0</strong>.</li>
+<li><strong>Parameters</strong>: SPI SPEED: 40MHz, SPI MODE: DIO.</li>
+<li><strong>Note</strong>: The firmware has merged <code>bootloader</code> and <code>partition table</code>, so you only need to flash to 0x0.</li>
+</ul>
+<h3 id="2-Using-Mobile-Phone-Android"><a href="#2-Using-Mobile-Phone-Android" class="headerlink" title="2. Using Mobile Phone (Android)"></a>2. Using Mobile Phone (Android)</h3><p>If you don’t have a computer nearby, you can use <strong>ESPFlash</strong>, developed by the author, to flash directly via mobile phone USB:</p>
+<p><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=io.serialflow.espflash"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="323" height="125" /></a></p>
+<hr>
+<h2 id="Disclaimer"><a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>Disclaimer</h2><ul>
+<li><strong>Copyright</strong>: Minecraft pixel assets used in this project are copyrighted by Microsoft/Mojang. The panel file of this project serves only as a pixel distribution diagram and does not provide original compass textures.</li>
+<li><strong>Commercial Use Prohibited</strong>: The “Standard Galactic Alphabet” font used on the back of the PCB is copyrighted by the original author. For any commercial activities, <strong>be sure to delete the silkscreen text on the back</strong>.</li>
+</ul>
+
+        
+  </div>
+</article>
+
+                    
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/en/privacy-policy/">
+                Privacy Policy
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/terms/">
+                Terms of Use
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/disclaimer/">
+                Disclaimer
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/contact/">
+                Contact Us
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

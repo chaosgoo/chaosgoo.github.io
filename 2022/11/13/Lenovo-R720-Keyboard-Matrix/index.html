@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,21 +63,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -76,18 +206,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -100,6 +258,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -135,7 +295,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵分析与改造"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵分析与改造"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/&name=联想拯救者 R720 键盘矩阵分析与改造&description=&lt;h2 id=&#34;联想拯救者R720-键盘矩阵分析与改造&#34;&gt;&lt;a href=&#34;#联想拯救者R720-键盘矩阵分析与改造&#34; class=&#34;headerlink&#34; title=&#34;联想拯救者R720 键盘矩阵分析与改造&#34;&gt;&lt;/a&gt;联想拯救者R720 键盘矩阵分析与改造&lt;/h2&gt;&lt;h3 id=&#34;序&#34;&gt;&lt;a href=&#34;#序&#34; class=&#34;headerlink&#34; title=&#34;序&#34;&gt;&lt;/a&gt;序&lt;/h3&gt;&lt;p&gt;朋友托我帮他的R720笔记本改装成KVM.于是便有了此文.&lt;/p&gt;
-&lt;h3 id=&#34;键盘介绍&#34;&gt;&lt;a href=&#34;#键盘介绍&#34; class=&#34;headerlink&#34; title=&#34;键盘介绍&#34;&gt;&lt;/a&gt;键盘介绍&lt;/h3&gt;&lt;p&gt;主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.&lt;br&gt;R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&amp;#x3D;22)个IO.(其实还是挺多的)&lt;br&gt;为了避免&lt;a href=&#34;https://blog.csdn.net/qq_36753518/article/details/111410693&#34;&gt;鬼键&lt;/a&gt;,实际的接线比理想情况下复杂.&lt;br&gt;而且相较于很多DIY机械键盘的直来直去线路:&lt;br&gt;&lt;img src=&#34;/images/migrated/79651614_normal_wire.jpg&#34; alt=&#34;接线图&#34;&gt;&lt;br&gt;R720这块键盘的内部Wiring就显得很乱了:&lt;br&gt;&lt;img src=&#34;/images/migrated/b9d40fd6_r720_wire.jpg&#34; alt=&#34;R720&#34;&gt;&lt;br&gt;刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的&lt;a href=&#34;https://www.howett.net/data/framework_matrix/&#34;&gt;KeyMap&lt;/a&gt;才放下心来.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+&lt;h3 id=&#34;键盘介绍&#34;&gt;&lt;a href=&#34;#键盘介绍&#34; class=&#34;headerlink&#34; title=&#34;键盘介绍&#34;&gt;&lt;/a&gt;键盘介绍&lt;/h3&gt;&lt;p&gt;主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.&lt;br&gt;R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16=22)个IO.(其实还是挺多的)&lt;br&gt;为了避免&lt;a href=&#34;https://blog.csdn.net/qq_36753518/article/details/111410693&#34;&gt;鬼键&lt;/a&gt;,实际的接线比理想情况下复杂.&lt;br&gt;而且相较于很多DIY机械键盘的直来直去线路:&lt;br&gt;&lt;img src=&#34;/images/migrated/79651614_normal_wire.jpg&#34; alt=&#34;接线图&#34;&gt;&lt;br&gt;R720这块键盘的内部Wiring就显得很乱了:&lt;br&gt;&lt;img src=&#34;/images/migrated/b9d40fd6_r720_wire.jpg&#34; alt=&#34;R720&#34;&gt;&lt;br&gt;刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的&lt;a href=&#34;https://www.howett.net/data/framework_matrix/&#34;&gt;KeyMap&lt;/a&gt;才放下心来.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/&t=联想拯救者 R720 键盘矩阵分析与改造"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
@@ -149,10 +309,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -194,19 +354,16 @@
 
   <div class="content e-content" itemprop="articleBody">
     <h2 id="联想拯救者R720-键盘矩阵分析与改造"><a href="#联想拯救者R720-键盘矩阵分析与改造" class="headerlink" title="联想拯救者R720 键盘矩阵分析与改造"></a>联想拯救者R720 键盘矩阵分析与改造</h2><h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>朋友托我帮他的R720笔记本改装成KVM.于是便有了此文.</p>
-<h3 id="键盘介绍"><a href="#键盘介绍" class="headerlink" title="键盘介绍"></a>键盘介绍</h3><p>主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.<br>R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&#x3D;22)个IO.(其实还是挺多的)<br>为了避免<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36753518/article/details/111410693">鬼键</a>,实际的接线比理想情况下复杂.<br>而且相较于很多DIY机械键盘的直来直去线路:<br><img src="/images/migrated/79651614_normal_wire.jpg" alt="接线图"><br>R720这块键盘的内部Wiring就显得很乱了:<br><img src="/images/migrated/b9d40fd6_r720_wire.jpg" alt="R720"><br>刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的<a target="_blank" rel="noopener" href="https://www.howett.net/data/framework_matrix/">KeyMap</a>才放下心来.</p>
+<h3 id="键盘介绍"><a href="#键盘介绍" class="headerlink" title="键盘介绍"></a>键盘介绍</h3><p>主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.<br>R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16=22)个IO.(其实还是挺多的)<br>为了避免<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36753518/article/details/111410693">鬼键</a>,实际的接线比理想情况下复杂.<br>而且相较于很多DIY机械键盘的直来直去线路:<br><img src="/images/migrated/79651614_normal_wire.jpg" alt="接线图"><br>R720这块键盘的内部Wiring就显得很乱了:<br><img src="/images/migrated/b9d40fd6_r720_wire.jpg" alt="R720"><br>刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的<a target="_blank" rel="noopener" href="https://www.howett.net/data/framework_matrix/">KeyMap</a>才放下心来.</p>
 <span id="more"></span>
-
-
 <h3 id="KeyMap测绘"><a href="#KeyMap测绘" class="headerlink" title="KeyMap测绘"></a>KeyMap测绘</h3><p>搜到一篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/reboot2010/article/details/109193827">教人把笔记本改装为KVM的文章</a>,文章里面提到了<b>矩阵键盘驱动控制模块Monkey</b>.<br>我一看这不和ATMEGA32U4差不多吗,应该是同一个系列的产品,淘宝上这东西卖50.这不是要了我的命吗.<br>自从去年单片机涨价后,Atmel的产品到现在也没恢复过去的价格,觉得自己现在要是买了就是纯纯大冤种.<br>况且完全可以自己做一个类似的东西,当时手上有这么多IO的板子就一个Raspberry Pi Pico,而QMK也支持了Pico,于是先借助Pico对KeyMap进行测绘.<br>得到如下结果</p>
 <p><img src="/images/migrated/3dd106e5_pinmapExcel.png" alt="Excel"></p>
-<p>你问我怎么知道Row Pin和Col Pin的,这不是巧了吗,Google一下找到了同模具笔记本的原理图(<a target="_blank" rel="noopener" href="https://www.alisaler.com/">网站</a>).<br>顺便还知道了触摸板引脚定义,后面直接开启QMK的PS&#x2F;2鼠标支持顺便把触摸板一起驱动了.<br><img src="/images/migrated/c6b44bc3_KB_FPC_Pin_Define.jpg" alt="32P-0.8mm-FPC"></p>
-<h3 id="Schematic"><a href="#Schematic" class="headerlink" title="Schematic"></a>Schematic</h3><p>得到Key Map后,就可以开始画板子的工作了.<br>迫于当时无法使用Pico编译出支持PS&#x2F;2 Mouse的固件,所以把主控换成了常见的ATMEGA32U4.<br>换主控后,IO开始紧缺了,不过没关系.可以使用拓展IO的芯片来应付这种情况.<br>看了一眼QMK仓库里面的方案,大部分都是使用的输出IO拓展来解决问题.<br>非常不巧的是,这块键盘的扫描方向和常规键盘相反,所以不出意外的话我就要出意外了.<br>于是购入74HC595对输出IO进行拓展并完美的踩了坑.重新检查才意识到我得使用74HC165拓展输入IO才行.</p>
-<p>拖拉好久并且又踩到了PS&#x2F;2 Mouse必须使用指定的IO驱动等好几个坑,最终绘制出下面使用74HC165原理图的方案(沉痛浪费很多次JLC免费打板机会.)</p>
+<p>你问我怎么知道Row Pin和Col Pin的,这不是巧了吗,Google一下找到了同模具笔记本的原理图(<a target="_blank" rel="noopener" href="https://www.alisaler.com/">网站</a>).<br>顺便还知道了触摸板引脚定义,后面直接开启QMK的PS/2鼠标支持顺便把触摸板一起驱动了.<br><img src="/images/migrated/c6b44bc3_KB_FPC_Pin_Define.jpg" alt="32P-0.8mm-FPC"></p>
+<h3 id="Schematic"><a href="#Schematic" class="headerlink" title="Schematic"></a>Schematic</h3><p>得到Key Map后,就可以开始画板子的工作了.<br>迫于当时无法使用Pico编译出支持PS/2 Mouse的固件,所以把主控换成了常见的ATMEGA32U4.<br>换主控后,IO开始紧缺了,不过没关系.可以使用拓展IO的芯片来应付这种情况.<br>看了一眼QMK仓库里面的方案,大部分都是使用的输出IO拓展来解决问题.<br>非常不巧的是,这块键盘的扫描方向和常规键盘相反,所以不出意外的话我就要出意外了.<br>于是购入74HC595对输出IO进行拓展并完美的踩了坑.重新检查才意识到我得使用74HC165拓展输入IO才行.</p>
+<p>拖拉好久并且又踩到了PS/2 Mouse必须使用指定的IO驱动等好几个坑,最终绘制出下面使用74HC165原理图的方案(沉痛浪费很多次JLC免费打板机会.)</p>
 <p><img src="/images/migrated/e07d9e4e_photo_2022-12-10_20-49-26.jpg" alt="原理图"></p>
 <h3 id="QMK-Pin-Map"><a href="#QMK-Pin-Map" class="headerlink" title="QMK Pin Map"></a>QMK Pin Map</h3><p>参考测绘出的Key Map,再借助网页工具得到最终QMK固件所需的KeyMap<br>为了让多媒体键工作正常,于是设置了两层Key Map.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">uint16_t</span> PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = &#123;</span><br><span class="line">    LAYOUT_pa(</span><br><span class="line">		KC_PMNS, KC_PSLS, KC_P0, KC_LALT, KC_SPC, KC_Z, KC_B, KC_N, KC_DOWN, KC_LSFT, KC_PAST, KC_LCTL, KC_UP, KC_ENT, KC_F8, </span><br><span class="line">		KC_C, KC_Q, KC_RALT, KC_X, KC_V, KC_M, KC_DOT, KC_RSFT, KC_COMM, KC_RCTL, KC_SLSH, KC_QUOT, </span><br><span class="line">		KC_PPLS, KC_P9, MO(<span class="number">1</span>), KC_E, KC_F2, KC_G, KC_H, KC_BSLS, KC_F7, KC_P8, KC_MINS, KC_RGHT, </span><br><span class="line">		KC_P2, KC_LGUI, KC_TAB, KC_F4, KC_F1, KC_T, KC_Y, KC_O, KC_F6, KC_F9, KC_F12, KC_PSLS, </span><br><span class="line">		KC_P3, KC_P7, KC_GRV, KC_CAPS, KC_S, KC_5, KC_6, KC_F10, KC_F5, KC_0, KC_EQL, KC_DEL, </span><br><span class="line">		KC_PDOT, KC_1, KC_3, KC_2, KC_4, KC_7, KC_9, KC_8, KC_P, KC_BSPC, KC_P4, </span><br><span class="line">		KC_P1, KC_F3, KC_W, KC_R, KC_U, KC_F11, KC_I, KC_LEFT, KC_LBRC, KC_RBRC, KC_P5, </span><br><span class="line">		KC_NUM, KC_A, KC_ESC, KC_F, KC_J, KC_L, KC_K, KC_APP, KC_SCLN, KC_D, KC_P6),</span><br><span class="line"></span><br><span class="line">	LAYOUT_pa(</span><br><span class="line">		KC_PAUS, KC_MNXT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGDN, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_TRNS, KC_MPRV, KC_TRNS, KC_TRNS, KC_VOLD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MPLY, KC_TRNS, KC_END, </span><br><span class="line">		KC_PSCR, KC_TRNS, KC_TRNS, KC_TRNS, KC_MUTE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_DEL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_INS, KC_VOLU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_TRNS, KC_TRNS, KC_TRNS, </span><br><span class="line">		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h3 id="实物"><a href="#实物" class="headerlink" title="实物"></a>实物</h3><p><img src="/images/migrated/1ed3dc00_QQ_E6_88_AA_E5_9B_BE20221210205324.jpg" alt="R720 Keyboard"></p>
 <h3 id="遗憾"><a href="#遗憾" class="headerlink" title="遗憾"></a>遗憾</h3><p>背光的电压是5V,但是我没有适配.我已经过了那个喜欢背光的年纪了.</p>
 <h3 id="More"><a href="#More" class="headerlink" title="More"></a>More</h3><p>笔记本主板的那个叫啥BoardView也下载到了,再对着这玩意人肉Convert(测量,然后手动绘制)一下就得到了DWG图.<br>知道了精确的开孔,再画板子就方便固定了</p>
@@ -218,8 +375,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -228,6 +385,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -253,7 +412,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵分析与改造"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/&title=联想拯救者 R720 键盘矩阵分析与改造"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/&name=联想拯救者 R720 键盘矩阵分析与改造&description=&lt;h2 id=&#34;联想拯救者R720-键盘矩阵分析与改造&#34;&gt;&lt;a href=&#34;#联想拯救者R720-键盘矩阵分析与改造&#34; class=&#34;headerlink&#34; title=&#34;联想拯救者R720 键盘矩阵分析与改造&#34;&gt;&lt;/a&gt;联想拯救者R720 键盘矩阵分析与改造&lt;/h2&gt;&lt;h3 id=&#34;序&#34;&gt;&lt;a href=&#34;#序&#34; class=&#34;headerlink&#34; title=&#34;序&#34;&gt;&lt;/a&gt;序&lt;/h3&gt;&lt;p&gt;朋友托我帮他的R720笔记本改装成KVM.于是便有了此文.&lt;/p&gt;
-&lt;h3 id=&#34;键盘介绍&#34;&gt;&lt;a href=&#34;#键盘介绍&#34; class=&#34;headerlink&#34; title=&#34;键盘介绍&#34;&gt;&lt;/a&gt;键盘介绍&lt;/h3&gt;&lt;p&gt;主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.&lt;br&gt;R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16&amp;#x3D;22)个IO.(其实还是挺多的)&lt;br&gt;为了避免&lt;a href=&#34;https://blog.csdn.net/qq_36753518/article/details/111410693&#34;&gt;鬼键&lt;/a&gt;,实际的接线比理想情况下复杂.&lt;br&gt;而且相较于很多DIY机械键盘的直来直去线路:&lt;br&gt;&lt;img src=&#34;/images/migrated/79651614_normal_wire.jpg&#34; alt=&#34;接线图&#34;&gt;&lt;br&gt;R720这块键盘的内部Wiring就显得很乱了:&lt;br&gt;&lt;img src=&#34;/images/migrated/b9d40fd6_r720_wire.jpg&#34; alt=&#34;R720&#34;&gt;&lt;br&gt;刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的&lt;a href=&#34;https://www.howett.net/data/framework_matrix/&#34;&gt;KeyMap&lt;/a&gt;才放下心来.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+&lt;h3 id=&#34;键盘介绍&#34;&gt;&lt;a href=&#34;#键盘介绍&#34; class=&#34;headerlink&#34; title=&#34;键盘介绍&#34;&gt;&lt;/a&gt;键盘介绍&lt;/h3&gt;&lt;p&gt;主流键盘基本上都是矩阵键盘.这种方式比较节省IO.这块R720也不例外.&lt;br&gt;R720的键盘一共有96个键,用矩阵键盘的方式,理论上需要(6+16=22)个IO.(其实还是挺多的)&lt;br&gt;为了避免&lt;a href=&#34;https://blog.csdn.net/qq_36753518/article/details/111410693&#34;&gt;鬼键&lt;/a&gt;,实际的接线比理想情况下复杂.&lt;br&gt;而且相较于很多DIY机械键盘的直来直去线路:&lt;br&gt;&lt;img src=&#34;/images/migrated/79651614_normal_wire.jpg&#34; alt=&#34;接线图&#34;&gt;&lt;br&gt;R720这块键盘的内部Wiring就显得很乱了:&lt;br&gt;&lt;img src=&#34;/images/migrated/b9d40fd6_r720_wire.jpg&#34; alt=&#34;R720&#34;&gt;&lt;br&gt;刚测出结果的时候,总感觉自己一定是弄错了什么地方.直到后来搜到了一款名叫Framework Laptop的笔记本,有着类似的&lt;a href=&#34;https://www.howett.net/data/framework_matrix/&#34;&gt;KeyMap&lt;/a&gt;才放下心来.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2022/11/13/Lenovo-R720-Keyboard-Matrix/&t=联想拯救者 R720 键盘矩阵分析与改造"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -271,8 +430,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -285,85 +444,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

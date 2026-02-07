@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="The Real-life Minecraft Compass     欢迎来到 MCompass 的制作指南。在这里你可以找到从物料准备、自动化编译、固件烧录到日常交互的所有技术细节。   快速导航                           物料与模型 (BOM &amp; 3D)             查看完整的零件清单、选型建议与 3D 打印模型。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MCompass 制作全攻略">
+<meta property="og:url" content="https://chaosgoo.com/mcompass/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="The Real-life Minecraft Compass     欢迎来到 MCompass 的制作指南。在这里你可以找到从物料准备、自动化编译、固件烧录到日常交互的所有技术细节。   快速导航                           物料与模型 (BOM &amp; 3D)             查看完整的零件清单、选型建议与 3D 打印模型。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-04T11:28:47.000Z">
+<meta property="article:modified_time" content="2026-02-04T11:28:47.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术">
+<meta name="twitter:card" content="summary">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            MCompass 制作全攻略
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/mcompass/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
+
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
+                                                              <link rel="preload" href="/css/style.css"
+                                                                as="style"
+                                                                onload="this.onload=null;this.rel='stylesheet'">
+                                                              <noscript>
+                                                                <link rel="stylesheet"
+                                                                  href="/css/style.css">
+                                                              </noscript>
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+          <div class="content index py4 ">
+            
+              <header id="header">
+  <a class="u-url u-uid" href="/%20/">
+    
+      
+                <img id="logo" alt class="u-logo" src="/images/Logo_Sketch_88.png" width="50" height="50" />
+                
+                  
+                    <div id="title">
+                      <h1 class="p-name">
+                        Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog
+                      </h1>
+                    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     -->
+        <li><a href="/">
+            首页
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/archives/">
+            归档
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/projects/">
+            项目
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/about/">
+            关于
+          </a></li><!--
+   -->
+        
+          
+            <!--
+     -->
+              <!--
+     -->
+                <!--
+     -->
+                  <li class="lang-switch-item">
+                    <a href="/en/mcompass/index.html" title="Switch to English"
+                      class="lang-switch">
+                      English
+                    </a>
+                  </li><!--
+   -->
+                  
+    </ul>
+  </div>
+</header>
+                
+                  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <div style="padding: 20px; background: linear-gradient(135deg, #2bbc8a 0%, #1a8a64 100%); color: white; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(43, 188, 138, 0.2);">
+    <h2 style="color: white; margin-top: 0; border: none;">The Real-life Minecraft Compass</h2>
+    <p style="margin-bottom: 0; opacity: 0.9;">欢迎来到 MCompass 的制作指南。在这里你可以找到从物料准备、自动化编译、固件烧录到日常交互的所有技术细节。</p>
+</div>
+
+<h3 id="快速导航"><a href="#快速导航" class="headerlink" title="快速导航"></a>快速导航</h3><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; align-items: stretch;">
+    <a href="./bom.html" style="text-decoration: none; color: inherit; background-image: none; border-bottom: none; display: flex; flex-direction: column;">
+        <div style="padding: 20px; border: 1px solid #eee; border-radius: 10px; background: #fff; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; flex: 1;" onmouseover="this.style.transform='translateY(-5px)';this.style.shadow='0 5px 15px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='none';this.style.shadow='none'">
+            <h4 style="margin: 0 0 10px 0; color: #2bbc8a;">物料与模型 (BOM & 3D)</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: #666;">查看完整的零件清单、选型建议与 3D 打印模型。</p>
+        </div>
+    </a>
+    <a href="./guide.html" style="text-decoration: none; color: inherit; background-image: none; border-bottom: none; display: flex; flex-direction: column;">
+        <div style="padding: 20px; border: 1px solid #eee; border-radius: 10px; background: #fff; transition: transform 0.2s; cursor: pointer; flex: 1;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='none'">
+            <h4 style="margin: 0 0 10px 0; color: #2bbc8a;">烧录与编译 (Flash)</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: #666;">从 GitHub 下载现存固件或使用 PlatformIO 手动编译。</p>
+        </div>
+    </a>
+    <a href="./manual.html" style="text-decoration: none; color: inherit; background-image: none; border-bottom: none; display: flex; flex-direction: column;">
+        <div style="padding: 20px; border: 1px solid #eee; border-radius: 10px; background: #fff; transition: transform 0.2s; cursor: pointer; flex: 1;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='none'">
+            <h4 style="margin: 0 0 10px 0; color: #2bbc8a;">交互使用说明 (Manual)</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: #666;">学习如何操作按钮切换模式、校准传感器及进入后台。</p>
+        </div>
+    </a>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px;">
+    <a href="https://oshwhub.com/chaosgoo/wcompass" target="_blank" style="text-decoration: none; color: inherit; background-image: none; border-bottom: none;">
+        <div style="padding: 15px; border: 1px solid #eee; border-radius: 10px; background: #fafafa; text-align: center;">
+            <p style="margin: 0; font-size: 0.9rem; color: #2bbc8a; font-weight: bold;">立创开源 PCB 工程</p>
+        </div>
+    </a>
+    <a href="https://github.com/chaosgoo/mcompass" target="_blank" style="text-decoration: none; color: inherit; background-image: none; border-bottom: none;">
+        <div style="padding: 15px; border: 1px solid #eee; border-radius: 10px; background: #fafafa; text-align: center;">
+            <p style="margin: 0; font-size: 0.9rem; color: #2bbc8a; font-weight: bold;">GitHub 源码仓库</p>
+        </div>
+    </a>
+</div>
+
+<hr>
+<h3 id="重要声明-Copyright-amp-Safety"><a href="#重要声明-Copyright-amp-Safety" class="headerlink" title="重要声明 (Copyright &amp; Safety)"></a>重要声明 (Copyright &amp; Safety)</h3><p>在使用或制作 MCompass 之前，请务必阅读以下声明：</p>
+<ul>
+<li><strong>素材声明</strong>：Minecraft 游戏相关视觉素材版权均归 <strong>Microsoft / Mojang</strong> 所有。本项目仅提供基于点阵分布的开源设计，不分发任何游戏原始资源。</li>
+<li><strong>商业使用限制</strong>：<ul>
+<li><strong>严禁</strong> 用于任何商业盈利行为。</li>
+<li>PCB 背面使用的标准银河字母（Standard Galactic Alphabet）字体版权不明确，如需商业化请务必<strong>自行删除</strong>相关丝印。</li>
+</ul>
+</li>
+<li><strong>制作建议</strong>：本装置涉及锂电池充电与小型电子元件焊接，请在具备基本电子制作常识的情况下进行。</li>
+</ul>
+<hr>
+<h3 id="常见问题汇总-Q-amp-A"><a href="#常见问题汇总-Q-amp-A" class="headerlink" title="常见问题汇总 (Q&amp;A)"></a>常见问题汇总 (Q&amp;A)</h3><div style="background: #fcfcfc; border: 1px solid #f0f0f0; border-radius: 8px; padding: 20px;">
+    <p style="margin-top:0;"><strong>Q: GPS 定位需要多久？</strong><br>
+    A: 模块首次定位（冷启动）在开阔地带通常需要 <strong>30秒以上</strong>。</p>
+
+    <p><strong>Q: 启动后屏幕显示绿色 "x4" 是什么意思？</strong><br>
+    A: 这代表了 <strong>I2C 通信失败</strong>，通常是 QMC5883 传感器或排母焊接虚焊导致的。</p>
+
+    <p style="margin-bottom:0;"><strong>Q: 支持双头 Type-C 线线充电吗？</strong><br>
+    A: 需要在 PCB 上焊接对应的 CC1/CC2 下拉电阻方可识别 C-to-C 线缆。</p>
+</div>
+
+<hr>
+<h3 id="更新日志-Changelog"><a href="#更新日志-Changelog" class="headerlink" title="更新日志 (Changelog)"></a>更新日志 (Changelog)</h3><div style="border-left: 2px solid #2bbc8a; padding-left: 20px; margin-left: 10px;">
+    <h4 style="margin-top: 0; color: #333;">2025.09.17</h4>
+    <ul style="margin-bottom: 20px;">
+        <li><strong>指针过冲效果</strong>：完美复刻游戏中的跳动感，转动过快时指针会产生物理惯性。</li>
+        <li>启动容错优化：多次检测地磁传感器，提高启动稳定性。</li>
+    </ul>
+
+    <h4 style="color: #333; margin-bottom: 0;">2024.12.07</h4>
+    <ul style="margin-bottom: 0;">
+        <li><strong>智能电源策略</strong>：根据距离动态开关 GPS 以延长续航。</li>
+    </ul>
+</div>
+
+<p><br></p>
+<p><a href="/projects/">回到项目列表</a></p>
+
+        
+  </div>
+</article>
+
+                    
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

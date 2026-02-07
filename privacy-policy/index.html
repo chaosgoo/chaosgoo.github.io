@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,21 +54,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/privacy-policy/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -67,31 +197,61 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
-    <div class="content index py4 ">
-        
-          <header id="header">
-  <a class="u-url u-uid" href="/">
-  
+          <div class="content index py4 ">
+            
+              <header id="header">
+  <a class="u-url u-uid" href="/%20/">
     
-      <img id="logo" alt class="u-logo" src="/images/Logo_Sketch.webp" />
-    
-  
-    <div id="title">
-      <h1 class="p-name">Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog</h1>
-    </div>
+      
+                <img id="logo" alt class="u-logo" src="/images/Logo_Sketch_88.png" width="50" height="50" />
+                
+                  
+                    <div id="title">
+                      <h1 class="p-name">
+                        Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog
+                      </h1>
+                    </div>
   </a>
   <div id="nav">
     <ul>
@@ -99,18 +259,50 @@
         <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
       </li>
       <!--
-     --><li><a href="/">首页</a></li><!--
-   --><!--
-     --><li><a href="/archives/">归档</a></li><!--
-   --><!--
-     --><li><a href="/about/">关于</a></li><!--
+     -->
+        <li><a href="/">
+            首页
+          </a></li><!--
    -->
+        <!--
+     -->
+        <li><a href="/archives/">
+            归档
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/projects/">
+            项目
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/about/">
+            关于
+          </a></li><!--
+   -->
+        
+          
+            <!--
+     -->
+              <!--
+     -->
+                <!--
+     -->
+                  <li class="lang-switch-item">
+                    <a href="/en/privacy-policy/index.html" title="Switch to English"
+                      class="lang-switch">
+                      English
+                    </a>
+                  </li><!--
+   -->
+                  
     </ul>
   </div>
 </header>
-
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                
+                  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   
 
   <div class="content" itemprop="articleBody">
@@ -123,23 +315,19 @@
 </ul>
 <h2 id="2-通过第三方服务收集的信息（关键披露）"><a href="#2-通过第三方服务收集的信息（关键披露）" class="headerlink" title="2. 通过第三方服务收集的信息（关键披露）"></a>2. 通过第三方服务收集的信息（关键披露）</h2><p>本网站使用以下第三方服务来优化用户体验，这些服务可能会间接收集您的非个人信息和使用数据。</p>
 <h3 id="A-Google-AdSense-广告服务"><a href="#A-Google-AdSense-广告服务" class="headerlink" title="A. Google AdSense (广告服务)"></a>A. Google AdSense (广告服务)</h3><ul>
-<li><p><strong>Google AdSense：</strong> Google 作为第三方供应商，使用 Cookie 来根据用户访问本网站和互联网上其他网站的情况投放广告。</p>
-</li>
-<li><p><strong>Google 广告设置：</strong> 您可以通过访问 <a target="_blank" rel="noopener" href="https://adssettings.google.com/">Google 广告设置</a> 选择停用个性化广告。</p>
-</li>
-<li><p><strong>Google 广告隐私政策：</strong> 访问 <a target="_blank" rel="noopener" href="https://policies.google.com/technologies/ads">Google 广告隐私政策</a> 了解 Google 广告的详细做法。</p>
-</li>
+<li><strong>Google AdSense：</strong> Google 作为第三方供应商，使用 Cookie 来根据用户访问本网站和互联网上其他网站的情况投放广告。</li>
+<li><strong>Google 广告设置：</strong> 您可以通过访问 <a target="_blank" rel="noopener" href="https://adssettings.google.com">Google 广告设置</a> 选择停用个性化广告。</li>
+<li><strong>Google 广告隐私政策：</strong> 访问 <a target="_blank" rel="noopener" href="https://policies.google.com/technologies/ads">Google 广告隐私政策</a> 了解 Google 广告的详细做法。</li>
 <li><p><strong>DART Cookie 详情：</strong> Google 使用 DART Cookie 向用户投放广告，详细信息请查看 <a target="_blank" rel="noopener" href="https://support.google.com/adsense/answer/2839090">DART Cookie 帮助页面</a>。</p>
 </li>
 <li><p>本网站使用 <strong>Google Analytics</strong> 来分析网站流量。该服务可能会收集您的 <strong>IP 地址、浏览器类型、设备信息、访问页面、访问时间</strong>等数据。这些数据仅用于统计分析，以改进本网站的内容和结构。</p>
 </li>
-<li><p><strong>IP 匿名化：</strong> 我们已启用 Google Analytics 的 IP 匿名化功能（anonymizeIp），以进一步保护您的隐私。数据可能传输至美国，并受 Google 的隐私盾框架或等效机制保护。</p>
-</li>
-<li><p><strong>隐私政策：</strong> 您可以访问 <a target="_blank" rel="noopener" href="https://policies.google.com/privacy">Google Analytics 隐私政策</a> 获取详细信息。</p>
-</li>
+<li><strong>IP 匿名化：</strong> 我们已启用 Google Analytics 的 IP 匿名化功能（anonymizeIp），以进一步保护您的隐私。数据可能传输至美国，并受 Google 的隐私盾框架或等效机制保护。</li>
+<li><strong>隐私政策：</strong> 您可以访问 <a target="_blank" rel="noopener" href="https://policies.google.com/privacy">Google Analytics 隐私政策</a> 获取详细信息。</li>
 </ul>
 <h3 id="C-Cookie-和其他跟踪技术"><a href="#C-Cookie-和其他跟踪技术" class="headerlink" title="C. Cookie 和其他跟踪技术"></a>C. Cookie 和其他跟踪技术</h3><p>本网站和上述第三方服务会使用 <strong>Cookie</strong>（储存在您设备上的小型文本文件）来记录您的偏好设置、跟踪访问活动和维护会话状态。如启用广告服务，Cookie 也将用于投放广告。</p>
-<h4 id="Google-Analytics-Cookie-详情"><a href="#Google-Analytics-Cookie-详情" class="headerlink" title="Google Analytics Cookie 详情"></a>Google Analytics Cookie 详情</h4><table>
+<h4 id="Google-Analytics-Cookie-详情"><a href="#Google-Analytics-Cookie-详情" class="headerlink" title="Google Analytics Cookie 详情"></a>Google Analytics Cookie 详情</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>Cookie 名称</th>
@@ -147,7 +335,8 @@
 <th>保留期限</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>_ga</code></td>
 <td>用于区分用户，生成唯一客户端 ID</td>
 <td>2 年</td>
@@ -167,13 +356,16 @@
 <td>用于限制请求速率</td>
 <td>1 分钟</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>数据接收方：</strong> Google LLC 作为我们的分析数据处理方</li>
 <li><strong>数据保留：</strong> 我们仅在 Analytics 控制台中查看匿名的聚合报告</li>
 <li><strong>收集的数据：</strong> IP 地址、大致地理位置、设备类型、语言、访问的页面</li>
 </ul>
 <h4 id="Google-AdSense-Cookie-详情（如启用）"><a href="#Google-AdSense-Cookie-详情（如启用）" class="headerlink" title="Google AdSense Cookie 详情（如启用）"></a>Google AdSense Cookie 详情（如启用）</h4><p>如本网站启用 Google AdSense，可能使用以下 Cookie：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -182,7 +374,8 @@
 <th>保留期限</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>__gads</code></td>
 <td>投放广告并衡量广告效果</td>
 <td>13 个月</td>
@@ -202,10 +395,12 @@
 <td>用于展示 Google 广告</td>
 <td>13 个月</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>数据接收方：</strong> Google 及其广告合作伙伴</li>
-<li><strong>用途：</strong> 根据您对本网站和&#x2F;或互联网上其他网站的访问，向您投放相关广告</li>
+<li><strong>用途：</strong> 根据您对本网站和/或互联网上其他网站的访问，向您投放相关广告</li>
 </ul>
 <h4 id="管理-Cookie"><a href="#管理-Cookie" class="headerlink" title="管理 Cookie"></a>管理 Cookie</h4><p>您有权通过浏览器设置随时拒绝或删除 Cookie，但这可能会影响您访问本网站或使用某些第三方功能的能力。</p>
 <h2 id="3-信息的使用目的"><a href="#3-信息的使用目的" class="headerlink" title="3. 信息的使用目的"></a>3. 信息的使用目的</h2><p>我们收集的信息主要用于以下用途：</p>
@@ -219,15 +414,17 @@
 <p>我们可能会与为我们提供技术支持、业务运营或服务的第三方共享信息（例如 Google Analytics，以及如启用时的 Google AdSense），但这些合作方需严格遵守保密协议。</p>
 <h2 id="5-外部链接"><a href="#5-外部链接" class="headerlink" title="5. 外部链接"></a>5. 外部链接</h2><p>本网站可能包含指向其他网站的链接。对于这些外部网站的内容、安全措施或隐私做法，我们不承担任何责任。建议您在访问任何外部网站时仔细阅读其隐私政策。</p>
 <h2 id="6-第三方服务及资源"><a href="#6-第三方服务及资源" class="headerlink" title="6. 第三方服务及资源"></a>6. 第三方服务及资源</h2><p>我们尽量选择透明且合规的服务商。以下是当前使用的第三方服务完整清单：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>服务名称</th>
 <th>用途说明</th>
-<th>隐私政策&#x2F;详情</th>
+<th>隐私政策/详情</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Google Analytics</td>
 <td>收集匿名的流量统计数据</td>
 <td><a target="_blank" rel="noopener" href="https://policies.google.com/privacy">隐私政策</a></td>
@@ -243,17 +440,19 @@
 <td><a target="_blank" rel="noopener" href="https://marketingplatform.google.com/about/tag-manager/">GTM 详情</a></td>
 </tr>
 <tr>
-<td>jsDelivr &#x2F; Font Awesome</td>
+<td>jsDelivr / Font Awesome</td>
 <td>提供静态资源、CSS 和字体加载</td>
 <td>仅加载静态文件，不收集 PII</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="关于-CDN-服务"><a href="#关于-CDN-服务" class="headerlink" title="关于 CDN 服务"></a>关于 CDN 服务</h3><p>本网站使用 CDN（如 jsDelivr、Font Awesome）来加载必要的静态资源。这些服务仅用于传输公共资源库文件，不会主动收集您的个人可识别信息。我们优先使用隐私友好的 CDN，无需额外追踪。</p>
-<h2 id="7-您的权利-GDPR-CCPA"><a href="#7-您的权利-GDPR-CCPA" class="headerlink" title="7. 您的权利 (GDPR&#x2F;CCPA)"></a>7. 您的权利 (GDPR&#x2F;CCPA)</h2><p>根据 GDPR&#x2F;CCPA 等法规，您有权访问、更正、删除您的个人数据，或反对处理。</p>
+<h2 id="7-您的权利-GDPR-CCPA"><a href="#7-您的权利-GDPR-CCPA" class="headerlink" title="7. 您的权利 (GDPR/CCPA)"></a>7. 您的权利 (GDPR/CCPA)</h2><p>根据 GDPR/CCPA 等法规，您有权访问、更正、删除您的个人数据，或反对处理。</p>
 <ul>
-<li><strong>联系我们：</strong> 请发送邮件至 <a href="mailto:&#97;&#100;&#x6d;&#x69;&#110;&#x40;&#x63;&#104;&#x61;&#x6f;&#x73;&#x67;&#111;&#x6f;&#46;&#x63;&#111;&#x6d;">&#97;&#100;&#x6d;&#x69;&#110;&#x40;&#x63;&#104;&#x61;&#x6f;&#x73;&#x67;&#111;&#x6f;&#46;&#x63;&#111;&#x6d;</a>，并提供足够身份验证信息（如注册邮箱）。我们将在 30 天内响应，并协调 Google 等第三方删除相关数据（如可能）。</li>
+<li><strong>联系我们：</strong> 请发送邮件至 admin@chaosgoo.com，并提供足够身份验证信息（如注册邮箱）。我们将在 30 天内响应，并协调 Google 等第三方删除相关数据（如可能）。</li>
 <li><strong>退出 Google Analytics 追踪：</strong> 安装 <a target="_blank" rel="noopener" href="https://tools.google.com/dlpage/gaoptout">Google Analytics 退出浏览器插件</a>。</li>
-<li><strong>管理 Google 广告：</strong> 访问 <a target="_blank" rel="noopener" href="https://adssettings.google.com/">Google 广告设置</a> 选择退出。</li>
+<li><strong>管理 Google 广告：</strong> 访问 <a target="_blank" rel="noopener" href="https://adssettings.google.com">Google 广告设置</a> 选择退出。</li>
 <li><strong>管理浏览器 Cookie：</strong> 您可以通过浏览器设置随时拒绝或删除 Cookie。</li>
 </ul>
 <h2 id="8-儿童隐私保护"><a href="#8-儿童隐私保护" class="headerlink" title="8. 儿童隐私保护"></a>8. 儿童隐私保护</h2><p>本网站面向 <strong>13 岁及以上</strong>的用户。我们不会故意收集 13 岁以下儿童的任何个人数据。如果您认为某位儿童通过本网站向我们的第三方合作伙伴（如 Google）发送了个人数据，请立即联系我们，我们将配合相关服务提供商删除该数据。</p>
@@ -261,8 +460,8 @@
 <ul>
 <li><strong>网站管理员：</strong> chaosgoo</li>
 <li><strong>电子邮件：</strong> <ul>
-<li><a href="mailto:&#97;&#x64;&#x6d;&#105;&#x6e;&#x40;&#x63;&#104;&#x61;&#x6f;&#115;&#x67;&#x6f;&#x6f;&#46;&#x63;&#x6f;&#109;">&#97;&#x64;&#x6d;&#105;&#x6e;&#x40;&#x63;&#104;&#x61;&#x6f;&#115;&#x67;&#x6f;&#x6f;&#46;&#x63;&#x6f;&#109;</a>（优先处理方式）；</li>
-<li><a href="mailto:&#x73;&#105;&#110;&#100;&#111;&#117;&#x74;&#x72;&#x69;&#x71;&#117;&#97;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#x73;&#105;&#110;&#100;&#111;&#117;&#x74;&#x72;&#x69;&#x71;&#117;&#97;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a></li>
+<li>admin@chaosgoo.com（优先处理方式）；</li>
+<li>sindoutriqua@gmail.com</li>
 </ul>
 </li>
 </ul>
@@ -271,8 +470,8 @@
   </div>
 </article>
 
-        
-        <footer id="footer">
+                    
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -285,62 +484,67 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-
+                        <!-- clipboard -->
+                        
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

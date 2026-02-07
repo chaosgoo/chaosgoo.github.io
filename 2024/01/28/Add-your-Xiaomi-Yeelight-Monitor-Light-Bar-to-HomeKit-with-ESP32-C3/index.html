@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,21 +59,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2024/01/28/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -72,18 +202,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -96,6 +254,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -150,10 +310,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -202,8 +362,6 @@
 <li>编写代码,接入HomeKit</li>
 </ul>
 <span id="more"></span>
-
-
 <h3 id="阅读手册-找到控制引脚"><a href="#阅读手册-找到控制引脚" class="headerlink" title="阅读手册,找到控制引脚"></a>阅读手册,找到控制引脚</h3><p>看完拆解报告后,得知亮度由TLSR8368和SY7301A芯片控制实现, 两款芯片的资料很容易在Google上搜索到.<br><br>基本上可以确定是由TLSR8368发送PWM信号给SY7301A进行调光.</p>
 <p>TLSR8368一共就16个引脚, 对照手册配合示波器挨个测量控制引脚测出PWM引脚是由#3,#5产生, 还有一个引脚#8用于使能SY7301A芯片.</p>
 <p><img src="/images/migrated/70440401_measurePins.webp" alt="measurePins"></p>
@@ -224,7 +382,6 @@
 <p>因此，以下代码主要演示了如何控制白色LED的开关与调光</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;HomeSpan.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;extras/PwmPin.h&quot;</span>  <span class="comment">// library of various PWM functions</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">FadingLED</span> : Service::LightBulb &#123;</span><br><span class="line">  LedPin *ledPin;             <span class="comment">// reference to Led Pin</span></span><br><span class="line">  SpanCharacteristic *power;  <span class="comment">// reference to the On Characteristic</span></span><br><span class="line">  SpanCharacteristic *level;  <span class="comment">// reference to the Brightness Characteristic</span></span><br><span class="line">  SpanCharacteristic *colorTemperature;  <span class="comment">// reference to the Color Temperature</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">FadingLED</span>(<span class="type">int</span> _ledPin) : Service::<span class="built_in">LightBulb</span>() &#123;</span><br><span class="line">    power = <span class="keyword">new</span> Characteristic::<span class="built_in">On</span>();</span><br><span class="line">    level = <span class="keyword">new</span> Characteristic::<span class="built_in">Brightness</span>(<span class="number">0</span>);</span><br><span class="line">    colorTemperature = <span class="keyword">new</span> Characteristic::<span class="built_in">ColorTemperature</span>(<span class="number">200</span>, <span class="literal">true</span>);</span><br><span class="line">    ledPin = <span class="keyword">new</span> <span class="built_in">LedPin</span>(_ledPin);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">boolean <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;power-&gt;getNewVal()=%d&quot;</span>, power-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;,level-&gt;getNewVal()=%d&quot;</span>, level-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;,colorTemperature-&gt;getNewVal()=%d\n&quot;</span>,</span><br><span class="line">                  colorTemperature-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    ledPin-&gt;<span class="built_in">fade</span>(power-&gt;<span class="built_in">getNewVal</span>() * level-&gt;<span class="built_in">getNewVal</span>(), <span class="number">2000</span>,</span><br><span class="line">                 LedPin::PROPORTIONAL);</span><br><span class="line">    <span class="keyword">while</span> (ledPin-&gt;<span class="built_in">fadeStatus</span>() == LedPin::FADING)</span><br><span class="line">      ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="literal">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ledPin-&gt;<span class="built_in">fadeStatus</span>() == LedPin::COMPLETED) &#123;</span><br><span class="line">      power-&gt;<span class="built_in">setVal</span>(<span class="number">1</span> - power-&gt;<span class="built_in">getVal</span>());</span><br><span class="line">      level-&gt;<span class="built_in">setVal</span>(power-&gt;<span class="built_in">getVal</span>() ? <span class="number">100</span> : <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(<span class="number">5</span>, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(<span class="number">10</span>, OUTPUT);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">5</span>, HIGH);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">10</span>, LOW);</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">10</span>, HIGH);</span><br><span class="line"></span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;Wi-Fi is Connected!&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">enableOTA</span>(<span class="string">&quot;12345678&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">setPairingCode</span>(<span class="string">&quot;11223344&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">begin</span>(Category::Lighting, <span class="string">&quot;Lamp++&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">SpanAccessory</span>();</span><br><span class="line">  <span class="keyword">new</span> Service::<span class="built_in">AccessoryInformation</span>();</span><br><span class="line">  <span class="keyword">new</span> Characteristic::<span class="built_in">Identify</span>();</span><br><span class="line">  <span class="keyword">new</span> Characteristic::<span class="built_in">ColorTemperature</span>(<span class="number">200</span>, <span class="literal">true</span>);</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">FadingLED</span>(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123; </span><br><span class="line">  homeSpan.<span class="built_in">poll</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[env:airm2m_core_esp32c3]</span></span><br><span class="line"><span class="attr">platform</span> = espressif32@<span class="number">5.4</span>.<span class="number">0</span></span><br><span class="line"><span class="attr">board</span> = airm2m_core_esp32c3</span><br><span class="line"><span class="attr">framework</span> = ardui<span class="literal">no</span></span><br><span class="line"><span class="attr">monitor_speed</span> = <span class="number">115200</span></span><br><span class="line"><span class="attr">lib_deps</span> = homespan/HomeSpan@^<span class="number">1.8</span>.<span class="number">0</span></span><br><span class="line"><span class="comment">; upload_protocol = espota</span></span><br><span class="line"><span class="comment">; upload_flags =  --auth=12345678</span></span><br><span class="line"><span class="comment">; upload_port = 192.168.0.104</span></span><br><span class="line"><span class="attr">build_flags</span> = </span><br><span class="line">	-D <span class="attr">ARDUINO_USB_MODE</span>=<span class="number">1</span></span><br><span class="line">	-D <span class="attr">ARDUINO_USB_CDC_ON_BOOT</span>=<span class="number">1</span>  </span><br></pre></td></tr></table></figure>
-
 <h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p><img src="/images/migrated/98fa8256_controlbyphone.webp" alt="Preview2 "></p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://www.chongdiantou.com/archives/55542.html">拆解报告：MJ米家显示器挂灯MJGJD01YL</a></li>
@@ -235,8 +392,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -245,6 +402,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -293,8 +452,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -307,85 +466,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

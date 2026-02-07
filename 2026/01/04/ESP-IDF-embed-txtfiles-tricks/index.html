@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,21 +57,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2026/01/04/ESP-IDF-embed-txtfiles-tricks/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -70,18 +200,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -95,6 +253,8 @@
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
      --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
       </ul>
@@ -102,6 +262,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2026/02/04/android-lvgl-style-border/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="下一篇" href="/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -143,10 +305,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -192,8 +354,8 @@
 <p>不管是 <strong>HTTPS</strong> 的根证书、前端 <strong>HTML</strong> 页面，还是简单的配置文件，如果全都写成巨大的 <code>const char[]</code> 硬编码到代码里，那工程维护简直是自我折磨。今天就拿着我那块<strong>斥 9.9 元巨资</strong>买回来的 <strong>ESP32-C3</strong> 演示一下如何用 <strong>ESP-IDF</strong> 里的这个黑科技优雅地<strong>填坑</strong>。</p>
 <p><img src="/images/archives/embed_textfiles/embed_textfiles.png" alt="embed_textfiles"></p>
 <span id="more"></span>
-
 <h2 id="0x01-方案对比"><a href="#0x01-方案对比" class="headerlink" title="0x01 方案对比"></a>0x01 方案对比</h2><p>为什么推荐使用 <code>embed_txtfiles</code>？我们可以先看一张直观的对比表：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -203,7 +365,8 @@
 <th>适用场景</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>C 数组 (.h)</strong></td>
 <td>零环境要求，哪里都能编</td>
 <td>破坏代码整洁，编译极慢</td>
@@ -221,15 +384,15 @@
 <td>固件只读，增加 Bin 体积</td>
 <td><strong>CA证书、网页模板、默认配置</strong></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="0x02-快速上手"><a href="#0x02-快速上手" class="headerlink" title="0x02 快速上手"></a>0x02 快速上手</h2><p><strong>ESP-IDF</strong> 构建系统（基于 <strong>CMake</strong>）允许你直接把磁盘上的二进制文件或文本文件，在编译阶段自动转换并“缝合”进你的 <strong>.bin</strong> 固件中。</p>
 <h3 id="0x00-准备资源文件"><a href="#0x00-准备资源文件" class="headerlink" title="0x00 准备资源文件"></a>0x00 准备资源文件</h3><p>在你的项目或组件目录下创建一个文件夹（例如 <code>assets</code>），把你的文本文件（比如 <code>hello.txt</code>）放进去。</p>
 <h3 id="0x01-修改-CMakeLists-txt"><a href="#0x01-修改-CMakeLists-txt" class="headerlink" title="0x01 修改 CMakeLists.txt"></a>0x01 修改 CMakeLists.txt</h3><p>在组件目录下的 <code>CMakeLists.txt</code> 里，只需要在 <code>idf_component_register</code> 函数里通过 <code>EMBED_TXTFILES</code> 参数指定路径：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## main/CMakeLists.txt</span></span><br><span class="line">idf_component_register(SRCS <span class="string">&quot;main.c&quot;</span></span><br><span class="line">                    INCLUDE_DIRS <span class="string">&quot;.&quot;</span></span><br><span class="line">                    EMBED_TXTFILES <span class="string">&quot;assets/hello.txt&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="0x02-在-C-C-代码中调用"><a href="#0x02-在-C-C-代码中调用" class="headerlink" title="0x02 在 C&#x2F;C++ 代码中调用"></a>0x02 在 C&#x2F;C++ 代码中调用</h3><p>编译系统自动生成了三个全局符号。它们的命名规则是：<code>_binary_[文件名]_[扩展名]_start</code> 和 <code>_binary_[文件名]_[扩展名]_end</code>。</p>
+<h3 id="0x02-在-C-C-代码中调用"><a href="#0x02-在-C-C-代码中调用" class="headerlink" title="0x02 在 C/C++ 代码中调用"></a>0x02 在 C/C++ 代码中调用</h3><p>编译系统自动生成了三个全局符号。它们的命名规则是：<code>_binary_[文件名]_[扩展名]_start</code> 和 <code>_binary_[文件名]_[扩展名]_end</code>。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 0x01. 声明外部资源变量</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">uint8_t</span> hello_txt_start[] <span class="keyword">asm</span>(<span class="string">&quot;_binary_hello_txt_start&quot;</span>);</span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">uint8_t</span> hello_txt_end[]   <span class="keyword">asm</span>(<span class="string">&quot;_binary_hello_txt_end&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">app_main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 0x02. 获取资源长度</span></span><br><span class="line">    <span class="type">size_t</span> size = hello_txt_end - hello_txt_start;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 因为是 txtfiles，所以末尾自带 \0，可以直接作为字符串处理</span></span><br><span class="line">    ESP_LOGI(<span class="string">&quot;APP&quot;</span>, <span class="string">&quot;Embedded file content: %s&quot;</span>, (<span class="type">char</span> *)hello_txt_start);</span><br><span class="line">    ESP_LOGI(<span class="string">&quot;APP&quot;</span>, <span class="string">&quot;File Size: %d bytes&quot;</span>, size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p><strong>Tips：</strong> 如果你使用的是 <strong>.cpp</strong> 文件，请务必给声明加上 <code>extern &quot;C&quot;</code>，否则会因为 <strong>Name Mangling</strong> 导致链接找不到符号。</p>
 </blockquote>
@@ -246,16 +409,14 @@
 <ul>
 <li><strong>验证大法：</strong> 别在那瞎猜了，这太要命了。直接去 <code>build</code> 目录下，祭出 <code>nm</code> 大法查看生成的符号。</li>
 </ul>
-<h2 id="0x04-进阶：我是怎么验证这些“鬼符号”的"><a href="#0x04-进阶：我是怎么验证这些“鬼符号”的" class="headerlink" title="0x04 进阶：我是怎么验证这些“鬼符号”的"></a>0x04 进阶：我是怎么验证这些“鬼符号”的</h2><h4 id="0x00-别猜，直接看产物"><a href="#0x00-别猜，直接看产物" class="headerlink" title="0x00 别猜，直接看产物"></a>0x00 别猜，直接看产物</h4><p>作为一个硬核（折腾型）开发者，实在没底的时候，我会直接翻看生成的 <code>.elf</code> 文件。在你的工程目录下运行这行命令，比搜半天文档管用得多：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nm -gC build/*.elf | grep _binary</span><br></pre></td></tr></table></figure>
-<p>如果列表里能看到预期的 <code>start</code>&#x2F;<code>end</code> 地址，那心态就稳了。</p>
+<h2 id="0x04-进阶：我是怎么验证这些“鬼符号”的"><a href="#0x04-进阶：我是怎么验证这些“鬼符号”的" class="headerlink" title="0x04 进阶：我是怎么验证这些“鬼符号”的"></a>0x04 进阶：我是怎么验证这些“鬼符号”的</h2><h4 id="0x00-别猜，直接看产物"><a href="#0x00-别猜，直接看产物" class="headerlink" title="0x00 别猜，直接看产物"></a>0x00 别猜，直接看产物</h4><p>作为一个硬核（折腾型）开发者，实在没底的时候，我会直接翻看生成的 <code>.elf</code> 文件。在你的工程目录下运行这行命令，比搜半天文档管用得多：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nm -gC build/*.elf | grep _binary</span><br></pre></td></tr></table></figure><br>如果列表里能看到预期的 <code>start</code>/<code>end</code> 地址，那心态就稳了。</p>
 <h4 id="0x01-实战：证书处理的“极简主义”"><a href="#0x01-实战：证书处理的“极简主义”" class="headerlink" title="0x01 实战：证书处理的“极简主义”"></a>0x01 实战：证书处理的“极简主义”</h4><p>在折腾 <strong>HTTPS</strong> 或者 <strong>MQTTS</strong> 的时候，证书处理简直是灾难。我以前也是老老实实写文件系统驱动，现在直接在代码里这么搞：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.c</span></span><br><span class="line"><span class="comment">// 这里的 asm 名称就是通过上面 nm 命令确定的</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">uint8_t</span> mqtt_ca_pem_start[] <span class="keyword">asm</span>(<span class="string">&quot;_binary_mqtt_ca_pem_start&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">esp_mqtt_client_config_t</span> mqtt_cfg = &#123;</span><br><span class="line">    .broker.address.uri = <span class="string">&quot;mqtts://your-iot-server.com&quot;</span>,</span><br><span class="line">    .broker.verification.certificate = (<span class="type">const</span> <span class="type">char</span> *)mqtt_ca_pem_start,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>直接把起始指针丢进去，连长度都不用写（因为 <code>TXTFILES</code> 自带终止符），这种感觉只能用<strong>“丝滑”</strong>来形容。</p>
 <h4 id="0x02-EMBED-FILES-vs-EMBED-TXTFILES：我当年就栽在这儿"><a href="#0x02-EMBED-FILES-vs-EMBED-TXTFILES：我当年就栽在这儿" class="headerlink" title="0x02 EMBED_FILES vs EMBED_TXTFILES：我当年就栽在这儿"></a>0x02 EMBED_FILES vs EMBED_TXTFILES：我当年就栽在这儿</h4><p>这是很多新手最容易“踩坑”的地方，我当年就栽在这儿。<strong>ESP-IDF</strong> 提供了两个类似的参数，区别很关键：</p>
 <ul>
 <li><strong><code>EMBED_FILES</code></strong>: 纯二进制嵌入。它原封不动地把文件塞进固件。适用于图片、字体、压缩包等非文本资源。</li>
-<li><strong><code>EMBED_TXTFILES</code></strong>: 专门针对文本。它会在嵌入资源的末尾**自动追加一个空终止符 <code>\0</code>**。</li>
+<li><strong><code>EMBED_TXTFILES</code></strong>: 专门针对文本。它会在嵌入资源的末尾<strong>自动追加一个空终止符 <code>\0</code></strong>。</li>
 </ul>
 <p>如果你错用了 <code>EMBED_FILES</code> 来嵌入证书，你会发现代码运行到最后会莫名其妙地读取到内存后面的垃圾数据，导致 <strong>TLS</strong> 校验失败。<strong>实战建议：HTTPS 证书 (PEM 格式) 或 HTML 请务必使用 <code>EMBED_TXTFILES</code>。</strong></p>
 <h4 id="0x03-命名规则的“魔法”"><a href="#0x03-命名规则的“魔法”" class="headerlink" title="0x03 命名规则的“魔法”"></a>0x03 命名规则的“魔法”</h4><p>名字是怎么生成的？规则很简单：<strong>文件名中的所有非字母数字字符（如 <code>.</code>、<code>-</code>）都会被替换成下划线 <code>_</code>。</strong></p>
@@ -271,10 +432,9 @@
 <li><strong>极简方案</strong>：避免专门为了几百字节去折腾分区表镜像。</li>
 <li><strong>读取速度</strong>：数据通过 <strong>MMU</strong> 直接映射到指令总线，读取速度和读代码一样快，没有文件系统的寻址开销。</li>
 </ol>
-<h2 id="0x05-最后"><a href="#0x05-最后" class="headerlink" title="0x05 最后"></a>0x05 最后</h2><p>从笨重的 <strong>C 数组</strong>转换到优雅的 <code>embed_txtfiles</code>，本质上是让资源回归其原本的格式，把生成的苦活交给构建系统。正如我之前在<a href="/2025/11/16/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">Claude Code初体验</a>中感受到的，现代开发的魅力就在于不断利用工具去解开那些重复而低效的死结。</p>
+<h2 id="0x05-最后"><a href="#0x05-最后" class="headerlink" title="0x05 最后"></a>0x05 最后</h2><p>从笨重的 <strong>C 数组</strong>转换到优雅的 <code>embed_txtfiles</code>，本质上是让资源回归其原本的格式，把生成的苦活交给构建系统。正如我之前在<a href="/2025/11/16/Claude-Code初体验/">Claude Code初体验</a>中感受到的，现代开发的魅力就在于不断利用工具去解开那些重复而低效的死结。</p>
 <p>这次填坑心得就分享到这，希望能帮到在被资源路径折磨的你。下个坑见，收工！</p>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Framework: ESP-IDF v5.x</span><br><span class="line">Target: ESP32 / S2 / S3 / C3 (RISC-V)</span><br><span class="line">Language: C / C++</span><br><span class="line">Build System: CMake</span><br></pre></td></tr></table></figure>
-
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/api-guides/build-system.html#embedding-binary-data">ESP-IDF 编程指南 - 指南文档：嵌入二进制数据</a></li>
 </ul>
@@ -284,8 +444,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -294,6 +454,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -339,8 +501,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -353,85 +515,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

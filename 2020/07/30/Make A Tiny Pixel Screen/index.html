@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,21 +62,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -75,18 +205,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -99,6 +257,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -134,7 +294,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&name=做个桌面像素小屏幕吧&description=&lt;h2 id=&#34;给自己做个桌面像素小屏幕吧&#34;&gt;&lt;a href=&#34;#给自己做个桌面像素小屏幕吧&#34; class=&#34;headerlink&#34; title=&#34;给自己做个桌面像素小屏幕吧&#34;&gt;&lt;/a&gt;给自己做个桌面像素小屏幕吧&lt;/h2&gt;&lt;p&gt;展示一下自己制作迷你版本的像素显示屏的过程&lt;/p&gt;
-&lt;h3 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。&lt;br&gt;那个初号机的性能表现不是很好，所以计划做一个使用C&amp;#x2F;C++的版本，能够更高帧率运行。&lt;/p&gt;
+&lt;h3 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。&lt;br&gt;那个初号机的性能表现不是很好，所以计划做一个使用C/C++的版本，能够更高帧率运行。&lt;/p&gt;
 &lt;p&gt;如果只是纯粹的重写固件，那么和大多数人做的AWatrix就没多大区别了，所以决定做一个迷你版本的像素显示屏出来。&lt;/p&gt;
 &lt;p&gt;很多地方是参考了AWatrix的代码，因为AWatrix除了必须连接服务器才可以使用以外，真的是非常优秀的一个固件。&lt;br&gt;AWatrix使用到的一些库很具有参考价值，比FastLED_NexPixel如它把LED点阵当作一块”屏幕”来使用，可以很方便的绘制出一些基础图形。&lt;br&gt;开发工具为PlantformIO,也是一个很方便的工具了，VSCode装上插件就好了。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&t=做个桌面像素小屏幕吧"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
@@ -144,16 +304,16 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E5%81%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E5%83%8F%E7%B4%A0%E5%B0%8F%E5%B1%8F%E5%B9%95%E5%90%A7"><span class="toc-number">1.</span> <span class="toc-text">给自己做个桌面像素小屏幕吧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%95%B4%E6%B4%BB"><span class="toc-number">2.</span> <span class="toc-text">开始整活</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E7%BB%98%E5%88%B6%E7%94%B5%E8%B7%AF%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 绘制电路板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-%E7%84%8A%E6%8E%A5LED%E8%B4%B4%E7%89%87%E7%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 焊接LED贴片灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 获取代码，修改参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-%E7%83%A7%E5%BD%95%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 烧录固件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-%E6%8E%A5%E7%BA%BF-%E7%BB%84%E8%A3%85"><span class="toc-number">2.5.</span> <span class="toc-text">0x05 接线&amp;组装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95"><span class="toc-number">2.5.1.</span> <span class="toc-text">材料清单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF"><span class="toc-number">2.5.2.</span> <span class="toc-text">接线</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text">0x06成品展示</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E5%81%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E5%83%8F%E7%B4%A0%E5%B0%8F%E5%B1%8F%E5%B9%95%E5%90%A7"><span class="toc-number">1.</span> <span class="toc-text">给自己做个桌面像素小屏幕吧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%95%B4%E6%B4%BB"><span class="toc-number">2.</span> <span class="toc-text">开始整活</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E7%BB%98%E5%88%B6%E7%94%B5%E8%B7%AF%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 绘制电路板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-%E7%84%8A%E6%8E%A5LED%E8%B4%B4%E7%89%87%E7%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 焊接LED贴片灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 获取代码，修改参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-%E7%83%A7%E5%BD%95%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 烧录固件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-%E6%8E%A5%E7%BA%BF-amp-%E7%BB%84%E8%A3%85"><span class="toc-number">2.5.</span> <span class="toc-text">0x05 接线&amp;组装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95"><span class="toc-number">2.5.1.</span> <span class="toc-text">材料清单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF"><span class="toc-number">2.5.2.</span> <span class="toc-text">接线</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text">0x06成品展示</span></a></li></ol></li></ol>
       </div>
     
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -195,11 +355,10 @@
 
   <div class="content e-content" itemprop="articleBody">
     <h2 id="给自己做个桌面像素小屏幕吧"><a href="#给自己做个桌面像素小屏幕吧" class="headerlink" title="给自己做个桌面像素小屏幕吧"></a>给自己做个桌面像素小屏幕吧</h2><p>展示一下自己制作迷你版本的像素显示屏的过程</p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。<br>那个初号机的性能表现不是很好，所以计划做一个使用C&#x2F;C++的版本，能够更高帧率运行。</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。<br>那个初号机的性能表现不是很好，所以计划做一个使用C/C++的版本，能够更高帧率运行。</p>
 <p>如果只是纯粹的重写固件，那么和大多数人做的AWatrix就没多大区别了，所以决定做一个迷你版本的像素显示屏出来。</p>
 <p>很多地方是参考了AWatrix的代码，因为AWatrix除了必须连接服务器才可以使用以外，真的是非常优秀的一个固件。<br>AWatrix使用到的一些库很具有参考价值，比FastLED_NexPixel如它把LED点阵当作一块”屏幕”来使用，可以很方便的绘制出一些基础图形。<br>开发工具为PlantformIO,也是一个很方便的工具了，VSCode装上插件就好了。</p>
 <span id="more"></span>
-
 <h2 id="开始整活"><a href="#开始整活" class="headerlink" title="开始整活"></a>开始整活</h2><h3 id="0x01-绘制电路板"><a href="#0x01-绘制电路板" class="headerlink" title="0x01 绘制电路板"></a>0x01 绘制电路板</h3><p>万能的某宝上能够找到的内置WS2812的LED贴片灯最小的就是2020LED，长宽各为2mm，比常规AWatrix使用的5050或者3535小很多。<br>奈何没有现成品，就只能自己画一个电路板了，好在电路非常简单，就是一个接一个，然后绕成S型就好啦。</p>
 <p>这次选择的PCB绘制软件为Eagle PCB，因为免费小巧。（但是我打算以后用KiCad画电路图了，因为开源强大）<br>磨磨唧唧的画完了电路图。<br><img src="/images/migrated/375a7f3f_awatrix_pcb.png" width = 960/></p>
 <p>然后提交Gerber文件到厂家，等待3天后就收到了成品。</p>
@@ -210,16 +369,15 @@
 <li>修改位于gmatrix_config.h中的B站ID和城市以及天气的Key</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> SUNING_TIME_URL <span class="string">&quot;http://quan.suning.com/getSysTime.do&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> BILIBILI_SUBSCRIPTION_URL <span class="string">&quot;http://api.bilibili.com/x/relation/stat?vmid=哔哩哔哩UID&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> WEATHER_URL <span class="string">&quot;http://api.openweathermap.org/data/2.5/weather?q=城市的拼音&amp;appid=天气api&quot;</span></span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>修改位于Gmartix.cpp中的WiFi名称和密码。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WiFi名称</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *ssid = <span class="string">&quot;CloseWrt_9.6G_D96AS5&quot;</span>;</span><br><span class="line"><span class="comment">// WiFi密码</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *pwd = <span class="string">&quot;have5seeds&quot;</span>;</span><br></pre></td></tr></table></figure>
 然后直接使用PlantformIO的编译或者下载到板子</li>
 </ul>
 <h3 id="0x04-烧录固件"><a href="#0x04-烧录固件" class="headerlink" title="0x04 烧录固件"></a>0x04 烧录固件</h3><p>使用PlantformIO可以直接下载到板子上，也可也Build以后使用其他烧录工具烧录。<br>我使用的烧录软件是NodeMCU Firmware Programmer</p>
-<img src="/images/migrated/0ff96c28_nodemcu.png"/>
-
+<p><img src="/images/migrated/0ff96c28_nodemcu.png"/></p>
 <p>插上板子选择对应的端口号，然后点击Flash就可以进行烧录了。</p>
-<h3 id="0x05-接线-组装"><a href="#0x05-接线-组装" class="headerlink" title="0x05 接线&amp;组装"></a>0x05 接线&amp;组装</h3><h4 id="材料清单"><a href="#材料清单" class="headerlink" title="材料清单"></a>材料清单</h4><table>
+<h3 id="0x05-接线-amp-组装"><a href="#0x05-接线-amp-组装" class="headerlink" title="0x05 接线&amp;组装"></a>0x05 接线&amp;组装</h3><h4 id="材料清单"><a href="#材料清单" class="headerlink" title="材料清单"></a>材料清单</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>序号</th>
@@ -228,7 +386,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1</td>
 <td>WeMos D1 mini</td>
 <td>1</td>
@@ -282,92 +441,100 @@
 <td>1</td>
 <td>可以采用任意材料自制</td>
 </tr>
-</tbody></table>
-<h4 id="接线"><a href="#接线" class="headerlink" title="接线"></a>接线</h4><table>
-<thead>
-<tr>
-<th align="center">WeMos D1 mini引脚名称</th>
-<th align="center">htu01d</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">5V</td>
-<td align="center">VCC</td>
-</tr>
-<tr>
-<td align="center">GND</td>
-<td align="center">GND</td>
-</tr>
-<tr>
-<td align="center">D3</td>
-<td align="center">SDA</td>
-</tr>
-<tr>
-<td align="center">D1</td>
-<td align="center">SCL</td>
-</tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+<h4 id="接线"><a href="#接线" class="headerlink" title="接线"></a>接线</h4><div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">WeMos D1 mini引脚名称</th>
-<th align="center">LED屏幕</th>
+<th style="text-align:center">WeMos D1 mini引脚名称</th>
+<th style="text-align:center">htu01d</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">不接</td>
-<td align="center">正面从上至下第2个孔</td>
+<tbody>
+<tr>
+<td style="text-align:center">5V</td>
+<td style="text-align:center">VCC</td>
 </tr>
 <tr>
-<td align="center">GND</td>
-<td align="center">正面从上至下第2个孔</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">GND</td>
 </tr>
 <tr>
-<td align="center">5V</td>
-<td align="center">正面从上至下第3个孔</td>
+<td style="text-align:center">D3</td>
+<td style="text-align:center">SDA </td>
 </tr>
 <tr>
-<td align="center">D2</td>
-<td align="center">正面从上至下第4个孔</td>
+<td style="text-align:center">D1</td>
+<td style="text-align:center">SCL</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">WeMos D1 mini引脚名称</th>
-<th align="center">散热风扇</th>
+<th style="text-align:center">WeMos D1 mini引脚名称</th>
+<th style="text-align:center">LED屏幕</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">5V</td>
-<td align="center">红线</td>
+<tbody>
+<tr>
+<td style="text-align:center">不接</td>
+<td style="text-align:center">正面从上至下第2个孔</td>
 </tr>
 <tr>
-<td align="center">GND</td>
-<td align="center">黑线</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">正面从上至下第2个孔</td>
 </tr>
-</tbody></table>
-<img src="/images/migrated/75051da2__E7_BB_84_E8_A3_85.jpg" width = 960/>
-
+<tr>
+<td style="text-align:center">5V</td>
+<td style="text-align:center">正面从上至下第3个孔</td>
+</tr>
+<tr>
+<td style="text-align:center">D2</td>
+<td style="text-align:center">正面从上至下第4个孔</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">WeMos D1 mini引脚名称</th>
+<th style="text-align:center">散热风扇</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">5V</td>
+<td style="text-align:center">红线</td>
+</tr>
+<tr>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">黑线</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/images/migrated/75051da2__E7_BB_84_E8_A3_85.jpg" width = 960/></p>
 <p>光栅制作使用的是定制亚克力，而外壳使用的3D打印，按照下图的顺序组装，需要注意的是光栅与深色半透亚克力之间需要加一层A4纸进行柔光。</p>
-<img src="/images/migrated/6a946832__E7_BB_93_E6_9E_84.png" width=960/>
-
-<img src="/images/migrated/f5d1aeb9__E6_89_93_E5_8D_B0.jpg" width=960/>
-
-
-<h3 id="0x06成品展示"><a href="#0x06成品展示" class="headerlink" title="0x06成品展示"></a>0x06成品展示</h3><img src="/images/migrated/830cf617__E6_88_90_E5_93_81.jpg" width=960/>
-
-
+<p><img src="/images/migrated/6a946832__E7_BB_93_E6_9E_84.png" width=960/></p>
+<p><img src="/images/migrated/f5d1aeb9__E6_89_93_E5_8D_B0.jpg" width=960/></p>
+<h3 id="0x06成品展示"><a href="#0x06成品展示" class="headerlink" title="0x06成品展示"></a>0x06成品展示</h3><p><img src="/images/migrated/830cf617__E6_88_90_E5_93_81.jpg" width=960/></p>
 <p>参考资料:<br><a target="_blank" rel="noopener" href="https://awtrixdocs.blueforcer.de/#/en-en/README">AWatrix</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.materialpalette.com/">materialpalette</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.materialpalette.com">materialpalette</a></p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -377,6 +544,8 @@
         
           <li><a href="/archives/">归档</a></li>
         
+          <li><a href="/projects/">项目</a></li>
+        
           <li><a href="/about/">关于</a></li>
         
       </ul>
@@ -385,7 +554,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E5%81%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E5%83%8F%E7%B4%A0%E5%B0%8F%E5%B1%8F%E5%B9%95%E5%90%A7"><span class="toc-number">1.</span> <span class="toc-text">给自己做个桌面像素小屏幕吧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%95%B4%E6%B4%BB"><span class="toc-number">2.</span> <span class="toc-text">开始整活</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E7%BB%98%E5%88%B6%E7%94%B5%E8%B7%AF%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 绘制电路板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-%E7%84%8A%E6%8E%A5LED%E8%B4%B4%E7%89%87%E7%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 焊接LED贴片灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 获取代码，修改参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-%E7%83%A7%E5%BD%95%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 烧录固件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-%E6%8E%A5%E7%BA%BF-%E7%BB%84%E8%A3%85"><span class="toc-number">2.5.</span> <span class="toc-text">0x05 接线&amp;组装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95"><span class="toc-number">2.5.1.</span> <span class="toc-text">材料清单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF"><span class="toc-number">2.5.2.</span> <span class="toc-text">接线</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text">0x06成品展示</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E8%87%AA%E5%B7%B1%E5%81%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E5%83%8F%E7%B4%A0%E5%B0%8F%E5%B1%8F%E5%B9%95%E5%90%A7"><span class="toc-number">1.</span> <span class="toc-text">给自己做个桌面像素小屏幕吧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%95%B4%E6%B4%BB"><span class="toc-number">2.</span> <span class="toc-text">开始整活</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E7%BB%98%E5%88%B6%E7%94%B5%E8%B7%AF%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">0x01 绘制电路板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-%E7%84%8A%E6%8E%A5LED%E8%B4%B4%E7%89%87%E7%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">0x02 焊接LED贴片灯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 获取代码，修改参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-%E7%83%A7%E5%BD%95%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">0x04 烧录固件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-%E6%8E%A5%E7%BA%BF-amp-%E7%BB%84%E8%A3%85"><span class="toc-number">2.5.</span> <span class="toc-text">0x05 接线&amp;组装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95"><span class="toc-number">2.5.1.</span> <span class="toc-text">材料清单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E7%BA%BF"><span class="toc-number">2.5.2.</span> <span class="toc-text">接线</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06%E6%88%90%E5%93%81%E5%B1%95%E7%A4%BA"><span class="toc-number">2.6.</span> <span class="toc-text">0x06成品展示</span></a></li></ol></li></ol>
       </div>
     
 
@@ -401,7 +570,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&title=做个桌面像素小屏幕吧"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&name=做个桌面像素小屏幕吧&description=&lt;h2 id=&#34;给自己做个桌面像素小屏幕吧&#34;&gt;&lt;a href=&#34;#给自己做个桌面像素小屏幕吧&#34; class=&#34;headerlink&#34; title=&#34;给自己做个桌面像素小屏幕吧&#34;&gt;&lt;/a&gt;给自己做个桌面像素小屏幕吧&lt;/h2&gt;&lt;p&gt;展示一下自己制作迷你版本的像素显示屏的过程&lt;/p&gt;
-&lt;h3 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。&lt;br&gt;那个初号机的性能表现不是很好，所以计划做一个使用C&amp;#x2F;C++的版本，能够更高帧率运行。&lt;/p&gt;
+&lt;h3 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;之前疫情期间(2020-02~2020-03)做过一个大号的像素屏幕作为生日礼物送人了，当时使用的芯片是ESP32，开发语言是micropython。&lt;br&gt;那个初号机的性能表现不是很好，所以计划做一个使用C/C++的版本，能够更高帧率运行。&lt;/p&gt;
 &lt;p&gt;如果只是纯粹的重写固件，那么和大多数人做的AWatrix就没多大区别了，所以决定做一个迷你版本的像素显示屏出来。&lt;/p&gt;
 &lt;p&gt;很多地方是参考了AWatrix的代码，因为AWatrix除了必须连接服务器才可以使用以外，真的是非常优秀的一个固件。&lt;br&gt;AWatrix使用到的一些库很具有参考价值，比FastLED_NexPixel如它把LED点阵当作一块”屏幕”来使用，可以很方便的绘制出一些基础图形。&lt;br&gt;开发工具为PlantformIO,也是一个很方便的工具了，VSCode装上插件就好了。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2020/07/30/Make%20A%20Tiny%20Pixel%20Screen/&t=做个桌面像素小屏幕吧"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
@@ -421,8 +590,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -435,85 +604,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,21 +57,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -70,18 +200,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -94,6 +252,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -128,10 +288,11 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&title=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&title=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&title=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&name=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅&description=&lt;h2 id=&#34;消失的“实体”-从View到Composable-Widget&#34;&gt;&lt;a href=&#34;#消失的“实体”-从View到Composable-Widget&#34; class=&#34;headerlink&#34; title=&#34;消失的“实体”: 从View到Composable&amp;#x2F;Widget&#34;&gt;&lt;/a&gt;消失的“实体”: 从View到Composable&amp;#x2F;Widget&lt;/h2&gt;&lt;p&gt;在原生&lt;strong&gt;Android开发&lt;/strong&gt;的世界, 创建模版项目后就会得到一个MainActivity和activity_main.xml.&lt;br&gt;我们习惯了在MainActivity里去绑定&lt;strong&gt;Button&lt;/strong&gt;和&lt;strong&gt;Text&lt;/strong&gt;再设置各种属性. 他们都是内存中&lt;strong&gt;看得见,摸得着&lt;/strong&gt;的View.&lt;br&gt;但是到了&lt;em&gt;&lt;strong&gt;Flutter&lt;/strong&gt;&lt;/em&gt;中, 得到的了却是&lt;strong&gt;main()&lt;strong&gt;函数和一堆&lt;/strong&gt;StatelessWidget&lt;/strong&gt;和&lt;strong&gt;StatefulWidget&lt;/strong&gt;.&lt;br&gt;不仅仅是Flutter, 连&lt;strong&gt;Jetpack Compose&lt;/strong&gt;也在向这种’&lt;strong&gt;声明式UI&lt;/strong&gt;’靠拢.&lt;br&gt;Compose中同样找不到onResume(入口Activity除外),取而代之的而是层层嵌套的&lt;strong&gt;Composable函数&lt;/strong&gt;&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&name=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅&description=&lt;h2 id=&#34;消失的“实体”-从View到Composable-Widget&#34;&gt;&lt;a href=&#34;#消失的“实体”-从View到Composable-Widget&#34; class=&#34;headerlink&#34; title=&#34;消失的“实体”: 从View到Composable/Widget&#34;&gt;&lt;/a&gt;消失的“实体”: 从View到Composable/Widget&lt;/h2&gt;&lt;p&gt;在原生&lt;strong&gt;Android开发&lt;/strong&gt;的世界, 创建模版项目后就会得到一个MainActivity和activity_main.xml.&lt;br&gt;我们习惯了在MainActivity里去绑定&lt;strong&gt;Button&lt;/strong&gt;和&lt;strong&gt;Text&lt;/strong&gt;再设置各种属性. 他们都是内存中&lt;strong&gt;看得见,摸得着&lt;/strong&gt;的View.&lt;br&gt;但是到了&lt;strong&gt;&lt;em&gt;Flutter&lt;/em&gt;&lt;/strong&gt;中, 得到的了却是&lt;strong&gt;main()&lt;/strong&gt;函数和一堆&lt;strong&gt;StatelessWidget&lt;/strong&gt;和&lt;strong&gt;StatefulWidget&lt;/strong&gt;.&lt;br&gt;不仅仅是Flutter, 连&lt;strong&gt;Jetpack Compose&lt;/strong&gt;也在向这种’&lt;strong&gt;声明式UI&lt;/strong&gt;’靠拢.&lt;br&gt;Compose中同样找不到onResume(入口Activity除外),取而代之的而是层层嵌套的&lt;strong&gt;Composable函数&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;这种转变本质上是：我们不再持有 UI 的“句柄”，我们只持有“数据”。&lt;/p&gt;
 &lt;p&gt;正因为我们持有的只是数据，而数据本身是没有‘前后台’概念的（一个 String 字符串哪里知道自己是否在前台？）。所以，在声明式 UI 中寻找 onResume 本身就是一个伪命题。&lt;br&gt;只有当数据需要根据系统状态（如用户回来了）进行刷新时，我们才去主动询问系统。&lt;/p&gt;
-&lt;h2 id=&#34;&#34;&gt;&lt;a href=&#34;#&#34; class=&#34;headerlink&#34; title=&#34;&#34;&gt;&lt;/a&gt;&lt;img src=&#34;/images/archives/the-death-of-onresume-declarative-ui-lifecycle/android-vs-flutter-lifecycle-comparison.png&#34; alt=&#34;生命周期演进图&#34;&gt;&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+&lt;p&gt;&lt;img src=&#34;/images/archives/the-death-of-onresume-declarative-ui-lifecycle/android-vs-flutter-lifecycle-comparison.png&#34; alt=&#34;生命周期演进图&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;&#34;&gt;&lt;a href=&#34;#&#34; class=&#34;headerlink&#34; title=&#34;&#34;&gt;&lt;/a&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&t=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
@@ -145,10 +306,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -189,14 +350,15 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="消失的“实体”-从View到Composable-Widget"><a href="#消失的“实体”-从View到Composable-Widget" class="headerlink" title="消失的“实体”: 从View到Composable&#x2F;Widget"></a>消失的“实体”: 从View到Composable&#x2F;Widget</h2><p>在原生<strong>Android开发</strong>的世界, 创建模版项目后就会得到一个MainActivity和activity_main.xml.<br>我们习惯了在MainActivity里去绑定<strong>Button</strong>和<strong>Text</strong>再设置各种属性. 他们都是内存中<strong>看得见,摸得着</strong>的View.<br>但是到了<em><strong>Flutter</strong></em>中, 得到的了却是<strong>main()<strong>函数和一堆</strong>StatelessWidget</strong>和<strong>StatefulWidget</strong>.<br>不仅仅是Flutter, 连<strong>Jetpack Compose</strong>也在向这种’<strong>声明式UI</strong>’靠拢.<br>Compose中同样找不到onResume(入口Activity除外),取而代之的而是层层嵌套的<strong>Composable函数</strong></p>
+    <h2 id="消失的“实体”-从View到Composable-Widget"><a href="#消失的“实体”-从View到Composable-Widget" class="headerlink" title="消失的“实体”: 从View到Composable/Widget"></a>消失的“实体”: 从View到Composable/Widget</h2><p>在原生<strong>Android开发</strong>的世界, 创建模版项目后就会得到一个MainActivity和activity_main.xml.<br>我们习惯了在MainActivity里去绑定<strong>Button</strong>和<strong>Text</strong>再设置各种属性. 他们都是内存中<strong>看得见,摸得着</strong>的View.<br>但是到了<strong><em>Flutter</em></strong>中, 得到的了却是<strong>main()</strong>函数和一堆<strong>StatelessWidget</strong>和<strong>StatefulWidget</strong>.<br>不仅仅是Flutter, 连<strong>Jetpack Compose</strong>也在向这种’<strong>声明式UI</strong>’靠拢.<br>Compose中同样找不到onResume(入口Activity除外),取而代之的而是层层嵌套的<strong>Composable函数</strong></p>
 <p>这种转变本质上是：我们不再持有 UI 的“句柄”，我们只持有“数据”。</p>
 <p>正因为我们持有的只是数据，而数据本身是没有‘前后台’概念的（一个 String 字符串哪里知道自己是否在前台？）。所以，在声明式 UI 中寻找 onResume 本身就是一个伪命题。<br>只有当数据需要根据系统状态（如用户回来了）进行刷新时，我们才去主动询问系统。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/archives/the-death-of-onresume-declarative-ui-lifecycle/android-vs-flutter-lifecycle-comparison.png" alt="生命周期演进图"><br><span id="more"></span></h2><h2 id="为什么-onResume-不再属于-UI-组件"><a href="#为什么-onResume-不再属于-UI-组件" class="headerlink" title="为什么 onResume 不再属于 UI 组件"></a>为什么 onResume 不再属于 UI 组件</h2><h3 id="View体系的“重形约束”"><a href="#View体系的“重形约束”" class="headerlink" title="View体系的“重形约束”"></a>View体系的“重形约束”</h3><p>在原生 Android 中，Activity 是一个重型容器，它直接占据着系统的窗口资源和输入焦点。这种设计决定了开发者必须拥有极强的“生存意识”：</p>
+<p><img src="/images/archives/the-death-of-onresume-declarative-ui-lifecycle/android-vs-flutter-lifecycle-comparison.png" alt="生命周期演进图"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="为什么-onResume-不再属于-UI-组件"><a href="#为什么-onResume-不再属于-UI-组件" class="headerlink" title="为什么 onResume 不再属于 UI 组件"></a>为什么 onResume 不再属于 UI 组件</h2><h3 id="View体系的“重形约束”"><a href="#View体系的“重形约束”" class="headerlink" title="View体系的“重形约束”"></a>View体系的“重形约束”</h3><p>在原生 Android 中，Activity 是一个重型容器，它直接占据着系统的窗口资源和输入焦点。这种设计决定了开发者必须拥有极强的“生存意识”：</p>
 <ul>
 <li><strong>前后台切换</strong>: 我们必须精确掌握 onPause 和 onResume，以便在失去焦点时停止动画或暂停视频。</li>
 <li><strong>极限生存</strong>： 在电池优化策略或<strong>“不保留活动”</strong>的极限测试下，Activity 随时会被销毁，我们不得不依赖 onSaveInstanceState 艰难地维持状态。</li>
-<li><strong>任务流转</strong>： 耗时后台任务必须挪到专门的 Foreground&#x2F;Background Service 中，否则随时会被系统“祭天”。</li>
+<li><strong>任务流转</strong>： 耗时后台任务必须挪到专门的 Foreground/Background Service 中，否则随时会被系统“祭天”。</li>
 </ul>
 <h2 id="声明式-UI-的“逻辑重构”"><a href="#声明式-UI-的“逻辑重构”" class="headerlink" title="声明式 UI 的“逻辑重构”"></a>声明式 UI 的“逻辑重构”</h2><p>但在 Flutter 和 Compose 的世界里，这种“资源焦虑”被屏蔽了。我们面对的是轻量级的函数和配置。</p>
 <ul>
@@ -217,10 +379,7 @@
 <p>WidgetsBindingObserver 的订阅是 State 级别的，而不是 Widget 级别的。</p>
 </blockquote>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建议替换原本的 Flutter 代码块</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyWidget</span>&gt; <span class="title">with</span> <span class="title">WidgetsBindingObserver</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    WidgetsBinding.instance.addObserver(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> didChangeAppLifecycleState(AppLifecycleState state) &#123;</span><br><span class="line">    <span class="comment">// 严谨判断：只有 App 回到前台，且当前页面正处于栈顶可见时，才触发逻辑</span></span><br><span class="line">    <span class="keyword">if</span> (state == AppLifecycleState.resumed &amp;&amp; ModalRoute.of(context)?.isCurrent == <span class="keyword">true</span>) &#123;</span><br><span class="line">      _refreshData();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    WidgetsBinding.instance.removeObserver(<span class="keyword">this</span>); </span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Compose-方案：通过副作用显式接入宿主生命周期"><a href="#Compose-方案：通过副作用显式接入宿主生命周期" class="headerlink" title="Compose 方案：通过副作用显式接入宿主生命周期"></a>Compose 方案：通过副作用显式接入宿主生命周期</h3><p>Compose 并没有“移除” onResume，而是拒绝让 UI 组件隐式地持有它。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">OnResumeEffect</span><span class="params">(onResume: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> lifecycleOwner = LocalLifecycleOwner.current</span><br><span class="line">    LaunchedEffect(lifecycleOwner) &#123;</span><br><span class="line">        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) &#123;</span><br><span class="line">            onResume()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="Compose-方案：通过副作用显式接入宿主生命周期"><a href="#Compose-方案：通过副作用显式接入宿主生命周期" class="headerlink" title="Compose 方案：通过副作用显式接入宿主生命周期"></a>Compose 方案：通过副作用显式接入宿主生命周期</h3><p>Compose 并没有“移除” onResume，而是拒绝让 UI 组件隐式地持有它。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">OnResumeEffect</span><span class="params">(onResume: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> lifecycleOwner = LocalLifecycleOwner.current</span><br><span class="line">    LaunchedEffect(lifecycleOwner) &#123;</span><br><span class="line">        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) &#123;</span><br><span class="line">            onResume()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="结语：从“被动接受”到“主动订阅”"><a href="#结语：从“被动接受”到“主动订阅”" class="headerlink" title="结语：从“被动接受”到“主动订阅”"></a>结语：从“被动接受”到“主动订阅”</h3><p>从原生 Android 转向 Flutter 或 Compose，最难的不是学习新的语法，而是<strong>思维权力的移交</strong>。</p>
 <p>在传统的 View 体系中，生命周期是系统强行塞给我们的“全家桶”，我们作为开发者，更多是在被动地接受 Activity 的调度。而声明式 UI 的出现，将组件彻底从繁重的系统环境依赖中解放出来。</p>
 <h4 id="这种“消亡”实际上是一种进化："><a href="#这种“消亡”实际上是一种进化：" class="headerlink" title="这种“消亡”实际上是一种进化："></a><strong>这种“消亡”实际上是一种进化</strong>：</h4><ul>
@@ -236,8 +395,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -246,6 +405,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -270,10 +431,11 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&title=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&title=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&title=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&name=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅&description=&lt;h2 id=&#34;消失的“实体”-从View到Composable-Widget&#34;&gt;&lt;a href=&#34;#消失的“实体”-从View到Composable-Widget&#34; class=&#34;headerlink&#34; title=&#34;消失的“实体”: 从View到Composable&amp;#x2F;Widget&#34;&gt;&lt;/a&gt;消失的“实体”: 从View到Composable&amp;#x2F;Widget&lt;/h2&gt;&lt;p&gt;在原生&lt;strong&gt;Android开发&lt;/strong&gt;的世界, 创建模版项目后就会得到一个MainActivity和activity_main.xml.&lt;br&gt;我们习惯了在MainActivity里去绑定&lt;strong&gt;Button&lt;/strong&gt;和&lt;strong&gt;Text&lt;/strong&gt;再设置各种属性. 他们都是内存中&lt;strong&gt;看得见,摸得着&lt;/strong&gt;的View.&lt;br&gt;但是到了&lt;em&gt;&lt;strong&gt;Flutter&lt;/strong&gt;&lt;/em&gt;中, 得到的了却是&lt;strong&gt;main()&lt;strong&gt;函数和一堆&lt;/strong&gt;StatelessWidget&lt;/strong&gt;和&lt;strong&gt;StatefulWidget&lt;/strong&gt;.&lt;br&gt;不仅仅是Flutter, 连&lt;strong&gt;Jetpack Compose&lt;/strong&gt;也在向这种’&lt;strong&gt;声明式UI&lt;/strong&gt;’靠拢.&lt;br&gt;Compose中同样找不到onResume(入口Activity除外),取而代之的而是层层嵌套的&lt;strong&gt;Composable函数&lt;/strong&gt;&lt;/p&gt;
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&name=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅&description=&lt;h2 id=&#34;消失的“实体”-从View到Composable-Widget&#34;&gt;&lt;a href=&#34;#消失的“实体”-从View到Composable-Widget&#34; class=&#34;headerlink&#34; title=&#34;消失的“实体”: 从View到Composable/Widget&#34;&gt;&lt;/a&gt;消失的“实体”: 从View到Composable/Widget&lt;/h2&gt;&lt;p&gt;在原生&lt;strong&gt;Android开发&lt;/strong&gt;的世界, 创建模版项目后就会得到一个MainActivity和activity_main.xml.&lt;br&gt;我们习惯了在MainActivity里去绑定&lt;strong&gt;Button&lt;/strong&gt;和&lt;strong&gt;Text&lt;/strong&gt;再设置各种属性. 他们都是内存中&lt;strong&gt;看得见,摸得着&lt;/strong&gt;的View.&lt;br&gt;但是到了&lt;strong&gt;&lt;em&gt;Flutter&lt;/em&gt;&lt;/strong&gt;中, 得到的了却是&lt;strong&gt;main()&lt;/strong&gt;函数和一堆&lt;strong&gt;StatelessWidget&lt;/strong&gt;和&lt;strong&gt;StatefulWidget&lt;/strong&gt;.&lt;br&gt;不仅仅是Flutter, 连&lt;strong&gt;Jetpack Compose&lt;/strong&gt;也在向这种’&lt;strong&gt;声明式UI&lt;/strong&gt;’靠拢.&lt;br&gt;Compose中同样找不到onResume(入口Activity除外),取而代之的而是层层嵌套的&lt;strong&gt;Composable函数&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;这种转变本质上是：我们不再持有 UI 的“句柄”，我们只持有“数据”。&lt;/p&gt;
 &lt;p&gt;正因为我们持有的只是数据，而数据本身是没有‘前后台’概念的（一个 String 字符串哪里知道自己是否在前台？）。所以，在声明式 UI 中寻找 onResume 本身就是一个伪命题。&lt;br&gt;只有当数据需要根据系统状态（如用户回来了）进行刷新时，我们才去主动询问系统。&lt;/p&gt;
-&lt;h2 id=&#34;&#34;&gt;&lt;a href=&#34;#&#34; class=&#34;headerlink&#34; title=&#34;&#34;&gt;&lt;/a&gt;&lt;img src=&#34;/images/archives/the-death-of-onresume-declarative-ui-lifecycle/android-vs-flutter-lifecycle-comparison.png&#34; alt=&#34;生命周期演进图&#34;&gt;&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+&lt;p&gt;&lt;img src=&#34;/images/archives/the-death-of-onresume-declarative-ui-lifecycle/android-vs-flutter-lifecycle-comparison.png&#34; alt=&#34;生命周期演进图&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;&#34;&gt;&lt;a href=&#34;#&#34; class=&#34;headerlink&#34; title=&#34;&#34;&gt;&lt;/a&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2024/01/02/the-death-of-onresume-declarative-ui-lifecycle/&t=声明式 UI 架构下的生命周期演进：从内建属性到显式订阅"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -291,8 +453,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -305,85 +467,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

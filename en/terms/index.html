@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html
+  lang="en">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="Last Updated: November 01, 2025 Welcome to this blog (hereinafter referred to as “this site”). These Terms of Use (hereinafter referred to as “Terms”) are intended to regulate all behaviors of you (th">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Terms of Use">
+<meta property="og:url" content="https://chaosgoo.com/en/terms/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="Last Updated: November 01, 2025 Welcome to this blog (hereinafter referred to as “this site”). These Terms of Use (hereinafter referred to as “Terms”) are intended to regulate all behaviors of you (th">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-01T04:00:00.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术">
+<meta name="twitter:card" content="summary">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            Terms of Use
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/en/terms/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
+
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
+                                                              <link rel="preload" href="/css/style.css"
+                                                                as="style"
+                                                                onload="this.onload=null;this.rel='stylesheet'">
+                                                              <noscript>
+                                                                <link rel="stylesheet"
+                                                                  href="/css/style.css">
+                                                              </noscript>
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+          <div class="content index py4 ">
+            
+              <header id="header">
+  <a class="u-url u-uid" href="/%20/">
+    
+      
+                <img id="logo" alt class="u-logo" src="/images/Logo_Sketch_88.png" width="50" height="50" />
+                
+                  
+                    <div id="title">
+                      <h1 class="p-name">
+                        Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog
+                      </h1>
+                    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     -->
+        <li><a href="/">
+            Home
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/archives/">
+            Writing
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/projects/">
+            Projects
+          </a></li><!--
+   -->
+        <!--
+     -->
+        <li><a href="/about/">
+            About
+          </a></li><!--
+   -->
+        
+          
+            <!--
+     -->
+              <!--
+     -->
+                <!--
+     -->
+                  <li class="lang-switch-item">
+                    <a href="/terms/index.html" title="切换至中文"
+                      class="lang-switch">
+                      中文
+                    </a>
+                  </li><!--
+   -->
+                  
+    </ul>
+  </div>
+</header>
+                
+                  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <p><strong>Last Updated:</strong> November 01, 2025</p>
+<p>Welcome to this blog (hereinafter referred to as “this site”). These Terms of Use (hereinafter referred to as “Terms”) are intended to regulate all behaviors of you (the user) accessing and using this site. By accessing, browsing, or using the content and services of this site, you indicate that you have read, understood, and agreed to abide by all the provisions of these Terms. If you do not agree to these Terms, please do not use this site.</p>
+<h2 id="1-Scope-of-Website-Use"><a href="#1-Scope-of-Website-Use" class="headerlink" title="1. Scope of Website Use"></a>1. Scope of Website Use</h2><p>This site is a personal non-commercial blog, mainly sharing DIY hardware production, chip experience, code snippets, 3D modeling and printing works, and personal daily sharing (hereinafter referred to as “Content”), provided for information reference and exchange purposes only.</p>
+<p>You have the right to freely browse and read the public content of this site under the premise of complying with these Terms and relevant laws and regulations.</p>
+<h2 id="2-User-Rights-and-Obligations"><a href="#2-User-Rights-and-Obligations" class="headerlink" title="2. User Rights and Obligations"></a>2. User Rights and Obligations</h2><p><strong>Age Restriction Statement:</strong> Users under the age of 18 must use this site under the guidance and supervision of a parent or legal guardian.</p>
+<p><strong>Legal Use Obligations:</strong> You promise that when using this site, you will not violate any national/regional laws and regulations, or public order and good customs, and will not implement the following behaviors:</p>
+<ul>
+<li>Unauthorized access to or tampering with the data, code, or background information of this site;</li>
+<li>Spreading malicious software, viruses, spam, or conducting network attacks, crawler abuse, and other behaviors that damage the operation of this site;</li>
+<li>Publishing or spreading illegal, pornographic, violent, defamatory, infringing, or other harmful information;</li>
+<li>Impersonating the author of this site or other users, conducting fraud, or misleading others.</li>
+</ul>
+<p><strong>Interaction Norms:</strong> If you participate in interaction through email or other means, you are fully responsible for the content you publish (such as email content), ensuring the content is true and legal, and does not infringe on third-party rights. This site has the right to delete violating interactive content or restrict your interaction permissions based on its own judgment.</p>
+<p><strong>Account Use:</strong> If this site opens a user registration function in the future, you must properly keep your account password and be responsible for all behaviors under the account. If you find your account has been stolen, you should contact this site in time for processing.</p>
+<h2 id="3-Intellectual-Property-Statement"><a href="#3-Intellectual-Property-Statement" class="headerlink" title="3. Intellectual Property Statement"></a>3. Intellectual Property Statement</h2><p>The intellectual property rights of all original content on this site (including but not limited to text, code, pictures, videos, 3D model files, etc.) belong to the author of this site (hereinafter referred to as “the Author”).</p>
+<p><strong>Non-commercial Fair Use:</strong> You may cite and share the original content of this site under the following conditions:</p>
+<ol>
+<li>Must indicate the source (e.g., “Reprinted from Chaosgoo | ESP32, IoT &amp; Hardware DIY Tech Blog”) and author information;</li>
+<li>Core information and integrity of the content must not be modified or tampered with;</li>
+<li>Must not be used for commercial purposes (including but not limited to profitable publicity, selling, secondary creation for commercial use, etc.).</li>
+</ol>
+<p><strong>Prohibition of Infringing Use:</strong> Without the written authorization of the Author, no unit or individual may copy, reprint, spread, or commercialize the original content of this site without authorization.</p>
+<h2 id="4-Disclaimer"><a href="#4-Disclaimer" class="headerlink" title="4. Disclaimer"></a>4. Disclaimer</h2><p>The content of this site is original content shared by the Author based on personal experience and interests, for reference and exchange only, and does not constitute professional advice. Any operations you conduct based on the content of this site (such as hardware production, code use, 3D printing, etc.) are at your own risk.</p>
+<h2 id="5-Modification-and-Update-of-Terms"><a href="#5-Modification-and-Update-of-Terms" class="headerlink" title="5. Modification and Update of Terms"></a>5. Modification and Update of Terms</h2><p>The Author has the right to modify these Terms at any time according to changes in laws and regulations or website operation needs.</p>
+<h2 id="6-Dispute-Resolution"><a href="#6-Dispute-Resolution" class="headerlink" title="6. Dispute Resolution"></a>6. Dispute Resolution</h2><p>The interpretation and execution of these Terms are subject to the laws and regulations of your region.</p>
+<h2 id="7-Contact-Us"><a href="#7-Contact-Us" class="headerlink" title="7. Contact Us"></a>7. Contact Us</h2><p>If you have any questions, suggestions, or complaints about these Terms, please contact the Author:<br>admin@chaosgoo.com</p>
+
+        
+  </div>
+</article>
+
+                    
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/en/privacy-policy/">
+                Privacy Policy
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/terms/">
+                Terms of Use
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/disclaimer/">
+                Disclaimer
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/contact/">
+                Contact Us
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

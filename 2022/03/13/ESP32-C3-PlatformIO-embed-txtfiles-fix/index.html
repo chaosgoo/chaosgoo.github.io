@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,21 +54,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -67,18 +197,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -91,6 +249,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -125,9 +285,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&title=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&title=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&title=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&name=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复&description=&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;9.9元入手了一块ESP32-C3板子, 用来取代手上引脚不足的ESP8266.&lt;br&gt;但是编译时候总是失败,从Log上看是这一步出了错误.&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;prepare_file([&lt;span class=&#34;string&#34;&gt;&amp;quot;.pio\build\esp32c3\lite.ttf.txt.o&amp;quot;&lt;/span&gt;], [&lt;span class=&#34;string&#34;&gt;&amp;quot;src\lite.ttf&amp;quot;&lt;/span&gt;])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Converting .pio\build\esp32c3\lite.ttf.txt.o&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;string&#34;&gt;&amp;#x27;xtensa-esp32-elf-objcopy&amp;#x27;&lt;/span&gt; \xb2\xbb\xca\xc7\xc4ڲ\xbf\xbb\xf2\xcdⲿ\xc3\xfc\xc1Ҳ\xb2\xbb\xcaǿ\xc9\xd4\xcb\xd0еĳ\xcc\xd0\xf2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;\xbb\xf2\xc5\xfa\xb4\xa6\xc0\xed\xceļ\xfe\xa1\xa3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;*** [.pio\build\esp32c3\lite.ttf.txt.o] Error 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;此外并没有任何提示了.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&name=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复&description=&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;9.9元入手了一块ESP32-C3板子, 用来取代手上引脚不足的ESP8266.&lt;br&gt;但是编译时候总是失败,从Log上看是这一步出了错误.&lt;br&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;prepare_file([&lt;span class=&#34;string&#34;&gt;&amp;quot;.pio\build\esp32c3\lite.ttf.txt.o&amp;quot;&lt;/span&gt;], [&lt;span class=&#34;string&#34;&gt;&amp;quot;src\lite.ttf&amp;quot;&lt;/span&gt;])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Converting .pio\build\esp32c3\lite.ttf.txt.o&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;string&#34;&gt;&amp;#x27;xtensa-esp32-elf-objcopy&amp;#x27;&lt;/span&gt; \xb2\xbb\xca\xc7\xc4ڲ\xbf\xbb\xf2\xcdⲿ\xc3\xfc\xc1Ҳ\xb2\xbb\xcaǿ\xc9\xd4\xcb\xd0еĳ\xcc\xd0\xf2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;\xbb\xf2\xc5\xfa\xb4\xa6\xc0\xed\xceļ\xfe\xa1\xa3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;*** [.pio\build\esp32c3\lite.ttf.txt.o] Error 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;此外并没有任何提示了.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&t=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
@@ -141,10 +299,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -185,38 +343,26 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>9.9元入手了一块ESP32-C3板子, 用来取代手上引脚不足的ESP8266.<br>但是编译时候总是失败,从Log上看是这一步出了错误.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">prepare_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Converting .pio\build\esp32c3\lite.ttf.txt.o</span><br><span class="line"><span class="string">&#x27;xtensa-esp32-elf-objcopy&#x27;</span> \xb2\xbb\xca\xc7\xc4ڲ\xbf\xbb\xf2\xcdⲿ\xc3\xfc\xc1Ҳ\xb2\xbb\xcaǿ\xc9\xd4\xcb\xd0еĳ\xcc\xd0\xf2</span><br><span class="line">\xbb\xf2\xc5\xfa\xb4\xa6\xc0\xed\xceļ\xfe\xa1\xa3</span><br><span class="line">*** [.pio\build\esp32c3\lite.ttf.txt.o] Error 1</span><br></pre></td></tr></table></figure>
-<p>此外并没有任何提示了.</p>
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>9.9元入手了一块ESP32-C3板子, 用来取代手上引脚不足的ESP8266.<br>但是编译时候总是失败,从Log上看是这一步出了错误.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">prepare_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Converting .pio\build\esp32c3\lite.ttf.txt.o</span><br><span class="line"><span class="string">&#x27;xtensa-esp32-elf-objcopy&#x27;</span> \xb2\xbb\xca\xc7\xc4ڲ\xbf\xbb\xf2\xcdⲿ\xc3\xfc\xc1Ҳ\xb2\xbb\xcaǿ\xc9\xd4\xcb\xd0еĳ\xcc\xd0\xf2</span><br><span class="line">\xbb\xf2\xc5\xfa\xb4\xa6\xc0\xed\xceļ\xfe\xa1\xa3</span><br><span class="line">*** [.pio\build\esp32c3\lite.ttf.txt.o] Error 1</span><br></pre></td></tr></table></figure><br>此外并没有任何提示了.</p>
 <span id="more"></span>
-
-
 <h3 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h3><p>lite.ttf是我的一个放在src目录下的文件,</p>
-<p>为其在platformio.ini配置”board_build.embed_txtfiles &#x3D; src&#x2F;lite.ttf”,就可以让这个文件嵌入固件中.<br>从日志里看到是转化的时候出了问题, <strong>xtensa-esp32-elf-objcopy</strong></p>
-<p>xtensa是ESP32,ESP32-S2,ESP32-S3的处理器结构,而ESP32-C3是RISC-V的,所以这里出错应该是结构不匹配.<br>去ESP-IDF的文件夹搜索”elf-objcopy”后发现的确有不同很多类似关键字.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">dir</span> <span class="keyword">in</span> esp32 esp32s2 esp32c3 esp32s3; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$dir</span> = esp32 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32s2 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32s2-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32c3 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;riscv32-esp-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32s3 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32s3-elf&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$dir</span> does not exist&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [ -d <span class="string">&quot;<span class="variable">$dir</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">cd</span> <span class="variable">$dir</span></span><br><span class="line">        git status libphy.a | grep <span class="string">&quot;modified&quot;</span> &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">        <span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="variable">$dir</span>/libphy.a fixed</span><br><span class="line">            <span class="variable">$TOOLCHAIN</span>-objcopy --redefine-sym ets_printf=phy_printf libphy.a</span><br><span class="line">        <span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>所以应该是PlatformIO在转化的时候调用了错误的程序导致的.</p>
-<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><p>去PlatformIO的工作目录(.platformio)下搜索<strong>xtensa-esp32-elf-objcopy</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&quot;xtensa-esp32-elf-objcopy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--input-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;binary&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--output-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;elf32-xtensa-le&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--binary-architecture&quot;</span>,</span><br><span class="line">    <span class="string">&quot;xtensa&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--rename-section&quot;</span>,</span><br><span class="line">    <span class="string">&quot;.data=.rodata.embedded&quot;</span>,</span><br><span class="line">    <span class="string">&quot;<span class="variable">$SOURCE</span>&quot;</span>,</span><br><span class="line">     <span class="string">&quot;<span class="variable">$TARGET</span>&quot;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>确实搜索到了多个包含这个关键字的文件_embed_files.py<br>(platforms\espressif32\builder\frameworks_embed_files.py)<br>其中platforms下有好几个文件夹</p>
+<p>为其在platformio.ini配置”board_build.embed_txtfiles = src/lite.ttf”,就可以让这个文件嵌入固件中.<br>从日志里看到是转化的时候出了问题, <strong>xtensa-esp32-elf-objcopy</strong></p>
+<p>xtensa是ESP32,ESP32-S2,ESP32-S3的处理器结构,而ESP32-C3是RISC-V的,所以这里出错应该是结构不匹配.<br>去ESP-IDF的文件夹搜索”elf-objcopy”后发现的确有不同很多类似关键字.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">dir</span> <span class="keyword">in</span> esp32 esp32s2 esp32c3 esp32s3; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$dir</span> = esp32 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32s2 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32s2-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32c3 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;riscv32-esp-elf&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="variable">$dir</span> = esp32s3 ]; <span class="keyword">then</span></span><br><span class="line">        TOOLCHAIN=<span class="string">&quot;xtensa-esp32s3-elf&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$dir</span> does not exist&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [ -d <span class="string">&quot;<span class="variable">$dir</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">cd</span> <span class="variable">$dir</span></span><br><span class="line">        git status libphy.a | grep <span class="string">&quot;modified&quot;</span> &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">        <span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="variable">$dir</span>/libphy.a fixed</span><br><span class="line">            <span class="variable">$TOOLCHAIN</span>-objcopy --redefine-sym ets_printf=phy_printf libphy.a</span><br><span class="line">        <span class="keyword">fi</span></span><br></pre></td></tr></table></figure><br>所以应该是PlatformIO在转化的时候调用了错误的程序导致的.</p>
+<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><p>去PlatformIO的工作目录(.platformio)下搜索<strong>xtensa-esp32-elf-objcopy</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&quot;xtensa-esp32-elf-objcopy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--input-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;binary&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--output-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;elf32-xtensa-le&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--binary-architecture&quot;</span>,</span><br><span class="line">    <span class="string">&quot;xtensa&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--rename-section&quot;</span>,</span><br><span class="line">    <span class="string">&quot;.data=.rodata.embedded&quot;</span>,</span><br><span class="line">    <span class="string">&quot;<span class="variable">$SOURCE</span>&quot;</span>,</span><br><span class="line">     <span class="string">&quot;<span class="variable">$TARGET</span>&quot;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure><br>确实搜索到了多个包含这个关键字的文件_embed_files.py<br>(platforms\espressif32\builder\frameworks_embed_files.py)<br>其中platforms下有好几个文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── .platformio</span><br><span class="line">│   └── platforms</span><br><span class="line">│       └── espressif32</span><br><span class="line">│       └── espressif32@src-ba2d3999402da5eaf2c9d5863ef113c7</span><br><span class="line">│       └── espressif32@src-ebefb4289db63a9f0ca5ee29fa328eef</span><br><span class="line">│       └── espressif8266</span><br><span class="line">│       └── raspberrypi</span><br></pre></td></tr></table></figure>
 <p>这应该是不同项目所需的platform,凑巧这次C3项目的platform是专门下载的,所以从文件夹修改日期上来看,我这次C3使用的应该是espressif32@src-ebefb4289db63a9f0ca5ee29fa328eef<br>打开espressif32@src-ebefb4289db63a9f0ca5ee29fa328eef下的_embed_files.py<br>里面果然还在使用xtensa-esp32-elf-objcopy<br>按照ESP-IDF里面的描述,应该使用riscv32-esp-elf-objcopy,并且要把xtensa相关的都修改为riscv.</p>
 <p>所以最后修改成了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&quot;riscv32-esp-elf-objcopy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--input-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;binary&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--output-target&quot;</span>,</span><br><span class="line">    <span class="string">&quot;elf32-littleriscv&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--binary-architecture&quot;</span>,</span><br><span class="line">    <span class="string">&quot;riscv&quot;</span>,</span><br><span class="line">    <span class="string">&quot;--rename-section&quot;</span>,</span><br><span class="line">    <span class="string">&quot;.data=.rodata.embedded&quot;</span>,</span><br><span class="line">    <span class="string">&quot;<span class="variable">$SOURCE</span>&quot;</span>,</span><br><span class="line">    <span class="string">&quot;<span class="variable">$TARGET</span>&quot;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>重新执行编译,这一次终于通过了.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Building <span class="keyword">in</span> release mode</span><br><span class="line">prepare_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Converting .pio\build\esp32c3\lite.ttf.txt.o</span><br><span class="line">revert_original_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Linking .pio\build\esp32c3\firmware.elf</span><br><span class="line">Retrieving maximum program size .pio\build\esp32c3\firmware.elf</span><br><span class="line">Checking size .pio\build\esp32c3\firmware.elf</span><br><span class="line">Advanced Memory Usage is available via <span class="string">&quot;PlatformIO Home &gt; Project Inspect&quot;</span></span><br><span class="line">RAM:   [          ]   4.7% (used 15480 bytes from 327680 bytes)</span><br><span class="line">Flash: [=         ]  14.1% (used 443870 bytes from 3145728 bytes)</span><br><span class="line">Building .pio\build\esp32c3\firmware.bin</span><br><span class="line">esptool.py v3.1</span><br><span class="line">Merged 2 ELF sections</span><br></pre></td></tr></table></figure>
+<p>重新执行编译,这一次终于通过了.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Building <span class="keyword">in</span> release mode</span><br><span class="line">prepare_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Converting .pio\build\esp32c3\lite.ttf.txt.o</span><br><span class="line">revert_original_file([<span class="string">&quot;.pio\build\esp32c3\lite.ttf.txt.o&quot;</span>], [<span class="string">&quot;src\lite.ttf&quot;</span>])</span><br><span class="line">Linking .pio\build\esp32c3\firmware.elf</span><br><span class="line">Retrieving maximum program size .pio\build\esp32c3\firmware.elf</span><br><span class="line">Checking size .pio\build\esp32c3\firmware.elf</span><br><span class="line">Advanced Memory Usage is available via <span class="string">&quot;PlatformIO Home &gt; Project Inspect&quot;</span></span><br><span class="line">RAM:   [          ]   4.7% (used 15480 bytes from 327680 bytes)</span><br><span class="line">Flash: [=         ]  14.1% (used 443870 bytes from 3145728 bytes)</span><br><span class="line">Building .pio\build\esp32c3\firmware.bin</span><br><span class="line">esptool.py v3.1</span><br><span class="line">Merged 2 ELF sections</span><br></pre></td></tr></table></figure></p>
 <h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><h4 id="embed-files-py"><a href="#embed-files-py" class="headerlink" title="_embed_files.py"></a>_embed_files.py</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Copyright 2014-present PlatformIO &lt;contact@platformio.org&gt;</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">## Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></span><br><span class="line"><span class="comment">## you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="comment">## You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">##    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">## Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment">## distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment">## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment">## See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment">## limitations under the License.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> SEEK_CUR, SEEK_END</span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> basename, isfile, join</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> SCons.Script <span class="keyword">import</span> Builder</span><br><span class="line"></span><br><span class="line">Import(<span class="string">&quot;env&quot;</span>)</span><br><span class="line"></span><br><span class="line">board = env.BoardConfig()</span><br><span class="line"></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">## Embedded files helpers</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_files</span>(<span class="params">cppdefines, files_type</span>):</span><br><span class="line">    files = []</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;build.&quot;</span> + files_type <span class="keyword">in</span> board:</span><br><span class="line">        files.extend(</span><br><span class="line">            [</span><br><span class="line">                join(<span class="string">&quot;$PROJECT_DIR&quot;</span>, f)</span><br><span class="line">                <span class="keyword">for</span> f <span class="keyword">in</span> board.get(<span class="string">&quot;build.&quot;</span> + files_type, <span class="string">&quot;&quot;</span>).split()</span><br><span class="line">                <span class="keyword">if</span> f</span><br><span class="line">            ]</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        files_define = <span class="string">&quot;COMPONENT_&quot;</span> + files_type.upper()</span><br><span class="line">        <span class="keyword">for</span> define <span class="keyword">in</span> cppdefines:</span><br><span class="line">            <span class="keyword">if</span> files_define <span class="keyword">not</span> <span class="keyword">in</span> define:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            value = define[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(define, <span class="built_in">tuple</span>):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Warning! %s macro cannot be empty!&quot;</span> % files_define)</span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(value, <span class="built_in">str</span>):</span><br><span class="line">                <span class="built_in">print</span>(</span><br><span class="line">                    <span class="string">&quot;Warning! %s macro must contain &quot;</span></span><br><span class="line">                    <span class="string">&quot;a list of files separated by &#x27;:&#x27;&quot;</span> % files_define</span><br><span class="line">                )</span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> f <span class="keyword">in</span> value.split(<span class="string">&quot;:&quot;</span>):</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> f:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                files.append(join(<span class="string">&quot;$PROJECT_DIR&quot;</span>, f))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isfile(env.subst(f)):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Warning! Could not find file &quot;%s&quot;&#x27;</span> % basename(f))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> files</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">remove_config_define</span>(<span class="params">cppdefines, files_type</span>):</span><br><span class="line">    <span class="keyword">for</span> define <span class="keyword">in</span> cppdefines:</span><br><span class="line">        <span class="keyword">if</span> files_type <span class="keyword">in</span> define:</span><br><span class="line">            env.ProcessUnFlags(<span class="string">&quot;-D%s&quot;</span> % <span class="string">&quot;=&quot;</span>.join(<span class="built_in">str</span>(d) <span class="keyword">for</span> d <span class="keyword">in</span> define))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prepare_file</span>(<span class="params">source, target, env</span>):</span><br><span class="line">    filepath = source[<span class="number">0</span>].get_abspath()</span><br><span class="line">    shutil.copy(filepath, filepath + <span class="string">&quot;.piobkp&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filepath, <span class="string">&quot;rb+&quot;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        fp.seek(-<span class="number">1</span>, SEEK_END)</span><br><span class="line">        <span class="keyword">if</span> fp.read(<span class="number">1</span>) != <span class="string">&quot;\0&quot;</span>:</span><br><span class="line">            fp.seek(<span class="number">0</span>, SEEK_CUR)</span><br><span class="line">            fp.write(<span class="string">b&quot;\0&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">revert_original_file</span>(<span class="params">source, target, env</span>):</span><br><span class="line">    filepath = source[<span class="number">0</span>].get_abspath()</span><br><span class="line">    <span class="keyword">if</span> isfile(filepath + <span class="string">&quot;.piobkp&quot;</span>):</span><br><span class="line">        shutil.move(filepath + <span class="string">&quot;.piobkp&quot;</span>, filepath)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">embed_files</span>(<span class="params">files, files_type</span>):</span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">        filename = basename(f) + <span class="string">&quot;.txt.o&quot;</span></span><br><span class="line">        file_target = env.TxtToBin(join(<span class="string">&quot;$BUILD_DIR&quot;</span>, filename), f)</span><br><span class="line">        env.Depends(<span class="string">&quot;$PIOMAINPROG&quot;</span>, file_target)</span><br><span class="line">        <span class="keyword">if</span> files_type == <span class="string">&quot;embed_txtfiles&quot;</span>:</span><br><span class="line">            env.AddPreAction(file_target, prepare_file)</span><br><span class="line">            env.AddPostAction(file_target, revert_original_file)</span><br><span class="line">        env.AppendUnique(PIOBUILDFILES=[env.File(join(<span class="string">&quot;$BUILD_DIR&quot;</span>, filename))])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_to_asm</span>(<span class="params">target, source, env</span>):</span><br><span class="line">    files = [join(<span class="string">&quot;$BUILD_DIR&quot;</span>, s.name + <span class="string">&quot;.S&quot;</span>) <span class="keyword">for</span> s <span class="keyword">in</span> source]</span><br><span class="line">    <span class="keyword">return</span> files, source</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">env.Append(</span><br><span class="line">    BUILDERS=<span class="built_in">dict</span>(</span><br><span class="line">        TxtToBin=Builder(</span><br><span class="line">            action=env.VerboseAction(</span><br><span class="line">                <span class="string">&quot; &quot;</span>.join(</span><br><span class="line">                    [</span><br><span class="line">                        <span class="string">&quot;riscv32-esp-elf-objcopy&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;--input-target&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;binary&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;--output-target&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;elf32-littleriscv&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;--binary-architecture&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;riscv&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;--rename-section&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;.data=.rodata.embedded&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;$SOURCE&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;$TARGET&quot;</span>,</span><br><span class="line">                    ]</span><br><span class="line">                ),</span><br><span class="line">                <span class="string">&quot;Converting $TARGET&quot;</span>,</span><br><span class="line">            ),</span><br><span class="line">            suffix=<span class="string">&quot;.txt.o&quot;</span>,</span><br><span class="line">        ),</span><br><span class="line">        TxtToAsm=Builder(</span><br><span class="line">            action=env.VerboseAction(</span><br><span class="line">                <span class="string">&quot; &quot;</span>.join(</span><br><span class="line">                    [</span><br><span class="line">                        join(</span><br><span class="line">                            env.PioPlatform().get_package_dir(<span class="string">&quot;tool-cmake&quot;</span>) <span class="keyword">or</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;bin&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;cmake&quot;</span>,</span><br><span class="line">                        ),</span><br><span class="line">                        <span class="string">&quot;-DDATA_FILE=$SOURCE&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;-DSOURCE_FILE=$TARGET&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;-DFILE_TYPE=TEXT&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;-P&quot;</span>,</span><br><span class="line">                        join(</span><br><span class="line">                            env.PioPlatform().get_package_dir(<span class="string">&quot;framework-espidf&quot;</span>) <span class="keyword">or</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;tools&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;cmake&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;scripts&quot;</span>,</span><br><span class="line">                            <span class="string">&quot;data_file_embed_asm.cmake&quot;</span>,</span><br><span class="line">                        ),</span><br><span class="line">                    ]</span><br><span class="line">                ),</span><br><span class="line">                <span class="string">&quot;Generating assembly for $TARGET&quot;</span>,</span><br><span class="line">            ),</span><br><span class="line">            emitter=transform_to_asm,</span><br><span class="line">            single_source=<span class="literal">True</span>,</span><br><span class="line">        ),</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flags = env.get(<span class="string">&quot;CPPDEFINES&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> files_type <span class="keyword">in</span> (<span class="string">&quot;embed_txtfiles&quot;</span>, <span class="string">&quot;embed_files&quot;</span>):</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        <span class="string">&quot;COMPONENT_&quot;</span> + files_type.upper() <span class="keyword">not</span> <span class="keyword">in</span> env.Flatten(flags)</span><br><span class="line">        <span class="keyword">and</span> <span class="string">&quot;build.&quot;</span> + files_type <span class="keyword">not</span> <span class="keyword">in</span> board</span><br><span class="line">    ):</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    files = extract_files(flags, files_type)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;espidf&quot;</span> <span class="keyword">in</span> env.subst(<span class="string">&quot;$PIOFRAMEWORK&quot;</span>):</span><br><span class="line">        env.Requires(join(<span class="string">&quot;$BUILD_DIR&quot;</span>, <span class="string">&quot;$&#123;PROGNAME&#125;.elf&quot;</span>), env.TxtToAsm(files))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        embed_files(files, files_type)</span><br><span class="line">        remove_config_define(flags, files_type)</span><br></pre></td></tr></table></figure>
-
-
 <h4 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PLATFORM: Espressif 32 (3.3.0+sha.3b5de56) &gt; Espressif ESP32 Dev Module</span><br><span class="line"> - framework-arduinoespressif32 0.0.0+sha.68daea4</span><br><span class="line"> - tool-esptoolpy 1.30100.210531 (3.1.0)</span><br><span class="line"> - toolchain-riscv-esp 1.80400.0 (8.4.0)</span><br><span class="line"> - toolchain-riscv32-esp 8.4.0+2021r1</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -225,6 +371,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -249,9 +397,7 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&title=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&title=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&title=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&name=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复&description=&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;9.9元入手了一块ESP32-C3板子, 用来取代手上引脚不足的ESP8266.&lt;br&gt;但是编译时候总是失败,从Log上看是这一步出了错误.&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;prepare_file([&lt;span class=&#34;string&#34;&gt;&amp;quot;.pio\build\esp32c3\lite.ttf.txt.o&amp;quot;&lt;/span&gt;], [&lt;span class=&#34;string&#34;&gt;&amp;quot;src\lite.ttf&amp;quot;&lt;/span&gt;])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Converting .pio\build\esp32c3\lite.ttf.txt.o&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;string&#34;&gt;&amp;#x27;xtensa-esp32-elf-objcopy&amp;#x27;&lt;/span&gt; \xb2\xbb\xca\xc7\xc4ڲ\xbf\xbb\xf2\xcdⲿ\xc3\xfc\xc1Ҳ\xb2\xbb\xcaǿ\xc9\xd4\xcb\xd0еĳ\xcc\xd0\xf2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;\xbb\xf2\xc5\xfa\xb4\xa6\xc0\xed\xceļ\xfe\xa1\xa3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;*** [.pio\build\esp32c3\lite.ttf.txt.o] Error 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;此外并没有任何提示了.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&name=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复&description=&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;9.9元入手了一块ESP32-C3板子, 用来取代手上引脚不足的ESP8266.&lt;br&gt;但是编译时候总是失败,从Log上看是这一步出了错误.&lt;br&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;prepare_file([&lt;span class=&#34;string&#34;&gt;&amp;quot;.pio\build\esp32c3\lite.ttf.txt.o&amp;quot;&lt;/span&gt;], [&lt;span class=&#34;string&#34;&gt;&amp;quot;src\lite.ttf&amp;quot;&lt;/span&gt;])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Converting .pio\build\esp32c3\lite.ttf.txt.o&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;string&#34;&gt;&amp;#x27;xtensa-esp32-elf-objcopy&amp;#x27;&lt;/span&gt; \xb2\xbb\xca\xc7\xc4ڲ\xbf\xbb\xf2\xcdⲿ\xc3\xfc\xc1Ҳ\xb2\xbb\xcaǿ\xc9\xd4\xcb\xd0еĳ\xcc\xd0\xf2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;\xbb\xf2\xc5\xfa\xb4\xa6\xc0\xed\xceļ\xfe\xa1\xa3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;*** [.pio\build\esp32c3\lite.ttf.txt.o] Error 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;此外并没有任何提示了.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2022/03/13/ESP32-C3-PlatformIO-embed-txtfiles-fix/&t=ESP32-C3 PlatformIO &#39;embed_txtfiles&#39; 修复"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
@@ -269,8 +415,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -283,85 +429,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

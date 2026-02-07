@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,21 +59,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2025/12/22/Ditherpunk-The-Art-of-Dithering/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -72,18 +202,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -96,6 +254,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -151,10 +311,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -204,7 +364,6 @@
 <p>此前我曾尝试用 Rust 实现过一个版本，但作为博客演示，使用 JavaScript 与 Canvas 在浏览器中直接进行仿真最为直观。本文将介绍几种主流抖动算法的原理及其 JS 实现。</p>
 <hr>
 <span id="more"></span>
-
 <h3 id="实验室控制台"><a href="#实验室控制台" class="headerlink" title="实验室控制台"></a>实验室控制台</h3><p>在此上传图片，下文的所有算法演示将同步生效。建议开启 Gamma 校正观摩图像暗部细节的差异。</p>
 <div class="dither-global-control" style="background: #2a2a2a; padding: 20px; border-radius: 12px; border: 1px solid #444; margin: 20px 0; color: #eee;">
     <div style="margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 15px;">
@@ -292,10 +451,10 @@
             const algo = container.dataset.algo;
             const checkbox = container.querySelector('.local-gamma');
             const canvas = container.querySelector('canvas');
-            
+
             // Generate unique ID if missing
             if (!canvas.id) canvas.id = 'canvas-' + algo + '-' + Math.random().toString(36).substr(2, 9);
-            
+
             // Interaction: Lens Effect
             let isHovering = false;
             let mouseX = 0, mouseY = 0;
@@ -304,7 +463,7 @@
                 if (!canvasStates.has(canvas.id)) return;
                 const ditheredData = canvasStates.get(canvas.id);
                 const ctx = canvas.getContext('2d');
-                
+
                 // Draw base dithered image
                 ctx.putImageData(ditheredData, 0, 0);
 
@@ -312,12 +471,12 @@
                 if (isHovering && originalImageData) {
                     const radius = 50;
                     const diameter = radius * 2;
-                    
+
                     ctx.save();
                     ctx.beginPath();
                     ctx.arc(mouseX, mouseY, radius, 0, Math.PI * 2);
                     ctx.clip();
-                    
+
                     // Draw original grayscale image inside the circle
                     // We need to draw the originalImageData at the correct position
                     // create temp canvas/imagedata is slow, drawImage is better if we had an ImageBitmap/Canvas
@@ -325,7 +484,7 @@
                     if (offscreenOriginalCanvas) {
                         ctx.drawImage(offscreenOriginalCanvas, 0, 0);
                     }
-                    
+
                     // Draw border ring
                     ctx.strokeStyle = 'rgba(255, 100, 100, 0.8)';
                     ctx.lineWidth = 2;
@@ -343,7 +502,7 @@
                 const scaleY = canvas.height / rect.height;
                 mouseX *= scaleX;
                 mouseY *= scaleY;
-                
+
                 if (!isHovering) {
                     isHovering = true;
                 }
@@ -361,7 +520,7 @@
                     processCanvas(container);
                 });
             }
-            
+
             // Attach draw function to container for external calls
             container._redraw = draw;
         });
@@ -401,11 +560,11 @@
         offscreenOriginalCanvas.height = h;
         const ctx = offscreenOriginalCanvas.getContext('2d');
         ctx.drawImage(img, 0, 0, w, h);
-        
+
         // Extract Grayscale Data (sRGB 0-255)
         const rawData = ctx.getImageData(0, 0, w, h);
         originalImageData = ctx.createImageData(w, h);
-        
+
         // Pre-calculate Linear and sRGB Normalized arrays
         linearPixels = new Float32Array(w * h);
         srgbPixels = new Float32Array(w * h);
@@ -414,16 +573,16 @@
             let r = rawData.data[i], g = rawData.data[i+1], b = rawData.data[i+2];
             // Standard Luminance
             let grayScale = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-            
+
             srgbPixels[i/4] = grayScale;
             linearPixels[i/4] = srgbToLinear(grayScale);
-            
+
             // For display (Lens), store grayscale sRGB
             let v = grayScale * 255;
             originalImageData.data[i] = originalImageData.data[i+1] = originalImageData.data[i+2] = v;
             originalImageData.data[i+3] = 255;
         }
-        
+
         // Update the offscreen canvas with true grayscale for the lens to use
         ctx.putImageData(originalImageData, 0, 0);
 
@@ -440,15 +599,15 @@
         const checkbox = container.querySelector('.local-gamma');
         const useGamma = checkbox ? checkbox.checked : true; // Default to true if no checkbox
         const canvas = container.querySelector('canvas');
-        
+
         canvas.width = imgW; canvas.height = imgH;
         canvas.style.imageRendering = 'pixelated';
-        
+
         // Select input source
         // Clone the array because Error Diffusion modifies it in-place
         const inputSource = useGamma ? linearPixels : srgbPixels;
         const input = new Float32Array(inputSource); // Clone
-        
+
         let result;
         if (algo === 'floyd' || algo === 'atkinson') {
             result = Algos[algo](input, imgW, imgH);
@@ -469,10 +628,10 @@
             outImg.data[i*4] = outImg.data[i*4+1] = outImg.data[i*4+2] = v;
             outImg.data[i*4+3] = 255;
         }
-        
+
         // Save state for redraws (Lens effect)
         canvasStates.set(canvas.id, outImg);
-        
+
         // Trigger initial draw
         if (container._redraw) container._redraw();
     }
@@ -489,7 +648,7 @@
 <p>很多开发者在处理图像时会直接进行 <code>if (gray &gt; 0.5)</code> 的判断。<br><strong>这是错误的。</strong></p>
 <h2 id="sRGB-的非线性特性"><a href="#sRGB-的非线性特性" class="headerlink" title="sRGB 的非线性特性"></a>sRGB 的非线性特性</h2><p>主流图像格式通常存储在 <strong>sRGB</strong> 空间中。sRGB 为了适配人眼对暗部细节的敏感性，采用了非线性映射（约 Gamma 2.2）。</p>
 <blockquote>
-<p>为什么我们需要如此麻烦地进行 Gamma 校正？这源于人类进化的结果：我们的眼睛对暗部变化的敏感度远高于亮部。在物理世界中，光子数量增加一倍，能量就增加一倍；但在人类感知中，亮度并不是线性增加的。sRGB 标准通过一条幂律曲线（约 $\gamma &#x3D; 2.2$）将更多的位深分配给了暗部信息。如果我们在处理抖动时不进行 De-gamma，算法会错误地将“感知上的中灰”当作“物理上的中灰”来分摊误差，导致图像在 1-bit 屏幕上看起来比原图暗得多，阴影细节会像沉入黑洞一样消失。</p>
+<p>为什么我们需要如此麻烦地进行 Gamma 校正？这源于人类进化的结果：我们的眼睛对暗部变化的敏感度远高于亮部。在物理世界中，光子数量增加一倍，能量就增加一倍；但在人类感知中，亮度并不是线性增加的。sRGB 标准通过一条幂律曲线（约 $\gamma = 2.2$）将更多的位深分配给了暗部信息。如果我们在处理抖动时不进行 De-gamma，算法会错误地将“感知上的中灰”当作“物理上的中灰”来分摊误差，导致图像在 1-bit 屏幕上看起来比原图暗得多，阴影细节会像沉入黑洞一样消失。</p>
 </blockquote>
 <p>如果在 sRGB 空间直接进行误差扩散或加减运算，会导致以下问题：</p>
 <ol>
@@ -498,7 +657,6 @@
 </ol>
 <p>因此，处理前必须先进行 <strong>De-gamma</strong> 转换。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">srgbToLinear</span>(<span class="params">v</span>) &#123;</span><br><span class="line">    v /= <span class="number">255</span>;</span><br><span class="line">    <span class="keyword">return</span> v &lt;= <span class="number">0.04045</span> ? v / <span class="number">12.92</span> : <span class="title class_">Math</span>.<span class="title function_">pow</span>((v + <span class="number">0.055</span>) / <span class="number">1.055</span>, <span class="number">2.4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="0x02-阈值裁剪-Thresholding"><a href="#0x02-阈值裁剪-Thresholding" class="headerlink" title="0x02 阈值裁剪 (Thresholding)"></a>0x02 阈值裁剪 (Thresholding)</h2><p>这是最原始、最简单的方案：设定一个固定阈值（通常为 0.5），高于该值设为 1（白），低于则设为 0（黑）。</p>
 <p><strong>结果：</strong> 细节丢失严重。由于强制舍弃了所有中间调，会导致严重的量化噪声，图像面貌全非。</p>
 <div class="dither-demo-container" data-algo="threshold">
@@ -515,7 +673,6 @@
 
 <h2 id="0x03-随机抖动-Random-Dithering"><a href="#0x03-随机抖动-Random-Dithering" class="headerlink" title="0x03 随机抖动 (Random Dithering)"></a>0x03 随机抖动 (Random Dithering)</h2><p>为了缓解量化误差，最直观的方法是在对比前引入随机噪声。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newPixel = (oldPixelLinear + (<span class="title class_">Math</span>.<span class="title function_">random</span>() - <span class="number">128</span>) / <span class="number">255</span>) &gt; <span class="number">0.5</span> ? <span class="number">1.0</span> : <span class="number">0.0</span>;</span><br></pre></td></tr></table></figure>
-
 <p><strong>结果：</strong> 虽然保留了部分细节，但图像布满了均匀分布的“雪花点”。这种 <strong>白噪声 (White Noise)</strong> 在视觉上非常刺眼，因为它在所有频率上都有能量分布。</p>
 <div class="dither-demo-container" data-algo="random">
     <div style="display: flex; justify-content: flex-end; margin-bottom: 5px;">
@@ -548,7 +705,7 @@
 </div>
 
 <h2 id="0x05-误差扩散-Error-Diffusion"><a href="#0x05-误差扩散-Error-Diffusion" class="headerlink" title="0x05 误差扩散 (Error Diffusion)"></a>0x05 误差扩散 (Error Diffusion)</h2><p>这是目前 1-Bit 图像处理的通用方案。其核心逻辑是：<strong>将当前像素量化产生的误差，按照特定权重分摊给邻近尚未处理的像素。</strong></p>
-<h2 id="Floyd-Steinberg-算法"><a href="#Floyd-Steinberg-算法" class="headerlink" title="Floyd-Steinberg 算法"></a>Floyd-Steinberg 算法</h2><p>这是最知名的误差扩散算子。它将误差以 7&#x2F;16、3&#x2F;16、5&#x2F;16、1&#x2F;16 的比例分摊至右方和下方的四个邻居。</p>
+<h2 id="Floyd-Steinberg-算法"><a href="#Floyd-Steinberg-算法" class="headerlink" title="Floyd-Steinberg 算法"></a>Floyd-Steinberg 算法</h2><p>这是最知名的误差扩散算子。它将误差以 7/16、3/16、5/16、1/16 的比例分摊至右方和下方的四个邻居。</p>
 <div class="dither-demo-container" data-algo="floyd">
     <div style="display: flex; justify-content: flex-end; margin-bottom: 5px;">
         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 0.8em; color: #aaa;">
@@ -592,7 +749,8 @@
     </div>
 </div>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>算法名称</th>
@@ -602,7 +760,8 @@
 <th>适合场景</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Threshold</td>
 <td>固定阈值</td>
 <td>高对比度、块状</td>
@@ -637,10 +796,11 @@
 <td>极高</td>
 <td>高级滤镜、印刷出版</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>从原始的阈值裁剪到精密的误差扩散，抖动算法在显示资源受限的情况下寻找到了人类视觉审美的平衡点。随着硬件资源的丰富，这些算法已经从“不得不选”变成了提升质感的“艺术风格”。</p>
 <h2 id="下一篇我们将深入讨论硬件实战：如何在内存资源匮乏的-ESP32-上实时生成高分辨率图像的抖动输出？"><a href="#下一篇我们将深入讨论硬件实战：如何在内存资源匮乏的-ESP32-上实时生成高分辨率图像的抖动输出？" class="headerlink" title="下一篇我们将深入讨论硬件实战：如何在内存资源匮乏的 ESP32 上实时生成高分辨率图像的抖动输出？"></a>下一篇我们将深入讨论硬件实战：<a href="/2025/12/30/Ditherpunk-The-Art-of-Dithering-2-ESP32/"><strong>如何在内存资源匮乏的 ESP32 上实时生成高分辨率图像的抖动输出？</strong></a></h2><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Browser: Chrome Engine (Any)</span><br><span class="line">Language: JavaScript (ES6+)</span><br><span class="line">Framework: Vanilla JS / HTML5 Canvas</span><br><span class="line">Target: PC / Embedded (SSD1306/EPD)</span><br></pre></td></tr></table></figure>
-
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://surma.dev/things/ditherpunk/">Ditherpunk — The article I wish I had about monochrome image dithering</a></li>
 <li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ordered_dithering">Ordered Dithering - Wikipedia</a></li>
@@ -652,8 +812,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -662,6 +822,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -711,8 +873,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -725,85 +887,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

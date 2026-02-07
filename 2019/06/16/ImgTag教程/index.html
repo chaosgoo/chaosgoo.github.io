@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,21 +59,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2019/06/16/ImgTag%E6%95%99%E7%A8%8B/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -72,18 +202,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -96,6 +254,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -145,10 +305,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -187,44 +347,34 @@
     <h2 id="训练一个自己的YOLO-tiny模型"><a href="#训练一个自己的YOLO-tiny模型" class="headerlink" title="训练一个自己的YOLO-tiny模型"></a>训练一个自己的YOLO-tiny模型</h2><h3 id="0x01-YOLO是什么"><a href="#0x01-YOLO是什么" class="headerlink" title="0x01 YOLO是什么"></a>0x01 YOLO是什么</h3><p><a target="_blank" rel="noopener" href="https://pjreddie.com/darknet/yolo/">YOLO</a>是一个实时目标检测系统，通俗点说就是在输入数据(图片或者视频)中查找特定的目标。举个例子，如果让一个专门识别龙的YOLO模型观看《权力的游戏》，在理想情况下，一旦画面中出现了龙，YOLO系统就会激动地用框框标记出画面中的龙。</p>
 <h4 id="为什么是YOLO-tiny"><a href="#为什么是YOLO-tiny" class="headerlink" title="为什么是YOLO-tiny"></a>为什么是YOLO-tiny</h4><p>大概是贫穷限制了我的运算速度吧，YOLO-tiny用精确度换来了速度快和性能要求低的优点，适合练手和学习或者像我一样玩一玩的用户。</p>
 <span id="more"></span>
-
 <h3 id="0x02-事前准备的准备"><a href="#0x02-事前准备的准备" class="headerlink" title="0x02 事前准备的准备"></a>0x02 事前准备的准备</h3><p>首先你可能需要一台电脑吧（可能有些用户会使用树莓派甚至是装了linux模拟器的安卓用户来虐待自己吧）。我的CPU是不知道应该叫啥四代ES版本的i7,显卡是上古时代的GTX860M，内存只有8G，名副其实的低配置用户了。顺便一提，这台电脑一天会绿屏N次，我会从现在开始记录绿屏次数，直到这篇文章写完，再顺带一提，这是二奶机，因为大奶机用的AMD矿卡，所以不能使用GPU来加速TensorFlow训练。再再顺带一提，旁边的室友虽然是1070Ti，但是他需要用他的电脑玩欢乐斗地主，所以不能帮我跑训练模型。<br>回到主线上来，你还得具有一些常识…会使用搜索引擎的那种常识。</p>
 <h3 id="0x03-事前准备"><a href="#0x03-事前准备" class="headerlink" title="0x03 事前准备"></a>0x03 事前准备</h3><p>这里假设你已经安装好了Python，并且具备了一些”常识”后，你就可以继续往下看了。<br>为了方便演示，我使用了Python的虚拟环境，并且安装了如下库</p>
-<img src="/images/migrated/0a3505b9_images_11.png"/>
-
+<p><img src="/images/migrated/0a3505b9_images_11.png"/></p>
 <ul>
 <li>下载 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/qqwweee/keras-yolo3">https://raw.githubusercontent.com/qqwweee/keras-yolo3</a> 页面中的文件，你可以使用git clone或者直接点击下载，然后解压。</li>
 <li>下载 yolo-tiny的weights文件 <a target="_blank" rel="noopener" href="https://pjreddie.com/media/files/yolov3-tiny.weights">https://pjreddie.com/media/files/yolov3-tiny.weights</a>, 并放到上一步解压后的文件夹中<br>进行到这里，我们接下来需要用到的文件已经准备了一半了，另外一半就是跑模型需要用到的数据。</li>
 </ul>
-<h3 id="0x04-配置相关文件"><a href="#0x04-配置相关文件" class="headerlink" title="0x04 配置相关文件"></a>0x04 配置相关文件</h3><p>首先，我们需要对yolov3-tiny.cfg进行编辑，<br>在这个文件里，我们需要关注[yolo]和[yolo]前的一个[convolutional]<br>首先将所有[yolo]里面classes修改为1<br>得到classes&#x3D;1<br>classes的含义是有多少种需要被识别的物体，这里我只训练yolo识别一种物体，所以设置为1</p>
-<p>对所有[yolo]的前一个[convolutional]中的filters进行修改<br>其取值为filters &#x3D; 3 * ( classes + 5 ),由于上一步中classes&#x3D;1所以这里filters取18<br>到这里，yolov3-tiny.cfg就修改完毕了<br>然后是修改model_data中的coco_classes.txt和voc_classes.txt，将待检测物体的标签填写进去，每种标签占一行。因为我只有一种待识别物体，所以这两个文件中都只有一个单词<br>进入到yolo所在目录，运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python convert.py -w yolov3-tiny.cfg yolov3-tiny.weights model_data/tiny_yolo_weights.h5</span><br></pre></td></tr></table></figure>
-<p>转换完成后可以看见如图所示内容</p>
-<img src="/images/migrated/f267a734_images_01.png"/>
-
+<h3 id="0x04-配置相关文件"><a href="#0x04-配置相关文件" class="headerlink" title="0x04 配置相关文件"></a>0x04 配置相关文件</h3><p>首先，我们需要对yolov3-tiny.cfg进行编辑，<br>在这个文件里，我们需要关注[yolo]和[yolo]前的一个[convolutional]<br>首先将所有[yolo]里面classes修改为1<br>得到classes=1<br>classes的含义是有多少种需要被识别的物体，这里我只训练yolo识别一种物体，所以设置为1</p>
+<p>对所有[yolo]的前一个[convolutional]中的filters进行修改<br>其取值为filters = 3 * ( classes + 5 ),由于上一步中classes=1所以这里filters取18<br>到这里，yolov3-tiny.cfg就修改完毕了<br>然后是修改model_data中的coco_classes.txt和voc_classes.txt，将待检测物体的标签填写进去，每种标签占一行。因为我只有一种待识别物体，所以这两个文件中都只有一个单词<br>进入到yolo所在目录，运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python convert.py -w yolov3-tiny.cfg yolov3-tiny.weights model_data/tiny_yolo_weights.h5</span><br></pre></td></tr></table></figure><br>转换完成后可以看见如图所示内容</p>
+<p><img src="/images/migrated/f267a734_images_01.png"/></p>
 <h3 id="0x05-当然是制作数据啦-DIO"><a href="#0x05-当然是制作数据啦-DIO" class="headerlink" title="0x05 当然是制作数据啦,DIO"></a>0x05 当然是制作数据啦,DIO</h3><p>怎么制作数据呢…我写了ImgTag去标注数据，并且在训练过程中使用ImgTag产生的数据</p>
 <h3 id="0x06-训练模型"><a href="#0x06-训练模型" class="headerlink" title="0x06 训练模型"></a>0x06 训练模型</h3><p>在训练自己的模型之前，我们还需要编辑一下train.py中的内容</p>
 <ul>
-<li>anchors_path &#x3D; ‘model_data&#x2F;tiny_yolo_anchors.txt’ 指定anchors为tiny-yolo版本</li>
-<li>因为我已经明确知道我训练的是yolo-tiny模型，所以在27行，修改为is_tiny_version &#x3D; True<br>此时就可以执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py</span><br></pre></td></tr></table></figure>
+<li>anchors_path = ‘model_data/tiny_yolo_anchors.txt’ 指定anchors为tiny-yolo版本</li>
+<li>因为我已经明确知道我训练的是yolo-tiny模型，所以在27行，修改为is_tiny_version = True<br>此时就可以执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py</span><br></pre></td></tr></table></figure>
 漫长的等待之后，模型就跑完了.跑完以后会显示类似内容</li>
 </ul>
-<img src="/images/migrated/fca009ca_images_02.png"/>
-
-<h3 id="0x07-使用模型"><a href="#0x07-使用模型" class="headerlink" title="0x07 使用模型"></a>0x07 使用模型</h3><p>使用模型，就是指定yolo在检测目标时候，使用我们刚刚（可能并不是刚刚）产生的权重文件。<br>进入到yolo的目录，编辑yolo.py<br>其中需要重点关注的内容就是</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_defaults = &#123;</span><br><span class="line"><span class="string">&quot;model_path&quot;</span>: <span class="string">&#x27;model_data/yolo.h5&#x27;</span>, <span class="comment"># 指定使用的模型</span></span><br><span class="line"><span class="string">&quot;anchors_path&quot;</span>: <span class="string">&#x27;model_data/yolo_anchors.txt&#x27;</span>,</span><br><span class="line"><span class="string">&quot;classes_path&quot;</span>: <span class="string">&#x27;model_data/coco_classes.txt&#x27;</span>,</span><br><span class="line"><span class="string">&quot;score&quot;</span> : <span class="number">0.3</span>, <span class="comment"># 当评估出的得分大于0.3时候，就标记出来</span></span><br><span class="line"><span class="string">&quot;iou&quot;</span> : <span class="number">0.45</span>,</span><br><span class="line"><span class="string">&quot;model_image_size&quot;</span> : (<span class="number">416</span>, <span class="number">416</span>),</span><br><span class="line"><span class="string">&quot;gpu_num&quot;</span> : <span class="number">1</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们需要修改以下model_path的值，因为..某些特殊的原因，我在运行的时候指定模型并不能正常进行，所以我使用这种方法。<br>model_path那一行修改为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;model_path&quot;</span>: <span class="string">&#x27;logs/000/trained_weights_final.h5&#x27;</span>,</span><br></pre></td></tr></table></figure>
-<p>我一共标注了200张图片，相对而言图片数量可能还不够，但是已经可以看到目前模型已经可以正常识别部分浣熊了。比如银河护卫队中的火箭浣熊哦</p>
-<img src="/images/migrated/b8bcdb64_raccoon.gif"/>
+<p><img src="/images/migrated/fca009ca_images_02.png"/></p>
+<h3 id="0x07-使用模型"><a href="#0x07-使用模型" class="headerlink" title="0x07 使用模型"></a>0x07 使用模型</h3><p>使用模型，就是指定yolo在检测目标时候，使用我们刚刚（可能并不是刚刚）产生的权重文件。<br>进入到yolo的目录，编辑yolo.py<br>其中需要重点关注的内容就是<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_defaults = &#123;</span><br><span class="line"><span class="string">&quot;model_path&quot;</span>: <span class="string">&#x27;model_data/yolo.h5&#x27;</span>, <span class="comment"># 指定使用的模型</span></span><br><span class="line"><span class="string">&quot;anchors_path&quot;</span>: <span class="string">&#x27;model_data/yolo_anchors.txt&#x27;</span>,</span><br><span class="line"><span class="string">&quot;classes_path&quot;</span>: <span class="string">&#x27;model_data/coco_classes.txt&#x27;</span>,</span><br><span class="line"><span class="string">&quot;score&quot;</span> : <span class="number">0.3</span>, <span class="comment"># 当评估出的得分大于0.3时候，就标记出来</span></span><br><span class="line"><span class="string">&quot;iou&quot;</span> : <span class="number">0.45</span>,</span><br><span class="line"><span class="string">&quot;model_image_size&quot;</span> : (<span class="number">416</span>, <span class="number">416</span>),</span><br><span class="line"><span class="string">&quot;gpu_num&quot;</span> : <span class="number">1</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>我们需要修改以下model_path的值，因为..某些特殊的原因，我在运行的时候指定模型并不能正常进行，所以我使用这种方法。<br>model_path那一行修改为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;model_path&quot;</span>: <span class="string">&#x27;logs/000/trained_weights_final.h5&#x27;</span>,</span><br></pre></td></tr></table></figure><br>我一共标注了200张图片，相对而言图片数量可能还不够，但是已经可以看到目前模型已经可以正常识别部分浣熊了。比如银河护卫队中的火箭浣熊哦</p>
+<p><img src="/images/migrated/b8bcdb64_raccoon.gif"/></p>
 
   </div>
 </article>
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -233,6 +383,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -276,8 +428,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -290,85 +442,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

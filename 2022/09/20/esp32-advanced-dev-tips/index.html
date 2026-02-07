@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,21 +54,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2022/09/20/esp32-advanced-dev-tips/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -67,18 +197,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -91,6 +249,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -144,10 +304,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -195,25 +355,21 @@
 <p>把这些坑踩平之后，我整理了四个在ESP32开发中非常实用的技巧。为了避免大家重蹈覆辙，也为了方便我自己日后查阅（Copy），这篇文章将把这些技术点汇总起来。</p>
 <p>希望能给正在折腾ESP32的你提供一些灵感。</p>
 <span id="more"></span>
-
 <hr>
 <h2 id="技巧一：拒绝阻塞！使用异步网络请求"><a href="#技巧一：拒绝阻塞！使用异步网络请求" class="headerlink" title="技巧一：拒绝阻塞！使用异步网络请求"></a>技巧一：拒绝阻塞！使用异步网络请求</h2><h3 id="痛点分析"><a href="#痛点分析" class="headerlink" title="痛点分析"></a>痛点分析</h3><p>在早期的像素小屏幕项目中，我为了获取B站粉丝数，直接使用了同步的HTTP Client。结果就是每次请求网络时，整个设备的UI都会卡住几百毫秒甚至几秒。这对于用户体验来说简直是灾难——你不能让用户觉得设备“死机”了。</p>
 <p>为了优雅，必须上异步。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>我们可以利用 <code>AsyncTCP</code> 库来实现非阻塞的HTTP请求。虽然写起来回调函数（Callback）套娃有点多，但换来的是丝般顺滑的主循环。</p>
 <h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>这里使用的是 <a target="_blank" rel="noopener" href="https://github.com/me-no-dev/AsyncTCP">AsyncTCP-esphome</a> 库。</p>
 <figure class="highlight cpp"><figcaption><span>AsyncRequest.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;AsyncTCP.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;WiFi.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ... WiFi配置省略 ...</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">asyncReqeust</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="type">static</span> AsyncClient *aClient;</span><br><span class="line">  <span class="keyword">if</span> (aClient) <span class="keyword">return</span>; <span class="comment">// 防止重复创建</span></span><br><span class="line"></span><br><span class="line">  aClient = <span class="keyword">new</span> <span class="built_in">AsyncClient</span>();</span><br><span class="line">  <span class="keyword">if</span> (!aClient) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 注册错误回调</span></span><br><span class="line">  aClient-&gt;<span class="built_in">onError</span>([](<span class="type">void</span> *arg, AsyncClient *client, <span class="type">int</span> error) &#123;</span><br><span class="line">      Serial.<span class="built_in">println</span>(<span class="string">&quot;Connect Error&quot;</span>);</span><br><span class="line">      aClient = <span class="literal">NULL</span>;</span><br><span class="line">      <span class="keyword">delete</span> client;</span><br><span class="line">  &#125;, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 注册连接回调</span></span><br><span class="line">  aClient-&gt;<span class="built_in">onConnect</span>([](<span class="type">void</span> *arg, AsyncClient *client) &#123;</span><br><span class="line">      Serial.<span class="built_in">println</span>(<span class="string">&quot;Connected&quot;</span>);</span><br><span class="line">      aClient-&gt;<span class="built_in">onError</span>(<span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 注册断开连接回调</span></span><br><span class="line">      client-&gt;<span class="built_in">onDisconnect</span>([](<span class="type">void</span> *arg, AsyncClient *c) &#123;</span><br><span class="line">          aClient = <span class="literal">NULL</span>;</span><br><span class="line">          <span class="keyword">delete</span> c;</span><br><span class="line">          Serial.<span class="built_in">println</span>(<span class="string">&quot;Disconnected&quot;</span>);</span><br><span class="line">      &#125;, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 注册数据接收回调（核心逻辑）</span></span><br><span class="line">      client-&gt;<span class="built_in">onData</span>([](<span class="type">void</span> *arg, AsyncClient *c, <span class="type">void</span> *data, <span class="type">size_t</span> len) &#123;</span><br><span class="line">          Serial.<span class="built_in">write</span>((<span class="type">uint8_t</span> *)data, len);</span><br><span class="line">          <span class="comment">// 这里可以解析JSON数据</span></span><br><span class="line">      &#125;, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 发送HTTP GET请求</span></span><br><span class="line">      client-&gt;<span class="built_in">write</span>(<span class="string">&quot;GET /x/relation/stat?vmid=14374079 HTTP/1.1\r\n&quot;</span></span><br><span class="line">                    <span class="string">&quot;Host: api.bilibili.com\r\n&quot;</span></span><br><span class="line">                    <span class="string">&quot;Content-Type: application/json; charset=utf-8\r\n\r\n&quot;</span>);</span><br><span class="line">  &#125;, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!aClient-&gt;<span class="built_in">connect</span>(<span class="string">&quot;api.bilibili.com&quot;</span>, <span class="number">80</span>)) &#123;</span><br><span class="line">      Serial.<span class="built_in">println</span>(<span class="string">&quot;Connect Fail&quot;</span>);</span><br><span class="line">      AsyncClient *client = aClient;</span><br><span class="line">      aClient = <span class="literal">NULL</span>;</span><br><span class="line">      <span class="keyword">delete</span> client;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这样，网络请求在后台默默进行，你的主循环 <code>loop()</code> 依然可以跑得飞起，去处理按键扫描或者屏幕刷新。</p>
 <hr>
 <h3 id="技巧二：让画面动起来——播放GIF动图"><a href="#技巧二：让画面动起来——播放GIF动图" class="headerlink" title="技巧二：让画面动起来——播放GIF动图"></a>技巧二：让画面动起来——播放GIF动图</h3><h4 id="视觉升级"><a href="#视觉升级" class="headerlink" title="视觉升级"></a>视觉升级</h4><p>网络通畅了，界面也不能太寒酸。在做一个带有240x135分辨率的装置时，我实在想不出什么高级的算法动画，于是决定“偷懒”：直接在屏幕上播放GIF表情包。</p>
 <p>这里推荐使用 <a target="_blank" rel="noopener" href="https://github.com/bitbank2/AnimatedGIF">AnimatedGIF</a> 库，配合 TFT_eSPI 驱动，效果非常不错。</p>
 <h4 id="制作GIF头文件"><a href="#制作GIF头文件" class="headerlink" title="制作GIF头文件"></a>制作GIF头文件</h4><p>首先，我们需要把GIF文件转换成代码能读取的数组。在Linux或者WSL子系统下，一行 <code>xxd</code> 命令就能搞定：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 将GIF转换为C数组</span></span><br><span class="line">xxd -i angry_80px.gif &gt;&gt; loading.h</span><br></pre></td></tr></table></figure>
-
 <p>生成的 <code>loading.h</code> 里面就是一个巨大的 <code>unsigned char</code> 数组。</p>
 <h4 id="驱动代码"><a href="#驱动代码" class="headerlink" title="驱动代码"></a>驱动代码</h4><p>代码基于官方示例修改，适配了 TFT_eSPI。</p>
 <figure class="highlight cpp"><figcaption><span>GifPlayer.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;AnimatedGIF.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TFT_eSPI.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;loading.h&quot;</span> <span class="comment">// 刚才生成的头文件</span></span></span><br><span class="line"></span><br><span class="line">AnimatedGIF gif;</span><br><span class="line">TFT_eSPI tft = <span class="built_in">TFT_eSPI</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调函数：将解码后的一行像素推送到屏幕</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">GIFDraw</span><span class="params">(GIFDRAW *pDraw)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ... 核心绘制逻辑，包含透明度处理和DMA加速 ...</span></span><br><span class="line">    <span class="comment">// 篇幅原因，核心逻辑是调用 tft.pushPixels 将 pDraw-&gt;pPixels 推送显示</span></span><br><span class="line">    <span class="comment">// 完整逻辑参考 AnimatedGIF 的 TFT_eSPI_memory 示例</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  tft.<span class="built_in">begin</span>();</span><br><span class="line">  tft.<span class="built_in">setRotation</span>(<span class="number">1</span>);</span><br><span class="line">  tft.<span class="built_in">fillScreen</span>(TFT_BLACK);</span><br><span class="line">  gif.<span class="built_in">begin</span>(BIG_ENDIAN_PIXELS);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (gif.<span class="built_in">open</span>((<span class="type">uint8_t</span> *)angry_80px_gif, <span class="built_in">sizeof</span>(angry_80px_gif), GIFDraw)) &#123;</span><br><span class="line">    <span class="keyword">while</span> (gif.<span class="built_in">playFrame</span>(<span class="literal">true</span>, <span class="literal">NULL</span>)) &#123;</span><br><span class="line">      <span class="built_in">yield</span>(); <span class="comment">// 喂狗，防止复位</span></span><br><span class="line">    &#125;</span><br><span class="line">    gif.<span class="built_in">close</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>只要内存够大，放个蔡徐坤打篮球的GIF也不是不可能（逃）。</p>
 <hr>
 <h2 id="技巧三：Light-Sleep模式下保持PWM输出"><a href="#技巧三：Light-Sleep模式下保持PWM输出" class="headerlink" title="技巧三：Light-Sleep模式下保持PWM输出"></a>技巧三：Light-Sleep模式下保持PWM输出</h2><h3 id="奇怪的需求"><a href="#奇怪的需求" class="headerlink" title="奇怪的需求"></a>奇怪的需求</h3><p>有些场景下（比如背光保持），我们需要ESP32进入 <code>Light-Sleep</code> 省电，但又不希望 屏幕背光的PWM 信号中断。<br>默认情况下，进入睡眠后高速时钟会关闭，导致 PWM 停摆。</p>
@@ -227,7 +383,6 @@
 </li>
 </ol>
 <figure class="highlight c"><figcaption><span>pwm_sleep.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;driver/ledc.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;esp_sleep.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">app_main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// 1. 定时器配置：重点是选用 LEDC_USE_RTC8M_CLK</span></span><br><span class="line">  <span class="type">ledc_timer_config_t</span> ledc_timer = &#123;</span><br><span class="line">      .duty_resolution = LEDC_TIMER_13_BIT,</span><br><span class="line">      .freq_hz = <span class="number">1000</span>,</span><br><span class="line">      .speed_mode = LEDC_LOW_SPEED_MODE, <span class="comment">// 必须是低速模式</span></span><br><span class="line">      .timer_num = LEDC_TIMER_0,</span><br><span class="line">      .clk_cfg = LEDC_USE_RTC8M_CLK,     <span class="comment">// 关键！</span></span><br><span class="line">  &#125;;</span><br><span class="line">  ESP_ERROR_CHECK(ledc_timer_config(&amp;ledc_timer));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2. 通道配置... (常规配置，略)</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 3. 强制开启RTC8M电源域</span></span><br><span class="line">  esp_sleep_pd_config(ESP_PD_DOMAIN_RTC8M, ESP_PD_OPTION_ON);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// 设置一个占空比</span></span><br><span class="line">    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, <span class="number">1000</span>);</span><br><span class="line">    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 进入浅睡眠，PWM依然会保持输出</span></span><br><span class="line">    esp_sleep_enable_timer_wakeup(<span class="number">1000</span> * <span class="number">1000</span> * <span class="number">5</span>); <span class="comment">// 睡5秒</span></span><br><span class="line">    esp_light_sleep_start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>实测这个功能对于降低功耗非常有用。</p>
 <hr>
 <h3 id="技巧四：只更新资源文件？试试-SPIFFS-分区-OTA"><a href="#技巧四：只更新资源文件？试试-SPIFFS-分区-OTA" class="headerlink" title="技巧四：只更新资源文件？试试 SPIFFS 分区 OTA"></a>技巧四：只更新资源文件？试试 SPIFFS 分区 OTA</h3><h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><p>随着项目越来越大，我发现一个问题：有时候我只想更新一下UI里的图片资源或者字体库，并不想更新代码。<br>传统的OTA是更新 App 分区，这很浪费流量和时间。其实我们完全可以只针对 SPIFFS 数据分区进行 OTA。</p>
@@ -236,7 +391,6 @@
 <p>这里我划了一个 48KB 的 <code>storage</code> 分区用于演示。</p>
 <h4 id="OTA-核心逻辑"><a href="#OTA-核心逻辑" class="headerlink" title="OTA 核心逻辑"></a>OTA 核心逻辑</h4><p>不同于更新 App，更新分区实际上就是“擦除 + 写入”的过程。假设新的文件镜像已经通过网络下载到了内存中（或者像本例一样，为了演示直接 embed 在代码里）。</p>
 <figure class="highlight c"><figcaption><span>spiffs_ota.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">update_spiffs_partition</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 查找 SPIFFS 分区</span></span><br><span class="line">    <span class="type">const</span> <span class="type">esp_partition_t</span> *spiffs_part = esp_partition_find_first(</span><br><span class="line">            ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_SPIFFS, <span class="literal">NULL</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (spiffs_part == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        ESP_LOGE(<span class="string">&quot;OTA&quot;</span>, <span class="string">&quot;SPIFFS partition not found!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 擦除原分区内容</span></span><br><span class="line">    ESP_LOGI(<span class="string">&quot;OTA&quot;</span>, <span class="string">&quot;Erasing partition...&quot;</span>);</span><br><span class="line">    esp_partition_erase_range(spiffs_part, <span class="number">0</span>, spiffs_part-&gt;size);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 写入新数据</span></span><br><span class="line">    <span class="comment">// 假设 spiffs2_start 和 spiffs2_end 是新镜像在内存中的地址</span></span><br><span class="line">    <span class="type">size_t</span> image_size = spiffs2_end - spiffs2_start - <span class="number">1</span>;</span><br><span class="line">    ESP_LOGI(<span class="string">&quot;OTA&quot;</span>, <span class="string">&quot;Writing new data: %d bytes&quot;</span>, image_size);</span><br><span class="line">    </span><br><span class="line">    esp_partition_write(spiffs_part, <span class="number">0</span>, spiffs2_start, image_size);</span><br><span class="line"></span><br><span class="line">    ESP_LOGI(<span class="string">&quot;OTA&quot;</span>, <span class="string">&quot;Done! Restarting...&quot;</span>);</span><br><span class="line">    esp_restart();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这个技巧在做图片更换、字体切换等功能时特别好用，不用动核心代码，安全又快速。</p>
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是我近期折腾ESP32时总结的四个实用技巧。<br>从避免阻塞的异步请求，到花里胡哨的GIF播放，再到低功耗下的PWM控制和灵活的资源OTA，每一个点都是在实际开发中为了解决特定痛点而摸索出来的。</p>
@@ -248,8 +402,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -258,6 +412,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -305,8 +461,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -319,85 +475,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

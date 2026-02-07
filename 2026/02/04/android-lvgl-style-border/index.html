@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="模仿 LVGL 的 Box Model 逻辑，在 Android 中通过自定义 View 和 Xfermode 实现具有&quot;实体&quot;空间占用的圆角边框（Border）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 进阶：如何在安卓中实现像 LVGL 一样的&quot;实体&quot;Border？">
+<meta property="og:url" content="https://chaosgoo.com/2026/02/04/android-lvgl-style-border/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="模仿 LVGL 的 Box Model 逻辑，在 Android 中通过自定义 View 和 Xfermode 实现具有&quot;实体&quot;空间占用的圆角边框（Border）。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/android-lvgl-style-border/strange%20top%20right%20bottom%20border%20style.png">
+<meta property="article:published_time" content="2026-02-04T05:13:02.000Z">
+<meta property="article:modified_time" content="2026-02-04T05:13:02.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="Kotlin">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="UI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/archives/android-lvgl-style-border/strange%20top%20right%20bottom%20border%20style.png">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/2026/02/04/android-lvgl-style-border/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
+
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
+                                                              <link rel="preload" href="/css/style.css"
+                                                                as="style"
+                                                                onload="this.onload=null;this.rel='stylesheet'">
+                                                              <noscript>
+                                                                <link rel="stylesheet"
+                                                                  href="/css/style.css">
+                                                              </noscript>
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2026/01/04/ESP-IDF-embed-txtfiles-tricks/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&text=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&is_video=false&description=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？&body=Check out this article: https://chaosgoo.com/2026/02/04/android-lvgl-style-border/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&name=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？&description=&lt;p&gt;做嵌入式的时候用过 LVGL，它的样式系统给我留下了深刻印象。LVGL 的 Border 是”实体”的——会占据布局空间，把内容往里挤。&lt;/p&gt;
+&lt;p&gt;安卓这边就没这么痛快了。&lt;code&gt;ShapeDrawable&lt;/code&gt; 和 &lt;code&gt;MaterialCardView&lt;/code&gt; 的边框更像是”装饰品”，想让边框、圆角、内边距各自独立可控？原生组件做起来挺别扭。&lt;/p&gt;
+&lt;p&gt;所以我干脆手搓了一个 &lt;code&gt;BorderFrameLayout&lt;/code&gt;，把 LVGL 那套逻辑搬过来。&lt;br&gt;&lt;img src=&#34;/images/archives/android-lvgl-style-border/BorderFrameLayout层级示意图.png&#34; alt=&#34;BorderFrameLayout层级示意图&#34;&gt;&lt;br&gt;图中不同的颜色代表真实占用的空间。&lt;br&gt;绿色代表Border, 红色代表内部Padding, 蓝色代表Child可使用空间.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&t=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E6%96%B9%E6%A1%88%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91"><span class="toc-number">1.</span> <span class="toc-text">原生方案的几个坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A%E7%BB%A7%E6%89%BF-FrameLayout-%E9%87%8D%E5%86%99%E7%BB%98%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">思路：继承 FrameLayout 重写绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">2.1.</span> <span class="toc-text">效果展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-number">3.</span> <span class="toc-text">实现细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%A9-Border-%E5%8F%82%E4%B8%8E%E5%B8%83%E5%B1%80%E8%AE%A1%E7%AE%97"><span class="toc-number">3.1.</span> <span class="toc-text">1. 让 Border 参与布局计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%94%A8%E9%81%AE%E7%BD%A9%E7%BB%98%E5%88%B6-Border"><span class="toc-number">3.2.</span> <span class="toc-text">2. 用遮罩绘制 Border</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%99%9A%E7%BA%BF%E8%BE%B9%E6%A1%86"><span class="toc-number">3.3.</span> <span class="toc-text">3. 虚线边框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%86%85%E5%AE%B9%E8%A3%81%E5%89%AA"><span class="toc-number">3.4.</span> <span class="toc-text">4. 内容裁剪</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XML-%E5%A3%B0%E6%98%8E%E5%BC%8F%E7%94%A8%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">XML 声明式用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">完整代码</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-02-04T05:13:02.000Z" class="dt-published" itemprop="datePublished">2026-02-04</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Software-Dev/">Software & Dev</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Android/" rel="tag">Android</a>, <a class="p-category" href="/tags/Kotlin/" rel="tag">Kotlin</a>, <a class="p-category" href="/tags/UI/" rel="tag">UI</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>做嵌入式的时候用过 LVGL，它的样式系统给我留下了深刻印象。LVGL 的 Border 是”实体”的——会占据布局空间，把内容往里挤。</p>
+<p>安卓这边就没这么痛快了。<code>ShapeDrawable</code> 和 <code>MaterialCardView</code> 的边框更像是”装饰品”，想让边框、圆角、内边距各自独立可控？原生组件做起来挺别扭。</p>
+<p>所以我干脆手搓了一个 <code>BorderFrameLayout</code>，把 LVGL 那套逻辑搬过来。<br><img src="/images/archives/android-lvgl-style-border/BorderFrameLayout层级示意图.png" alt="BorderFrameLayout层级示意图"><br>图中不同的颜色代表真实占用的空间。<br>绿色代表Border, 红色代表内部Padding, 蓝色代表Child可使用空间.</p>
+<span id="more"></span>
+<hr>
+<h2 id="原生方案的几个坑"><a href="#原生方案的几个坑" class="headerlink" title="原生方案的几个坑"></a>原生方案的几个坑</h2><p>给 View 加边框，常规做法是写个 <code>shape</code> XML 设成 <code>background</code>。但实际用起来会遇到这些问题：</p>
+<p><strong>圆角被子 View 盖住</strong>：容器有圆角，子 View 颜色不同时会直接覆盖掉圆角。<code>OutlineProvider</code> 和 <code>clipToOutline</code> 能用，但效果不稳定。</p>
+<p><strong>Padding 和 Border 混在一起</strong>：想实现”Border 占 2dp，Padding 占 10dp”，得自己算加法。逻辑一复杂就容易出错。</p>
+<p><strong>各边独立控制麻烦</strong>：只想要底部边框？想要虚线？XML 方案得写一堆文件。</p>
+<h2 id="思路：继承-FrameLayout-重写绘制"><a href="#思路：继承-FrameLayout-重写绘制" class="headerlink" title="思路：继承 FrameLayout 重写绘制"></a>思路：继承 FrameLayout 重写绘制</h2><p>既然原生不好使，那就自己来。</p>
+<p><code>BorderFrameLayout</code> 把容器边界分成两层：</p>
+<ul>
+<li><strong>Background Path</strong>：整个控件的外轮廓（含圆角）</li>
+<li><strong>Child Draw Area</strong>：扣掉边框后，子 View 实际可用的区域</li>
+</ul>
+<p>Border 就画在这两层中间。</p>
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p>为了方便演示效果, 我在BorderFrameLayout内部放置了一个对齐底部的Button. 这个Button的位置会受到Border的尺寸和位置变化的影响产生偏移.</p>
+<p><strong>只有底部边框</strong><br><img src="/images/archives/android-lvgl-style-border/real%20bottom%20border%20style.png" alt="只有底部边框"><br>可以看到Button的底部是底部Border,而不是常规的容器底部.</p>
+<p><strong>右侧和底部边框（L型）</strong><br><img src="/images/archives/android-lvgl-style-border/right%20bottom%20thick%20border%20style.png" alt="右侧和底部边框"><br>引入右侧Border, Button理所应当的相左产生了些许偏移.</p>
+<p><strong>上右下三边虚线边框</strong><br><img src="/images/archives/android-lvgl-style-border/dash%20top%20right%20bottom%20style%20border.png" alt="上右下三边虚线边框"><br>虚线Border效果展示</p>
+<p><strong>极端圆角</strong><br><img src="/images/archives/android-lvgl-style-border/strange%20top%20right%20bottom%20border%20style.png" alt="极端圆角场景"><br>当Border圆角设置的十分巨大的并且缺少一条边的Border的时候, 就得到了这个<br>看上去十分诡异的效果, 但这确实是LVGL里能够设置出来的样式.</p>
+<p>单边、多边、虚线、极端圆角都能正确处理。</p>
+<hr>
+<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><h3 id="1-让-Border-参与布局计算"><a href="#1-让-Border-参与布局计算" class="headerlink" title="1. 让 Border 参与布局计算"></a>1. 让 Border 参与布局计算</h3><p>重载 <code>onLayout</code> 和 <code>layoutChildren</code>，把 <code>mBorderWidth</code> 算进子 View 的可用空间：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">layoutChildren</span><span class="params">(left: <span class="type">Int</span>, top: <span class="type">Int</span>, right: <span class="type">Int</span>, bottom: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="comment">// parentLeft 等边界基于 (padding + border) 计算</span></span><br><span class="line">    <span class="keyword">val</span> parentLeft: <span class="built_in">Int</span> = getPaddingLeftWithForeground()</span><br><span class="line">    <span class="keyword">val</span> parentRight: <span class="built_in">Int</span> = right - left - getPaddingRightWithForeground()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> parentTop: <span class="built_in">Int</span> = getPaddingTopWithForeground()</span><br><span class="line">    <span class="keyword">val</span> parentBottom: <span class="built_in">Int</span> = bottom - top - getPaddingBottomWithForeground()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span> until count) &#123;</span><br><span class="line">        <span class="keyword">val</span> child = getChildAt(i)</span><br><span class="line">        <span class="comment">// 子 View 会被&quot;挤&quot;到 Border 内部</span></span><br><span class="line">        child.layout(childLeft, childTop, childLeft + width, childTop + height)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>getPadding</code> 返回的是 <code>mRealPadding + mBorder</code>，让安卓系统以为这就是正常的 Padding：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getPaddingLeft</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (mRealPaddingLeft + mBorderLeft).roundToInt()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-用遮罩绘制-Border"><a href="#2-用遮罩绘制-Border" class="headerlink" title="2. 用遮罩绘制 Border"></a>2. 用遮罩绘制 Border</h3><p>一开始我试过用 Path + Stroke 的方式内缩边框，<br>但在多边 + 极端圆角场景下，内外轮廓很难保持一致，<br>虚线在拐角处尤其明显。</p>
+<p>而直接画 <code>Stroke</code> 矩形的话，圆角内外弧度很难对齐。所以最终用的是 <strong>PorterDuffXfermode</strong> 遮罩方案：</p>
+<ol>
+<li>画一个全黑的圆角外轮廓</li>
+<li>用 <code>DST_OUT</code> 扣掉中间内容区</li>
+<li>得到只有边框形状的 Mask</li>
+<li>用 <code>SRC_IN</code> 把 Border 颜色填进去</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> maskBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ALPHA_8)</span><br><span class="line"><span class="keyword">val</span> maskCanvas = Canvas(maskBitmap)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 填充外轮廓</span></span><br><span class="line">maskCanvas.drawPath(mBackgroundPath, mBorderPaint.apply &#123;</span><br><span class="line">    style = Paint.Style.FILL</span><br><span class="line">    color = Color.BLACK</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 扣掉内部区域</span></span><br><span class="line">mBorderPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)</span><br><span class="line">maskCanvas.drawPath(generateChildDrawAreaPath(), mBorderPaint)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 Mask 限制 Border 绘制范围</span></span><br><span class="line">canvas.drawBitmap(maskBitmap, <span class="number">0f</span>, <span class="number">0f</span>, mBorderPaint)</span><br><span class="line">mBorderPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)</span><br><span class="line">canvas.drawRect(<span class="number">0f</span>, <span class="number">0f</span>, width.toFloat(), height.toFloat(), mBorderPaint.apply &#123;</span><br><span class="line">    <span class="keyword">this</span>.color = mBorderColor</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>不管 Border 多宽、圆角多夸张，边缘都能对齐。</p>
+<h3 id="3-虚线边框"><a href="#3-虚线边框" class="headerlink" title="3. 虚线边框"></a>3. 虚线边框</h3><p>在 Mask 阶段加一层 <code>DashPathEffect</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (mBorderStyle == <span class="number">1</span>) &#123;</span><br><span class="line">    counterPath.addRoundRect(<span class="comment">/* 中间轮廓 */</span>)</span><br><span class="line">    maskCanvas.drawPath(counterPath, mBorderPaint.apply &#123;</span><br><span class="line">        style = Paint.Style.STROKE</span><br><span class="line">        pathEffect = DashPathEffect(</span><br><span class="line">            floatArrayOf(maxDashIntervals, maxDashIntervals * <span class="number">3</span>),</span><br><span class="line">            <span class="number">0f</span></span><br><span class="line">        )</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-内容裁剪"><a href="#4-内容裁剪" class="headerlink" title="4. 内容裁剪"></a>4. 内容裁剪</h3><p>防止子 View 覆盖圆角：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">dispatchDraw</span><span class="params">(canvas: <span class="type">Canvas</span>)</span></span> &#123;</span><br><span class="line">    drawBorderAndBackground(canvas)</span><br><span class="line">    canvas.save()</span><br><span class="line">    <span class="keyword">if</span> (clipContent) &#123;</span><br><span class="line">        canvas.clipPath(mBackgroundPath)</span><br><span class="line">        canvas.clipPath(generateChildDrawAreaPath())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">super</span>.dispatchDraw(canvas)</span><br><span class="line">    canvas.restore()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方案在 Border 高频变化时会有一定 Bitmap 重建开销，<br>更适合样式稳定的容器类组件。</p>
+<hr>
+<h2 id="XML-声明式用法"><a href="#XML-声明式用法" class="headerlink" title="XML 声明式用法"></a>XML 声明式用法</h2><p>定义自定义属性后可以直接在布局里用：</p>
+<figure class="highlight xml"><figcaption><span>attrs.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">&quot;BorderFrameLayout&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;borderRadius&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;borderWidth&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;borderLeft&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;borderTop&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;borderRight&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;borderBottom&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;borderColor&quot;</span> <span class="attr">format</span>=<span class="string">&quot;color&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;borderStyle&quot;</span> <span class="attr">format</span>=<span class="string">&quot;enum&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">enum</span> <span class="attr">name</span>=<span class="string">&quot;solid&quot;</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">enum</span> <span class="attr">name</span>=<span class="string">&quot;dash&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">attr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;backgroundGradientAngle&quot;</span> <span class="attr">format</span>=<span class="string">&quot;float&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;backgroundGradientColor&quot;</span> <span class="attr">format</span>=<span class="string">&quot;color&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;realPaddingLeft&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;realPaddingTop&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;realPaddingRight&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;realPaddingBottom&quot;</span> <span class="attr">format</span>=<span class="string">&quot;dimension&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;backgroundColor&quot;</span> <span class="attr">format</span>=<span class="string">&quot;color&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">&quot;clipContent&quot;</span> <span class="attr">format</span>=<span class="string">&quot;boolean&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">io.serialflow.editor.ui.BorderFrameLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;200dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;200dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:borderRadius</span>=<span class="string">&quot;24dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:borderWidth</span>=<span class="string">&quot;8dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:borderColor</span>=<span class="string">&quot;#FF0000&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:borderStyle</span>=<span class="string">&quot;dash&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:backgroundColor</span>=<span class="string">&quot;#FFEEEE&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:clipContent</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 子 View 会被自动挤到边框内部 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">io.serialflow.editor.ui.BorderFrameLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight kotlin"><figcaption><span>BorderFrameLayout.kt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> io.serialflow.editor.ui</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context</span><br><span class="line"><span class="keyword">import</span> android.graphics.*</span><br><span class="line"><span class="keyword">import</span> android.util.AttributeSet</span><br><span class="line"><span class="keyword">import</span> android.view.Gravity</span><br><span class="line"><span class="keyword">import</span> android.widget.FrameLayout</span><br><span class="line"><span class="keyword">import</span> kotlin.math.PI</span><br><span class="line"><span class="keyword">import</span> kotlin.math.cos</span><br><span class="line"><span class="keyword">import</span> kotlin.math.roundToInt</span><br><span class="line"><span class="keyword">import</span> kotlin.math.sin</span><br><span class="line"><span class="keyword">import</span> io.serialflow.editor.R</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BorderFrameLayout</span> : <span class="type">FrameLayout</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> DEFAULT_CHILD_GRAVITY = Gravity.TOP or Gravity.START</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">var</span> clipContent: <span class="built_in">Boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBackgroundPath = Path()</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderInnerContourPath = Path()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderRadius = <span class="number">0f</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderWidth: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderLeft: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderTop: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderRight: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderBottom: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mRealPaddingLeft: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mRealPaddingTop: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mRealPaddingRight: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mRealPaddingBottom: <span class="built_in">Float</span> = <span class="number">0f</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> mBorderPaint = Paint().apply &#123;</span><br><span class="line">        isAntiAlias = <span class="literal">true</span></span><br><span class="line">        style = Paint.Style.FILL</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderColor: <span class="built_in">Int</span> = Color.TRANSPARENT</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBorderStyle: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBackgroundColor: <span class="built_in">Int</span> = Color.TRANSPARENT</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBackgroundGradientAngle = <span class="number">0f</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> mBackgroundGradientColor = Color.TRANSPARENT</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> counterPath = Path()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(context: Context) : <span class="keyword">this</span>(context, <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">constructor</span>(context: Context, attrs: AttributeSet?) : <span class="keyword">this</span>(context, attrs, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">constructor</span>(context: Context, attrs: AttributeSet?, defStyle: <span class="built_in">Int</span>) : <span class="keyword">super</span>(</span><br><span class="line">        context, attrs, defStyle</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">val</span> typedArray = context.obtainStyledAttributes(attrs, R.styleable.BorderFrameLayout, defStyle, <span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">        mBorderRadius = typedArray.getDimension(R.styleable.BorderFrameLayout_borderRadius, <span class="number">0f</span>)</span><br><span class="line">        mBorderColor = typedArray.getColor(R.styleable.BorderFrameLayout_borderColor, Color.TRANSPARENT)</span><br><span class="line">        <span class="keyword">if</span> (mBorderColor != Color.TRANSPARENT) &#123;</span><br><span class="line">            mBorderColor = mBorderColor or <span class="number">0xff000000</span>.toInt()</span><br><span class="line">        &#125;</span><br><span class="line">        mBorderStyle = typedArray.getInt(R.styleable.BorderFrameLayout_borderStyle, <span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">        mBackgroundColor = typedArray.getColor(R.styleable.BorderFrameLayout_backgroundColor, Color.TRANSPARENT)</span><br><span class="line">        mBackgroundGradientAngle = typedArray.getFloat(R.styleable.BorderFrameLayout_backgroundGradientAngle, <span class="number">0f</span>)</span><br><span class="line">        mBackgroundGradientColor = typedArray.getColor(R.styleable.BorderFrameLayout_backgroundGradientColor, Color.TRANSPARENT)</span><br><span class="line">        clipContent = typedArray.getBoolean(R.styleable.BorderFrameLayout_clipContent, <span class="literal">true</span>)</span><br><span class="line">        </span><br><span class="line">        mRealPaddingLeft = typedArray.getDimension(R.styleable.BorderFrameLayout_realPaddingLeft, <span class="number">0f</span>)</span><br><span class="line">        mRealPaddingTop = typedArray.getDimension(R.styleable.BorderFrameLayout_realPaddingTop, <span class="number">0f</span>)</span><br><span class="line">        mRealPaddingRight = typedArray.getDimension(R.styleable.BorderFrameLayout_realPaddingRight, <span class="number">0f</span>)</span><br><span class="line">        mRealPaddingBottom = typedArray.getDimension(R.styleable.BorderFrameLayout_realPaddingBottom, <span class="number">0f</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> borderWidth = typedArray.getDimension(R.styleable.BorderFrameLayout_borderWidth, <span class="number">0f</span>)</span><br><span class="line">        <span class="keyword">val</span> borderLeft = typedArray.getDimension(R.styleable.BorderFrameLayout_borderLeft, borderWidth)</span><br><span class="line">        <span class="keyword">val</span> borderTop = typedArray.getDimension(R.styleable.BorderFrameLayout_borderTop, borderWidth)</span><br><span class="line">        <span class="keyword">val</span> borderRight = typedArray.getDimension(R.styleable.BorderFrameLayout_borderRight, borderWidth)</span><br><span class="line">        <span class="keyword">val</span> borderBottom = typedArray.getDimension(R.styleable.BorderFrameLayout_borderBottom, borderWidth)</span><br><span class="line">        </span><br><span class="line">        typedArray.recycle()</span><br><span class="line">        setBorderWidth(borderLeft, borderTop, borderRight, borderBottom)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... 完整代码见项目源码 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>源码可见<a target="_blank" rel="noopener" href="https://gist.github.com/chaosgoo/eed6cda2ed7c166defee22991601c1fd">BorderFrameLayout.kt</a></p>
+
+  </div>
+</article>
+
+
+
+                    
+                      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E6%96%B9%E6%A1%88%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91"><span class="toc-number">1.</span> <span class="toc-text">原生方案的几个坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A%E7%BB%A7%E6%89%BF-FrameLayout-%E9%87%8D%E5%86%99%E7%BB%98%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">思路：继承 FrameLayout 重写绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">2.1.</span> <span class="toc-text">效果展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-number">3.</span> <span class="toc-text">实现细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%A9-Border-%E5%8F%82%E4%B8%8E%E5%B8%83%E5%B1%80%E8%AE%A1%E7%AE%97"><span class="toc-number">3.1.</span> <span class="toc-text">1. 让 Border 参与布局计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%94%A8%E9%81%AE%E7%BD%A9%E7%BB%98%E5%88%B6-Border"><span class="toc-number">3.2.</span> <span class="toc-text">2. 用遮罩绘制 Border</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%99%9A%E7%BA%BF%E8%BE%B9%E6%A1%86"><span class="toc-number">3.3.</span> <span class="toc-text">3. 虚线边框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%86%85%E5%AE%B9%E8%A3%81%E5%89%AA"><span class="toc-number">3.4.</span> <span class="toc-text">4. 内容裁剪</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XML-%E5%A3%B0%E6%98%8E%E5%BC%8F%E7%94%A8%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">XML 声明式用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">完整代码</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&text=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&is_video=false&description=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？&body=Check out this article: https://chaosgoo.com/2026/02/04/android-lvgl-style-border/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&title=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&name=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？&description=&lt;p&gt;做嵌入式的时候用过 LVGL，它的样式系统给我留下了深刻印象。LVGL 的 Border 是”实体”的——会占据布局空间，把内容往里挤。&lt;/p&gt;
+&lt;p&gt;安卓这边就没这么痛快了。&lt;code&gt;ShapeDrawable&lt;/code&gt; 和 &lt;code&gt;MaterialCardView&lt;/code&gt; 的边框更像是”装饰品”，想让边框、圆角、内边距各自独立可控？原生组件做起来挺别扭。&lt;/p&gt;
+&lt;p&gt;所以我干脆手搓了一个 &lt;code&gt;BorderFrameLayout&lt;/code&gt;，把 LVGL 那套逻辑搬过来。&lt;br&gt;&lt;img src=&#34;/images/archives/android-lvgl-style-border/BorderFrameLayout层级示意图.png&#34; alt=&#34;BorderFrameLayout层级示意图&#34;&gt;&lt;br&gt;图中不同的颜色代表真实占用的空间。&lt;br&gt;绿色代表Border, 红色代表内部Padding, 蓝色代表Child可使用空间.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/2026/02/04/android-lvgl-style-border/&t=Android 进阶：如何在安卓中实现像 LVGL 一样的&#34;实体&#34;Border？"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+                        
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

@@ -2,6 +2,123 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chaosgoo.com/mcompass/guide.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/mcompass/manual.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/mcompass/guide.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/mcompass/manual.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/projects/index.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/projects/index.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/mcompass/bom.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/mcompass/index.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/mcompass/bom.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/mcompass/index.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2026/02/04/android-lvgl-style-border/</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/disclaimer/index.html</loc>
+    
+    <lastmod>2026-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/disclaimer/index.html</loc>
+    
+    <lastmod>2026-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/410.html</loc>
     
     <lastmod>2026-02-03</lastmod>
@@ -12,6 +129,15 @@
   
   <url>
     <loc>https://chaosgoo.com/privacy-policy/index.html</loc>
+    
+    <lastmod>2026-01-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/privacy-policy/index.html</loc>
     
     <lastmod>2026-01-31</lastmod>
     
@@ -48,6 +174,15 @@
   
   <url>
     <loc>https://chaosgoo.com/about/index.html</loc>
+    
+    <lastmod>2026-01-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/about/index.html</loc>
     
     <lastmod>2026-01-15</lastmod>
     
@@ -129,6 +264,15 @@
   
   <url>
     <loc>https://chaosgoo.com/contact/index.html</loc>
+    
+    <lastmod>2025-11-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/contact/index.html</loc>
     
     <lastmod>2025-11-29</lastmod>
     
@@ -237,6 +381,15 @@
   
   <url>
     <loc>https://chaosgoo.com/terms/index.html</loc>
+    
+    <lastmod>2025-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/terms/index.html</loc>
     
     <lastmod>2025-11-01</lastmod>
     
@@ -373,7 +526,7 @@
 
   <url>
     <loc>https://chaosgoo.com/</loc>
-    <lastmod>2026-02-03</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -383,21 +536,21 @@
   
   <url>
     <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
-    <lastmod>2026-02-03</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
-    <lastmod>2026-02-03</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Project-Logs/</loc>
-    <lastmod>2026-02-03</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

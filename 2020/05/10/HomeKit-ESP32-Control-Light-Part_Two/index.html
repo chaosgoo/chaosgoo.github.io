@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,21 +63,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2020/05/10/HomeKit-ESP32-Control-Light-Part_Two/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -76,18 +206,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -100,6 +258,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -148,10 +308,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -194,48 +354,25 @@
   <div class="content e-content" itemprop="articleBody">
     <h2 id="快把你家的灯接入HomeKit吧其一（LED篇）"><a href="#快把你家的灯接入HomeKit吧其一（LED篇）" class="headerlink" title="快把你家的灯接入HomeKit吧其一（LED篇）"></a>快把你家的灯接入HomeKit吧其一（LED篇）</h2><p>由于我住的地方没有床头没有灯的开关，每次都得下床才可以关灯。碰巧上次多买了一块ESP32，再碰巧的是大黄猫不久前给我发了个通过HomeKit控制他家ESP8266的视频。于是就有了这篇文章。<br>目标很明确，那就是ESP32接入HomeKit然后通过Siri控制我的开关。</p>
 <span id="more"></span>
-
-
 <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作 *"></a>准备工作 *</h3><p>环境 环境 环境，配置好环境才可以开始工作，本质上最繁琐的还是配置环境。</p>
 <p>我使用的操作系统是Windows 10 18363.719</p>
 <p>但是真正的开发环境是位于Windows Subsystem for Linux上的Ubuntu 18.04 LTS(该操作系统可以到Windows 10自带的MicroSoft Store上进行下载)<br>没错，我套了一层娃。</p>
 <h4 id="0x01-下载esp-homekit-demo"><a href="#0x01-下载esp-homekit-demo" class="headerlink" title="0x01 下载esp-homekit-demo"></a>0x01 下载esp-homekit-demo</h4><p><a target="_blank" rel="noopener" href="https://github.com/maximkulkin/esp-homekit-demo.git">https://github.com/maximkulkin/esp-homekit-demo.git</a></p>
-<p>打开终端，进入你喜欢的文件夹，使用命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/maximkulkin/esp-homekit-demo.git</span><br></pre></td></tr></table></figure>
-<p>下载esp-homekit-demo<br><img src="/images/migrated/5dc0c529_clone_repo.png" alt="clone_repo"></p>
+<p>打开终端，进入你喜欢的文件夹，使用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/maximkulkin/esp-homekit-demo.git</span><br></pre></td></tr></table></figure><br>下载esp-homekit-demo<br><img src="/images/migrated/5dc0c529_clone_repo.png" alt="clone_repo"></p>
 <h4 id="0x02-下载esp32开发环境"><a href="#0x02-下载esp32开发环境" class="headerlink" title="0x02 下载esp32开发环境"></a>0x02 下载esp32开发环境</h4><p>cd到~并使用mkdir创建esp文件夹并cd进入<br><img src="/images/migrated/ae22b262_enter_esp_folder.png" alt="mkdir_enter"><br>这里是由于我已经创建过了这个文件了，所以创建失败</p>
-<p>下载esp-idf</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --recursive https://github.com/espressif/esp-idf.git</span><br></pre></td></tr></table></figure>
-
-<h4 id="0x03-设置工具"><a href="#0x03-设置工具" class="headerlink" title="0x03 设置工具"></a>0x03 设置工具</h4><p>执行命令,整个过程都是自动的，缺少的依赖工具也会自动下载，可能最大的阻碍来自网络，所以可以考虑使用代理。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/esp/esp-idf</span><br><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
-<p>该过程很耗时，请耐心等待。</p>
-<h4 id="0x04-设置环境变量"><a href="#0x04-设置环境变量" class="headerlink" title="0x04 设置环境变量"></a>0x04 设置环境变量</h4><p>执行命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. <span class="variable">$HOME</span>/esp/esp-idf/export.sh</span><br></pre></td></tr></table></figure>
-<p>现在一切就绪，让我们使用一个LED来进行开发环境验证以及练手吧。Here we go.</p>
-<h3 id="点亮你的LED"><a href="#点亮你的LED" class="headerlink" title="点亮你的LED"></a>点亮你的LED</h3><h4 id="0x01-初始化并同步项目"><a href="#0x01-初始化并同步项目" class="headerlink" title="0x01 初始化并同步项目"></a>0x01 初始化并同步项目</h4><p>回到esp-homekit-demo文件夹，并使用命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
-<h4 id="0x02-配置wifi"><a href="#0x02-配置wifi" class="headerlink" title="0x02 配置wifi"></a>0x02 配置wifi</h4><p>在esp-homekit-demo文件夹下，有一个wifi.h.sample文件，内容为</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> WIFI_SSID <span class="string">&quot;mywifi&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> WIFI_PASSWORD <span class="string">&quot;mypassword&quot;</span></span></span><br></pre></td></tr></table></figure>
-<p>将其中的mywifi替换成目标Wi-Fi的SSID，mypassword替换为目标Wi-Fi的密码。<br>然后将文件重命名为wifi.h</p>
-<h4 id="0x04-挂载设备到子系统上"><a href="#0x04-挂载设备到子系统上" class="headerlink" title="0x04 挂载设备到子系统上"></a>0x04 挂载设备到子系统上</h4><p>由于Ubuntu只是我们的子系统，所以它并不能直接检测到插在电脑上的ESP32，需要将其挂载到子系统上才可以检测到。别担心，操作很简单，只需复制命令即可。<br>首先要做的是把你的ESP32插在主机上，然后到Windows的设备管理器中查看端口号，这里以我的电脑为例子<br><img src="/images/migrated/564779a6_check_com_port.png" alt="check_com_port"><br>可以看到我的ESP32是在COM3口上的，所以在终端里面执行命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> 666 /dev/ttyS3</span><br><span class="line"><span class="built_in">stty</span> -F /dev/ttyS3 -a</span><br><span class="line"><span class="built_in">stty</span> -F /dev/ttyS3 sane 115200</span><br></pre></td></tr></table></figure>
-<p>这样，我的ESP32就接入了子系统的ttyS3接口上</p>
-<h4 id="0x03-配置开发板相关参数"><a href="#0x03-配置开发板相关参数" class="headerlink" title="0x03 配置开发板相关参数"></a>0x03 配置开发板相关参数</h4><p>在终端里，回到之前的esp-homekit-demo文件夹，并使用命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led menuconfig</span><br></pre></td></tr></table></figure>
-<p>选择Serial flasher config，并将端口号改为ttyS3<br><img src="/images/migrated/d84b1954_config_port.png" alt="enter_serial_config"><br><img src="/images/migrated/b0141994_config_port_ttyS3.png" alt="select_port"><br>使用esc退出并保存</p>
-<h4 id="0x04-编译工程"><a href="#0x04-编译工程" class="headerlink" title="0x04 编译工程"></a>0x04 编译工程</h4><p>使用命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led all</span><br></pre></td></tr></table></figure>
-<p>该过程也很耗时，还请耐心等待。<br>当出现<br><img src="/images/migrated/622bc441_build_led_done.png" alt="build_done"><br>说明构建顺利完成</p>
+<p>下载esp-idf<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --recursive https://github.com/espressif/esp-idf.git</span><br></pre></td></tr></table></figure></p>
+<h4 id="0x03-设置工具"><a href="#0x03-设置工具" class="headerlink" title="0x03 设置工具"></a>0x03 设置工具</h4><p>执行命令,整个过程都是自动的，缺少的依赖工具也会自动下载，可能最大的阻碍来自网络，所以可以考虑使用代理。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/esp/esp-idf</span><br><span class="line">./install.sh</span><br></pre></td></tr></table></figure><br>该过程很耗时，请耐心等待。</p>
+<h4 id="0x04-设置环境变量"><a href="#0x04-设置环境变量" class="headerlink" title="0x04 设置环境变量"></a>0x04 设置环境变量</h4><p>执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. <span class="variable">$HOME</span>/esp/esp-idf/export.sh</span><br></pre></td></tr></table></figure><br>现在一切就绪，让我们使用一个LED来进行开发环境验证以及练手吧。Here we go.</p>
+<h3 id="点亮你的LED"><a href="#点亮你的LED" class="headerlink" title="点亮你的LED"></a>点亮你的LED</h3><h4 id="0x01-初始化并同步项目"><a href="#0x01-初始化并同步项目" class="headerlink" title="0x01 初始化并同步项目"></a>0x01 初始化并同步项目</h4><p>回到esp-homekit-demo文件夹，并使用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure></p>
+<h4 id="0x02-配置wifi"><a href="#0x02-配置wifi" class="headerlink" title="0x02 配置wifi"></a>0x02 配置wifi</h4><p>在esp-homekit-demo文件夹下，有一个wifi.h.sample文件，内容为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> WIFI_SSID <span class="string">&quot;mywifi&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> WIFI_PASSWORD <span class="string">&quot;mypassword&quot;</span></span></span><br></pre></td></tr></table></figure><br>将其中的mywifi替换成目标Wi-Fi的SSID，mypassword替换为目标Wi-Fi的密码。<br>然后将文件重命名为wifi.h</p>
+<h4 id="0x04-挂载设备到子系统上"><a href="#0x04-挂载设备到子系统上" class="headerlink" title="0x04 挂载设备到子系统上"></a>0x04 挂载设备到子系统上</h4><p>由于Ubuntu只是我们的子系统，所以它并不能直接检测到插在电脑上的ESP32，需要将其挂载到子系统上才可以检测到。别担心，操作很简单，只需复制命令即可。<br>首先要做的是把你的ESP32插在主机上，然后到Windows的设备管理器中查看端口号，这里以我的电脑为例子<br><img src="/images/migrated/564779a6_check_com_port.png" alt="check_com_port"><br>可以看到我的ESP32是在COM3口上的，所以在终端里面执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> 666 /dev/ttyS3</span><br><span class="line"><span class="built_in">stty</span> -F /dev/ttyS3 -a</span><br><span class="line"><span class="built_in">stty</span> -F /dev/ttyS3 sane 115200</span><br></pre></td></tr></table></figure><br>这样，我的ESP32就接入了子系统的ttyS3接口上</p>
+<h4 id="0x03-配置开发板相关参数"><a href="#0x03-配置开发板相关参数" class="headerlink" title="0x03 配置开发板相关参数"></a>0x03 配置开发板相关参数</h4><p>在终端里，回到之前的esp-homekit-demo文件夹，并使用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led menuconfig</span><br></pre></td></tr></table></figure><br>选择Serial flasher config，并将端口号改为ttyS3<br><img src="/images/migrated/d84b1954_config_port.png" alt="enter_serial_config"><br><img src="/images/migrated/b0141994_config_port_ttyS3.png" alt="select_port"><br>使用esc退出并保存</p>
+<h4 id="0x04-编译工程"><a href="#0x04-编译工程" class="headerlink" title="0x04 编译工程"></a>0x04 编译工程</h4><p>使用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led all</span><br></pre></td></tr></table></figure><br>该过程也很耗时，还请耐心等待。<br>当出现<br><img src="/images/migrated/622bc441_build_led_done.png" alt="build_done"><br>说明构建顺利完成</p>
 <h4 id="0x05-烧录程序"><a href="#0x05-烧录程序" class="headerlink" title="0x05 烧录程序"></a>0x05 烧录程序</h4><p>为了防止之前烧录的程序产生影响，所以在每次烧录之前需要擦除flash</p>
-<p>使用命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led erase_flash</span><br></pre></td></tr></table></figure>
-<p>当出现Serial port &#x2F;dev&#x2F;ttyS3</p>
+<p>使用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led erase_flash</span><br></pre></td></tr></table></figure><br>当出现Serial port /dev/ttyS3</p>
 <p>Connecting…….</p>
 <p>时候可能需要按住ESP32板子上的boot键几秒然后松手才可以正常清除和烧录</p>
-<p>执行烧录命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led flash</span><br></pre></td></tr></table></figure>
-<p>同样可能需要按下boot键几秒</p>
+<p>执行烧录命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C examples/esp32/led flash</span><br></pre></td></tr></table></figure><br>同样可能需要按下boot键几秒</p>
 <h4 id="0x06接入外设查看效果"><a href="#0x06接入外设查看效果" class="headerlink" title="0x06接入外设查看效果"></a>0x06接入外设查看效果</h4><p>LED的demo工程里面，启用的GPIO为2号，所以我们需要将LED接入2号引脚。<br>由于我手上没有单独的LED，所以使用一块LED灯板进行演示。<br>2号引脚接在LED的正极，LED的负极接在GND上。</p>
 <p>打开你的iPhone，然后启动”家庭”，点击添加配件，选择我没有或无法扫描代码。<br>此时可以在附近的配件里面查看到Sample LED，选中它。虽然会提示未认证的配件，但是不用理会，电机仍然添加。然后输入代码11111111。稍等片刻即可添加成功。<br>现在就可以对着手机说”嘿，Siri，开灯”或者”嘿，Siri， 关灯”。<br><img src="/images/migrated/8a37778a_turn_off_light.png" alt="turn_off"><br><img src="/images/migrated/cb7a62bb_turn_on_light.png" alt="turn_on"></p>
 <h2 id="下期预告-快把你家的灯接入HomeKit吧其二（舵机篇）"><a href="#下期预告-快把你家的灯接入HomeKit吧其二（舵机篇）" class="headerlink" title="下期预告:快把你家的灯接入HomeKit吧其二（舵机篇）"></a>下期预告:快把你家的灯接入HomeKit吧其二（舵机篇）</h2><p>参考资料:<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoyuluoke1/article/details/79111599">在Win10的Linux子系统下搭建ESP32的开发环境</a></p>
@@ -248,8 +385,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -258,6 +395,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -300,8 +439,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -314,85 +453,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>

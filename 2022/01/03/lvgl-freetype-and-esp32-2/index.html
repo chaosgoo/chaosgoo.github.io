@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html
+  lang="zh">
 <head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- preload critical font to avoid Element Render Delay -->
+  <link rel="preload" href="/lib/meslo-LG/MesloLGS-Regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <!-- so meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,21 +62,142 @@
                                                           <link rel="canonical"
                                                             href="https://chaosgoo.com/2022/01/03/lvgl-freetype-and-esp32-2/">
                                                           <!-- async scripts -->
-                                                          <!-- Google Analytics -->
-
+                                                          
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
   <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-EVWTNN57LZ');
+    }
   </script>
 
 
                                                             <!-- Umami Analytics -->
 
+                                                              <!-- Critical CSS inline for above-the-fold content -->
+                                                              <style>
+                                                                /* Critical CSS - Inline for instant render */
+                                                                *,
+                                                                *:before,
+                                                                *:after {
+                                                                  box-sizing: border-box
+                                                                }
 
-                                                              <!-- styles -->
+                                                                html {
+                                                                  margin: 0;
+                                                                  padding: 0;
+                                                                  height: 100%;
+                                                                  border-top: 2px solid #383838
+                                                                }
+
+                                                                body {
+                                                                  margin: 0;
+                                                                  height: 100%;
+                                                                  background-color: #fff;
+                                                                  color: #383838;
+                                                                  font-weight: 400;
+                                                                  font-size: 14px;
+                                                                  font-family: "Menlo", "Meslo LG", monospace;
+                                                                  line-height: 1.725
+                                                                }
+
+                                                                .content {
+                                                                  position: relative;
+                                                                  display: flex;
+                                                                  flex-direction: column;
+                                                                  min-height: 100%;
+                                                                  overflow-wrap: break-word
+                                                                }
+
+                                                                .max-width {
+                                                                  max-width: 56rem
+                                                                }
+
+                                                                .mx-auto {
+                                                                  margin-right: auto;
+                                                                  margin-left: auto
+                                                                }
+
+                                                                .px3 {
+                                                                  padding-right: 2rem;
+                                                                  padding-left: 2rem
+                                                                }
+
+                                                                .py4 {
+                                                                  padding-top: 4rem;
+                                                                  padding-bottom: 4rem
+                                                                }
+
+                                                                #header {
+                                                                  margin: 0 auto 2rem;
+                                                                  width: 100%
+                                                                }
+
+                                                                #header h1 {
+                                                                  margin-top: 0;
+                                                                  margin-bottom: 0;
+                                                                  color: #383838;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 700;
+                                                                  font-size: 1.5rem;
+                                                                  line-height: 2rem
+                                                                }
+
+                                                                #header a {
+                                                                  background: none;
+                                                                  color: inherit;
+                                                                  text-decoration: none
+                                                                }
+
+                                                                #header #logo {
+                                                                  display: inline-block;
+                                                                  float: left;
+                                                                  margin-right: 20px;
+                                                                  width: 50px;
+                                                                  height: 50px;
+                                                                  border-radius: 5px
+                                                                }
+
+                                                                #header #nav {
+                                                                  color: #2bbc8a;
+                                                                  letter-spacing: .01em;
+                                                                  font-weight: 200;
+                                                                  font-size: .8rem
+                                                                }
+
+                                                                #header #nav ul {
+                                                                  margin: 0;
+                                                                  padding: 5px 0;
+                                                                  list-style-type: none;
+                                                                  display: flex;
+                                                                  flex-wrap: wrap;
+                                                                  align-items: center
+                                                                }
+
+                                                                #header #nav ul li {
+                                                                  display: inline-flex;
+                                                                  align-items: center;
+                                                                  margin-right: 15px;
+                                                                  border-right: 1px dotted #2bbc8a;
+                                                                  height: 32px
+                                                                }
+
+                                                                #header #nav ul a {
+                                                                  margin-right: 15px;
+                                                                  color: #2bbc8a;
+                                                                  display: inline-block
+                                                                }
+
+                                                                @media(max-width:480px) {
+                                                                  .px3 {
+                                                                    padding-right: 1rem;
+                                                                    padding-left: 1rem
+                                                                  }
+                                                                }
+                                                              </style>
+                                                              <!-- Full CSS: async load to avoid render blocking -->
                                                               <link rel="preload" href="/css/style.css"
                                                                 as="style"
                                                                 onload="this.onload=null;this.rel='stylesheet'">
@@ -75,18 +205,46 @@
                                                                 <link rel="stylesheet"
                                                                   href="/css/style.css">
                                                               </noscript>
-                                                              <!-- persian styles -->
-                                                              
-                                                                    <!-- rss -->
-                                                                    
-                                                                          
-                                                                              <script async
-                                                                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                crossorigin="anonymous"></script>
-                                                                              <!-- mathjax -->
-                                                                              
+                                                              <!-- styles -->
+
+
+            <!-- Font Awesome: async loading to avoid render blocking -->
+            
+              <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+              <noscript>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                  crossorigin>
+              </noscript>
+              
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="max-width mx-auto px3 ltr">
+
+  <body class="max-width mx-auto px3 ltr">
     
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -99,6 +257,8 @@
        --><li><a href="/">首页</a></li><!--
      --><!--
        --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      -->
@@ -155,10 +315,10 @@
   </span>
 </div>
 
-    
-    <div class="content index py4 ">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
@@ -209,24 +369,13 @@
 </blockquote>
 <p><a href="/2021/12/18/lvgl-freetype-and-esp32/">第二章</a>中介绍了如何在ESP32上运行LVGL,现在终于可以开始奔着<a href="/2021/12/12/FreeType-and-LVGL/">第一章</a>文章末尾的效果去了.</p>
 <span id="more"></span>
-
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h4><p>访问<a target="_blank" rel="noopener" href="https://download.savannah.gnu.org/releases/freetype/">https://download.savannah.gnu.org/releases/freetype/</a>下载源码,解压后重命名为freetype并复制到项目lib文件夹下<br>我下载的是目前(2021.12.11)最新版本freetype-2.11.1.tar.gz(较老的版本不支持可变字体操作)<br>然后去这个<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/vf_font_on_esp32">Repo</a>获取SD和SPI库,复制到项目lib文件夹下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── include</span><br><span class="line">│   └── README</span><br><span class="line">├── lib</span><br><span class="line">│   └── README</span><br><span class="line">│   └── lvgl_freetype</span><br><span class="line">│       └── lvgl</span><br><span class="line">│       └── freetype</span><br><span class="line">│   └── SD</span><br><span class="line">│   └── SPI</span><br><span class="line">│   └── TFT_eSPI</span><br><span class="line">├── platformio.ini</span><br><span class="line">├── src</span><br><span class="line">│   └── main.cpp</span><br><span class="line">│   └── Port</span><br><span class="line">│       └── lv_port_disp.cpp</span><br><span class="line">│       └── lv_port_disp.h</span><br><span class="line">└── <span class="built_in">test</span></span><br><span class="line">    └── README</span><br></pre></td></tr></table></figure>
-
-<p>到freetype文件夹下,创建FreeType的<strong>library.json</strong>和<strong>library.properties</strong>文件<br><strong>library.properties</strong>内容如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name=FreeType</span><br><span class="line">version=2.11.1</span><br><span class="line">author=David Turner, Robert Wilhelm, Werner Lemberg</span><br><span class="line">maintainer=Werner Lemberg</span><br><span class="line">sentence=A freely available software library to render fonts.</span><br><span class="line">paragraph=It is written in C, designed to be small, efficient, highly customizable, and portable while capable of producing high-quality output (glyph images) of most vector and bitmap font formats.documentation.</span><br><span class="line">category=Font</span><br><span class="line">url=https://freetype.org/</span><br><span class="line">architectures=*</span><br><span class="line">repository=https://gitlab.freedesktop.org/freetype/freetype</span><br><span class="line">license=GNU</span><br></pre></td></tr></table></figure>
-
-<p><strong>library.json</strong>内容如下</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;freetype&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.11.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span><span class="string">&quot;Software library to render fonts&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;keywords&quot;</span><span class="punctuation">:</span><span class="string">&quot;freetype&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FreeType License&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;repository&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;git&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://gitlab.freedesktop.org/freetype&quot;</span></span><br><span class="line">	<span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;frameworks&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;platforms&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;srcFilter&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftsystem.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftmm.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftinit.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftdebug.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftbase.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftbbox.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftglyph.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftbdf.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;bdf/bdf.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;cff/cff.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;truetype/truetype.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;sfnt/sfnt.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;smooth/smooth.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;cache/ftcache.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;gzip/ftgzip.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftbitmap.c&gt;&quot;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;flags&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;-DFT2_BUILD_LIBRARY&quot;</span><span class="punctuation">,</span> <span class="string">&quot;-I include&quot;</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;includeDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;devel&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h4><p>访问<a target="_blank" rel="noopener" href="https://download.savannah.gnu.org/releases/freetype/">https://download.savannah.gnu.org/releases/freetype/</a>下载源码,解压后重命名为freetype并复制到项目lib文件夹下<br>我下载的是目前(2021.12.11)最新版本freetype-2.11.1.tar.gz(较老的版本不支持可变字体操作)<br>然后去这个<a target="_blank" rel="noopener" href="https://github.com/chaosgoo/vf_font_on_esp32">Repo</a>获取SD和SPI库,复制到项目lib文件夹下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── include</span><br><span class="line">│   └── README</span><br><span class="line">├── lib</span><br><span class="line">│   └── README</span><br><span class="line">│   └── lvgl_freetype</span><br><span class="line">│       └── lvgl</span><br><span class="line">│       └── freetype</span><br><span class="line">│   └── SD</span><br><span class="line">│   └── SPI</span><br><span class="line">│   └── TFT_eSPI</span><br><span class="line">├── platformio.ini</span><br><span class="line">├── src</span><br><span class="line">│   └── main.cpp</span><br><span class="line">│   └── Port</span><br><span class="line">│       └── lv_port_disp.cpp</span><br><span class="line">│       └── lv_port_disp.h</span><br><span class="line">└── <span class="built_in">test</span></span><br><span class="line">    └── README</span><br></pre></td></tr></table></figure></p>
+<p>到freetype文件夹下,创建FreeType的<strong>library.json</strong>和<strong>library.properties</strong>文件<br><strong>library.properties</strong>内容如下<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name=FreeType</span><br><span class="line">version=2.11.1</span><br><span class="line">author=David Turner, Robert Wilhelm, Werner Lemberg</span><br><span class="line">maintainer=Werner Lemberg</span><br><span class="line">sentence=A freely available software library to render fonts.</span><br><span class="line">paragraph=It is written in C, designed to be small, efficient, highly customizable, and portable while capable of producing high-quality output (glyph images) of most vector and bitmap font formats.documentation.</span><br><span class="line">category=Font</span><br><span class="line">url=https://freetype.org/</span><br><span class="line">architectures=*</span><br><span class="line">repository=https://gitlab.freedesktop.org/freetype/freetype</span><br><span class="line">license=GNU</span><br></pre></td></tr></table></figure></p>
+<p><strong>library.json</strong>内容如下<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;freetype&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.11.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span><span class="string">&quot;Software library to render fonts&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;keywords&quot;</span><span class="punctuation">:</span><span class="string">&quot;freetype&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FreeType License&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;repository&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;git&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://gitlab.freedesktop.org/freetype&quot;</span></span><br><span class="line">	<span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;frameworks&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;platforms&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;srcFilter&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftsystem.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftmm.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftinit.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftdebug.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftbase.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftbbox.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftglyph.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftbdf.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;bdf/bdf.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;cff/cff.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;truetype/truetype.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;sfnt/sfnt.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;smooth/smooth.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;cache/ftcache.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;gzip/ftgzip.c&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;+&lt;base/ftbitmap.c&gt;&quot;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;flags&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="string">&quot;-DFT2_BUILD_LIBRARY&quot;</span><span class="punctuation">,</span> <span class="string">&quot;-I include&quot;</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;includeDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;devel&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h4><p>和上篇相比,多了一个SD卡模块.</p>
 <p>起初也尝试了直接把字体文件存在SPIFFS里面,减少涉及到的硬件,奈何速度慢的感人,于是回到这里重新写了SD卡版本.</p>
-<p>2022.02.08: 发现LVGL自8.1.1-dev(正式版为8.2.0)开始,内置的lv_freetype模块已经支持FT_New_Memory_Face方式创建字体了.<br>如果没有内存卡的话,请将字体文件命名为Lite.ttf放到源码src文件夹内,<br>在platformio.ini内添加</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">board_build.embed_txtfiles</span> = </span><br><span class="line">	src/Lite.ttf</span><br></pre></td></tr></table></figure>
-<p>并在main.cpp中添加</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">uint8_t</span> font_start[] <span class="built_in">asm</span>(<span class="string">&quot;_binary_src_Lite_ttf_start&quot;</span>);</span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">uint8_t</span> font_end[] <span class="built_in">asm</span>(<span class="string">&quot;_binary_src_Lite_ttf_end&quot;</span>);</span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">size_t</span> size = font_end - font_end - <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>创建字体时候额外添加如下内容</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">lv_ft_info_t</span> info;</span><br><span class="line"><span class="comment">/**/</span></span><br><span class="line">info.mem = font_start;</span><br><span class="line">info.mem_size = size;</span><br><span class="line"><span class="comment">/**/</span></span><br></pre></td></tr></table></figure>
-<p>有SD卡的情况下</p>
+<p>2022.02.08: 发现LVGL自8.1.1-dev(正式版为8.2.0)开始,内置的lv_freetype模块已经支持FT_New_Memory_Face方式创建字体了.<br>如果没有内存卡的话,请将字体文件命名为Lite.ttf放到源码src文件夹内,<br>在platformio.ini内添加<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">board_build.embed_txtfiles</span> = </span><br><span class="line">	src/Lite.ttf</span><br></pre></td></tr></table></figure><br>并在main.cpp中添加<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">uint8_t</span> font_start[] <span class="built_in">asm</span>(<span class="string">&quot;_binary_src_Lite_ttf_start&quot;</span>);</span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">uint8_t</span> font_end[] <span class="built_in">asm</span>(<span class="string">&quot;_binary_src_Lite_ttf_end&quot;</span>);</span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">size_t</span> size = font_end - font_end - <span class="number">1</span>;</span><br></pre></td></tr></table></figure><br>创建字体时候额外添加如下内容<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">lv_ft_info_t</span> info;</span><br><span class="line"><span class="comment">/**/</span></span><br><span class="line">info.mem = font_start;</span><br><span class="line">info.mem_size = size;</span><br><span class="line"><span class="comment">/**/</span></span><br></pre></td></tr></table></figure><br>有SD卡的情况下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -236,7 +385,8 @@
 <th>图例</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>ESP32 开发板</td>
 <td>1</td>
 <td>\</td>
@@ -260,87 +410,73 @@
 <td>\</td>
 <td><img src="/images/migrated/11146fa5_sd_adapter.png" width="240px" style="padding:30px"/></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>接线和点亮屏幕请去参考<a href="/2021/12/18/lvgl-freetype-and-esp32/">LVGL配合FreeType为可变字体设置字重-ESP32篇(上)</a></p>
 <p>Micro SD卡模块的接线如下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">ESP32引脚名称</th>
-<th align="center">Micro SD卡模块引脚名称</th>
+<th style="text-align:center">ESP32引脚名称</th>
+<th style="text-align:center">Micro SD卡模块引脚名称</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">GND</td>
-<td align="center">GND</td>
+<tbody>
+<tr>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">GND </td>
 </tr>
 <tr>
-<td align="center">G26</td>
-<td align="center">MISO</td>
+<td style="text-align:center">G26</td>
+<td style="text-align:center">MISO </td>
 </tr>
 <tr>
-<td align="center">G13</td>
-<td align="center">MOSI</td>
+<td style="text-align:center">G13</td>
+<td style="text-align:center">MOSI</td>
 </tr>
 <tr>
-<td align="center">G14</td>
-<td align="center">SCK</td>
+<td style="text-align:center">G14</td>
+<td style="text-align:center">SCK</td>
 </tr>
 <tr>
-<td align="center">G15</td>
-<td align="center">CS</td>
+<td style="text-align:center">G15</td>
+<td style="text-align:center">CS</td>
 </tr>
 <tr>
-<td align="center">5V(Vin)</td>
-<td align="center">VCC</td>
+<td style="text-align:center">5V(Vin)</td>
+<td style="text-align:center">VCC</td>
 </tr>
-</tbody></table>
-<h3 id="准备完毕-开干"><a href="#准备完毕-开干" class="headerlink" title="准备完毕,开干"></a>准备完毕,开干</h3><h4 id="启用LVGL的FreeType"><a href="#启用LVGL的FreeType" class="headerlink" title="启用LVGL的FreeType"></a>启用LVGL的FreeType</h4><p>将lv_conf.h内的宏定义内容, 并启用FTC_SBitCache_Lookup</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*FreeType library*/</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_USE_FREETYPE 0</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_USE_FREETYPE 1</span></span><br><span class="line">#<span class="meta">#<span class="keyword">if</span> LV_USE_FREETYPE</span></span><br><span class="line">    <span class="comment">/*Memory used by FreeType to cache characters [bytes] (-1: no caching)*/</span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> LV_FREETYPE_CACHE_SIZE (16 * 1024)</span></span><br><span class="line">    <span class="meta">#<span class="keyword">if</span> LV_FREETYPE_CACHE_SIZE &gt;= 0</span></span><br><span class="line">        <span class="comment">/* 1: bitmap cache use the sbit cache, 0:bitmap cache use the image cache. */</span></span><br><span class="line">        <span class="comment">/* sbit cache:it is much more memory efficient for small bitmaps(font size &lt; 256) */</span></span><br><span class="line">        <span class="comment">/* if font size &gt;= 256, must be configured as image cache */</span></span><br><span class="line">        <span class="meta">#<span class="keyword">define</span> LV_FREETYPE_SBIT_CACHE 1</span></span><br><span class="line">        <span class="comment">/* Maximum number of opened FT_Face/FT_Size objects managed by this cache instance. */</span></span><br><span class="line">        <span class="comment">/* (0:use system defaults) */</span></span><br><span class="line">        <span class="meta">#<span class="keyword">define</span> LV_FREETYPE_CACHE_FT_FACES 0</span></span><br><span class="line">        <span class="meta">#<span class="keyword">define</span> LV_FREETYPE_CACHE_FT_SIZES 0</span></span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>0设置为1</p>
-<h4 id="配置FreeType的文件系统"><a href="#配置FreeType的文件系统" class="headerlink" title="配置FreeType的文件系统"></a>配置FreeType的文件系统</h4><p>创建一个命为ft_fs_port.cpp的文件,内容为</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;FS.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SD.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SPIFFS.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">void</span> lvbe_FILE;</span><br><span class="line"><span class="function">lvbe_FILE *<span class="title">lvbe_fopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *filename, <span class="type">const</span> <span class="type">char</span> *mode)</span> </span>&#123;</span><br><span class="line">  File f = SD.<span class="built_in">open</span>(filename, mode);</span><br><span class="line">  <span class="keyword">if</span> (f) &#123;</span><br><span class="line">    File *f_ptr = <span class="keyword">new</span> <span class="built_in">File</span>(f);  <span class="comment">// copy to dynamic object</span></span><br><span class="line">    *f_ptr = f;                 <span class="comment">// TODO is this necessary?</span></span><br><span class="line">    <span class="keyword">return</span> f_ptr;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lvbe_fclose</span><span class="params">(lvbe_FILE *stream)</span> </span>&#123;</span><br><span class="line">  File *f_ptr = (File *)stream;</span><br><span class="line">  f_ptr-&gt;<span class="built_in">close</span>();</span><br><span class="line">  <span class="keyword">delete</span> f_ptr;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">lvbe_fread</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> count, lvbe_FILE *stream)</span> </span>&#123;</span><br><span class="line">  File *f_ptr = (File *)stream;</span><br><span class="line">  <span class="type">int32_t</span> ret = f_ptr-&gt;<span class="built_in">read</span>((<span class="type">uint8_t</span> *)ptr, size * count);</span><br><span class="line">  <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;  <span class="comment">// error</span></span><br><span class="line">    ret = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lvbe_fseek</span><span class="params">(lvbe_FILE *stream, <span class="type">long</span> <span class="type">int</span> offset, <span class="type">int</span> origin)</span> </span>&#123;</span><br><span class="line">  File *f_ptr = (File *)stream;</span><br><span class="line">  fs::SeekMode mode = fs::SeekMode::SeekSet;</span><br><span class="line">  <span class="keyword">if</span> (SEEK_CUR == origin) &#123;</span><br><span class="line">    mode = fs::SeekMode::SeekCur;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (SEEK_END == origin) &#123;</span><br><span class="line">    mode = fs::SeekMode::SeekEnd;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="type">bool</span> ok = f_ptr-&gt;<span class="built_in">seek</span>(offset, mode);</span><br><span class="line">  <span class="keyword">return</span> ok ? <span class="number">0</span> : <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lvbe_ftell</span><span class="params">(lvbe_FILE *stream)</span> </span>&#123;</span><br><span class="line">  File *f_ptr = (File *)stream;</span><br><span class="line">  <span class="keyword">return</span> f_ptr-&gt;<span class="built_in">position</span>();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>打开位于freetype文件夹下的<strong>devel\ft2build.h</strong><br>并添加</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">ifndef</span> FT2BUILD_H_</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT2BUILD_H_</span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT_CONFIG_MODULES_H  <span class="string">&lt;ftmodule.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT_CONFIG_OPTIONS_H  <span class="string">&lt;ftoption.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT_CONFIG_STANDARD_LIBRARY_H <span class="string">&lt;ftstdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;freetype/config/ftheader.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">endif</span> <span class="comment">/* FT2BUILD_H_ */</span></span></span><br></pre></td></tr></table></figure>
-<p>在同级目录下创建<strong>ftstdlib.h</strong>(文末Repo内有完整版)文件,内容从<code>freetype\include\freetype\config\ftstdlib.h</code>复制</p>
-<p>修改file handling部分的内容为</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**************************************************************************</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   *                          file handling</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">void</span> lvbe_FILE;</span><br><span class="line"><span class="keyword">extern</span> lvbe_FILE * <span class="title function_">lvbe_fopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> * filename, <span class="type">const</span> <span class="type">char</span> * mode )</span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> <span class="title function_">lvbe_fclose</span><span class="params">(lvbe_FILE * stream)</span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="type">size_t</span> <span class="title function_">lvbe_fread</span><span class="params">(<span class="type">void</span> * ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> count, lvbe_FILE * stream)</span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> <span class="title function_">lvbe_fseek</span><span class="params">(lvbe_FILE * stream, <span class="type">long</span> <span class="type">int</span> offset, <span class="type">int</span> origin )</span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> <span class="title function_">lvbe_ftell</span><span class="params">(lvbe_FILE * stream)</span>;</span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT_FILE     lvbe_FILE</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_fclose   lvbe_fclose</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_fopen    lvbe_fopen</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_fread    lvbe_fread</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_fseek    lvbe_fseek</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_ftell    lvbe_ftell</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_sprintf  sprintf</span></span><br></pre></td></tr></table></figure>
-
-<p>在同级目录下创建<strong>ftmodule.h</strong>,启用所需模块<br>内容为</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">FT_USE_MODULE</span>( FT_Driver_ClassRec, tt_driver_class )</span><br><span class="line"><span class="built_in">FT_USE_MODULE</span>( FT_Module_Class, sfnt_module_class )</span><br><span class="line"><span class="built_in">FT_USE_MODULE</span>( FT_Renderer_Class, ft_smooth_renderer_class )</span><br></pre></td></tr></table></figure>
-
-<p><strong>在同级目录下创建</strong>ftoption.h**, 内容从<code>freetype\include\freetype\config\ftoptions.h</code>复制,详细的配置过长,故此处省略,见文末Repo内**</p>
+</tbody>
+</table>
+</div>
+<h3 id="准备完毕-开干"><a href="#准备完毕-开干" class="headerlink" title="准备完毕,开干"></a>准备完毕,开干</h3><h4 id="启用LVGL的FreeType"><a href="#启用LVGL的FreeType" class="headerlink" title="启用LVGL的FreeType"></a>启用LVGL的FreeType</h4><p>将lv_conf.h内的宏定义内容, 并启用FTC_SBitCache_Lookup<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*FreeType library*/</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_USE_FREETYPE 0</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_USE_FREETYPE 1</span></span><br><span class="line">#<span class="meta">#<span class="keyword">if</span> LV_USE_FREETYPE</span></span><br><span class="line">    <span class="comment">/*Memory used by FreeType to cache characters [bytes] (-1: no caching)*/</span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> LV_FREETYPE_CACHE_SIZE (16 * 1024)</span></span><br><span class="line">    <span class="meta">#<span class="keyword">if</span> LV_FREETYPE_CACHE_SIZE &gt;= 0</span></span><br><span class="line">        <span class="comment">/* 1: bitmap cache use the sbit cache, 0:bitmap cache use the image cache. */</span></span><br><span class="line">        <span class="comment">/* sbit cache:it is much more memory efficient for small bitmaps(font size &lt; 256) */</span></span><br><span class="line">        <span class="comment">/* if font size &gt;= 256, must be configured as image cache */</span></span><br><span class="line">        <span class="meta">#<span class="keyword">define</span> LV_FREETYPE_SBIT_CACHE 1</span></span><br><span class="line">        <span class="comment">/* Maximum number of opened FT_Face/FT_Size objects managed by this cache instance. */</span></span><br><span class="line">        <span class="comment">/* (0:use system defaults) */</span></span><br><span class="line">        <span class="meta">#<span class="keyword">define</span> LV_FREETYPE_CACHE_FT_FACES 0</span></span><br><span class="line">        <span class="meta">#<span class="keyword">define</span> LV_FREETYPE_CACHE_FT_SIZES 0</span></span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure><br>0设置为1</p>
+<h4 id="配置FreeType的文件系统"><a href="#配置FreeType的文件系统" class="headerlink" title="配置FreeType的文件系统"></a>配置FreeType的文件系统</h4><p>创建一个命为ft_fs_port.cpp的文件,内容为<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;FS.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SD.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SPIFFS.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">void</span> lvbe_FILE;</span><br><span class="line"><span class="function">lvbe_FILE *<span class="title">lvbe_fopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *filename, <span class="type">const</span> <span class="type">char</span> *mode)</span> </span>&#123;</span><br><span class="line">  File f = SD.<span class="built_in">open</span>(filename, mode);</span><br><span class="line">  <span class="keyword">if</span> (f) &#123;</span><br><span class="line">    File *f_ptr = <span class="keyword">new</span> <span class="built_in">File</span>(f);  <span class="comment">// copy to dynamic object</span></span><br><span class="line">    *f_ptr = f;                 <span class="comment">// TODO is this necessary?</span></span><br><span class="line">    <span class="keyword">return</span> f_ptr;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lvbe_fclose</span><span class="params">(lvbe_FILE *stream)</span> </span>&#123;</span><br><span class="line">  File *f_ptr = (File *)stream;</span><br><span class="line">  f_ptr-&gt;<span class="built_in">close</span>();</span><br><span class="line">  <span class="keyword">delete</span> f_ptr;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">lvbe_fread</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> count, lvbe_FILE *stream)</span> </span>&#123;</span><br><span class="line">  File *f_ptr = (File *)stream;</span><br><span class="line">  <span class="type">int32_t</span> ret = f_ptr-&gt;<span class="built_in">read</span>((<span class="type">uint8_t</span> *)ptr, size * count);</span><br><span class="line">  <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;  <span class="comment">// error</span></span><br><span class="line">    ret = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lvbe_fseek</span><span class="params">(lvbe_FILE *stream, <span class="type">long</span> <span class="type">int</span> offset, <span class="type">int</span> origin)</span> </span>&#123;</span><br><span class="line">  File *f_ptr = (File *)stream;</span><br><span class="line">  fs::SeekMode mode = fs::SeekMode::SeekSet;</span><br><span class="line">  <span class="keyword">if</span> (SEEK_CUR == origin) &#123;</span><br><span class="line">    mode = fs::SeekMode::SeekCur;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (SEEK_END == origin) &#123;</span><br><span class="line">    mode = fs::SeekMode::SeekEnd;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="type">bool</span> ok = f_ptr-&gt;<span class="built_in">seek</span>(offset, mode);</span><br><span class="line">  <span class="keyword">return</span> ok ? <span class="number">0</span> : <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lvbe_ftell</span><span class="params">(lvbe_FILE *stream)</span> </span>&#123;</span><br><span class="line">  File *f_ptr = (File *)stream;</span><br><span class="line">  <span class="keyword">return</span> f_ptr-&gt;<span class="built_in">position</span>();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>打开位于freetype文件夹下的<strong>devel\ft2build.h</strong><br>并添加<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">ifndef</span> FT2BUILD_H_</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT2BUILD_H_</span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT_CONFIG_MODULES_H  <span class="string">&lt;ftmodule.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT_CONFIG_OPTIONS_H  <span class="string">&lt;ftoption.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT_CONFIG_STANDARD_LIBRARY_H <span class="string">&lt;ftstdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;freetype/config/ftheader.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">endif</span> <span class="comment">/* FT2BUILD_H_ */</span></span></span><br></pre></td></tr></table></figure><br>在同级目录下创建<strong>ftstdlib.h</strong>(文末Repo内有完整版)文件,内容从<code>freetype\include\freetype\config\ftstdlib.h</code>复制</p>
+<p>修改file handling部分的内容为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**************************************************************************</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   *                          file handling</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">void</span> lvbe_FILE;</span><br><span class="line"><span class="keyword">extern</span> lvbe_FILE * <span class="title function_">lvbe_fopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> * filename, <span class="type">const</span> <span class="type">char</span> * mode )</span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> <span class="title function_">lvbe_fclose</span><span class="params">(lvbe_FILE * stream)</span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="type">size_t</span> <span class="title function_">lvbe_fread</span><span class="params">(<span class="type">void</span> * ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> count, lvbe_FILE * stream)</span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> <span class="title function_">lvbe_fseek</span><span class="params">(lvbe_FILE * stream, <span class="type">long</span> <span class="type">int</span> offset, <span class="type">int</span> origin )</span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> <span class="title function_">lvbe_ftell</span><span class="params">(lvbe_FILE * stream)</span>;</span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> FT_FILE     lvbe_FILE</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_fclose   lvbe_fclose</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_fopen    lvbe_fopen</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_fread    lvbe_fread</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_fseek    lvbe_fseek</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_ftell    lvbe_ftell</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> ft_sprintf  sprintf</span></span><br></pre></td></tr></table></figure></p>
+<p>在同级目录下创建<strong>ftmodule.h</strong>,启用所需模块<br>内容为<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">FT_USE_MODULE</span>( FT_Driver_ClassRec, tt_driver_class )</span><br><span class="line"><span class="built_in">FT_USE_MODULE</span>( FT_Module_Class, sfnt_module_class )</span><br><span class="line"><span class="built_in">FT_USE_MODULE</span>( FT_Renderer_Class, ft_smooth_renderer_class )</span><br></pre></td></tr></table></figure></p>
+<p><strong>在同级目录下创建</strong>ftoption.h<strong>, 内容从<code>freetype\include\freetype\config\ftoptions.h</code>复制,详细的配置过长,故此处省略,见文末Repo内</strong></p>
 <p>此时FreeType的基本功能配置完成</p>
-<p>主要的涉及到<strong>freetype\devel</strong>下的4个文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">│       └── freetype</span><br><span class="line">│         └── devel</span><br><span class="line">│           └── ft2build.h</span><br><span class="line">│           └── ftmodule.h</span><br><span class="line">│           └── ftoption.h</span><br><span class="line">│           └── ftstdlib.h</span><br></pre></td></tr></table></figure>
+<p>主要的涉及到<strong>freetype\devel</strong>下的4个文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">│       └── freetype</span><br><span class="line">│         └── devel</span><br><span class="line">│           └── ft2build.h</span><br><span class="line">│           └── ftmodule.h</span><br><span class="line">│           └── ftoption.h</span><br><span class="line">│           └── ftstdlib.h</span><br></pre></td></tr></table></figure></p>
 <h4 id="测试FreeType移植结果"><a href="#测试FreeType移植结果" class="headerlink" title="测试FreeType移植结果"></a>测试FreeType移植结果</h4><p>打开main.cpp 随便写点内容,烧录到ESP32上运行查看效果.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;./Port/lv_port_disp.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SD.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SPI.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化SD卡</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">SD_Init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(<span class="number">22</span>, INPUT);</span><br><span class="line"></span><br><span class="line">  SPIClass *sd_spi = <span class="keyword">new</span> <span class="built_in">SPIClass</span>(HSPI);     <span class="comment">// another SPI</span></span><br><span class="line">  <span class="keyword">if</span> (!SD.<span class="built_in">begin</span>(<span class="number">15</span>, *sd_spi, <span class="number">12000000</span>, <span class="string">&quot;&quot;</span>))  <span class="comment">// SD-Card SS pin is 15</span></span><br><span class="line">  &#123;</span><br><span class="line">    Serial.<span class="built_in">println</span>(<span class="string">&quot;Card Mount Failed&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="type">uint8_t</span> cardType = SD.<span class="built_in">cardType</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (cardType == CARD_NONE) &#123;</span><br><span class="line">    Serial.<span class="built_in">println</span>(<span class="string">&quot;No SD card attached&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Serial.<span class="built_in">print</span>(<span class="string">&quot;SD Card Type: &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (cardType == CARD_MMC) &#123;</span><br><span class="line">    Serial.<span class="built_in">println</span>(<span class="string">&quot;MMC&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cardType == CARD_SD) &#123;</span><br><span class="line">    Serial.<span class="built_in">println</span>(<span class="string">&quot;SDSC&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cardType == CARD_SDHC) &#123;</span><br><span class="line">    Serial.<span class="built_in">println</span>(<span class="string">&quot;SDHC&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Serial.<span class="built_in">println</span>(<span class="string">&quot;UNKNOWN&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">uint64_t</span> cardSize = SD.<span class="built_in">cardSize</span>() / (<span class="number">1024</span> * <span class="number">1024</span>);</span><br><span class="line">  Serial.<span class="built_in">printf</span>(<span class="string">&quot;SD Card Size: %lluMB, used size:%llu\n&quot;</span>, cardSize,</span><br><span class="line">                SD.<span class="built_in">usedBytes</span>());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);  <span class="comment">// Set to a high rate for fast image transfer to a PC</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">Port_Init</span>();</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">SD_Init</span>()) &#123;</span><br><span class="line">    Serial.<span class="built_in">println</span>(<span class="string">&quot;SPIFFS Mount Failed&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">/*创建字体*/</span></span><br><span class="line">  <span class="type">static</span> <span class="type">lv_ft_info_t</span> info;</span><br><span class="line">  <span class="comment">/*在SD卡根目录下放置前一节中的可变字体文件,重命名为archivo.ttf*/</span></span><br><span class="line">  info.name = <span class="string">&quot;/archivo.ttf&quot;</span>;</span><br><span class="line">  info.weight = <span class="number">18</span>;</span><br><span class="line">  info.style = FT_FONT_STYLE_NORMAL;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">lv_ft_font_init</span>(&amp;info)) &#123;</span><br><span class="line">    <span class="built_in">LV_LOG_ERROR</span>(<span class="string">&quot;create failed.&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">LV_LOG_ERROR</span>(<span class="string">&quot;create done.&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*为新字体创建Style*/</span></span><br><span class="line">  <span class="type">static</span> <span class="type">lv_style_t</span> style;</span><br><span class="line">  <span class="built_in">lv_style_init</span>(&amp;style);</span><br><span class="line">  <span class="built_in">lv_style_set_text_font</span>(&amp;style, info.font);</span><br><span class="line">  <span class="built_in">lv_style_set_text_color</span>(&amp;style, <span class="built_in">lv_color_black</span>());</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*应用Style到Label*/</span></span><br><span class="line">  <span class="type">lv_obj_t</span> *altria = <span class="built_in">lv_label_create</span>(<span class="built_in">lv_scr_act</span>());</span><br><span class="line">  <span class="type">lv_obj_t</span> *shirou = <span class="built_in">lv_label_create</span>(<span class="built_in">lv_scr_act</span>());</span><br><span class="line">  <span class="comment">// lv_obj_add_style(altria, &amp;style, 0);</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">lv_label_set_text</span>(altria, <span class="string">&quot;Toou.\nAnata wa watashi no masuta ka?&quot;</span>);</span><br><span class="line">  <span class="built_in">lv_label_set_text</span>(shirou, <span class="string">&quot;Master?&quot;</span>);</span><br><span class="line">  <span class="built_in">lv_obj_set_style_text_font</span>(shirou, info.font, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">lv_obj_center</span>(shirou);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 一切就绪, 启动LVGL任务</span></span><br><span class="line">  <span class="built_in">xTaskNotifyGive</span>(handleTaskLvgl);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
 <p>运行效果如下</p>
 <p><img src="/images/migrated/014741af_freetype_demo_on_esp32.png" alt="Weight=900"></p>
 <h4 id="拓展LVGL的FreeType"><a href="#拓展LVGL的FreeType" class="headerlink" title="拓展LVGL的FreeType"></a>拓展LVGL的FreeType</h4><p>就像前篇内容中的一样,需要手动地为当前版本LVGL添加可变字体支持.</p>
-<p><strong>lv_freetype.h</strong>内的<strong>lv_ft_info_t</strong>修改为</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> * name;  <span class="comment">/* The name of the font file */</span></span><br><span class="line">    <span class="type">const</span> <span class="type">void</span> * mem;   <span class="comment">/* The pointer of the font file */</span></span><br><span class="line">    <span class="type">size_t</span> mem_size;    <span class="comment">/* The size of the memory */</span></span><br><span class="line">    <span class="type">lv_font_t</span> * font;   <span class="comment">/* point to lvgl font */</span></span><br><span class="line">    <span class="type">uint16_t</span> height;    <span class="comment">/* font size */</span></span><br><span class="line">    <span class="type">uint16_t</span> weight;    <span class="comment">/* font weight */</span></span><br><span class="line">    <span class="type">uint16_t</span> style;     <span class="comment">/* font style */</span></span><br><span class="line">&#125; <span class="type">lv_ft_info_t</span>;</span><br></pre></td></tr></table></figure>
-
-<p>然后去<strong>lv_freetype.c</strong>里添加可变字体操作代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">FT_MM_Var *amaster = <span class="literal">NULL</span>;</span><br><span class="line">FT_Error err = FT_Get_MM_Var(face, &amp;amaster);</span><br><span class="line"><span class="keyword">if</span> (err) &#123;</span><br><span class="line">  LV_LOG_ERROR(<span class="string">&quot;FT_Get_MM_Var error:%d\n&quot;</span>, err);</span><br><span class="line">  <span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br><span class="line">FT_Fixed w = dsc-&gt;weight &lt;&lt; <span class="number">16</span>;</span><br><span class="line"><span class="keyword">if</span> (w &gt; amaster-&gt;axis-&gt;maximum) &#123;</span><br><span class="line">  w = amaster-&gt;axis-&gt;maximum;</span><br><span class="line">&#125;</span><br><span class="line">err = FT_Set_Var_Design_Coordinates(face, <span class="number">1</span>, &amp;w);</span><br><span class="line"><span class="keyword">if</span> (err) &#123;</span><br><span class="line">  LV_LOG_ERROR(<span class="string">&quot;FT_Set_Var_Design_Coordinates error:%d\n&quot;</span>, err);</span><br><span class="line">  <span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br><span class="line">FT_Done_MM_Var(library, amaster);</span><br></pre></td></tr></table></figure>
-
+<p><strong>lv_freetype.h</strong>内的<strong>lv_ft_info_t</strong>修改为<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> * name;  <span class="comment">/* The name of the font file */</span></span><br><span class="line">    <span class="type">const</span> <span class="type">void</span> * mem;   <span class="comment">/* The pointer of the font file */</span></span><br><span class="line">    <span class="type">size_t</span> mem_size;    <span class="comment">/* The size of the memory */</span></span><br><span class="line">    <span class="type">lv_font_t</span> * font;   <span class="comment">/* point to lvgl font */</span></span><br><span class="line">    <span class="type">uint16_t</span> height;    <span class="comment">/* font size */</span></span><br><span class="line">    <span class="type">uint16_t</span> weight;    <span class="comment">/* font weight */</span></span><br><span class="line">    <span class="type">uint16_t</span> style;     <span class="comment">/* font style */</span></span><br><span class="line">&#125; <span class="type">lv_ft_info_t</span>;</span><br></pre></td></tr></table></figure></p>
+<p>然后去<strong>lv_freetype.c</strong>里添加可变字体操作代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">FT_MM_Var *amaster = <span class="literal">NULL</span>;</span><br><span class="line">FT_Error err = FT_Get_MM_Var(face, &amp;amaster);</span><br><span class="line"><span class="keyword">if</span> (err) &#123;</span><br><span class="line">  LV_LOG_ERROR(<span class="string">&quot;FT_Get_MM_Var error:%d\n&quot;</span>, err);</span><br><span class="line">  <span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br><span class="line">FT_Fixed w = dsc-&gt;weight &lt;&lt; <span class="number">16</span>;</span><br><span class="line"><span class="keyword">if</span> (w &gt; amaster-&gt;axis-&gt;maximum) &#123;</span><br><span class="line">  w = amaster-&gt;axis-&gt;maximum;</span><br><span class="line">&#125;</span><br><span class="line">err = FT_Set_Var_Design_Coordinates(face, <span class="number">1</span>, &amp;w);</span><br><span class="line"><span class="keyword">if</span> (err) &#123;</span><br><span class="line">  LV_LOG_ERROR(<span class="string">&quot;FT_Set_Var_Design_Coordinates error:%d\n&quot;</span>, err);</span><br><span class="line">  <span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br><span class="line">FT_Done_MM_Var(library, amaster);</span><br></pre></td></tr></table></figure></p>
 <p><strong>别忘记我们已经修改了weight的含义,此时字体大小已经由height决定了</strong></p>
 <p>回到main.cpp,在创建字体初时候,设置weight为100</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">lv_ft_info_t</span> info;</span><br><span class="line">info.name = <span class="string">&quot;/archivo.ttf&quot;</span>;</span><br><span class="line">info.height = <span class="number">18</span>;</span><br><span class="line">info.weight = <span class="number">100</span>;</span><br><span class="line">info.style = FT_FONT_STYLE_NORMAL;</span><br></pre></td></tr></table></figure>
-
 <p>然后烧录到ESP32,可以看到字重已经降低了.</p>
 <p><img src="/images/migrated/95e3a724_freetype_demo_on_esp32_100_weight.png" alt="Weight=900"></p>
 <h3 id="动起来吧-字重"><a href="#动起来吧-字重" class="headerlink" title="动起来吧,字重"></a>动起来吧,字重</h3><p>利用LVGL的lv_timer_t或者lv_anim_t动态的修改字重</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">_VF_Label</span> &#123;</span><br><span class="line">  <span class="type">lv_obj_t</span> *label;</span><br><span class="line">  <span class="type">lv_ft_info_t</span> *font;</span><br><span class="line">&#125; VF_Label;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">onTimer</span><span class="params">(<span class="type">lv_timer_t</span> *timer)</span> </span>&#123;</span><br><span class="line">  <span class="type">static</span> <span class="type">uint16_t</span> weight = <span class="number">100</span>;</span><br><span class="line">  <span class="type">static</span> <span class="type">uint16_t</span> size = <span class="number">18</span>;</span><br><span class="line">  VF_Label *vfl = (VF_Label *)(timer-&gt;user_data);</span><br><span class="line">  <span class="keyword">if</span> (vfl == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;vfl == nullptr\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (vfl == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;vfl-&gt;font-&gt;font == nullptr\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">lv_ft_font_destroy</span>(vfl-&gt;font-&gt;font);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;lv_ft_font_destroy\n&quot;</span>);</span><br><span class="line">  vfl-&gt;font-&gt;name = <span class="string">&quot;/archivo.ttf&quot;</span>;</span><br><span class="line">  vfl-&gt;font-&gt;height = size;</span><br><span class="line">  vfl-&gt;font-&gt;weight = weight;</span><br><span class="line">  vfl-&gt;font-&gt;style = FT_FONT_STYLE_NORMAL;</span><br><span class="line">  <span class="built_in">lv_ft_font_init</span>(vfl-&gt;font);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;lv_ft_font_init\n&quot;</span>);</span><br><span class="line">  size = <span class="number">48</span>;</span><br><span class="line">  weight += <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">if</span> (weight &gt; <span class="number">600</span>) &#123;</span><br><span class="line">    weight = <span class="number">100</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">lv_obj_set_style_text_font</span>(vfl-&gt;label, vfl-&gt;font-&gt;font, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">lv_timer_t</span> *weightTimer = <span class="built_in">lv_timer_create</span>(onTimer, <span class="number">50</span>, &amp;label);</span><br><span class="line"><span class="comment">// 一切就绪, 启动LVGL任务</span></span><br><span class="line"><span class="built_in">xTaskNotifyGive</span>(handleTaskLvgl);</span><br></pre></td></tr></table></figure>
-
 <p>效果图</p>
 <p><img src="/images/migrated/c82ae252_img.gif" alt="dynamic"></p>
 <h3 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Espressif 32 (3.4.0) &gt; ESP32 Pico Kit</span><br><span class="line">framework-arduinoespressif32 3.10006.210326 (1.0.6)</span><br><span class="line">tool-esptoolpy 1.30100.210531 (3.1.0)</span><br><span class="line">toolchain-xtensa32 2.50200.97 (5.2.0)</span><br><span class="line">&lt;lvgl&gt; 8.1.1-dev</span><br><span class="line">&lt;TFT_eSPI&gt; 2.3.89</span><br><span class="line">esptool.py v3.1</span><br></pre></td></tr></table></figure>
-
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/lvgl/lvgl">https://github.com/lvgl/lvgl</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/peng-zhihui/Peak">https://github.com/peng-zhihui/Peak</a></li>
@@ -355,8 +491,8 @@
 
 
 
-        
-          <div id="footer-post-container">
+                    
+                      <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
@@ -365,6 +501,8 @@
           <li><a href="/">首页</a></li>
         
           <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
         
           <li><a href="/about/">关于</a></li>
         
@@ -415,8 +553,8 @@
   </div>
 </div>
 
-        
-        <footer id="footer">
+                        
+                          <footer id="footer">
   <div class="footer-left">
     Copyright &copy;
       
@@ -429,85 +567,90 @@
       <ul>
         <!--
        -->
-          <li><a href="/privacy-policy/">
-              隐私政策
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/terms/">
-              使用条款
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a href="/contact/">
-              联系我们
-            </a></li><!--
-     -->
-          <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
-              皖ICP备2024054743号
-            </a></li><!--
-     -->
           
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
       </ul>
     </nav>
   </div>
 </footer>
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
+          </div>
+          <!-- jquery -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
 
+          
 
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "复制成功！");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
 <script src="/js/main.js"></script>
 
-<!-- search -->
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
 
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
-
-</body>
 </html>
