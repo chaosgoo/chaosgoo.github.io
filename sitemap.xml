@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chaosgoo.com/2026/02/08/make-remote-streaming-on-m5stack-cardputer/</loc>
+    
+    <lastmod>2026-02-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/2026/02/08/en/make-remote-streaming-on-m5stack-cardputer/</loc>
+    
+    <lastmod>2026-02-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/mcompass/guide.html</loc>
     
     <lastmod>2026-02-04</lastmod>
@@ -56,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/mcompass/index.html</loc>
+    <loc>https://chaosgoo.com/mcompass/bom.html</loc>
     
     <lastmod>2026-02-04</lastmod>
     
@@ -65,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/mcompass/bom.html</loc>
+    <loc>https://chaosgoo.com/mcompass/index.html</loc>
     
     <lastmod>2026-02-04</lastmod>
     
@@ -526,7 +544,7 @@
 
   <url>
     <loc>https://chaosgoo.com/</loc>
-    <lastmod>2026-02-07</lastmod>
+    <lastmod>2026-02-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -535,22 +553,22 @@
 
   
   <url>
-    <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
+    <lastmod>2026-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
+    <lastmod>2026-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Project-Logs/</loc>
-    <lastmod>2026-02-07</lastmod>
+    <lastmod>2026-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
