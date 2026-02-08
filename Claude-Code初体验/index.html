@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="记录Claude Code的实际使用体验。从API配置、CLI安装到让AI独立开发安卓串口监视器功能，看看这种CLI式AI编程工具到底能做到什么程度。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Code初体验">
+<meta property="og:url" content="https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="记录Claude Code的实际使用体验。从API配置、CLI安装到让AI独立开发安卓串口监视器功能，看看这种CLI式AI编程工具到底能做到什么程度。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/claude_on_espflash.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/serial_monitor_plan.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/serial_monitor_develop_done.png">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/serial_monitor.png">
+<meta property="article:published_time" content="2025-11-16T15:39:44.000Z">
+<meta property="article:modified_time" content="2025-11-16T15:39:44.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Claude Code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/archives/claude_on_espflash.png">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            Claude Code初体验
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- styles -->
+                                                              <link rel="stylesheet"
+                                                                href="/css/style.css">
+                                                              <!-- styles -->
+
+            <!-- Font Awesome removed - using inline SVG icons instead -->
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+		inlineMath: [['$','$']]
+	  }
+	});
+</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/hexo-seo-gsc-canonical-301/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/Real-life-HealthPin/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&text=Claude Code初体验"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&is_video=false&description=Claude Code初体验"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Claude Code初体验&body=Check out this article: https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&name=Claude Code初体验&description=&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;之前买的Jetpack Compose教程的群群主最近一直在称赞Codex,Claude Code之类的有多么强大, 激发了我对这种CLI式的AI兴趣.是时候研究一下了.&lt;br&gt;&lt;img src=&#34;/images/archives/claude_on_espflash.png&#34; alt=&#34;claude&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;初步了解&#34;&gt;&lt;a href=&#34;#初步了解&#34; class=&#34;headerlink&#34; title=&#34;初步了解&#34;&gt;&lt;/a&gt;初步了解&lt;/h2&gt;&lt;p&gt;在哔哩哔哩上简单搜索到几个介绍视频, 尤其是看到了Codex的那个&lt;a href=&#34;https://www.bilibili.com/video/BV1KEpRzuEkS/&#34;&gt;演示&lt;/a&gt;, 一个人下发多个任务,然后每个任务后面都有一个AI在不同分支为他自动修改代码,调试代码直到完成任务,更是迫不及待的体验一下这种&lt;code&gt;一个人就是一个团队&lt;/code&gt;的力量.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&t=Claude Code初体验"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">初步了解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96API"><span class="toc-number">3.</span> <span class="toc-text">获取API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Codex%E5%92%8CClaude-Code"><span class="toc-number">4.</span> <span class="toc-text">安装Codex和Claude Code</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Codex"><span class="toc-number">4.1.</span> <span class="toc-text">安装Codex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85claude-code"><span class="toc-number">4.2.</span> <span class="toc-text">安装claude code</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEAPI"><span class="toc-number">5.</span> <span class="toc-text">配置API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%8588-auto-config%E9%85%8D%E7%BD%AE%E5%B7%A5%E5%85%B7"><span class="toc-number">5.1.</span> <span class="toc-text">安装88-auto-config配置工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%82%E6%97%B6%E6%94%BE%E5%BC%83codex"><span class="toc-number">5.2.</span> <span class="toc-text">暂时放弃codex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">第一个任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E6%94%B6"><span class="toc-number">7.</span> <span class="toc-text">验收</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">8.</span> <span class="toc-text">最后</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Claude Code初体验
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-11-16T15:39:44.000Z" class="dt-published" itemprop="datePublished">2025-11-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Software-Dev/">Software & Dev</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/AI/" rel="tag">AI</a>, <a class="p-category" href="/tags/Claude-Code/" rel="tag">Claude Code</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前买的Jetpack Compose教程的群群主最近一直在称赞Codex,Claude Code之类的有多么强大, 激发了我对这种CLI式的AI兴趣.是时候研究一下了.<br><img src="/images/archives/claude_on_espflash.png" alt="claude"></p>
+<h2 id="初步了解"><a href="#初步了解" class="headerlink" title="初步了解"></a>初步了解</h2><p>在哔哩哔哩上简单搜索到几个介绍视频, 尤其是看到了Codex的那个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KEpRzuEkS/">演示</a>, 一个人下发多个任务,然后每个任务后面都有一个AI在不同分支为他自动修改代码,调试代码直到完成任务,更是迫不及待的体验一下这种<code>一个人就是一个团队</code>的力量.</p>
+<span id="more"></span> 
+<h2 id="获取API"><a href="#获取API" class="headerlink" title="获取API"></a>获取API</h2><p>OpenAI和Claude的政策原因(还有我的卡无法直接付款购买), 所以我没有选择直接购买Chat GPT Plus和Claude Pro.<br>综合考虑我选择代理公司提供的API中转服务.这种方式优点是便宜, 而且既能用Codex也能用Claude, 还无需配置额外的网络代理.<br>为了获得较好的体验,我购买了160美元的额度.<br><code>主流的模型都是以token来计费, 代理商还会根据模型类型设置不同的倍率,比如codex是0.5倍率, claude则是正常的1倍率.</code><br><!-- 我用的是[88code](https://www.88code.org/register?ref=DMQBE6)这个平台, 购买了PAYGO套餐. --></p>
+<h2 id="安装Codex和Claude-Code"><a href="#安装Codex和Claude-Code" class="headerlink" title="安装Codex和Claude Code"></a>安装Codex和Claude Code</h2><p>Codex和Claude Code都提供了插件式和命令行形式的使用方法.<br>出于灵活性考虑,我没有选择插件式安装,因为我不确定Idea的插件能否直接在Android Stduio的上使用.<br>最终选择了CLI方式安装和使用,这样不管我用什么代码编辑器或者IDE均可以使用.</p>
+<p>两个工具的CLI版本安装方式都很简单, 官方均提供安装脚本方法.</p>
+<h3 id="安装Codex"><a href="#安装Codex" class="headerlink" title="安装Codex"></a>安装Codex</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @openai/codex</span><br></pre></td></tr></table></figure>
+<p>如果使用openai官方账号, 这时候控制台输入<code>codex</code>启动后按照说明打开浏览器登录即可.<br>我用的是代理, 下一节会说明API的配置.</p>
+<h3 id="安装claude-code"><a href="#安装claude-code" class="headerlink" title="安装claude code"></a>安装claude code</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">irm https://claude.ai/install.ps1 | iex</span><br></pre></td></tr></table></figure>
+<p>和Codex类似, 如果用的是Claude官方账号, 启动后按照说明打开浏览器登陆.</p>
+<h2 id="配置API"><a href="#配置API" class="headerlink" title="配置API"></a>配置API</h2><p>因为用的是中转,所以我需要额外配置才可以正常使用.<br>好在我的中转商提供命令配置工具, 让这件事变得不再费心.</p>
+<h3 id="安装88-auto-config配置工具"><a href="#安装88-auto-config配置工具" class="headerlink" title="安装88-auto-config配置工具"></a>安装88-auto-config配置工具</h3><p>这里我使用88code提供的命令行配置工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g 88-auto-config</span><br></pre></td></tr></table></figure>
+<p>启动配置工具<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[1] 配置 Claude Code (已安装)</span><br><span class="line">[2] 配置 Codex (已安装)</span><br><span class="line">[3] 配置 Claude Code + Codex 🚀 (推荐新手使用)</span><br><span class="line">[4] 自定义选择</span><br><span class="line">[5] 配置 Droid 自定义模型 (自动配置三个模型)</span><br><span class="line">[8] 检测配置是否生效 🔍</span><br><span class="line">[9] 配置 VS Code Claude 插件 📝</span><br><span class="line">[0] 退出</span><br></pre></td></tr></table></figure><br>直接输入<code>3</code>, 回车, 再输入88code创建的API, 回车即可.</p>
+<p>保存配置<code>source ~/.zshrc</code>刷新终端缓存或者重启终端</p>
+<h3 id="暂时放弃codex"><a href="#暂时放弃codex" class="headerlink" title="暂时放弃codex"></a>暂时放弃codex</h3><p>不知道什么原因,我的codex无法正常使用,总是报401错误. 后面单独开一个新的坑来分析和排查究竟为什么无法使用.<br>于是转而使用claude code,等将来会再次回来用用codex,因为他的token消耗速率只有一半.</p>
+<h2 id="第一个任务"><a href="#第一个任务" class="headerlink" title="第一个任务"></a>第一个任务</h2><p>进入到项目工程目录后,输入<code>claude</code>,再使用<code>/init</code>命令让claude分析当前工程,创建基础的配置.<br>配置创建完成之后,根目录则会生成一个<code>CLAUDE.md</code>, 里面记录了Claude对项目的理解. 我们也可以手动修改<code>CLAUDE.md</code>内容补充说明或者纠正.<br>检查<code>CLAUDE.md</code>内容无误后, 我告诉Claude希望Claude能为我的烧录软件开发串口监视器部分.而此前我已经预留了底部NavigationBar的路由和占位页面, 不知道他会开发到什么程度, 还要求Claude考虑串口占用问题.<br><img src="/images/archives/serial_monitor_plan.png" width=480/><br>对话完成后,Claude开始工作, 接下来的过程中他自己会检测语法错误, 并且会调用编译检查编译是否成功.活脱脱一个真实的人在写代码.</p>
+<h2 id="验收"><a href="#验收" class="headerlink" title="验收"></a>验收</h2><p>Claude开发完成了,终端响了一声, 这是提醒我验收的时刻到了.<br><img src="/images/archives/serial_monitor_develop_done.png" width=480/><br>怀着期待和未知的心情输入了<code>ctrl+r</code>, 看到实际效果后十分震惊,不亚于第一次使用ChatGPT那种震撼.<br><img src="/images/archives/serial_monitor.png" width=480/><br>除了UI适配上有些小问题, 整个串口监视器功能上来说很完善, 甚至还用上一个BottomSheet来进行串口参数配置.</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><!-- 如果你也想使用claude和codex可以使用我的邀请码进行注册.
+链接是[88code](https://www.88code.org/register?ref=DMQBE6) -->
+<p>后续又用2天来继续完善APP功能, 比如串口输出文本着色, 排查ESP8266上无法dump固件等问题.<br>尤其是这个dump固件问题的处理, 我在Claude的配合下, 花费不少token去分析dump出来的固件, 最终排查出来是SLIP包的解码存在问题, 坦白说我没有自信和能力排查出这个问题.</p>
+<p>仅仅是用了两天,我就已经上瘾了, 就像现在很难再去通过传统搜索引擎去排查问题而直接借助AI来编程一样.</p>
+
+  </div>
+</article>
+
+
+
+                    
+                      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">初步了解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96API"><span class="toc-number">3.</span> <span class="toc-text">获取API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Codex%E5%92%8CClaude-Code"><span class="toc-number">4.</span> <span class="toc-text">安装Codex和Claude Code</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Codex"><span class="toc-number">4.1.</span> <span class="toc-text">安装Codex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85claude-code"><span class="toc-number">4.2.</span> <span class="toc-text">安装claude code</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEAPI"><span class="toc-number">5.</span> <span class="toc-text">配置API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%8588-auto-config%E9%85%8D%E7%BD%AE%E5%B7%A5%E5%85%B7"><span class="toc-number">5.1.</span> <span class="toc-text">安装88-auto-config配置工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%82%E6%97%B6%E6%94%BE%E5%BC%83codex"><span class="toc-number">5.2.</span> <span class="toc-text">暂时放弃codex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">第一个任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E6%94%B6"><span class="toc-number">7.</span> <span class="toc-text">验收</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">8.</span> <span class="toc-text">最后</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&text=Claude Code初体验"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&is_video=false&description=Claude Code初体验"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Claude Code初体验&body=Check out this article: https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&title=Claude Code初体验"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&name=Claude Code初体验&description=&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;之前买的Jetpack Compose教程的群群主最近一直在称赞Codex,Claude Code之类的有多么强大, 激发了我对这种CLI式的AI兴趣.是时候研究一下了.&lt;br&gt;&lt;img src=&#34;/images/archives/claude_on_espflash.png&#34; alt=&#34;claude&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;初步了解&#34;&gt;&lt;a href=&#34;#初步了解&#34; class=&#34;headerlink&#34; title=&#34;初步了解&#34;&gt;&lt;/a&gt;初步了解&lt;/h2&gt;&lt;p&gt;在哔哩哔哩上简单搜索到几个介绍视频, 尤其是看到了Codex的那个&lt;a href=&#34;https://www.bilibili.com/video/BV1KEpRzuEkS/&#34;&gt;演示&lt;/a&gt;, 一个人下发多个任务,然后每个任务后面都有一个AI在不同分支为他自动修改代码,调试代码直到完成任务,更是迫不及待的体验一下这种&lt;code&gt;一个人就是一个团队&lt;/code&gt;的力量.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/&t=Claude Code初体验"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+                        
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

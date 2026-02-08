@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="LVGL可变字体从模拟器到ESP32硬件移植。在ESP32上配置FreeType字体引擎，驱动ST7789等LCD屏幕，实现字体字重的动态设置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在LVGL中实现可变字体(Variable Font)-第二章">
+<meta property="og:url" content="https://chaosgoo.com/lvgl-freetype-and-esp32/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="LVGL可变字体从模拟器到ESP32硬件移植。在ESP32上配置FreeType字体引擎，驱动ST7789等LCD屏幕，实现字体字重的动态设置。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/fccf9035_esp32.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/b9bed5bc_lcd.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/a7c66fd4_wire.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/03225135_create_project.png">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/507bfaa2_lcd_ready_perfect.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/7722acce_lvgl_ready_perfect.jpg">
+<meta property="article:published_time" content="2021-12-18T13:47:07.000Z">
+<meta property="article:modified_time" content="2021-12-18T13:47:07.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/migrated/fccf9035_esp32.jpg">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            在LVGL中实现可变字体(Variable Font)-第二章
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/lvgl-freetype-and-esp32/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- styles -->
+                                                              <link rel="stylesheet"
+                                                                href="/css/style.css">
+                                                              <!-- styles -->
+
+            <!-- Font Awesome removed - using inline SVG icons instead -->
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+		inlineMath: [['$','$']]
+	  }
+	});
+</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/lvgl-freetype-and-esp32-2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/FreeType-and-LVGL/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/lvgl-freetype-and-esp32/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&text=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&is_video=false&description=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=在LVGL中实现可变字体(Variable Font)-第二章&body=Check out this article: https://chaosgoo.com/lvgl-freetype-and-esp32/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&name=在LVGL中实现可变字体(Variable Font)-第二章&description=&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/FreeType-and-LVGL/&#34;&gt;在LVGL中实现可变字体(Variable Font)-第一章&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在LVGL中实现可变字体(Variable Font)-第二章&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/lvgl-freetype-and-esp32-2/&#34;&gt;在LVGL中实现可变字体(Variable Font)-第三章&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;(2025年11月 重制版说明):&lt;br&gt;这篇文章的初版我曾发布于第三方平台（简书+Bilibili），并累计获得了&lt;strong&gt;50,000+&lt;/strong&gt; 次阅读 和大量开发者的反馈。&lt;br&gt;为了提供更好的阅读体验，我对文章排版和部分内容进行了优化，并将其&lt;strong&gt;独家&lt;/strong&gt;发布在此个人博客&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们在&lt;a href=&#34;/FreeType-and-LVGL/&#34;&gt;第一章&lt;/a&gt;中已经实现了模拟器环境下可变字体字重的设置.&lt;/p&gt;
+&lt;p&gt;是时候掏出你吃灰已久的ESP32了.&lt;/p&gt;
+&lt;p&gt;本文会使用&lt;a href=&#34;https://platformio.org/&#34;&gt;PlatformIO&lt;/a&gt;创建一个全新的项目,直到显示出现&lt;a class=&#34;toc-link&#34; href=&#34;/2021/12/12/FreeType-and-LVGL/&#34;&gt;上篇文章&lt;/a&gt;末尾的动图为止.&lt;br&gt;如遇到问题,可参考&lt;a class=&#34;toc-link&#34; href=&#34;#常见问题&#34;&gt;常见问题&lt;/a&gt;内解答.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/lvgl-freetype-and-esp32/&t=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="toc-number">1.1.1.</span> <span class="toc-text">软件准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="toc-number">1.1.2.</span> <span class="toc-text">硬件准备</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">创建项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E4%BA%AE%E5%B1%8F%E5%B9%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">点亮屏幕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E6%A4%8DLVGL"><span class="toc-number">1.2.2.</span> <span class="toc-text">移植LVGL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9LVGL%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">修改LVGL配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E6%8E%A5LVGL%E5%92%8CTFT-eSPI"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">对接LVGL和TFT_eSPI</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%BD%E5%B7%A5%E4%B8%AD-%E5%BE%85%E6%9B%B4%E6%96%B0"><span class="toc-number">1.3.</span> <span class="toc-text">施工中,待更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">常见问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">1.5.</span> <span class="toc-text">环境:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        在LVGL中实现可变字体(Variable Font)-第二章
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-12-18T13:47:07.000Z" class="dt-published" itemprop="datePublished">2021-12-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Hardware-IoT/">Hardware & IoT</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/ESP32/" rel="tag">ESP32</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <ul>
+<li><a href="/FreeType-and-LVGL/">在LVGL中实现可变字体(Variable Font)-第一章</a></li>
+<li><strong>在LVGL中实现可变字体(Variable Font)-第二章</strong></li>
+<li><a href="/lvgl-freetype-and-esp32-2/">在LVGL中实现可变字体(Variable Font)-第三章</a></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>(2025年11月 重制版说明):<br>这篇文章的初版我曾发布于第三方平台（简书+Bilibili），并累计获得了<strong>50,000+</strong> 次阅读 和大量开发者的反馈。<br>为了提供更好的阅读体验，我对文章排版和部分内容进行了优化，并将其<strong>独家</strong>发布在此个人博客</p>
+</blockquote>
+<p>我们在<a href="/FreeType-and-LVGL/">第一章</a>中已经实现了模拟器环境下可变字体字重的设置.</p>
+<p>是时候掏出你吃灰已久的ESP32了.</p>
+<p>本文会使用<a target="_blank" rel="noopener" href="https://platformio.org/">PlatformIO</a>创建一个全新的项目,直到显示出现<a class="toc-link" href="/2021/12/12/FreeType-and-LVGL/">上篇文章</a>末尾的动图为止.<br>如遇到问题,可参考<a class="toc-link" href="#常见问题">常见问题</a>内解答.</p>
+<span id="more"></span>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h4><p>为了后续内容顺利进行下去,这里需要你安装好<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode</a>,并在VSCode上安装<a target="_blank" rel="noopener" href="https://platformio.org/">PlatformIO</a>插件.</p>
+<h4 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">备注</th>
+<th>图例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ESP32 开发板</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">\</td>
+<td><img src="/images/migrated/fccf9035_esp32.jpg" width="240px" style="padding:30px"/></td>
+</tr>
+<tr>
+<td style="text-align:center">1.54寸LCD</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">驱动ST7789,分辨率240x240</td>
+<td><img src="/images/migrated/b9bed5bc_lcd.jpg" width="240px" style="padding:30px"/></td>
+</tr>
+<tr>
+<td style="text-align:center">杜邦线若干</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">\</td>
+<td><img src="/images/migrated/a7c66fd4_wire.jpg" width="240px" style="padding:30px"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>使用PlatformIO创建一个名为lvgl_with_freetype的项目<br><img src="/images/migrated/03225135_create_project.png" alt="create project"><br>创建完毕后目录结构如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── include</span><br><span class="line">│   └── README</span><br><span class="line">├── lib</span><br><span class="line">│   └── README</span><br><span class="line">├── platformio.ini</span><br><span class="line">├── src</span><br><span class="line">│   └── main.cpp</span><br><span class="line">└── <span class="built_in">test</span></span><br><span class="line">    └── README</span><br></pre></td></tr></table></figure></p>
+<h4 id="点亮屏幕"><a href="#点亮屏幕" class="headerlink" title="点亮屏幕"></a>点亮屏幕</h4><p>由于已经写过一篇点亮屏幕的<a href="/ESP32-ST7789/">文章</a>,故本文不做过多赘述,只说明一下区别.</p>
+<p>之前的屏幕分辨率是135x240,这次的屏幕分辨率是240x240.</p>
+<p>所以需要使用TFT_eSPI里面的<code>Setup24_ST7789.h</code></p>
+<p>同时接线变更为</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">ESP32引脚名称</th>
+<th style="text-align:center">液晶屏引脚名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><font color="red">VCC</font></td>
+<td style="text-align:center"><font color="red">VCC</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="black">GND</font></td>
+<td style="text-align:center"><font color="black">GND</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="green">G23</font></td>
+<td style="text-align:center"><font color="green">SDA</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="blue">G18</font></td>
+<td style="text-align:center"><font color="blue">SCL</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="Orange">G2</font></td>
+<td style="text-align:center"><font color="Orange">DC</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="grey">G4</font></td>
+<td style="text-align:center"><font color="grey">RES</font></td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="purple">GND</font></td>
+<td style="text-align:center"><font color="purple">CS</font> </td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="black">VCC</font></td>
+<td style="text-align:center"><font color="black">BLK</font></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对应<code>Setup24_ST7789.h</code>里面内容</p>
+<figure class="highlight cpp"><figcaption><span>Setup24_ST7789.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> TFT_MISO    19</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> TFT_MOSI    23</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> TFT_SCLK    18</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> TFT_CS      -1</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> TFT_DC      2</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> TFT_RST     4</span></span><br></pre></td></tr></table></figure>
+<p>随便写点内容.测试下屏幕的点亮.<br><figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;TFT_eSPI.h&gt;</span> <span class="comment">// Hardware-specific library</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;SPI.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">TFT_eSPI tft = <span class="built_in">TFT_eSPI</span>(); <span class="comment">// Invoke custom library</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>); <span class="comment">// Set to a high rate for fast image transfer to a PC</span></span><br><span class="line"></span><br><span class="line">  tft.<span class="built_in">init</span>();</span><br><span class="line">  tft.<span class="built_in">setRotation</span>(<span class="number">0</span>);</span><br><span class="line">  tft.<span class="built_in">fillScreen</span>(TFT_BLACK);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  tft.<span class="built_in">print</span>(<span class="string">&quot;Ready Perfectly&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/migrated/507bfaa2_lcd_ready_perfect.jpg" alt="lcd_ready_perfect"></p>
+<h4 id="移植LVGL"><a href="#移植LVGL" class="headerlink" title="移植LVGL"></a>移植LVGL</h4><p>屏幕点亮以后,就可以开始移植LVGL了.</p>
+<p>当前时间为2021.12.19,<a target="_blank" rel="noopener" href="https://github.com/lvgl/lvgl">GitHub上LVGL</a>最新版本是8.1.1-dev</p>
+<p>使用命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/lvgl/lvgl.git</span><br></pre></td></tr></table></figure><br>获取LVGL后将其复制到lib文件夹下.此时文件目录为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── include</span><br><span class="line">│   └── README</span><br><span class="line">├── lib</span><br><span class="line">│   └── README</span><br><span class="line">│   └── lvgl</span><br><span class="line">│   └── TFT_eSPI</span><br><span class="line">├── platformio.ini</span><br><span class="line">├── src</span><br><span class="line">│   └── main.cpp</span><br><span class="line">└── <span class="built_in">test</span></span><br><span class="line">    └── README</span><br></pre></td></tr></table></figure><br>platformio.ini文件内容<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[env:pico32]</span></span><br><span class="line"><span class="attr">platform</span> = espressif32</span><br><span class="line"><span class="attr">board</span> = pico32</span><br><span class="line"><span class="attr">framework</span> = ardui<span class="literal">no</span></span><br><span class="line"><span class="attr">monitor_speed</span> = <span class="number">115200</span></span><br><span class="line"><span class="attr">lib_extra_dirs</span> = </span><br><span class="line">                lib/TFT_eSPI</span><br><span class="line">                lib/lvgl</span><br></pre></td></tr></table></figure></p>
+<h5 id="修改LVGL配置文件"><a href="#修改LVGL配置文件" class="headerlink" title="修改LVGL配置文件"></a>修改LVGL配置文件</h5><p>创建LVGL的配置文件,找到lvgl文件夹内的<code>lv_conf_templat.h</code>,复制一份<code>lv_conf_templat.h</code>并重命名为<code>lv_conf.h</code>,然后打开<code>lv_conf.h</code></p>
+<p>为了使配置文件内容生效,找到第15行(其他版本的lvgl行数可能不在这里,需要自行寻找)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">if</span> 0 <span class="comment">/*Set it to &quot;1&quot; to enable content*/</span></span></span><br></pre></td></tr></table></figure><br>改为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">if</span> 1 <span class="comment">/*Set it to &quot;1&quot; to enable content*/</span></span></span><br></pre></td></tr></table></figure></p>
+<p>找到第30行,修改颜色顺序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_COLOR_16_SWAP 0</span></span><br></pre></td></tr></table></figure><br>改为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_COLOR_16_SWAP 1</span></span><br></pre></td></tr></table></figure></p>
+<p>找到第49行,启用自定义内存管理<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_MEM_CUSTOM 0</span></span><br></pre></td></tr></table></figure><br>修改为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_MEM_CUSTOM 1</span></span><br></pre></td></tr></table></figure></p>
+<p>找到第88行,设置自定义周期函数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_TICK_CUSTOM 0</span></span><br></pre></td></tr></table></figure><br>修改为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_TICK_CUSTOM 1</span></span><br></pre></td></tr></table></figure></p>
+<p>找到第174行,启用LVGL日志功能<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_USE_LOG 1</span></span><br></pre></td></tr></table></figure><br>修改为<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_USE_LOG 1</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="对接LVGL和TFT-eSPI"><a href="#对接LVGL和TFT-eSPI" class="headerlink" title="对接LVGL和TFT_eSPI"></a>对接LVGL和TFT_eSPI</h5><p>按照目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── include</span><br><span class="line">│   └── README</span><br><span class="line">├── lib</span><br><span class="line">│   └── README</span><br><span class="line">│   └── lvgl</span><br><span class="line">│   └── TFT_eSPI</span><br><span class="line">├── platformio.ini</span><br><span class="line">├── src</span><br><span class="line">│   └── main.cpp</span><br><span class="line">│   └── Port</span><br><span class="line">│       └── lv_port_disp.cpp</span><br><span class="line">│       └── lv_port_disp.h</span><br><span class="line">└── <span class="built_in">test</span></span><br><span class="line">    └── README</span><br></pre></td></tr></table></figure><br>创建<code>lv_port_disp.cpp</code>和<code>lv_port_disp.h</code></p>
+<figure class="highlight cpp"><figcaption><span>lv_port_disp.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">ifndef</span> LV_PORT_DISP_H_</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> LV_PORT_DISP_H_</span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;TFT_eSPI.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;lvgl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> DISP_HOR_RES 240</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> DISP_VER_RES 240</span></span><br><span class="line">#<span class="meta">#<span class="keyword">define</span> DISP_BUF_SIZE (DISP_HOR_RES*DISP_VER_RES/4)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> TaskHandle_t handleTaskLvgl;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Port_Init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">lv_port_disp_init</span><span class="params">(TFT_eSPI* scr)</span></span>;</span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><figcaption><span>lv_port_disp.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;lv_port_disp.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用于初始化完毕后启用LVGL显示的TaskHandle_t</span></span><br><span class="line">TaskHandle_t handleTaskLvgl;</span><br><span class="line"><span class="comment">// lvgl显示驱动</span></span><br><span class="line"><span class="type">static</span> <span class="type">lv_disp_drv_t</span> disp_drv;</span><br><span class="line"></span><br><span class="line"><span class="comment">// lvgl更新任务</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">TaskLvglUpdate</span><span class="params">(<span class="type">void</span>* parameter)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 阻塞在此处,直到xTaskNotifyGive</span></span><br><span class="line">  <span class="built_in">ulTaskNotifyTake</span>(pdTRUE, portMAX_DELAY);</span><br><span class="line">  <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">    <span class="built_in">lv_task_handler</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">delay</span>(<span class="number">5</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief  显示初始化</span></span><br><span class="line"><span class="comment"> * @param  无</span></span><br><span class="line"><span class="comment"> * @retval 无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Port_Init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="type">static</span> TFT_eSPI screen;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 屏幕初始化 */</span></span><br><span class="line">  screen.<span class="built_in">begin</span>();</span><br><span class="line">  screen.<span class="built_in">initDMA</span>(<span class="literal">true</span>);</span><br><span class="line">  screen.<span class="built_in">setRotation</span>(<span class="number">0</span>);</span><br><span class="line">  screen.<span class="built_in">fillScreen</span>(TFT_BLACK);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* lvgl初始化 */</span></span><br><span class="line">  <span class="built_in">lv_init</span>();</span><br><span class="line">  <span class="built_in">lv_port_disp_init</span>(&amp;screen);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;lvInitDone\n&quot;</span>);</span><br><span class="line">  <span class="comment">// 在核心2上执行LVGL</span></span><br><span class="line">  <span class="built_in">xTaskCreatePinnedToCore</span>(TaskLvglUpdate, <span class="string">&quot;LvglThread&quot;</span>, <span class="number">20480</span>, <span class="literal">nullptr</span>,</span><br><span class="line">                          configMAX_PRIORITIES, &amp;handleTaskLvgl, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief  自定义打印函数</span></span><br><span class="line"><span class="comment"> * @param  无</span></span><br><span class="line"><span class="comment"> * @retval 无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">my_print</span><span class="params">(<span class="type">lv_log_level_t</span> level, <span class="type">const</span> <span class="type">char</span> *file, <span class="type">uint32_t</span> line,</span></span></span><br><span class="line"><span class="params"><span class="function">              <span class="type">const</span> <span class="type">char</span> *fun, <span class="type">const</span> <span class="type">char</span> *dsc)</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">printf</span>(<span class="string">&quot;%s@%d %s-&gt;%s\r\n&quot;</span>, file, line, fun, dsc);</span><br><span class="line">  Serial.<span class="built_in">flush</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief  屏幕刷新回调函数</span></span><br><span class="line"><span class="comment"> * @param  disp:屏幕驱动地址</span></span><br><span class="line"><span class="comment"> * @param  area:刷新区域</span></span><br><span class="line"><span class="comment"> * @param  color_p:刷新缓冲区地址</span></span><br><span class="line"><span class="comment"> * @retval 无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">disp_flush_cb</span><span class="params">(<span class="type">lv_disp_drv_t</span> *disp, <span class="type">const</span> <span class="type">lv_area_t</span> *area,</span></span></span><br><span class="line"><span class="params"><span class="function">                          <span class="type">lv_color_t</span> *color_p)</span> </span>&#123;</span><br><span class="line">  TFT_eSPI *screen = (TFT_eSPI *)disp-&gt;user_data;</span><br><span class="line"></span><br><span class="line">  <span class="type">int32_t</span> w = (area-&gt;x2 - area-&gt;x1 + <span class="number">1</span>);</span><br><span class="line">  <span class="type">int32_t</span> h = (area-&gt;y2 - area-&gt;y1 + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  screen-&gt;<span class="built_in">startWrite</span>();</span><br><span class="line">  screen-&gt;<span class="built_in">setAddrWindow</span>(area-&gt;x1, area-&gt;y1, w, h);</span><br><span class="line">  screen-&gt;<span class="built_in">pushPixelsDMA</span>((<span class="type">uint16_t</span> *)(&amp;color_p-&gt;full), w * h);</span><br><span class="line">  screen-&gt;<span class="built_in">endWrite</span>();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">lv_disp_flush_ready</span>(disp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief  屏幕初始化</span></span><br><span class="line"><span class="comment"> * @param  无</span></span><br><span class="line"><span class="comment"> * @retval 无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">lv_port_disp_init</span><span class="params">(TFT_eSPI* scr)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">lv_log_register_print_cb</span>(<span class="built_in">reinterpret_cast</span>&lt;<span class="type">lv_log_print_g_cb_t</span>&gt;(</span><br><span class="line">      my_print)); <span class="comment">/* register print function for debugging */</span></span><br><span class="line">  DMA_ATTR <span class="type">static</span> <span class="type">lv_color_t</span> *lv_disp_buf =</span><br><span class="line">      <span class="built_in">static_cast</span>&lt;<span class="type">lv_color_t</span> *&gt;(<span class="built_in">heap_caps_malloc</span>(</span><br><span class="line">          DISP_BUF_SIZE * <span class="built_in">sizeof</span>(<span class="type">lv_color_t</span>), MALLOC_CAP_DMA));</span><br><span class="line">  <span class="type">static</span> <span class="type">lv_disp_draw_buf_t</span> disp_buf;</span><br><span class="line">  <span class="built_in">lv_disp_draw_buf_init</span>(&amp;disp_buf, lv_disp_buf, <span class="literal">nullptr</span>,</span><br><span class="line">                        DISP_BUF_SIZE);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*Initialize the display*/</span></span><br><span class="line">  <span class="built_in">lv_disp_drv_init</span>(&amp;disp_drv);</span><br><span class="line">  disp_drv.hor_res = DISP_HOR_RES;</span><br><span class="line">  disp_drv.ver_res = DISP_VER_RES;</span><br><span class="line">  disp_drv.flush_cb = disp_flush_cb;</span><br><span class="line">  disp_drv.draw_buf = &amp;disp_buf;</span><br><span class="line">  disp_drv.user_data = scr;</span><br><span class="line">  <span class="built_in">lv_disp_drv_register</span>(&amp;disp_drv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再写个简单例子测试下LVGL能不能运行<br><figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;./Port/lv_port_disp.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>); <span class="comment">// Set to a high rate for fast image transfer to a PC</span></span><br><span class="line">  <span class="built_in">Port_Init</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="type">lv_obj_t</span> *label = <span class="built_in">lv_label_create</span>(<span class="built_in">lv_scr_act</span>());</span><br><span class="line">  <span class="built_in">lv_label_set_text</span>(label, <span class="string">&quot;Toou.\nAnata wa watashi no masuta ka?&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 一切就绪, 启动LVGL任务</span></span><br><span class="line">  <span class="built_in">xTaskNotifyGive</span>(handleTaskLvgl);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a target="_blank" rel="noopener" href="https://zh.moegirl.org.cn/%E4%BD%A0%E6%98%AF%E6%88%91%E7%9A%84Master%E5%90%97?ivk_sa=1024320u"><strong>Toou.Anata wa watashi no masuta ka?</strong></a></p>
+<p><img src="/images/migrated/7722acce_lvgl_ready_perfect.jpg" alt="lvgl_ready_perfect"></p>
+<h3 id="施工中-待更新"><a href="#施工中-待更新" class="headerlink" title="施工中,待更新"></a>施工中,待更新</h3><h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><p>Q:点亮屏幕时候,编译器报找不到TFT_eSPI</p>
+<p>A:检查TFT_eSPI是否集成<br>将TFT_eSPI放置在lib文件夹内,并向platformio.ini文件末尾添加<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">lib_extra_dirs</span> =  lib/TFT_eSPI</span><br></pre></td></tr></table></figure></p>
+<p>Q:在移植LVGL时候,屏幕颜色异常</p>
+<p>A:可能与lv_conf.h文件内#define LV_COLOR_16_SWAP 0有关<br>可以尝试将此处的0改成1,或1改回0</p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境:"></a>环境:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Espressif 32 (3.4.0) &gt; ESP32 Pico Kit</span><br><span class="line">framework-arduinoespressif32 3.10006.210326 (1.0.6)</span><br><span class="line">tool-esptoolpy 1.30100.210531 (3.1.0)</span><br><span class="line">toolchain-xtensa32 2.50200.97 (5.2.0)</span><br><span class="line">&lt;lvgl&gt; 8.1.1-dev</span><br><span class="line">&lt;TFT_eSPI&gt; 2.3.89</span><br><span class="line">esptool.py v3.1</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/lvgl/lvgl">https://github.com/lvgl/lvgl</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/peng-zhihui/Peak">https://github.com/peng-zhihui/Peak</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+                    
+                      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="toc-number">1.1.1.</span> <span class="toc-text">软件准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="toc-number">1.1.2.</span> <span class="toc-text">硬件准备</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">创建项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E4%BA%AE%E5%B1%8F%E5%B9%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">点亮屏幕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E6%A4%8DLVGL"><span class="toc-number">1.2.2.</span> <span class="toc-text">移植LVGL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9LVGL%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">修改LVGL配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E6%8E%A5LVGL%E5%92%8CTFT-eSPI"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">对接LVGL和TFT_eSPI</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%BD%E5%B7%A5%E4%B8%AD-%E5%BE%85%E6%9B%B4%E6%96%B0"><span class="toc-number">1.3.</span> <span class="toc-text">施工中,待更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">常见问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">1.5.</span> <span class="toc-text">环境:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/lvgl-freetype-and-esp32/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&text=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&is_video=false&description=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=在LVGL中实现可变字体(Variable Font)-第二章&body=Check out this article: https://chaosgoo.com/lvgl-freetype-and-esp32/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&title=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/lvgl-freetype-and-esp32/&name=在LVGL中实现可变字体(Variable Font)-第二章&description=&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/FreeType-and-LVGL/&#34;&gt;在LVGL中实现可变字体(Variable Font)-第一章&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在LVGL中实现可变字体(Variable Font)-第二章&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/lvgl-freetype-and-esp32-2/&#34;&gt;在LVGL中实现可变字体(Variable Font)-第三章&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;(2025年11月 重制版说明):&lt;br&gt;这篇文章的初版我曾发布于第三方平台（简书+Bilibili），并累计获得了&lt;strong&gt;50,000+&lt;/strong&gt; 次阅读 和大量开发者的反馈。&lt;br&gt;为了提供更好的阅读体验，我对文章排版和部分内容进行了优化，并将其&lt;strong&gt;独家&lt;/strong&gt;发布在此个人博客&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们在&lt;a href=&#34;/FreeType-and-LVGL/&#34;&gt;第一章&lt;/a&gt;中已经实现了模拟器环境下可变字体字重的设置.&lt;/p&gt;
+&lt;p&gt;是时候掏出你吃灰已久的ESP32了.&lt;/p&gt;
+&lt;p&gt;本文会使用&lt;a href=&#34;https://platformio.org/&#34;&gt;PlatformIO&lt;/a&gt;创建一个全新的项目,直到显示出现&lt;a class=&#34;toc-link&#34; href=&#34;/2021/12/12/FreeType-and-LVGL/&#34;&gt;上篇文章&lt;/a&gt;末尾的动图为止.&lt;br&gt;如遇到问题,可参考&lt;a class=&#34;toc-link&#34; href=&#34;#常见问题&#34;&gt;常见问题&lt;/a&gt;内解答.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/lvgl-freetype-and-esp32/&t=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+                        
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

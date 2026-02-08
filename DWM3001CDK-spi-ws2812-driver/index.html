@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="基于DWM3001CDK开发板(内置nRF52833)以SPI方式驱动WS2812 RGB LED">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DWM3001CDK点亮WS2812 RGB LED">
+<meta property="og:url" content="https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="基于DWM3001CDK开发板(内置nRF52833)以SPI方式驱动WS2812 RGB LED">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/images/archives/DWM3001DK.png">
+<meta property="og:image" content="https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/images/archives/dwm3001cdk_drive_ws2812_show_numbers.png">
+<meta property="article:published_time" content="2025-01-12T07:05:37.000Z">
+<meta property="article:modified_time" content="2025-01-12T07:05:37.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="Embedded">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/images/archives/DWM3001DK.png">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            DWM3001CDK点亮WS2812 RGB LED
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- styles -->
+                                                              <link rel="stylesheet"
+                                                                href="/css/style.css">
+                                                              <!-- styles -->
+
+            <!-- Font Awesome removed - using inline SVG icons instead -->
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+		inlineMath: [['$','$']]
+	  }
+	});
+</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/uno-r4-wifi-and-home-assistant/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&text=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&is_video=false&description=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DWM3001CDK点亮WS2812 RGB LED&body=Check out this article: https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&name=DWM3001CDK点亮WS2812 RGB LED&description=&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;去年参加了FastBond的第四期活动, 为了能够白嫖到这块开发板子, 不得不掏出这块板子在Deadline之前完成一个项目.&lt;br&gt;看了下活动要求, 感觉点灯是最简单的. 不过既然点灯了, 就点个稍微有点难度的吧.&lt;br&gt;比如点亮能让性能增加200%的WS2812 RGB LED.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&t=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%9D%BF%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">开发板介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%99%AE%E9%80%9ALED"><span class="toc-number">3.</span> <span class="toc-text">控制普通LED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99WS2812%E7%9A%84%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.</span> <span class="toc-text">编写WS2812的驱动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E6%A8%A1%E6%8B%9F-Bit-Banging"><span class="toc-number">4.1.</span> <span class="toc-text">IO模拟(Bit-Banging)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PWM-DMA%E6%A8%A1%E6%8B%9F"><span class="toc-number">4.2.</span> <span class="toc-text">PWM + DMA模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SPI%E6%A8%A1%E6%8B%9F"><span class="toc-number">4.3.</span> <span class="toc-text">SPI模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RMT%E6%A8%A1%E6%8B%9F"><span class="toc-number">4.4.</span> <span class="toc-text">RMT模拟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9"><span class="toc-number">5.</span> <span class="toc-text">最终选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E7%BC%96%E5%86%99"><span class="toc-number">6.</span> <span class="toc-text">驱动编写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%97%E7%81%AF%E7%8F%A0%E9%A2%9C%E8%89%B2%E5%BC%82%E5%B8%B8%E4%BF%AE%E5%A4%8D"><span class="toc-number">7.</span> <span class="toc-text">第一颗灯珠颜色异常修复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E6%98%BE%E7%A4%BA"><span class="toc-number">8.</span> <span class="toc-text">数字显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        DWM3001CDK点亮WS2812 RGB LED
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-01-12T07:05:37.000Z" class="dt-published" itemprop="datePublished">2025-01-12</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Hardware-IoT/">Hardware & IoT</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/C/" rel="tag">C</a>, <a class="p-category" href="/tags/Embedded/" rel="tag">Embedded</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>去年参加了FastBond的第四期活动, 为了能够白嫖到这块开发板子, 不得不掏出这块板子在Deadline之前完成一个项目.<br>看了下活动要求, 感觉点灯是最简单的. 不过既然点灯了, 就点个稍微有点难度的吧.<br>比如点亮能让性能增加200%的WS2812 RGB LED.</p>
+<span id="more"></span>
+<h2 id="开发板介绍"><a href="#开发板介绍" class="headerlink" title="开发板介绍"></a>开发板介绍</h2><p><img src="images/archives/DWM3001DK.png" alt="DWM3001CDK Dev Board"></p>
+<ul>
+<li>板子上带有DWM3001C模块</li>
+<li>可以和Apple U1 chip &amp; U2 互操作</li>
+<li>支持UWB channels 5 (6.5 GHz) and 9 (8 GHz)</li>
+<li>板载J-Link用于调试和烧录</li>
+<li>USB接口用于直接连接DWM3001C USB接口</li>
+<li>26 pin 树莓派兼容接口</li>
+<li>带有reset和一个用户按钮,板载LED</li>
+<li>所有的DWM3001C GPIOs和接口都引出</li>
+</ul>
+<p>DWM3001C内部具有一个nRF52833芯片,实际的代码其实就是运行在这颗芯片上.<br>开发工具也都是基于nRF52833的SDK.</p>
+<h2 id="控制普通LED"><a href="#控制普通LED" class="headerlink" title="控制普通LED"></a>控制普通LED</h2><p>nRF的文档和资料都很齐全, 不仅有点灯的例子, 连板子的LED和Button的引脚定义也都预定义好了.</p>
+<p>话不多说 , 直接打开官方的例子看看.<br>虽然之前完全没接触过nRF的SDK, 但是基于以前ESP开发经验, 理解示例代码并不困难.</p>
+<p>示例工程启动时候会看到板载的4颗LED会闪烁, 对着启动代码查抄到实际代码是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">BoardInit</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    bsp_board_init(BSP_INIT_LEDS | BSP_INIT_BUTTONS);</span><br><span class="line">    peripherals_init();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        bsp_board_led_invert(BSP_BOARD_LED_0);</span><br><span class="line">        bsp_board_led_invert(BSP_BOARD_LED_1);</span><br><span class="line">        bsp_board_led_invert(BSP_BOARD_LED_2);</span><br><span class="line">        bsp_board_led_invert(BSP_BOARD_LED_3);</span><br><span class="line">        nrf_delay_ms(<span class="number">250</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>甚至连LED控制也贴心的封装好了,bsp_board_led_on和bsp_board_led_off,</p>
+<p>同时还看到了在串口刷新时候闪烁LED的代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">logger_thread</span><span class="params">(<span class="type">void</span> *arg)</span> &#123;</span><br><span class="line">    UNUSED_PARAMETER(arg);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        NRF_LOG_FLUSH();</span><br><span class="line">        bsp_board_led_on(BSP_BOARD_LED_1);</span><br><span class="line">        nrf_delay_ms(<span class="number">1</span>);</span><br><span class="line">        bsp_board_led_off(BSP_BOARD_LED_1);</span><br><span class="line">        nrf_delay_ms(<span class="number">1</span>);</span><br><span class="line">        vTaskSuspend(<span class="literal">NULL</span>); <span class="comment">// Suspend myself</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="编写WS2812的驱动"><a href="#编写WS2812的驱动" class="headerlink" title="编写WS2812的驱动"></a>编写WS2812的驱动</h2><p>驱动WS2812的办法有很多, 视情况选择最合适的驱动方式.</p>
+<h3 id="IO模拟-Bit-Banging"><a href="#IO模拟-Bit-Banging" class="headerlink" title="IO模拟(Bit-Banging)"></a>IO模拟(Bit-Banging)</h3><p>这是最经典的方式, 如果芯片比较简单, 没有SPI接口, 或者SPI接口被占用了, 可以考虑使用IO模拟. 缺点是消耗CPU资源. Arduino Uno就是用这种方式驱动WS2812的<sup><a href="#fn_1" id="reffn_1">1</a></sup>.</p>
+<h3 id="PWM-DMA模拟"><a href="#PWM-DMA模拟" class="headerlink" title="PWM + DMA模拟"></a>PWM + DMA模拟</h3><p>这个方式相当于IO模拟的优化版本, 引入DMA之后, 释放了CPU资源压力.</p>
+<h3 id="SPI模拟"><a href="#SPI模拟" class="headerlink" title="SPI模拟"></a>SPI模拟</h3><p>这是一种曲线救国办法, 利用SPI的发送机制来模拟WS2812的协议, 适合SPI接口空闲的场景.<br>配合SPI DMA的情况下, 几乎不消耗CPU资源.</p>
+<h3 id="RMT模拟"><a href="#RMT模拟" class="headerlink" title="RMT模拟"></a>RMT模拟</h3><p>这是ESP32芯片的驱动方式, 利用RMT外设来模拟WS2812的协议.最为优雅, 模拟的时序非常精准, 且不需要CPU干预.<sup><a href="#fn_2" id="reffn_2">2</a></sup>.</p>
+<h2 id="最终选择"><a href="#最终选择" class="headerlink" title="最终选择"></a>最终选择</h2><p>考虑到实现难度和实际效果, 我决定采用SPI模拟的办法在DWM3001CDK上实现WS2812的驱动模拟.</p>
+<h2 id="驱动编写"><a href="#驱动编写" class="headerlink" title="驱动编写"></a>驱动编写</h2><p>参照<a target="_blank" rel="noopener" href="https://www.cnblogs.com/milton/p/17892606.html">https://www.cnblogs.com/milton/p/17892606.html</a>, 将其中的spi驱动修改为nrf52833版本.<br>编写初始化SPI代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ws2812_init</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  nrf_gpio_cfg_output(<span class="number">30</span>);</span><br><span class="line">  nrf_gpio_cfg_output(<span class="number">27</span>);</span><br><span class="line">  nrf_gpio_cfg_output(<span class="number">31</span>);</span><br><span class="line">  <span class="built_in">memset</span>(ws2812_buffer, <span class="number">0</span>, WS2812_BUFFER_SIZE);</span><br><span class="line">  <span class="type">nrf_drv_spi_config_t</span> spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;</span><br><span class="line">  spi_config.ss_pin               = NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">30</span>);</span><br><span class="line">  spi_config.miso_pin             = NRF_DRV_SPI_PIN_NOT_USED;</span><br><span class="line">  spi_config.mosi_pin             = NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">27</span>);</span><br><span class="line">  spi_config.sck_pin              = NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">31</span>);</span><br><span class="line">  spi_config.frequency            = NRF_DRV_SPI_FREQ_4M;</span><br><span class="line">  spi_config.mode                 = NRF_DRV_SPI_MODE_0;    <span class="comment">// SPI 模式 0</span></span><br><span class="line">  <span class="type">int</span> spi_ret                     = nrf_drv_spi_init(&amp;spi, &amp;spi_config, spi_event_handler, <span class="literal">NULL</span>);</span><br><span class="line">  NRF_LOG_ERROR(<span class="string">&quot;ws2812_init() = %d&quot;</span>, spi_ret);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编写发送函数代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NRF_LOG_INFO(<span class="string">&quot;ws2812_send_spi()&quot;</span>);</span><br><span class="line"></span><br><span class="line">APP_ERROR_CHECK(nrf_drv_spi_transfer(&amp;spi, ws2812_buffer, WS2812_BUFFER_SIZE, <span class="literal">NULL</span>, <span class="number">0</span>));</span><br><span class="line"><span class="keyword">while</span> (!spi_xfer_done) &#123;</span><br><span class="line">  __WFE();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 发送复位信号（保持 MOSI 低电平至少 50µs）</span></span><br><span class="line">nrf_gpio_pin_clear(NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">27</span>));</span><br><span class="line">nrf_delay_us(<span class="number">50</span>);</span><br></pre></td></tr></table></figure><br>需要修改nrf_drv_spi_transfer声明和定义,将第三个参数修改为size_t类型, 不然无法一次性传输WS2812_BUFFER_SIZE大小的数据导致颜色异常.</p>
+<p>编写颜色设置函数, 增加颜色转换函数.<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ws2812_pixel</span><span class="params">(<span class="type">uint16_t</span> led_no, <span class="type">uint8_t</span> r, <span class="type">uint8_t</span> g, <span class="type">uint8_t</span> b)</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> *ptr = &amp;ws2812_buffer[led_no * <span class="number">24</span>];</span><br><span class="line">  WS2812_FILL_BUFFER(g);</span><br><span class="line">  WS2812_FILL_BUFFER(r);</span><br><span class="line">  WS2812_FILL_BUFFER(b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ws2812_pixel_all</span><span class="params">(<span class="type">uint8_t</span> r, <span class="type">uint8_t</span> g, <span class="type">uint8_t</span> b)</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> *ptr = ws2812_buffer;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">uint16_t</span> i = <span class="number">0</span>; i &lt; WS2812_NUM_LEDS; ++i) &#123;</span><br><span class="line">    WS2812_FILL_BUFFER(g);</span><br><span class="line">    WS2812_FILL_BUFFER(r);</span><br><span class="line">    WS2812_FILL_BUFFER(b);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">hsv_to_rgb</span><span class="params">(<span class="type">uint8_t</span> h, <span class="type">uint8_t</span> s, <span class="type">uint8_t</span> v, <span class="type">uint8_t</span> *r, <span class="type">uint8_t</span> *g, <span class="type">uint8_t</span> *b)</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> region, remainder, p, q, t;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (s == <span class="number">0</span>) &#123;</span><br><span class="line">    *r = v;</span><br><span class="line">    *g = v;</span><br><span class="line">    *b = v;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  region    = h / <span class="number">43</span>;</span><br><span class="line">  remainder = (h - (region * <span class="number">43</span>)) * <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">  p = (v * (<span class="number">255</span> - s)) &gt;&gt; <span class="number">8</span>;</span><br><span class="line">  q = (v * (<span class="number">255</span> - ((s * remainder) &gt;&gt; <span class="number">8</span>))) &gt;&gt; <span class="number">8</span>;</span><br><span class="line">  t = (v * (<span class="number">255</span> - ((s * (<span class="number">255</span> - remainder)) &gt;&gt; <span class="number">8</span>))) &gt;&gt; <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (region) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">    *r = v;</span><br><span class="line">    *g = t;</span><br><span class="line">    *b = p;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    *r = q;</span><br><span class="line">    *g = v;</span><br><span class="line">    *b = p;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    *r = p;</span><br><span class="line">    *g = v;</span><br><span class="line">    *b = t;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">    *r = p;</span><br><span class="line">    *g = q;</span><br><span class="line">    *b = v;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">    *r = t;</span><br><span class="line">    *g = p;</span><br><span class="line">    *b = v;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    *r = v;</span><br><span class="line">    *g = p;</span><br><span class="line">    *b = q;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后加上经典的渐变函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ws2812_row_gradient</span><span class="params">(<span class="type">uint16_t</span> i)</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">uint8_t</span> row = <span class="number">0</span>; row &lt; WS2812_ROWS; row++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint8_t</span> col = <span class="number">0</span>; col &lt; WS2812_COLS; col++) &#123;</span><br><span class="line">      <span class="comment">// 计算当前 LED 的色相值</span></span><br><span class="line">      <span class="type">uint8_t</span> hue = (i + row * <span class="number">256</span> / WS2812_ROWS) % <span class="number">256</span>;</span><br><span class="line">      <span class="type">uint8_t</span> r, g, b;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 将 HSV 转换为 RGB，亮度设置为 50</span></span><br><span class="line">      hsv_to_rgb(hue, <span class="number">255</span>, <span class="number">16</span>, &amp;r, &amp;g, &amp;b);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 计算 LED 索引</span></span><br><span class="line">      <span class="type">uint16_t</span> led = row * WS2812_COLS + col;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 设置 LED 颜色</span></span><br><span class="line">      ws2812_pixel(led, r, g, b);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ws2812_col_gradient</span><span class="params">(<span class="type">uint16_t</span> i)</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">uint8_t</span> col = <span class="number">0</span>; col &lt; WS2812_COLS; col++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint8_t</span> row = <span class="number">0</span>; row &lt; WS2812_ROWS; row++) &#123;</span><br><span class="line">      <span class="comment">// 计算当前 LED 的色相值</span></span><br><span class="line">      <span class="type">uint8_t</span> hue = (i + col * <span class="number">256</span> / WS2812_COLS) % <span class="number">256</span>;</span><br><span class="line">      <span class="type">uint8_t</span> r, g, b;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 将 HSV 转换为 RGB，亮度设置为 50</span></span><br><span class="line">      hsv_to_rgb(hue, <span class="number">255</span>, <span class="number">50</span>, &amp;r, &amp;g, &amp;b);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 计算 LED 索引</span></span><br><span class="line">      <span class="type">uint16_t</span> led = row * WS2812_COLS + col;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 设置 LED 颜色</span></span><br><span class="line">      ws2812_pixel(led, r, g, b);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第一颗灯珠颜色异常修复"><a href="#第一颗灯珠颜色异常修复" class="headerlink" title="第一颗灯珠颜色异常修复"></a>第一颗灯珠颜色异常修复</h2><p>上面的代码编写完成烧录运行后, 发现第一个灯珠总是绿色,<br>一番搜索后找到了修复办法, 核心思想是就是在发送数据前, 先发送几个零字节.<sup><a href="#fn_3" id="reffn_3">3</a></sup></p>
+<p>所以我们为buffer增加头部零字节<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> WS2812_NUM_LEDS 60      <span class="comment">// 6x10 灯板，共 60 个 LED</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WS2812_RESET_PULSE 60</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WS2812_EXTRA_ZEROS 4    <span class="comment">// 添加 4 个零字节</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WS2812_BUFFER_SIZE (WS2812_NUM_LEDS * 24 + WS2812_RESET_PULSE + WS2812_EXTRA_ZEROS)</span></span><br></pre></td></tr></table></figure></p>
+<p>同时更新初始化代码, 颜色设置和发送函数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ws2812_send_spi</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  NRF_LOG_INFO(<span class="string">&quot;ws2812_send_spi()&quot;</span>);</span><br><span class="line">  <span class="built_in">memset</span>(ws2812_buffer, <span class="number">0</span>, WS2812_EXTRA_ZEROS);</span><br><span class="line">  APP_ERROR_CHECK(nrf_drv_spi_transfer(&amp;spi, ws2812_buffer, WS2812_BUFFER_SIZE, <span class="literal">NULL</span>, <span class="number">0</span>));</span><br><span class="line">  <span class="keyword">while</span> (!spi_xfer_done) &#123;</span><br><span class="line">    __WFE();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 发送复位信号（保持 MOSI 低电平至少 50µs）</span></span><br><span class="line">  nrf_gpio_pin_clear(NRF_GPIO_PIN_MAP(<span class="number">0</span>, <span class="number">27</span>));</span><br><span class="line">  nrf_delay_us(<span class="number">50</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ws2812_pixel</span><span class="params">(<span class="type">uint16_t</span> led_no, <span class="type">uint8_t</span> r, <span class="type">uint8_t</span> g, <span class="type">uint8_t</span> b)</span> &#123;</span><br><span class="line">  <span class="type">uint8_t</span> *ptr = &amp;ws2812_buffer[WS2812_EXTRA_ZEROS + led_no * <span class="number">24</span>];</span><br><span class="line">  WS2812_FILL_BUFFER(g);</span><br><span class="line">  WS2812_FILL_BUFFER(r);</span><br><span class="line">  WS2812_FILL_BUFFER(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再次编写测试代码,检查最终效果是否正常<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ws2812_init();</span><br><span class="line"><span class="type">uint16_t</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="comment">// 列渐变效果</span></span><br><span class="line">  ws2812_col_gradient(i);</span><br><span class="line">  ws2812_send_spi();</span><br><span class="line">  nrf_delay_ms(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 更新色相值</span></span><br><span class="line">  i = (i + <span class="number">1</span>) % <span class="number">256</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这一次第一个LED终于听话了.</p>
+<h2 id="数字显示"><a href="#数字显示" class="headerlink" title="数字显示"></a>数字显示</h2><p>手动编写一个字库, 并且按照对应的位置填充到buffer中.<br>实际运行如下.<br><img src="images/archives/dwm3001cdk_drive_ws2812_show_numbers.png" alt="ws2812_test"><br>这里我接了一个温湿度传感器, 屏幕会用不同颜色展示温度和湿度数值.<br>上图中展示的是当前湿度53%.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 SPI 模拟时序驱动 WS2812 是一种在硬件资源受限且无 RMT 外设的情况下的绝佳选择。在 DWM3001CDK 上实现这一功能，不仅达到了 FastBond 项目的要求，也为后续开发更复杂的 UWB 定位可视化界面打下了基础。</p>
+<blockquote id="fn_1">
+<sup>1</sup>. <a target="_blank" rel="noopener" href="https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.cpp">https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.cpp</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. <a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/arduino-esp32/en/latest/api/rmt.html">https://docs.espressif.com/projects/arduino-esp32/en/latest/api/rmt.html</a><a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_3">
+<sup>3</sup>. <a target="_blank" rel="noopener" href="https://www.reddit.com/r/arduino/comments/499ods/strip_of_144_ws2812b_leds_first_led_stuck_green/">https://www.reddit.com/r/arduino/comments/499ods/strip_of_144_ws2812b_leds_first_led_stuck_green/</a><a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+                    
+                      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%9D%BF%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">开发板介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%99%AE%E9%80%9ALED"><span class="toc-number">3.</span> <span class="toc-text">控制普通LED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99WS2812%E7%9A%84%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.</span> <span class="toc-text">编写WS2812的驱动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E6%A8%A1%E6%8B%9F-Bit-Banging"><span class="toc-number">4.1.</span> <span class="toc-text">IO模拟(Bit-Banging)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PWM-DMA%E6%A8%A1%E6%8B%9F"><span class="toc-number">4.2.</span> <span class="toc-text">PWM + DMA模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SPI%E6%A8%A1%E6%8B%9F"><span class="toc-number">4.3.</span> <span class="toc-text">SPI模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RMT%E6%A8%A1%E6%8B%9F"><span class="toc-number">4.4.</span> <span class="toc-text">RMT模拟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9"><span class="toc-number">5.</span> <span class="toc-text">最终选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E7%BC%96%E5%86%99"><span class="toc-number">6.</span> <span class="toc-text">驱动编写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%97%E7%81%AF%E7%8F%A0%E9%A2%9C%E8%89%B2%E5%BC%82%E5%B8%B8%E4%BF%AE%E5%A4%8D"><span class="toc-number">7.</span> <span class="toc-text">第一颗灯珠颜色异常修复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E6%98%BE%E7%A4%BA"><span class="toc-number">8.</span> <span class="toc-text">数字显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&text=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&is_video=false&description=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DWM3001CDK点亮WS2812 RGB LED&body=Check out this article: https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&title=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&name=DWM3001CDK点亮WS2812 RGB LED&description=&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;去年参加了FastBond的第四期活动, 为了能够白嫖到这块开发板子, 不得不掏出这块板子在Deadline之前完成一个项目.&lt;br&gt;看了下活动要求, 感觉点灯是最简单的. 不过既然点灯了, 就点个稍微有点难度的吧.&lt;br&gt;比如点亮能让性能增加200%的WS2812 RGB LED.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/DWM3001CDK-spi-ws2812-driver/&t=DWM3001CDK点亮WS2812 RGB LED"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+                        
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

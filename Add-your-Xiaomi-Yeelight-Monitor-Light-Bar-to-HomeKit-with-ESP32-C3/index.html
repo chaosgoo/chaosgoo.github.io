@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="改造米家屏幕挂灯。拆解、引脚测量和替换ESP32芯片，将台灯接入HomeKit智能家居系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="改装米家1代屏幕挂灯,接入HomeKit">
+<meta property="og:url" content="https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="改造米家屏幕挂灯。拆解、引脚测量和替换ESP32芯片，将台灯接入HomeKit智能家居系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/70440401_measurePins.webp">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/a6b6f135_lamp___pcb_top_view0_25x.png">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/5f7c392b_WiredPreview.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/migrated/98fa8256_controlbyphone.webp">
+<meta property="article:published_time" content="2024-01-28T00:58:47.000Z">
+<meta property="article:modified_time" content="2025-11-29T02:42:01.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/migrated/70440401_measurePins.webp">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            改装米家1代屏幕挂灯,接入HomeKit
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- styles -->
+                                                              <link rel="stylesheet"
+                                                                href="/css/style.css">
+                                                              <!-- styles -->
+
+            <!-- Font Awesome removed - using inline SVG icons instead -->
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+		inlineMath: [['$','$']]
+	  }
+	});
+</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/Friday-Ink/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/the-death-of-onresume-declarative-ui-lifecycle/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&text=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&is_video=false&description=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=改装米家1代屏幕挂灯,接入HomeKit&body=Check out this article: https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&name=改装米家1代屏幕挂灯,接入HomeKit&description=&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我住的屋子床头没有插座也没有控制房间顶灯的开关,假如熄灯睡觉的话会让房间陷入一片漆黑.&lt;br&gt;所以很长一段时间里我都把米家屏幕挂灯的控制器放在床头,用于临时照明.&lt;br&gt;&lt;br&gt;这就引发了另外一个问题,每次回家开电脑打开屏幕挂灯,我都得走到床头找到控制器开启屏幕挂灯.&lt;br&gt;在经历了多次麻烦后,我决定把这个屏幕挂灯接入HomeKit. 这样就可以用语音或者手机控制了.&lt;/p&gt;
+&lt;h3 id=&#34;资料搜集&#34;&gt;&lt;a href=&#34;#资料搜集&#34; class=&#34;headerlink&#34; title=&#34;资料搜集&#34;&gt;&lt;/a&gt;资料搜集&lt;/h3&gt;&lt;p&gt;在阅读了这篇&lt;a href=&#34;https://www.chongdiantou.com/archives/55542.html&#34;&gt;拆解报告：MJ米家显示器挂灯MJGJD01YL&lt;/a&gt;后, 需要做的工作就很明确了.&lt;br&gt;大致分为以下几个步骤&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;阅读手册,找到控制引脚&lt;/li&gt;
+&lt;li&gt;拆除芯片,替换成ESP32&lt;/li&gt;
+&lt;li&gt;编写代码,接入HomeKit&lt;/li&gt;
+&lt;/ul&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&t=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E6%90%9C%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">资料搜集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%89%8B%E5%86%8C-%E6%89%BE%E5%88%B0%E6%8E%A7%E5%88%B6%E5%BC%95%E8%84%9A"><span class="toc-number">3.</span> <span class="toc-text">阅读手册,找到控制引脚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%86%E9%99%A4%E8%8A%AF%E7%89%87-%E6%9B%BF%E6%8D%A2%E6%88%90ESP32"><span class="toc-number">4.</span> <span class="toc-text">拆除芯片,替换成ESP32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81-%E6%8E%A5%E5%85%A5HomeKit"><span class="toc-number">5.</span> <span class="toc-text">编写代码,接入HomeKit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">6.</span> <span class="toc-text">效果展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">7.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        改装米家1代屏幕挂灯,接入HomeKit
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-28T00:58:47.000Z" class="dt-published" itemprop="datePublished">2024-01-28</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Hardware-IoT/">Hardware & IoT</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/ESP32/" rel="tag">ESP32</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我住的屋子床头没有插座也没有控制房间顶灯的开关,假如熄灯睡觉的话会让房间陷入一片漆黑.<br>所以很长一段时间里我都把米家屏幕挂灯的控制器放在床头,用于临时照明.<br><br>这就引发了另外一个问题,每次回家开电脑打开屏幕挂灯,我都得走到床头找到控制器开启屏幕挂灯.<br>在经历了多次麻烦后,我决定把这个屏幕挂灯接入HomeKit. 这样就可以用语音或者手机控制了.</p>
+<h3 id="资料搜集"><a href="#资料搜集" class="headerlink" title="资料搜集"></a>资料搜集</h3><p>在阅读了这篇<a target="_blank" rel="noopener" href="https://www.chongdiantou.com/archives/55542.html">拆解报告：MJ米家显示器挂灯MJGJD01YL</a>后, 需要做的工作就很明确了.<br>大致分为以下几个步骤</p>
+<ul>
+<li>阅读手册,找到控制引脚</li>
+<li>拆除芯片,替换成ESP32</li>
+<li>编写代码,接入HomeKit</li>
+</ul>
+<span id="more"></span>
+<h3 id="阅读手册-找到控制引脚"><a href="#阅读手册-找到控制引脚" class="headerlink" title="阅读手册,找到控制引脚"></a>阅读手册,找到控制引脚</h3><p>看完拆解报告后,得知亮度由TLSR8368和SY7301A芯片控制实现, 两款芯片的资料很容易在Google上搜索到.<br><br>基本上可以确定是由TLSR8368发送PWM信号给SY7301A进行调光.</p>
+<p>TLSR8368一共就16个引脚, 对照手册配合示波器挨个测量控制引脚测出PWM引脚是由#3,#5产生, 还有一个引脚#8用于使能SY7301A芯片.</p>
+<p><img src="/images/migrated/70440401_measurePins.webp" alt="measurePins"></p>
+<p>测量出引脚如下</p>
+<html><div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;zoom&quot;:3,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2024-03-02T02:06:25.301Z\&quot; agent=\&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36\&quot; etag=\&quot;zmgi8oENtgMkKsBrgtmF\&quot; version=\&quot;23.0.2\&quot; type=\&quot;device\&quot;&gt;\n  &lt;diagram name=\&quot;第 1 页\&quot; id=\&quot;LCz4lk7aObaaRWTkYqqO\&quot;&gt;\n    &lt;mxGraphModel dx=\&quot;674\&quot; dy=\&quot;397\&quot; grid=\&quot;1\&quot; gridSize=\&quot;10\&quot; guides=\&quot;1\&quot; tooltips=\&quot;1\&quot; connect=\&quot;1\&quot; arrows=\&quot;1\&quot; fold=\&quot;1\&quot; page=\&quot;1\&quot; pageScale=\&quot;1\&quot; pageWidth=\&quot;1169\&quot; pageHeight=\&quot;827\&quot; math=\&quot;0\&quot; shadow=\&quot;0\&quot;&gt;\n      &lt;root&gt;\n        &lt;mxCell id=\&quot;0\&quot; /&gt;\n        &lt;mxCell id=\&quot;1\&quot; parent=\&quot;0\&quot; /&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot; value=\&quot;\&quot; style=\&quot;group;rotation=-180;\&quot; vertex=\&quot;1\&quot; connectable=\&quot;0\&quot; parent=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;520\&quot; y=\&quot;330\&quot; width=\&quot;172\&quot; height=\&quot;200\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-1\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#30312E;strokeColor=none;arcSize=0;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;2\&quot; y=\&quot;70\&quot; width=\&quot;170\&quot; height=\&quot;60\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-3\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;152\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-4\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;132\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-5\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;112\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-6\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;92\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-7\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;72\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-8\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;52\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-9\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;32\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-10\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;12\&quot; y=\&quot;130\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-15\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;152\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-16\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;132\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-17\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;112\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-18\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;92\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-19\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;72\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-20\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;52\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-21\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;32\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-22\&quot; value=\&quot;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;12\&quot; y=\&quot;50\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-25\&quot; value=\&quot;\&quot; style=\&quot;ellipse;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#7C838A;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;152\&quot; y=\&quot;80\&quot; width=\&quot;10\&quot; height=\&quot;10\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-30\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#E83131;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;112\&quot; y=\&quot;160\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-31\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;3.3V&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;85\&quot; y=\&quot;155\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-34\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#363A44;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;132\&quot; y=\&quot;160\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-35\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;GND&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;105\&quot; y=\&quot;155\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-48\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#7AC943;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;112\&quot; y=\&quot;20\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-49\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;LEDA&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;85\&quot; y=\&quot;15\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-56\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#7AC943;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;72\&quot; y=\&quot;20\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-57\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;LEDB&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;45\&quot; y=\&quot;15\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-60\&quot; value=\&quot;&amp;lt;p style=&amp;quot;line-height: 80%;&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;pre style=&amp;quot;line-height: 0%; font-size: 11px;&amp;quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#7AC943;strokeColor=none;rotation=-180;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;12\&quot; y=\&quot;20\&quot; width=\&quot;10\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;SZQ5ORvzcgiBlN3VIBLx-61\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font color=&amp;quot;#ffffff&amp;quot; style=&amp;quot;font-size: 6px;&amp;quot;&amp;gt;EN&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;\&quot; vertex=\&quot;1\&quot; parent=\&quot;SZQ5ORvzcgiBlN3VIBLx-86\&quot;&gt;\n          &lt;mxGeometry x=\&quot;-15\&quot; y=\&quot;15\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot; /&gt;\n        &lt;/mxCell&gt;\n      &lt;/root&gt;\n    &lt;/mxGraphModel&gt;\n  &lt;/diagram&gt;\n&lt;/mxfile&gt;\n&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+</html>
+
+
+<h3 id="拆除芯片-替换成ESP32"><a href="#拆除芯片-替换成ESP32" class="headerlink" title="拆除芯片,替换成ESP32"></a>拆除芯片,替换成ESP32</h3><p>到了这一步需要选择合适尺寸的芯片,然后重新绘制一块板子寄生在原始位置即可.</p>
+<p>拆除原来的TLSR8368以后,留下的空间还算宽敞.<br>选用尺寸较小的ESP32-C3(对应的型号名称是ESP8685), 封装为QFN28 4x4mm</p>
+<p><img src="/images/migrated/a6b6f135_lamp___pcb_top_view0_25x.png" alt="Lamp++ Top View"></p>
+<p>这里右半部分的TypeC和LDO部分将会在在烧录后折断, 后续固件可以通过4P 2mm间距探针或者OTA进行更新.</p>
+<p>附上一张初版焊接后的图片, 初版为之前没有预留可折断TypeC部分的版本.</p>
+<p><img src="/images/migrated/5f7c392b_WiredPreview.jpg" alt="Preview"></p>
+<h3 id="编写代码-接入HomeKit"><a href="#编写代码-接入HomeKit" class="headerlink" title="编写代码,接入HomeKit"></a>编写代码,接入HomeKit</h3><p>得益于HomeSpan这个库,需要编写的代码很简单.</p>
+<p>目前实现了白色LED的调光, 由于我损坏了暖黄色LED控制引脚的阻焊,导致最终版本未能实现色温调节功能。</p>
+<p>因此，以下代码主要演示了如何控制白色LED的开关与调光</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;HomeSpan.h&quot;</span></span></span><br><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;extras/PwmPin.h&quot;</span>  <span class="comment">// library of various PWM functions</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">FadingLED</span> : Service::LightBulb &#123;</span><br><span class="line">  LedPin *ledPin;             <span class="comment">// reference to Led Pin</span></span><br><span class="line">  SpanCharacteristic *power;  <span class="comment">// reference to the On Characteristic</span></span><br><span class="line">  SpanCharacteristic *level;  <span class="comment">// reference to the Brightness Characteristic</span></span><br><span class="line">  SpanCharacteristic *colorTemperature;  <span class="comment">// reference to the Color Temperature</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">FadingLED</span>(<span class="type">int</span> _ledPin) : Service::<span class="built_in">LightBulb</span>() &#123;</span><br><span class="line">    power = <span class="keyword">new</span> Characteristic::<span class="built_in">On</span>();</span><br><span class="line">    level = <span class="keyword">new</span> Characteristic::<span class="built_in">Brightness</span>(<span class="number">0</span>);</span><br><span class="line">    colorTemperature = <span class="keyword">new</span> Characteristic::<span class="built_in">ColorTemperature</span>(<span class="number">200</span>, <span class="literal">true</span>);</span><br><span class="line">    ledPin = <span class="keyword">new</span> <span class="built_in">LedPin</span>(_ledPin);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">boolean <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;power-&gt;getNewVal()=%d&quot;</span>, power-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;,level-&gt;getNewVal()=%d&quot;</span>, level-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    Serial.<span class="built_in">printf</span>(<span class="string">&quot;,colorTemperature-&gt;getNewVal()=%d\n&quot;</span>,</span><br><span class="line">                  colorTemperature-&gt;<span class="built_in">getNewVal</span>());</span><br><span class="line">    ledPin-&gt;<span class="built_in">fade</span>(power-&gt;<span class="built_in">getNewVal</span>() * level-&gt;<span class="built_in">getNewVal</span>(), <span class="number">2000</span>,</span><br><span class="line">                 LedPin::PROPORTIONAL);</span><br><span class="line">    <span class="keyword">while</span> (ledPin-&gt;<span class="built_in">fadeStatus</span>() == LedPin::FADING)</span><br><span class="line">      ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="literal">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ledPin-&gt;<span class="built_in">fadeStatus</span>() == LedPin::COMPLETED) &#123;</span><br><span class="line">      power-&gt;<span class="built_in">setVal</span>(<span class="number">1</span> - power-&gt;<span class="built_in">getVal</span>());</span><br><span class="line">      level-&gt;<span class="built_in">setVal</span>(power-&gt;<span class="built_in">getVal</span>() ? <span class="number">100</span> : <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">pinMode</span>(<span class="number">5</span>, OUTPUT);</span><br><span class="line">  <span class="built_in">pinMode</span>(<span class="number">10</span>, OUTPUT);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">5</span>, HIGH);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">10</span>, LOW);</span><br><span class="line">  Serial.<span class="built_in">begin</span>(<span class="number">115200</span>);</span><br><span class="line">  <span class="built_in">digitalWrite</span>(<span class="number">10</span>, HIGH);</span><br><span class="line"></span><br><span class="line">  Serial.<span class="built_in">println</span>(<span class="string">&quot;Wi-Fi is Connected!&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">enableOTA</span>(<span class="string">&quot;12345678&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">setPairingCode</span>(<span class="string">&quot;11223344&quot;</span>);</span><br><span class="line">  homeSpan.<span class="built_in">begin</span>(Category::Lighting, <span class="string">&quot;Lamp++&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">SpanAccessory</span>();</span><br><span class="line">  <span class="keyword">new</span> Service::<span class="built_in">AccessoryInformation</span>();</span><br><span class="line">  <span class="keyword">new</span> Characteristic::<span class="built_in">Identify</span>();</span><br><span class="line">  <span class="keyword">new</span> Characteristic::<span class="built_in">ColorTemperature</span>(<span class="number">200</span>, <span class="literal">true</span>);</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">FadingLED</span>(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//////////////////////////////////////</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123; </span><br><span class="line">  homeSpan.<span class="built_in">poll</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[env:airm2m_core_esp32c3]</span></span><br><span class="line"><span class="attr">platform</span> = espressif32@<span class="number">5.4</span>.<span class="number">0</span></span><br><span class="line"><span class="attr">board</span> = airm2m_core_esp32c3</span><br><span class="line"><span class="attr">framework</span> = ardui<span class="literal">no</span></span><br><span class="line"><span class="attr">monitor_speed</span> = <span class="number">115200</span></span><br><span class="line"><span class="attr">lib_deps</span> = homespan/HomeSpan@^<span class="number">1.8</span>.<span class="number">0</span></span><br><span class="line"><span class="comment">; upload_protocol = espota</span></span><br><span class="line"><span class="comment">; upload_flags =  --auth=12345678</span></span><br><span class="line"><span class="comment">; upload_port = 192.168.0.104</span></span><br><span class="line"><span class="attr">build_flags</span> = </span><br><span class="line">	-D <span class="attr">ARDUINO_USB_MODE</span>=<span class="number">1</span></span><br><span class="line">	-D <span class="attr">ARDUINO_USB_CDC_ON_BOOT</span>=<span class="number">1</span>  </span><br></pre></td></tr></table></figure>
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p><img src="/images/migrated/98fa8256_controlbyphone.webp" alt="Preview2 "></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.chongdiantou.com/archives/55542.html">拆解报告：MJ米家显示器挂灯MJGJD01YL</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+                    
+                      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E6%90%9C%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">资料搜集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%89%8B%E5%86%8C-%E6%89%BE%E5%88%B0%E6%8E%A7%E5%88%B6%E5%BC%95%E8%84%9A"><span class="toc-number">3.</span> <span class="toc-text">阅读手册,找到控制引脚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%86%E9%99%A4%E8%8A%AF%E7%89%87-%E6%9B%BF%E6%8D%A2%E6%88%90ESP32"><span class="toc-number">4.</span> <span class="toc-text">拆除芯片,替换成ESP32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81-%E6%8E%A5%E5%85%A5HomeKit"><span class="toc-number">5.</span> <span class="toc-text">编写代码,接入HomeKit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">6.</span> <span class="toc-text">效果展示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">7.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&text=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&is_video=false&description=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=改装米家1代屏幕挂灯,接入HomeKit&body=Check out this article: https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&title=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&name=改装米家1代屏幕挂灯,接入HomeKit&description=&lt;h3 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我住的屋子床头没有插座也没有控制房间顶灯的开关,假如熄灯睡觉的话会让房间陷入一片漆黑.&lt;br&gt;所以很长一段时间里我都把米家屏幕挂灯的控制器放在床头,用于临时照明.&lt;br&gt;&lt;br&gt;这就引发了另外一个问题,每次回家开电脑打开屏幕挂灯,我都得走到床头找到控制器开启屏幕挂灯.&lt;br&gt;在经历了多次麻烦后,我决定把这个屏幕挂灯接入HomeKit. 这样就可以用语音或者手机控制了.&lt;/p&gt;
+&lt;h3 id=&#34;资料搜集&#34;&gt;&lt;a href=&#34;#资料搜集&#34; class=&#34;headerlink&#34; title=&#34;资料搜集&#34;&gt;&lt;/a&gt;资料搜集&lt;/h3&gt;&lt;p&gt;在阅读了这篇&lt;a href=&#34;https://www.chongdiantou.com/archives/55542.html&#34;&gt;拆解报告：MJ米家显示器挂灯MJGJD01YL&lt;/a&gt;后, 需要做的工作就很明确了.&lt;br&gt;大致分为以下几个步骤&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;阅读手册,找到控制引脚&lt;/li&gt;
+&lt;li&gt;拆除芯片,替换成ESP32&lt;/li&gt;
+&lt;li&gt;编写代码,接入HomeKit&lt;/li&gt;
+&lt;/ul&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/Add-your-Xiaomi-Yeelight-Monitor-Light-Bar-to-HomeKit-with-ESP32-C3/&t=改装米家1代屏幕挂灯,接入HomeKit"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+                        
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

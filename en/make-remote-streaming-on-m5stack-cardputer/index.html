@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html
+  lang="en">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="Five years later, I return to the ESP32 streaming challenge with the M5Stack Cardputer. Moving from a breadboard setup to hard-core H.264 decoding in your palm.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Real-time Desktop Streaming on M5Stack Cardputer via H.264">
+<meta property="og:url" content="https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="Five years later, I return to the ESP32 streaming challenge with the M5Stack Cardputer. Moving from a breadboard setup to hard-core H.264 decoding in your palm.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/cardputer-streaming/cardputer-streaming-cover.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/cardputer-streaming/cardputer-after-mcu-upgrade.jpg">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/cardputer-streaming/cardputer-streaming-menu-ui.jpg">
+<meta property="article:published_time" content="2026-02-08T14:55:41.000Z">
+<meta property="article:modified_time" content="2026-02-08T14:55:41.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/archives/cardputer-streaming/cardputer-streaming-cover.jpg">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            Real-time Desktop Streaming on M5Stack Cardputer via H.264
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- styles -->
+                                                              <link rel="stylesheet"
+                                                                href="/css/style.css">
+                                                              <!-- styles -->
+
+            <!-- Font Awesome removed - using inline SVG icons instead -->
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+		inlineMath: [['$','$']]
+	  }
+	});
+</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/projects/">Projects</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/make-remote-streaming-on-m5stack-cardputer/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/android-lvgl-style-border/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&text=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&is_video=false&description=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Real-time Desktop Streaming on M5Stack Cardputer via H.264&body=Check out this article: https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&name=Real-time Desktop Streaming on M5Stack Cardputer via H.264&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&t=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-number">1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Additional-Note"><span class="toc-number">2.</span> <span class="toc-text">Additional Note</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-PSRAM-is-Mandatory-The-%E2%80%9CSRAM-Only%E2%80%9D-Experiment"><span class="toc-number">2.1.</span> <span class="toc-text">Why PSRAM is Mandatory: The “SRAM-Only” Experiment</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#System-Architecture"><span class="toc-number">3.</span> <span class="toc-text">System Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Communication-Pipeline"><span class="toc-number">3.1.</span> <span class="toc-text">Communication Pipeline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Challenges-amp-Solutions"><span class="toc-number">4.</span> <span class="toc-text">Key Challenges &amp; Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Multi-core-Scheduling-amp-Watchdog-WDT-Errors"><span class="toc-number">4.1.</span> <span class="toc-text">1. Multi-core Scheduling &amp; Watchdog (WDT) Errors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Memory-Management"><span class="toc-number">4.2.</span> <span class="toc-text">2. Memory Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E2%80%9CFrame-Catching%E2%80%9D-Algorithm-for-Latency"><span class="toc-number">4.3.</span> <span class="toc-text">3. “Frame-Catching” Algorithm for Latency</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Controller-Design"><span class="toc-number">5.</span> <span class="toc-text">Controller Design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">6.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Real-time Desktop Streaming on M5Stack Cardputer via H.264
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-02-08T14:55:41.000Z" class="dt-published" itemprop="datePublished">2026-02-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/ESP32/" rel="tag">ESP32</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <blockquote>
+<p>🌐 <strong>中文版</strong>: <a href="/make-remote-streaming-on-m5stack-cardputer/">阅读中文版本</a></p>
+</blockquote>
+<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>It’s been five years since I first tinkered with <a href="/ESP32-Streaming/">ESP32 streaming</a> on a messy breadboard.<br>At that time, the setup was built on a breadboard, featuring a 1.14” screen with a 240x135 resolution, powered by the original ESP32. That post described the implementation details in depth.</p>
+<p>Five years later, I decided to revisit this project and migrate the hardware environment to the M5Stack Cardputer.</p>
+<p><img src="/images/archives/cardputer-streaming/cardputer-streaming-cover.jpg" alt="M5Stack Cardputer H264 Streaming"></p>
+<h2 id="Additional-Note"><a href="#Additional-Note" class="headerlink" title="Additional Note"></a>Additional Note</h2><p>My Cardputer has been manually upgraded. The original main controller was an ESP32-S3FN8 (8MB built-in Flash, no PSRAM), which I replaced with an ESP32-S3FH4R2.<br>I sacrificed 4MB of Flash to gain 2MB of PSRAM.</p>
+<p><img src="/images/archives/cardputer-streaming/cardputer-after-mcu-upgrade.jpg" alt="Manual replacement of ESP32-S3 chip on M5Stack Cardputer using heat gun and aluminum foil tape"></p>
+<p>The image above shows a close-up of the chip replacement. To protect the surrounding delicate SMD components, I used aluminum foil tape for heat insulation. You can still see some flux residue around the solder joints—it might not look pretty, but it gave this little machine “new life.”</p>
+<h3 id="Why-PSRAM-is-Mandatory-The-“SRAM-Only”-Experiment"><a href="#Why-PSRAM-is-Mandatory-The-“SRAM-Only”-Experiment" class="headerlink" title="Why PSRAM is Mandatory: The “SRAM-Only” Experiment"></a>Why PSRAM is Mandatory: The “SRAM-Only” Experiment</h3><p>Before deciding to swap the chip, I tried extensively to get H.264 decoding running on the <strong>PSRAM-less</strong> original Cardputer. It turned out to be nearly a “Mission Impossible.”</p>
+<p>H.264 software decoders have rigid memory requirements. Even at a low resolution like 240x136, the DPB (Decoded Picture Buffer) mechanism and SPS activation require large, contiguous blocks of memory. After running the WiFi stack, TCP/IP, and WebSocket service, the internal SRAM of the ESP32-S3 has very little contiguous space left.</p>
+<p>I tried some extreme optimizations to save memory:</p>
+<ul>
+<li><strong>Removing LVGL UI</strong>: Switched to bare-metal display control, reclaiming ~50KB.</li>
+<li><strong>Squeezing System Components</strong>: Reduced WiFi dynamic TX buffers from 32 to 4 and static RX buffers to 3, saving ~45KB.</li>
+<li><strong>Discarding Double Buffering</strong>: Implemented a “Decode -&gt; Convert -&gt; Push to Screen” synchronous model to eliminate display redundancy.</li>
+</ul>
+<p>Despite reclaiming over 100KB, the <code>esp-h264</code> library still failed during initialization because it couldn’t allocate enough contiguous working memory.<br><strong>Conclusion:</strong> For H.264, which relies on reference frames, PSRAM is a “life-saver” for ESP32-S3. If you want to play with real-time video streams, manually soldering a PSRAM-capable chip is the most efficient solution.</p>
+<h2 id="System-Architecture"><a href="#System-Architecture" class="headerlink" title="System Architecture"></a>System Architecture</h2><p>With the extra PSRAM, I can perform H.264 stream decoding directly on the device.<br>Espressif provides a component called <code>esp_h264</code>, which enables software decoding on the ESP32-S3. My tests showed that 2MB of PSRAM is just enough to support 240x136 decoding (the screen is 240x135, but H.264 requires even dimensions).</p>
+<h3 id="Communication-Pipeline"><a href="#Communication-Pipeline" class="headerlink" title="Communication Pipeline"></a>Communication Pipeline</h3><p>To ensure ultra-low latency, I redesigned the communication architecture:</p>
+<ol>
+<li><strong>Sender (Browser)</strong>: Uses the browser’s <code>getDisplayMedia</code> to capture the desktop, encodes it using <code>WebCodecs</code> into H.264 Annex B format (set to GOP=1 for I-frame only mode), and sends the binary data over WebSocket.</li>
+<li><strong>Receiver &amp; Buffer (ESP32-S3)</strong>: The Cardputer acts as a WebSocket Server, receiving data and storing it in a <code>RingBuffer</code> for smoothing.</li>
+<li><strong>Decryption/Decoding Core</strong>: A dedicated decoding task pulls raw byte streams from the RingBuffer and decodes them into YUV420P images using <code>esp_h264</code>.</li>
+<li><strong>Color Conversion &amp; Display</strong>: Decoded images are converted to RGB565 in real-time and pushed directly to the ST7789 screen via SPI DMA.</li>
+</ol>
+<h2 id="Key-Challenges-amp-Solutions"><a href="#Key-Challenges-amp-Solutions" class="headerlink" title="Key Challenges &amp; Solutions"></a>Key Challenges &amp; Solutions</h2><h3 id="1-Multi-core-Scheduling-amp-Watchdog-WDT-Errors"><a href="#1-Multi-core-Scheduling-amp-Watchdog-WDT-Errors" class="headerlink" title="1. Multi-core Scheduling &amp; Watchdog (WDT) Errors"></a>1. Multi-core Scheduling &amp; Watchdog (WDT) Errors</h3><p>In early versions, decoding, color conversion, screen refresh, and LVGL UI updates all ran on the same core. This caused the CPU usage to spike, frequently triggering Task Watchdog resets.<br><strong>Solution</strong>:</p>
+<ul>
+<li><strong>Core Affinity</strong>: Core 0 handles the WiFi stack, WebSocket service, and LVGL UI tasks.</li>
+<li><strong>Dedicated Decoding Core</strong>: Core 1 is assigned as a high-priority task, solely responsible for H.264 decoding, YUV-to-RGB conversion, and LCD bitmap refreshing.<br>This strategy ensures that even when the decoding task is under heavy load, the system components can still “feed the dog,” ensuring stability.</li>
+</ul>
+<p><img src="/images/archives/cardputer-streaming/cardputer-streaming-menu-ui.jpg" alt="Cardputer Streaming Menu UI"></p>
+<h3 id="2-Memory-Management"><a href="#2-Memory-Management" class="headerlink" title="2. Memory Management"></a>2. Memory Management</h3><p>The <code>esp_h264</code> decoder requires significant contiguous memory. Even with GOP=1, it still allocates space for reference frame management.<br>I allocated all the decoder’s working buffers to <strong>PSRAM</strong>, while keeping the high-performance double display buffers and SPI descriptors in the faster <strong>Internal RAM</strong>.</p>
+<h3 id="3-“Frame-Catching”-Algorithm-for-Latency"><a href="#3-“Frame-Catching”-Algorithm-for-Latency" class="headerlink" title="3. “Frame-Catching” Algorithm for Latency"></a>3. “Frame-Catching” Algorithm for Latency</h3><p>Network jitter is the enemy of streaming. If data accumulates in the buffer due to transient bandwidth drops, the display will experience increasing latency.<br>Since I use an all-I-frame stream, I implemented a simple “catching” algorithm:<br>Before processing, the decoding task checks the RingBuffer’s occupancy. If it detects multiple frames waiting, it <strong>discards all older frames and only decodes/displays the latest one</strong>. This trick allows the device to snap back to real-time visuals the moment network conditions recover.</p>
+<h2 id="Controller-Design"><a href="#Controller-Design" class="headerlink" title="Controller Design"></a>Controller Design</h2><p>This time, I didn’t use Python. Instead, I launched a lightweight Web Server directly on the Cardputer to provide a frontend console. The frontend uses <strong>DaisyUI</strong> for a modern interface and displays real-time bitrates and traffic statistics.<br>To fit the ESP32-S3’s processing power, I tuned the WebCodecs configuration:</p>
+<ul>
+<li><strong>Bitrate</strong>: 150 - 300 kbps (highly bandwidth efficient)</li>
+<li><strong>Keyframe Interval</strong>: High frequency</li>
+<li><strong>Resolution</strong>: Forced to 240x136</li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>From frequent WDT crashes to stable <strong>240x135 @ 15-20 FPS</strong> streaming, this project explores the performance limits of the ESP32-S3.<br>Compared to the breadboard setup from five years ago, this Cardputer solution is more complete (no Python bridge required) and features significant improvements in multi-core optimization and memory management. Even on a microcontroller, you can achieve a truly extreme streaming experience.</p>
+<hr>
+<blockquote>
+<p><strong>Hardware Suggestion</strong>: An ESP32-S3 model with PSRAM is required.</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+                    
+                      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/projects/">Projects</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-number">1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Additional-Note"><span class="toc-number">2.</span> <span class="toc-text">Additional Note</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-PSRAM-is-Mandatory-The-%E2%80%9CSRAM-Only%E2%80%9D-Experiment"><span class="toc-number">2.1.</span> <span class="toc-text">Why PSRAM is Mandatory: The “SRAM-Only” Experiment</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#System-Architecture"><span class="toc-number">3.</span> <span class="toc-text">System Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Communication-Pipeline"><span class="toc-number">3.1.</span> <span class="toc-text">Communication Pipeline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Challenges-amp-Solutions"><span class="toc-number">4.</span> <span class="toc-text">Key Challenges &amp; Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Multi-core-Scheduling-amp-Watchdog-WDT-Errors"><span class="toc-number">4.1.</span> <span class="toc-text">1. Multi-core Scheduling &amp; Watchdog (WDT) Errors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Memory-Management"><span class="toc-number">4.2.</span> <span class="toc-text">2. Memory Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E2%80%9CFrame-Catching%E2%80%9D-Algorithm-for-Latency"><span class="toc-number">4.3.</span> <span class="toc-text">3. “Frame-Catching” Algorithm for Latency</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Controller-Design"><span class="toc-number">5.</span> <span class="toc-text">Controller Design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">6.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&text=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&is_video=false&description=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Real-time Desktop Streaming on M5Stack Cardputer via H.264&body=Check out this article: https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&title=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&name=Real-time Desktop Streaming on M5Stack Cardputer via H.264&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/&t=Real-time Desktop Streaming on M5Stack Cardputer via H.264"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+                        
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/en/privacy-policy/">
+                Privacy Policy
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/terms/">
+                Terms of Use
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/disclaimer/">
+                Disclaimer
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/en/contact/">
+                Contact Us
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

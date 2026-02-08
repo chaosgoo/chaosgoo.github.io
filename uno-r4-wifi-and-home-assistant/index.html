@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="UNO R4 Wi-Fi物联网实战教程。详解如何利用Docker快速部署Home Assistant和EMQX MQTT服务器，并通过MQTT Discovery协议将UNO R4注册为支持亮度控制的“灯”设备，实现对板载LED矩阵的远程云端控制。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNO R4 Wi-Fi 接入 Home Assistant">
+<meta property="og:url" content="https://chaosgoo.com/uno-r4-wifi-and-home-assistant/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="UNO R4 Wi-Fi物联网实战教程。详解如何利用Docker快速部署Home Assistant和EMQX MQTT服务器，并通过MQTT Discovery协议将UNO R4注册为支持亮度控制的“灯”设备，实现对板载LED矩阵的远程云端控制。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chaosgoo.com/images/archives/funpack5.drawio.png">
+<meta property="article:published_time" content="2024-09-27T15:17:01.000Z">
+<meta property="article:modified_time" content="2024-09-27T15:17:01.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chaosgoo.com/images/archives/funpack5.drawio.png">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            UNO R4 Wi-Fi 接入 Home Assistant
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/uno-r4-wifi-and-home-assistant/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- styles -->
+                                                              <link rel="stylesheet"
+                                                                href="/css/style.css">
+                                                              <!-- styles -->
+
+            <!-- Font Awesome removed - using inline SVG icons instead -->
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+		inlineMath: [['$','$']]
+	  }
+	});
+</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/DWM3001CDK-spi-ws2812-driver/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/Friday-Ink/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&text=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&is_video=false&description=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UNO R4 Wi-Fi 接入 Home Assistant&body=Check out this article: https://chaosgoo.com/uno-r4-wifi-and-home-assistant/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&name=UNO R4 Wi-Fi 接入 Home Assistant&description=&lt;h2 id=&#34;项目介绍&#34;&gt;&lt;a href=&#34;#项目介绍&#34; class=&#34;headerlink&#34; title=&#34;项目介绍&#34;&gt;&lt;/a&gt;项目介绍&lt;/h2&gt;&lt;p&gt;本项目是Funpack第五期板卡三的任务1实现.&lt;br&gt;任务目标是让UNO R4 Wi-Fi通过网络连接到智能云端, 并模拟成一个可以控制的灯, 通过远程控制调整自带的LED矩阵点亮范围.&lt;/p&gt;
+&lt;h2 id=&#34;实现思路&#34;&gt;&lt;a href=&#34;#实现思路&#34; class=&#34;headerlink&#34; title=&#34;实现思路&#34;&gt;&lt;/a&gt;实现思路&lt;/h2&gt;&lt;p&gt;将UNO R4作为灯装置接入IOT平台, 随后在IOT平台上下发命令来操作UNO R4, 调整这个”灯”的亮度.&lt;br&gt;这里我选择的是可以部署在内网环境下的&lt;a href=&#34;https://www.home-assistant.io&#34;&gt;Home Assistant&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;UNO R4通过MQTT服务器与&lt;a href=&#34;https://www.home-assistant.io&#34;&gt;Home Assistant&lt;/a&gt;进行通信. MQTT服务器选择EMQX开源版.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/archives/funpack5.drawio.png&#34; alt=&#34;结构图&#34;&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&t=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">项目介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-number">2.</span> <span class="toc-text">实现思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">2.1.</span> <span class="toc-text">服务器部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Home-Assistant"><span class="toc-number">2.2.</span> <span class="toc-text">Home Assistant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMQX"><span class="toc-number">2.3.</span> <span class="toc-text">EMQX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HomeAssistant%E5%AF%B9%E6%8E%A5%E5%88%B0EMQX"><span class="toc-number">2.4.</span> <span class="toc-text">HomeAssistant对接到EMQX</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-number">3.</span> <span class="toc-text">代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E5%88%B0Home-Assistant"><span class="toc-number">3.1.</span> <span class="toc-text">注册到Home Assistant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94HomeAssistant%E5%91%BD%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">响应HomeAssistant命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA"><span class="toc-number">4.</span> <span class="toc-text">功能展示</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        UNO R4 Wi-Fi 接入 Home Assistant
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-09-27T15:17:01.000Z" class="dt-published" itemprop="datePublished">2024-09-27</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Hardware-IoT/">Hardware & IoT</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p>本项目是Funpack第五期板卡三的任务1实现.<br>任务目标是让UNO R4 Wi-Fi通过网络连接到智能云端, 并模拟成一个可以控制的灯, 通过远程控制调整自带的LED矩阵点亮范围.</p>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>将UNO R4作为灯装置接入IOT平台, 随后在IOT平台上下发命令来操作UNO R4, 调整这个”灯”的亮度.<br>这里我选择的是可以部署在内网环境下的<a target="_blank" rel="noopener" href="https://www.home-assistant.io">Home Assistant</a>.</p>
+<p>UNO R4通过MQTT服务器与<a target="_blank" rel="noopener" href="https://www.home-assistant.io">Home Assistant</a>进行通信. MQTT服务器选择EMQX开源版.</p>
+<p><img src="/images/archives/funpack5.drawio.png" alt="结构图"></p>
+<span id="more"></span>
+<h3 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h3><p>本项目需要有一台服务器,并且在服务器上部署<a target="_blank" rel="noopener" href="https://www.home-assistant.io">Home Assistant</a>和EMQX两个服务.<br>本节简单介绍下两个服务的部署方式.</p>
+<h3 id="Home-Assistant"><a href="#Home-Assistant" class="headerlink" title="Home Assistant"></a>Home Assistant</h3><p>在<a target="_blank" rel="noopener" href="https://www.home-assistant.io">Home Assistant</a>官网上有较为详细的多种安装方式介绍.这里我选择的是使用Docker进行安装,可以忽略很多具体环境差异,只需要输入命令便可将<a target="_blank" rel="noopener" href="https://www.home-assistant.io">Home Assistant</a>跑起来.<br>具体介绍位于<br><a target="_blank" rel="noopener" href="https://www.home-assistant.io/installation/linux#install-home-assistant-container">Install Home Assistant Container</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name homeassistant \</span><br><span class="line">  --privileged \</span><br><span class="line">  --restart=unless-stopped \</span><br><span class="line">  -e TZ=MY_TIME_ZONE \</span><br><span class="line">  -v /PATH_TO_YOUR_CONFIG:/config \</span><br><span class="line">  -v /run/dbus:/run/dbus:ro \</span><br><span class="line">  --network=host \</span><br><span class="line">  ghcr.io/home-assistant/home-assistant:stable</span><br></pre></td></tr></table></figure>
+<p>命令执行完毕,打开使用服务器IP配合默认端口号8123-&gt;<a target="_blank" rel="noopener" href="http://0.0.0.0:8123">http://<host>:8123</a>即可进入主面板.</p>
+<h3 id="EMQX"><a href="#EMQX" class="headerlink" title="EMQX"></a>EMQX</h3><p>EMQX同样可以使用Docker进行安装部署, 页面<a target="_blank" rel="noopener" href="https://docs.emqx.com/zh/emqx/latest/deploy/install-docker-ce.html">通过 Docker 运行 EMQX</a>详细介绍了所需的命令.</p>
+<p>运行以下命令获取 Docker 镜像：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull emqx/emqx:5.8.1</span><br></pre></td></tr></table></figure><br>运行以下命令启动 Docker 容器。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 emqx/emqx:5.8.1</span><br></pre></td></tr></table></figure></p>
+<h3 id="HomeAssistant对接到EMQX"><a href="#HomeAssistant对接到EMQX" class="headerlink" title="HomeAssistant对接到EMQX"></a>HomeAssistant对接到EMQX</h3><p>进入HomeAssistant主页后点击右下角<strong>设置</strong>,选择<strong>设备与服务</strong>, 搜索<strong>MQTT</strong></p>
+<!-- ![安装MQTT插件](/images/archives/install_mqtt_on_home_assistant.png) -->
+<p>安装好MQTT插件后,进入插件面板点击添加条目填写上一步配置的EMQX信息即可.</p>
+<h2 id="代码编写"><a href="#代码编写" class="headerlink" title="代码编写"></a>代码编写</h2><h3 id="注册到Home-Assistant"><a href="#注册到Home-Assistant" class="headerlink" title="注册到Home Assistant"></a>注册到Home Assistant</h3><p>publish 指定格式的payload到topic<br>其中topic格式为homeassistant/设备类型/自定义名称/config,根据格式要求.<br>得到主题应当为homeassistant/light/fun_matrix/config.<br>payload内容是一个描述设备的json字符串, 如下代码所示.</p>
+<ul>
+<li>其中name是设备名称;</li>
+<li>device_class要和注册topic中设备类型对应;</li>
+<li>command_topic代表设备的开关状态;</li>
+<li>brightness_command_topic灯的亮度控制;</li>
+<li>unique_id装置唯一ID;</li>
+<li>device设备描述;</li>
+<li>schema代表当前为json格式;</li>
+<li>brightness代表本装置支持亮度控制;<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">registerToHomeAssistantServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="type">const</span> <span class="type">char</span>* topic = <span class="string">&quot;homeassistant/light/fun_matrix/config&quot;</span>;</span><br><span class="line">  std::string message = <span class="string">R&quot;(&#123;</span></span><br><span class="line"><span class="string">    &quot;name&quot;: &quot;led&quot;,</span></span><br><span class="line"><span class="string">    &quot;device_class&quot;: &quot;light&quot;,</span></span><br><span class="line"><span class="string">    &quot;command_topic&quot;: &quot;fun_matrix/light/state&quot;,</span></span><br><span class="line"><span class="string">    &quot;brightness_command_topic&quot;: &quot;fun_matrix/light/brightness/set&quot;,</span></span><br><span class="line"><span class="string">    &quot;unique_id&quot;: &quot;fun_matrix&quot;,</span></span><br><span class="line"><span class="string">    &quot;device&quot;: &#123;</span></span><br><span class="line"><span class="string">        &quot;identifiers&quot;: &quot;fun_matrix&quot;,</span></span><br><span class="line"><span class="string">        &quot;name&quot;: &quot;UnoR4WiFi&quot;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    &quot;schema&quot;: &quot;json&quot;,</span></span><br><span class="line"><span class="string">    &quot;brightness&quot;: true</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">)&quot;</span>;</span><br><span class="line">  <span class="type">bool</span> retained = <span class="literal">false</span>;</span><br><span class="line">  <span class="type">int</span> qos = <span class="number">1</span>;</span><br><span class="line">  <span class="type">bool</span> dup = <span class="literal">false</span>;</span><br><span class="line">  mqttClient.<span class="built_in">beginMessage</span>(topic, message.<span class="built_in">length</span>(), retained, qos, dup);</span><br><span class="line">  mqttClient.<span class="built_in">print</span>(message.<span class="built_in">c_str</span>());</span><br><span class="line">  mqttClient.<span class="built_in">endMessage</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="响应HomeAssistant命令"><a href="#响应HomeAssistant命令" class="headerlink" title="响应HomeAssistant命令"></a>响应HomeAssistant命令</h3><p>根据注册时候payload中brightness_command_topic和command_topic, 来响应具体的动作即可.<br>其中command_topic固定传递ON和OFF字符串, brightness_command_topic传递亮度值0-255.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">onMqttMessage</span><span class="params">(<span class="type">int</span> messageSize)</span> </span>&#123;</span><br><span class="line">  String topic = mqttClient.<span class="built_in">messageTopic</span>();</span><br><span class="line">  Serial.<span class="built_in">println</span>(topic);</span><br><span class="line">  String payload;</span><br><span class="line">  <span class="keyword">while</span> (mqttClient.<span class="built_in">available</span>()) &#123;</span><br><span class="line">    payload = mqttClient.<span class="built_in">readString</span>();</span><br><span class="line">    Serial.<span class="built_in">println</span>(payload);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (topic.<span class="built_in">endsWith</span>(<span class="string">&quot;state&quot;</span>)) &#123;</span><br><span class="line">    Serial.<span class="built_in">print</span>(<span class="string">&quot;brightness_state_topic&quot;</span>);</span><br><span class="line">    <span class="type">bool</span> enable = payload.<span class="built_in">equals</span>(<span class="string">&quot;ON&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (lightIsOn != enable) &#123;</span><br><span class="line">      lightIsOn = enable;</span><br><span class="line">      <span class="keyword">if</span> (lightIsOn) &#123;</span><br><span class="line">        <span class="built_in">showFrame</span>(level);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">showFrame</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (topic.<span class="built_in">endsWith</span>(<span class="string">&quot;set&quot;</span>)) &#123;</span><br><span class="line">    Serial.<span class="built_in">print</span>(<span class="string">&quot;brightness_command_topic&quot;</span>);</span><br><span class="line">    level = payload.<span class="built_in">toInt</span>() / <span class="number">25</span>;</span><br><span class="line">    Serial.<span class="built_in">println</span>(level);</span><br><span class="line">    <span class="built_in">showFrame</span>(level);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="功能展示"><a href="#功能展示" class="headerlink" title="功能展示"></a>功能展示</h2><p>在网页上设置亮度, 均能够在设备上得到实时的响应.<br>不同的亮度,亮起的区域.</p>
+
+  </div>
+</article>
+
+
+
+                    
+                      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">项目介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-number">2.</span> <span class="toc-text">实现思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">2.1.</span> <span class="toc-text">服务器部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Home-Assistant"><span class="toc-number">2.2.</span> <span class="toc-text">Home Assistant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMQX"><span class="toc-number">2.3.</span> <span class="toc-text">EMQX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HomeAssistant%E5%AF%B9%E6%8E%A5%E5%88%B0EMQX"><span class="toc-number">2.4.</span> <span class="toc-text">HomeAssistant对接到EMQX</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-number">3.</span> <span class="toc-text">代码编写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E5%88%B0Home-Assistant"><span class="toc-number">3.1.</span> <span class="toc-text">注册到Home Assistant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94HomeAssistant%E5%91%BD%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">响应HomeAssistant命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA"><span class="toc-number">4.</span> <span class="toc-text">功能展示</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&text=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&is_video=false&description=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UNO R4 Wi-Fi 接入 Home Assistant&body=Check out this article: https://chaosgoo.com/uno-r4-wifi-and-home-assistant/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&title=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&name=UNO R4 Wi-Fi 接入 Home Assistant&description=&lt;h2 id=&#34;项目介绍&#34;&gt;&lt;a href=&#34;#项目介绍&#34; class=&#34;headerlink&#34; title=&#34;项目介绍&#34;&gt;&lt;/a&gt;项目介绍&lt;/h2&gt;&lt;p&gt;本项目是Funpack第五期板卡三的任务1实现.&lt;br&gt;任务目标是让UNO R4 Wi-Fi通过网络连接到智能云端, 并模拟成一个可以控制的灯, 通过远程控制调整自带的LED矩阵点亮范围.&lt;/p&gt;
+&lt;h2 id=&#34;实现思路&#34;&gt;&lt;a href=&#34;#实现思路&#34; class=&#34;headerlink&#34; title=&#34;实现思路&#34;&gt;&lt;/a&gt;实现思路&lt;/h2&gt;&lt;p&gt;将UNO R4作为灯装置接入IOT平台, 随后在IOT平台上下发命令来操作UNO R4, 调整这个”灯”的亮度.&lt;br&gt;这里我选择的是可以部署在内网环境下的&lt;a href=&#34;https://www.home-assistant.io&#34;&gt;Home Assistant&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;UNO R4通过MQTT服务器与&lt;a href=&#34;https://www.home-assistant.io&#34;&gt;Home Assistant&lt;/a&gt;进行通信. MQTT服务器选择EMQX开源版.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/archives/funpack5.drawio.png&#34; alt=&#34;结构图&#34;&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/uno-r4-wifi-and-home-assistant/&t=UNO R4 Wi-Fi 接入 Home Assistant"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+                        
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>

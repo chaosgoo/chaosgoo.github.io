@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html
+  lang="zh">
+<head>
+  <!-- preconnect to critical origins -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <!-- so meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="利用bindgen和cc库为迷你JS引擎ELK生成Rust绑定。MinGW&#x2F;Windows下的交叉编译配置、build.rs编写流程，Rust调用C函数与JS脚本动态下发。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Bindgen为ELK生成Rust绑定">
+<meta property="og:url" content="https://chaosgoo.com/rust-bindgen-for-elk/index.html">
+<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
+<meta property="og:description" content="利用bindgen和cc库为迷你JS引擎ELK生成Rust绑定。MinGW&#x2F;Windows下的交叉编译配置、build.rs编写流程，Rust调用C函数与JS脚本动态下发。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-04T18:57:15.000Z">
+<meta property="article:modified_time" content="2025-12-04T18:57:15.000Z">
+<meta property="article:author" content="Chaos Goo">
+<meta property="article:tag" content="Rust">
+<meta name="twitter:card" content="summary">
+    
+      
+        
+          
+                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
+                    
+                      
+                        
+                          
+                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
+                                      sizes="192x192">
+                                    
+                                      
+                                        
+                                          
+                                                    <link rel="apple-touch-icon" sizes="180x180"
+                                                      href="/images/Logo_Sketch.webp">
+                                                    
+                                                      
+                                                        
+                                                          <!-- title -->
+                                                          <title>
+                                                            使用Bindgen为ELK生成Rust绑定
+                                                          </title>
+                                                          <link rel="canonical"
+                                                            href="https://chaosgoo.com/rust-bindgen-for-elk/">
+                                                          <!-- async scripts -->
+                                                          
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
+  <script>
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EVWTNN57LZ');
+    }
+  </script>
+
+
+                                                            <!-- Umami Analytics -->
+
+                                                              <!-- styles -->
+                                                              <link rel="stylesheet"
+                                                                href="/css/style.css">
+                                                              <!-- styles -->
+
+            <!-- Font Awesome removed - using inline SVG icons instead -->
+                                                                <!-- persian styles -->
+                                                                
+                                                                      <!-- rss -->
+                                                                      
+                                                                            
+                                                                                
+                                                                                  <!-- <script async
+                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
+                                                                                    crossorigin="anonymous"></script> -->
+                                                                                  
+                                                                                    <!-- mathjax -->
+                                                                                    
+                                                                                      <script
+                                                                                        type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+		inlineMath: [['$','$']]
+	  }
+	});
+</script>
+                                                                                      <script
+                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
+                                                                                        async></script>
+                                                                                      
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/projects/">项目</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/esp32-pppos-4g-modem/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/ch58x-dma-spi-ws2812-driver/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/rust-bindgen-for-elk/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/rust-bindgen-for-elk/&text=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/rust-bindgen-for-elk/&is_video=false&description=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用Bindgen为ELK生成Rust绑定&body=Check out this article: https://chaosgoo.com/rust-bindgen-for-elk/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/rust-bindgen-for-elk/&name=使用Bindgen为ELK生成Rust绑定&description=&lt;h2 id=&#34;介绍&#34;&gt;&lt;a href=&#34;#介绍&#34; class=&#34;headerlink&#34; title=&#34;介绍&#34;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://crates.io/crates/bindgen&#34;&gt;bindgen&lt;/a&gt; 是一个能自动为 C（或 C++）库生成 Rust 绑定的辅助库和命令行工具。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/cesanta/elk&#34;&gt;elk&lt;/a&gt; 是一个迷你的JS引擎.&lt;br&gt;能够实现类似于这样的效果&lt;br&gt;&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption&gt;&lt;span&gt;main.rs&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;##include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;##include &lt;span class=&#34;string&#34;&gt;&amp;quot;elk.h&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// C function that adds two numbers. Will be called from JS&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;jsval_t &lt;span class=&#34;title function_ invoke__&#34;&gt;sum&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;js&lt;/span&gt; *js, jsval_t *args, int nargs) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;title function_ invoke__&#34;&gt;if&lt;/span&gt; (nargs != &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;title function_ invoke__&#34;&gt;js_err&lt;/span&gt;(js, &lt;span class=&#34;string&#34;&gt;&amp;quot;2 args expected&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  double a = &lt;span class=&#34;title function_ invoke__&#34;&gt;js_getnum&lt;/span&gt;(args[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;]);  &lt;span class=&#34;comment&#34;&gt;// Fetch 1st arg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  double b = &lt;span class=&#34;title function_ invoke__&#34;&gt;js_getnum&lt;/span&gt;(args[&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;]);  &lt;span class=&#34;comment&#34;&gt;// Fetch 2nd arg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;title function_ invoke__&#34;&gt;js_mknum&lt;/span&gt;(a + b);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int &lt;span class=&#34;title function_ invoke__&#34;&gt;main&lt;/span&gt;(void) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;type&#34;&gt;char&lt;/span&gt; mem[&lt;span class=&#34;number&#34;&gt;200&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;js&lt;/span&gt; *js = &lt;span class=&#34;title function_ invoke__&#34;&gt;js_create&lt;/span&gt;(mem, &lt;span class=&#34;title function_ invoke__&#34;&gt;sizeof&lt;/span&gt;(mem));      &lt;span class=&#34;comment&#34;&gt;// Create JS instance&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;title function_ invoke__&#34;&gt;js_set&lt;/span&gt;(js, &lt;span class=&#34;title function_ invoke__&#34;&gt;js_glob&lt;/span&gt;(js), &lt;span class=&#34;string&#34;&gt;&amp;quot;sum&amp;quot;&lt;/span&gt;, &lt;span class=&#34;title function_ invoke__&#34;&gt;js_mkfun&lt;/span&gt;(sum)));   &lt;span class=&#34;comment&#34;&gt;// Import sum()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  jsval_t result = &lt;span class=&#34;title function_ invoke__&#34;&gt;js_eval&lt;/span&gt;(js, &lt;span class=&#34;string&#34;&gt;&amp;quot;sum(3, 4);&amp;quot;&lt;/span&gt;, ~&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;);   &lt;span class=&#34;comment&#34;&gt;// Call sum&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;title function_ invoke__&#34;&gt;printf&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;result: %s\n&amp;quot;&lt;/span&gt;, &lt;span class=&#34;title function_ invoke__&#34;&gt;js_str&lt;/span&gt;(js, result));       &lt;span class=&#34;comment&#34;&gt;// result: 7&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果这个执行内容来自于服务器下发,那就可以很方便地动态下发程序然后执行特定的任务.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/rust-bindgen-for-elk/&t=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-number">2.</span> <span class="toc-text">序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BARust%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.</span> <span class="toc-text">创建Rust项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8B%E9%9A%86elk%E6%BA%90%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">克隆elk源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BE%9D%E8%B5%96"><span class="toc-number">2.3.</span> <span class="toc-text">配置依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAwrapper-h"><span class="toc-number">2.4.</span> <span class="toc-text">创建wrapper.h</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99build-rs"><span class="toc-number">2.5.</span> <span class="toc-text">编写build.rs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%B9%B6%E4%BD%BF%E7%94%A8binding-rs"><span class="toc-number">2.6.</span> <span class="toc-text">生成并使用binding.rs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95JS%E8%84%9A%E6%9C%AC"><span class="toc-number">2.7.</span> <span class="toc-text">测试JS脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">3.</span> <span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">3.1.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+          <div class="content index py4 ">
+            
+                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        使用Bindgen为ELK生成Rust绑定
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Chaos Goo</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-12-04T18:57:15.000Z" class="dt-published" itemprop="datePublished">2025-12-05</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Software-Dev/">Software & Dev</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Rust/" rel="tag">Rust</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a target="_blank" rel="noopener" href="https://crates.io/crates/bindgen">bindgen</a> 是一个能自动为 C（或 C++）库生成 Rust 绑定的辅助库和命令行工具。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/cesanta/elk">elk</a> 是一个迷你的JS引擎.<br>能够实现类似于这样的效果<br><figure class="highlight rust"><figcaption><span>main.rs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">##include &lt;stdio.h&gt;</span><br><span class="line">##include <span class="string">&quot;elk.h&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// C function that adds two numbers. Will be called from JS</span></span><br><span class="line">jsval_t <span class="title function_ invoke__">sum</span>(<span class="keyword">struct</span> <span class="title class_">js</span> *js, jsval_t *args, int nargs) &#123;</span><br><span class="line">  <span class="title function_ invoke__">if</span> (nargs != <span class="number">2</span>) <span class="keyword">return</span> <span class="title function_ invoke__">js_err</span>(js, <span class="string">&quot;2 args expected&quot;</span>);</span><br><span class="line">  double a = <span class="title function_ invoke__">js_getnum</span>(args[<span class="number">0</span>]);  <span class="comment">// Fetch 1st arg</span></span><br><span class="line">  double b = <span class="title function_ invoke__">js_getnum</span>(args[<span class="number">1</span>]);  <span class="comment">// Fetch 2nd arg</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_ invoke__">js_mknum</span>(a + b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int <span class="title function_ invoke__">main</span>(void) &#123;</span><br><span class="line">  <span class="type">char</span> mem[<span class="number">200</span>];</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">js</span> *js = <span class="title function_ invoke__">js_create</span>(mem, <span class="title function_ invoke__">sizeof</span>(mem));      <span class="comment">// Create JS instance</span></span><br><span class="line">  <span class="title function_ invoke__">js_set</span>(js, <span class="title function_ invoke__">js_glob</span>(js), <span class="string">&quot;sum&quot;</span>, <span class="title function_ invoke__">js_mkfun</span>(sum)));   <span class="comment">// Import sum()</span></span><br><span class="line">  jsval_t result = <span class="title function_ invoke__">js_eval</span>(js, <span class="string">&quot;sum(3, 4);&quot;</span>, ~<span class="number">0</span>);   <span class="comment">// Call sum</span></span><br><span class="line">  <span class="title function_ invoke__">printf</span>(<span class="string">&quot;result: %s\n&quot;</span>, <span class="title function_ invoke__">js_str</span>(js, result));       <span class="comment">// result: 7</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果这个执行内容来自于服务器下发,那就可以很方便地动态下发程序然后执行特定的任务.</p>
+<span id="more"></span>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>之前在玩ESP-IDF时候就尝试内嵌一个Lua引擎来动态执行Lua脚本的操作,然后用蓝牙更新Lua脚本以实现动态的绘制界面.<br>最近弄ESP-RS时候想试试类似的效果,<span class="heimu">因为感觉Lua用起来很啰嗦,现在已经完全忘记如何编写Lua脚本了</span>.<br>当然Rust也有一些Lua引擎的现成crates,比如<a target="_blank" rel="noopener" href="https://crates.io/crates/rlua">rLua</a>.<br>但是数组索引从1开始真的是坏文明啊, 我们还是继续捣鼓js吧.</p>
+<h3 id="创建Rust项目"><a href="#创建Rust项目" class="headerlink" title="创建Rust项目"></a>创建Rust项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo new <span class="string">&quot;bindgen_elk&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="克隆elk源码"><a href="#克隆elk源码" class="headerlink" title="克隆elk源码"></a>克隆elk源码</h3><p>进入刚才创建的目录后,在src同级目录下克隆elk.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> bindgen_elk</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cesanta/elk.git</span><br><span class="line">Cloning into <span class="string">&#x27;elk&#x27;</span>...</span><br><span class="line">remote: Enumerating objects: 932, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (204/204), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (101/101), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 932 (delta 95), reused 152 (delta 87), pack-reused 728 (from 1)</span><br><span class="line">Receiving objects: 100% (932/932), 4.66 MiB | 12.09 MiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (442/442), <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
+<h3 id="配置依赖"><a href="#配置依赖" class="headerlink" title="配置依赖"></a>配置依赖</h3><p>在当前项目的Cargo.toml中添加<strong>bindgen</strong>和<strong>cc</strong>依赖.<br><figure class="highlight toml"><figcaption><span>Cargo.toml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[package]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;bindgen_elk&quot;</span></span><br><span class="line"><span class="attr">version</span> = <span class="string">&quot;0.1.0&quot;</span></span><br><span class="line"><span class="attr">edition</span> = <span class="string">&quot;2024&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">libc</span> = <span class="string">&quot;0.2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[build-dependencies]</span></span><br><span class="line"><span class="attr">cc</span> = <span class="string">&quot;1.0&quot;</span></span><br><span class="line"><span class="attr">bindgen</span> = <span class="string">&quot;0.69&quot;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="创建wrapper-h"><a href="#创建wrapper-h" class="headerlink" title="创建wrapper.h"></a>创建wrapper.h</h3><p>根据<strong>bindgen</strong>的规则,需要在项目目录下创建一个叫做<strong>wrapper.h</strong>的头文件,并在该文件内引入想要绑定的库头文件.</p>
+<figure class="highlight c"><figcaption><span>wrapper.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#<span class="meta">#<span class="keyword">include</span> <span class="string">&quot;elk/elk.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="编写build-rs"><a href="#编写build-rs" class="headerlink" title="编写build.rs"></a>编写build.rs</h3><p>在src同级别目录下创建一个名为<strong>build.rs</strong>的文件, 当存在<strong>build.rs</strong>文件时候, Cargo会优先编译执行该文件.</p>
+<p>请注意指定include目录, 我用的是mingw64, 所以在<code>bindgen::Builder::default()</code>时候,手动指定了target和sysroot</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">bindings</span> = bindgen::Builder::<span class="title function_ invoke__">default</span>()</span><br><span class="line">    .<span class="title function_ invoke__">header</span>(<span class="string">&quot;wrapper.h&quot;</span>)</span><br><span class="line">    .<span class="title function_ invoke__">parse_callbacks</span>(<span class="type">Box</span>::<span class="title function_ invoke__">new</span>(bindgen::CargoCallbacks))</span><br><span class="line">    <span class="comment">// 1. 指定目标三元组</span></span><br><span class="line">    .<span class="title function_ invoke__">clang_arg</span>(<span class="string">&quot;--target=x86_64-w64-mingw32&quot;</span>)</span><br><span class="line">    <span class="comment">// 2. 指定 MinGW 的根目录</span></span><br><span class="line">    .<span class="title function_ invoke__">clang_arg</span>(<span class="built_in">format!</span>(<span class="string">&quot;--sysroot=&#123;&#125;&quot;</span>, <span class="string">&quot;C:/Program Files/mingw64&quot;</span>))</span><br><span class="line">    <span class="comment">// 3. 显式添加必要的 GCC 内部路径 (如果上述两项还不够)</span></span><br><span class="line">    .<span class="title function_ invoke__">clang_arg</span>(<span class="string">&quot;-IC:/Program Files/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include&quot;</span>)</span><br><span class="line">    .<span class="title function_ invoke__">generate</span>()</span><br><span class="line">    .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Unable to generate bindings&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>内容如下,具体步骤含义见注释.</p>
+<figure class="highlight rust"><figcaption><span>build.rs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::&#123;</span><br><span class="line">    env,</span><br><span class="line">    path::&#123;Path, PathBuf&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">crate</span> cc;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 编译出lib文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">compile_libelk</span>() &#123;</span><br><span class="line">    <span class="comment">// 定义源文件路径</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">src</span> = [<span class="string">&quot;elk/elk.c&quot;</span>];</span><br><span class="line">    <span class="comment">// 创建cc builder</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">builder</span> = cc::Build::<span class="title function_ invoke__">new</span>();</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * files 源文件们</span></span><br><span class="line"><span class="comment">     * include 头文件路径</span></span><br><span class="line"><span class="comment">     * flag -DJS_DUMP宏用于打印js调试信息. 见elk.h内js_dump函数注释</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">build</span> = builder.<span class="title function_ invoke__">files</span>(src.<span class="title function_ invoke__">iter</span>()).<span class="title function_ invoke__">include</span>(<span class="string">&quot;elk&quot;</span>).<span class="title function_ invoke__">flag</span>(<span class="string">&quot;-DJS_DUMP&quot;</span>);</span><br><span class="line">    build.<span class="title function_ invoke__">compile</span>(<span class="string">&quot;elk&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 生成binding.rs</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">bindgen_generate</span>() &#123;</span><br><span class="line">    <span class="comment">// 获取当前Cargo.toml所在文件夹,一般来说就是该项目位置</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">dir</span> = env::<span class="title function_ invoke__">var</span>(<span class="string">&quot;CARGO_MANIFEST_DIR&quot;</span>).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    <span class="comment">// 指定库路径,即elk文件夹</span></span><br><span class="line">    <span class="built_in">println!</span>(</span><br><span class="line">        <span class="string">&quot;cargo:rustc-link-search=native=&#123;&#125;&quot;</span>,</span><br><span class="line">        Path::<span class="title function_ invoke__">new</span>(&amp;dir).<span class="title function_ invoke__">join</span>(<span class="string">&quot;elk&quot;</span>).<span class="title function_ invoke__">display</span>()</span><br><span class="line">    );</span><br><span class="line">    <span class="comment">// 如果 wrapper.h 文件发生了变化, 就重新运行构建脚本</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;cargo:rerun-if-changed=wrapper.h&quot;</span>);</span><br><span class="line">    <span class="comment">// 配置绑定</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">bindings</span> = bindgen::Builder::<span class="title function_ invoke__">default</span>()</span><br><span class="line">        .<span class="title function_ invoke__">header</span>(<span class="string">&quot;wrapper.h&quot;</span>)</span><br><span class="line">        .<span class="title function_ invoke__">parse_callbacks</span>(<span class="type">Box</span>::<span class="title function_ invoke__">new</span>(bindgen::CargoCallbacks))</span><br><span class="line">        <span class="comment">// 1. 指定目标三元组</span></span><br><span class="line">        .<span class="title function_ invoke__">clang_arg</span>(<span class="string">&quot;--target=x86_64-w64-mingw32&quot;</span>)</span><br><span class="line">        <span class="comment">// 2. 指定 MinGW 的根目录</span></span><br><span class="line">        .<span class="title function_ invoke__">clang_arg</span>(<span class="built_in">format!</span>(<span class="string">&quot;--sysroot=&#123;&#125;&quot;</span>, <span class="string">&quot;C:/Program Files/mingw64&quot;</span>))</span><br><span class="line">        <span class="comment">// 3. 显式添加必要的 GCC 内部路径 (如果上述两项还不够)</span></span><br><span class="line">        .<span class="title function_ invoke__">clang_arg</span>(<span class="string">&quot;-IC:/Program Files/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include&quot;</span>)</span><br><span class="line">        .<span class="title function_ invoke__">generate</span>()</span><br><span class="line">        .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Unable to generate bindings&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">out_path</span> = PathBuf::<span class="title function_ invoke__">from</span>(env::<span class="title function_ invoke__">var</span>(<span class="string">&quot;OUT_DIR&quot;</span>).<span class="title function_ invoke__">unwrap</span>());</span><br><span class="line">    <span class="comment">// 生成文件写入到binding.rs</span></span><br><span class="line">    bindings</span><br><span class="line">        .<span class="title function_ invoke__">write_to_file</span>(out_path.<span class="title function_ invoke__">join</span>(<span class="string">&quot;bindings.rs&quot;</span>))</span><br><span class="line">        .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Couldn&#x27;t write bindings!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="title function_ invoke__">compile_libelk</span>();</span><br><span class="line">    <span class="title function_ invoke__">bindgen_generate</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="生成并使用binding-rs"><a href="#生成并使用binding-rs" class="headerlink" title="生成并使用binding.rs"></a>生成并使用binding.rs</h3><p>如果你的环境正常,这时候只需要执行<code>cargo build</code>即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS E:\GitHub\bindgen_elk&gt; cargo build</span><br><span class="line">    <span class="comment"># ...忽略大量无用信息</span></span><br><span class="line">   Compiling bindgen_elk v0.1.0 (E:\GitHub\bindgen_elk)</span><br><span class="line">    Finished `dev` profile [unoptimized + debuginfo] target(s) <span class="keyword">in</span> 11.25s</span><br></pre></td></tr></table></figure><br>最终在<code>target\debug\build\bindgen_elk-b6aa022ece64a1fa\out\bindings.rs</code>下找到生成绑定文件.</p>
+<h3 id="测试JS脚本"><a href="#测试JS脚本" class="headerlink" title="测试JS脚本"></a>测试JS脚本</h3><p>参照文章开头的C调用JS代码, 我们写出Rust版本<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::ffi::&#123;CString, CStr&#125;;</span><br><span class="line"></span><br><span class="line">include!(<span class="built_in">concat!</span>(<span class="built_in">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/bindings.rs&quot;</span>));</span><br><span class="line"></span><br><span class="line">#<span class="meta">#[unsafe(no_mangle)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">unsafe</span> <span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> <span class="keyword">fn</span> <span class="title function_">sum</span>(js: *<span class="keyword">mut</span> js, args: *<span class="keyword">mut</span> jsval_t, nargs: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> jsval_t &#123;</span><br><span class="line">    <span class="keyword">if</span> nargs != <span class="number">2</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">msg</span> = CString::<span class="title function_ invoke__">new</span>(<span class="string">&quot;2 args expected&quot;</span>).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">js_mkerr</span>(js, msg.<span class="title function_ invoke__">as_ptr</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = <span class="title function_ invoke__">js_getnum</span>(*args.<span class="title function_ invoke__">offset</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">b</span> = <span class="title function_ invoke__">js_getnum</span>(*args.<span class="title function_ invoke__">offset</span>(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">js_mknum</span>(a + b)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">unsafe</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">mem</span> = [<span class="number">0u8</span>; <span class="number">8192</span>];</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">js</span> = <span class="title function_ invoke__">js_create</span>(mem.<span class="title function_ invoke__">as_mut_ptr</span>() <span class="keyword">as</span> *<span class="keyword">mut</span> _, mem.<span class="title function_ invoke__">len</span>());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">name</span> = CString::<span class="title function_ invoke__">new</span>(<span class="string">&quot;sum&quot;</span>).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">        <span class="title function_ invoke__">js_set</span>(js, <span class="title function_ invoke__">js_glob</span>(js), name.<span class="title function_ invoke__">as_ptr</span>(), <span class="title function_ invoke__">js_mkfun</span>(<span class="title function_ invoke__">Some</span>(sum)));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">code</span> = CString::<span class="title function_ invoke__">new</span>(<span class="string">&quot;sum(3, 4);&quot;</span>).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">code_len</span> = code.<span class="title function_ invoke__">as_bytes</span>().<span class="title function_ invoke__">len</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">result</span> = <span class="title function_ invoke__">js_eval</span>(js, code.<span class="title function_ invoke__">as_ptr</span>(), code_len);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">s</span> = CStr::<span class="title function_ invoke__">from_ptr</span>(<span class="title function_ invoke__">js_str</span>(js, result)).<span class="title function_ invoke__">to_str</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;result: &#123;&#125;&quot;</span>, s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>执行以后可以看到输出<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS E:\GitHub\bindgen_elk&gt; cargo run </span><br><span class="line">    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.94s</span><br><span class="line">     Running `target\debug\bindgen_elk.exe`</span><br><span class="line">result: 7</span><br></pre></td></tr></table></figure></p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>rustup 1.28.2 (e4f3ad6f8 2025-04-28)</li>
+<li>cargo 1.89.0-nightly (fc1518ef0 2025-06-06)</li>
+<li>elk @ a9bb856</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7255230505409544247">Rust Cargo 自定义构建</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/477949743">Rust Cargo使用指南 | 第十七篇 | 构建脚本 build.rs</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+                    
+                      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/projects/">项目</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-number">2.</span> <span class="toc-text">序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BARust%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.</span> <span class="toc-text">创建Rust项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8B%E9%9A%86elk%E6%BA%90%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">克隆elk源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BE%9D%E8%B5%96"><span class="toc-number">2.3.</span> <span class="toc-text">配置依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAwrapper-h"><span class="toc-number">2.4.</span> <span class="toc-text">创建wrapper.h</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99build-rs"><span class="toc-number">2.5.</span> <span class="toc-text">编写build.rs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%B9%B6%E4%BD%BF%E7%94%A8binding-rs"><span class="toc-number">2.6.</span> <span class="toc-text">生成并使用binding.rs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95JS%E8%84%9A%E6%9C%AC"><span class="toc-number">2.7.</span> <span class="toc-text">测试JS脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">3.</span> <span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">3.1.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/rust-bindgen-for-elk/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/rust-bindgen-for-elk/&text=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/rust-bindgen-for-elk/&is_video=false&description=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用Bindgen为ELK生成Rust绑定&body=Check out this article: https://chaosgoo.com/rust-bindgen-for-elk/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/rust-bindgen-for-elk/&title=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/rust-bindgen-for-elk/&name=使用Bindgen为ELK生成Rust绑定&description=&lt;h2 id=&#34;介绍&#34;&gt;&lt;a href=&#34;#介绍&#34; class=&#34;headerlink&#34; title=&#34;介绍&#34;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://crates.io/crates/bindgen&#34;&gt;bindgen&lt;/a&gt; 是一个能自动为 C（或 C++）库生成 Rust 绑定的辅助库和命令行工具。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/cesanta/elk&#34;&gt;elk&lt;/a&gt; 是一个迷你的JS引擎.&lt;br&gt;能够实现类似于这样的效果&lt;br&gt;&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption&gt;&lt;span&gt;main.rs&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;##include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;##include &lt;span class=&#34;string&#34;&gt;&amp;quot;elk.h&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// C function that adds two numbers. Will be called from JS&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;jsval_t &lt;span class=&#34;title function_ invoke__&#34;&gt;sum&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;js&lt;/span&gt; *js, jsval_t *args, int nargs) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;title function_ invoke__&#34;&gt;if&lt;/span&gt; (nargs != &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;title function_ invoke__&#34;&gt;js_err&lt;/span&gt;(js, &lt;span class=&#34;string&#34;&gt;&amp;quot;2 args expected&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  double a = &lt;span class=&#34;title function_ invoke__&#34;&gt;js_getnum&lt;/span&gt;(args[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;]);  &lt;span class=&#34;comment&#34;&gt;// Fetch 1st arg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  double b = &lt;span class=&#34;title function_ invoke__&#34;&gt;js_getnum&lt;/span&gt;(args[&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;]);  &lt;span class=&#34;comment&#34;&gt;// Fetch 2nd arg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;title function_ invoke__&#34;&gt;js_mknum&lt;/span&gt;(a + b);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;int &lt;span class=&#34;title function_ invoke__&#34;&gt;main&lt;/span&gt;(void) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;type&#34;&gt;char&lt;/span&gt; mem[&lt;span class=&#34;number&#34;&gt;200&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;js&lt;/span&gt; *js = &lt;span class=&#34;title function_ invoke__&#34;&gt;js_create&lt;/span&gt;(mem, &lt;span class=&#34;title function_ invoke__&#34;&gt;sizeof&lt;/span&gt;(mem));      &lt;span class=&#34;comment&#34;&gt;// Create JS instance&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;title function_ invoke__&#34;&gt;js_set&lt;/span&gt;(js, &lt;span class=&#34;title function_ invoke__&#34;&gt;js_glob&lt;/span&gt;(js), &lt;span class=&#34;string&#34;&gt;&amp;quot;sum&amp;quot;&lt;/span&gt;, &lt;span class=&#34;title function_ invoke__&#34;&gt;js_mkfun&lt;/span&gt;(sum)));   &lt;span class=&#34;comment&#34;&gt;// Import sum()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  jsval_t result = &lt;span class=&#34;title function_ invoke__&#34;&gt;js_eval&lt;/span&gt;(js, &lt;span class=&#34;string&#34;&gt;&amp;quot;sum(3, 4);&amp;quot;&lt;/span&gt;, ~&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;);   &lt;span class=&#34;comment&#34;&gt;// Call sum&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;title function_ invoke__&#34;&gt;printf&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;result: %s\n&amp;quot;&lt;/span&gt;, &lt;span class=&#34;title function_ invoke__&#34;&gt;js_str&lt;/span&gt;(js, result));       &lt;span class=&#34;comment&#34;&gt;// result: 7&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果这个执行内容来自于服务器下发,那就可以很方便地动态下发程序然后执行特定的任务.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/rust-bindgen-for-elk/&t=使用Bindgen为ELK生成Rust绑定"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+                        
+                          <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2026
+            Chaos Goo
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          
+            <li><a href="/privacy-policy/">
+                隐私政策
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/terms/">
+                使用条款
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/disclaimer/">
+                免责声明
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a href="/contact/">
+                联系我们
+              </a></li><!--
+     -->
+            <!--
+       -->
+          
+            <li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">
+                皖ICP备2024054743号
+              </a></li><!--
+     -->
+            
+      </ul>
+    </nav>
+  </div>
+</footer>
+          </div>
+          <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "复制成功！");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+  </body>
+
+</html>
