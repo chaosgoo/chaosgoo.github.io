@@ -246,7 +246,7 @@
 <h3 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h3><p>控制具体转到多少度的代码如下，建议眼熟一下，下篇文章会用到。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先计算出目标角度对应的高电平持续时间</span></span><br><span class="line">angle = servo_per_degree_init(count);</span><br><span class="line"><span class="comment">// 设置PWM信号</span></span><br><span class="line">mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);</span><br></pre></td></tr></table></figure></p>
 <h2 id="下期预告-快把你家的灯接入HomeKit吧其三（整合篇）"><a href="#下期预告-快把你家的灯接入HomeKit吧其三（整合篇）" class="headerlink" title="下期预告:快把你家的灯接入HomeKit吧其三（整合篇）"></a>下期预告:快把你家的灯接入HomeKit吧其三（整合篇）</h2><p>参考资料:</p>
 <p><a target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/index.html">ESP-IDF 编程指南</a></p>
-<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/espressif/esp-idf">Espressif IoT Development Framework</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/espressif/esp-idf">Espressif IoT Development Framework</a></p>
 
   </div>
 </article>

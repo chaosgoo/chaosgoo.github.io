@@ -137,15 +137,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/410.html</loc>
-    
-    <lastmod>2026-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/privacy-policy/index.html</loc>
     
     <lastmod>2026-01-31</lastmod>
@@ -201,15 +192,6 @@
   
   <url>
     <loc>https://chaosgoo.com/en/about/index.html</loc>
-    
-    <lastmod>2026-01-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/gdpr/index.html</loc>
     
     <lastmod>2026-01-15</lastmod>
     
@@ -365,15 +347,6 @@
     <loc>https://chaosgoo.com/hexo-seo-gsc-canonical-301/</loc>
     
     <lastmod>2025-11-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/404.html</loc>
-    
-    <lastmod>2025-11-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -544,7 +517,7 @@
 
   <url>
     <loc>https://chaosgoo.com/</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -554,21 +527,21 @@
   
   <url>
     <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Project-Logs/</loc>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

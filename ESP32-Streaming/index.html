@@ -217,8 +217,8 @@
 </blockquote>
 <p><img src="/images/migrated/db113578_EE09FFA8826B4A300111C1F5B9C54EF7.png" alt="header-preview"><br>既然有了屏幕，又有了网络，那岂不是可以串流了！</p>
 <span id="more"></span>
-<h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p><a style="color:#d44375" target="_blank" rel="noopener" href="https://www.chaosgoo.com/2020/12/14/ESP32-ST7789/">上篇文章</a>已经展示了如何使用ESP32点亮一块屏幕，那么这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a>就可以实现，只是在帧率上会有所区别。<br>这个视频为你展示了在M5StickC上的运行效果<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uz4y1k7Dr/">现在是除了游戏性以外，一无所有的原神@bilibili</a></p>
-<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>电脑作为发送端，负责发送图像数据-&gt;EPS32作为接收端，负责接收并绘制图像数据<br>发送端使用python编写，使用<a style="color:#d44375" target="_blank" rel="noopener" href="https://raw.githubusercontent.com/BoboTiG/python-mss">mss</a>模块捕获屏幕画面，再使用python opencv 编码为JPG</p>
+<h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>这次我们来整个活。利用ESP32来显示电脑的画面！如果你用的是其他屏幕也没关系，只要是ESP32配合<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a>就可以实现，只是在帧率上会有所区别。<br>这个视频为你展示了在M5StickC上的运行效果<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uz4y1k7Dr/">现在是除了游戏性以外，一无所有的原神@bilibili</a></p>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>电脑作为发送端，负责发送图像数据-&gt;EPS32作为接收端，负责接收并绘制图像数据<br>发送端使用python编写，使用<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/BoboTiG/python-mss">mss</a>模块捕获屏幕画面，再使用python opencv 编码为JPG</p>
 <p>接收端使用C++编写，<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TJpg_Decoder">TJpg_Decoder</a>解码，<a style="color:#d44375" target="_blank" rel="noopener" href="https://github.com/Bodmer/TFT_eSPI">TFT_eSPI</a>绘制</p>
 <p>发送的数据以帧为单位，为了减小帧的体积，将会对每一帧原始位图数据使用JPG编码，ESP32接收到数据以后，先对JPG进行解码，再进行绘制。</p>
 <p>一次完整通信流程为:<br><img src="/images/migrated/2c4f70ad_ESP32-Streaming.png" alt="workflow"></p>
@@ -236,10 +236,10 @@
 <h3 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h3><p><img src="/images/migrated/050deed7_811F8932F05ACA4E44F71EA6C4D9FA72.png" alt="header-preview"></p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>以下内容为实际开发中参考过的资料，有些资料中的方案已经舍弃，并未体现在上述代码中，特此列出，但俺仍要向他们表示由衷的感谢。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40112386/article/details/103554699">windows环境安装lzo和python-lzo</a></li>
-<li><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/lzfcc/LearnArduino/master/hop/hop.ino">https://raw.githubusercontent.com/lzfcc/LearnArduino</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27114397/article/details/82288917">ESP32 官方文档（五）严重错误</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.xuite.net/iamleon/blog/589421027?fb_comment_id=3635507566516907_3733707560030240">ESP32-CAM: 連接ILI9341液晶螢幕</a></li>
+<li><a target="_blank" rel="noopener" href="https://web.archive.org/web/20210510020731/https://blog.csdn.net/qq_40112386/article/details/103554699">windows环境安装lzo和python-lzo</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lzfcc/LearnArduino">https://github.com/lzfcc/LearnArduino</a></li>
+<li><a target="_blank" rel="noopener" href="https://web.archive.org/web/20260209042623/https://blog.csdn.net/qq_27114397/article/details/82288917">ESP32 官方文档（五）严重错误</a></li>
+<li>ESP32-CAM: 連接ILI9341液晶螢幕</li>
 </ul>
 
   </div>

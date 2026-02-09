@@ -164,7 +164,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;我们在&lt;a href=&#34;/FreeType-and-LVGL/&#34;&gt;第一章&lt;/a&gt;中已经实现了模拟器环境下可变字体字重的设置.&lt;/p&gt;
 &lt;p&gt;是时候掏出你吃灰已久的ESP32了.&lt;/p&gt;
-&lt;p&gt;本文会使用&lt;a href=&#34;https://platformio.org/&#34;&gt;PlatformIO&lt;/a&gt;创建一个全新的项目,直到显示出现&lt;a class=&#34;toc-link&#34; href=&#34;/2021/12/12/FreeType-and-LVGL/&#34;&gt;上篇文章&lt;/a&gt;末尾的动图为止.&lt;br&gt;如遇到问题,可参考&lt;a class=&#34;toc-link&#34; href=&#34;#常见问题&#34;&gt;常见问题&lt;/a&gt;内解答.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+&lt;p&gt;本文会使用&lt;a href=&#34;https://platformio.org/&#34;&gt;PlatformIO&lt;/a&gt;创建一个全新的项目,直到显示出现&lt;a class=&#34;toc-link&#34; href=&#34;/FreeType-and-LVGL/&#34;&gt;上篇文章&lt;/a&gt;末尾的动图为止.&lt;br&gt;如遇到问题,可参考&lt;a class=&#34;toc-link&#34; href=&#34;#常见问题&#34;&gt;常见问题&lt;/a&gt;内解答.&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/lvgl-freetype-and-esp32/&t=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
@@ -232,7 +232,7 @@
 </blockquote>
 <p>我们在<a href="/FreeType-and-LVGL/">第一章</a>中已经实现了模拟器环境下可变字体字重的设置.</p>
 <p>是时候掏出你吃灰已久的ESP32了.</p>
-<p>本文会使用<a target="_blank" rel="noopener" href="https://platformio.org/">PlatformIO</a>创建一个全新的项目,直到显示出现<a class="toc-link" href="/2021/12/12/FreeType-and-LVGL/">上篇文章</a>末尾的动图为止.<br>如遇到问题,可参考<a class="toc-link" href="#常见问题">常见问题</a>内解答.</p>
+<p>本文会使用<a target="_blank" rel="noopener" href="https://platformio.org/">PlatformIO</a>创建一个全新的项目,直到显示出现<a class="toc-link" href="/FreeType-and-LVGL/">上篇文章</a>末尾的动图为止.<br>如遇到问题,可参考<a class="toc-link" href="#常见问题">常见问题</a>内解答.</p>
 <span id="more"></span>
 <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h4><p>为了后续内容顺利进行下去,这里需要你安装好<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode</a>,并在VSCode上安装<a target="_blank" rel="noopener" href="https://platformio.org/">PlatformIO</a>插件.</p>
 <h4 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h4><div class="table-container">
@@ -268,8 +268,8 @@
 </table>
 </div>
 <h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>使用PlatformIO创建一个名为lvgl_with_freetype的项目<br><img src="/images/migrated/03225135_create_project.png" alt="create project"><br>创建完毕后目录结构如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── include</span><br><span class="line">│   └── README</span><br><span class="line">├── lib</span><br><span class="line">│   └── README</span><br><span class="line">├── platformio.ini</span><br><span class="line">├── src</span><br><span class="line">│   └── main.cpp</span><br><span class="line">└── <span class="built_in">test</span></span><br><span class="line">    └── README</span><br></pre></td></tr></table></figure></p>
-<h4 id="点亮屏幕"><a href="#点亮屏幕" class="headerlink" title="点亮屏幕"></a>点亮屏幕</h4><p>由于已经写过一篇点亮屏幕的<a href="/ESP32-ST7789/">文章</a>,故本文不做过多赘述,只说明一下区别.</p>
-<p>之前的屏幕分辨率是135x240,这次的屏幕分辨率是240x240.</p>
+<h4 id="点亮屏幕"><a href="#点亮屏幕" class="headerlink" title="点亮屏幕"></a>点亮屏幕</h4><p>网上充斥着大量点屏教程, 故本文不做过多赘述.</p>
+<p>本次驱动依旧使用TFT_eSPI库, 且本次的屏幕分辨率是240x240, Driver IC是ST7789.</p>
 <p>所以需要使用TFT_eSPI里面的<code>Setup24_ST7789.h</code></p>
 <p>同时接线变更为</p>
 <div class="table-container">
@@ -396,7 +396,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;我们在&lt;a href=&#34;/FreeType-and-LVGL/&#34;&gt;第一章&lt;/a&gt;中已经实现了模拟器环境下可变字体字重的设置.&lt;/p&gt;
 &lt;p&gt;是时候掏出你吃灰已久的ESP32了.&lt;/p&gt;
-&lt;p&gt;本文会使用&lt;a href=&#34;https://platformio.org/&#34;&gt;PlatformIO&lt;/a&gt;创建一个全新的项目,直到显示出现&lt;a class=&#34;toc-link&#34; href=&#34;/2021/12/12/FreeType-and-LVGL/&#34;&gt;上篇文章&lt;/a&gt;末尾的动图为止.&lt;br&gt;如遇到问题,可参考&lt;a class=&#34;toc-link&#34; href=&#34;#常见问题&#34;&gt;常见问题&lt;/a&gt;内解答.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+&lt;p&gt;本文会使用&lt;a href=&#34;https://platformio.org/&#34;&gt;PlatformIO&lt;/a&gt;创建一个全新的项目,直到显示出现&lt;a class=&#34;toc-link&#34; href=&#34;/FreeType-and-LVGL/&#34;&gt;上篇文章&lt;/a&gt;末尾的动图为止.&lt;br&gt;如遇到问题,可参考&lt;a class=&#34;toc-link&#34; href=&#34;#常见问题&#34;&gt;常见问题&lt;/a&gt;内解答.&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/lvgl-freetype-and-esp32/&t=在LVGL中实现可变字体(Variable Font)-第二章"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 

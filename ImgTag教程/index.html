@@ -213,7 +213,7 @@
 <h3 id="0x03-事前准备"><a href="#0x03-事前准备" class="headerlink" title="0x03 事前准备"></a>0x03 事前准备</h3><p>这里假设你已经安装好了Python，并且具备了一些”常识”后，你就可以继续往下看了。<br>为了方便演示，我使用了Python的虚拟环境，并且安装了如下库</p>
 <p><img src="/images/migrated/0a3505b9_images_11.png"/></p>
 <ul>
-<li>下载 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/qqwweee/keras-yolo3">https://raw.githubusercontent.com/qqwweee/keras-yolo3</a> 页面中的文件，你可以使用git clone或者直接点击下载，然后解压。</li>
+<li>下载 <a target="_blank" rel="noopener" href="https://github.com/qqwweee/keras-yolo3">https://github.com/qqwweee/keras-yolo3</a> 页面中的文件，你可以使用git clone或者直接点击下载，然后解压。</li>
 <li>下载 yolo-tiny的weights文件 <a target="_blank" rel="noopener" href="https://pjreddie.com/media/files/yolov3-tiny.weights">https://pjreddie.com/media/files/yolov3-tiny.weights</a>, 并放到上一步解压后的文件夹中<br>进行到这里，我们接下来需要用到的文件已经准备了一半了，另外一半就是跑模型需要用到的数据。</li>
 </ul>
 <h3 id="0x04-配置相关文件"><a href="#0x04-配置相关文件" class="headerlink" title="0x04 配置相关文件"></a>0x04 配置相关文件</h3><p>首先，我们需要对yolov3-tiny.cfg进行编辑，<br>在这个文件里，我们需要关注[yolo]和[yolo]前的一个[convolutional]<br>首先将所有[yolo]里面classes修改为1<br>得到classes=1<br>classes的含义是有多少种需要被识别的物体，这里我只训练yolo识别一种物体，所以设置为1</p>
