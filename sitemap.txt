@@ -2,8 +2,8 @@ https://chaosgoo.com/make-remote-streaming-on-m5stack-cardputer/
 https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/
 https://chaosgoo.com/mcompass/guide.html
 https://chaosgoo.com/mcompass/manual.html
-https://chaosgoo.com/en/mcompass/manual.html
 https://chaosgoo.com/en/mcompass/guide.html
+https://chaosgoo.com/en/mcompass/manual.html
 https://chaosgoo.com/projects/index.html
 https://chaosgoo.com/en/projects/index.html
 https://chaosgoo.com/mcompass/bom.html
