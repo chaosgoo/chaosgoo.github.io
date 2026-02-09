@@ -1,3 +1,4 @@
+https://chaosgoo.com/chaosgoo-technical-manifesto/
 https://chaosgoo.com/make-remote-streaming-on-m5stack-cardputer/
 https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/
 https://chaosgoo.com/mcompass/guide.html
@@ -57,3 +58,4 @@ https://chaosgoo.com/
 https://chaosgoo.com/categories/Hardware-IoT/
 https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Project-Logs/
+https://chaosgoo.com/categories/Meta-About/
