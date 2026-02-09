@@ -1,240 +1,39 @@
-<!DOCTYPE html>
-<html
-  lang="zh">
-<head>
-  <!-- preconnect to critical origins -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <!-- so meta -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="HandheldFriendly" content="True">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-  <meta name="description" content="基于 WCH CH592F 的硬件 DIY 研究。介绍如何利用 C++、BLE 蓝牙 HID 与游戏 GSI 协议，制作一个具有交互功能的同人电子饰品。包含 PCB 设计、电源管理及自定义 Device Script 实现方案。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动">
-<meta property="og:url" content="https://chaosgoo.com/Real-life-HealthPin/index.html">
-<meta property="og:site_name" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog">
-<meta property="og:description" content="基于 WCH CH592F 的硬件 DIY 研究。介绍如何利用 C++、BLE 蓝牙 HID 与游戏 GSI 协议，制作一个具有交互功能的同人电子饰品。包含 PCB 设计、电源管理及自定义 Device Script 实现方案。">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://chaosgoo.com/images/archives/healthpin_in_game.jpg">
-<meta property="og:image" content="https://chaosgoo.com/images/archives/healthpin_in_cs2.png">
-<meta property="og:image" content="https://chaosgoo.com/images/archives/ch592.png">
-<meta property="og:image" content="https://chaosgoo.com/images/archives/healthpin3dmodel.png">
-<meta property="og:image" content="https://chaosgoo.com/images/archives/real_health_pin.jpeg">
-<meta property="og:image" content="https://chaosgoo.com/images/archives/aurora_add_script_device.png">
-<meta property="og:image" content="https://chaosgoo.com/images/archives/aurora_cs2_profile.png">
-<meta property="article:published_time" content="2025-10-29T01:56:54.000Z">
-<meta property="article:modified_time" content="2025-11-20T10:45:00.000Z">
-<meta property="article:author" content="Chaos Goo">
-<meta property="article:tag" content="Hardware Analysis">
-<meta property="article:tag" content="WCH">
-<meta property="article:tag" content="CH592">
-<meta property="article:tag" content="IoT">
-<meta property="article:tag" content="BLE">
-<meta property="article:tag" content="Hardware DIY">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://chaosgoo.com/images/archives/healthpin_in_game.jpg">
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://use.fontawesome.com"><meta><meta name="google-adsense-account" content="ca-pub-1189115759021088"><meta name="description" content="基于 WCH CH592F 的硬件 DIY 研究。介绍如何利用 C++、BLE 蓝牙 HID 与游戏 GSI 协议，制作一个具有交互功能的同人电子饰品。包含 PCB 设计、电源管理及自定义 Device Script 实现方案。"><title>如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动 - Chaosgoo</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#333333"><meta name="application-name" content="Chaosgoo 技术博客"><meta name="msapplication-TileImage" content="/images/android-chrome-192x192.png"><meta name="msapplication-TileColor" content="#333333"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Chaosgoo 技术博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="192x192" href="/images/android-chrome-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="/images/android-chrome-512x512.png"><meta name="description" content="基于 WCH CH592F 的硬件 DIY 研究。介绍如何利用 C++、BLE 蓝牙 HID 与游戏 GSI 协议，制作一个具有交互功能的同人电子饰品。包含 PCB 设计、电源管理及自定义 Device Script 实现方案。"><meta property="og:type" content="article"><meta property="og:title" content="如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><meta property="og:url" content="https://chaosgoo.com/Real-life-HealthPin/"><meta property="og:site_name" content="Chaosgoo | ESP32 &amp; IoT 技术博客"><meta property="og:description" content="基于 WCH CH592F 的硬件 DIY 研究。介绍如何利用 C++、BLE 蓝牙 HID 与游戏 GSI 协议，制作一个具有交互功能的同人电子饰品。包含 PCB 设计、电源管理及自定义 Device Script 实现方案。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://chaosgoo.com/images/social-image.png"><meta property="article:published_time" content="2025-10-29T01:56:54.000Z"><meta property="article:modified_time" content="2025-11-20T10:45:00.000Z"><meta property="article:author" content="Chaos Goo"><meta property="article:tag" content="Hardware Analysis"><meta property="article:tag" content="WCH"><meta property="article:tag" content="CH592"><meta property="article:tag" content="IoT"><meta property="article:tag" content="BLE"><meta property="article:tag" content="Hardware DIY"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image:src" content="https://chaosgoo.com/images/social-image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://chaosgoo.com/Real-life-HealthPin/"},"headline":"如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动","image":["https://chaosgoo.com/images/archives/healthpin_in_game.jpg","https://chaosgoo.com/images/archives/healthpin_in_cs2.png","https://chaosgoo.com/images/archives/ch592.png","https://chaosgoo.com/images/archives/healthpin3dmodel.png","https://chaosgoo.com/images/archives/aurora_add_script_device.png","https://chaosgoo.com/images/archives/aurora_cs2_profile.png"],"author":{"@type":"Person","name":"Chaos Goo"},"publisher":{"@type":"Organization","name":"Chaosgoo 技术博客","logo":{"@type":"ImageObject","url":"https://chaosgoo.com/images/Logo_Sketch.png"}},"description":"基于 WCH CH592F 的硬件 DIY 研究。介绍如何利用 C++、BLE 蓝牙 HID 与游戏 GSI 协议，制作一个具有交互功能的同人电子饰品。包含 PCB 设计、电源管理及自定义 Device Script 实现方案。","datePublished":"2025-10-29T01:56:54.000Z","dateModified":"2025-11-20T10:45:00.000Z"}</script><link rel="canonical" href="https://chaosgoo.com/Real-life-HealthPin/"><link rel="icon" href="/images/favicon_chaosgoo.ico"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro&amp;display=swap"><link data-pjax rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088" crossorigin="anonymous"></script><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
     
-      
-        
-          
-                    <link rel="shortcut icon" href="/images/favicon_chaosgoo.ico">
-                    
-                      
-                        
-                          
-                                    <link rel="icon" type="image/png" href="/images/Logo_Sketch.webp"
-                                      sizes="192x192">
-                                    
-                                      
-                                        
-                                          
-                                                    <link rel="apple-touch-icon" sizes="180x180"
-                                                      href="/images/Logo_Sketch.webp">
-                                                    
-                                                      
-                                                        
-                                                          <!-- title -->
-                                                          <title>
-                                                            如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动
-                                                          </title>
-                                                          <link rel="canonical"
-                                                            href="https://chaosgoo.com/Real-life-HealthPin/">
-                                                          <!-- async scripts -->
-                                                          
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ"></script>
-  <script>
-    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-EVWTNN57LZ');
-    }
-  </script>
+        gtag('config', 'G-EVWTNN57LZ');</script><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088" crossorigin="anonymous"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-                                                            <!-- Umami Analytics -->
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-                                                              <!-- styles -->
-                                                              <link rel="stylesheet"
-                                                                href="/css/style.css">
-                                                              <!-- styles -->
-
-            <!-- Font Awesome removed - using inline SVG icons instead -->
-                                                                <!-- persian styles -->
-                                                                
-                                                                      <!-- rss -->
-                                                                      
-                                                                            
-                                                                                
-                                                                                  <!-- <script async
-                                                                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1189115759021088"
-                                                                                    crossorigin="anonymous"></script> -->
-                                                                                  
-                                                                                    <!-- mathjax -->
-                                                                                    
-                                                                                      <script
-                                                                                        type="text/x-mathjax-config">
-	MathJax.Hub.Config({
-	  tex2jax: {
-		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-		inlineMath: [['$','$']]
-	  }
-	});
-</script>
-                                                                                      <script
-                                                                                        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
-                                                                                        async></script>
-                                                                                      
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-  <body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-        <!--
-       --><li><a href="/">首页</a></li><!--
-     --><!--
-       --><li><a href="/archives/">归档</a></li><!--
-     --><!--
-       --><li><a href="/projects/">项目</a></li><!--
-     --><!--
-       --><li><a href="/about/">关于</a></li><!--
-     -->
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="上一篇" href="/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">上一篇</span>
-      <span id="i-next" class="info" style="display:none;">下一篇</span>
-      <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/Real-life-HealthPin/"><i
-        class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/Real-life-HealthPin/&text=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon"
-      target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/Real-life-HealthPin/&is_video=false&description=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动&body=Check out this article: https://chaosgoo.com/Real-life-HealthPin/"><i
-        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li> -->
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon"
-      target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/Real-life-HealthPin/&name=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动&description=&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;免责声明 (Disclaimer)&lt;/strong&gt;&lt;br&gt;本项目仅为作者出于技术探索和个人兴趣进行的&lt;strong&gt;非商业同人创作&lt;/strong&gt; (Fan-made Project)。所有设计资源（PCB/代码）仅供电子技术交流与学习参考，&lt;strong&gt;严禁用于任何商业用途或批量生产销售&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;关于权属&lt;/strong&gt;：文中提及的 “Counter-Strike 2” (CS2) 及其相关素材权属归 &lt;strong&gt;Valve Corporation&lt;/strong&gt; 所有。本站与 Valve 无任何关联，亦未获得官方授权，本项目是对游戏机制在硬件层面的同步技术验证。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;/images/archives/healthpin_in_game.jpg&#34; alt=&#34;healthpin_in_game&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;在CS2中(CS:GO里面也有)中有一个叫做生命值胸章的饰品&lt;br&gt;&lt;img src=&#34;/images/archives/healthpin_in_cs2.png&#34; alt=&#34;healthpin_in_cs2&#34;&gt;&lt;br&gt;第一次看到时候就觉得这个很适合使用LED做出来.&lt;br&gt;而且还可以通过CSGO GSI同步游戏中生命值状态.&lt;/p&gt;"><i
-        class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/Real-life-HealthPin/&t=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">补充说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E4%BB%B6%E9%80%89%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">元件选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MCU%E9%80%89%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">MCU选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LDO%E9%80%89%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">LDO选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%82%E7%94%B5%E6%B1%A0%E5%85%85%E7%94%B5%E8%8A%AF%E7%89%87%E9%80%89%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">锂电池充电芯片选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%AF%E7%8F%A0%E5%92%8CMOS%E9%80%89%E6%8B%A9"><span class="toc-number">2.4.</span> <span class="toc-text">灯珠和MOS选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCB%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">PCB设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%89%A9%E7%84%8A%E6%8E%A5%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">4.</span> <span class="toc-text">实物焊接效果展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StatTrak%E9%A1%B9%E7%9B%AE%E5%9B%9E%E9%A1%BE"><span class="toc-number">5.1.</span> <span class="toc-text">StatTrak项目回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auraro"><span class="toc-number">5.2.</span> <span class="toc-text">Auraro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Device-Script%E7%BC%96%E5%86%99"><span class="toc-number">5.3.</span> <span class="toc-text">Device Script编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E6%8B%9F%E5%AE%9A%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.3.1.</span> <span class="toc-text">协议拟定和实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Device-Script%E5%AE%8C%E5%96%84"><span class="toc-number">5.3.2.</span> <span class="toc-text">Device Script完善</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E4%BD%8D%E6%9C%BA%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.4.</span> <span class="toc-text">下位机程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8WS2812B"><span class="toc-number">5.4.1.</span> <span class="toc-text">驱动WS2812B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HID%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90"><span class="toc-number">5.4.2.</span> <span class="toc-text">HID命令解析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91"><span class="toc-number">6.</span> <span class="toc-text">视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E5%BE%8B%E5%8F%8A%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="toc-number">6.1.</span> <span class="toc-text">法律及版权说明</span></a></li></ol></li></ol>
-      </div>
-    
-  </span>
-</div>
-
-        
-          <div class="content index py4 ">
-            
-                  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Chaos Goo</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2025-10-29T01:56:54.000Z" class="dt-published" itemprop="datePublished">2025-10-29</time>
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/Project-Logs/">Project Logs</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/BLE/" rel="tag">BLE</a>, <a class="p-category" href="/tags/CH592/" rel="tag">CH592</a>, <a class="p-category" href="/tags/Hardware-Analysis/" rel="tag">Hardware Analysis</a>, <a class="p-category" href="/tags/Hardware-DIY/" rel="tag">Hardware DIY</a>, <a class="p-category" href="/tags/IoT/" rel="tag">IoT</a>, <a class="p-category" href="/tags/WCH/" rel="tag">WCH</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <blockquote>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/Logo_Sketch.png" alt="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/esp32-guide">ESP32-Guide</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/projects">Projects</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-10-29T01:56:54.000Z" title="10/29/2025, 9:56:54 AM">2025-10-29</time>发表</span><span class="level-item"><time dateTime="2025-11-20T10:45:00.000Z" title="11/20/2025, 6:45:00 PM">2025-11-20</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Project-Logs/">Project Logs</a></span><span class="level-item">16 分钟读完 (大约2441个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动</h1><div class="content"><blockquote>
 <p><strong>免责声明 (Disclaimer)</strong><br>本项目仅为作者出于技术探索和个人兴趣进行的<strong>非商业同人创作</strong> (Fan-made Project)。所有设计资源（PCB/代码）仅供电子技术交流与学习参考，<strong>严禁用于任何商业用途或批量生产销售</strong>。</p>
 <p><strong>关于权属</strong>：文中提及的 “Counter-Strike 2” (CS2) 及其相关素材权属归 <strong>Valve Corporation</strong> 所有。本站与 Valve 无任何关联，亦未获得官方授权，本项目是对游戏机制在硬件层面的同步技术验证。</p>
 </blockquote>
@@ -280,173 +79,58 @@
 <li><strong>商标声明</strong>：Valve, Counter-Strike, Steam, Half-Life 及其对应的徽标均为 Valve Corporation 的商标及/或注册商标。</li>
 <li><strong>不诚实行为合规</strong>：本项目不涉及对游戏的修改、破解或作弊，仅通过官方允许的 GSI (Game State Integration) 接口读取只读数据展示呼吸灯效果。</li>
 </ul>
-
-  </div>
-</article>
-
-
-
-                    
-                      <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">首页</a></li>
-        
-          <li><a href="/archives/">归档</a></li>
-        
-          <li><a href="/projects/">项目</a></li>
-        
-          <li><a href="/about/">关于</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">补充说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E4%BB%B6%E9%80%89%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">元件选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MCU%E9%80%89%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">MCU选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LDO%E9%80%89%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">LDO选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%82%E7%94%B5%E6%B1%A0%E5%85%85%E7%94%B5%E8%8A%AF%E7%89%87%E9%80%89%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">锂电池充电芯片选型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%AF%E7%8F%A0%E5%92%8CMOS%E9%80%89%E6%8B%A9"><span class="toc-number">2.4.</span> <span class="toc-text">灯珠和MOS选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PCB%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">PCB设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%89%A9%E7%84%8A%E6%8E%A5%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">4.</span> <span class="toc-text">实物焊接效果展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StatTrak%E9%A1%B9%E7%9B%AE%E5%9B%9E%E9%A1%BE"><span class="toc-number">5.1.</span> <span class="toc-text">StatTrak项目回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auraro"><span class="toc-number">5.2.</span> <span class="toc-text">Auraro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Device-Script%E7%BC%96%E5%86%99"><span class="toc-number">5.3.</span> <span class="toc-text">Device Script编写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E6%8B%9F%E5%AE%9A%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.3.1.</span> <span class="toc-text">协议拟定和实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Device-Script%E5%AE%8C%E5%96%84"><span class="toc-number">5.3.2.</span> <span class="toc-text">Device Script完善</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E4%BD%8D%E6%9C%BA%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.4.</span> <span class="toc-text">下位机程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8WS2812B"><span class="toc-number">5.4.1.</span> <span class="toc-text">驱动WS2812B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HID%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90"><span class="toc-number">5.4.2.</span> <span class="toc-text">HID命令解析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91"><span class="toc-number">6.</span> <span class="toc-text">视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E5%BE%8B%E5%8F%8A%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="toc-number">6.1.</span> <span class="toc-text">法律及版权说明</span></a></li></ol></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://chaosgoo.com/Real-life-HealthPin/"><i
-        class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://chaosgoo.com/Real-life-HealthPin/&text=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon"
-      target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chaosgoo.com/Real-life-HealthPin/&is_video=false&description=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动&body=Check out this article: https://chaosgoo.com/Real-life-HealthPin/"><i
-        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <!-- <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li> -->
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://chaosgoo.com/Real-life-HealthPin/&title=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon"
-      target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://chaosgoo.com/Real-life-HealthPin/&name=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动&description=&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;免责声明 (Disclaimer)&lt;/strong&gt;&lt;br&gt;本项目仅为作者出于技术探索和个人兴趣进行的&lt;strong&gt;非商业同人创作&lt;/strong&gt; (Fan-made Project)。所有设计资源（PCB/代码）仅供电子技术交流与学习参考，&lt;strong&gt;严禁用于任何商业用途或批量生产销售&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;关于权属&lt;/strong&gt;：文中提及的 “Counter-Strike 2” (CS2) 及其相关素材权属归 &lt;strong&gt;Valve Corporation&lt;/strong&gt; 所有。本站与 Valve 无任何关联，亦未获得官方授权，本项目是对游戏机制在硬件层面的同步技术验证。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;/images/archives/healthpin_in_game.jpg&#34; alt=&#34;healthpin_in_game&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;在CS2中(CS:GO里面也有)中有一个叫做生命值胸章的饰品&lt;br&gt;&lt;img src=&#34;/images/archives/healthpin_in_cs2.png&#34; alt=&#34;healthpin_in_cs2&#34;&gt;&lt;br&gt;第一次看到时候就觉得这个很适合使用LED做出来.&lt;br&gt;而且还可以通过CSGO GSI同步游戏中生命值状态.&lt;/p&gt;"><i
-        class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://chaosgoo.com/Real-life-HealthPin/&t=如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动"><i
-        class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
-    </div>
-
-  </div>
-</div>
-
-                        
-                          <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-      
-        
-          2016-2026
-            Chaos Goo
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       -->
-          
-            <li><a href="/privacy-policy/">
-                隐私政策
-              </a></li><!--
-     -->
-            <!--
-       -->
-          
-            <li><a href="/terms/">
-                使用条款
-              </a></li><!--
-     -->
-            <!--
-       -->
-          
-            <li><a href="/disclaimer/">
-                免责声明
-              </a></li><!--
-     -->
-            <!--
-       -->
-          
-            <li><a href="/contact/">
-                联系我们
-              </a></li><!--
-     -->
-            
-      </ul>
-    </nav>
-  </div>
-</footer>
-          </div>
-          <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-    
-
-          
-
-                        <!-- clipboard -->
-                        
-                          
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-                              
-                                    <script type="text/javascript">
-                                      $(function () {
-                                        // copy-btn HTML
-                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
-                                        btn += '<i class="fa-regular fa-clone"></i>';
-                                        btn += '</span>';
-                                        // mount it!
-                                        $(".highlight table").before(btn);
-                                        var clip = new ClipboardJS('.btn-copy', {
-                                          text: function (trigger) {
-                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
-                                          }
-                                        });
-                                        clip.on('success', function (e) {
-                                          e.trigger.setAttribute('aria-label', "复制成功！");
-                                          e.clearSelection();
-                                        })
-                                      })
-                                    </script>
-                                    
-                                      
-<script src="/js/main.js"></script>
-
-                                        <!-- search -->
-                                        
-                                              <!-- Baidu Analytics -->
-                                              
-                                                  <!-- Cloudflare Analytics -->
-                                                  
-                                                      <!-- Disqus Comments -->
-                                                      
-                                                          <!-- utterances Comments -->
-                                                          
-  </body>
-
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>如何从零开始：用 CH592F 制作 CS2 同人生命值胸章并实现 GSI 联动</p><p><a href="https://chaosgoo.com/Real-life-HealthPin/">https://chaosgoo.com/Real-life-HealthPin/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Chaos Goo</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2025-10-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-11-20</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Hardware-Analysis/">Hardware Analysis</a><a class="link-muted mr-2" rel="tag" href="/tags/WCH/">WCH</a><a class="link-muted mr-2" rel="tag" href="/tags/CH592/">CH592</a><a class="link-muted mr-2" rel="tag" href="/tags/IoT/">IoT</a><a class="link-muted mr-2" rel="tag" href="/tags/BLE/">BLE</a><a class="link-muted mr-2" rel="tag" href="/tags/Hardware-DIY/">Hardware DIY</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/Claude-Code%E5%88%9D%E4%BD%93%E9%AA%8C/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Claude Code初体验</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2025-Google-Play-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%E8%AE%B0%E5%BD%95/"><span class="level-item">踩坑与收获：2025独立开发者Google Play上架实战复盘</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-02-08T14:55:41.000Z">2026-02-08</time></p><p class="title"><a href="/make-remote-streaming-on-m5stack-cardputer/">在 M5Stack Cardputer 上实现远程桌面串流（基于 H.264）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-02-08T14:55:41.000Z">2026-02-08</time></p><p class="title"><a href="/en/make-remote-streaming-on-m5stack-cardputer/">Real-time Desktop Streaming on M5Stack Cardputer via H.264</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/android-lvgl-style-border/"><img src="/images/archives/android-lvgl-style-border/strange%20top%20right%20bottom%20border%20style.png" alt="Android 进阶：如何在安卓中实现像 LVGL 一样的&quot;实体&quot;Border？"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-02-04T05:13:02.000Z">2026-02-04</time></p><p class="title"><a href="/android-lvgl-style-border/">Android 进阶：如何在安卓中实现像 LVGL 一样的&quot;实体&quot;Border？</a></p><p class="categories"><a href="/categories/Software-Dev/">Software &amp; Dev</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-01-04T04:12:44.000Z">2026-01-04</time></p><p class="title"><a href="/ESP-IDF-embed-txtfiles-tricks/">ESP-IDF 插件：用 embed_txtfiles 优雅地在固件里“塞”文件</a></p><p class="categories"><a href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/Ditherpunk-The-Art-of-Dithering-2-ESP32/"><img src="/images/archives/Ditherpunk-The-Art-of-Dithering-2-ESP32/thumbnail.jpg" alt="屏幕不够，算法来凑(二)：ESP32 单色屏上的 Ditherpunk 实战"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-12-30T05:38:00.000Z">2025-12-30</time></p><p class="title"><a href="/Ditherpunk-The-Art-of-Dithering-2-ESP32/">屏幕不够，算法来凑(二)：ESP32 单色屏上的 Ditherpunk 实战</a></p><p class="categories"><a href="/categories/Hardware-IoT/">Hardware &amp; IoT</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Hardware-IoT/"><span class="level-start"><span class="level-item">Hardware &amp; IoT</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li><li><a class="level is-mobile" href="/categories/Project-Logs/"><span class="level-start"><span class="level-item">Project Logs</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/Software-Dev/"><span class="level-start"><span class="level-item">Software &amp; Dev</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li></ul></div></div></div><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/Logo_Sketch.png" alt="Goo"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Goo</p><p class="is-size-6 is-block">嵌入式开发工程师 | ESP32 &amp; IoT 开发者</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>合肥, 中国</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">36</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/chaosgoo" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/chaosgoo"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="bilibili" href="https://space.bilibili.com/3493265206676106"><i class="fab fa-bilibili"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Youtube" href="https://www.youtube.com/@chaosgoo"><i class="fab fa-youtube"></i></a></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/02/"><span class="level-start"><span class="level-item">二月 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/01/"><span class="level-start"><span class="level-item">一月 2026</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/12/"><span class="level-start"><span class="level-item">十二月 2025</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/11/"><span class="level-start"><span class="level-item">十一月 2025</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/10/"><span class="level-start"><span class="level-item">十月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/09/"><span class="level-start"><span class="level-item">九月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/01/"><span class="level-start"><span class="level-item">一月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">九月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">七月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">十一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.vimc.cc" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">大黄猫の博客</span></span><span class="level-right"><span class="level-item tag">blog.vimc.cc</span></span></a></li><li><a class="level is-mobile" href="http://liga.tech" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">粤北山区的技术宅</span></span><span class="level-right"><span class="level-item tag">liga.tech</span></span></a></li><li><a class="level is-mobile" href="https://github.com/YanHeDoki" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">YanHeDoki</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/Logo_Sketch.png" alt="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog" height="28"></a><p class="is-size-7"><span>&copy; 2026 Chaos Goo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="隐私政策" href="/privacy-policy">隐私政策</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="GDPR合规" href="/gdpr">GDPR合规</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="使用条款" href="/terms">使用条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="联系我们" href="/contact">联系我们</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="关于" href="/about">关于</a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "/privacy-policy",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      },
+      chtml: {
+        matchFontHeight: false
+      }
+    };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

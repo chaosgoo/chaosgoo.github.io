@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/mcompass/manual.html</loc>
-    
-    <lastmod>2026-02-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chaosgoo.com/mcompass/guide.html</loc>
     
     <lastmod>2026-02-04</lastmod>
@@ -38,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/en/mcompass/manual.html</loc>
+    <loc>https://chaosgoo.com/mcompass/manual.html</loc>
     
     <lastmod>2026-02-04</lastmod>
     
@@ -48,6 +39,15 @@
   
   <url>
     <loc>https://chaosgoo.com/en/mcompass/guide.html</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/mcompass/manual.html</loc>
     
     <lastmod>2026-02-04</lastmod>
     
