@@ -11,7 +11,6 @@ https://chaosgoo.com/mcompass/index.html
 https://chaosgoo.com/en/mcompass/bom.html
 https://chaosgoo.com/en/mcompass/index.html
 https://chaosgoo.com/android-lvgl-style-border/
-https://chaosgoo.com/en/disclaimer/index.html
 https://chaosgoo.com/privacy-policy/index.html
 https://chaosgoo.com/en/privacy-policy/index.html
 https://chaosgoo.com/StatTrak/
