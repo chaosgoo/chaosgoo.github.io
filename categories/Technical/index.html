@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><link rel="dns-prefetch" href="https://googleads.g.doubleclick.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><meta><meta name="google-adsense-account" content="ca-pub-1189115759021088"><meta name="description" content="ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。"><title>分类: Technical - Chaosgoo</title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#333333"><meta name="application-name" content="Chaosgoo 技术博客"><meta name="msapplication-TileImage" content="/images/android-chrome-192x192.png"><meta name="msapplication-TileColor" content="#333333"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Chaosgoo 技术博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="192x192" href="/images/android-chrome-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="/images/android-chrome-512x512.png"><meta name="description" content="ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。"><meta property="og:type" content="blog"><meta property="og:title" content="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog"><meta property="og:url" content="https://chaosgoo.com/"><meta property="og:site_name" content="Chaosgoo | ESP32 &amp; IoT 技术博客"><meta property="og:description" content="ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://chaosgoo.com/images/social-image.png"><meta property="article:author" content="Chaos Goo"><meta property="article:tag" content="ESP32, ESP-IDF, 嵌入式开发, 物联网, IoT, HomeKit, 硬件DIY, LVGL, WCH, 电子技术"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image:src" content="https://chaosgoo.com/images/social-image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","mainEntityOfPage":{"@type":"WebPage","@id":"https://chaosgoo.com"},"headline":"Chaosgoo | ESP32, IoT & Hardware DIY Blog","image":["https://chaosgoo.com/images/social-image.png"],"author":{"@type":"Person","name":"Chaos Goo"},"publisher":{"@type":"Organization","name":"Chaosgoo 技术博客","logo":{"@type":"ImageObject","url":"https://chaosgoo.com/images/Logo_Sketch.webp"}},"description":"ESP32、WCH芯片开发与硬件DIY笔记。记录从电路焊接、驱动调试的开发过程。"}</script><link rel="canonical" href="https://chaosgoo.com"><link rel="icon" href="/images/favicon_chaosgoo.ico"><link rel="preload" as="style" href="/css/default.css"><link data-pjax rel="stylesheet" href="/css/default.css"><link data-pjax rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css" onload="this.onload=null;this.rel=&#039;stylesheet&#039;"><noscript><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"></noscript><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-EVWTNN57LZ" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-EVWTNN57LZ');</script><!--!--><!--!--><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/Logo_Sketch.webp" alt="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/esp32-guide">ESP32-Guide</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/projects">Projects</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><span class="icon-svg icon-search " style="display:inline-flex;alignItems:center;justifyContent:center;width:1.25em;height:1.25em;"><svg class="feather feather-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/categories/">分类</a></li><li class="is-active"><a href="#" aria-current="page">Technical</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-02-07T14:54:00.000Z" title="2/7/2026, 10:54:00 PM">2026-02-07</time>发表</span><span class="level-item"><time dateTime="2026-02-07T14:54:00.000Z" title="2/7/2026, 10:54:00 PM">2026-02-07</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Technical/">Technical</a></span><span class="level-item">7 分钟读完 (大约1103个字)</span></div></div><h2 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/en/pagespeed-optimization-journey/">Website Performance Optimization: From 53 to 97 on PageSpeed Insights</a></h2><div class="content"><article class="message message-immersive is-primary">
+<div class="message-body">
+<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem; vertical-align: middle;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>This article is also available in:
+<a href="/pagespeed-optimization-journey/">中文</a>.
+</div>
+</article>
+
+<strong><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</strong><p>Recently, I performed a major overhaul of my blog, migrating the theme from the lightweight Cactus to the more feature-rich <a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus">Icarus</a>.</p>
+<p>The cost of switching themes was painful: In previous optimizations, my site’s PageSpeed Insights score had reached <strong>94</strong>. However, after switching to Icarus, due to the introduction of heavy JS, CSS, and external fonts, the mobile score plummeted overnight to <strong>53</strong>.</p>
+<p>Unwilling to accept this regression, I decided to perform a thorough “surgery” on this new theme. The goal was to maintain its rich features while achieving extreme loading speeds. After a series of targeted optimizations, the mobile score was finally pulled back to <strong>97</strong>, almost touching a perfect score.</p>
+<p>This article documents the complete optimization journey from refactoring to peak performance.</p>
+<strong><a href="#Initial-Status-Analysis" class="headerlink" title="Initial Status Analysis"></a>Initial Status Analysis</strong><p><img src="/images/archives/pagespeed-optimization/pagespeed-score-after-change-theme-53.png" alt="PageSpeed Insights Score 53 Before Optimization"></p>
+<p>The PageSpeed Insights report highlighted the following major issues:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Initial Value</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First Contentful Paint (FCP)</td>
+<td>4.3s</td>
+<td>Too Slow</td>
+</tr>
+<tr>
+<td>Largest Contentful Paint (LCP)</td>
+<td>7.2s</td>
+<td>Severely Slow</td>
+</tr>
+<tr>
+<td>Cumulative Layout Shift (CLS)</td>
+<td>0.339</td>
+<td>Significant Shift</td>
+</tr>
+<tr>
+<td>Speed Index</td>
+<td>5.2s</td>
+<td>Poor Experience</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Key performance bottlenecks included:</p>
+<ol>
+<li><strong>Oversized Font Files</strong>: MesloLG font TTF format was up to 636KB.</li>
+<li><strong>Font Awesome CSS</strong>: Loaded the full icon library (~19KB) but only used a few icons.</li>
+<li><strong>Missing Preconnect</strong>: No preconnect for critical resources like CDN.</li>
+<li><strong>Unoptimized Images</strong>: Logo image was 447x432 but displayed at 88x88.</li>
+<li><strong>Layout Shift</strong>: Images lacked width/height attributes causing CLS issues.</li>
+</ol>
+<strong><a href="#Round-1-Resource-Slimming" class="headerlink" title="Round 1: Resource Slimming"></a>Round 1: Resource Slimming</strong><strong><a href="#1-Font-Format-Conversion-TTF-→-WOFF2" class="headerlink" title="1. Font Format Conversion (TTF → WOFF2)"></a>1. Font Format Conversion (TTF → WOFF2)</strong><p>WOFF2 is currently the most efficient Web font format, with compression rates far exceeding TTF.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert font using ttf2woff2</span></span><br><span class="line">npx ttf2woff2 &lt; MesloLGS-Regular.ttf &gt; MesloLGS-Regular.woff2</span><br></pre></td></tr></table></figure>
+<p><strong>Result</strong>: 636KB → 160KB, <strong>75% reduction</strong></p>
+<p>Then update the font reference in CSS to prioritize WOFF2:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span></span><br><span class="line">  <span class="attribute">font-style</span>: normal</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Meslo LG&quot;</span></span><br><span class="line">  <span class="attribute">font-display</span>: swap</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">&quot;Meslo LG S&quot;</span>), </span><br><span class="line">       <span class="built_in">url</span>(<span class="string">&quot;../lib/meslo-LG/MesloLGS-Regular.woff2&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;woff2&quot;</span>),</span><br><span class="line">       <span class="built_in">url</span>(<span class="string">&quot;../lib/meslo-LG/MesloLGS-Regular.ttf&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;truetype&quot;</span>)</span><br></pre></td></tr></table></figure>
+<strong><a href="#2-Add-Preconnect-Hints" class="headerlink" title="2. Add Preconnect Hints"></a>2. Add Preconnect Hints</strong><p>Add resource preconnects in <code>&lt;head&gt;</code> to allow the browser to establish TCP connections in advance:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preconnect&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdnjs.cloudflare.com&quot;</span> <span class="attr">crossorigin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;dns-prefetch&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdnjs.cloudflare.com&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preconnect&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://pagead2.googlesyndication.com&quot;</span> <span class="attr">crossorigin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preconnect&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://www.googletagmanager.com&quot;</span> <span class="attr">crossorigin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<strong><a href="#3-Logo-Optimization" class="headerlink" title="3. Logo Optimization"></a>3. Logo Optimization</strong><p>The original Logo was 447x432 pixels, but only needed 88x88 for display.</p>
+<p><code>sips</code> (Scriptable Image Processing System) is a built-in command-line image processing tool on macOS.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Resize image using sips</span></span><br><span class="line">sips -z 88 88 Logo_Sketch.png --out Logo_Sketch_88.png</span><br></pre></td></tr></table></figure>
+<p><strong>Result</strong>: 32KB → 7.6KB, <strong>76% reduction</strong></p>
+<strong><a href="#4-Fixing-CLS-Layout-Shift" class="headerlink" title="4. Fixing CLS Layout Shift"></a>4. Fixing CLS Layout Shift</strong><p>Add explicit dimension attributes to the Logo image:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;logo&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/images/Logo_Sketch_88.png&quot;</span> <span class="attr">width</span>=<span class="string">&quot;50&quot;</span> <span class="attr">height</span>=<span class="string">&quot;50&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/archives/pagespeed-optimization/pagespeed-score-after-first-round-61.png" alt="Score 61 After Round 1"></p>
+<p><strong>Score after Round 1: 53 → 61</strong></p>
+<hr>
+<strong><a href="#Round-2-Removing-Font-Awesome" class="headerlink" title="Round 2: Removing Font Awesome"></a>Round 2: Removing Font Awesome</strong><p>Analysis showed Font Awesome CSS was about 19KB, plus larger font files, but I only used:</p>
+<ul>
+<li>☰ Menu Icon (fa-bars)</li>
+<li>‹ › Pagination Arrows (fa-angle-left/right)</li>
+<li>Social Media Icons (GitHub, YouTube, Bilibili, etc.)</li>
+</ul>
+<strong><a href="#Solution-Replace-with-SVG" class="headerlink" title="Solution: Replace with SVG"></a>Solution: Replace with SVG</strong><strong><a href="#1-Menu-Icon" class="headerlink" title="1. Menu Icon"></a>1. Menu Icon</strong><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Before --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;fa-solid fa-bars fa-2x&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- After --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;24&quot;</span> <span class="attr">height</span>=<span class="string">&quot;24&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 24 24&quot;</span> </span></span><br><span class="line"><span class="tag">     <span class="attr">fill</span>=<span class="string">&quot;none&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;currentColor&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;3&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;12&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;21&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;12&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">line</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;3&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;6&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;21&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;6&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">line</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;3&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;18&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;21&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;18&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">line</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<strong><a href="#2-Pagination-Arrows" class="headerlink" title="2. Pagination Arrows"></a>2. Pagination Arrows</strong><p>Use Unicode characters directly:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Before --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;fa-solid fa-angle-left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- After --&gt;</span></span><br><span class="line">‹</span><br></pre></td></tr></table></figure>
+<strong><a href="#3-Social-Media-Icons" class="headerlink" title="3. Social Media Icons"></a>3. Social Media Icons</strong><p>Replace with inline SVGs and remove the Font Awesome CSS reference.</p>
+<p><img src="/images/archives/pagespeed-optimization/pagespeed-score-after-svg-optimization-94.png" alt="Score 94 After SVG Optimization"></p>
+<p><strong>Score after Round 2: 61 → 94 (Mobile), 100 (Desktop)</strong></p>
+<strong><a href="#Why-is-removing-Font-Awesome-so-effective" class="headerlink" title="Why is removing Font Awesome so effective?"></a>Why is removing Font Awesome so effective?</strong><p>The core logic lies in the collapse of the <strong>Critical Request Chain</strong>.</p>
+<p><strong>Before</strong>: The browser had to go through a 4-level waterfall of <code>HTML → style.css → all.min.css → fa-solid-900.woff2</code>.<br><strong>After</strong>: SVGs are inlined in the HTML byte stream. The request chain length drops from 4 to 0.</p>
+<hr>
+<strong><a href="#Round-3-SEO-amp-Broken-Link-Fixes" class="headerlink" title="Round 3: SEO &amp; Broken Link Fixes"></a>Round 3: SEO &amp; Broken Link Fixes</strong><strong><a href="#1-Eliminate-page-0-404-Links" class="headerlink" title="1. Eliminate /page/0/ 404 Links"></a>1. Eliminate <code>/page/0/</code> 404 Links</strong><p>Many Hexo themes generate <code>&lt;a href=&quot;/page/0/&quot;&gt;Previous&lt;/a&gt;</code> on the first page, hidden by CSS but visible to crawlers. This causes 404 errors.</p>
+<p><strong>Solution</strong>: localized component rewrite (<code>paginator.jsx</code>) to conditionally render <code>&lt;span&gt;</code> instead of <code>&lt;a&gt;</code> when no valid page exists.</p>
+<strong><a href="#2-Remove-Blocking-Progress-Bar-Pace-js" class="headerlink" title="2. Remove Blocking Progress Bar (Pace.js)"></a>2. Remove Blocking Progress Bar (Pace.js)</strong><p><code>pace.min.js</code> was a blocking resource in <code>&lt;head&gt;</code> that contributed nothing to LCP. I disabled it in <code>_config.icarus.yml</code>.</p>
+<hr>
+<strong><a href="#Round-4-Modern-Image-Formats-amp-Adaptive-Sizing" class="headerlink" title="Round 4: Modern Image Formats &amp; Adaptive Sizing"></a>Round 4: Modern Image Formats &amp; Adaptive Sizing</strong><p>After solving code and font issues, the only remaining “heavyweight” was <strong>Image Resources</strong>.</p>
+<p>The report pointed out:</p>
+<ol>
+<li><strong>Oversized Images</strong>: e.g., 1536px wide cover images displaying at ~360px on mobile.</li>
+<li><strong>Legacy Formats</strong>: Still using JPG/PNG instead of WebP.</li>
+</ol>
+<strong><a href="#Solution-Automated-WebP-Conversion-amp-Resizing" class="headerlink" title="Solution: Automated WebP Conversion &amp; Resizing"></a>Solution: Automated WebP Conversion &amp; Resizing</strong><p>I wrote a Node.js script using <code>sharp</code> to clean up site images:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> <span class="title function_">sharp</span>(src)</span><br><span class="line">    .<span class="title function_">resize</span>(&#123; <span class="attr">width</span>: <span class="number">672</span> &#125;) <span class="comment">// Limit width to 672px (container width)</span></span><br><span class="line">    .<span class="title function_">webp</span>(&#123; <span class="attr">quality</span>: <span class="number">80</span> &#125;)  <span class="comment">// Convert to WebP</span></span><br><span class="line">    .<span class="title function_">toFile</span>(dest);</span><br></pre></td></tr></table></figure>
+<strong><a href="#Optimization-Cases" class="headerlink" title="Optimization Cases"></a>Optimization Cases</strong><ol>
+<li><p><strong>Ditherpunk Demo Image</strong> (<code>returnofobradinn</code>)</p>
+<ul>
+<li>Before: <strong>533KB</strong> (JPG)</li>
+<li>After: <strong>~26KB</strong> (WebP, 672px)</li>
+<li><strong>Reduction: ~95%</strong></li>
+</ul>
+</li>
+<li><p><strong>Post Cover Image</strong> (<code>esp32_dither_cover</code>)</p>
+<ul>
+<li>Before: <strong>533KB</strong></li>
+<li>After: <strong>~28KB</strong> (672px WebP)</li>
+<li><strong>Adaptive Sizing</strong>: Strictly matched container width (672px), eliminating “Oversized Image” warnings.</li>
+</ul>
+</li>
+<li><p><strong>M5Stack Cardputer Cover</strong> (<code>cardputer-streaming-cover</code>)</p>
+<ul>
+<li>Optimization: Resized to <strong>600px</strong> to strictly match the 599px rendering width.</li>
+</ul>
+</li>
+<li><p><strong>Sidebar Thumbnails</strong></p>
+<ul>
+<li>Generated specialized <strong>120px</strong> micro-versions (~3KB) to avoid loading large images for icons.</li>
+</ul>
+</li>
+</ol>
+<strong><a href="#Further-Squeeze-Adjusting-Compression-Factor" class="headerlink" title="Further Squeeze: Adjusting Compression Factor"></a>Further Squeeze: Adjusting Compression Factor</strong><p>To satisfy “Efficiently encode images”, I re-processed WebP images with higher compression:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.<span class="title function_">webp</span>(&#123; </span><br><span class="line">    <span class="attr">quality</span>: <span class="number">65</span>,      <span class="comment">// Lower quality to 65</span></span><br><span class="line">    <span class="attr">alphaQuality</span>: <span class="number">65</span>, <span class="comment">// Compress alpha channel</span></span><br><span class="line">    <span class="attr">effort</span>: <span class="number">6</span>,        <span class="comment">// Max compression effort</span></span><br><span class="line">    <span class="attr">smartSubsample</span>: <span class="literal">true</span> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>This reduced total image volume by over <strong>1MB</strong>.</p>
+<hr>
+<strong><a href="#Round-5-Eliminating-Critical-Request-Chain-Blocking" class="headerlink" title="Round 5: Eliminating Critical Request Chain Blocking"></a>Round 5: Eliminating Critical Request Chain Blocking</strong><p>PageSpeed Insights still flagged a <strong>441ms</strong> “Critical Request Chain” block, caused by <code>fonts.googleapis.com</code>.</p>
+<strong><a href="#Actions" class="headerlink" title="Actions"></a>Actions</strong><ol>
+<li><strong>Remove Google Fonts</strong>: Removed the default Google Fonts loading in the theme. Since we configured local fonts in Round 1, this external request was redundant. Saved <strong>441ms</strong>.</li>
+<li><strong>Async Load Non-Critical CSS</strong>: Changed highlight.js styles (<code>atom-one-light.css</code>) to load asynchronously.</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preload&quot;</span> <span class="attr">as</span>=<span class="string">&quot;style&quot;</span> <span class="attr">href</span>=<span class="string">&quot;...&quot;</span> <span class="attr">onload</span>=<span class="string">&quot;this.onload=null;this.rel=&#x27;stylesheet&#x27;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">noscript</span>&gt;</span><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;...&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>This reduced the critical request chain depth from 5 to 2.</p>
+<hr>
+<strong><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</strong><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Optimization</th>
+<th>Original (Icarus Default)</th>
+<th>Optimized</th>
+<th>Reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MesloLG Font</td>
+<td>636KB (TTF)</td>
+<td>160KB (WOFF2)</td>
+<td><strong>75%</strong></td>
+</tr>
+<tr>
+<td>Logo Image</td>
+<td>32KB</td>
+<td>7.6KB</td>
+<td><strong>76%</strong></td>
+</tr>
+<tr>
+<td>Images</td>
+<td>JPG/PNG (Oversized)</td>
+<td><strong>WebP (Adaptive)</strong></td>
+<td><strong>&gt; 90%</strong></td>
+</tr>
+<tr>
+<td>Font Awesome</td>
+<td>~19KB + Font</td>
+<td>0KB (Inline SVG)</td>
+<td><strong>100%</strong></td>
+</tr>
+<tr>
+<td>Google Fonts</td>
+<td>441ms Block</td>
+<td><strong>0ms (Removed)</strong></td>
+<td><strong>100%</strong></td>
+</tr>
+<tr>
+<td>Preconnect</td>
+<td>None</td>
+<td>4 preconnects</td>
+<td>-</td>
+</tr>
+<tr>
+<td>CLS Score</td>
+<td>0.339</td>
+<td>~0</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>PageSpeed Score</th>
+<th>Icarus Initial</th>
+<th>Optimized</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile</td>
+<td>53</td>
+<td><strong>97</strong></td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>67</td>
+<td><strong>100</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="/images/archives/pagespeed-optimization/pagespeed-score-final-optimization-97.png" alt="Final Score 97"></p>
+<strong><a href="#Lessons-Learned" class="headerlink" title="Lessons Learned"></a>Lessons Learned</strong><ol>
+<li><strong>Fonts Matter</strong>: Web fonts are often overlooked performance killers; WOFF2 is preferred.</li>
+<li><strong>Use Icons Wisely</strong>: Inline SVG is far more efficient than loading a full library for just a few icons.</li>
+<li><strong>Images on Demand</strong>: Ensure image dimensions match display dimensions (e.g., 672px/600px).</li>
+<li><strong>Critical Chain</strong>: Remove blocking external resources (like Google Fonts) from the critical path.</li>
+<li><strong>CLS is Fixable</strong>: Add explicit width/height to images.</li>
+</ol>
+<ol>
+<li><strong>Cache TTL</strong>: Use CDN rules to force long-term caching (max-age=31536000) for static assets.</li>
+</ol>
+<strong><a href="#Tools-Recommended" class="headerlink" title="Tools Recommended"></a>Tools Recommended</strong><ul>
+<li><a target="_blank" rel="noopener" href="https://pagespeed.web.dev/">PageSpeed Insights</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.webpagetest.org/">WebPageTest</a></li>
+<li><a target="_blank" rel="noopener" href="https://squoosh.app/">Squoosh</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/ttf2woff2">ttf2woff2</a></li>
+</ul>
+<p>Hope this article helps your optimization journey!</p>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-02-08T14:55:41.000Z">2026-02-08</time></p><p class="title"><a href="/make-remote-streaming-on-m5stack-cardputer/">在 M5Stack Cardputer 上实现远程桌面串流（基于 H.264）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-02-08T14:55:41.000Z">2026-02-08</time></p><p class="title"><a href="/en/make-remote-streaming-on-m5stack-cardputer/">Real-time Desktop Streaming on M5Stack Cardputer via H.264</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-02-07T14:54:00.000Z">2026-02-07</time></p><p class="title"><a href="/pagespeed-optimization-journey/">网站性能优化实战：PageSpeed Insights 从 47 分到 93 分的优化历程</a></p><p class="categories"><a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-02-07T14:54:00.000Z">2026-02-07</time></p><p class="title"><a href="/en/pagespeed-optimization-journey/">Website Performance Optimization: From 53 to 97 on PageSpeed Insights</a></p><p class="categories"><a href="/categories/Technical/">Technical</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/android-lvgl-style-border/"><img src="/images/archives/android-lvgl-style-border/strange%20top%20right%20bottom%20border%20style.webp" alt="Android 进阶：如何在安卓中实现像 LVGL 一样的&quot;实体&quot;Border？"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-02-04T05:13:02.000Z">2026-02-04</time></p><p class="title"><a href="/android-lvgl-style-border/">Android 进阶：如何在安卓中实现像 LVGL 一样的&quot;实体&quot;Border？</a></p><p class="categories"><a href="/categories/Software-Dev/">Software &amp; Dev</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Hardware-IoT/"><span class="level-start"><span class="level-item">Hardware &amp; IoT</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li><li><a class="level is-mobile" href="/categories/Project-Logs/"><span class="level-start"><span class="level-item">Project Logs</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/Software-Dev/"><span class="level-start"><span class="level-item">Software &amp; Dev</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/categories/Technical/"><span class="level-start"><span class="level-item">Technical</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">技术笔记</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/Logo_Sketch.webp" alt="Goo"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Goo</p><p class="is-size-6 is-block">嵌入式开发工程师 | ESP32 &amp; IoT 开发者</p><p class="is-size-6 is-flex justify-content-center"><span class="icon-svg icon-map-marker-alt mr-1" style="display:inline-flex;alignItems:center;justifyContent:center;width:1.25em;height:1.25em;"><svg class="feather feather-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span><span>合肥, 中国</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">38</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/chaosgoo" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/chaosgoo"><span class="icon-svg icon-github " style="display:inline-flex;alignItems:center;justifyContent:center;width:1.25em;height:1.25em;"><svg class="feather feather-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></span></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="bilibili" href="https://space.bilibili.com/3493265206676106"><span class="icon-svg icon-bilibili " style="display:inline-flex;alignItems:center;justifyContent:center;width:1.25em;height:1.25em;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.767.57 3.773 1.551 1.006.98 1.503 2.167 1.49 3.56l-.039 4.192c-.042 1.347-.538 2.515-1.49 3.504-1.272 1.283-2.95 1.918-5.034 1.918H6.433c-2.146 0-3.828-.659-5.046-1.978-.921-.993-1.427-2.138-1.514-3.433l-.04-4.207c0-1.332.474-2.516 1.42-3.554.945-1.037 2.19-1.585 3.737-1.644l-.477-.465c-.297-.253-.447-.56-.447-.92 0-.334.115-.63.349-.889.23-.258.52-.388.87-.388.4 0 .752.17 1.052.507L10.757 4.566h2.731l2.368-2.228c.16-.173.34-.32.542-.44.202-.12.443-.18.723-.18.366 0 .655.124.865.372.21.248.314.526.314.834 0 .32-.139.583-.416.784zm-8.881 3.327h-2.187c-.432 0-.802.149-1.112.447-.309.297-.463.659-.463 1.085v5.336c0 .426.154.788.463 1.084.223.21.495.346.814.409.153.031.25.047.298.047h2.187c.432 0 .801-.154 1.112-.463.309-.309.463-.671.463-1.084V10.512c0-.426-.154-.788-.463-1.085a1.516 1.516 0 0 0-1.112-.447zm10.251 0h-2.187c-.432 0-.802.149-1.112.447-.309.297-.463.659-.463 1.085v5.336c0 .426.154.788.463 1.084.223.21.494.346.813.409.154.031.251.047.299.047h2.187c.432 0 .802-.154 1.112-.463.309-.309.463-.671.463-1.084V10.512c0-.426-.154-.788-.463-1.085a1.516 1.516 0 0 0-1.112-.447z"></path></svg></span></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Youtube" href="https://www.youtube.com/@chaosgoo"><span class="icon-svg icon-youtube " style="display:inline-flex;alignItems:center;justifyContent:center;width:1.25em;height:1.25em;"><svg class="feather feather-youtube" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg></span></a></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/02/"><span class="level-start"><span class="level-item">二月 2026</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/01/"><span class="level-start"><span class="level-item">一月 2026</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/12/"><span class="level-start"><span class="level-item">十二月 2025</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/11/"><span class="level-start"><span class="level-item">十一月 2025</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/10/"><span class="level-start"><span class="level-item">十月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/09/"><span class="level-start"><span class="level-item">九月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2025/01/"><span class="level-start"><span class="level-item">一月 2025</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/09/"><span class="level-start"><span class="level-item">九月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">七月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">十一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://blog.vimc.cc" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">大黄猫の博客</span></span><span class="level-right"><span class="level-item tag">blog.vimc.cc</span></span></a></li><li><a class="level is-mobile" href="http://liga.tech" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">粤北山区的技术宅</span></span><span class="level-right"><span class="level-item tag">liga.tech</span></span></a></li><li><a class="level is-mobile" href="https://github.com/YanHeDoki" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">YanHeDoki</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/Logo_Sketch.webp" alt="Chaosgoo | ESP32, IoT &amp; Hardware DIY Blog" height="28"></a><p class="is-size-7"><span>&copy; 2026 Chaos Goo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="隐私政策" href="/privacy-policy">隐私政策</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="GDPR合规" href="/gdpr">GDPR合规</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="使用条款" href="/terms">使用条款</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="联系我们" href="/contact">联系我们</a></p><p class="control"><a class="button is-transparent " target="_blank" rel="noopener" title="关于" href="/about">关于</a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', function() { moment.locale("zh-cn"); });</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js" defer></script><a id="back-to-top" title="回到顶端" href="javascript:;"><span class="icon-svg icon-chevron-up " style="display:inline-flex;alignItems:center;justifyContent:center;width:1.25em;height:1.25em;"><svg class="feather feather-chevron-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></span></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "/privacy-policy",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/javascript" id="MathJax-script" async>MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            },
+            chtml: {
+                matchFontHeight: false
+            }
+        };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" defer></script><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

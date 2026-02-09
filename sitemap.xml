@@ -20,6 +20,24 @@
   </url>
   
   <url>
+    <loc>https://chaosgoo.com/pagespeed-optimization-journey/</loc>
+    
+    <lastmod>2026-02-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/en/pagespeed-optimization-journey/</loc>
+    
+    <lastmod>2026-02-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/mcompass/guide.html</loc>
     
     <lastmod>2026-02-04</lastmod>
@@ -523,6 +541,20 @@
   
   <url>
     <loc>https://chaosgoo.com/categories/Project-Logs/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chaosgoo.com/categories/Technical/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

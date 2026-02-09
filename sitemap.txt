@@ -1,5 +1,7 @@
 https://chaosgoo.com/make-remote-streaming-on-m5stack-cardputer/
 https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/
+https://chaosgoo.com/pagespeed-optimization-journey/
+https://chaosgoo.com/en/pagespeed-optimization-journey/
 https://chaosgoo.com/mcompass/guide.html
 https://chaosgoo.com/mcompass/manual.html
 https://chaosgoo.com/en/mcompass/guide.html
@@ -57,3 +59,5 @@ https://chaosgoo.com/
 https://chaosgoo.com/categories/Software-Dev/
 https://chaosgoo.com/categories/Hardware-IoT/
 https://chaosgoo.com/categories/Project-Logs/
+https://chaosgoo.com/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/
+https://chaosgoo.com/categories/Technical/
