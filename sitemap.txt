@@ -8,8 +8,8 @@ https://chaosgoo.com/projects/index.html
 https://chaosgoo.com/en/projects/index.html
 https://chaosgoo.com/mcompass/bom.html
 https://chaosgoo.com/mcompass/index.html
-https://chaosgoo.com/en/mcompass/index.html
 https://chaosgoo.com/en/mcompass/bom.html
+https://chaosgoo.com/en/mcompass/index.html
 https://chaosgoo.com/android-lvgl-style-border/
 https://chaosgoo.com/privacy-policy/index.html
 https://chaosgoo.com/en/privacy-policy/index.html
@@ -54,6 +54,6 @@ https://chaosgoo.com/HomeKit-ESP32-Control-Light-Part_Two/
 https://chaosgoo.com/ImgTag%E6%95%99%E7%A8%8B/
 https://chaosgoo.com/FFmpeg-on-Android/
 https://chaosgoo.com/
-https://chaosgoo.com/categories/Hardware-IoT/
 https://chaosgoo.com/categories/Software-Dev/
+https://chaosgoo.com/categories/Hardware-IoT/
 https://chaosgoo.com/categories/Project-Logs/
