@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chaosgoo.com/spherical-geometry-distance-bearing-derivation.md/</loc>
+    
+    <lastmod>2026-02-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/pagespeed-optimization-journey/</loc>
     
     <lastmod>2026-02-13</lastmod>
@@ -47,6 +56,15 @@
   </url>
   
   <url>
+    <loc>https://chaosgoo.com/mcompass/manual</loc>
+    
+    <lastmod>2026-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chaosgoo.com/mcompass/guide</loc>
     
     <lastmod>2026-02-04</lastmod>
@@ -57,15 +75,6 @@
   
   <url>
     <loc>https://chaosgoo.com/en/mcompass/guide</loc>
-    
-    <lastmod>2026-02-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chaosgoo.com/mcompass/manual</loc>
     
     <lastmod>2026-02-04</lastmod>
     
@@ -101,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/mcompass/bom</loc>
+    <loc>https://chaosgoo.com/mcompass/</loc>
     
     <lastmod>2026-02-04</lastmod>
     
@@ -110,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/mcompass/</loc>
+    <loc>https://chaosgoo.com/mcompass/bom</loc>
     
     <lastmod>2026-02-04</lastmod>
     
@@ -526,7 +535,7 @@
 
   <url>
     <loc>https://chaosgoo.com/</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -535,22 +544,22 @@
 
   
   <url>
-    <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
-    <lastmod>2026-02-13</lastmod>
+    <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chaosgoo.com/categories/Hardware-IoT/</loc>
-    <lastmod>2026-02-13</lastmod>
+    <loc>https://chaosgoo.com/categories/Software-Dev/</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chaosgoo.com/categories/Project-Logs/</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
