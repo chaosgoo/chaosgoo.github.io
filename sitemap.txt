@@ -4,8 +4,8 @@ https://chaosgoo.com/en/pagespeed-optimization-journey/
 https://chaosgoo.com/chaosgoo-technical-manifesto/
 https://chaosgoo.com/make-remote-streaming-on-m5stack-cardputer/
 https://chaosgoo.com/en/make-remote-streaming-on-m5stack-cardputer/
-https://chaosgoo.com/mcompass/manual
 https://chaosgoo.com/mcompass/guide
+https://chaosgoo.com/mcompass/manual
 https://chaosgoo.com/en/mcompass/guide
 https://chaosgoo.com/en/mcompass/manual
 https://chaosgoo.com/projects/

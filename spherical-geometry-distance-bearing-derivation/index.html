@@ -3,7 +3,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
-        gtag('config', 'G-EVWTNN57LZ');</script><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+        gtag('config', 'G-EVWTNN57LZ');</script><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -54,8 +54,30 @@
 <p>从几何模型来看，这段距离本质上是球心角 $\angle AOB$ 所截得的弧长： $$L &#x3D; R \cdot \theta$$ （其中 $R$ 为地球半径，$\theta$ 为以弧度计的夹角 $\angle AOB$）。</p>
 <p>具体的求解思路如下：</p>
 <p>三维坐标转换：先通过经纬度将 $A$、$B$ 两点转换至空间直角坐标系。<br>计算弦长：求出三维空间中直线段 $|AB|$ 的长度（即三角形 $AOB$ 的底边）。<br>反求夹角：利用余弦定理 (Law of Cosines)，根据三边长度反推球心角$\angle AOB$ (以下记作$\theta$)，进而锁定最终的球面距离。</p>
-<p>$$<br>A &#x3D; \left{<br>\begin{aligned}<br>x_a &amp;&#x3D; R \cos w_a \cos j_a \<br>y_a &amp;&#x3D; R \cos w_a \sin j_a \<br>z_a &amp;&#x3D; R \sin w_a<br>\end{aligned}<br>\right.<br>$$</p>
-<p>$$<br>B &#x3D; \left{<br>\begin{aligned}<br>x_b &amp;&#x3D; R \cos w_b \cos j_b \<br>y_b &amp;&#x3D; R \cos w_b \sin j_b \<br>z_b &amp;&#x3D; R \sin w_b<br>\end{aligned}<br>\right.<br>$$</p>
+<div>
+$$
+A = \left\{
+\begin{aligned}
+x_a &= R \cos w_a \cos j_a \\
+y_a &= R \cos w_a \sin j_a \\
+z_a &= R \sin w_a
+\end{aligned}
+\right.
+$$
+</div>
+
+<div>
+$$
+B = \left\{
+\begin{aligned}
+x_b &= R \cos w_b \cos j_b \\
+y_b &= R \cos w_b \sin j_b \\
+z_b &= R \sin w_b
+\end{aligned}
+\right.
+$$
+</div>
+
 <p>可得AB两点之间的直线距离为<br>$$|AB| &#x3D; \sqrt{(x_a - x_b)^2 + (y_a - y_b)^2 + (z_a - z_b)^2}$$<br>根据余弦定理求出$\angle AOB$<br>$$|AB|^2 &#x3D; OA^2 + OB^2 - 2 \cdot OA \cdot OB \cdot \cos\theta$$<br>代入半径 $R$ 后的形式<br>$$|AB|^2 &#x3D; R^2 + R^2 - 2 \cdot R \cdot R \cdot \cos\theta$$<br>反求 $\cos\theta$ 的公式<br>$$\cos\theta &#x3D; \frac{2R^2 - |AB|^2}{2R^2}$$<br>根据弧长公式<br>$$L &#x3D; R \cdot \theta$$<br>带入可得<br>$$弧长AB&#x3D;R \cdot arccos(\frac{2R^2 - |AB|^2}{2R^2})$$<br>前面已经推导过$|AB|$的公式， 那么<br>$$弧长AB&#x3D;R \cdot arccos(\frac{2R^2 - (x_a - x_b)^2 - (y_a - y_b)^2 - (z_a - z_b)^2}{2R^2})$$<br>又因为 $x_a^2 + y_a^2 + z_a^2 &#x3D; R^2$ 且 $x_b^2 + y_b^2 + z_b^2 &#x3D; R^2$，分子部分可以展开并简化为：<br>$$<br>2R^2 - (x_a^2 - 2x_ax_b + x_b^2) - (y_a^2 - 2y_ay_b + y_b^2) - (z_a^2 - 2z_az_b + z_b^2)<br>$$<br>$$<br>&#x3D; 2R^2 - (x_a^2 + y_a^2 + z_a^2) + (x_b^2 + y_b^2 + z_b^2) + 2(x_ax_b + y_ay_b + z_az_b)<br>$$<br>$$<br>&#x3D;  2(x_ax_b + y_ay_b + z_az_b)<br>$$<br>代入原公式<br>$$<br>弧长AB&#x3D;R \cdot arccos(\frac{2(x_ax_b + y_ay_b + z_az_b)}{2R^2})<br>$$<br>$$<br>弧长AB&#x3D;R \cdot arccos(\frac{x_ax_b + y_ay_b + z_az_b}{R^2})<br>$$<br>到这里， 可以带入上面参数方程中的$x_a， y_a， z_a， x_b， y_b， z_b$</p>
 <p>代入后得到<br>$$<br>弧长AB&#x3D;R \cdot arccos(\frac{R^2 \cos w_a \cos j_a \cos w_b \cos j_b + R^2 \cos w_a \sin j_a \cos w_b \sin j_b + R^2 \sin w_a \sin w_b}{R^2})<br>$$<br>$$<br>弧长AB&#x3D;R \cdot arccos(\cos w_a \cos j_a \cos w_b \cos j_b + \cos w_a \sin j_a \cos w_b \sin j_b + \sin w_a \sin w_b)<br>$$</p>
 <p>提取 $\cos w_a \cos w_b$，得到$$\cos w_a \cos w_b (\cos j_a \cos j_b + \sin j_a \sin j_b) + \sin w_a \sin w_b$$<br>利用公式<br>$$\cos(j_b - j_a) &#x3D; \cos j_a \cos j_b + \sin j_a \sin j_b$$</p>
@@ -142,6 +164,6 @@
             chtml: {
                 matchFontHeight: false
             }
-        };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" defer></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+        };</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
             loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
         });</script></body></html>
